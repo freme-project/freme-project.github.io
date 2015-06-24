@@ -1,0 +1,143 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+host: rv1443.1blu.de:8084
+# This is your document metadata
+info:
+  version: "0.2"
+  title: FREME API Documentation
+  description: |
+    This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the 
+    [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
+  baseUrl: /  
+    
+# Describe your paths here
+paths:
+  /e-translation/tilde:
+    post:
+    
+      tags:
+        - e-Translation
+    
+      summary: Perform machine translation using Tilde's API
+      
+      description: |
+        Call Tilde machine translation service. See further examples in [FREME wiki](https://github.com/freme-project/technical-discussion/wiki/Broker-API-Calls).
+     
+      produces:
+        - application/json+ld
+        - text/turtle
+     
+      consumes:
+        - text/plain
+        - application/json+ld
+        - text/turtle
+    
+      parameters:
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          required: false
+          type: string
+          
+        - 
+          name: input
+          in: body
+          description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
+          required: true
+          schema:
+            type: string
+        
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
+          required: false
+          type: string
+          
+        -
+          name: prefix
+          in: query
+          description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+          required: false
+          type: string    
+        -
+          name: source-lang
+          in: query
+          description: Source language, e.g. "en"
+          required: false
+          type: string     
+        -
+          name: target-lang
+          in: query
+          description: Target language, e.g. "de"
+          required: false
+          type: string           
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+            
+            
+  /e-entity/dbpedia-spotlight:
+    post:
+    
+      tags:
+        - e-Entity
+    
+      summary: Entity recognition and linking using DBPedia Spotlight     
+            
+  /e-entity/freme-ner:
+    post:
+    
+      tags:
+        - e-Entity
+    
+      summary: Entity recognition and linking using FREME NER
+
+  /e-link:
+    post:
+    
+      tags:
+        - e-Link
+    
+      summary: Fetch data about named entities from various ontologies
+
+  /e-publishing:
+    post:
+    
+      tags:
+        - e-Publishing
+    
+      summary: Create eBooks in the EPUB3 format
+
+
+
+      
