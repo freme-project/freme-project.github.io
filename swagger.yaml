@@ -201,6 +201,7 @@ paths:
             title: Array
             
   /e-entity/freme-ner/documents:
+  
     post:
     
       tags:
@@ -351,6 +352,9 @@ paths:
             
   /e-entity/freme-ner/datasets/: 
     get:
+      tags:
+        - e-Entity
+        
       summary: To list all available datasets.
       description:   |
        dummy
@@ -371,6 +375,9 @@ paths:
   
   /e-entity/freme-ner/datasets/{dataset-name}:           
     put:
+      tags:
+        - e-Entity
+    
       summary: To update a dataset with new data.
       description: dummy
       parameters:
