@@ -10,7 +10,7 @@ info:
   description: |
     This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the 
     [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
-  baseUrl: /  
+basePath: /  
     
 # Describe your paths here
 paths:
@@ -112,15 +112,287 @@ paths:
       tags:
         - e-Entity
     
-      summary: Entity recognition and linking using DBPedia Spotlight     
+      summary: Entity recognition and linking using DBPedia Spotlight  
+      
+      description: |
+        dummy
+      
+      produces:
+        - application/json+ld
+        - text/turtle
+     
+      consumes:
+        - text/plain
+        - application/json+ld
+        - text/turtle
+      
+      parameters:
+        
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          required: false
+          type: string
+          
+        - 
+          name: input
+          in: body
+          description: The string to be translated. Has to be plaintext (see parameter informat).
+          required: true
+          schema:
+            type: string
+        
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Only "plaintext" is provided (default). This parameter overrides *Content-Type* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle" (?). Defaults to "turtle". This parameter overrides Accept header
+          required: false
+          type: string
+          
+        -
+          name: prefix
+          in: query
+          description: unused optional dummy parameter
+          required: false
+          type: string    
+       
+        -
+          name: language
+          in: query
+          description: Source language "en"/"de"/"nl"/"fr"/"it"/"es" (according to supported NER engine)
+          required: false
+          type: string
+        -
+          name: confidence
+          in: query
+          description: Threshold to limit the output entities. Default is 0.3.
+          required: false
+          type: number
+          
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
             
-  /e-entity/freme-ner:
+  /e-entity/freme-ner/documents:
     post:
     
       tags:
         - e-Entity
     
       summary: Entity recognition and linking using FREME NER
+      
+      description: |
+        dummy
+      
+      produces:
+        - application/json+ld
+        - text/turtle
+     
+      consumes:
+        - text/plain
+        - application/json+ld
+        - text/turtle
+      
+      parameters:
+        
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          required: false
+          type: string
+          
+        - 
+          name: input
+          in: body
+          description: The string to be translated. Has to be plaintext (see parameter informat).
+          required: true
+          schema:
+            type: string
+        
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Only "plaintext" is provided (default). This parameter overrides *Content-Type* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle" (?). Defaults to "turtle". This parameter overrides Accept header
+          required: false
+          type: string
+          
+        -
+          name: prefix
+          in: query
+          description: unused optional dummy parameter
+          required: false
+          type: string    
+       
+        -
+          name: language
+          in: query
+          description: Source language "en"/"de"/"nl"/"fr"/"it"/"es" (according to supported NER engine)
+          required: false
+          type: string
+        -
+          name: dataset
+          in: query
+          description: A mandatory parameter which indicates the dataset used for entity linking which includes list of entities and associated labels.
+          required: true
+          type: number
+          
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+            
+  /e-entity/freme-ner/datasets/:
+    post:
+    
+      tags:
+        - e-Entity
+    
+      summary: This resource is used to submit (create), update and list all datasets which are used by the FREME NER system while performing entity linking.
+      
+      description: |
+        To create a dataset use the POST method, set the name and language parameter, and submit the dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+      
+     
+      consumes:
+        - text/plain
+        - application/json+ld
+        - text/turtle
+      
+      parameters:
+        - name: name
+          in: query
+          description: proposed dataset name. It can be considered as ID for the dataset. It should include only numbers, letters and should NOT include white spaces.
+          required: true
+          type: string
+        - name: language
+          in: query
+          description: language of the labels in the dataset. If the parameter is not specified, all labels without language tag will be used while performing linking. At the moment only following languages are supported - FREME NER (en/de/fr/es/it), DBpedia Spotlight (en).
+          required: false
+          type: string
+        - name: format
+          in: query
+          description: RDF serialization format of the dataset.
+          required: false
+          type: string
+        - name: properties
+          in: query
+          description: an optional parameter which lists RDF properties which hold the entity names (labels). This list of labels will be considered as names for the entities. An example of such property is "http://www.w3.org/TR/skos-reference#prefLabel" or "http://www.w3.org/2000/01/rdf-schema#label". By default, the skos:prefLabel, skos:altLabel and rdfs:label are considered. eg. "properties=http://www.w3.org/TR/skos-reference#prefLabel","http://www.w3.org/2000/01/rdf-schema#label"
+          required: false
+          type: string
+        - name: dataset-name
+          in: query
+          description: asd
+          required: true
+          type: string        
+     
+          
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Array
+        409:
+          description: A dataset with such name exists already
+          schema:
+            title: Array
+            
+  /e-entity/freme-ner/datasets/: 
+    get:
+      summary: To list all available datasets.
+      description:   |
+       dummy
+      parameters:
+        
+        - name: language
+          in: query
+          description: m 
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successful response
+        409:
+          description: A dataset with such name exists already while creation.
+          schema:
+            title: Array
+  
+  /e-entity/freme-ner/datasets/{dataset-name}:           
+    put:
+      summary: To update a dataset with new data.
+      description: dummy
+      parameters:
+        - name: dataset-name
+          in: path
+          description: dummy
+          required: true
+          type: string
+        - name: language
+          description: dummy
+          in: query
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successful response
+        # TODO: check error code
+        404:
+          description: if dataset does not exists
+          schema:
+            title: Array
+    
 
   /e-link:
     post:
@@ -129,6 +401,77 @@ paths:
         - e-Link
     
       summary: Fetch data about named entities from various ontologies
+      
+      parameters:
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          required: false
+          type: string
+          
+        - 
+          name: input
+          in: body
+          description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
+          required: true
+          schema:
+            type: string
+        
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
+          required: false
+          type: string
+          
+        -
+          name: prefix
+          in: query
+          description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+          required: false
+          type: string    
+        -
+          name: source-lang
+          in: query
+          description: Source language, e.g. "en"
+          required: false
+          type: string     
+        -
+          name: target-lang
+          in: query
+          description: Target language, e.g. "de"
+          required: false
+          type: string           
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
 
   /e-publishing:
     post:
@@ -137,6 +480,77 @@ paths:
         - e-Publishing
     
       summary: Create eBooks in the EPUB3 format
+      
+      parameters:
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          required: false
+          type: string
+          
+        - 
+          name: input
+          in: body
+          description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
+          required: true
+          schema:
+            type: string
+        
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
+          required: false
+          type: string
+          
+        -
+          name: prefix
+          in: query
+          description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+          required: false
+          type: string    
+        -
+          name: source-lang
+          in: query
+          description: Source language, e.g. "en"
+          required: false
+          type: string     
+        -
+          name: target-lang
+          in: query
+          description: Target language, e.g. "de"
+          required: false
+          type: string           
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
 
 
 
