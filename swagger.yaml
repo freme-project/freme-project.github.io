@@ -13,7 +13,14 @@ info:
 basePath: /  
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
-#TODO: CHeck if e-entity service is not working or our api calls are not working
+
+#TODO: Check if e-entity service is not working or our api calls are not working
+# For this I think it would be almost necessary to see the parser for this script which makes calls based on user input 
+
+
+#TODO: Check response classes... See api-dev.freme-project.eu/doc/
+# Vielleicht sollten wir die moeglichen outputs irgendwie vereinheitlichen da ja z.B 400 immer als status code ngezeigt wird aber z.B 2000 immer als (...?!?) response class
+# Ich habe ausserdem das gefuehl, dass der editor (Und derdazugehoerige interpreter) mit jeder weiteren Zeile noch langsamer wird. Die Geschwindigkeit ist langsam absolut untragbar..
 
 paths:
   /e-translation/tilde:
@@ -314,11 +321,11 @@ paths:
       tags:
         - e-Entity
     
-      summary: Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+      summary: Create dataset in SKOS format.
 
       
       description: |
-
+          Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
      
       consumes:
         - text/plain
@@ -797,7 +804,7 @@ paths:
           name: metadata
           in: header
           description: The metadata JSON to build the EPUB.
-          required: false
+          required: true
           type: string
                    
           
@@ -808,8 +815,7 @@ paths:
           description: Successful response
           schema:
             title: NIF response
-            type: string
-            example: asdasdasd
+            
         400:
           description: Bad request - input validation failed
           schema:
