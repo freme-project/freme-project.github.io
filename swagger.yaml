@@ -12,7 +12,9 @@ info:
     [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
 basePath: /  
     
-# Describe your paths here
+#TODO: Check all error codes. Calling the API does note necessarily produce expected results.
+#TODO: CHeck if e-entity service is not working or our api calls are not working
+
 paths:
   /e-translation/tilde:
     post:
@@ -312,7 +314,7 @@ paths:
       tags:
         - e-Entity
     
-      summary: To create a dataset use the POST method, set the name and language parameter, and submit the dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+      summary: Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
 
       
       description: |
@@ -412,7 +414,7 @@ paths:
       responses:
         200:
           description: Successful response
-        # TODO: check error code
+          
         404:
           description: if dataset does not exists
           schema:
@@ -474,7 +476,7 @@ paths:
           name: templateid
           in: query
           description: The ID of the template to be used for enrichment.
-          required: false
+          required: true
           type: string     
         -
           name: user defined paramateres
@@ -504,7 +506,15 @@ paths:
         - e-Link
     
       summary: Creates  new enrichment template.
-      
+      description: |
+        Example Call
+            curl -X POST -d @template.json "http://api-dev.freme-project.eu/current/e-link/templates/" -H "Content-Type: application/json" -H "Accept: application/json" -v
+            
+            
+        (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
+
+            
+
       parameters:
         -
           name: Content-Type
@@ -540,7 +550,7 @@ paths:
       responses:
         # Response code
         200:
-          #TODO
+        
           description: Successful response
           schema:
             title: NIF response
@@ -583,7 +593,6 @@ paths:
       responses:
         # Response code
         200:
-          #TODO
           description: Successful response
           schema:
             title: NIF response
@@ -645,7 +654,6 @@ paths:
       responses:
         # Response code
         200:
-          #TODO
           description: Successful response
           schema:
             title: NIF response
@@ -679,9 +687,6 @@ paths:
           description: No content. Successful removal status
           schema:
             title: No content
-            type: string
-            example: asdasdasd
-        #TODO
         400:
           description: Bad request - input validation failed
           schema:
@@ -705,7 +710,7 @@ paths:
         -
           name: template-id
           in: path
-          description: Template ID to be removed.
+          description: ID for which template is to be returned.
           required: true
           type: string
           
@@ -733,7 +738,7 @@ paths:
             title: NIF response
             type: string
             example: asdasdasd
-        #TODO
+            
         400:
           description: Bad request - input validation failed
           schema:
@@ -748,62 +753,53 @@ paths:
     
       summary: Create eBooks in the EPUB3 format
       
+      description: |
+        Example Call
+        
+            curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html > result.epub
+        
+         
+            
+         
+        
+        Metadata JSON may include the following
+        
+            titles- a list of Strings where each String represents one title
+            authors- a list of Strings where each String represents one author
+            illustrators- a list of Strings where each String represents one illustrator
+            creators- a list of Strings where each String represents one creator
+            subjects- a list of Strings where each String represents one subject
+            coverImage- the location of the cover image inside the zip file
+            language- the language of the content (e.g., 'en')
+            source- the original source of the content
+            description- the description of the EPUB
+            rights- the rights applicable to the EPUB
+            identifier- the identifier is represented by 'value', 'scheme' is optional and represents the used scheme corresponding with the value.
+            tableOfContents- it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+
+      
+        Sample .zips
+        
+        [-Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)
+        
+        [-A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
+      
+      
       parameters:
         -
-          name: Content-Type
+          name: htmlZip
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
-          required: false
+          description: The zip file containing the html-files (and additional files).
+          required: true
           type: string
 
         -
-          name: Accept
+          name: metadata
           in: header
-          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          description: The metadata JSON to build the EPUB.
           required: false
           type: string
-          
-        - 
-          name: input
-          in: body
-          description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
-          required: true
-          schema:
-            type: string
-        
-          
-        -
-          name: informat
-          in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
-          required: false
-          type: string
-          
-        -
-          name: outformat
-          in: query
-          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
-          required: false
-          type: string
-          
-        -
-          name: prefix
-          in: query
-          description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
-          required: false
-          type: string    
-        -
-          name: source-lang
-          in: query
-          description: Source language, e.g. "en"
-          required: false
-          type: string     
-        -
-          name: target-lang
-          in: query
-          description: Target language, e.g. "de"
-          required: false
-          type: string           
+                   
           
       # Expected responses for this operation:
       responses:
@@ -818,3 +814,7 @@ paths:
           description: Bad request - input validation failed
           schema:
             title: Array
+
+
+
+      
