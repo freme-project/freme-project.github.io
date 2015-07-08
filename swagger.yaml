@@ -13,11 +13,11 @@ info:
 basePath: /  
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
-
 #TODO: Check if e-entity service is not working or our api calls are not working
-# For this I think it would be almost necessary to see the parser for this script which makes calls based on user input 
-
-
+# For Example my "example Call" for /e-entity/dbpedia-sotlight/documents does not work because the parser replaces "&" in input with "&amp;"
+# Other "Example Calls" which return 404 worked at the time the example call was created. Must be because the service is actually not available
+# Translation API call seems to be working
+# Have not tested the EPUB calls
 #TODO: Check response classes... See api-dev.freme-project.eu/doc/
 # Vielleicht sollten wir die moeglichen outputs irgendwie vereinheitlichen da ja z.B 400 immer als status code ngezeigt wird aber z.B 2000 immer als (...?!?) response class
 # Ich habe ausserdem das gefuehl, dass der editor (Und derdazugehoerige interpreter) mit jeder weiteren Zeile noch langsamer wird. Die Geschwindigkeit ist langsam absolut untragbar..
@@ -231,6 +231,12 @@ paths:
       summary: Entity recognition and linking using FREME NER
       
       description: |
+        Example Call
+        
+            curl --data "input=Berlin&dataset=tilde&language=en&informat=text" http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents
+        
+        
+
        
       
       produces:
