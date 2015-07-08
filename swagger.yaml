@@ -23,8 +23,9 @@ paths:
       summary: Perform machine translation using Tilde's API
       
       description: |
-        Call Tilde machine translation service. See further examples in [FREME wiki](https://github.com/freme-project/technical-discussion/wiki/Broker-API-Calls).
-     
+        Example call 
+        
+            curl --data "input=hello+world&informat=text&source-lang=en&target-lang=de" http://api-dev.freme-project.eu/current/e-translation/tilde
       produces:
         - application/json+ld
         - text/turtle
@@ -90,7 +91,13 @@ paths:
           description: Target language, e.g. "de"
           required: false
           type: string           
-          
+        -
+          name: domain
+          in: query
+          description: Currently not used
+          required: false
+          type: string           
+      
       # Expected responses for this operation:
       responses:
         # Response code
@@ -114,9 +121,13 @@ paths:
     
       summary: Entity recognition and linking using DBPedia Spotlight  
       
+  
       description: |
-        dummy
+
+        Example call
       
+            curl --data "input=hallo berlin&informat=text" http://api-dev.freme-project.eu/current/e-entity/dbpedia-spotlight/documents
+
       produces:
         - application/json+ld
         - text/turtle
@@ -145,7 +156,7 @@ paths:
         - 
           name: input
           in: body
-          description: The string to be translated. Has to be plaintext (see parameter informat).
+          description: Plain text sent as value of the input parameter.
           required: true
           schema:
             type: string
@@ -154,7 +165,7 @@ paths:
         -
           name: informat
           in: query
-          description: Format of input string. Only "plaintext" is provided (default). This parameter overrides *Content-Type* header
+          description: Format of input string. Only "text" is provided (default). This parameter overrides *Content-Type* header
           required: false
           type: string
           
@@ -210,7 +221,7 @@ paths:
       summary: Entity recognition and linking using FREME NER
       
       description: |
-        dummy
+       
       
       produces:
         - application/json+ld
@@ -240,7 +251,7 @@ paths:
         - 
           name: input
           in: body
-          description: The string to be translated. Has to be plaintext (see parameter informat).
+          description: Plain text sent as value of the input parameter.
           required: true
           schema:
             type: string
@@ -295,17 +306,17 @@ paths:
           schema:
             title: Array
             
-  /e-entity/freme-ner/datasets/:
+  /e-entity/freme-ner/datasets:
     post:
     
       tags:
         - e-Entity
     
-      summary: This resource is used to submit (create), update and list all datasets which are used by the FREME NER system while performing entity linking.
+      summary: To create a dataset use the POST method, set the name and language parameter, and submit the dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+
       
       description: |
-        To create a dataset use the POST method, set the name and language parameter, and submit the dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
-      
+
      
       consumes:
         - text/plain
@@ -335,7 +346,7 @@ paths:
           type: string
         - name: dataset-name
           in: query
-          description: asd
+          description: name of dataset to be created
           required: true
           type: string        
      
@@ -350,19 +361,23 @@ paths:
           schema:
             title: Array
             
-  /e-entity/freme-ner/datasets/: 
     get:
       tags:
         - e-Entity
         
       summary: To list all available datasets.
       description:   |
-       dummy
+        Example Call
+        
+            curl -vL  http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets
+
+
+       
       parameters:
         
         - name: language
           in: query
-          description: m 
+          description: Language 
           required: false
           type: string
       responses:
@@ -379,15 +394,18 @@ paths:
         - e-Entity
     
       summary: To update a dataset with new data.
-      description: dummy
+      description: |
+        Example Call
+        
+             PUT http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets/{dataset-name}?language={lang}
       parameters:
         - name: dataset-name
           in: path
-          description: dummy
+          description: Name of dataset to be updated
           required: true
           type: string
         - name: language
-          description: dummy
+          description: Language. Data should be RDF (SKOS) document.
           in: query
           required: false
           type: string
@@ -401,13 +419,20 @@ paths:
             title: Array
     
 
-  /e-link:
+  /e-link/documents:
     post:
     
       tags:
         - e-Link
     
       summary: Fetch data about named entities from various ontologies
+      
+      description: |
+        Example Call
+        
+            curl -X POST -d @data.ttl "http://api-dev.freme-project.eu/current/e-link/documents?outformat=turtle&templateid=1" -H "Content-Type: text/turtle"
+          (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
+
       
       parameters:
         -
@@ -420,30 +445,22 @@ paths:
         -
           name: Accept
           in: header
-          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
           
-        - 
-          name: input
-          in: body
-          description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
-          required: true
-          schema:
-            type: string
-        
           
         -
           name: informat
           in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header. 
           required: false
           type: string
           
         -
           name: outformat
           in: query
-          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Accept* header
           required: false
           type: string
           
@@ -454,15 +471,15 @@ paths:
           required: false
           type: string    
         -
-          name: source-lang
+          name: templateid
           in: query
-          description: Source language, e.g. "en"
+          description: The ID of the template to be used for enrichment.
           required: false
           type: string     
         -
-          name: target-lang
+          name: user defined paramateres
           in: query
-          description: Target language, e.g. "de"
+          description: The templates contain "fields" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an "unknown" parameter (not from the list above), then the values of that "unknown" parameters will be used to replace with the corresponding "field" in the query template.
           required: false
           type: string           
           
@@ -479,6 +496,249 @@ paths:
           description: Bad request - input validation failed
           schema:
             title: Array
+
+  /e-link/templates:
+    post:
+    
+      tags:
+        - e-Link
+    
+      summary: Creates  new enrichment template.
+      
+      parameters:
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
+          required: false
+          type: string
+         
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
+          required: false
+          type: string
+                
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          #TODO
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+    get:
+      tags:
+        - e-Link
+    
+      summary: Returns list of all templates in specified format.
+      
+      description: |
+        Example Call
+    
+            curl -v http://api-dev.freme-project.eu/current/e-link/templates
+      
+      parameters:
+      
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
+          required: false
+          type: string
+                
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          #TODO
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        
+
+  /e-link/templates/{template-id}:
+    put:
+    
+      tags:
+        - e-Link
+    
+      summary: Update an enrichment template with specified ID. The new data is submited as body of a PUT request.
+      description: |
+        Example Call
+        
+            curl -X PUT -d @template.json "http://api-dev.freme-project.eu/current/e-link/templates/5" -H "Content-Type: application/json" -H "Accept: application/json" -v
+            
+        (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
+
+      parameters:
+        -
+          name: Content-Type
+          in: header
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          required: false
+          type: string
+
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
+          required: false
+          type: string
+          
+        -
+          name: informat
+          in: query
+          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
+          required: false
+          type: string
+        - 
+          name: template-id
+          in: path
+          description: ID of the template to be updated.
+          required: true
+          type: string
+                
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          #TODO
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+    delete:
+      tags:
+        - e-Link
+    
+      summary: Removes a template with specified ID.
+      
+      parameters:
+      
+
+        -
+          name: template-id
+          in: path
+          description: Template ID to be removed.
+          required: true
+          type: string
+                
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        204:
+          description: No content. Successful removal status
+          schema:
+            title: No content
+            type: string
+            example: asdasdasd
+        #TODO
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+      
+    get:
+      tags:
+        - e-Link
+    
+      summary: Returns one specific template with specified ID in a specified format.
+      
+      description: |
+        Example Call
+        
+             curl -v  http://api-dev.freme-project.eu/current/e-link/templates/1
+
+      
+      parameters:
+      
+
+        -
+          name: template-id
+          in: path
+          description: Template ID to be removed.
+          required: true
+          type: string
+          
+        -
+          name: Accept
+          in: header
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
+          required: false
+          type: string
+          
+        -
+          name: outformat
+          in: query
+          description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
+          required: false
+          type: string
+                
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            title: NIF response
+            type: string
+            example: asdasdasd
+        #TODO
+        400:
+          description: Bad request - input validation failed
+          schema:
+            title: Array
+
 
   /e-publishing:
     post:
@@ -558,7 +818,3 @@ paths:
           description: Bad request - input validation failed
           schema:
             title: Array
-
-
-
-      
