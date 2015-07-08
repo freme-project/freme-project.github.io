@@ -22,6 +22,7 @@ basePath: /
 # Vielleicht sollten wir die moeglichen outputs irgendwie vereinheitlichen da ja z.B 400 immer als status code ngezeigt wird aber z.B 2000 immer als (...?!?) response class
 # Ich habe ausserdem das gefuehl, dass der editor (Und derdazugehoerige interpreter) mit jeder weiteren Zeile noch langsamer wird. Die Geschwindigkeit ist langsam absolut untragbar..
 
+
 paths:
   /e-translation/tilde:
     post:
@@ -128,7 +129,7 @@ paths:
       tags:
         - e-Entity
     
-      summary: Entity recognition and linking using DBPedia Spotlight  
+      summary: Entity recognition and linking using DBPedia Spotlight   
       
   
       description: |
@@ -298,7 +299,7 @@ paths:
           in: query
           description: A mandatory parameter which indicates the dataset used for entity linking which includes list of entities and associated labels.
           required: true
-          type: number
+          type: string
           
           
       # Expected responses for this operation:
@@ -407,6 +408,9 @@ paths:
         Example Call
         
              PUT http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets/{dataset-name}?language={lang}
+             
+          (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
+          
       parameters:
         - name: dataset-name
           in: path
@@ -440,6 +444,7 @@ paths:
         Example Call
         
             curl -X POST -d @data.ttl "http://api-dev.freme-project.eu/current/e-link/documents?outformat=turtle&templateid=1" -H "Content-Type: text/turtle"
+            
           (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
 
       
@@ -515,6 +520,7 @@ paths:
       summary: Creates  new enrichment template.
       description: |
         Example Call
+        
             curl -X POST -d @template.json "http://api-dev.freme-project.eu/current/e-link/templates/" -H "Content-Type: application/json" -H "Accept: application/json" -v
             
             
