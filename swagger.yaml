@@ -14,7 +14,7 @@ basePath: /
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
 #TODO: Check if e-entity service is not working or our api calls are not working
-# For Example my "example Call" for /e-entity/dbpedia-sotlight/documents does not work because the parser replaces "&" in input with "&amp;"
+# For Example my "example Call" for /e-entity/dbpedia-spotlight/documents does not work because the parser replaces "&" in input with "&amp;"
 # Other "Example Calls" which return 404 worked at the time the example call was created. Must be because the service is actually not available
 # Translation API call seems to be working
 # Have not tested the EPUB calls
@@ -46,63 +46,48 @@ paths:
         - text/turtle
     
       parameters:
-        -
-          name: Content-Type
+        - name: Content-Type
           in: header
           description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
-
-        -
-          name: Accept
+        - name: Accept
           in: header
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
           required: false
           type: string
-          
-        - 
-          name: input
+        - name: input
           in: body
           description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
           required: true
           schema:
             type: string
-        
-          
-        -
-          name: informat
+        - name: informat
           in: query
           description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
           required: false
-          type: string
-          
-        -
-          name: outformat
+          type: string          
+        - name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
           required: false
-          type: string
-          
-        -
-          name: prefix
+          type: string         
+        - name: prefix
           in: query
           description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
           required: false
           type: string    
-        -
-          name: source-lang
+        - name: source-lang
           in: query
           description: Source language, e.g. "en"
-          required: false
+          required: true
           type: string     
-        -
-          name: target-lang
+        - name: target-lang
           in: query
           description: Target language, e.g. "de"
-          required: false
+          required: true
           type: string           
-        -
-          name: domain
+        - name: domain
           in: query
           description: Currently not used
           required: false
@@ -116,8 +101,8 @@ paths:
           schema:
             title: NIF response
             type: string
-            example: asdasdasd
-        400:
+            example: TODO
+        406:
           description: Bad request - input validation failed
           schema:
             title: Array
