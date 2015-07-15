@@ -2,7 +2,7 @@
 # Be aware that YAML has indentation based scoping.
 # Code completion support is available so start typing for available options.
 swagger: '2.0'
-host: api-dev.freme-project.eu
+host: api.freme-project.eu
 # This is your document metadata
 info:
   version: "0.2"
@@ -60,7 +60,7 @@ info:
         * text/n3, short form: n3
     * When parameter informat is set then the Content-Type header is not used by FREME api    
 
-basePath: /current
+basePath: /0.2
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
 #TODO: Check if e-entity service is not working or our api calls are not working
