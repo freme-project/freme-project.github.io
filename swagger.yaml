@@ -2,7 +2,7 @@
 # Be aware that YAML has indentation based scoping.
 # Code completion support is available so start typing for available options.
 swagger: '2.0'
-host: rv1443.1blu.de:8084
+host: api-dev.freme-project.eu
 # This is your document metadata
 info:
   version: "0.2"
@@ -60,7 +60,7 @@ info:
         * text/n3, short form: n3
     * When parameter informat is set then the Content-Type header is not used by FREME api    
 
-basePath: /
+basePath: /current
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
 #TODO: Check if e-entity service is not working or our api calls are not working
@@ -72,13 +72,9 @@ basePath: /
 # Vielleicht sollten wir die moeglichen outputs irgendwie vereinheitlichen da ja z.B 400 immer als status code ngezeigt wird aber z.B 2000 immer als (...?!?) response class
 # Ich habe ausserdem das gefuehl, dass der editor (Und derdazugehoerige interpreter) mit jeder weiteren Zeile noch langsamer wird. Die Geschwindigkeit ist langsam absolut untragbar..
 
-tags:
-  - name: e-Translation
-    description: |
-      some description
-      
-      
-      This description will hopefully be small
+#tags:
+#  - name: e-Translation
+#    description: |
       
   
 paths:
@@ -91,29 +87,36 @@ paths:
       summary: Perform machine translation using Tilde's API
       
       description: |
-        Example call 
+      	# TODO: Try it out! doesnt work
+        Parameters can be submitted via URL or via form-data post body. A list of available language pairs is [here](https://services.tilde.com/translationsystems).
         
-            curl --data "input=hello+world&informat=text&source-lang=en&target-lang=de" http://api-dev.freme-project.eu/current/e-translation/tilde
-      produces:
-        - application/json+ld
-        - text/turtle
-     
       consumes:
-        - text/plain
+        - text
         - application/json+ld
         - text/turtle
-    
+      
       parameters:
         - name: Content-Type
           in: header
           description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
+          
         - name: Accept
           in: header
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
         - name: input
           in: body
           description: The string to be translated. Can be either plaintext or NIF (see parameter informat).
@@ -122,29 +125,56 @@ paths:
             type: string
         - name: informat
           in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header
           required: false
           type: string          
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
         - name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides Accept header
           required: false
-          type: string         
+          type: string      
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle 
         - name: prefix
           in: query
           description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
           required: false
           type: string    
+          
         - name: source-lang
           in: query
-          description: Source language, e.g. "en"
+          description: Source language, e.g. "en". A list of available language pairs is [here](https://services.tilde.com/translationsystems).
           required: true
           type: string     
+          enum:
+            - en
+            - de
+            - fr
+            - nl
+            - it
+            - es
+          
         - name: target-lang
           in: query
-          description: Target language, e.g. "de"
+          description: Target language, e.g. "de". A list of available language pairs is [here](https://services.tilde.com/translationsystems).
           required: true
-          type: string           
+          type: string 
+          enum:
+            - en
+            - de
+            - fr
+            - nl
+            - it
+            - es          
+         
         - name: domain
           in: query
           description: Currently not used
@@ -156,10 +186,7 @@ paths:
         # Response code
         200:
           description: Successful response
-          schema:
-            title: NIF response
-            type: string
-            example: TODO
+          
         406:
           description: Bad request - input validation failed
           schema:
@@ -172,32 +199,27 @@ paths:
       tags:
         - e-Entity
     
-      summary: Entity recognition and linking using DBPedia Spotlight   
-      
+      summary: Entity recognition and linking using DBPedia Spotlight engine. 
   
       description: |
 
-        Example call
-      
-            curl --data "input=hallo berlin&informat=text" http://api-dev.freme-project.eu/current/e-entity/dbpedia-spotlight/documents
-
-      produces:
-        - application/json+ld
-        - text/turtle
-     
-      consumes:
-        - text/plain
-        - application/json+ld
-        - text/turtle
+        Enriches Text content with entities gathered by the DBPedia Spotlight engine.The service also accepts text sent as NIF document. The text of the nif:isString property (attached to the nif:Context document) will be used for processing.
+ 
+    
       
       parameters:
         
         -
           name: Content-Type
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
 
         -
           name: Accept
@@ -205,6 +227,11 @@ paths:
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
           
         - 
           name: input
@@ -221,14 +248,22 @@ paths:
           description: Format of input string. Only "text" is provided (default). This parameter overrides *Content-Type* header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: text
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle" (?). Defaults to "turtle". This parameter overrides Accept header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
         -
           name: prefix
           in: query
@@ -242,12 +277,20 @@ paths:
           description: Source language "en"/"de"/"nl"/"fr"/"it"/"es" (according to supported NER engine)
           required: false
           type: string
+          enum: 
+           - en
+           - de
+           - nl
+           - fr
+           - it
+           - es
         -
           name: confidence
           in: query
           description: Threshold to limit the output entities. Default is 0.3.
           required: false
           type: number
+          default: 0.3
           
           
       # Expected responses for this operation:
@@ -258,7 +301,8 @@ paths:
           schema:
             title: NIF response
             type: string
-            example: asdasdasd
+            description: test
+            
         400:
           description: Bad request - input validation failed
           schema:
@@ -271,34 +315,26 @@ paths:
       tags:
         - e-Entity
     
-      summary: Entity recognition and linking using FREME NER
-      
+      summary: Entity recognition and linking using FREME-NER Engine. 
       description: |
-        Example Call
-        
-            curl --data "input=Berlin&dataset=tilde&language=en&informat=text" http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents
-        
-        
-
-       
+        Enriches Text content with entities gathered from various datasets by the FREME-NER Engine. The service also accepts text sent as NIF document. The text of the nif:isString property (attached to the nif:Context document) will be used for processing.
       
-      produces:
-        - application/json+ld
-        - text/turtle
-     
-      consumes:
-        - text/plain
-        - application/json+ld
-        - text/turtle
+        
+        
       
       parameters:
         
         -
           name: Content-Type
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
 
         -
           name: Accept
@@ -306,6 +342,11 @@ paths:
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides Accept header
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
           
         - 
           name: input
@@ -319,17 +360,23 @@ paths:
         -
           name: informat
           in: query
-          description: Format of input string. Only "plaintext" is provided (default). This parameter overrides *Content-Type* header
+          description: Format of input string. Only "text" is provided (default). This parameter overrides *Content-Type* header
           required: false
           type: string
-          
+          enum: 
+           - text
+          default: text
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle" (?). Defaults to "turtle". This parameter overrides Accept header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle 
         -
           name: prefix
           in: query
@@ -343,6 +390,13 @@ paths:
           description: Source language "en"/"de"/"nl"/"fr"/"it"/"es" (according to supported NER engine)
           required: false
           type: string
+          enum:
+            - en
+            - de
+            - nl
+            - fr
+            - it
+            - es
         -
           name: dataset
           in: query
@@ -377,11 +431,7 @@ paths:
       description: |
           Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
      
-      consumes:
-        - text/plain
-        - application/json+ld
-        - text/turtle
-      
+  
       parameters:
         - name: name
           in: query
@@ -393,11 +443,23 @@ paths:
           description: language of the labels in the dataset. If the parameter is not specified, all labels without language tag will be used while performing linking. At the moment only following languages are supported - FREME NER (en/de/fr/es/it), DBpedia Spotlight (en).
           required: false
           type: string
+          enum:
+            - en
+            - de
+            - fr
+            - nl
+            - it
+            - es
         - name: format
           in: query
           description: RDF serialization format of the dataset.
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
         - name: properties
           in: query
           description: an optional parameter which lists RDF properties which hold the entity names (labels). This list of labels will be considered as names for the entities. An example of such property is "http://www.w3.org/TR/skos-reference#prefLabel" or "http://www.w3.org/2000/01/rdf-schema#label". By default, the skos:prefLabel, skos:altLabel and rdfs:label are considered. eg. "properties=http://www.w3.org/TR/skos-reference#prefLabel","http://www.w3.org/2000/01/rdf-schema#label"
@@ -413,8 +475,7 @@ paths:
       responses:
         200:
           description: Successful response
-          schema:
-            title: Array
+
         409:
           description: A dataset with such name exists already
           schema:
@@ -426,11 +487,9 @@ paths:
         
       summary: To list all available datasets.
       description:   |
-        Example Call
-        
-            curl -vL  http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets
-
-
+      
+        Lists all available datasets available for entity linking in the FREME-NER engine.
+    
        
       parameters:
         
@@ -453,13 +512,10 @@ paths:
         - e-Entity
     
       summary: To update a dataset with new data.
+      
       description: |
-        Example Call
+        Updates a dataset with new data.
         
-             PUT http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets/{dataset-name}?language={lang}
-             
-          (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
-          
       parameters:
         - name: dataset-name
           in: path
@@ -490,49 +546,56 @@ paths:
       summary: Fetch data about named entities from various ontologies
       
       description: |
-        Example Call
+        This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. 
         
-            curl -X POST -d @data.ttl "http://api-dev.freme-project.eu/current/e-link/documents?outformat=turtle&templateid=1" -H "Content-Type: text/turtle"
-            
-          (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
-
       
       parameters:
         -
           name: Content-Type
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
-
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
         -
           name: Accept
           in: header
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle
           
         -
           name: informat
           in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header. 
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Content-Type* header. 
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text   
+          default: turtle 
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". This parameter overrides *Accept* header
           required: false
           type: string
-          
-        -
-          name: prefix
-          in: query
-          description: Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
-          required: false
-          type: string    
+          enum: 
+           - json-ld
+           - turtle
+           - text 
+          default: turtle    
+
         -
           name: templateid
           in: query
@@ -540,11 +603,13 @@ paths:
           required: true
           type: string     
         -
-          name: user defined paramateres
+          name: user defined paramaters
           in: query
           description: The templates contain "fields" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an "unknown" parameter (not from the list above), then the values of that "unknown" parameters will be used to replace with the corresponding "field" in the query template.
           required: false
-          type: string           
+          type: string  
+          enum:
+           - dummy - don't use with "Try it out"!        
           
       # Expected responses for this operation:
       responses:
@@ -560,7 +625,7 @@ paths:
           schema:
             title: Array
 
-  /e-link/templates:
+  /e-link/templates/:
     post:
     
       tags:
@@ -568,45 +633,66 @@ paths:
     
       summary: Creates  new enrichment template.
       description: |
-        Example Call
-        
-            curl -X POST -d @template.json "http://api-dev.freme-project.eu/current/e-link/templates/" -H "Content-Type: application/json" -H "Accept: application/json" -v
+        Creates  new enrichment template.
             
-            
-        (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
+      consumes:
+        - application/json+ld
+        - text/turtle
+        - text
 
-            
 
       parameters:
+        - name: body
+          in: body
+          description: Template to be submitted in order to create a template.
+          required: true
+          type: string
+          
+          
         -
           name: Content-Type
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
-
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle 
         -
           name: Accept
           in: header
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
-         
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text  
+          default: turtle 
         -
           name: informat
           in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text 
+          default: turtle     
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
           required: false
           type: string
-                
+          enum: 
+           - json-ld
+           - turtle
+           - text  
+          default: turtle        
           
       # Expected responses for this operation:
       responses:
@@ -629,27 +715,31 @@ paths:
       summary: Returns list of all templates in specified format.
       
       description: |
-        Example Call
-    
-            curl -v http://api-dev.freme-project.eu/current/e-link/templates
-      
+        Returns list of all templates in specified format.
+        
       parameters:
-      
-
         -
           name: Accept
           in: header
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text     
+          default: turtle   
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
           required: false
           type: string
-                
+          enum: 
+           - json-ld
+           - turtle
+           - text   
+          default: turtle        
           
       # Expected responses for this operation:
       responses:
@@ -668,21 +758,35 @@ paths:
       tags:
         - e-Link
     
-      summary: Update an enrichment template with specified ID. The new data is submited as body of a PUT request.
+      summary: Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.
       description: |
-        Example Call
-        
-            curl -X PUT -d @template.json "http://api-dev.freme-project.eu/current/e-link/templates/5" -H "Content-Type: application/json" -H "Accept: application/json" -v
-            
-        (unverified, see [FREME wiki](https://github.com/freme-project/technical-discussion/wiki))
-
+        Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.
+      #TODO: try out doesnt work
+      
+      consumes:
+        - application/json+ld
+        - text/turtle
+        - text
+      
+      
+      
       parameters:
-        -
-          name: Content-Type
+        - name: body
+          in: body
+          required: true
+          type: string
+          description: Template data to be updated.
+          
+        - name: Content-Type
           in: header
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". The parameter *informat* overrides Content-Type header.
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle 
 
         -
           name: Accept
@@ -690,20 +794,33 @@ paths:
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text    
+          default: turtle 
         -
           name: informat
           in: query
-          description: Format of input string. Can be "plaintext", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
+          description: Format of input string. Can be "text", "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Content-Type* header. 
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text  
+          default: turtle   
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
           required: false
           type: string
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle 
         - 
           name: template-id
           in: path
@@ -728,8 +845,12 @@ paths:
     delete:
       tags:
         - e-Link
-    
+      
+      
       summary: Removes a template with specified ID.
+      
+      description: |
+        Removes a template with specified ID.
       
       parameters:
       
@@ -747,8 +868,7 @@ paths:
         # Response code
         204:
           description: No content. Successful removal status
-          schema:
-            title: No content
+
         400:
           description: Bad request - input validation failed
           schema:
@@ -761,10 +881,7 @@ paths:
       summary: Returns one specific template with specified ID in a specified format.
       
       description: |
-        Example Call
-        
-             curl -v  http://api-dev.freme-project.eu/current/e-link/templates/1
-
+        Returns one specific template with specified ID in a specified format.
       
       parameters:
       
@@ -782,14 +899,22 @@ paths:
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". The parameter *outformat* overrides *Accept* header
           required: false
           type: string
-          
+          enum: 
+           - json-ld
+           - turtle
+           - text  
+          default: turtle   
         -
           name: outformat
           in: query
           description: RDF serialization format of output. Can be "json-ld", "turtle". Defaults to "turtle". In addition to the supported formats by the broker, JSON is also supported. This parameter overrides *Accept* header
           required: false
           type: string
-                
+          enum: 
+           - json-ld
+           - turtle
+           - text
+          default: turtle          
           
       # Expected responses for this operation:
       responses:
@@ -815,10 +940,13 @@ paths:
     
       summary: Create eBooks in the EPUB3 format
       
-      description: |
-        Example Call
+      description: | #TODO: try it out! Doesnt work yet in API Doc
+        Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
         
-            curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html > result.epub
+        Example Call
+          curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html
+        
+           # curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html > result.epub
         
          
             
