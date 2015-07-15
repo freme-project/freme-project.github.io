@@ -85,10 +85,10 @@ paths:
         - e-Translation
     
       summary: Perform machine translation using Tilde's API
-      
+       #TODO: Try it out! doesnt work
       description: |
         Parameters can be submitted via URL or via form-data post body. A list of available language pairs is [here](https://services.tilde.com/translationsystems).
-        #TODO: Try it out! doesnt work
+       
         
       consumes:
         - text
@@ -759,9 +759,10 @@ paths:
         - e-Link
     
       summary: Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.
+      #TODO: try out doesnt work
       description: |
         Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.
-      #TODO: try out doesnt work
+      
       
       consumes:
         - application/json+ld
@@ -939,15 +940,16 @@ paths:
         - e-Publishing
     
       summary: Create eBooks in the EPUB3 format
+      #TODO: try it out! Doesnt work yet in API Doc
       
-      description: | #TODO: try it out! Doesnt work yet in API Doc
+      # curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html > result.epub
+      description: | 
         Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
         
         Example Call
           curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html
         
-           # curl --form "htmlZip=@alice.zip" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html > result.epub
-        
+           
          
             
          
