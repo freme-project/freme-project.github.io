@@ -87,7 +87,7 @@ paths:
       summary: Perform machine translation using Tilde's API
       
       description: |
-      	# TODO: Try it out! doesnt work
+        # TODO: Try it out! doesnt work
         Parameters can be submitted via URL or via form-data post body. A list of available language pairs is [here](https://services.tilde.com/translationsystems).
         
       consumes:
