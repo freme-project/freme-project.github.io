@@ -2,7 +2,7 @@
 # Be aware that YAML has indentation based scoping.
 # Code completion support is available so start typing for available options.
 swagger: '2.0'
-host: rv1443.1blu.de:8084
+host: api.freme-project.eu
 # This is your document metadata
 info:
   version: "0.2"
@@ -10,7 +10,57 @@ info:
   description: |
     This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the 
     [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
-basePath: /  
+    
+    # General
+
+    This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the most important points from [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). All FREME api endpoints accept only HTTP POST requests, however, there are exceptions for some services.
+
+    Please note that all parameters submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
+
+    * input (short form: i):
+      * input of the e-Service in plaintext or nif
+      * No default
+      * Depends on informat and intype
+    * informat (short form: f):
+      * format of input parameter.
+      * possible values
+        * text (plaintext)
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * outformat (short form: o):
+      * output format
+      * possible values
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * prefix (short form: p)
+      * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+
+    The following header values are used by all FREME e-Services
+    * Accept
+      * possible values
+        * turtle for text/turtle (default)
+        * json-ld for application/json+ld
+        * n-triples for application/n-triples
+        * rdf-xml for application/rdf+xml
+        * n3 for text/n3
+      * When parameter outformat is set then the Accept header is not used by FREME api
+    * Content-Type
+      * possible values
+        * text (plaintext)
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * When parameter informat is set then the Content-Type header is not used by FREME api    
+
+basePath: /0.2/  
     
 #TODO: Check all error codes. Calling the API does note necessarily produce expected results.
 #TODO: Check if e-entity service is not working or our api calls are not working
@@ -22,7 +72,12 @@ basePath: /
 # Vielleicht sollten wir die moeglichen outputs irgendwie vereinheitlichen da ja z.B 400 immer als status code ngezeigt wird aber z.B 2000 immer als (...?!?) response class
 # Ich habe ausserdem das gefuehl, dass der editor (Und derdazugehoerige interpreter) mit jeder weiteren Zeile noch langsamer wird. Die Geschwindigkeit ist langsam absolut untragbar..
 
-
+tags:
+  - name: e-Translation
+    description: |
+    
+      Some Description
+  
 paths:
   /e-translation/tilde:
     post:
