@@ -5,6 +5,63 @@ info:
   title: "FREME API Documentation"
 host: "api.freme-project.eu"
 basePath: "/0.2"
+
+info:
+  version: "0.2"
+  title: FREME API Documentation
+  description: |
+    This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the
+    [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
+
+    # General
+
+    This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the most important points from [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html).
+
+    Please note that all parameters submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
+
+    * input (short form: i):
+      * input of the e-Service in plaintext or nif
+      * No default
+      * Depends on informat and intype
+    * informat (short form: f):
+      * format of input parameter.
+      * possible values
+        * text (plaintext)
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * outformat (short form: o):
+      * output format
+      * possible values
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * prefix (short form: p)
+      * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+
+    The following header values are used by all FREME e-Services
+    * Accept
+      * possible values
+        * turtle for text/turtle (default)
+        * json-ld for application/json+ld
+        * n-triples for application/n-triples
+        * rdf-xml for application/rdf+xml
+        * n3 for text/n3
+      * When parameter outformat is set then the Accept header is not used by FREME api
+    * Content-Type
+      * possible values
+        * text (plaintext)
+        * text/turtle (default), short form: turtle
+        * application/json+ld, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * When parameter informat is set then the Content-Type header is not used by FREME api
+
 tags:
 - name: "e-Entity"
 - name: "e-Translation"
@@ -19,10 +76,17 @@ paths:
       tags:
       - "e-Entity"
       summary: "Entity recognition and linking using DBPedia Spotlight engine. "
-      description: "Enriches Text content with entities gathered by the DBPedia Spotlight\
-        \ engine.The service also accepts text sent as NIF document. The text of the\
-        \ nif:isString property (attached to the nif:Context document) will be used\
-        \ for processing."
+      description: "Enriches Text content with entities gathered from various datasets\
+        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
+        \ as NIF document. The text of the nif:isString property (attached to the\
+        \ nif:Context document) will be used for processing. This example shows a\
+        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
+        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ .\n```\n"
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -46,26 +110,31 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Overrides\
-          \ Content-Type header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "text"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Defaults to \"turtle\". Overrides Accept Header (Response Content Type).\
-          \ Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -74,7 +143,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/plain, text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -110,10 +179,17 @@ paths:
       tags:
       - "e-Entity"
       summary: "Entity recognition and linking using DBPedia Spotlight engine. "
-      description: "Enriches Text content with entities gathered by the DBPedia Spotlight\
-        \ engine.The service also accepts text sent as NIF document. The text of the\
-        \ nif:isString property (attached to the nif:Context document) will be used\
-        \ for processing."
+      description: "Enriches Text content with entities gathered from various datasets\
+        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
+        \ as NIF document. The text of the nif:isString property (attached to the\
+        \ nif:Context document) will be used for processing. This example shows a\
+        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
+        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ .\n```\n"
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -137,26 +213,31 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Overrides\
-          \ Content-Type header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "text"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Defaults to \"turtle\". Overrides Accept Header (Response Content Type).\
-          \ Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -165,7 +246,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/plain, text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -216,23 +297,33 @@ paths:
       description: "Create dataset in SKOS format which includes prefLabel, altLabel\
         \ or label properties (unless the param properties is explicitly set)."
       operationId: "createDataset"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      produces:
+      - "application/json"
       parameters:
       - name: "informat"
         in: "query"
-        description: "RDF serialization format of the dataset. Can be json+ld, turtle.\
-          \ Overrides Content-Type header. Short form is f."
+        description: "RDF serialization format of the dataset. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
+        - "json-ld"
         - "turtle"
-        - "json+ld"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - in: "body"
         name: "body"
-        description: "The dataset. The format of the body can be \"text/turtle\",\
-          \ \"application/json+ld\", \"application/n-triples\", \"application/rdf+xml\"\
-          , \"text/n3\". Defaults to \"text/turtle\". The parameter *informat* overrides\
-          \ the Content-Type."
+        description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
+          . The parameter *informat* overrides the Content-Type."
         required: false
         schema:
           type: "string"
@@ -253,7 +344,6 @@ paths:
         enum:
         - "de"
         - "en"
-        - "nl"
         - "it"
         - "fr"
         - "es"
@@ -262,7 +352,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
   /e-entity/freme-ner/datasets/{name}:
     get:
@@ -274,7 +364,7 @@ paths:
       parameters:
       - name: "name"
         in: "path"
-        description: "The name of teh requested dataset."
+        description: "The name of the requested dataset."
         required: true
         type: "string"
       responses:
@@ -291,20 +381,22 @@ paths:
       parameters:
       - name: "informat"
         in: "query"
-        description: "RDF serialization format of the dataset. Can be json+ld, turtle.\
-          \ Overrides Content-Type header. Short form is f."
+        description: "RDF serialization format of the dataset. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
+        - "json-ld"
         - "turtle"
-        - "json+ld"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - in: "body"
         name: "body"
-        description: "The dataset. The format of the body can be \"text/turtle\",\
-          \ \"application/json+ld\", \"application/n-triples\", \"application/rdf+xml\"\
-          , \"text/n3\". Defaults to \"text/turtle\". The parameter *informat* overrides\
-          \ the Content-Type."
+        description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
+          . The parameter *informat* overrides the Content-Type."
         required: false
         schema:
           type: "string"
@@ -335,7 +427,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
     delete:
       tags:
@@ -359,10 +451,17 @@ paths:
       tags:
       - "e-Entity"
       summary: "Entity recognition and linking using Freme-NER engine."
-      description: "Enriches Text content with entities gathered by the Freme-NER\
-        \ engine. The service also accepts text sent as NIF document. The text of\
-        \ the nif:isString property (attached to the nif:Context document) will be\
-        \ used for processing."
+      description: "Enriches Text content with entities gathered from various datasets\
+        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
+        \ as NIF document. The text of the nif:isString property (attached to the\
+        \ nif:Context document) will be used for processing. This example shows a\
+        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
+        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ .\n```\n"
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -386,25 +485,32 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Overrides\
-          \ Content-Type header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xmlor text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "text"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -413,7 +519,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/plain, text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -443,16 +549,23 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
     post:
       tags:
       - "e-Entity"
       summary: "Entity recognition and linking using Freme-NER engine."
-      description: "Enriches Text content with entities gathered by the Freme-NER\
-        \ engine. The service also accepts text sent as NIF document. The text of\
-        \ the nif:isString property (attached to the nif:Context document) will be\
-        \ used for processing."
+      description: "Enriches Text content with entities gathered from various datasets\
+        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
+        \ as NIF document. The text of the nif:isString property (attached to the\
+        \ nif:Context document) will be used for processing. This example shows a\
+        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
+        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ .\n```\n"
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -476,25 +589,32 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Overrides\
-          \ Content-Type header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xmlor text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "text"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -503,7 +623,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/plain, text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -533,7 +653,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
   /e-link/documents/:
     post:
@@ -546,7 +666,22 @@ paths:
         \ calling the enrichment endpoint specifies an \"unknown\" parameter (not\
         \ from the list above), then the values of that \"unknown\" parameters will\
         \ be used to replace with the corresponding \"field\" in the query template.\
-        \ This feature doesn't work via \"Try-it-out!\"-button."
+        \ This feature doesn't work via \"Try-it-out!\"-button.\n\nYou can find a\
+        \ list of available templates in the [FREME wiki](https://github.com/freme-project/technical-discussion/wiki/Broker-API-Calls#user-content-available-templates).\n\
+        \n**This is an example of a NIF document containing annotated entities that\
+        \ can be processed by e-link:**\n\n```\n\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n\n// NIF document\
+        \ for processing - named entity extraction.\n<http://example.org/document/1#char=0,21>\n\
+        \   a nif:String , nif:Context , nif:RFC5147String ;\n   nif:isString \"We\
+        \ talk about Xiamen.\"^^xsd:string;\n   nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
+        \   nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n   nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ .\n\n// Detected entity mention linked with its DBpedia representation and\
+        \ ontology class.\n<http://example.org/document/1#char=14,20>\n   a nif:String\
+        \ , nif:RFC5147String , nif:Word, nif:Phrase ;\n   nif:referenceContext <http://example.org/document/1#char=0,21>\
+        \ ;\n   nif:anchorOf \"Xiamen\"\"\"^^xsd:string ;\n   nif:beginIndex \"14\"\
+        ^^xsd:nonNegativeInteger ;\n   nif:endIndex \"20\"^^xsd:nonNegativeInteger\
+        \ ;\nitsrdf:taIdentRef  <http://dbpedia.org/resource/Xiamen> .\nitsrdf:taClassRef\
+        \  <http://dbpedia.org/ontology/City> ;\n\n```\n"
       operationId: "enrich"
       consumes:
       - "text/n3"
@@ -563,25 +698,31 @@ paths:
       parameters:
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be json-ld, turtle. Overrides Content-Type\
-          \ header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Defaults to \"turtle\". Overrides Accept Header (Response Content Type).\
-          \ Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - in: "body"
         name: "body"
         description: "The text to enrich with data. The format of the body can be\
@@ -601,7 +742,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
   /e-link/templates/:
     get:
@@ -619,20 +760,24 @@ paths:
       parameters:
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       responses:
         200:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
     post:
       tags:
@@ -655,24 +800,31 @@ paths:
       parameters:
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be json-ld, turtle. Overrides Content-Type\
-          \ header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
@@ -686,8 +838,10 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
+        404:
+          description: "Not Found"
   /e-link/templates/{templateid}:
     get:
       tags:
@@ -704,14 +858,18 @@ paths:
       parameters:
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "templateid"
         in: "path"
         description: "The ID of the requested template."
@@ -722,7 +880,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
     put:
       tags:
@@ -746,29 +904,36 @@ paths:
       parameters:
       - name: "informat"
         in: "query"
-        description: "Format of the template. Can be json-ld, turtle. Overrides Content-Type\
-          \ header. Short form is f."
+        description: "Format of the template. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Overrides Accept Header (Response Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
-          \ application/json+ld. Defaults to text/turtle. The parameter *informat*\
-          \ overrides the Content-Type."
+          \ application/json+ld, application/n-triples, application/rdf+xml, text/n3.\
+          \ Defaults to text/turtle. The parameter *informat* overrides the Content-Type."
         required: false
         schema:
           type: "string"
@@ -782,7 +947,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        404:
+        400:
           description: "Bad request - input validation failed"
     delete:
       tags:
@@ -798,9 +963,13 @@ paths:
         type: "string"
       responses:
         200:
-          description: "Successful response"
+          description: "successful operation"
           schema:
             type: "string"
+        204:
+          description: "Successful removal response - No Content"
+        400:
+          description: "Bad request - input validation failed"
         404:
           description: "A template with such id was not found."
   /e-publishing/html:
@@ -827,8 +996,18 @@ paths:
         \ in the EPUB. For each you provide the title and the corresponding HTML file\
         \ (= resource). If no tableOfContents is provided, the service will do a best\
         \ effort at creating one. However, when no (x)html file is found in the root\
-        \ of the zip, the service will return an invalid EPUB.\n\n**Sample .zips**\n\
-        * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
+        \ of the zip, the service will return an invalid EPUB.\n\n**Example Metadata\
+        \ JSON**\n```\n{\n  \"titles\":[\"Alice in Utopia\",\"Alice in Europe\"],\n\
+        \  \"authors\":[\"Joske Vermeulen\", \"Nick Borth\"],\n  \"illustrators\"\
+        :[\"Frans Vervaacke\", \"John Riplosh\"],\n  \"creators\":[\"Joske Vermeulen\"\
+        , \"Nick Borth\"],\n  \"subjects\":[\"alice\", \"rabbit\"],\n  \"coverImage\"\
+        :\"cover.jpeg\",\n  \"language\":\"en\",\n  \"source\":\"\",\n  \"description\"\
+        :\"This is the story about Alice in wonderland, involving a rabbit etc.\"\
+        ,\n  \"rights\":\"\",\n  \"identifier\":{\n    \"scheme\":\"\",\n    \"value\"\
+        :\"urn:1235-568-2235\"\n  },\n  \"tableOfContents\":[\n    {\n      \"title\"\
+        :\"Chapter 1\",\n      \"resource\":\"01.xhtml\"\n    },\n    {\n      \"\
+        title\":\"Chapter 2\",\n      \"resource\":\"02.xhtml\"\n    }\n  ]\n}```\n\
+        **Sample .zips**\n* [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
         * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)"
       operationId: "htmlToEPub"
       consumes:
@@ -887,26 +1066,32 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Overrides\
-          \ Content-Type header. Short form is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
         default: "text"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Defaults to \"turtle\". Overrides Accept Header (Response Content Type).\
-          \ Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -915,7 +1100,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to annotate. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/plain, text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -923,8 +1108,8 @@ paths:
           type: "string"
       - name: "source-lang"
         in: "query"
-        description: "Source language, e.g. \"en\". A list of available language pairs\
-          \ is [here](https://services.tilde.com/translationsystems)."
+        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
+          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
         required: true
         type: "string"
         enum:
@@ -936,8 +1121,8 @@ paths:
         - "es"
       - name: "target-lang"
         in: "query"
-        description: "Target language, e.g. \"de\". A list of available language pairs\
-          \ is [here](https://services.tilde.com/translationsystems)."
+        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
+          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
         required: true
         type: "string"
         enum:
@@ -970,9 +1155,12 @@ paths:
         \ A list of available language pairs is [here](https://services.tilde.com/translationsystems)."
       operationId: "tildeTranslate"
       consumes:
+      - "text/n3"
       - "text/turtle"
       - "application/json+ld"
+      - "application/n-triples"
       - "text/plain"
+      - "application/rdf+xml"
       produces:
       - "text/n3"
       - "text/turtle"
@@ -989,27 +1177,33 @@ paths:
         type: "string"
       - name: "informat"
         in: "query"
-        description: "Format of input string. Can be text, json-ld, turtle. Defaults\
-          \ to \"turtle\". This parameter overrides Content-Type header. Short form\
-          \ is f."
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xmlor text. Defaults to \"turtle\". This parameter overrides Content-Type\
+          \ header. Short form is f."
         required: false
         type: "string"
         default: "turtle"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle.\
-          \ Defaults to \"turtle\". This parameter overrides Accept header (Response\
-          \ Content Type). Short form is o."
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". This parameter overrides\
+          \ Accept header (Response Content Type). Short form is o."
         required: false
         type: "string"
         default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
       - name: "prefix"
         in: "query"
         description: "Controls the url of rdf resources generated from plaintext.\
@@ -1020,9 +1214,9 @@ paths:
         name: "body"
         description: "The string to be translated. Can be either plaintext or NIF.\
           \ Will be overwritten by parameter input, if set. The format of the body\
-          \ can be text/plain, text/turtle, application/json+ld, application/n-triples,\
-          \ application/rdf+xml, text/n3. Defaults to \"text/turtle\". The parameter\
-          \ *informat* overrides the Content-Type."
+          \ can be text/turtle, application/json+ld, application/n-triples, application/rdf+xml,\
+          \ text/n3. Defaults to \"text/turtle\". The parameter *informat* overrides\
+          \ the Content-Type."
         required: false
         schema:
           type: "string"
@@ -1062,7 +1256,7 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        406:
+        400:
           description: "Bad request - input validation failed"
 definitions:
   File:
