@@ -34,8 +34,12 @@ info:
     \ short form: n-triples\n    * application/rdf+xml, short form: rdf-xml\n    *\
     \ text/n3, short form: n3\n* When parameter informat is set then the Content-Type\
     \ header is not used by FREME api\n"
+
+
 host: "api-dev.freme-project.eu"
 basePath: "/current"
+
+
 tags:
 - name: "e-Translation"
 schemes:
