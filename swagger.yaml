@@ -821,7 +821,12 @@ paths:
       tags:
       - "e-Link"
       summary: "Creates a new enrichment template."
-      description: "Creates a new enrichment template."
+      description: "Creates a new enrichment template from json or NIF.
+
+        \n\n**Example of input in JSON format:**\n\
+        \n```\n{\n    \"query\":\"here goes the CONSTRUCT SPARQL query\",\n    \"\
+        endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
+        \n}\n\n```\n"
       operationId: "createTemplate"
       consumes:
       - "text/n3"
@@ -932,7 +937,7 @@ paths:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
       description: "Update an enrichment template with specified ID. The new data\
-        \ is submitted as body of a PUT request.Example of input in JSON format:\n\
+        \ is submitted as body of a PUT request.\n\n**Example of input in JSON format:**\n\
         \n```\n{\n    \"query\":\"here goes the CONSTRUCT SPARQL query\",\n    \"\
         endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
         \n}\n\n```\n"
