@@ -660,9 +660,8 @@ paths:
         \ calling the enrichment endpoint specifies an \"unknown\" parameter (not\
         \ from the list above), then the values of that \"unknown\" parameters will\
         \ be used to replace with the corresponding \"field\" in the query template.\
-        \ This feature doesn't work via \"Try-it-out!\"-button.\n \n ```\n\n@prefix\
-        \ dc:    <http://purl.org/dc/elements/1.1/> .\n @prefix prov:  <http://www.w3.org/ns/prov#>\
-        \ .\n @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ \n \n ```\n\n@prefix dc:    <http://purl.org/dc/elements/1.1/> .\n @prefix\
+        \ prov:  <http://www.w3.org/ns/prov#> .\n @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
         \ .\n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n @prefix rutp:\
         \  <http://rdfunit.aksw.org/data/patterns#> .\n @prefix rlog:  <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#>\
         \ .\n @prefix oslc:  <http://open-services.net/ns/core#> .\n @prefix dsp:\
@@ -675,46 +674,15 @@ paths:
         \   <http://www.w3.org/2002/07/owl#> .\n @prefix rutr:  <http://rdfunit.aksw.org/data/results#>\
         \ .\n @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n @prefix\
         \ spin:  <http://spinrdf.org/spin#> .\n @prefix rutt:  <http://rdfunit.aksw.org/data/tests#>\
-        \ .\n @prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .\n\n<http://127.0.0.1:9995/spotlight#char=5,7>\n\
-        \ a                     nif:Word , nif:RFC5147String ;\n nif:anchorOf    \
-        \      \"is\" ;\n nif:beginIndex        \"5\" ;\n nif:endIndex          \"\
-        7\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=8,15>\
-        \ ;\n nif:previousWord      <http://127.0.0.1:9995/spotlight#char=0,4> ;\n\
-        \ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:sentence\
-        \          <http://127.0.0.1:9995/spotlight#char=0,16> .\n\nnif:lastWord \
-        \ a  owl:ObjectProperty .\n nif:previousWord  a  owl:ObjectProperty .\n\n\
-        <http://127.0.0.1:9995/spotlight#char=0,4>\n a                     nif:Word\
-        \ , nif:RFC5147String ;\n nif:anchorOf          \"This\" ;\n nif:beginIndex\
-        \        \"0\" ;\n nif:endIndex          \"4\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=5,7>\
-        \ ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n\
-        \ nif:sentence          <http://127.0.0.1:9995/spotlight#char=0,16> ;\n itsrdf:taIdentRef\
-        \     <http://dbpedia.org/resource/Sathya_Sai_Baba> .\n\nnif:word  a     owl:ObjectProperty\
-        \ .\n nif:isString  a  owl:DatatypeProperty .\n nif:beginIndex  a  owl:DatatypeProperty\
-        \ .\n nif:nextWord  a  owl:ObjectProperty .\n nif:sentence  a  owl:ObjectProperty\
-        \ .\n nif:anchorOf  a  owl:DatatypeProperty .\n\n<http://127.0.0.1:9995/spotlight#char=0,16>\n\
+        \ .\n @prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .\n\n<http://127.0.0.1:9995/spotlight#char=0,15>\n\
         \ a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n\
-        \ nif:anchorOf          \"This is Germany.\" ;\n nif:beginIndex        \"\
-        0\" ;\n nif:endIndex          \"16\" ;\n nif:firstWord         <http://127.0.0.1:9995/spotlight#char=0,4>\
-        \ ;\n nif:isString          \"This is Germany.\" ;\n nif:lastWord        \
-        \  <http://127.0.0.1:9995/spotlight#char=15,16> ;\n nif:referenceContext \
-        \ <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:word              <http://127.0.0.1:9995/spotlight#char=5,7>\
-        \ , <http://127.0.0.1:9995/spotlight#char=8,15> .\n\nnif:firstWord  a  owl:ObjectProperty\
-        \ .\n nif:Context  a  owl:Class .\n rlog:message  a  owl:DatatypeProperty\
-        \ .\n nif:Sentence  a  owl:Class .\n nif:referenceContext  a  owl:ObjectProperty\
-        \ .\n\n<http://127.0.0.1:9995/spotlight#char=15,16>\n a                  \
-        \   nif:Word , nif:RFC5147String ;\n nif:anchorOf          \".\" ;\n nif:beginIndex\
-        \        \"15\" ;\n nif:endIndex          \"16\" ;\n nif:previousWord    \
-        \  <http://127.0.0.1:9995/spotlight#char=8,15> ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16>\
-        \ ;\n nif:sentence          <http://127.0.0.1:9995/spotlight#char=0,16> .\n\
-        \nnif:endIndex  a  owl:DatatypeProperty .\n\n<http://127.0.0.1:9995/spotlight#char=8,15>\n\
-        \ a                     nif:Word , nif:RFC5147String ;\n nif:anchorOf    \
-        \      \"Germany\" ;\n nif:beginIndex        \"8\" ;\n nif:endIndex      \
-        \    \"15\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=15,16>\
-        \ ;\n nif:previousWord      <http://127.0.0.1:9995/spotlight#char=5,7> ;\n\
-        \ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:sentence\
-        \          <http://127.0.0.1:9995/spotlight#char=0,16> ;\n itsrdf:taIdentRef\
-        \     <http://dbpedia.org/resource/Germany> .\n\nnif:RFC5147String  a  owl:Class\
-        \ .\n nif:Word  a     owl:Class .\n\n```\n"
+        \ nif:beginIndex        \"0\" ;\n nif:endIndex          \"15\" ;\n nif:isString\
+        \          \"This is Berlin.\" ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15>\
+        \ .\n\n<http://127.0.0.1:9995/spotlight#char=8,14>\n a                   \
+        \  nif:Word , nif:RFC5147String ;\n nif:anchorOf          \"Berlin\" ;\n nif:beginIndex\
+        \        \"8\" ;\n nif:endIndex          \"14\" ;\n nif:referenceContext \
+        \ <http://127.0.0.1:9995/spotlight#char=0,15> ;\n itsrdf:taIdentRef     <http://dbpedia.org/resource/Berlin>\
+        \ .\n\n\n```\n"
       operationId: "enrich"
       consumes:
       - "text/n3"
@@ -785,11 +753,11 @@ paths:
       tags:
       - "e-Link"
       summary: "Returns a list of all templates in specified format."
-      description: "| #Available templates:\n#Template id: 1 - DBpedia\nDescription:\
-        \ enriches named entities in the input document with a list of museums close\
-        \ to that entity. The template is executed for every named entity in the input\
-        \ document.\n\n**SPARQL endpoint http://dbpedia.org/sparql**\n```\nPREFIX\
-        \ dbpedia: <http://dbpedia.org/resource/> PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
+      description: "#Examples - Available templates:\n#Template id: 1 - DBpedia\n\
+        Description: enriches named entities in the input document with a list of\
+        \ museums close to that entity. The template is executed for every named entity\
+        \ in the input document.\n\n**SPARQL endpoint http://dbpedia.org/sparql**\n\
+        ```\nPREFIX dbpedia: <http://dbpedia.org/resource/> PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
         \ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n\
         CONSTRUCT { ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@>\
         \ . } WHERE { <@@@entity_uri@@@> geo:geometry ?citygeo . ?museum rdf:type\
@@ -1147,8 +1115,8 @@ paths:
 
       - name: "metadata"
         in: "formData"
-        description: "Metadata JSON as described above."
         required: true
+        description: "Metadata JSON as specified above"
         type: "string"
       responses:
         200:
