@@ -50,12 +50,11 @@ paths:
         \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
         \ as NIF document. The text of the nif:isString property (attached to the\
         \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service: \n ``` \n @prefix nif:\
-        \ <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> . \n @prefix\
-        \ itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n\n\n\n<http://example.org/document/1#char=0,21>\n a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin\"^^xsd:string;\n\
-        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n\
+        \ NIF document that can be processed by the service: \n ``` \n @prefix xsd:\
+        \ <http://www.w3.org/2001/XMLSchema#> .\n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"18\"^^xsd:nonNegativeInteger;\n\
         \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
         \ . \n ``` \n "
       operationId: "execute"
@@ -552,12 +551,12 @@ paths:
         \ by the FREME-NER Engine. The service accepts plaintext or text sent as NIF\
         \ document. The text of the nif:isString property (attached to the nif:Context\
         \ document) will be used for processing. This example shows a NIF document\
-        \ that can be processed by the service: \n ``` \n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ . \n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd:\
-        \ <http://www.w3.org/2001/XMLSchema#> .\n\n\n\n<http://example.org/document/1#char=0,21>\n\
-        \ a nif:String , nif:Context , nif:RFC5147String ;\n nif:isString \"Welcome\
-        \ to Berlin\"^^xsd:string;\n nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
-        \ nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ that can be processed by the service: \n ``` \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"18\"^^xsd:nonNegativeInteger;\n\
+        \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
         \ . \n ``` \n "
       operationId: "execute"
       consumes:
