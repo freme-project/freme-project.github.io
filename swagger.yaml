@@ -785,7 +785,76 @@ paths:
       tags:
       - "e-Link"
       summary: "Returns a list of all templates in specified format."
-      description: "Returns a list of all templates in specified format."
+      description: "| #Available templates:\n#Template id: 1 - DBpedia\nDescription:\
+        \ enriches named entities in the input document with a list of museums close\
+        \ to that entity. The template is executed for every named entity in the input\
+        \ document.\n\n**SPARQL endpoint http://dbpedia.org/sparql**\n```\nPREFIX\
+        \ dbpedia: <http://dbpedia.org/resource/> PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
+        \ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n\
+        CONSTRUCT { ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@>\
+        \ . } WHERE { <@@@entity_uri@@@> geo:geometry ?citygeo . ?museum rdf:type\
+        \ <http://schema.org/Museum> . ?museum geo:geometry ?museumgeo . FILTER (<bif:st_intersects>(?museumgeo,\
+        \ ?citygeo, 10)) } LIMIT 10\n```\nExample data for enrichment can be downloaded\
+        \ from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-1.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-1.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=1\"\
+        \ -H \"Content-Type: text/turtle\"\n```\n#Template id: 2 - DBpedia live\n\
+        Description: enriches named entities in the input document with a list of\
+        \ events close to that entity. The template is executed for every named entity\
+        \ in the input document.\n\n**SPARQL endpoint http://live.dbpedia.org/sparql**\n\
+        ```\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> CONSTRUCT {\
+        \ ?event <http://dbpedia.org/ontology/place> <@@@entity_uri@@@> . } WHERE\
+        \ { ?event rdf:type <http://dbpedia.org/ontology/Event> . ?event <http://dbpedia.org/ontology/place>\
+        \ <@@@entity_uri@@@> . } LIMIT 10\n```\nExample data for enrichment can be\
+        \ downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-2.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-2.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=2\"\
+        \ -H \"Content-Type: text/turtle\"\n```\n#Template id: 3 - GeoKnow\nDescription:\
+        \ Enrich place with longitude and latitude coordinates fetched form the GeoKnow\
+        \ database.\n\n**SPARQL endpoint http://factforge.net/sparql**\n```\nPREFIX\
+        \ geo-pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> CONSTRUCT { <@@@entity_uri@@@>\
+        \ geo-pos:lat ?long . <@@@entity_uri@@@> geo-pos:lat ?lat . } WHERE { <@@@entity_uri@@@/>\
+        \ geo-pos:lat ?lat . <@@@entity_uri@@@/> geo-pos:long ?long . }\n```\nExample\
+        \ data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-3.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-3.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=3\"\
+        \ -H \"Content-Type: text/turtle\"\n```\n#Template id: 4 - Linked Geo Data\n\
+        Description: Retrieve all bakeries 10km close to a place.\n\n**SPARQL endpoint\
+        \ http://linkedgeodata.org/vsnorql**\n```\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\
+        \ PREFIX ogc: <http://www.opengis.net/ont/geosparql#> PREFIX geom: <http://geovocab.org/geometry#>\
+        \ PREFIX lgdo: <http://linkedgeodata.org/ontology/> CONSTRUCT { ?s <http://xmlns.com/foaf/0.1/based_near>\
+        \ <@@@entity_uri@@@> . } WHERE { ?s a lgdo:Bakery ; geom:geometry [ ogc:asWKT\
+        \ ?sg ] . ?a owl:sameAs <@@@entity_uri@@@> ; geom:geometry [ ogc:asWKT ?ag\
+        \ ] . FILTER(bif:st_intersects(?sg, ?ag, 10)) } LIMIT 10\n```\n#Template id:\
+        \ 5 - Europeana\nDescription: Retrieve 5 18th century Europeana objects from\
+        \ a place (country).\n\n**SPARQL endpoint http://europeana.ontotext.com/sparql**\n\
+        ```\nPREFIX edm: <http://www.europeana.eu/schemas/edm/> PREFIX ore: <http://www.openarchives.org/ore/terms/>\
+        \ CONSTRUCT { ?CHO edm:HasMet <@@@entity_uri@@@> } WHERE { ?EuropeanaObject\
+        \  edm:year  ?year ; edm:hasMet <@@@entity_uri@@@> . ?EuropeanaObject ore:proxyFor\
+        \ ?CHO . FILTER (?year < \"1800\") FILTER (?year > \"1700\") } LIMIT 5\n```\n\
+        Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-5.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-5.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=5\"\
+        \ -H \"Content-Type: text/turtle\"\n```\nNote: there is issue with the SPARQL\
+        \ endpoint.\n#Template id: 6 -  DBpedia live\nDescription: enriches named\
+        \ entities in the input document with a list of events close to that entity.\
+        \ This is a template with a user defined parameter event_type, so when calling\
+        \ the endpoint the event_type parameter should be specified.\n\n**SPARQL endpoint\
+        \ http://live.dbpedia.org/sparql**\n```\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+        \ CONSTRUCT { ?event <http://dbpedia.org/ontology/place> <http://dbpedia.org/resource/Berlin>\
+        \ . } WHERE { ?event rdf:type <http://dbpedia.org/ontology/@@@event_type@@@>\
+        \ . ?event <http://dbpedia.org/ontology/place> ?o . } LIMIT 10\n```\nExample\
+        \ data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-6.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-6.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=6&event_type=SocietalEvent\"\
+        \ -H \"Content-Type: text/turtle\"\n```\n#Template id: 7 -  Linked Geo Data\n\
+        Description: enriches a named entity of type place with a list of 10 bakaries\
+        \ in radius of 10km from the place.\n\n**SPARQL endpoint http://linkedgeodata.org/vsnorql/**\n\
+        ```\nPREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX ogc: <http://www.opengis.net/ont/geosparql#>\
+        \ PREFIX geom: <http://geovocab.org/geometry#> PREFIX lgdo: <http://linkedgeodata.org/ontology/>\
+        \ PREFIX bif: <http://www.openlinksw.com/schemas/bif#>\nCONSTRUCT { ?s <http://xmlns.com/foaf/0.1/based_near>\
+        \ <@@@entity_uri@@@> . } WHERE { ?s a lgdo:Bakery ; geom:geometry [ ogc:asWKT\
+        \ ?sg ] . ?a owl:sameAs <@@@entity_uri@@@> ; geom:geometry [ ogc:asWKT ?ag\
+        \ ] . FILTER(bif:st_intersects(?sg, ?ag, 10)) } LIMIT 10\n```\nExample data\
+        \ for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-7.ttl).\n\
+        Test query:\n```\ncurl -v -X POST -d @test-for-template-7.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=7\"\
+        \ -H \"Content-Type: text/turtle\"\n```\nNote: there is an issue with the\
+        \ SPARQL endpoint."
       operationId: "getAllTemplates"
       produces:
       - "text/n3"
@@ -821,12 +890,10 @@ paths:
       tags:
       - "e-Link"
       summary: "Creates a new enrichment template."
-      description: "Creates a new enrichment template from json or NIF.
-
-        \n\n**Example of input in JSON format:**\n\
-        \n```\n{\n    \"query\":\"here goes the CONSTRUCT SPARQL query\",\n    \"\
-        endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
-        \n}\n\n```\n"
+      description: "Creates a new enrichment template.  \n\n **Example of input in\
+        \ JSON format:**\n \n``` \n {\n \"query\":\"here goes the CONSTRUCT SPARQL\
+        \ query\",\n \"endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
+        \n }\n \n``` \n   "
       operationId: "createTemplate"
       consumes:
       - "text/n3"
@@ -937,10 +1004,10 @@ paths:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
       description: "Update an enrichment template with specified ID. The new data\
-        \ is submitted as body of a PUT request.\n\n**Example of input in JSON format:**\n\
-        \n```\n{\n    \"query\":\"here goes the CONSTRUCT SPARQL query\",\n    \"\
-        endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
-        \n}\n\n```\n"
+        \ is submitted as body of a PUT request.\n\n **Example of input in JSON format:**\n\
+        \ \n``` \n {\n \"query\":\"here goes the CONSTRUCT SPARQL query\",\n \"endpoint\"\
+        :\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\n }\n\
+        \ \n``` \n   "
       operationId: "updateTemplateById"
       consumes:
       - "text/n3"
@@ -1076,16 +1143,13 @@ paths:
         name: "htmlZip"
         description: "The html zip file to generate the epub from."
         required: false
-        type: "file"
-
-
+        type: file
 
       - name: "metadata"
         in: "formData"
+        description: "Metadata JSON as described above."
         required: true
         type: "string"
-
-
       responses:
         200:
           description: "Successful response"
