@@ -1055,16 +1055,19 @@ paths:
       produces:
       - "application/epub+zip"
       parameters:
-      - in: "body"
+      - in: "formData"
         name: "htmlZip"
         description: "The html zip file to generate the epub from."
         required: false
+        type: "file"
         schema:
           $ref: "#/definitions/File"
       - name: "metadata"
-        in: "query"
+        in: "formData"
         required: true
-        type: "string"
+        type: "file"
+
+
       responses:
         200:
           description: "Successful response"
