@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "0.2"
+  version: "0.3"
   title: "FREME API Documentation"
   description: "This web page documents the REST API of the FREME project. You can\
     \ find more information about FREME on the [project website](http://freme-project.eu)\
@@ -257,13 +257,15 @@ paths:
       tags:
       - "e-Entity"
       summary: "Get info about all available datasets"
-      description: ""
+      description: "Get info about all available datasets"
       operationId: "getAllDatasets"
       responses:
         200:
           description: "successful operation"
           schema:
             type: "string"
+        400:
+          description: "Bad request - input validation failed"
     post:
       tags:
       - "e-Entity"
@@ -346,6 +348,8 @@ paths:
           description: "successful operation"
           schema:
             type: "string"
+        400:
+          description: "Bad request - input validation failed"
     put:
       tags:
       - "e-Entity"
@@ -432,6 +436,9 @@ paths:
           description: "successful operation"
           schema:
             type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
   /e-entity/freme-ner/documents:
     get:
       tags:
@@ -1003,6 +1010,10 @@ paths:
         required: true
         type: "string"
       responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
         204:
           description: "Successful removal response - No Content"
         400:
