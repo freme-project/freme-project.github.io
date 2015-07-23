@@ -3,71 +3,41 @@ swagger: "2.0"
 info:
   version: "0.2"
   title: "FREME API Documentation"
-host: "api.freme-project.eu"
-basePath: "/0.2"
-
-info:
-  version: "0.2"
-  title: FREME API Documentation
-  description: |
-    This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the
-    [FREME GitHub page](http://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
-
-    # General
-
-    This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the most important points from [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html).
-
-    Please note that all parameters submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
-
-    * input (short form: i):
-      * input of the e-Service in plaintext or nif
-      * No default
-      * Depends on informat and intype
-    * informat (short form: f):
-      * format of input parameter.
-      * possible values
-        * text (plaintext)
-        * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
-        * application/n-triples, short form: n-triples
-        * application/rdf+xml, short form: rdf-xml
-        * text/n3, short form: n3
-    * outformat (short form: o):
-      * output format
-      * possible values
-        * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
-        * application/n-triples, short form: n-triples
-        * application/rdf+xml, short form: rdf-xml
-        * text/n3, short form: n3
-    * prefix (short form: p)
-      * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
-
-    The following header values are used by all FREME e-Services
-    * Accept
-      * possible values
-        * turtle for text/turtle (default)
-        * json-ld for application/json+ld
-        * n-triples for application/n-triples
-        * rdf-xml for application/rdf+xml
-        * n3 for text/n3
-      * When parameter outformat is set then the Accept header is not used by FREME api
-    * Content-Type
-      * possible values
-        * text (plaintext)
-        * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
-        * application/n-triples, short form: n-triples
-        * application/rdf+xml, short form: rdf-xml
-        * text/n3, short form: n3
-    * When parameter informat is set then the Content-Type header is not used by FREME api
-
+  description: "This web page documents the REST API of the FREME project. You can\
+    \ find more information about FREME on the [project website](http://freme-project.eu)\
+    \ and on the\n[FREME GitHub page](http://github.com/freme-project). The [FREME\
+    \ wiki](https://github.com/freme-project/technical-discussion/wiki) contains more\
+    \ technical documentation.\n\n# General\n\nThis section defines the default parameter\
+    \ set for all FREME e-Services. The parameters have a long and a short form. If\
+    \ both are set, the long form overrides the short form. The API follows the most\
+    \ important points from [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html).\n\
+    \nPlease note that all parameters submitted via the URLs query string need to\
+    \ be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).\n\
+    \n* input (short form: i):\n  * input of the e-Service in plaintext or nif\n \
+    \ * No default\n  * Depends on informat and intype\n* informat (short form: f):\n\
+    \  * format of input parameter.\n  * possible values\n    * text (plaintext)\n\
+    \    * text/turtle (default), short form: turtle\n    * application/json+ld, short\
+    \ form: json-ld\n    * application/n-triples, short form: n-triples\n    * application/rdf+xml,\
+    \ short form: rdf-xml\n    * text/n3, short form: n3\n* outformat (short form:\
+    \ o):\n  * output format\n  * possible values\n    * text/turtle (default), short\
+    \ form: turtle\n    * application/json+ld, short form: json-ld\n    * application/n-triples,\
+    \ short form: n-triples\n    * application/rdf+xml, short form: rdf-xml\n    *\
+    \ text/n3, short form: n3\n* prefix (short form: p)\n  * Controls the url of rdf\
+    \ resources generated from plaintext. Has default value \"http://freme-project.eu/\"\
+    \n\nThe following header values are used by all FREME e-Services\n* Accept\n \
+    \ * possible values\n    * turtle for text/turtle (default)\n    * json-ld for\
+    \ application/json+ld\n    * n-triples for application/n-triples\n    * rdf-xml\
+    \ for application/rdf+xml\n    * n3 for text/n3\n  * When parameter outformat\
+    \ is set then the Accept header is not used by FREME api\n* Content-Type\n  *\
+    \ possible values\n    * text (plaintext)\n    * text/turtle (default), short\
+    \ form: turtle\n    * application/json+ld, short form: json-ld\n    * application/n-triples,\
+    \ short form: n-triples\n    * application/rdf+xml, short form: rdf-xml\n    *\
+    \ text/n3, short form: n3\n* When parameter informat is set then the Content-Type\
+    \ header is not used by FREME api\n"
+host: "api-dev.freme-project.eu"
+basePath: "/current"
 tags:
-- name: "e-Entity"
 - name: "e-Translation"
-- name: "e-Terminology"
-- name: "e-Link"
-- name: "e-Publishing"
 schemes:
 - "http"
 paths:
@@ -80,13 +50,14 @@ paths:
         \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
         \ as NIF document. The text of the nif:isString property (attached to the\
         \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
-        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
-        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
-        \ .\n```\n"
+        \ NIF document that can be processed by the service: \n ``` \n @prefix nif:\
+        \ <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> . \n @prefix\
+        \ itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n\n\n\n<http://example.org/document/1#char=0,21>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n\
+        \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ . \n ``` \n "
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -121,6 +92,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -183,13 +155,14 @@ paths:
         \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
         \ as NIF document. The text of the nif:isString property (attached to the\
         \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
-        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
-        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
-        \ .\n```\n"
+        \ NIF document that can be processed by the service: \n ``` \n @prefix nif:\
+        \ <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> . \n @prefix\
+        \ itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n\n\n\n<http://example.org/document/1#char=0,21>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n\
+        \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ . \n ``` \n "
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -224,6 +197,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -378,6 +352,18 @@ paths:
       summary: "Updating dataset for use in the e-Entity service"
       description: ""
       operationId: "updateDataset"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
+      - "application/rdf+xml"
       parameters:
       - name: "informat"
         in: "query"
@@ -394,9 +380,9 @@ paths:
         - "rdf-xml"
       - in: "body"
         name: "body"
-        description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
-          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
-          . The parameter *informat* overrides the Content-Type."
+        description: "The dataset. The format of the body can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"text/turtle\". The parameter *informat*\
+          \ overrides the Content-Type."
         required: false
         schema:
           type: "string"
@@ -452,16 +438,16 @@ paths:
       - "e-Entity"
       summary: "Entity recognition and linking using Freme-NER engine."
       description: "Enriches Text content with entities gathered from various datasets\
-        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
-        \ as NIF document. The text of the nif:isString property (attached to the\
-        \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
-        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
-        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
-        \ .\n```\n"
+        \ by the FREME-NER Engine. The service accepts plaintext or text sent as NIF\
+        \ document. The text of the nif:isString property (attached to the nif:Context\
+        \ document) will be used for processing. This example shows a NIF document\
+        \ that can be processed by the service: \n ``` \n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ . \n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd:\
+        \ <http://www.w3.org/2001/XMLSchema#> .\n\n\n\n<http://example.org/document/1#char=0,21>\n\
+        \ a nif:String , nif:Context , nif:RFC5147String ;\n nif:isString \"Welcome\
+        \ to Berlin\"^^xsd:string;\n nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
+        \ nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ . \n ``` \n "
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -556,16 +542,16 @@ paths:
       - "e-Entity"
       summary: "Entity recognition and linking using Freme-NER engine."
       description: "Enriches Text content with entities gathered from various datasets\
-        \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
-        \ as NIF document. The text of the nif:isString property (attached to the\
-        \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service:\n```\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n\n<http://example.org/document/1#char=0,18>\n    a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n    nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
-        \    nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n    nif:endIndex \"18\"\
-        ^^xsd:nonNegativeInteger;\n    nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
-        \ .\n```\n"
+        \ by the FREME-NER Engine. The service accepts plaintext or text sent as NIF\
+        \ document. The text of the nif:isString property (attached to the nif:Context\
+        \ document) will be used for processing. This example shows a NIF document\
+        \ that can be processed by the service: \n ``` \n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ . \n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd:\
+        \ <http://www.w3.org/2001/XMLSchema#> .\n\n\n\n<http://example.org/document/1#char=0,21>\n\
+        \ a nif:String , nif:Context , nif:RFC5147String ;\n nif:isString \"Welcome\
+        \ to Berlin\"^^xsd:string;\n nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
+        \ nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ . \n ``` \n "
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -666,22 +652,61 @@ paths:
         \ calling the enrichment endpoint specifies an \"unknown\" parameter (not\
         \ from the list above), then the values of that \"unknown\" parameters will\
         \ be used to replace with the corresponding \"field\" in the query template.\
-        \ This feature doesn't work via \"Try-it-out!\"-button.\n\nYou can find a\
-        \ list of available templates in the [FREME wiki](https://github.com/freme-project/technical-discussion/wiki/Broker-API-Calls#user-content-available-templates).\n\
-        \n**This is an example of a NIF document containing annotated entities that\
-        \ can be processed by e-link:**\n\n```\n\n@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n\n// NIF document\
-        \ for processing - named entity extraction.\n<http://example.org/document/1#char=0,21>\n\
-        \   a nif:String , nif:Context , nif:RFC5147String ;\n   nif:isString \"We\
-        \ talk about Xiamen.\"^^xsd:string;\n   nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
-        \   nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n   nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
-        \ .\n\n// Detected entity mention linked with its DBpedia representation and\
-        \ ontology class.\n<http://example.org/document/1#char=14,20>\n   a nif:String\
-        \ , nif:RFC5147String , nif:Word, nif:Phrase ;\n   nif:referenceContext <http://example.org/document/1#char=0,21>\
-        \ ;\n   nif:anchorOf \"Xiamen\"\"\"^^xsd:string ;\n   nif:beginIndex \"14\"\
-        ^^xsd:nonNegativeInteger ;\n   nif:endIndex \"20\"^^xsd:nonNegativeInteger\
-        \ ;\nitsrdf:taIdentRef  <http://dbpedia.org/resource/Xiamen> .\nitsrdf:taClassRef\
-        \  <http://dbpedia.org/ontology/City> ;\n\n```\n"
+        \ This feature doesn't work via \"Try-it-out!\"-button.\n \n ```\n\n@prefix\
+        \ dc:    <http://purl.org/dc/elements/1.1/> .\n @prefix prov:  <http://www.w3.org/ns/prov#>\
+        \ .\n @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n @prefix rutp:\
+        \  <http://rdfunit.aksw.org/data/patterns#> .\n @prefix rlog:  <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#>\
+        \ .\n @prefix oslc:  <http://open-services.net/ns/core#> .\n @prefix dsp:\
+        \   <http://dublincore.org/dc-dsp#> .\n @prefix dcterms: <http://purl.org/dc/terms/>\
+        \ .\n @prefix rutg:  <http://rdfunit.aksw.org/data/generators#> .\n @prefix\
+        \ schema: <http://schema.org/> .\n @prefix olia:  <http://purl.org/olia/olia.owl#>\
+        \ .\n @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n @prefix p:\
+        \     <http://127.0.0.1:9995/spotlight#> .\n @prefix rut:   <http://rdfunit.aksw.org/ns/core#>\
+        \ .\n @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .\n @prefix owl:\
+        \   <http://www.w3.org/2002/07/owl#> .\n @prefix rutr:  <http://rdfunit.aksw.org/data/results#>\
+        \ .\n @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n @prefix\
+        \ spin:  <http://spinrdf.org/spin#> .\n @prefix rutt:  <http://rdfunit.aksw.org/data/tests#>\
+        \ .\n @prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .\n\n<http://127.0.0.1:9995/spotlight#char=5,7>\n\
+        \ a                     nif:Word , nif:RFC5147String ;\n nif:anchorOf    \
+        \      \"is\" ;\n nif:beginIndex        \"5\" ;\n nif:endIndex          \"\
+        7\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=8,15>\
+        \ ;\n nif:previousWord      <http://127.0.0.1:9995/spotlight#char=0,4> ;\n\
+        \ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:sentence\
+        \          <http://127.0.0.1:9995/spotlight#char=0,16> .\n\nnif:lastWord \
+        \ a  owl:ObjectProperty .\n nif:previousWord  a  owl:ObjectProperty .\n\n\
+        <http://127.0.0.1:9995/spotlight#char=0,4>\n a                     nif:Word\
+        \ , nif:RFC5147String ;\n nif:anchorOf          \"This\" ;\n nif:beginIndex\
+        \        \"0\" ;\n nif:endIndex          \"4\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=5,7>\
+        \ ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n\
+        \ nif:sentence          <http://127.0.0.1:9995/spotlight#char=0,16> ;\n itsrdf:taIdentRef\
+        \     <http://dbpedia.org/resource/Sathya_Sai_Baba> .\n\nnif:word  a     owl:ObjectProperty\
+        \ .\n nif:isString  a  owl:DatatypeProperty .\n nif:beginIndex  a  owl:DatatypeProperty\
+        \ .\n nif:nextWord  a  owl:ObjectProperty .\n nif:sentence  a  owl:ObjectProperty\
+        \ .\n nif:anchorOf  a  owl:DatatypeProperty .\n\n<http://127.0.0.1:9995/spotlight#char=0,16>\n\
+        \ a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n\
+        \ nif:anchorOf          \"This is Germany.\" ;\n nif:beginIndex        \"\
+        0\" ;\n nif:endIndex          \"16\" ;\n nif:firstWord         <http://127.0.0.1:9995/spotlight#char=0,4>\
+        \ ;\n nif:isString          \"This is Germany.\" ;\n nif:lastWord        \
+        \  <http://127.0.0.1:9995/spotlight#char=15,16> ;\n nif:referenceContext \
+        \ <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:word              <http://127.0.0.1:9995/spotlight#char=5,7>\
+        \ , <http://127.0.0.1:9995/spotlight#char=8,15> .\n\nnif:firstWord  a  owl:ObjectProperty\
+        \ .\n nif:Context  a  owl:Class .\n rlog:message  a  owl:DatatypeProperty\
+        \ .\n nif:Sentence  a  owl:Class .\n nif:referenceContext  a  owl:ObjectProperty\
+        \ .\n\n<http://127.0.0.1:9995/spotlight#char=15,16>\n a                  \
+        \   nif:Word , nif:RFC5147String ;\n nif:anchorOf          \".\" ;\n nif:beginIndex\
+        \        \"15\" ;\n nif:endIndex          \"16\" ;\n nif:previousWord    \
+        \  <http://127.0.0.1:9995/spotlight#char=8,15> ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16>\
+        \ ;\n nif:sentence          <http://127.0.0.1:9995/spotlight#char=0,16> .\n\
+        \nnif:endIndex  a  owl:DatatypeProperty .\n\n<http://127.0.0.1:9995/spotlight#char=8,15>\n\
+        \ a                     nif:Word , nif:RFC5147String ;\n nif:anchorOf    \
+        \      \"Germany\" ;\n nif:beginIndex        \"8\" ;\n nif:endIndex      \
+        \    \"15\" ;\n nif:nextWord          <http://127.0.0.1:9995/spotlight#char=15,16>\
+        \ ;\n nif:previousWord      <http://127.0.0.1:9995/spotlight#char=5,7> ;\n\
+        \ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,16> ;\n nif:sentence\
+        \          <http://127.0.0.1:9995/spotlight#char=0,16> ;\n itsrdf:taIdentRef\
+        \     <http://dbpedia.org/resource/Germany> .\n\nnif:RFC5147String  a  owl:Class\
+        \ .\n nif:Word  a     owl:Class .\n\n```\n"
       operationId: "enrich"
       consumes:
       - "text/n3"
@@ -689,12 +714,14 @@ paths:
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       parameters:
       - name: "informat"
         in: "query"
@@ -709,6 +736,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -723,6 +751,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - in: "body"
         name: "body"
         description: "The text to enrich with data. The format of the body can be\
@@ -749,7 +778,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Returns a list of all templates in specified format."
-      description: ""
+      description: "Returns a list of all templates in specified format."
       operationId: "getAllTemplates"
       produces:
       - "text/n3"
@@ -757,6 +786,7 @@ paths:
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       parameters:
       - name: "outformat"
         in: "query"
@@ -772,6 +802,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       responses:
         200:
           description: "Successful response"
@@ -783,7 +814,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Creates a new enrichment template."
-      description: ""
+      description: "Creates a new enrichment template."
       operationId: "createTemplate"
       consumes:
       - "text/n3"
@@ -791,12 +822,14 @@ paths:
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       parameters:
       - name: "informat"
         in: "query"
@@ -811,6 +844,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -825,6 +859,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
@@ -855,6 +890,7 @@ paths:
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       parameters:
       - name: "outformat"
         in: "query"
@@ -870,6 +906,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - name: "templateid"
         in: "path"
         description: "The ID of the requested template."
@@ -895,12 +932,14 @@ paths:
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/json"
       parameters:
       - name: "informat"
         in: "query"
@@ -915,6 +954,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -929,6 +969,7 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "application/json"
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
@@ -962,10 +1003,6 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "string"
         204:
           description: "Successful removal response - No Content"
         400:
@@ -996,18 +1033,8 @@ paths:
         \ in the EPUB. For each you provide the title and the corresponding HTML file\
         \ (= resource). If no tableOfContents is provided, the service will do a best\
         \ effort at creating one. However, when no (x)html file is found in the root\
-        \ of the zip, the service will return an invalid EPUB.\n\n**Example Metadata\
-        \ JSON**\n```\n{\n  \"titles\":[\"Alice in Utopia\",\"Alice in Europe\"],\n\
-        \  \"authors\":[\"Joske Vermeulen\", \"Nick Borth\"],\n  \"illustrators\"\
-        :[\"Frans Vervaacke\", \"John Riplosh\"],\n  \"creators\":[\"Joske Vermeulen\"\
-        , \"Nick Borth\"],\n  \"subjects\":[\"alice\", \"rabbit\"],\n  \"coverImage\"\
-        :\"cover.jpeg\",\n  \"language\":\"en\",\n  \"source\":\"\",\n  \"description\"\
-        :\"This is the story about Alice in wonderland, involving a rabbit etc.\"\
-        ,\n  \"rights\":\"\",\n  \"identifier\":{\n    \"scheme\":\"\",\n    \"value\"\
-        :\"urn:1235-568-2235\"\n  },\n  \"tableOfContents\":[\n    {\n      \"title\"\
-        :\"Chapter 1\",\n      \"resource\":\"01.xhtml\"\n    },\n    {\n      \"\
-        title\":\"Chapter 2\",\n      \"resource\":\"02.xhtml\"\n    }\n  ]\n}```\n\
-        **Sample .zips**\n* [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
+        \ of the zip, the service will return an invalid EPUB.\n\n**Sample .zips**\n\
+        * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
         * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)"
       operationId: "htmlToEPub"
       consumes:
