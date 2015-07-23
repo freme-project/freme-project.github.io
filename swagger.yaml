@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "0.3"
+  version: "0.2"
   title: "FREME API Documentation"
   description: "This web page documents the REST API of the FREME project. You can\
     \ find more information about FREME on the [project website](http://freme-project.eu)\
@@ -34,12 +34,8 @@ info:
     \ short form: n-triples\n    * application/rdf+xml, short form: rdf-xml\n    *\
     \ text/n3, short form: n3\n* When parameter informat is set then the Content-Type\
     \ header is not used by FREME api\n"
-
-
 host: "api-dev.freme-project.eu"
 basePath: "/current"
-
-
 tags:
 - name: "e-Translation"
 schemes:
@@ -159,12 +155,11 @@ paths:
         \ by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\
         \ as NIF document. The text of the nif:isString property (attached to the\
         \ nif:Context document) will be used for processing. This example shows a\
-        \ NIF document that can be processed by the service: \n ``` \n @prefix nif:\
-        \ <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> . \n @prefix\
-        \ itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
-        \ .\n\n\n\n<http://example.org/document/1#char=0,21>\n a nif:String , nif:Context\
-        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin\"^^xsd:string;\n\
-        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n\
+        \ NIF document that can be processed by the service: \n ``` \n @prefix xsd:\
+        \ <http://www.w3.org/2001/XMLSchema#> .\n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"18\"^^xsd:nonNegativeInteger;\n\
         \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
         \ . \n ``` \n "
       operationId: "execute"
@@ -261,11 +256,11 @@ paths:
       tags:
       - "e-Entity"
       summary: "Get info about all available datasets"
-      description: "Get info about all available datasets"
+      description: ""
       operationId: "getAllDatasets"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful response"
           schema:
             type: "string"
         400:
@@ -339,7 +334,7 @@ paths:
       tags:
       - "e-Entity"
       summary: "Get info about a specific dataset"
-      description: ""
+      description: "Get info about a specific dataset specified by its name"
       operationId: "getDataset"
       parameters:
       - name: "name"
@@ -349,7 +344,7 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful response"
           schema:
             type: "string"
         400:
@@ -358,7 +353,7 @@ paths:
       tags:
       - "e-Entity"
       summary: "Updating dataset for use in the e-Entity service"
-      description: ""
+      description: "Update a dataset with new data for use in the e-Entity service"
       operationId: "updateDataset"
       consumes:
       - "text/n3"
@@ -427,7 +422,7 @@ paths:
       tags:
       - "e-Entity"
       summary: "Removing a specific dataset"
-      description: ""
+      description: "Remoce a dataset in the FREME-NER engine specified by its name"
       operationId: "removeDataset"
       parameters:
       - name: "name"
@@ -437,12 +432,13 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful response"
           schema:
             type: "string"
+        204:
+          description: "No content - Succesful removal"
         400:
-          description: "Bad Request - input validation failed"
-
+          description: "Bad request - input validation failed"
   /e-entity/freme-ner/documents:
     get:
       tags:
@@ -452,12 +448,12 @@ paths:
         \ by the FREME-NER Engine. The service accepts plaintext or text sent as NIF\
         \ document. The text of the nif:isString property (attached to the nif:Context\
         \ document) will be used for processing. This example shows a NIF document\
-        \ that can be processed by the service: \n ``` \n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ . \n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> . \n @prefix xsd:\
-        \ <http://www.w3.org/2001/XMLSchema#> .\n\n\n\n<http://example.org/document/1#char=0,21>\n\
-        \ a nif:String , nif:Context , nif:RFC5147String ;\n nif:isString \"Welcome\
-        \ to Berlin\"^^xsd:string;\n nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n\
-        \ nif:endIndex \"21\"^^xsd:nonNegativeInteger;\n nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
+        \ that can be processed by the service: \n ``` \n @prefix xsd: <http://www.w3.org/2001/XMLSchema#>\
+        \ .\n @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n\n<http://example.org/document/1#char=0,18>\n a nif:String , nif:Context\
+        \ , nif:RFC5147String ;\n nif:isString \"Welcome to Berlin!.\"^^xsd:string;\n\
+        \ nif:beginIndex \"0\"^^xsd:nonNegativeInteger;\n nif:endIndex \"18\"^^xsd:nonNegativeInteger;\n\
+        \ nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>\
         \ . \n ``` \n "
       operationId: "execute"
       consumes:
@@ -893,7 +889,8 @@ paths:
       tags:
       - "e-Link"
       summary: "Returns one specific template with specified ID in a specified format."
-      description: ""
+      description: "Returns one specific template with specified ID in a specified\
+        \ format."
       operationId: "getTemplateById"
       produces:
       - "text/n3"
@@ -933,9 +930,9 @@ paths:
     put:
       tags:
       - "e-Link"
-      summary: "Update an enrichment template with specified ID. The new data is submitted\
-        \ as body of a PUT request."
-      description: ""
+      summary: "Update an enrichment template with specified ID. "
+      description: "Update an enrichment template with specified ID. The new data\
+        \ is submitted as body of a PUT request."
       operationId: "updateTemplateById"
       consumes:
       - "text/n3"
@@ -1005,7 +1002,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Removes a template with specified ID."
-      description: ""
+      description: "Removes a template with specified ID."
       operationId: "removeTemplateById"
       parameters:
       - name: "templateid"
