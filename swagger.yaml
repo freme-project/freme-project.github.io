@@ -1065,7 +1065,7 @@ paths:
       - name: "metadata"
         in: "formData"
         required: true
-        type: "file"
+        type: "string"
 
 
       responses:
