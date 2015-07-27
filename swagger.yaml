@@ -462,35 +462,105 @@ paths:
       tags:
       - "e-Link"
       summary: "Fetch data about named entities from various ontologies"
-      description: "This service accepts a NIF document (with annotated entities)\
-        \ and performs enrichment with pre-defined templates. The templates contain\
-        \ \"fields\" marked between three at-signs @@@field-name@@@. If a user, while\
-        \ calling the enrichment endpoint specifies an \"unknown\" parameter (not\
-        \ from the list above), then the values of that \"unknown\" parameters will\
-        \ be used to replace with the corresponding \"field\" in the query template.\
-        \ \n \n ```\n\n@prefix dc:    <http://purl.org/dc/elements/1.1/> .\n @prefix\
-        \ prov:  <http://www.w3.org/ns/prov#> .\n @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
-        \ .\n @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n @prefix rutp:\
-        \  <http://rdfunit.aksw.org/data/patterns#> .\n @prefix rlog:  <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#>\
-        \ .\n @prefix oslc:  <http://open-services.net/ns/core#> .\n @prefix dsp:\
-        \   <http://dublincore.org/dc-dsp#> .\n @prefix dcterms: <http://purl.org/dc/terms/>\
-        \ .\n @prefix rutg:  <http://rdfunit.aksw.org/data/generators#> .\n @prefix\
-        \ schema: <http://schema.org/> .\n @prefix olia:  <http://purl.org/olia/olia.owl#>\
-        \ .\n @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .\n @prefix p:\
-        \     <http://127.0.0.1:9995/spotlight#> .\n @prefix rut:   <http://rdfunit.aksw.org/ns/core#>\
-        \ .\n @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .\n @prefix owl:\
-        \   <http://www.w3.org/2002/07/owl#> .\n @prefix rutr:  <http://rdfunit.aksw.org/data/results#>\
-        \ .\n @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n @prefix\
-        \ spin:  <http://spinrdf.org/spin#> .\n @prefix rutt:  <http://rdfunit.aksw.org/data/tests#>\
-        \ .\n @prefix ruts:  <http://rdfunit.aksw.org/data/testsuite#> .\n\n<http://127.0.0.1:9995/spotlight#char=0,15>\n\
-        \ a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n\
-        \ nif:beginIndex        \"0\" ;\n nif:endIndex          \"15\" ;\n nif:isString\
-        \          \"This is Berlin.\" ;\n nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15>\
-        \ .\n\n<http://127.0.0.1:9995/spotlight#char=8,14>\n a                   \
-        \  nif:Word , nif:RFC5147String ;\n nif:anchorOf          \"Berlin\" ;\n nif:beginIndex\
-        \        \"8\" ;\n nif:endIndex          \"14\" ;\n nif:referenceContext \
-        \ <http://127.0.0.1:9995/spotlight#char=0,15> ;\n itsrdf:taIdentRef     <http://dbpedia.org/resource/Berlin>\
-        \ .\n\n\n```\n"
+      description: |
+        This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain "fields" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an "unknown" parameter (not from the list above), then the values of that "unknown" parameters will be used to replace with the corresponding "field" in the query template.
+        
+        <pre>
+        
+        @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .
+        @prefix prov:  &lt;http://www.w3.org/ns/prov#/&gt; .
+        @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#/&gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#/&gt; .
+        @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#/&gt; .
+        @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#/&gt; .
+        @prefix oslc:  &lt;http://open-services.net/ns/core#/&gt; .
+        @prefix dsp:   &lt;http://dublincore.org/dc-dsp#/&gt; .
+        @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+        @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#/&gt; .
+        @prefix schema: &lt;http://schema.org/&gt; .
+        @prefix olia:  &lt;http://purl.org/olia/olia.owl#/&gt; .
+        @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#/&gt; .
+        @prefix p:     &lt;http://127.0.0.1:9995/spotlight#/&gt; .
+        @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#/&gt; .
+        @prefix xsd:   &lt;http://www.w3.org/2001/xmlschema#/&gt; .
+        @prefix owl:   &lt;http://www.w3.org/2002/07/owl#/&gt; .
+        @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#/&gt; .
+        @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#/&gt; .
+        @prefix spin:  &lt;http://spinrdf.org/spin#/&gt; .
+        @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#/&gt; .
+        
+        &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt;
+         a                     nif:Word , nif:RFC5147String ;
+         nif:anchorOf          &quot;is&quot; ;
+         nif:beginIndex        &quot;5&quot; ;
+         nif:endIndex          &quot;7&quot; ;
+         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; ;
+         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt; ;
+         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; .
+        
+        nif:lastWord  a  owl:ObjectProperty .
+         nif:previousWord  a  owl:ObjectProperty .
+        
+        &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt;
+         a                     nif:Word , nif:RFC5147String ;
+         nif:anchorOf          &quot;This&quot; ;
+         nif:beginIndex        &quot;0&quot; ;
+         nif:endIndex          &quot;4&quot; ;
+         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; ;
+         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/sathya_sai_baba/&gt; .
+        
+        nif:word  a     owl:ObjectProperty .
+         nif:isString  a  owl:DatatypeProperty .
+         nif:beginIndex  a  owl:DatatypeProperty .
+         nif:nextWord  a  owl:ObjectProperty .
+         nif:sentence  a  owl:ObjectProperty .
+         nif:anchorOf  a  owl:DatatypeProperty .
+        
+        &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt;
+         a                     nif:Context , nif:Sentence , nif:RFC5147String ;
+         nif:anchorOf          &quot;This is Germany.&quot; ;
+         nif:beginIndex        &quot;0&quot; ;
+         nif:endIndex          &quot;16&quot; ;
+         nif:firstWord         &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt; ;
+         nif:isString          &quot;This is Germany.&quot; ;
+         nif:lastWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt; ;
+         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         nif:word              &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; , &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; .
+        
+        nif:firstWord  a  owl:ObjectProperty .
+         nif:Context  a  owl:Class .
+         rlog:message  a  owl:DatatypeProperty .
+         nif:Sentence  a  owl:Class .
+         nif:referenceContext  a  owl:ObjectProperty .
+        
+        &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt;
+         a                     nif:Word , nif:RFC5147String ;
+         nif:anchorOf          &quot;.&quot; ;
+         nif:beginIndex        &quot;15&quot; ;
+         nif:endIndex          &quot;16&quot; ;
+         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; ;
+         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; .
+        
+        nif:endIndex  a  owl:DatatypeProperty .
+        
+        &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt;
+         a                     nif:Word , nif:RFC5147String ;
+         nif:anchorOf          &quot;Germany&quot; ;
+         nif:beginIndex        &quot;8&quot; ;
+         nif:endIndex          &quot;15&quot; ;
+         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt; ;
+         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; ;
+         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
+         itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/germany/&gt; .
+        
+        nif:RFC5147String  a  owl:Class .
+         nif:Word  a     owl:Class .
+         </pre>
       operationId: "enrich"
       consumes:
       - "text/n3"
@@ -877,38 +947,82 @@ paths:
       tags:
       - "e-Publishing"
       summary: "Create eBooks in the EPUB3 format"
-      description: "Creates an eBook in the EPUB3 format from a zip file containing\
-        \ HTML Files and more (images etc.) and a json file containing all necessary\
-        \ metadata for the creation of the eBook.\n\n**Example Call**\n\n`curl --form\
-        \ \"htmlZip=@alice.zip\" --form metadata='json-string' http://api-dev.freme-project.eu/current/e-publishing/html`\n\
-        \n**Metadata JSON may include the following**\n* `titles` - a list of Strings\
-        \ where each String represents one title\n* `authors` - a list of Strings\
-        \ where each String represents one author\n* `illustrators` - a list of Strings\
-        \ where each String represents one illustrator\n* `creators` - a list of Strings\
-        \ where each String represents one creator\n* `subjects` - a list of Strings\
-        \ where each String represents one subject\n* `coverImage` - the location\
-        \ of the cover image inside the zip file\n* `language` - the language of the\
-        \ content (e.g., 'en')\n* `source` - the original source of the content\n\
-        * `description` - the description of the EPUB\n* `rights` - the rights applicable\
-        \ to the EPUB\n* `identifier` - the identifier is represented by 'value',\
-        \ 'scheme' is optional and represents the used scheme corresponding with the\
-        \ value.\n* `tableOfContents` - it is an ordered list of the chapters/sections\
-        \ in the EPUB. For each you provide the title and the corresponding HTML file\
-        \ (= resource). If no tableOfContents is provided, the service will do a best\
-        \ effort at creating one. However, when no (x)html file is found in the root\
-        \ of the zip, the service will return an invalid EPUB. \n\n **Sample Metadata\
-        \ Json**\n \n``` \n {\n \"titles\":[\"Alice in Utopia\",\"Alice in Europe\"\
-        ],\n \"authors\":[\"Joske Vermeulen\", \"Nick Borth\"],\n \"illustrators\"\
-        :[\"Frans Vervaacke\", \"John Riplosh\"],\n \"creators\":[\"Joske Vermeulen\"\
-        , \"Nick Borth\"],\n \"subjects\":[\"alice\", \"rabbit\"],\n \"coverImage\"\
-        :\"cover.jpeg\",\n \"language\":\"en\",\n \"source\":\"\",\n \"description\"\
-        :\"This is the story about Alice in wonderland, involving a rabbit etc.\"\
-        ,\n \"rights\":\"\",\n \"identifier\":{\n \"scheme\":\"\",\n \"value\":\"\
-        urn:1235-568-2235\"\n },\n \"tableOfContents\":[\n {\n \"title\":\"Chapter\
-        \ 1\",\n \"resource\":\"01.xhtml\"\n },\n {\n \"title\":\"Chapter 2\",\n \"\
-        resource\":\"02.xhtml\"\n }\n ]\n }\n \n ```\n\n \n **Sample .zips**\n* [Alice\
-        \ in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
-        * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)"
+      description: |
+        Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
+
+        **Example Call**
+        
+        <pre>
+        curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
+        </pre>
+        
+        Metadata JSON may include the following
+        * titles - a list of Strings where each String represents one title
+        * authors - a list of Strings where each String represents one author
+        * illustrators - a list of Strings where each String represents one illustrator
+        * creators - a list of Strings where each String represents one creator
+        * subjects - a list of Strings where each String represents one subject
+        * coverImage - the location of the cover image inside the zip file
+        * language - the language of the content (e.g., 'en')
+        * source - the original source of the content
+        * description - the description of the EPUB
+        * rights - the rights applicable to the EPUB
+        * identifier - the identifier is represented by 'value', 'scheme' is optional and represents the used scheme corresponding with the value.
+        * tableOfContents - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+        
+        **Sample Metadata Json**
+        
+        <pre>
+        
+        {  
+         &quot;titles&quot;:[  
+            &quot;Alice in Utopia&quot;,
+            &quot;Alice in Europe&quot;
+         ],
+         &quot;authors&quot;:[  
+            &quot;Joske Vermeulen&quot;,
+            &quot;Nick Borth&quot;
+         ],
+         &quot;illustrators&quot;:[  
+            &quot;Frans Vervaacke&quot;,
+            &quot;John Riplosh&quot;
+         ],
+         &quot;creators&quot;:[  
+            &quot;Joske Vermeulen&quot;,
+            &quot;Nick Borth&quot;
+         ],
+         &quot;subjects&quot;:[  
+            &quot;alice&quot;,
+            &quot;rabbit&quot;
+         ],
+         &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
+         &quot;language&quot;:&quot;en&quot;,
+         &quot;source&quot;:&quot;&quot;,
+         &quot;description&quot;:&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;,
+         &quot;rights&quot;:&quot;&quot;,
+         &quot;identifier&quot;:{  
+            &quot;scheme&quot;:&quot;&quot;,
+            &quot;value&quot;:&quot;urn:1235-568-2235&quot;
+         },
+         &quot;tableOfContents&quot;:[  
+            {  
+               &quot;title&quot;:&quot;Chapter 1&quot;,
+               &quot;resource&quot;:&quot;01.xhtml&quot;
+            },
+            {  
+               &quot;title&quot;:&quot;Chapter 2&quot;,
+               &quot;resource&quot;:&quot;02.xhtml&quot;
+            }
+         ]
+        }
+        </pre>
+        
+
+         **Sample .zips**
+         
+        * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)
+        * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
+        
       operationId: "htmlToEPub"
       consumes:
       - "multipart/form-data"
@@ -936,124 +1050,158 @@ paths:
               format: "byte"
         400:
           description: "Bad request - input validation failed"
-  /e-terminology/tilde:
-    post:
-      tags:
-      - "e-Terminology"
-      summary: "Annotate text with terminology information using Tilde Terminology\
-        \ service."
-      description: "Annotate text with terminology information using Tilde Terminology\
-        \ service."
-      operationId: "tildeTranslate"
-      consumes:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "text/plain"
-      - "application/rdf+xml"
-      produces:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
-      parameters:
-      - name: "input"
-        in: "query"
-        description: "The text to annotate. Can be either plaintext or NIF (see parameter\
-          \ informat). Short form is i."
-        required: false
-        type: "string"
-      - name: "informat"
-        in: "query"
-        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
-          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
-        required: false
-        type: "string"
-        default: "text"
-        enum:
-        - "json-ld"
-        - "turtle"
-        - "n3"
-        - "n-triples"
-        - "rdf-xml"
-        - "text"
-      - name: "outformat"
-        in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle,\
-          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
-          \ (Response Content Type). Short form is o."
-        required: false
-        type: "string"
-        default: "turtle"
-        enum:
-        - "json-ld"
-        - "turtle"
-        - "n3"
-        - "n-triples"
-        - "rdf-xml"
-      - name: "prefix"
-        in: "query"
-        description: "Unused optional Parameter. Short form is p."
-        required: false
-        type: "string"
-      - in: "body"
-        name: "body"
-        description: "The text to annotate. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/turtle, application/json+ld,\
-          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
-          . The parameter *informat* overrides the Content-Type."
-        required: false
-        schema:
-          type: "string"
-      - name: "source-lang"
-        in: "query"
-        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
-          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
-        required: true
-        type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
-      - name: "target-lang"
-        in: "query"
-        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
-          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
-        required: true
-        type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
-      - name: "domain"
-        in: "query"
-        description: "If given - it filters out by domain proposed terms. Available\
-          \ domains here: https://term.tilde.com/domains (should pass just ID, eg,\
-          \ TaaS-1001, that means Agriculture)"
-        required: false
-        type: "string"
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "string"
-        400:
-          description: "Bad request - input validation failed"
+#  /e-terminology/tilde:
+#    post:
+#      tags:
+#      - "e-Terminology"
+#      summary: "Annotate text with terminology information using Tilde Terminology\
+#        \ service."
+#      description: |
+#        Annotate text with terminology information using Tilde Terminology
+#        service. This example shows NIF that can be consumed by the service:
+#        
+#        <pre>
+#        
+#        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+#        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+#        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+#        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+#        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+#        
+#        &lt;http://freme-project.eu/&gt;
+#          a nif:String , nif:RFC5147String , nif:Context ;
+#            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+#            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+#            nif:isString    &quot;Terminologize me&quot;@en ;
+#        </pre>
+#       
+#      operationId: "tildeTranslate"
+#      consumes:
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/json+ld"
+#      - "application/n-triples"
+#      - "text/plain"
+#      - "application/rdf+xml"
+#      produces:
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/json+ld"
+#      - "application/n-triples"
+#      - "application/rdf+xml"
+#      parameters:
+#      - name: "input"
+#        in: "query"
+#        description: "The text to annotate. Can be either plaintext or NIF (see parameter\
+#          \ informat). Short form is i."
+#        required: false
+#        type: "string"
+#      - name: "informat"
+#        in: "query"
+#        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+#          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+#        required: false
+#        type: "string"
+#        default: "text"
+#        enum:
+#        - "json-ld"
+#        - "turtle"
+#        - "n3"
+#        - "n-triples"
+#        - "rdf-xml"
+#        - "text"
+#      - name: "outformat"
+#        in: "query"
+#        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+#          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+#          \ (Response Content Type). Short form is o."
+#        required: false
+#        type: "string"
+#        default: "turtle"
+#        enum:
+#        - "json-ld"
+#        - "turtle"
+#        - "n3"
+#        - "n-triples"
+#        - "rdf-xml"
+#      - name: "prefix"
+#        in: "query"
+#        description: "Unused optional Parameter. Short form is p."
+#        required: false
+#        type: "string"
+#      - in: "body"
+#        name: "body"
+#        description: "The text to annotate. Will be overwritten by parameter input,\
+#          \ if set. The format of the body can be text/turtle, application/json+ld,\
+#          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+#          . The parameter *informat* overrides the Content-Type."
+#        required: false
+#        schema:
+#          type: "string"
+#      - name: "source-lang"
+#        in: "query"
+#        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
+#          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
+#        required: true
+#        type: "string"
+#        enum:
+#        - "en"
+#        - "de"
+#        - "fr"
+#        - "nl"
+#        - "it"
+#        - "es"
+#      - name: "target-lang"
+#        in: "query"
+#        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
+#          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
+#        required: true
+#        type: "string"
+#        enum:
+#        - "en"
+#        - "de"
+#        - "fr"
+#        - "nl"
+#        - "it"
+#        - "es"
+#      - name: "domain"
+#        in: "query"
+#        description: "If given - it filters out by domain proposed terms. Available\
+#          \ domains here: https://term.tilde.com/domains (should pass just ID, eg,\
+#          \ TaaS-1001, that means Agriculture)"
+#        required: false
+#        type: "string"
+#      responses:
+#        200:
+#          description: "Successful response"
+#          schema:
+#            type: "string"
+#        400:
+#          description: "Bad request - input validation failed"
   /e-translation/tilde:
     post:
       tags:
       - "e-Translation"
       summary: "Perform machine translation using Tilde's API"
-      description: "Parameters can be submitted via URL or via form-data post body.\
-        \ A list of available language pairs is [here](https://services.tilde.com/translationsystems)."
+      description: |
+        Parameters can be submitted via URL or via form-data post body. A list of available 
+        language pairs is [here](https://services.tilde.com/translationsystems). This is a
+        NIF example that can be consumed by e-Translation:
+        
+        <pre>
+        
+        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+        
+        &lt;http://freme-project.eu/&gt;
+          a nif:String , nif:RFC5147String , nif:Context ;
+            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+            nif:isString    &quot;translate me&quot;@en ;
+        </pre>
       operationId: "tildeTranslate"
       consumes:
       - "text/n3"
