@@ -51,8 +51,8 @@ info:
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
-host: "api-dev.freme-project.eu"
-basePath: "/current"
+host: "api.freme-project.eu"
+basePath: "/0.2"
 tags:
 - name: "e-Translation"
 schemes:
