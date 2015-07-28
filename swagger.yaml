@@ -58,120 +58,120 @@ tags:
 schemes:
 - "http"
 paths:
-  /e-entity/dbpedia-spotlight/documents:
-    post:
-      tags:
-      - "e-Entity"
-      summary: "Entity recognition and linking using DBPedia Spotlight engine. "
-      description: | 
-        Enriches Text content with entities gathered from various datasets by the 
-        DBPedia-Spotlight Engine. The service accepts plaintext or text sent 
-        as NIF document. The text of the nif:isString property (attached to the 
-        nif:Context document) will be used for processing. This example shows a
-        NIF document that can be processed by the service:
-
-        <pre>    
-        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; . 
-        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; . 
-        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-            
-        &lt;http://example.org/document/1#char=0,21&gt;
-          a nif:String, nif:Context, nif:RFC5147String ;
-          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
-          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
-          nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
-          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;. 
-          
-        </pre>
-      operationId: "execute"
-      consumes:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "text/plain"
-      - "application/rdf+xml"
-      produces:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
-      parameters:
-      - name: "input"
-        in: "query"
-        description: "The text to enrich. Can be either plaintext or NIF (see parameter\
-          \ informat). Short form is i."
-        required: false
-        type: "string"
-      - name: "informat"
-        in: "query"
-        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
-          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
-        required: false
-        type: "string"
-        default: "text"
-        enum:
-        - "json-ld"
-        - "turtle"
-        - "n3"
-        - "n-triples"
-        - "rdf-xml"
-        - "text"
-      - name: "outformat"
-        in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle,\
-          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
-          \ (Response Content Type). Short form is o."
-        required: false
-        type: "string"
-        default: "turtle"
-        enum:
-        - "json-ld"
-        - "turtle"
-        - "n3"
-        - "n-triples"
-        - "rdf-xml"
-      - name: "prefix"
-        in: "query"
-        description: "Unused optional Parameter. Short form is p."
-        required: false
-        type: "string"
-      - in: "body"
-        name: "body"
-        description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/turtle, application/json+ld,\
-          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
-          . The parameter *informat* overrides the Content-Type."
-        required: false
-        schema:
-          type: "string"
-      - name: "language"
-        in: "query"
-        description: "Source language. Can be en, de, nl, fr, it, es (according to\
-          \ supported NER engine)."
-        required: false
-        type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "nl"
-        - "fr"
-        - "it"
-        - "es"
-      - name: "confidence"
-        in: "query"
-        description: "Threshold to limit the output of entities. Default is 0.3"
-        required: false
-        type: "string"
-        default: "0.3"
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "string"
-        400:
-          description: "Bad request - input validation failed"
+#  /e-entity/dbpedia-spotlight/documents:
+#    post:
+#      tags:
+#      - "e-Entity"
+#      summary: "Entity recognition and linking using DBPedia Spotlight engine. "
+#      description: | 
+#        Enriches Text content with entities gathered from various datasets by the 
+#        DBPedia-Spotlight Engine. The service accepts plaintext or text sent 
+#        as NIF document. The text of the nif:isString property (attached to the 
+#        nif:Context document) will be used for processing. This example shows a
+#        NIF document that can be processed by the service:
+#
+#        <pre>    
+#        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; . 
+#        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; . 
+#        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+#            
+#        &lt;http://example.org/document/1#char=0,21&gt;
+#          a nif:String, nif:Context, nif:RFC5147String ;
+#          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
+#          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
+#          nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
+#          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;. 
+#          
+#        </pre>
+#      operationId: "execute"
+#      consumes:
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/json+ld"
+#      - "application/n-triples"
+#      - "text/plain"
+#      - "application/rdf+xml"
+#      produces:
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/json+ld"
+#      - "application/n-triples"
+#      - "application/rdf+xml"
+#      parameters:
+#      - name: "input"
+#        in: "query"
+#        description: "The text to enrich. Can be either plaintext or NIF (see parameter\
+#          \ informat). Short form is i."
+#        required: false
+#        type: "string"
+#      - name: "informat"
+#        in: "query"
+#        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+#          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+#        required: false
+#        type: "string"
+#        default: "text"
+#        enum:
+#        - "json-ld"
+#        - "turtle"
+#        - "n3"
+#        - "n-triples"
+#        - "rdf-xml"
+#        - "text"
+#      - name: "outformat"
+#        in: "query"
+#        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+#          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+#          \ (Response Content Type). Short form is o."
+#        required: false
+#        type: "string"
+#        default: "turtle"
+#        enum:
+#        - "json-ld"
+#        - "turtle"
+#        - "n3"
+#        - "n-triples"
+#        - "rdf-xml"
+#      - name: "prefix"
+#        in: "query"
+#        description: "Unused optional Parameter. Short form is p."
+#        required: false
+#        type: "string"
+#      - in: "body"
+#        name: "body"
+#        description: "The text to enrich. Will be overwritten by parameter input,\
+#          \ if set. The format of the body can be text/turtle, application/json+ld,\
+#          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+#          . The parameter *informat* overrides the Content-Type."
+#        required: false
+#        schema:
+#          type: "string"
+#      - name: "language"
+#        in: "query"
+#        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+#          \ supported NER engine)."
+#        required: false
+#        type: "string"
+#        enum:
+#        - "en"
+#        - "de"
+#        - "nl"
+#        - "fr"
+#        - "it"
+#        - "es"
+#      - name: "confidence"
+#        in: "query"
+#        description: "Threshold to limit the output of entities. Default is 0.3"
+#        required: false
+#        type: "string"
+#        default: "0.3"
+#      responses:
+#        200:
+#          description: "Successful response"
+#          schema:
+#            type: "string"
+#        400:
+#          description: "Bad request - input validation failed"
   /e-entity/freme-ner/datasets:
     get:
       tags:
