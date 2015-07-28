@@ -412,7 +412,7 @@ paths:
           \ rdf-xmlor text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "text"
+        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
