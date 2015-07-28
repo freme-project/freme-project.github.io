@@ -479,105 +479,34 @@ paths:
       tags:
       - "e-Link"
       summary: "Fetch data about named entities from various ontologies"
-      description: |
-        This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain "fields" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an "unknown" parameter (not from the list above), then the values of that "unknown" parameters will be used to replace with the corresponding "field" in the query template.
+      description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template.
         
-        <pre>
-        
-        @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .
-        @prefix prov:  &lt;http://www.w3.org/ns/prov#/&gt; .
-        @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#/&gt; .
-        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#/&gt; .
-        @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#/&gt; .
-        @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#/&gt; .
-        @prefix oslc:  &lt;http://open-services.net/ns/core#/&gt; .
-        @prefix dsp:   &lt;http://dublincore.org/dc-dsp#/&gt; .
-        @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
-        @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#/&gt; .
-        @prefix schema: &lt;http://schema.org/&gt; .
-        @prefix olia:  &lt;http://purl.org/olia/olia.owl#/&gt; .
-        @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#/&gt; .
-        @prefix p:     &lt;http://127.0.0.1:9995/spotlight#/&gt; .
-        @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#/&gt; .
-        @prefix xsd:   &lt;http://www.w3.org/2001/xmlschema#/&gt; .
-        @prefix owl:   &lt;http://www.w3.org/2002/07/owl#/&gt; .
-        @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#/&gt; .
-        @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#/&gt; .
-        @prefix spin:  &lt;http://spinrdf.org/spin#/&gt; .
-        @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#/&gt; .
-        
-        &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt;
-         a                     nif:Word , nif:RFC5147String ;
-         nif:anchorOf          &quot;is&quot; ;
-         nif:beginIndex        &quot;5&quot; ;
-         nif:endIndex          &quot;7&quot; ;
-         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; ;
-         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt; ;
-         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; .
-        
-        nif:lastWord  a  owl:ObjectProperty .
-         nif:previousWord  a  owl:ObjectProperty .
-        
-        &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt;
-         a                     nif:Word , nif:RFC5147String ;
-         nif:anchorOf          &quot;This&quot; ;
-         nif:beginIndex        &quot;0&quot; ;
-         nif:endIndex          &quot;4&quot; ;
-         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; ;
-         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/sathya_sai_baba/&gt; .
-        
-        nif:word  a     owl:ObjectProperty .
-         nif:isString  a  owl:DatatypeProperty .
-         nif:beginIndex  a  owl:DatatypeProperty .
-         nif:nextWord  a  owl:ObjectProperty .
-         nif:sentence  a  owl:ObjectProperty .
-         nif:anchorOf  a  owl:DatatypeProperty .
-        
-        &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt;
-         a                     nif:Context , nif:Sentence , nif:RFC5147String ;
-         nif:anchorOf          &quot;This is Germany.&quot; ;
-         nif:beginIndex        &quot;0&quot; ;
-         nif:endIndex          &quot;16&quot; ;
-         nif:firstWord         &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,4&quot;&gt; ;
-         nif:isString          &quot;This is Germany.&quot; ;
-         nif:lastWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt; ;
-         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         nif:word              &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; , &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; .
-        
-        nif:firstWord  a  owl:ObjectProperty .
-         nif:Context  a  owl:Class .
-         rlog:message  a  owl:DatatypeProperty .
-         nif:Sentence  a  owl:Class .
-         nif:referenceContext  a  owl:ObjectProperty .
-        
-        &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt;
-         a                     nif:Word , nif:RFC5147String ;
-         nif:anchorOf          &quot;.&quot; ;
-         nif:beginIndex        &quot;15&quot; ;
-         nif:endIndex          &quot;16&quot; ;
-         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt; ;
-         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; .
-        
-        nif:endIndex  a  owl:DatatypeProperty .
-        
-        &lt;http://127.0.0.1:9995/spotlight#char=&quot;8,15&quot;&gt;
-         a                     nif:Word , nif:RFC5147String ;
-         nif:anchorOf          &quot;Germany&quot; ;
-         nif:beginIndex        &quot;8&quot; ;
-         nif:endIndex          &quot;15&quot; ;
-         nif:nextWord          &lt;http://127.0.0.1:9995/spotlight#char=&quot;15,16&quot;&gt; ;
-         nif:previousWord      &lt;http://127.0.0.1:9995/spotlight#char=&quot;5,7&quot;&gt; ;
-         nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         nif:sentence          &lt;http://127.0.0.1:9995/spotlight#char=&quot;0,16&quot;&gt; ;
-         itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/germany/&gt; .
-        
-        nif:RFC5147String  a  owl:Class .
-         nif:Word  a     owl:Class .
-         </pre>
+        <pre>\n\n@prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n\
+                \ @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;\
+                \ .\n @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n @prefix\
+                \ rutp:  &lt;http://rdfunit.aksw.org/data/patterns#&gt; .\n @prefix rlog:\
+                \  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#&gt; .\n\
+                \ @prefix oslc:  &lt;http://open-services.net/ns/core#&gt; .\n @prefix dsp:\
+                \   &lt;http://dublincore.org/dc-dsp#&gt; .\n @prefix dcterms: &lt;http://purl.org/dc/terms/&gt;\
+                \ .\n @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#&gt; .\n\
+                \ @prefix schema: &lt;http://schema.org/&gt; .\n @prefix olia:  &lt;http://purl.org/olia/olia.owl#&gt;\
+                \ .\n @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n @prefix\
+                \ p:     &lt;http://127.0.0.1:9995/spotlight#&gt; .\n @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#&gt;\
+                \ .\n @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n @prefix\
+                \ owl:   &lt;http://www.w3.org/2002/07/owl#&gt; .\n @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#&gt;\
+                \ .\n @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n\
+                \ @prefix spin:  &lt;http://spinrdf.org/spin#&gt; .\n @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#&gt;\
+                \ .\n @prefix ruts:  &lt;http://rdfunit.aksw.org/data/testsuite#&gt; .\n\n\
+                &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\n a                    \
+                \ nif:Context , nif:Sentence , nif:RFC5147String ;\n nif:beginIndex      \
+                \  &quot;0&quot; ;\n nif:endIndex          &quot;15&quot; ;\n nif:isString\
+                \          &quot;This is Berlin.&quot; ;\n nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\
+                \ .\n\n&lt;http://127.0.0.1:9995/spotlight#char=8,14&gt;\n a             \
+                \        nif:Word , nif:RFC5147String ;\n nif:anchorOf          &quot;Berlin&quot;\
+                \ ;\n nif:beginIndex        &quot;8&quot; ;\n nif:endIndex          &quot;14&quot;\
+                \ ;\n nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\
+                \ ;\n itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .\n\
+                \n\n\n</pre>"
       operationId: "enrich"
       consumes:
       - "text/n3"
