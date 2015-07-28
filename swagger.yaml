@@ -75,7 +75,7 @@ paths:
 #        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; . 
 #        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 #            
-#        &lt;http://example.org/document/1#char=0,21&gt;
+#        &lt;http://example.org/document/1#char=0,21f
 #          a nif:String, nif:Context, nif:RFC5147String ;
 #          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
 #          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
@@ -899,7 +899,7 @@ paths:
         **Example Call**
         
         <pre>
-        curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
+        curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html &gt; result.epub
         </pre>
         
         Metadata JSON may include the following
@@ -990,10 +990,7 @@ paths:
         200:
           description: "Successful response"
           schema:
-            type: "array"
-            items:
-              type: "string"
-              format: "byte"
+            type: "file"
         400:
           description: "Bad request - input validation failed"
 #  /e-terminology/tilde:
