@@ -1,4 +1,3 @@
----
 swagger: "2.0"
 info:
   version: "0.2"
@@ -52,7 +51,7 @@ info:
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
 host: "api.freme-project.eu"
-basePath: "/current"
+basePath: "/0.2"
 tags:
 - name: "e-Translation"
 schemes:
