@@ -69,7 +69,7 @@ paths:
 #        nif:Context document) will be used for processing. This example shows a
 #        NIF document that can be processed by the service:
 #
-#        <pre>    
+#        <pre lang="sparql"><code>
 #        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
 #        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
 #        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -79,9 +79,8 @@ paths:
 #          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
 #          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
 #          nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
-#          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;. 
-#          
-#        </pre>
+#          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.
+#        </code></pre>
       operationId: "execute"
       consumes:
 #      - "text/n3"
@@ -373,19 +372,17 @@ paths:
         nif:Context document) will be used for processing. This example shows a
         NIF document that can be processed by the service:
 
-        <pre>        
+        <pre lang="sparql"><code>
         @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
         @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
         @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-        
         &lt;http://example.org/document/1#char=0,21&gt;
           a nif:String , nif:Context, nif:RFC5147String ;
           nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
           nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
           nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
           nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.
-          
-        </pre>
+        </code></pre>
       operationId: "execute"
       consumes:
       - "text/n3"
@@ -482,8 +479,7 @@ paths:
       summary: "Fetch data about named entities from various ontologies"
       description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template. \n
               \n
-              <pre>\n
-
+              <pre lang=\"sparql\"><code>
             @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n
             @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n
             @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n
@@ -524,7 +520,7 @@ paths:
 
 
 
-              </pre>\n"
+              </code></pre>\n"
       operationId: "enrich"
       consumes:
       - "text/n3"
@@ -602,13 +598,11 @@ paths:
               Description: enriches named entities in the input document with a list of museums close to that entity. The template is executed for every named entity in the input document.
 
               \n**SPARQL endpoint http://dbpedia.org/sparql**
-
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX dbpedia: &lt;http://dbpedia.org/resource/ &gt; \n
               PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/ &gt; \n
               PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
               PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;\n
-
               CONSTRUCT {\n
                   ?museum &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
               }\n
@@ -619,16 +613,13 @@ paths:
                   FILTER (&lt;bif:st_intersects &gt;(?museumgeo, ?citygeo, 10))\n
               } LIMIT 10
               </code></pre>
-
               Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-1.ttl).
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-1.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=1\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               #Template id: 2 - DBpedia live
 
@@ -636,9 +627,8 @@ paths:
 
               \n**SPARQL endpoint http://live.dbpedia.org/sparql**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
-
               CONSTRUCT {\n
                   ?event &lt;http://dbpedia.org/ontology/place &gt; &lt;@@@entity_uri@@@ &gt; .\n
               }\n
@@ -652,11 +642,9 @@ paths:
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-2.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=2\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               #Template id: 3 - GeoKnow
 
@@ -664,16 +652,15 @@ paths:
 
               \n**SPARQL endpoint http://factforge.net/sparql**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;\n
-              \n
               CONSTRUCT {\n
-                  &lt;@@@entity_uri@@@ &gt; geo-pos:lat ?long .\n
-                  &lt;@@@entity_uri@@@ &gt; geo-pos:lat ?lat .\n
+              \t&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?long .\n
+              \t&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?lat .\n
               }\n
               WHERE {\n
-                  &lt;@@@entity_uri@@@/ &gt; geo-pos:lat ?lat .\n
-                  &lt;@@@entity_uri@@@/ &gt; geo-pos:long ?long .\n
+              \t&lt;@@@entity_uri@@@/ &gt; geo-pos:lat ?lat .\n
+              \t&lt;@@@entity_uri@@@/ &gt; geo-pos:long ?long .\n
               }
               </code></pre>
 
@@ -681,11 +668,9 @@ paths:
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-3.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=3\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               #Template id: 4 - Linked Geo Data
 
@@ -693,12 +678,11 @@ paths:
 
               \n**SPARQL endpoint http://linkedgeodata.org/vsnorql**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;\n
               PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;\n
               PREFIX geom: &lt;http://geovocab.org/geometry# &gt;\n
               PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;\n
-
               CONSTRUCT {\n
                   ?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
               } WHERE {\n
@@ -718,10 +702,9 @@ paths:
 
               \n**SPARQL endpoint http://europeana.ontotext.com/sparql**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/ &gt;\n
               PREFIX ore: &lt;http://www.openarchives.org/ore/terms/ &gt;\n
-
               CONSTRUCT {\n
                   ?CHO edm:HasMet &lt;@@@entity_uri@@@ &gt;\n
               } WHERE {\n
@@ -737,11 +720,9 @@ paths:
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-5.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=5\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               Note: there is issue with the SPARQL endpoint.
 
@@ -751,9 +732,8 @@ paths:
 
               \n**SPARQL endpoint http://live.dbpedia.org/sparql**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
-
               CONSTRUCT {\n
                   ?event &lt;http://dbpedia.org/ontology/place &gt; &lt;http://dbpedia.org/resource/Berlin &gt; .\n
               }\n
@@ -761,17 +741,15 @@ paths:
                   ?event rdf:type &lt;http://dbpedia.org/ontology/@@@event_type@@@ &gt; .\n
                   ?event &lt;http://dbpedia.org/ontology/place &gt; ?o .\n
               } LIMIT 10
-              </code></pre>;
+              </code></pre>
 
               Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-6.ttl).
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-6.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=6&event_type=SocietalEvent\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               #Template id: 7 -  Linked Geo Data
 
@@ -779,13 +757,12 @@ paths:
 
               \n**SPARQL endpoint http://linkedgeodata.org/vsnorql/**
 
-              <pre><code>
+              <pre lang=\"sparql\"><code>
               PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;\n
               PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;\n
               PREFIX geom: &lt;http://geovocab.org/geometry# &gt;\n
               PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;\n
               PREFIX bif: &lt;http://www.openlinksw.com/schemas/bif# &gt;\n
-
               CONSTRUCT {\n
                   ?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
               } WHERE {\n
@@ -803,11 +780,9 @@ paths:
 
               Test query:
 
-              <pre>
-
+              <pre lang=\"bash\"><code>
               curl -v -X POST -d @test-for-template-7.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=7\" -H \"Content-Type: text/turtle\"
-
-              </pre>
+              </code></pre>
 
               Note: there is an issue with the SPARQL endpoint."
       operationId: "getAllTemplates"
@@ -958,11 +933,15 @@ paths:
       tags:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
-      description: "Update an enrichment template with specified ID. The new data\
-        \ is submitted as body of a PUT request.\n\n **Example of input in JSON format:**\n\
-        \ \n``` \n {\n \"query\":\"here goes the CONSTRUCT SPARQL query\",\n \"endpoint\"\
-        :\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\n }\n\
-        \ \n``` \n   "
+      description: "Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.\n
+        \n
+        **Example of input in JSON format:**\n
+        <pre lang=\"javascript\"><code>
+        {
+         \"query\":\"here goes the CONSTRUCT SPARQL query\",\n
+         \"endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\n
+         }
+         </code></pre>"
       operationId: "updateTemplateById"
       consumes:
       - "text/n3"
@@ -1060,29 +1039,26 @@ paths:
         Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
 
         **Example Call**
-        
-        <pre>
+        <pre lang=\"bash\"><code>
         curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
-        </pre>
-        
+        </code></pre>
+
         Metadata JSON may include the following
-        * titles - a list of Strings where each String represents one title
-        * authors - a list of Strings where each String represents one author
-        * illustrators - a list of Strings where each String represents one illustrator
-        * creators - a list of Strings where each String represents one creator
-        * subjects - a list of Strings where each String represents one subject
-        * coverImage - the location of the cover image inside the zip file
-        * language - the language of the content (e.g., 'en')
-        * source - the original source of the content
-        * description - the description of the EPUB
-        * rights - the rights applicable to the EPUB
-        * identifier - the identifier is represented by 'value', 'scheme' is optional and represents the used scheme corresponding with the value.
-        * tableOfContents - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+        * `titles` - a list of Strings where each String represents one title
+        * `authors` - a list of Strings where each String represents one author
+        * `illustrators` - a list of Strings where each String represents one illustrator
+        * `creators` - a list of Strings where each String represents one creator
+        * `subjects` - a list of Strings where each String represents one subject
+        * `coverImage` - the location of the cover image inside the zip file
+        * `language` - the language of the content (e.g., 'en')
+        * `source` - the original source of the content
+        * `description` - the description of the EPUB
+        * `rights` - the rights applicable to the EPUB
+        * `identifier` - the identifier is represented by 'value', 'scheme' is optional and represents the used scheme corresponding with the value.
+        * `tableOfContents` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
         
         **Sample Metadata Json**
-        
-        <pre>
-        
+        <pre lang=\"javascript\"><code>
         {  
          &quot;titles&quot;:[  
             &quot;Alice in Utopia&quot;,
@@ -1124,7 +1100,7 @@ paths:
             }
          ]
         }
-        </pre>
+        </code></pre>
         
 
          **Sample .zips**
@@ -1169,20 +1145,18 @@ paths:
 #        Annotate text with terminology information using Tilde Terminology
 #        service. This example shows NIF that can be consumed by the service:
 #        
-#        <pre>
-#        
+#        <pre lang=\"sparql\"><code>
 #        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
 #        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
 #        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .
 #        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .
 #        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt; .
-#        
 #        &lt;http://freme-project.eu/ &gt;
 #          a nif:String , nif:RFC5147String , nif:Context ;
 #            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
 #            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
 #            nif:isString    &quot;Terminologize me&quot;@en ;
-#        </pre>
+#        </code></pre>
 #       
 #      operationId: "tildeTranslate"
 #      consumes:
@@ -1297,20 +1271,18 @@ paths:
         language pairs is [here](https://services.tilde.com/translationsystems). This is a
         NIF example that can be consumed by e-Translation:
         
-        <pre>
-        
+        <pre lang="sparql"><code>
         @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
         @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
         @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .
         @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .
         @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt; .
-        
         &lt;http://freme-project.eu/ &gt;
           a nif:String , nif:RFC5147String , nif:Context ;
             nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
             nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
             nif:isString    &quot;translate me&quot;@en ;
-        </pre>
+        </code></pre>
       operationId: "tildeTranslate"
       consumes:
       - "text/n3"
