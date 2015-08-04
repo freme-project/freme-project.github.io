@@ -54,9 +54,23 @@ host: "api-dev.freme-project.eu"
 basePath: "/current"
 tags:
 - name: "e-Translation"
+- name: "General information"
+  description: "someinfo"
+
+
 schemes:
 - "http"
 paths:
+  General Information:
+    summary: "hello1"
+    description: "hello"
+
+    tags:
+    - "General Information"
+    post:
+      summary: ""
+
+
   /e-entity/dbpedia-spotlight/documents:
     post:
       tags:
@@ -191,7 +205,39 @@ paths:
       - "e-Entity"
       summary: "Submitting dataset for use in the e-Entity service"
       description: "Create dataset in SKOS format which includes prefLabel, altLabel\
-        \ or label properties (unless the param properties is explicitly set)."
+        \ or label properties (unless the param properties is explicitly set).
+
+
+        **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
+
+        <pre lang=\"turtle\"> <code>
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
+        </code> </pre>
+
+
+        **Note 1:**
+
+
+        The properties http://www.w3.org/2004/02/skos/core#:altLabel and http://www.w3.org/2004/02/skos/core#:prefLabel here are indexed
+        (by default, skos:altLabel, skos:prefLabel, rdfs:label are indexed, please see docs). This is configurable. So even if it's blah:someOtherPredicate,
+        we can support it through the properties parameter in FREME NER while dataset creation.
+
+
+        **Note 2:**
+
+
+        SKOS datasets (see above, can even be non-skos labels as long as the user specifies
+        them, but it's recommended to stick to skos/rdfs) are a minimum, they give us labels to build gazetteers from. But if the dataset providers
+        have raw RDF with various other kinds of information (like location, geo-coordinates, sameAs, closeMatch etc.) they can include them too.
+        So basically, send them all in. That will only help the entity linker in performing better disambiguation by taking into account
+        inter-resource links.
+
+        "
       operationId: "createDataset"
       consumes:
       - "text/n3"
@@ -274,7 +320,8 @@ paths:
       tags:
       - "e-Entity"
       summary: "Updating dataset for use in the e-Entity service"
-      description: "Update a dataset with new data for use in the e-Entity service"
+      description: "Update a dataset with new data for use in the e-Entity service. See ` POST /e-entity/freme-ner/datasets `
+       for an example SKOS Dataset."
       operationId: "updateDataset"
       consumes:
       - "text/n3"
