@@ -54,22 +54,11 @@ host: "api-dev.freme-project.eu"
 basePath: "/current"
 tags:
 - name: "e-Translation"
-- name: "General information"
-  description: "someinfo"
 
 
 schemes:
 - "http"
 paths:
-  General Information:
-    summary: "hello1"
-    description: "hello"
-
-    tags:
-    - "General Information"
-    post:
-      summary: ""
-
 
   /e-entity/dbpedia-spotlight/documents:
     post:
