@@ -63,7 +63,7 @@ paths:
   /user:
     post:
       tags:
-      - "Authentification"
+      - "User"
       summary: "Create a new user"
       description: |
         Creates a new user.
@@ -91,7 +91,7 @@ paths:
 
     get:
       tags:
-      - "Authentification"
+      - "User"
       summary: "Get information about all users"
       parameters:
       - name: "X-Auth-Token"
@@ -116,7 +116,7 @@ paths:
   /user/{username}:
     get:
       tags:
-      - "Authentification"
+      - "User"
       summary: "Get information about all users"
       description: |
         Get information about a user. You need to be authenticated as that user or as an administrator user to access this API call.
@@ -162,7 +162,7 @@ paths:
 
     delete:
       tags:
-      - "Authentification"
+      - "User"
       summary: "Deletes a specific user"
       description: |
         Delete a user. This will also delete all of his access tokens.
