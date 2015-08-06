@@ -58,7 +58,177 @@ tags:
 
 schemes:
 - "http"
+
 paths:
+  /user:
+    post:
+      tags:
+      - "Authentification"
+      summary: "Create a new user"
+      description: |
+        Creates a new user.
+
+      produces:
+        - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username of user to be created. It can only consist of characters from a-z and A-Z."
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "Password for new user. It needs to be at least 8 characters long."
+        required: true
+        type: string
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+    get:
+      tags:
+      - "Authentification"
+      summary: "Get information about all users"
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      description: |
+        Get information about all users in the system. You need to be authenticated as administrator to have access to this API call.
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+
+  /user/{username}:
+    get:
+      tags:
+      - "Authentification"
+      summary: "Get information about all users"
+      description: |
+        Get information about a user. You need to be authenticated as that user or as an administrator user to access this API call.
+        The information about the user will be printed in JSON format.
+
+        **Example JSON Response**
+
+        <pre lang="json"><code>
+        {
+            &quot;name&quot;: &quot;henry&quot;,
+            &quot;role&quot;: &quot;ROLE_USER&quot;,
+            &quot;tokens&quot;: [
+                {
+                    &quot;token&quot;: &quot;a2baa132-da71-4cb9-b87a-e460bc67b167&quot;,
+                    &quot;creationDate&quot;: 1438699940000,
+                    &quot;lastUsedDate&quot;: 1438699954000
+                }
+            ]
+        }
+        </code></pre>
+
+      produces:
+        - "application/json"
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      - name: "username"
+        in: "path"
+        type: "string"
+        required: true
+        description: "Username of user to get information about"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+    delete:
+      tags:
+      - "Authentification"
+      summary: "Deletes a specific user"
+      description: |
+        Delete a user. This will also delete all of his access tokens.
+        You need to be authenticated as that user or as an admin user to access this API call.
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      - name: "username"
+        in: "path"
+        description: "The username of the user to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        204:
+          description: "No content - Succesful removal"
+        400:
+          description: "Bad request - input validation failed"
+
+  /authenticate:
+    post:
+      tags:
+      - "Authentification"
+      summary: "Authenticate as an existing user"
+      description: |
+        Create an access token for given user that was previously created by POST /user.
+        An access token is a 36 characters long string. You can attach the access token to every FREME API call using the header field X-Auth-Token.
+
+
+        **Example Response**
+        <pre lang="json"><code>
+        {
+            &quot;token&quot;: &quot;f81ccf99-1d01-4e79-9a0b-8dfe84d8303c&quot;
+        }
+        </code></pre>
+      consumes:
+        - "text/plain"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "X-Auth-Username"
+        in: "header"
+        description: "Username of user to attempt to authenticate as"
+        required: true
+        type: "string"
+      - name: "X-Auth-Password"
+        in: "header"
+        description: "Password of user to attempt to authenticate as"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+
 
   /e-entity/dbpedia-spotlight/documents:
     post:
