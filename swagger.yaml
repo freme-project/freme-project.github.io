@@ -21,6 +21,8 @@ info:
           * application/n-triples, short form: n-triples
           * application/rdf+xml, short form: rdf-xml
           * text/n3, short form: n3
+          * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
+          * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send it to the underlying service.
     * outformat (short form: o):
       * output format
       * possible values
@@ -192,7 +194,7 @@ paths:
   /authenticate:
     post:
       tags:
-      - "Authentification"
+      - "Authenticate"
       summary: "Authenticate as an existing user"
       description: |
         Create an access token for given user that was previously created by POST /user.
@@ -401,6 +403,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -420,6 +424,8 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "application/x-xliff+xml"
       - in: "body"
         name: "body"
         description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
@@ -508,6 +514,8 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "application/x-xliff+xml"
       - in: "body"
         name: "body"
         description: "The dataset. The format of the body can be json-ld, turtle,\
@@ -593,6 +601,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "text/plain"
@@ -623,6 +633,8 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "application/x-xliff+xml"
         - "text"
       - name: "outformat"
         in: "query"
@@ -731,6 +743,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -757,6 +771,8 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "application/json"
+        - "text/html"
+        - "application/x-xliff+xml"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1034,6 +1050,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -1060,6 +1078,7 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "application/json"
+        - "text/html"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1152,6 +1171,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -1178,6 +1199,8 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "application/json"
+        - "text/html"
+        - "application/x-xliff+xml"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1399,6 +1422,8 @@ paths:
 #        - "n-triples"
 #        - "rdf-xml"
 #        - "text"
+#        - "text/html"
+#        - "application/x-xliff+xml"
 #      - name: "outformat"
 #        in: "query"
 #        description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1493,6 +1518,8 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "text/plain"
@@ -1526,6 +1553,8 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "text"
+        - "text/html"
+        - "application/x-xliff+xml"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
