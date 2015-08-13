@@ -1272,65 +1272,78 @@ paths:
         curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
         </code></pre>
 
-        Metadata JSON may include the following
-        * `titles` - a list of Strings where each String represents one title
-        * `authors` - a list of Strings where each String represents one author
-        * `illustrators` - a list of Strings where each String represents one illustrator
-        * `creators` - a list of Strings where each String represents one creator
-        * `subjects` - a list of Strings where each String represents one subject
-        * `coverImage` - the location of the cover image inside the zip file
-        * `language` - the language of the content (e.g., 'en')
-        * `source` - the original source of the content
-        * `description` - the description of the EPUB
-        * `rights` - the rights applicable to the EPUB
-        * `identifier` - the identifier is represented by 'value', 'scheme' is optional and represents the used scheme corresponding with the value.
-        * `tableOfContents` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
-        
+        **The supplied Metadata JSON supports the following options:**
+
+        * `epubVersion (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is not specified an EPUB 3 file is created.
+        * `titles (required)`  - a list of Strings where each String represents one title (at least one title is expected)
+        * `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields 'firstName' (String), 'lastName' (String) and 'roles' (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).
+        * `contributors (optional)` - a list of JSON objects where each object represents one contributor. The structure of the object is the same is with 'creators'.
+        * `subjects (optional)` - a list of Strings where each String represents one subject
+        * `types (optional)` - a list of Strings where each String represents one type
+        * `relations (optional)` - a list of Strings where each String represents one relation
+        * `coverImage (optional)` - the location of the cover image inside the zip file
+        * `language (optional)` - the language of the content (e.g., 'en'). If this parameter is not specified, the language is set to English.
+        * `sources (optional)` - a list of Strings where each String represents one source of the content
+        * `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB
+        * `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB
+        * `identifier (optional)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
+        * `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+
+
+
         **Sample Metadata Json**
         <pre lang=\"javascript\"><code>
-        {  
-         &quot;titles&quot;:[  
+        {
+         &quot;titles&quot;:[
             &quot;Alice in Utopia&quot;,
             &quot;Alice in Europe&quot;
          ],
-         &quot;authors&quot;:[  
-            &quot;Joske Vermeulen&quot;,
-            &quot;Nick Borth&quot;
+         &quot;creators&quot;:[
+            {
+                &quot;firstName&quot;: &quot;Joske&quot;,
+                &quot;lastName&quot;: &quot;Vermeulen&quot;,
+                &quot;roles&quot;:[&quot;author&quot;]
+            },
+            {
+                &quot;firstName&quot;: &quot;Nick&quot;,
+                &quot;lastName&quot;: &quot;Borth&quot;,
+                &quot;roles&quot;:[&quot;author&quot;]
+            }
          ],
-         &quot;illustrators&quot;:[  
-            &quot;Frans Vervaacke&quot;,
-            &quot;John Riplosh&quot;
+         &quot;contributors&quot;:[
+            {
+                &quot;firstName&quot;: &quot;Frans&quot;,
+                &quot;lastName&quot;: &quot;Vervaacke&quot;,
+                &quot;roles&quot;:[&quot;illustrator&quot;]
+            },
+            {
+                &quot;firstName&quot;: &quot;John&quot;,
+                &quot;lastName&quot;: &quot;Riplosh&quot;,
+                &quot;roles&quot;:[&quot;illustrator&quot;]
+            }
          ],
-         &quot;creators&quot;:[  
-            &quot;Joske Vermeulen&quot;,
-            &quot;Nick Borth&quot;
-         ],
-         &quot;subjects&quot;:[  
+         &quot;subjects&quot;:[
             &quot;alice&quot;,
             &quot;rabbit&quot;
          ],
          &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
          &quot;language&quot;:&quot;en&quot;,
-         &quot;source&quot;:&quot;&quot;,
-         &quot;description&quot;:&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;,
-         &quot;rights&quot;:&quot;&quot;,
-         &quot;identifier&quot;:{  
-            &quot;scheme&quot;:&quot;&quot;,
+         &quot;descriptions&quot;:&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;,
+         &quot;identifier&quot;:{
             &quot;value&quot;:&quot;urn:1235-568-2235&quot;
          },
-         &quot;tableOfContents&quot;:[  
-            {  
+         &quot;tableOfContents&quot;:[
+            {
                &quot;title&quot;:&quot;Chapter 1&quot;,
                &quot;resource&quot;:&quot;01.xhtml&quot;
             },
-            {  
+            {
                &quot;title&quot;:&quot;Chapter 2&quot;,
                &quot;resource&quot;:&quot;02.xhtml&quot;
             }
          ]
         }
         </code></pre>
-        
 
          **Sample .zips**
          
