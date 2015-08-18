@@ -1377,134 +1377,134 @@ paths:
               format: "byte"
         400:
           description: "Bad request - input validation failed"
-#  /e-terminology/tilde:
-#    post:
-#      tags:
-#      - "e-Terminology"
-#      summary: "Annotate text with terminology information using Tilde Terminology\
-#        \ service."
-#      description: |
-#        Annotate text with terminology information using Tilde Terminology
-#        service. This example shows NIF that can be consumed by the service:
-#        
-#        <pre lang=\"sparql\"><code>
-#        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
-#        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
-#        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .
-#        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .
-#        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt; .
-#        &lt;http://freme-project.eu/ &gt;
-#          a nif:String , nif:RFC5147String , nif:Context ;
-#            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
-#            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
-#            nif:isString    &quot;Terminologize me&quot;@en ;
-#        </code></pre>
-#       
-#      operationId: "tildeTranslate"
-#      consumes:
-#      - "text/n3"
-#      - "text/turtle"
-#      - "application/json+ld"
-#      - "application/n-triples"
-#      - "text/plain"
-#      - "application/rdf+xml"
-#      produces:
-#      - "text/n3"
-#      - "text/turtle"
-#      - "application/json+ld"
-#      - "application/n-triples"
-#      - "application/rdf+xml"
-#      parameters:
-#      - name: "input"
-#        in: "query"
-#        description: "The text to annotate. Can be either plaintext or NIF (see parameter\
-#          \ informat). Short form is i."
-#        required: false
-#        type: "string"
-#      - name: "informat"
-#        in: "query"
-#        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
-#          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
-#        required: false
-#        type: "string"
-#        default: "text"
-#        enum:
-#        - "json-ld"
-#        - "turtle"
-#        - "n3"
-#        - "n-triples"
-#        - "rdf-xml"
-#        - "text"
-#        - "text/html"
-#        - "application/x-xliff+xml"
-#      - name: "outformat"
-#        in: "query"
-#        description: "RDF serialization format of Output. Can be json-ld, turtle,\
-#          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
-#          \ (Response Content Type). Short form is o."
-#        required: false
-#        type: "string"
-#        default: "turtle"
-#        enum:
-#        - "json-ld"
-#        - "turtle"
-#        - "n3"
-#        - "n-triples"
-#        - "rdf-xml"
-#      - name: "prefix"
-#        in: "query"
-#        description: "Unused optional Parameter. Short form is p."
-#        required: false
-#        type: "string"
-#      - in: "body"
-#        name: "body"
-#        description: "The text to annotate. Will be overwritten by parameter input,\
-#          \ if set. The format of the body can be text/turtle, application/json+ld,\
-#          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
-#          . The parameter *informat* overrides the Content-Type."
-#        required: false
-#        schema:
-#          type: "string"
-#      - name: "source-lang"
-#        in: "query"
-#        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
-#          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
-#        required: true
-#        type: "string"
-#        enum:
-#        - "en"
-#        - "de"
-#        - "fr"
-#        - "nl"
-#        - "it"
-#        - "es"
-#      - name: "target-lang"
-#        in: "query"
-#        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
-#          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
-#        required: true
-#        type: "string"
-#        enum:
-#        - "en"
-#        - "de"
-#        - "fr"
-#        - "nl"
-#        - "it"
-#        - "es"
-#      - name: "domain"
-#        in: "query"
-#        description: "If given - it filters out by domain proposed terms. Available\
-#          \ domains here: https://term.tilde.com/domains (should pass just ID, eg,\
-#          \ TaaS-1001, that means Agriculture)"
-#        required: false
-#        type: "string"
-#      responses:
-#        200:
-#          description: "Successful response"
-#          schema:
-#            type: "string"
-#        400:
-#          description: "Bad request - input validation failed"
+  /e-terminology/tilde:
+    post:
+      tags:
+      - "e-Terminology"
+      summary: "Annotate text with terminology information using Tilde Terminology\
+        \ service."
+      description: |
+        Annotate text with terminology information using Tilde Terminology
+        service. This example shows NIF that can be consumed by the service:
+
+        <pre lang=\"sparql\"><code>
+        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
+        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .
+        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt; .
+        &lt;http://freme-project.eu/ &gt;
+          a nif:String , nif:RFC5147String , nif:Context ;
+            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+            nif:isString    &quot;Terminologize me&quot;@en ;
+        </code></pre>
+
+      operationId: "tildeTranslate"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "input"
+        in: "query"
+        description: "The text to annotate. Can be either plaintext or NIF (see parameter\
+          \ informat). Short form is i."
+        required: false
+        type: "string"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "text"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
+        - "text/html"
+        - "application/x-xliff+xml"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "prefix"
+        in: "query"
+        description: "Unused optional Parameter. Short form is p."
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The text to annotate. Will be overwritten by parameter input,\
+          \ if set. The format of the body can be text/turtle, application/json+ld,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+          . The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "source-lang"
+        in: "query"
+        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
+          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
+        required: true
+        type: "string"
+        enum:
+        - "en"
+        - "de"
+        - "fr"
+        - "nl"
+        - "it"
+        - "es"
+      - name: "target-lang"
+        in: "query"
+        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
+          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
+        required: true
+        type: "string"
+        enum:
+        - "en"
+        - "de"
+        - "fr"
+        - "nl"
+        - "it"
+        - "es"
+      - name: "domain"
+        in: "query"
+        description: "If given - it filters out by domain proposed terms. Available\
+          \ domains here: https://term.tilde.com/domains (should pass just ID, eg,\
+          \ TaaS-1001, that means Agriculture)"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
   /e-translation/tilde:
     post:
       tags:
