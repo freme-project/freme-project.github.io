@@ -1286,7 +1286,7 @@ paths:
         * `sources (optional)` - a list of Strings where each String represents one source of the content
         * `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB
         * `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB
-        * `identifier (optional)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
+        * `identifier (required)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
         * `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
 
 
