@@ -241,7 +241,7 @@ paths:
 
         The body must be a JSON String with the following format:
 
-        * `type` - the type of the request. Possible values are GET or POST.\
+        * `method` - the method of the request. Possible values are GET or POST.\
         * `endpoint` - the endpoint of the service.
         * `parameters` - a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.
         * `headers` - a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.
@@ -259,7 +259,7 @@ paths:
         <pre lang=\"json\"><code>
         [
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
           &quot;parameters&quot;: {
             &quot;language&quot;: &quot;en&quot;
@@ -271,7 +271,7 @@ paths:
           &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
         },
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
             &quot;templateid&quot;: &quot;3&quot;
@@ -288,7 +288,7 @@ paths:
         <pre lang=\"json\"><code>
         [
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
           &quot;parameters&quot;: {
             &quot;language&quot;: &quot;en&quot;
@@ -300,7 +300,7 @@ paths:
           &quot;body&quot;: &quot;The Belfry in Ghent is one of the oldest buildings in Belgium.&quot;
         },
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
             &quot;templateid&quot;: &quot;3&quot;
@@ -311,7 +311,7 @@ paths:
           }
         },
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,
           &quot;parameters&quot;: {
             &quot;source-lang&quot;: &quot;en&quot;,
@@ -330,7 +330,7 @@ paths:
         <pre lang=\"json\"><code>
         [
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,
           &quot;parameters&quot;: {
             &quot;dataset&quot;: &quot;dbpedia&quot;,
@@ -343,7 +343,7 @@ paths:
           &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe’s smallest capital cities. But when Iceland’s total population only hovers around 300,000, it makes sense that the capital is known as the “big city” and offers all the cultural perks of a much larger place.\n\n“From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,” said Kaelene Spence, &quot;
         },
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
             &quot;templateid&quot;: &quot;3&quot;
@@ -354,7 +354,7 @@ paths:
           }
         },
         {
-          &quot;type&quot;: &quot;POST&quot;,
+          &quot;method&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-terminology/tilde&quot;,
           &quot;parameters&quot;: {
             &quot;source-lang&quot;: &quot;en&quot;,
@@ -383,7 +383,6 @@ paths:
             type: "string"
         400:
           description: "Bad request - input validation failed"
-
 
   /e-entity/dbpedia-spotlight/documents:
     post:
