@@ -237,6 +237,8 @@ paths:
       description: |
         At the moment only supports POST Method.
 
+        Always consumes application/json and produces the MIME Type specified in the last request.
+
         The body must be a JSON String with the following format:
 
         * `type` - the type of the request. Possible values are GET or POST.\
@@ -245,9 +247,11 @@ paths:
         * `headers` - a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.
         * `body` - The contents to send to the service. This also depends on the service of course.
 
-        Remark: Only the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.
+        **Remark**
 
-        Always consumes application/json and produces the MIME Type specified in the last request.
+        Only the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.
+
+
 
         #Examples
         **e-Entity, e-Link**
