@@ -239,11 +239,11 @@ paths:
 
         The body must be a JSON String with the following format:
 
-        -`type`: the type of the request. Possible values are GET or POST.
-        -`endpoint`: the endpoint of the service.
-        -`parameters`: a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.
-        -`headers`: a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.
-        -`body`: The contents to send to the service. This also depends on the service of course.
+        -`type`: the type of the request. Possible values are GET or POST.\n
+        -`endpoint`: the endpoint of the service.\n
+        -`parameters`: a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.\n
+        -`headers`: a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.\n
+        -`body`: The contents to send to the service. This also depends on the service of course.\n
 
         Remark: Only the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.
 
