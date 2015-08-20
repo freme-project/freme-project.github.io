@@ -262,8 +262,7 @@ paths:
           &quot;type&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
           &quot;parameters&quot;: {
-            &quot;language&quot;: &quot;en&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;language&quot;: &quot;en&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/plain&quot;,
@@ -275,8 +274,7 @@ paths:
           &quot;type&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
-            &quot;templateid&quot;: &quot;3&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;templateid&quot;: &quot;3&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -293,8 +291,7 @@ paths:
           &quot;type&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
           &quot;parameters&quot;: {
-            &quot;language&quot;: &quot;en&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;language&quot;: &quot;en&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/plain&quot;,
@@ -306,8 +303,7 @@ paths:
           &quot;type&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
-            &quot;templateid&quot;: &quot;3&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;templateid&quot;: &quot;3&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -319,8 +315,7 @@ paths:
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,
           &quot;parameters&quot;: {
             &quot;source-lang&quot;: &quot;en&quot;,
-            &quot;target-lang&quot;: &quot;fr&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;target-lang&quot;: &quot;fr&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -339,8 +334,7 @@ paths:
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,
           &quot;parameters&quot;: {
             &quot;dataset&quot;: &quot;dbpedia&quot;,
-            &quot;language&quot;: &quot;en&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;language&quot;: &quot;en&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/plain&quot;,
@@ -352,8 +346,7 @@ paths:
           &quot;type&quot;: &quot;POST&quot;,
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
           &quot;parameters&quot;: {
-            &quot;templateid&quot;: &quot;3&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;templateid&quot;: &quot;3&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -365,8 +358,7 @@ paths:
           &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-terminology/tilde&quot;,
           &quot;parameters&quot;: {
             &quot;source-lang&quot;: &quot;en&quot;,
-            &quot;target-lang&quot;: &quot;nl&quot;,
-            &quot;prefix&quot;: &quot;http://freme-project.eu/&quot;
+            &quot;target-lang&quot;: &quot;nl&quot;
           },
           &quot;headers&quot;: {
             &quot;content-type&quot;: &quot;text/turtle&quot;,
