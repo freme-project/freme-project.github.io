@@ -639,8 +639,9 @@ paths:
       tags:
       - "e-Entity"
       summary: "Updating dataset for use in the e-Entity service"
-      description: "Update a dataset with new data for use in the e-Entity service. See ` POST /e-entity/freme-ner/datasets `
-       for an example SKOS Dataset."
+      description:  |
+        Update a dataset with new data for use in the e-Entity service. See ` POST /e-entity/freme-ner/datasets `
+        for an example SKOS Dataset.
       operationId: "updateDataset"
       consumes:
       - "text/n3"
@@ -1194,24 +1195,33 @@ paths:
       tags:
       - "e-Link"
       summary: "Creates a new enrichment template."
-      description: "Creates a new enrichment template.  \n\n **Example of input in\
-        \ JSON format:**\n \n``` \n {\n \"query\":\"here goes the CONSTRUCT SPARQL\
-        \ query\",\n \"endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\
-        \n }\n \n``` \n   "
+      description: "\n
+        Creates a new enrichment template.  \n\n
+        **Example of input in JSON format:**\n \n
+        <pre lang=\"javascript\"><code>
+        {\n
+        \"query\":\"a SPARQL CONSTRUCT query\",\n
+        \"endpoint\":\"the SPARQL endpoint which will be used to execute the template\",\n
+        \"label\":\"the title of the template\",\n
+        \"description\":\"a description of the template\"\n
+        }
+        </code></pre>"
+
+
       operationId: "createTemplate"
       consumes:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/json+ld"
+#      - "application/n-triples"
+#      - "application/rdf+xml"
       - "application/json"
       produces:
-      - "text/n3"
+ #     - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
+ #     - "application/json+ld"
+ #     - "application/n-triples"
+ #     - "application/rdf+xml"
       - "application/json"
       parameters:
       - name: "informat"
@@ -1307,29 +1317,25 @@ paths:
       tags:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
-      description: "Update an enrichment template with specified ID. The new data is submitted as body of a PUT request.\n
-        \n
-        **Example of input in JSON format:**\n
-        <pre lang=\"javascript\"><code>
-        {
-         \"query\":\"here goes the CONSTRUCT SPARQL query\",\n
-         \"endpoint\":\"here goes the SPARQL endpoint. E.g., http://dbpedia.org/sparql/\"\n
-         }
-         </code></pre>"
+      description: "\n
+        Update or creates an enrichment template (if it does not exist) with specified ID. The new data is submitted as body of a PUT request.\n
+        For correct format of the submitted data see POST /e-link/templates.
+        "
+
       operationId: "updateTemplateById"
       consumes:
-      - "text/n3"
-      - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
+  #    - "text/n3"
+  #    - "text/turtle"
+  #    - "application/json+ld"
+  #    - "application/n-triples"
+  #    - "application/rdf+xml"
       - "application/json"
       produces:
-      - "text/n3"
+  #    - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
-      - "application/n-triples"
-      - "application/rdf+xml"
+  #    - "application/json+ld"
+  #    - "application/n-triples"
+  #    - "application/rdf+xml"
       - "application/json"
       parameters:
       - name: "informat"
