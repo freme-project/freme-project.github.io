@@ -410,18 +410,22 @@ paths:
 #        </code></pre>
       operationId: "execute"
       consumes:
-#      - "text/n3"
-#      - "text/turtle"
-#      - "application/json+ld"
-#      - "application/n-triples"
+      - "text/n3"
+      - "text/turtle"
+      - "application/json+ld"
+      - "application/n-triples"
       - "text/plain"
-#      - "application/rdf+xml"
+      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
+
       parameters:
       - name: "input"
         in: "query"
@@ -436,13 +440,15 @@ paths:
 #          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "text"
+        default: "turtle"
         enum:
-#        - "json-ld"
-#        - "turtle"
-#        - "n3"
-#        - "n-triples"
-#        - "rdf-xml"
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/x-xliff+xml"
+        - "text/html"
         - "text"
       - name: "outformat"
         in: "query"
@@ -555,8 +561,6 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
-      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -576,8 +580,6 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/html"
-        - "application/x-xliff+xml"
       - in: "body"
         name: "body"
         description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
@@ -666,8 +668,6 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/html"
-        - "application/x-xliff+xml"
       - in: "body"
         name: "body"
         description: "The dataset. The format of the body can be json-ld, turtle,\
@@ -1202,8 +1202,6 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
-      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -1230,7 +1228,6 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "application/json"
-        - "text/html"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1323,8 +1320,6 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
-      - "application/x-xliff+xml"
       - "application/json+ld"
       - "application/n-triples"
       - "application/rdf+xml"
@@ -1351,8 +1346,6 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "application/json"
-        - "text/html"
-        - "application/x-xliff+xml"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1560,6 +1553,8 @@ paths:
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
       produces:
       - "text/n3"
       - "text/turtle"
@@ -1579,7 +1574,7 @@ paths:
           \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "text"
+        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
