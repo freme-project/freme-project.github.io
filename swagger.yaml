@@ -1584,7 +1584,7 @@ paths:
           a nif:String , nif:RFC5147String , nif:Context ;
             nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
             nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
-            nif:isString    &quot;Terminologize me&quot;@en.
+            nif:isString    &quot;Welcome to Europe&quot;@en.
         </code></pre>
 
       operationId: "tildeTranslate"
