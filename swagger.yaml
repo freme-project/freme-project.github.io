@@ -1660,26 +1660,12 @@ paths:
           \ A list of supported language codes is [here](https://term.tilde.com/resources)."
         required: true
         type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
       - name: "target-lang"
         in: "query"
         description: "Target language, e.g. \"de\", \"en\". Language for targeted\
           \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
         required: true
         type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
       - name: "domain"
         in: "query"
         description: "If given - it filters out by domain proposed terms. Available\
@@ -1793,26 +1779,12 @@ paths:
           \ is [here](https://services.tilde.com/translationsystems)."
         required: true
         type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
       - name: "target-lang"
         in: "query"
         description: "Target language, e.g. \"de\". A list of available language pairs\
           \ is [here](https://services.tilde.com/translationsystems)."
         required: true
         type: "string"
-        enum:
-        - "en"
-        - "de"
-        - "fr"
-        - "nl"
-        - "it"
-        - "es"
       - name: "domain"
         in: "query"
         description: "Currently not used"
