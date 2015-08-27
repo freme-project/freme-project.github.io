@@ -857,7 +857,7 @@ paths:
         in: "query"
         description: "Source language. Can be en, de, nl, fr, it, es (according to\
           \ supported NER engine)."
-        required: false
+        required: true
         type: "string"
         enum:
         - "en"
@@ -866,6 +866,7 @@ paths:
         - "fr"
         - "it"
         - "es"
+        default : "en"
       - name: "dataset"
         in: "query"
         description: "A mandatory parameter which indicates the dataset used for entity\
