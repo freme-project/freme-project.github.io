@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  version: "0.2"
+  version: "0.3"
   title: "FREME API Documentation"
   description: |
     This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the [FREME GitHub page](https://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
@@ -52,8 +52,8 @@ info:
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
-host: "api-dev.freme-project.eu"
-basePath: "/current"
+host: "api.freme-project.eu"
+basePath: "/0.3"
 tags:
 - name: "e-Translation"
 
