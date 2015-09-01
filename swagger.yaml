@@ -539,33 +539,34 @@ paths:
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
         <pre lang=\"turtle\"> <code>
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;101 Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101 Communications, Inc&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101 Communications, LLC&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00001273 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;2Cs Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000842 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;2x4 (Design studio)&quot; .\n
         </code> </pre>
 
         **Example for sparql parameter**
 
         <pre lang=\"sparql\"><code>
         SELECT ?res ?label \n
-        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
-        ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
-        &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
+        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label &gt; ?label . \n
+        ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type &gt; \n
+        &lt;http://dbpedia.org/ontology/Country &gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
         } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
         The query returns a list of triples where the subject is the entity URI, and the object is the label of the entity.
         This query returns 500 entities of type Country from DBpedia with their URI and label.
 
+
         **Note 1:**
 
 
-        The properties http://www.w3.org/2004/02/skos/core#:altLabel and http://www.w3.org/2004/02/skos/core#:prefLabel here are indexed
-        (by default, skos:altLabel, skos:prefLabel, rdfs:label are indexed, please see docs). This is configurable. So even if it's blah:someOtherPredicate,
-        we can support it through the properties parameter in FREME NER while dataset creation.
+        The properties `http://www.w3.org/2004/02/skos/core#:altLabel` and `http://www.w3.org/2004/02/skos/core#:prefLabel` here are indexed
+        (by default, `skos:altLabel`, `skos:prefLabel`, `rdfs:label` are indexed, please see docs). This is configurable. So even if it's `anyPrefix:someOtherPredicate`,
+        we can support it through the `properties` parameter in FREME NER while dataset creation. For example add `properties=www.example.com/me` to your query to index the property `www.example.com/me`.
 
 
         **Note 2:**
@@ -644,6 +645,10 @@ paths:
         - "it"
         - "fr"
         - "es"
+      - name: "properties"
+        description: "Add properties you want to index (see Note 1)."
+        in: "query"
+        type: "string"
       responses:
         200:
           description: "Successful response"
