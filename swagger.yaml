@@ -340,7 +340,7 @@ paths:
             &quot;content-type&quot;: &quot;text/plain&quot;,
             &quot;accept&quot;: &quot;text/turtle&quot;
           },
-          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe’s smallest capital cities. But when Iceland’s total population only hovers around 300,000, it makes sense that the capital is known as the “big city” and offers all the cultural perks of a much larger place.\n\n“From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,” said Kaelene Spence, &quot;
+          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe’s smallest capital cities. But when Iceland’s total population only hovers around 300,000, it makes sense that the capital is known as the “big city�? and offers all the cultural perks of a much larger place.\n\n“From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,�? said Kaelene Spence, &quot;
         },
         {
           &quot;method&quot;: &quot;POST&quot;,
@@ -1242,8 +1242,26 @@ paths:
         \"label\":\"the title of the template\",\n
         \"description\":\"a description of the template\"\n
         }
-        </code></pre>"
-
+        </code></pre>\n
+        Here is an example SPARQL COSTRUCT QUERY:\n
+        <pre lang=\"sparql\"><code>
+        PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt\n
+        CONSTRUCT {\n
+            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
+            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
+        } WHERE {\n
+            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
+            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
+        }
+        </code></pre>\n
+        \n
+        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.\n
+        \n
+        However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):\n
+        <pre lang=\"bash\"><code>
+        curl -v -d @example.ttl -X POST -H \"Content-Type: text/turtle\" \"http://localhost:8080/e-link/documents?templateid=116&my_limit=5\"
+        </code></pre>
+        "
 
       operationId: "createTemplate"
       consumes:
