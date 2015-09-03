@@ -761,11 +761,9 @@ paths:
         type: "string"
       responses:
         200:
-          description: "Successful response"
+          description: "Succesful removal"
           schema:
             type: "string"
-        204:
-          description: "No content - Succesful removal"
         400:
           description: "Bad request - input validation failed"
   /e-entity/freme-ner/documents:
