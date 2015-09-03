@@ -646,7 +646,7 @@ paths:
         - "fr"
         - "es"
       - name: "properties"
-        description: "Add properties you want to index (see Note 1)."
+        description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`"
         in: "query"
         type: "string"
       responses:
