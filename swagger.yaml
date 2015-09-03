@@ -719,7 +719,7 @@ paths:
         schema:
           type: "string"
       - name: "name"
-        in: "query"
+        in: "path"
         description: "The name name of the dataset to update. It can be considered\
           \ as ID for the dataset. It should include only numbers, letters and should\
           \ NOT include white spaces."
