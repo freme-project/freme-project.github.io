@@ -17,7 +17,7 @@ info:
         * possible values
           * text (plaintext)
           * text/turtle (default), short form: turtle
-          * application/json+ld, short form: json-ld
+          * application/ld+json, short form: json-ld
           * application/n-triples, short form: n-triples
           * application/rdf+xml, short form: rdf-xml
           * text/n3, short form: n3
@@ -27,7 +27,7 @@ info:
       * output format
       * possible values
         * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
+        * application/ld+json, short form: json-ld
         * application/n-triples, short form: n-triples
         * application/rdf+xml, short form: rdf-xml
         * text/n3, short form: n3
@@ -37,7 +37,7 @@ info:
     * Accept
       * possible values
         * turtle for text/turtle (default)
-        * json-ld for application/json+ld
+        * json-ld for application/ld+json
         * n-triples for application/n-triples
         * rdf-xml for application/rdf+xml
         * n3 for text/n3
@@ -46,7 +46,7 @@ info:
       * possible values
         * text (plaintext)
         * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
+        * application/ld+json, short form: json-ld
         * application/n-triples, short form: n-triples
         * application/rdf+xml, short form: rdf-xml
         * text/n3, short form: n3
@@ -414,7 +414,7 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
@@ -424,7 +424,7 @@ paths:
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
 
@@ -475,7 +475,7 @@ paths:
         name: "body"
         description: "The text to enrich."
 #         Will be overwritten by parameter input,\
-#          \ if set. The format of the body can be text/turtle, application/json+ld,\
+#          \ if set. The format of the body can be text/turtle, application/ld+json,\
 #          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
 #          . The parameter *informat* overrides the Content-Type."
         required: false
@@ -583,7 +583,7 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       produces:
@@ -604,7 +604,7 @@ paths:
         - "rdf-xml"
       - in: "body"
         name: "body"
-        description: "The dataset. The format of the body can be text/turtle, application/json+ld,\
+        description: "The dataset. The format of the body can be text/turtle, application/ld+json,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -687,13 +687,13 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       parameters:
@@ -795,14 +795,14 @@ paths:
       - "text/turtle"
       - "text/html"
       - "application/x-xliff+xml"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       parameters:
@@ -850,7 +850,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/ld+json,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -936,19 +936,15 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
-      - "application/x-xliff+xml"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
-      - "application/json"
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
-      - "application/json"
       parameters:
       - name: "informat"
         in: "query"
@@ -984,7 +980,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to enrich with data. The format of the body can be\
-          \ text/turtle, application/json+ld. The parameter input overrides body."
+          \ text/turtle, application/ld+json. The parameter input overrides body."
         required: false
         schema:
           type: "string"
@@ -1204,7 +1200,7 @@ paths:
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       - "application/json"
@@ -1270,14 +1266,14 @@ paths:
       consumes:
 #      - "text/n3"
 #      - "text/turtle"
-#      - "application/json+ld"
+#      - "application/ld+json"
 #      - "application/n-triples"
 #      - "application/rdf+xml"
       - "application/json"
       produces:
  #     - "text/n3"
       - "text/turtle"
- #     - "application/json+ld"
+ #     - "application/ld+json"
  #     - "application/n-triples"
  #     - "application/rdf+xml"
       - "application/json"
@@ -1314,7 +1310,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
-          \ application/json+ld. Defaults to text/turtle. The parameter *informat*\
+          \ application/ld+json. Defaults to text/turtle. The parameter *informat*\
           \ overrides the Content-Type."
         required: false
         schema:
@@ -1339,7 +1335,7 @@ paths:
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       - "application/json"
@@ -1384,14 +1380,14 @@ paths:
       consumes:
   #    - "text/n3"
   #    - "text/turtle"
-  #    - "application/json+ld"
+  #    - "application/ld+json"
   #    - "application/n-triples"
   #    - "application/rdf+xml"
       - "application/json"
       produces:
   #    - "text/n3"
       - "text/turtle"
-  #    - "application/json+ld"
+  #    - "application/ld+json"
   #    - "application/n-triples"
   #    - "application/rdf+xml"
       - "application/json"
@@ -1428,7 +1424,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The new template. The format of the body can be text/turtle,\
-          \ application/json+ld, application/n-triples, application/rdf+xml, text/n3.\
+          \ application/ld+json, application/n-triples, application/rdf+xml, text/n3.\
           \ Defaults to text/turtle. The parameter *informat* overrides the Content-Type."
         required: false
         schema:
@@ -1613,7 +1609,7 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
@@ -1622,7 +1618,7 @@ paths:
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       parameters:
@@ -1670,7 +1666,7 @@ paths:
       - in: "body"
         name: "body"
         description: "The text to annotate. Will be overwritten by parameter input,\
-          \ if set. The format of the body can be text/turtle, application/json+ld,\
+          \ if set. The format of the body can be text/turtle, application/ld+json,\
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
@@ -1730,14 +1726,14 @@ paths:
       - "text/turtle"
       - "text/html"
       - "application/x-xliff+xml"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
       produces:
       - "text/n3"
       - "text/turtle"
-      - "application/json+ld"
+      - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
       parameters:
@@ -1789,7 +1785,7 @@ paths:
         name: "body"
         description: "The string to be translated. Can be either plaintext or NIF.\
           \ Will be overwritten by parameter input, if set. The format of the body\
-          \ can be text/turtle, application/json+ld, application/n-triples, application/rdf+xml,\
+          \ can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml,\
           \ text/n3. Defaults to \"text/turtle\". The parameter *informat* overrides\
           \ the Content-Type."
         required: false
