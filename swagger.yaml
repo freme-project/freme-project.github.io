@@ -52,7 +52,8 @@ info:
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
       
-    ##Note
+    ## Note
+    
     All content has to be UTF-8 encoded.
 
 host: "api-dev.freme-project.eu"
