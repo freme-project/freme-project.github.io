@@ -52,6 +52,10 @@ info:
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
+    ## Note
+
+    All sent content have to be UTF-8 encoded.
+
 host: "api-dev.freme-project.eu"
 basePath: "/current"
 tags:
@@ -340,7 +344,7 @@ paths:
             &quot;content-type&quot;: &quot;text/plain&quot;,
             &quot;accept&quot;: &quot;text/turtle&quot;
           },
-          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europeâs smallest capital cities. But when Icelandâs total population only hovers around 300,000, it makes sense that the capital is known as the âbig cityâ? and offers all the cultural perks of a much larger place.\n\nâFrom live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,â? said Kaelene Spence, &quot;
+          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe�s smallest capital cities. But when Iceland�s total population only hovers around 300,000, it makes sense that the capital is known as the �big city?? and offers all the cultural perks of a much larger place.\n\n�From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;
         },
         {
           &quot;method&quot;: &quot;POST&quot;,
