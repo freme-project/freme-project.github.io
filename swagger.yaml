@@ -12,6 +12,7 @@ info:
         * input of the e-Service in plaintext or nif
         * No default
         * Depends on informat and intype
+        * All plain text sent to FREME has to be UTF-8 encoded
     * informat (short form: f):
         * format of input parameter.
         * possible values
@@ -52,9 +53,6 @@ info:
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
-    ## Note
-
-    All sent content have to be UTF-8 encoded.
 
 host: "api-dev.freme-project.eu"
 basePath: "/current"
