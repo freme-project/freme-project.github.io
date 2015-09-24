@@ -5,7 +5,7 @@ info:
   description: |
     This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the [FREME GitHub page](https://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
     # General Information
-    
+
     This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). Please note that all parameter values submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
 
     * input (short form: i):
@@ -342,7 +342,7 @@ paths:
             &quot;content-type&quot;: &quot;text/plain&quot;,
             &quot;accept&quot;: &quot;text/turtle&quot;
           },
-          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe’s smallest capital cities. But when Iceland’s total population only hovers around 300,000, it makes sense that the capital is known as the “big city?? and offers all the cultural perks of a much larger place.\n\n“From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;
+          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe's smallest capital cities. But when Iceland's total population only hovers around 300,000, it makes sense that the capital is known as the big city?? and offers all the cultural perks of a much larger place.\n\n From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;
         },
         {
           &quot;method&quot;: &quot;POST&quot;,
@@ -392,11 +392,11 @@ paths:
       - "e-Entity"
       summary: "Entity recognition and linking using DBPedia Spotlight engine. "
       description: "
-        Enriches Text content with entities gathered from various datasets by the 
+        Enriches Text content with entities gathered from various datasets by the
         DBPedia-Spotlight Engine.
 
         "
-#        or text sent as NIF document. The text of the nif:isString property (attached to the 
+#        or text sent as NIF document. The text of the nif:isString property (attached to the
 #        nif:Context document) will be used for processing. This example shows a
 #        NIF document that can be processed by the service:
 #
@@ -404,7 +404,7 @@ paths:
 #        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
 #        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
 #        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-#            
+#
 #        &lt;http://example.org/document/1#char=0,21&gt;
 #          a nif:String, nif:Context, nif:RFC5147String ;
 #          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
@@ -528,8 +528,10 @@ paths:
           description: "Successful response"
           schema:
             type: "string"
-        400:
-          description: "Bad request - input validation failed"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
     post:
       tags:
       - "e-Entity"
@@ -652,12 +654,16 @@ paths:
         in: "query"
         type: "string"
       responses:
-        200:
-          description: "Successful response"
+        201:
+          description: "Created - the dataset was successfuly created"
           schema:
             type: "string"
         400:
-          description: "Bad request - input validation failed"
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
   /e-entity/freme-ner/datasets/{name}:
     get:
       tags:
@@ -677,7 +683,11 @@ paths:
           schema:
             type: "string"
         400:
-          description: "Bad request - input validation failed"
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
     put:
       tags:
       - "e-Entity"
@@ -748,7 +758,11 @@ paths:
           schema:
             type: "string"
         400:
-          description: "Bad request - input validation failed"
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
     delete:
       tags:
       - "e-Entity"
@@ -767,7 +781,11 @@ paths:
           schema:
             type: "string"
         400:
-          description: "Bad request - input validation failed"
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
   /e-entity/freme-ner/documents:
     post:
       tags:
@@ -1549,10 +1567,10 @@ paths:
         </code></pre>
 
          **Sample .zips**
-         
+
         * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)
         * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
-        
+
       operationId: "htmlToEPub"
       consumes:
       - "multipart/form-data"
@@ -1702,10 +1720,10 @@ paths:
       - "e-Translation"
       summary: "Perform machine translation using Tilde's API"
       description: |
-        Parameters can be submitted via URL or via form-data post body. A list of available 
+        Parameters can be submitted via URL or via form-data post body. A list of available
         language pairs is [here](https://services.tilde.com/translationsystems). This is a
         NIF example that can be consumed by e-Translation:
-        
+
         <pre lang="sparql"><code>
         @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
         @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
