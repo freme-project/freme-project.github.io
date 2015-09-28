@@ -21,4 +21,6 @@
 					{{"/js/bootstrap.min.js" | prepend: site.baseurl }}
 				{% endif %}
     ></script>
-
+	{% if {{site.url}} contains "/" %}
+	<script javascript>console.log("{{site.url}}")</script>
+	{% endif %}
