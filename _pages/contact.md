@@ -5,4 +5,4 @@ dropdown : None
 pos: 6
 ---
 
-This is some Post about Contacts
+This is some Post about Contacts!
