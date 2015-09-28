@@ -6,10 +6,97 @@ layout: page
 ---
 
 <script src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/list-datasets.js"></script>
+<!--<script type="text/javascript" src="../js/list-datasets.js"></script>-->
 <link rel="stylesheet" href="../js/jquery-ui-1.11.4/jquery-ui.min.css">
 
 <div id="datasets">
-	<h3 id="dataseth0"></h3>
-	<div id="datasetdiv0"></div>
+<!--	<h3 id="dataseth0"></h3>
+	<div id="datasetdiv0"></div> -->
+
+
+
+
+	<!-- Start of FREME 0.4 Manually entered Datasets -->
+	<h3><a href="http://datahub.io/dataset/orcid-dataset"> ORCID </a> </h3>
+	<div>
+		<h4> Description: </h4>
+		<div>
+
+			ORCID (Open Researcher and Contributor ID) is a nonproprietary alphanumeric code to uniquely identify scientific and other academic authors. This dataset contains RDF conversion of the ORCID dataset. The current conversion is based on the 2014 ORCID data dump, which contains around 1.3 million JSON files amounting to 41GB of data.
+
+			The converted RDF version is 13GB large (uncompressed) and it is modelled with well known vocabularies such as Dublin Core, FOAF, schema.org, etc., and it is interlinked with GeoNames.
+
+			Dump of the converted dataset can be downloaded from here.
+
+			Acknowledgments: The conversion of this corpus was supported by the FREME H2020 project.
+
+		</div>
+		<h4> Author: </h4>
+		<div> Milan Dojchinovski </div>
+		<h4> Maintainer: </h4>
+		<div> Milan Dojchinovski </div>
+	</div>
+
+	<h3><a href="http://datahub.io/dataset/statbel-corpus"> Statbel Corpus </a></h3>
+	<div>
+		<h4> Description: </h4>
+		<div>
+
+			This corpus contains RDF conversion of datasets from the "Statistics Belgium" (also known as Statbel) which aims at collecting, processing and disseminating relevant, reliable and commented data on Belgian society. http://statbel.fgov.be/en/statistics/figures/
+
+			Currently, the corpus contains three datasets:
+
+			Belgian house price index dataset (dump): measures the inflation on residential property market in Belgium. The data for conversion was obtained from [here].(http://statbel.fgov.be/en/statistics/figures/economy/construction_industry/house_price_index/)
+
+			Employment, unemployment, labour market structure dataset (dump): data on employment, unemployment and the labour market from the labour force survey conducted among Belgian households. The data for conversion was obtained from here.
+
+			Unemployment and additional indicators dataset (dump): contains unemployment related statistics about Belgium and its regions. The data for conversion was obtained from here.
+
+			The corpus is provided in RDF and it is modelled using the Data Cube vocabulary.
+
+			Acknowledgments: The conversion of this corpus was supported by the FREME H2020 project.
+
+		</div>
+		<h4> Author: </h4>
+		<div> Milan Dojchinovski </div>
+		<h4> Maintainer: </h4>
+		<div> Milan Dojchinovski </div>
+	</div>
+
+	<h3><a href="http://datahub.io/dataset/global-airports-in-rdf"> Global Airports in RDF </a></h3>
+	<div>
+		<h4> Description: </h4>
+		<div>
+			This corpus contains RDF conversion of Global airports dataset which was retrieved from openflights.org. The dataset contains information about airport names, its location, codes, and other related info.
+
+			The a dump from the dataset can be downloaded from here. The corpus is provided in RDF and it is interlinked with DBpedia.
+
+			Acknowledgments: The conversion of this corpus was supported by the FREME H2020 project.
+
+		</div>
+		<h4> Author: </h4>
+		<div> Milan Dojchinovski </div>
+		<h4> Maintainer: </h4>
+		<div> Milan Dojchinovski </div>
+	</div>
+	<h3><a href="http://datahub.io/dataset/dbpedia-abstract-corpus"> DBpedia abstract corpus </a></h3>
+	<div>
+		<h4> Description: </h4>
+		<div>
+			This corpus contains a conversion of Wikipedia abstracts in six languages (dutch, english, french, german, italian and spanish) into the I used the NLP Interchange Format (NIF). The corpus contains the abstract texts, as well as the position, surface form and linked article of all links in the text. As such, it contains entity mentions manually disambiguated to Wikipedia/DBpedia resources by native speakers, which predestines it for NER training and evaluation.
+
+			Furthermore, the abstracts represent a special form of text that lends itself to be used for more sophisticated tasks, like open relation extraction. Their encyclopedic style, following Wikipedia guidelines on opening paragraphs adds further interesting properties. The first sentence puts the article in broader context. Most anaphers will refer to the original topic of the text, making them easier to resolve. Finally, should the same string occur in different meanings, Wikipedia guidelines suggest that the new meaning should again be linked for disambiguation. In short: The type of text is highly interesting.
+
+			Acknowledgments: The conversion of this corpus was supported by the FREME H2020 project.
+		</div>
+		<h4> Author: </h4>
+		<div> Martin Brümmer </div>
+		<h4> Maintainer: </h4>
+		<div> Martin Brümmer </div>
+	</div>
+
+
 </div>
+<script javascript>
+	$("#datasets").accordion();
+</script>

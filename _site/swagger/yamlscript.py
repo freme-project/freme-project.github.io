@@ -15,9 +15,9 @@
 
 
 def main():
-	import yaml
+	import yaml,os
 	try:
-		with open("swagger/swagger.yaml","r") as f:
+		with open(os.path.dirname(__file__)+"/swagger.yaml","r") as f:
 			full=yaml.load(f.read())
 	except IOError:
 		print("swagger/swagger.yaml could not be found. A simple-API-Doc was not created")
@@ -39,7 +39,7 @@ def main():
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
 	
-	with open("swagger/simple.yaml",'w') as f:
+	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
 		f.write(yaml.dump(full))
 	return 0
 
