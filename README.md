@@ -2,7 +2,7 @@
 
 ## License
 
-Copyright 2015 Deutsches Forschungszentrum f�r K�nstliche Intelligenz
+Copyright 2015 Deutsches Forschungszentrum für Künstliche Intelligenz
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,3 +41,5 @@ jekyll build
 
 To edit the content, edit the files in the _pages folder
 When pushing this to the FREME server make sure to adapt the "basepath" parameter in _config.yml before building with jekyll
+
+To edit the API Documentation, edit `swagger/swagger.yaml`
