@@ -2,7 +2,7 @@
 layout: page
 title: Knowledge Base Home
 dropdown: Knowledge Base
-pos: 4
+pos: 4.0
 ---
 
 Do you want to know more about how to get started with FREME or how to install it? in this section you will find everything you need to take into action.

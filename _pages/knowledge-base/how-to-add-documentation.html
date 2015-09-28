@@ -1,0 +1,48 @@
+---
+layout: page
+title: How to add Documentation
+dropdown: Knowledge Base
+pos: 4.5
+---
+
+<p>Here you can find out how to add more pages to this website</p>
+<p>This website is built using [Jekyll](http://jekyllrb.com/) which makes it very easy to add new content.</p>
+<p>Start by cloning the [Documentation Repository](______________).</p>
+<p>In the directory <code>_pages</code> you will see different files and folders.</p>
+<p>Depending on where you want your content to be found in the navigation bar, add a new file. This file can be [Markdown](GFM) or HTML.</p>
+<h2>The front matter YAML</h2>
+<p>For an in-depth explanation on what is possible with front matter YAML, see the [Jekyll Front Matter YAML Documentation](http://jekyllrb.com/docs/frontmatter/)</p>
+<p>Here we will only go over the basics:</p>
+<p>Every file that should be displayed on this time needs to have front matter YAML, enclosed by a set of triple-dashed lines</p>
+<h3>Example: This Page</h3>
+<p><code><pre>
+---
+layout: page
+title: Adding Documentation
+header: How to add Documentation
+dropdown: Knowledge Base
+pos: 4.5
+---
+</pre></code></p>
+<ul>
+	<li>
+		<h4>Layout:</h4>
+		<p>In the directoy _layouts there are a set of defined layouts for various types of content. As of now there is one for a basic page like this one, and one for integrating a swagger-UI like [this one](http://api-dev.freme-project.eu/doc/api-doc/full.html)</p>
+	</li>
+	<li>
+		<h4>Title:</h4>
+		<p>This determines what this page will be called in the navigation bar.</p>
+	</li>
+	<li>
+		<h4>Header:</h4>
+		<p>This determines the title at the top of this page when it is the active page. When left blank, the Title will be used</p>
+	</li>
+	<li>
+		<h4>Dropdown:</h4>
+		<p>Specifies the name of the Dropdown menu where the content will be located. If left blank, it is added in a new column.</p>
+	</li>
+	<li>
+		<h4>Pos:</h4>
+		<p>The position at which the content will be placed (smallest pos is the most left item). Dropdowns can be ordered by adding a decimal.</p>
+	</li>
+</ul>
