@@ -1,0 +1,1874 @@
+swagger: "2.0"
+info:
+  version: "0.3"
+  title: "FREME API Documentation"
+  description: |
+    This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the [FREME GitHub page](https://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
+    # General Information
+    
+    This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). Please note that all parameter values submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
+
+    * input (short form: i):
+        * input of the e-Service in plaintext or nif
+        * No default
+        * Depends on informat and intype
+        * All plain text sent to FREME has to be UTF-8 encoded
+    * informat (short form: f):
+        * format of input parameter.
+        * possible values
+          * text (plaintext)
+          * text/turtle (default), short form: turtle
+          * application/ld+json, short form: json-ld
+          * application/n-triples, short form: n-triples
+          * application/rdf+xml, short form: rdf-xml
+          * text/n3, short form: n3
+          * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
+          * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send it to the underlying service.
+    * outformat (short form: o):
+      * output format
+      * possible values
+        * text/turtle (default), short form: turtle
+        * application/ld+json, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+    * prefix (short form: p)
+      * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
+    The following header values are used by all FREME e-Services
+    * Accept
+      * possible values
+        * turtle for text/turtle (default)
+        * json-ld for application/ld+json
+        * n-triples for application/n-triples
+        * rdf-xml for application/rdf+xml
+        * n3 for text/n3
+      * When parameter outformat is set then the Accept header is not used by FREME API.
+    * Content-Type
+      * possible values
+        * text (plaintext)
+        * text/turtle (default), short form: turtle
+        * application/ld+json, short form: json-ld
+        * application/n-triples, short form: n-triples
+        * application/rdf+xml, short form: rdf-xml
+        * text/n3, short form: n3
+      * When parameter informat is set then the Content-Type header is not used by FREME api
+
+
+host: "api-dev.freme-project.eu"
+basePath: "/current"
+tags:
+- name: "e-Translation"
+
+
+schemes:
+- "http"
+
+paths:
+  /user:
+    post:
+      tags:
+      - "User"
+      summary: "Create a new user"
+      description: |
+        Creates a new user.
+
+      produces:
+        - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username of user to be created. It can only consist of characters from a-z and A-Z."
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "Password for new user. It needs to be at least 8 characters long."
+        required: true
+        type: string
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+    get:
+      tags:
+      - "User"
+      summary: "Get information about all users"
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      description: |
+        Get information about all users in the system. You need to be authenticated as administrator to have access to this API call.
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+
+  /user/{username}:
+    get:
+      tags:
+      - "User"
+      summary: "Get information about all users"
+      description: |
+        Get information about a user. You need to be authenticated as that user or as an administrator user to access this API call.
+        The information about the user will be printed in JSON format.
+
+        **Example JSON Response**
+
+        <pre lang="json"><code>
+        {
+            &quot;name&quot;: &quot;henry&quot;,
+            &quot;role&quot;: &quot;ROLE_USER&quot;,
+            &quot;tokens&quot;: [
+                {
+                    &quot;token&quot;: &quot;a2baa132-da71-4cb9-b87a-e460bc67b167&quot;,
+                    &quot;creationDate&quot;: 1438699940000,
+                    &quot;lastUsedDate&quot;: 1438699954000
+                }
+            ]
+        }
+        </code></pre>
+
+      produces:
+        - "application/json"
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      - name: "username"
+        in: "path"
+        type: "string"
+        required: true
+        description: "Username of user to get information about"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+
+    delete:
+      tags:
+      - "User"
+      summary: "Deletes a specific user"
+      description: |
+        Delete a user. This will also delete all of his access tokens.
+        You need to be authenticated as that user or as an admin user to access this API call.
+      parameters:
+      - name: "X-Auth-Token"
+        in: "header"
+        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
+        required: false
+        type: "string"
+
+      - name: "username"
+        in: "path"
+        description: "The username of the user to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        204:
+          description: "No content - Succesful removal"
+        400:
+          description: "Bad request - input validation failed"
+
+  /authenticate:
+    post:
+      tags:
+      - "Authenticate"
+      summary: "Authenticate as an existing user"
+      description: |
+        Create an access token for given user that was previously created by POST /user.
+        An access token is a 36 characters long string. You can attach the access token to every FREME API call using the header field X-Auth-Token.
+
+
+        **Example Response**
+        <pre lang="json"><code>
+        {
+            &quot;token&quot;: &quot;f81ccf99-1d01-4e79-9a0b-8dfe84d8303c&quot;
+        }
+        </code></pre>
+      consumes:
+        - "text/plain"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "X-Auth-Username"
+        in: "header"
+        description: "Username of user to attempt to authenticate as"
+        required: true
+        type: "string"
+      - name: "X-Auth-Password"
+        in: "header"
+        description: "Password of user to attempt to authenticate as"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+  /pipelining/chain:
+    post:
+      tags:
+      - "pipelining"
+      summary: "Pipelining multiple requests"
+      description: |
+        At the moment only supports POST Method.
+
+        Always consumes application/json and produces the MIME Type specified in the last request.
+
+        The body must be a JSON String with the following format:
+
+        * `method` - the method of the request. Possible values are GET or POST.\
+        * `endpoint` - the endpoint of the service.
+        * `parameters` - a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.
+        * `headers` - a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.
+        * `body` - The contents to send to the service. This also depends on the service of course.
+
+        **Remark**
+
+        Only the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.
+
+
+
+        #Examples
+        **e-Entity, e-Link**
+
+        <pre lang=\"json\"><code>
+        [
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+          &quot;parameters&quot;: {
+            &quot;language&quot;: &quot;en&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/plain&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          },
+          &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
+        },
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+          &quot;parameters&quot;: {
+            &quot;templateid&quot;: &quot;3&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/turtle&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          }
+        }
+        ]
+        </code></pre>
+
+        **e-Entity, e-Link, e-Translate**
+        <pre lang=\"json\"><code>
+        [
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+          &quot;parameters&quot;: {
+            &quot;language&quot;: &quot;en&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/plain&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          },
+          &quot;body&quot;: &quot;The Belfry in Ghent is one of the oldest buildings in Belgium.&quot;
+        },
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+          &quot;parameters&quot;: {
+            &quot;templateid&quot;: &quot;3&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/turtle&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          }
+        },
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,
+          &quot;parameters&quot;: {
+            &quot;source-lang&quot;: &quot;en&quot;,
+            &quot;target-lang&quot;: &quot;fr&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/turtle&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          }
+        }
+        ]
+        </code></pre>
+
+        **e-Entity, e-Link, e-Terminology**
+
+        <pre lang=\"json\"><code>
+        [
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,
+          &quot;parameters&quot;: {
+            &quot;dataset&quot;: &quot;dbpedia&quot;,
+            &quot;language&quot;: &quot;en&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/plain&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          },
+          &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe's smallest capital cities. But when Iceland's total population only hovers around 300,000, it makes sense that the capital is known as the big city?? and offers all the cultural perks of a much larger place.\n\n From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;
+        },
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+          &quot;parameters&quot;: {
+            &quot;templateid&quot;: &quot;3&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/turtle&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          }
+        },
+        {
+          &quot;method&quot;: &quot;POST&quot;,
+          &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-terminology/tilde&quot;,
+          &quot;parameters&quot;: {
+            &quot;source-lang&quot;: &quot;en&quot;,
+            &quot;target-lang&quot;: &quot;nl&quot;
+          },
+          &quot;headers&quot;: {
+            &quot;content-type&quot;: &quot;text/turtle&quot;,
+            &quot;accept&quot;: &quot;text/turtle&quot;
+          }
+        }
+        ]
+        </code></pre>
+
+      consumes:
+        -"application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: Body of request in JSON format, see above.
+        requird: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+
+  /e-entity/dbpedia-spotlight/documents:
+    post:
+      tags:
+      - "e-Entity"
+      summary: "Entity recognition and linking using DBPedia Spotlight engine. "
+      description: "
+        Enriches Text content with entities gathered from various datasets by the 
+        DBPedia-Spotlight Engine.
+
+        "
+#        or text sent as NIF document. The text of the nif:isString property (attached to the 
+#        nif:Context document) will be used for processing. This example shows a
+#        NIF document that can be processed by the service:
+#
+#        <pre lang="sparql"><code>
+#        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+#        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+#        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+#            
+#        &lt;http://example.org/document/1#char=0,21&gt;
+#          a nif:String, nif:Context, nif:RFC5147String ;
+#          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
+#          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
+#          nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
+#          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.
+#        </code></pre>
+      operationId: "execute"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+
+      parameters:
+      - name: "input"
+        in: "query"
+        description: "The text to enrich."
+#         Can be either plaintext or NIF (see parameter informat). Short form is i."
+        required: false
+        type: "string"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string."
+#         Can be json-ld, turtle, n3, n-triples,\
+#          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/x-xliff+xml"
+        - "text/html"
+        - "text"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "prefix"
+        in: "query"
+        description: "Unused optional Parameter. Short form is p."
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The text to enrich."
+#         Will be overwritten by parameter input,\
+#          \ if set. The format of the body can be text/turtle, application/ld+json,\
+#          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+#          . The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "numLinks"
+        in: "query"
+        description: "The number of links from a knowledge base returned for each entity. Note that for some entities it might returned less links than requested. This might be due to the low number of links available. The maximum number of links that can be returned is 5."
+        required: false
+        type: "string"
+        default : "1"
+      - name: "language"
+        in: "query"
+        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+          \ supported NER engine)."
+        required: false
+        type: "string"
+        enum:
+        - "en"
+ #       - "de"
+ #       - "nl"
+ #       - "fr"
+ #       - "it"
+ #       - "es"
+        default: "en"
+      - name: "confidence"
+        in: "query"
+        description: "Setting a high confidence threshold instructs DBpedia Spotlight to avoid incorrect annotations as much as possible at the risk of losing some correct ones. A confidence value of 0.7 will eliminate 70% of incorrectly disambiguated test cases. The range of the confidence parameter is between 0 and 1. Default is 0.3"
+        required: false
+        type: "string"
+        default: "0.3"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /e-entity/freme-ner/datasets:
+    get:
+      tags:
+      - "e-Entity"
+      summary: "Get info about all available datasets"
+      description: "Get info about all available datasets"
+      operationId: "getAllDatasets"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
+    post:
+      tags:
+      - "e-Entity"
+      summary: "Submitting dataset for use in the e-Entity service"
+      description: "Create dataset in SKOS format which includes prefLabel, altLabel\
+        \ or label properties (unless the param properties is explicitly set).
+
+
+        **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
+
+        <pre lang=\"turtle\"> <code>
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;101 Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101 Communications, Inc&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101 Communications, LLC&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326 &gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel &gt; &quot;101communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00001273 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;2Cs Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000842 &gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel &gt; &quot;2x4 (Design studio)&quot; .\n
+        </code> </pre>
+
+        **Example for sparql parameter**
+
+        <pre lang=\"sparql\"><code>
+        SELECT ?res ?label \n
+        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label &gt; ?label . \n
+        ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type &gt; \n
+        &lt;http://dbpedia.org/ontology/Country &gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
+        } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
+        </code></pre>
+
+        The query returns a list of triples where the subject is the entity URI, and the object is the label of the entity.
+        This query returns 500 entities of type Country from DBpedia with their URI and label.
+
+
+        **Note 1:**
+
+
+        The properties `http://www.w3.org/2004/02/skos/core#:altLabel` and `http://www.w3.org/2004/02/skos/core#:prefLabel` here are indexed
+        (by default, `skos:altLabel`, `skos:prefLabel`, `rdfs:label` are indexed, please see docs). This is configurable. So even if it's `anyPrefix:someOtherPredicate`,
+        we can support it through the `properties` parameter in FREME NER while dataset creation. For example add `properties=www.example.com/me` to your query to index the property `www.example.com/me`.
+
+
+        **Note 2:**
+
+
+        SKOS datasets (see above, can even be non-skos labels as long as the user specifies
+        them, but it's recommended to stick to skos/rdfs) are a minimum, they give us labels to build gazetteers from. But if the dataset providers
+        have raw RDF with various other kinds of information (like location, geo-coordinates, sameAs, closeMatch etc.) they can include them too.
+        So basically, send them all in. That will only help the entity linker in performing better disambiguation by taking into account
+        inter-resource links.
+
+        "
+      operationId: "createDataset"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "informat"
+        in: "query"
+        description: "RDF serialization format of the dataset. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - in: "body"
+        name: "body"
+        description: "The dataset. The format of the body can be text/turtle, application/ld+json,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
+          . The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "name"
+        in: "query"
+        description: "proposed dataset name. It can be considered as ID for the dataset.\
+          \ It should include only numbers, letters and should NOT include white spaces."
+        required: false
+        type: "string"
+      - name: "description"
+        in: "query"
+        description: "Short description of the submitted dataset."
+        required: false
+        type: "string"
+      - name: "sparql"
+        in: "query"
+        description: "This parameter should be used in combination with the \"endpoint\" parameter. The value of the sparql parameter is a SPARQL query which selects subset of a dataset for import in FREME NER."
+        required: false
+        type: "string"
+      - name: "endpoint"
+        in: "query"
+        description: "a SPARQL endpoint against which the SPARQL query specified with the \"sparql\" parameter should be executed. The endpoint parameter makes sense to use only in combination with the \"sparql\" parameter. An example is \"http://dbpedia.org/sparql\" "
+        required: false
+        type: "string"
+      - name: "language"
+        in: "query"
+        description: "language of the labels in the dataset. If the parameter is not\
+          \ specified, all labels without language tag will be used while performing\
+          \ linking. At the moment only following languages are supported - FREME\
+          \ NER (en/de/fr/es/it), DBpedia Spotlight (en)."
+        required: false
+        type: "string"
+        enum:
+        - "de"
+        - "en"
+        - "it"
+        - "fr"
+        - "es"
+      - name: "properties"
+        description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`."
+        in: "query"
+        type: "string"
+      responses:
+        201:
+          description: "Created - the dataset was successfuly created"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
+  /e-entity/freme-ner/datasets/{name}:
+    get:
+      tags:
+      - "e-Entity"
+      summary: "Get info about a specific dataset"
+      description: "Get info about a specific dataset specified by its name"
+      operationId: "getDataset"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name of the requested dataset."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
+    put:
+      tags:
+      - "e-Entity"
+      summary: "Updating dataset for use in the e-Entity service"
+      description:  |
+        Update a dataset with new data for use in the e-Entity service. See ` POST /e-entity/freme-ner/datasets `
+        for an example SKOS Dataset.
+      operationId: "updateDataset"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "informat"
+        in: "query"
+        description: "RDF serialization format of the dataset. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - in: "body"
+        name: "body"
+        description: "The dataset. The format of the body can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"text/turtle\". The parameter *informat*\
+          \ overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "name"
+        in: "path"
+        description: "The name name of the dataset to update. It can be considered\
+          \ as ID for the dataset. It should include only numbers, letters and should\
+          \ NOT include white spaces."
+        required: false
+        type: "string"
+      - name: "language"
+        in: "query"
+        description: "language of the labels in the dataset. If the parameter is not\
+          \ specified, all labels without language tag will be used while performing\
+          \ linking. At the moment only following languages are supported - FREME\
+          \ NER (en/de/fr/es/it), DBpedia Spotlight (en)."
+        required: false
+        type: "string"
+        enum:
+        - "de"
+        - "en"
+        - "nl"
+        - "it"
+        - "fr"
+        - "es"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
+    delete:
+      tags:
+      - "e-Entity"
+      summary: "Removing a specific dataset"
+      description: "Remove a dataset in the FREME-NER engine specified by its name"
+      operationId: "removeDataset"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "The name of the dataset to remove"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Succesful removal"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - required parameter is not specified or invalid format specified or requested"
+        502:
+          description: "Bad Gateway - recieved an invalid response from the FREME NER server"
+        500:
+          description: "Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request"
+  /e-entity/freme-ner/documents:
+    post:
+      tags:
+      - "e-Entity"
+      summary: "Entity recognition and linking using Freme-NER engine."
+      description: |
+        Enriches Text content with entities gathered from various datasets
+        by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent
+        as NIF document. The text of the nif:isString property (attached to the
+        nif:Context document) will be used for processing. This example shows a
+        NIF document that can be processed by the service:
+
+        <pre lang="sparql"><code>
+        @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+        &lt;http://example.org/document/1#char=0,21&gt;
+          a nif:String , nif:Context, nif:RFC5147String ;
+          nif:isString &quot;Welcome to Berlin&quot;^^xsd:string;
+          nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;
+          nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;
+          nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.
+        </code></pre>
+      operationId: "execute"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "input"
+        in: "query"
+        description: "The text to enrich. Can be either plaintext or NIF (see parameter\
+          \ informat). Short form is i."
+        required: false
+        type: "string"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xmlor text. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text/html"
+        - "application/x-xliff+xml"
+        - "text"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "prefix"
+        in: "query"
+        description: "Unused optional Parameter. Short form is p."
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The text to enrich. Will be overwritten by parameter input,\
+          \ if set. The format of the body can be text/turtle, application/ld+json,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+          . The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "language"
+        in: "query"
+        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+          \ supported NER engine)."
+        required: true
+        type: "string"
+        enum:
+        - "en"
+        - "de"
+        - "nl"
+        - "fr"
+        - "it"
+        - "es"
+        default : "en"
+      - name: "dataset"
+        in: "query"
+        description: "A mandatory parameter which indicates the dataset used for entity\
+          \ linking which includes a list of entites and associated labels."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /e-link/documents/:
+    post:
+      tags:
+      - "e-Link"
+      summary: "Fetch data about named entities from various ontologies"
+      description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template. \n
+              \n
+              <pre lang=\"sparql\"><code>
+            @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n
+            @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n
+            @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n
+            @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n
+            @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#&gt; .\n
+            @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#&gt; .\n
+            @prefix oslc:  &lt;http://open-services.net/ns/core#&gt; .\n
+            @prefix dsp:   &lt;http://dublincore.org/dc-dsp#&gt; .\n
+            @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .\n
+            @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#&gt; .\n
+            @prefix schema: &lt;http://schema.org/&gt; .\n
+            @prefix olia:  &lt;http://purl.org/olia/olia.owl#&gt; .\n
+            @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n
+            @prefix p:     &lt;http://127.0.0.1:9995/spotlight#&gt; .\n
+            @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#&gt; .\n
+            @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n
+            @prefix owl:   &lt;http://www.w3.org/2002/07/owl#&gt; .\n
+            @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#&gt; .\n
+            @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n
+            @prefix spin:  &lt;http://spinrdf.org/spin#&gt; .\n
+            @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#&gt; .\n
+            @prefix ruts:  &lt;http://rdfunit.aksw.org/data/testsuite#&gt; .\n
+
+            &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\n
+                    a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n
+                    nif:beginIndex        &quot;0&quot; ;\n
+                    nif:endIndex          &quot;15&quot; ;\n
+                    nif:isString          &quot;This is Berlin.&quot; ;\n
+                    nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; .\n
+
+            &lt;http://127.0.0.1:9995/spotlight#char=8,14&gt;\n
+                    a                     nif:Word , nif:RFC5147String ;\n
+                    nif:anchorOf          &quot;Berlin&quot; ;\n
+                    nif:beginIndex        &quot;8&quot; ;\n
+                    nif:endIndex          &quot;14&quot; ;\n
+                    nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; ;\n
+                    itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .\n
+
+
+
+              </code></pre>\n"
+      operationId: "enrich"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - in: "body"
+        name: "body"
+        description: "The text to enrich with data. The format of the body can be\
+          \ text/turtle, application/ld+json. The parameter input overrides body."
+        required: false
+        schema:
+          type: "string"
+      - name: "templateid"
+        in: "query"
+        description: "the ID of the template to be used for enrichment"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /e-link/templates/:
+    get:
+      tags:
+      - "e-Link"
+      summary: "Returns a list of all templates in specified format."
+      description: "#Examples - Available templates:
+
+              #Template id: 1 - DBpedia
+
+              Description: enriches named entities in the input document with a list of museums close to that entity. The template is executed for every named entity in the input document.
+
+              \n**SPARQL endpoint http://dbpedia.org/sparql**
+              <pre lang=\"sparql\"><code>
+              PREFIX dbpedia: &lt;http://dbpedia.org/resource/ &gt; \n
+              PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/ &gt; \n
+              PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
+              PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;\n
+              CONSTRUCT {\n
+                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
+              }\n
+              WHERE {\n
+                  &lt;@@@entity_uri@@@ &gt; geo:geometry ?citygeo .\n
+                  ?museum rdf:type &lt;http://schema.org/Museum &gt; .\n
+                  ?museum geo:geometry ?museumgeo .\n
+                  FILTER (&lt;bif:st_intersects &gt;(?museumgeo, ?citygeo, 10))\n
+              } LIMIT 10
+              </code></pre>
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-1.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-1.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=1\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              #Template id: 2 - DBpedia live
+
+              Description: enriches named entities in the input document with a list of events close to that entity. The template is executed for every named entity in the input document.
+
+              \n**SPARQL endpoint http://live.dbpedia.org/sparql**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
+              CONSTRUCT {\n
+                  ?event &lt;http://dbpedia.org/ontology/place &gt; &lt;@@@entity_uri@@@ &gt; .\n
+              }\n
+              WHERE {\n
+                  ?event rdf:type &lt;http://dbpedia.org/ontology/Event &gt; .\n
+                  ?event &lt;http://dbpedia.org/ontology/place &gt; &lt;@@@entity_uri@@@ &gt; .\n
+              } LIMIT 10
+              </code></pre>
+
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-2.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-2.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=2\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              #Template id: 3 - GeoKnow
+
+              Description: Enrich place with longitude and latitude coordinates fetched form the GeoKnow database.
+
+              \n**SPARQL endpoint http://factforge.net/sparql**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;\n
+              CONSTRUCT {\n
+              \t&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?long .\n
+              \t&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?lat .\n
+              }\n
+              WHERE {\n
+              \t&lt;@@@entity_uri@@@/ &gt; geo-pos:lat ?lat .\n
+              \t&lt;@@@entity_uri@@@/ &gt; geo-pos:long ?long .\n
+              }
+              </code></pre>
+
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-3.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-3.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=3\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              #Template id: 4 - Linked Geo Data
+
+              Description: Retrieve all bakeries 10km close to a place.
+
+              \n**SPARQL endpoint http://linkedgeodata.org/vsnorql**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;\n
+              PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;\n
+              PREFIX geom: &lt;http://geovocab.org/geometry# &gt;\n
+              PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;\n
+              CONSTRUCT {\n
+                  ?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
+              } WHERE {\n
+                  ?s\n
+                      a lgdo:Bakery ;\n
+                      geom:geometry [ ogc:asWKT ?sg ] .\n
+                  ?a\n
+                      owl:sameAs &lt;@@@entity_uri@@@ &gt; ;\n
+                      geom:geometry [ ogc:asWKT ?ag ] .\n
+                  FILTER(bif:st_intersects(?sg, ?ag, 10))\n
+              } LIMIT 10
+              </code></pre>
+
+              #Template id: 5 - Europeana
+
+              Description: Retrieve 5 18th century Europeana objects from a place (country).
+
+              \n**SPARQL endpoint http://europeana.ontotext.com/sparql**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/ &gt;\n
+              PREFIX ore: &lt;http://www.openarchives.org/ore/terms/ &gt;\n
+              CONSTRUCT {\n
+                  ?CHO edm:HasMet &lt;@@@entity_uri@@@ &gt;\n
+              } WHERE {\n
+                  ?EuropeanaObject  edm:year  ?year ;\n
+                  edm:hasMet &lt;@@@entity_uri@@@ &gt; .\n
+                  ?EuropeanaObject ore:proxyFor ?CHO .\n
+                  FILTER (?year &lt; &quot;1800&quot;)\n
+                  FILTER (?year &gt; &quot;1700&quot;)\n
+              } LIMIT 5
+              </code></pre>
+
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-5.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-5.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=5\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              Note: there is issue with the SPARQL endpoint.
+
+              #Template id: 6 -  DBpedia live
+
+              Description: enriches named entities in the input document with a list of events close to that entity. This is a template with a user defined parameter event_type, so when calling the endpoint the event_type parameter should be specified.
+
+              \n**SPARQL endpoint http://live.dbpedia.org/sparql**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;\n
+              CONSTRUCT {\n
+                  ?event &lt;http://dbpedia.org/ontology/place &gt; &lt;http://dbpedia.org/resource/Berlin &gt; .\n
+              }\n
+              WHERE {\n
+                  ?event rdf:type &lt;http://dbpedia.org/ontology/@@@event_type@@@ &gt; .\n
+                  ?event &lt;http://dbpedia.org/ontology/place &gt; ?o .\n
+              } LIMIT 10
+              </code></pre>
+
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-6.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-6.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=6&event_type=SocietalEvent\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              #Template id: 7 -  Linked Geo Data
+
+              Description: enriches a named entity of type place with a list of 10 bakaries in radius of 10km from the place.
+
+              \n**SPARQL endpoint http://linkedgeodata.org/vsnorql/**
+
+              <pre lang=\"sparql\"><code>
+              PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;\n
+              PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;\n
+              PREFIX geom: &lt;http://geovocab.org/geometry# &gt;\n
+              PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;\n
+              PREFIX bif: &lt;http://www.openlinksw.com/schemas/bif# &gt;\n
+              CONSTRUCT {\n
+                  ?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .\n
+              } WHERE {\n
+                  ?s\n
+                      a lgdo:Bakery ;\n
+                      geom:geometry [ ogc:asWKT ?sg ] .\n
+                  ?a\n
+                      owl:sameAs &lt;@@@entity_uri@@@ &gt; \n
+                      geom:geometry [ ogc:asWKT ?ag ] .\n
+                  FILTER(bif:st_intersects(?sg, ?ag, 10))\n
+              } LIMIT 10
+              </code></pre>
+
+              Example data for enrichment can be downloaded from [here](https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-7.ttl).
+
+              Test query:
+
+              <pre lang=\"bash\"><code>
+              curl -v -X POST -d @test-for-template-7.ttl \"http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&templateid=7\" -H \"Content-Type: text/turtle\"
+              </code></pre>
+
+              Note: there is an issue with the SPARQL endpoint."
+      operationId: "getAllTemplates"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      - "application/json"
+      parameters:
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    post:
+      tags:
+      - "e-Link"
+      summary: "Creates a new enrichment template."
+      description: "\n
+        Creates a new enrichment template.  \n\n
+        **Example of input in JSON format:**\n \n
+        <pre lang=\"javascript\"><code>
+        {\n
+        \"query\":\"a SPARQL CONSTRUCT query\",\n
+        \"endpoint\":\"the SPARQL endpoint which will be used to execute the template\",\n
+        \"label\":\"the title of the template\",\n
+        \"description\":\"a description of the template\"\n
+        }
+        </code></pre>\n
+        Here is an example SPARQL COSTRUCT QUERY:\n
+        <pre lang=\"sparql\"><code>
+        PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt\n
+        CONSTRUCT {\n
+            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
+            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
+        } WHERE {\n
+            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
+            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
+        }
+        </code></pre>\n
+        \n
+        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.\n
+        \n
+        However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):\n
+        <pre lang=\"bash\"><code>
+        curl -v -d @example.ttl -X POST -H \"Content-Type: text/turtle\" \"http://localhost:8080/e-link/documents?templateid=116&my_limit=5\"
+        </code></pre>
+        "
+
+      operationId: "createTemplate"
+      consumes:
+#      - "text/n3"
+#      - "text/turtle"
+#      - "application/ld+json"
+#      - "application/n-triples"
+#      - "application/rdf+xml"
+      - "application/json"
+      produces:
+ #     - "text/n3"
+      - "text/turtle"
+ #     - "application/ld+json"
+ #     - "application/n-triples"
+ #     - "application/rdf+xml"
+      - "application/json"
+      parameters:
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      - in: "body"
+        name: "body"
+        description: "The new template. The format of the body can be text/turtle,\
+          \ application/ld+json. Defaults to text/turtle. The parameter *informat*\
+          \ overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+        404:
+          description: "Not Found"
+  /e-link/templates/{templateid}:
+    get:
+      tags:
+      - "e-Link"
+      summary: "Returns one specific template with specified ID in a specified format."
+      description: "Returns one specific template with specified ID in a specified\
+        \ format."
+      operationId: "getTemplateById"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      - "application/json"
+      parameters:
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      - name: "templateid"
+        in: "path"
+        description: "The ID of the requested template."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    put:
+      tags:
+      - "e-Link"
+      summary: "Update an enrichment template with specified ID. "
+      description: "\n
+        Update or creates an enrichment template (if it does not exist) with specified ID. The new data is submitted as body of a PUT request.\n
+        For correct format of the submitted data see POST /e-link/templates.
+        "
+
+      operationId: "updateTemplateById"
+      consumes:
+  #    - "text/n3"
+  #    - "text/turtle"
+  #    - "application/ld+json"
+  #    - "application/n-triples"
+  #    - "application/rdf+xml"
+      - "application/json"
+      produces:
+  #    - "text/n3"
+      - "text/turtle"
+  #    - "application/ld+json"
+  #    - "application/n-triples"
+  #    - "application/rdf+xml"
+      - "application/json"
+      parameters:
+      - name: "informat"
+        in: "query"
+        description: "Format of the template. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type).\
+          \ Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "application/json"
+      - in: "body"
+        name: "body"
+        description: "The new template. The format of the body can be text/turtle,\
+          \ application/ld+json, application/n-triples, application/rdf+xml, text/n3.\
+          \ Defaults to text/turtle. The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "templateid"
+        in: "path"
+        description: "The ID of the template to update."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    delete:
+      tags:
+      - "e-Link"
+      summary: "Removes a template with specified ID."
+      description: "Removes a template with specified ID."
+      operationId: "removeTemplateById"
+      parameters:
+      - name: "templateid"
+        in: "path"
+        description: "The id of the template to delete."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+        204:
+          description: "Successful removal response - No Content"
+        400:
+          description: "Bad request - input validation failed"
+        404:
+          description: "A template with such id was not found."
+  /e-publishing/html:
+    post:
+      tags:
+      - "e-Publishing"
+      summary: "Create eBooks in the EPUB3 format"
+      description: |
+        Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
+
+        **Example Call**
+        <pre lang=\"bash\"><code>
+        curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
+        </code></pre>
+
+        **The Metadata JSON supports the following options:**
+
+        * `epubVersion (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is not specified an EPUB 3 file is created.
+        * `titles (required)`  - a list of Strings where each String represents one title (at least one title is expected)
+        * `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields 'firstName' (String), 'lastName' (String) and 'roles' (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).
+        * `contributors (optional)` - a list of JSON objects where each object represents one contributor. The structure of the object is the same is with 'creators'.
+        * `subjects (optional)` - a list of Strings where each String represents one subject
+        * `types (optional)` - a list of Strings where each String represents one type
+        * `relations (optional)` - a list of Strings where each String represents one relation
+        * `coverImage (optional)` - the location of the cover image inside the zip file
+        * `language (optional)` - the language of the content (e.g., 'en'). If this parameter is not specified, the language is set to English.
+        * `sources (optional)` - a list of Strings where each String represents one source of the content
+        * `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB
+        * `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB
+        * `identifier (required)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
+        * `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+
+
+
+        **Sample Metadata Json**
+        <pre lang=\"javascript\"><code>
+        {
+         &quot;titles&quot;:[
+            &quot;Alice in Utopia&quot;,
+            &quot;Alice in Europe&quot;
+         ],
+         &quot;creators&quot;:[
+            {
+                &quot;firstName&quot;: &quot;Joske&quot;,
+                &quot;lastName&quot;: &quot;Vermeulen&quot;,
+                &quot;roles&quot;:[&quot;author&quot;]
+            },
+            {
+                &quot;firstName&quot;: &quot;Nick&quot;,
+                &quot;lastName&quot;: &quot;Borth&quot;,
+                &quot;roles&quot;:[&quot;author&quot;]
+            }
+         ],
+         &quot;contributors&quot;:[
+            {
+                &quot;firstName&quot;: &quot;Frans&quot;,
+                &quot;lastName&quot;: &quot;Vervaacke&quot;,
+                &quot;roles&quot;:[&quot;illustrator&quot;]
+            },
+            {
+                &quot;firstName&quot;: &quot;John&quot;,
+                &quot;lastName&quot;: &quot;Riplosh&quot;,
+                &quot;roles&quot;:[&quot;illustrator&quot;]
+            }
+         ],
+         &quot;subjects&quot;:[
+            &quot;alice&quot;,
+            &quot;rabbit&quot;
+         ],
+         &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
+         &quot;language&quot;:&quot;en&quot;,
+         &quot;descriptions&quot;:[&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;],
+         &quot;identifier&quot;:{
+            &quot;value&quot;:&quot;urn:1235-568-2235&quot;
+         },
+         &quot;tableOfContents&quot;:[
+            {
+               &quot;title&quot;:&quot;Chapter 1&quot;,
+               &quot;resource&quot;:&quot;01.xhtml&quot;
+            },
+            {
+               &quot;title&quot;:&quot;Chapter 2&quot;,
+               &quot;resource&quot;:&quot;02.xhtml&quot;
+            }
+         ]
+        }
+        </code></pre>
+
+         **Sample .zips**
+         
+        * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)
+        * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
+        
+      operationId: "htmlToEPub"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/epub+zip"
+      parameters:
+      - in: "formData"
+        name: "htmlZip"
+        description: "The html zip file to generate the epub from."
+        required: false
+        type: file
+
+      - name: "metadata"
+        in: "formData"
+        required: true
+        description: "Metadata JSON as specified above"
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              format: "byte"
+        400:
+          description: "Bad request - input validation failed"
+  /e-terminology/tilde:
+    post:
+      tags:
+      - "e-Terminology"
+      summary: "Annotate text with terminology information using Tilde Terminology\
+        \ service."
+      description: |
+        Annotate text with terminology information using Tilde Terminology
+        service. This example shows NIF that can be consumed by the service:
+
+        <pre lang=\"sparql\"><code>
+        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+        &lt;http://freme-project.eu/&gt;
+          a nif:String , nif:RFC5147String , nif:Context ;
+            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+            nif:isString    &quot;Welcome to Europe&quot;@en.
+        </code></pre>
+
+      operationId: "tildeTranslate"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "input"
+        in: "query"
+        description: "The text to annotate. Can be either plaintext or NIF (see parameter\
+          \ informat). Short form is i."
+        required: false
+        type: "string"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
+        - "text/html"
+        - "application/x-xliff+xml"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "prefix"
+        in: "query"
+        description: "Unused optional Parameter. Short form is p."
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The text to annotate. Will be overwritten by parameter input,\
+          \ if set. The format of the body can be text/turtle, application/ld+json,\
+          \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/plain\"\
+          . The parameter *informat* overrides the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "source-lang"
+        in: "query"
+        description: "Source language, e.g. \"de\",\"en\". Language of submitted text.\
+          \ A list of supported language codes is [here](https://term.tilde.com/resources)."
+        required: true
+        type: "string"
+      - name: "target-lang"
+        in: "query"
+        description: "Target language, e.g. \"de\", \"en\". Language for targeted\
+          \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
+        required: true
+        type: "string"
+      - name: "domain"
+        in: "query"
+        description: "If given - it filters out by domain proposed terms. Available\
+          \ domains here: https://term.tilde.com/domains (should pass just ID, eg,\
+          \ TaaS-1001, that means Agriculture)"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /e-translation/tilde:
+    post:
+      tags:
+      - "e-Translation"
+      summary: "Perform machine translation using Tilde's API"
+      description: |
+        Parameters can be submitted via URL or via form-data post body. A list of available 
+        language pairs is [here](https://services.tilde.com/translationsystems). This is a
+        NIF example that can be consumed by e-Translation:
+        
+        <pre lang="sparql"><code>
+        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt; .
+        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core# &gt; .
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .
+        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt; .
+        &lt;http://freme-project.eu/ &gt;
+          a nif:String , nif:RFC5147String , nif:Context ;
+            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+            nif:isString    &quot;translate me&quot;@en ;
+        </code></pre>
+      operationId: "tildeTranslate"
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "text/html"
+      - "application/x-xliff+xml"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      parameters:
+      - name: "input"
+        in: "query"
+        description: "The string to be translated. Can be either plaintext or NIF\
+          \ (see parameter informat). Short form is i. If set, it will be prefered\
+          \ over the body content."
+        required: false
+        type: "string"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
+          \ rdf-xmlor text. Defaults to \"turtle\". This parameter overrides Content-Type\
+          \ header. Short form is f."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text"
+        - "text/html"
+        - "application/x-xliff+xml"
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". This parameter overrides\
+          \ Accept header (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+      - name: "prefix"
+        in: "query"
+        description: "Controls the url of rdf resources generated from plaintext.\
+          \ Has default value \"http://freme-project.eu/\". Short form is p."
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "The string to be translated. Can be either plaintext or NIF.\
+          \ Will be overwritten by parameter input, if set. The format of the body\
+          \ can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml,\
+          \ text/n3. Defaults to \"text/turtle\". The parameter *informat* overrides\
+          \ the Content-Type."
+        required: false
+        schema:
+          type: "string"
+      - name: "source-lang"
+        in: "query"
+        description: "Source language, e.g. \"en\". A list of available language pairs\
+          \ is [here](https://services.tilde.com/translationsystems)."
+        required: true
+        type: "string"
+      - name: "target-lang"
+        in: "query"
+        description: "Target language, e.g. \"de\". A list of available language pairs\
+          \ is [here](https://services.tilde.com/translationsystems)."
+        required: true
+        type: "string"
+      - name: "domain"
+        in: "query"
+        description: "Currently not used"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+definitions:
+  File:
+    type: "object"
+    properties:
+      path:
+        type: "string"
+      name:
+        type: "string"
+      parent:
+        type: "string"
+      absolute:
+        type: "boolean"
+        default: false
+      canonicalPath:
+        type: "string"
+      parentFile:
+        $ref: "#/definitions/File"
+      absolutePath:
+        type: "string"
+      absoluteFile:
+        $ref: "#/definitions/File"
+      canonicalFile:
+        $ref: "#/definitions/File"
+      directory:
+        type: "boolean"
+        default: false
+      file:
+        type: "boolean"
+        default: false
+      hidden:
+        type: "boolean"
+        default: false
+      totalSpace:
+        type: "integer"
+        format: "int64"
+      freeSpace:
+        type: "integer"
+        format: "int64"
+      usableSpace:
+        type: "integer"
+        format: "int64"

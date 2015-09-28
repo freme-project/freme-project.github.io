@@ -1,0 +1,87 @@
+---
+layout: page 
+title: Ease of Adaption
+dropdown: FREME-Showroom
+pos: 2.2
+---
+
+<style>
+    div#out {
+	width: 100%; 
+	max-width:100%; 
+	display: inline-block;
+	border-style: solid;
+	border-color: green;
+    }
+    span.example {
+	color: blue;
+	text-decoration: underline;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+		var sendFreme = function () {
+			var selectedLanguage = $("input[name=language]:checked").val();
+			var selectedDataset = $("input[name=dataset]:checked").val();
+			var content = encodeURIComponent($('#content').val());
+			var requestURL = "http://api.freme-project.eu/0.2/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=" + selectedLanguage + "&dataset=" + selectedDataset;
+			$.ajax({
+				type: 'POST',
+				url: requestURL,
+				headers: {
+					'Accept': 'application/json+ld'
+				}
+			})
+					.done(function (result) {
+						console.log("success");
+						resultstringed = "";
+						if (result['@graph']) {
+							$.each(result['@graph'], function (index, element1) {
+								if (element1['taClassRef']) {
+									resultstringed = resultstringed + "<br><strong>Entity found</strong>" + "<br>" + element1['nif:anchorOf'];
+									if (element1['taClassRef']) {
+										resultstringed = resultstringed + "<br>Type: " + element1['taClassRef'];
+									}
+									;
+									if (element1['taIdentRef']) {
+										resultstringed = resultstringed + "<br>Identifier: " + element1['taIdentRef'];
+									}
+									;
+									resultstringed = resultstringed + "<br>";
+								}
+								;
+							}
+							);
+							resultstringed = resultstringed + "<br>";
+							$("#out").empty().append(resultstringed);
+						} else
+							$("#out").empty().append("Nothing found");
+					})
+					.fail(function (data) {
+						console.log("error");
+						error(data);
+						$("#out").empty().append("Search request failed");
+					});
+		};
+</script>
+<h2 id="background">Background</h2>
+<p>This examples shows how easy it is to adapt FREME for your application. Here we target browser developers. Adapation in this example means:</p>
+<ul>
+    <li>Choosing the language you want to process. Here we process text with the e-Entity service.</li>
+    <li>Choosing the data set to be used for enrichment. FREME provides several data sets on the fly.</li>
+</ul>
+<h2 id="more-infos">More information</h2>
+<p>For more information visit the <a href="http://api.freme-project.eu/doc/0.2/">FREME API documentation</a>, <a href="https://github.com/freme-project/">FREME on GitHub</a> or the <a href="http://freme-project.eu/">FREME homepage</a>.</p>
+<h2 id="try-it-out">Try it out</h2>
+<p>In the form below enter some English text (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>. Also, adapt the language and the data set used for enrichment to your needs.</p>
+<form name="input">
+    <p>Set the language of the input:</p>
+    <input type="radio" name="language" value="en" checked>English<input type="radio" name="language" value="de">German<input type="radio" name="language" value="nl">Dutch<input type="radio" name="language" value="fr">French<input type="radio" name="language" value="it">Italien<input type="radio" name="language" value="es">Spanish<br>
+    <p>Set the data set to be used for enrichment:</p>
+    <input type="radio" name="dataset" value="dbpedia" checked><a href="http://dbpedia.org/">DBpedia</a><input type="radio" name="dataset" value="onld"><a href="http://www.lib.ncsu.edu/ld/onld/">ONLD</a><input type="radio" name="dataset" value="geopolitical"><a href="http://www.fao.org/countryprofiles/geoinfo/en/">Geopolitical ontology</a><input type="radio" name="dataset" value="viaf"><a href="http://viaf.org/">VIAF</a><input type="radio" name="dataset" value="orcid"><a href="http://orcid.org/">ORCID</a><br>
+    <textarea rows="4" cols="50" name="content"  id="content"></textarea>
+</form>
+<button onclick="sendFreme();">Call FREME e-Entity</button>
+<button onclick="$('#out').empty().append('Output');">Refresh output</button>
+<p>Output appears here:</p>
+<div id="out">Output</div>
