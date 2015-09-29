@@ -20,7 +20,7 @@ def main():
 		with open(os.path.dirname(__file__)+"/swagger.yaml","r") as f:
 			full=yaml.load(f.read())
 	except IOError:
-		print("swagger/swagger.yaml could not be found. A simple-API-Doc was not created")
+		print(os.path.dirname(__file__)+"/swagger.yaml could not be found. A simple-API-Doc was not created")
 		return 0
 		
 	included={
@@ -38,6 +38,9 @@ def main():
 			for method in included[path]:
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
+	
+	full['info']['description']=""
+	
 	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
 		f.write(yaml.dump(full))

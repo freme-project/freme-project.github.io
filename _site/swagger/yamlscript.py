@@ -39,6 +39,10 @@ def main():
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
 	
+	print full.keys()
+	raw_input(9
+	
+	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
 		f.write(yaml.dump(full))
 	return 0
