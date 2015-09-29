@@ -29,6 +29,7 @@ java -jar FREME*.jar eu.freme.broker.Broker
 ## fremener Profile
 
 The "fremener" profiles starts FREME only with the API endpoints for FREME Named Entity Recognition. It does not start security features.  You can start the fremener profile by running on the command line: 
+
 ``` 
 java -jar FREME*.jar eu.freme.broker.FremeNERStarter
 ```
@@ -37,6 +38,6 @@ FREME NER requires an installation of Apache Solr. Please add the URL of the Sol
 
 # Configuration
 
-FREME is configured via Java properties files. You can see an overview over the configuration options in [FREME configuration options](https://github.com/freme-project/technical-discussion/wiki/Configuration-options). This page does not cover individual configuration options but the location of the configuration files.
+FREME is configured via Java properties files. You can see an overview over the configuration options in [FREME configuration options](configuration-options.html). This page does not cover individual configuration options but the location of the configuration files.
 
 All configuration is located in the folder "config". There is a file "application.properties" which contains general configuration that is used across all profiles. There is also profile specific configuration in "application-broker.properties" and "application-fremener.properties".

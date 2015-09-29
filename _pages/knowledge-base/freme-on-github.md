@@ -10,23 +10,26 @@ This article explains the different FREME repositories and which issues should b
 [technical-discussion](https://github.com/freme-project/technical-discussion)
 --------------------
 This Repository is our meta repository for technical discussion and documentation. It does not contain any source codes. We use it for
-* General technical discussion
-* Specification of general features
-* Wiki for documentation and knowledge base
+
+ * General technical discussion
+ * Specification of general features
+ * Wiki for documentation and knowledge base
 
 [Broker](https://github.com/freme-project/Broker)
 -----------
 
 This repository holds the source codes for Broker. Its issue system is used for
-* Implementation tasks in Broker code
-* Broker bug tracking
+
+ * Implementation tasks in Broker code
+ * Broker bug tracking
 
 [ConversionServices](https://github.com/freme-project/ConversionServices)
 --------------------
 
 This repository holds the source codes for ConversionServices. Its issue system is used for
-* Implementation tasks in ConversionServices code
-* ConversionServices bug tracking
+
+ * Implementation tasks in ConversionServices code
+ * ConversionServices bug tracking
 
 [sandbox](https://github.com/freme-project/sandbox)
 ----------

@@ -6,12 +6,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FREME Documentation - Translate Text from German to Spanish</title>
+	<title>FREME Documentation - Starting FREME</title>
 	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 ">
 	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/doc/css/style.css">
-	<link rel="canonical" href="api-dev.freme-project.eu/doc/tutorials/translate-text-from-german-to-spanish.html">
+	<link rel="canonical" href="api-dev.freme-project.eu/doc/knowledge-base/starting-freme.html">
 	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="api-dev.freme-project.eu/doc/feed.xml" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src=/doc/js/bootstrap.min.js
@@ -140,7 +140,7 @@
 							</li>
 						
 
-							<li class="dropdown  active ">
+							<li class="dropdown ">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
@@ -151,7 +151,7 @@
 				
 					
 						
-							<li  class="active"  ><a href="/doc/tutorials/translate-text-from-german-to-spanish.html">Translate Text from German to Spanish</a></li>
+							<li  ><a href="/doc/tutorials/translate-text-from-german-to-spanish.html">Translate Text from German to Spanish</a></li>
 						
 					
 					
@@ -165,11 +165,11 @@
 							</li>
 						
 
-							<li class="dropdown ">
+							<li class="dropdown  active ">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Knowledge Base <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
-								<li  ><a href="/doc/knowledge-base/starting-freme.html">Starting FREME</a></li>
+								<li  class="active"  ><a href="/doc/knowledge-base/starting-freme.html">Starting FREME</a></li>
 							
 							
 							
@@ -245,11 +245,43 @@
 		<div class="post">
 
   <header class="post-header">
-    <h1 class="text-center post-title"><strong>Translate Text from German to Spanish</strong></h1>
+    <h1 class="text-center post-title"><strong>Starting FREME</strong></h1>
   </header>
 
   <article class="post-content">
-    <div>Should be written by InfAi</div>
+    <h1 id="start-freme">Start FREME</h1>
+
+<p>Starting FREME is as easy as downloading the FREME distribution and executing a shell script. This guide explains how to start FREME either on your own server or on your own local computer.</p>
+
+<h2 id="download-freme-distribution">Download FREME distribution</h2>
+
+<p>You can download the distribution from http://api-dev.freme-project.eu/freme-distributions. In that link you can find several versions of FREME. There are snapshot versions that have SNAPSHOT in the filename. These versions contains the latest development version and is unstable and untested. All files that do not contain SNAPSHOT in the name are release versions. We advise to download the latest release version.</p>
+
+<h2 id="start-freme-1">Start FREME</h2>
+
+<p>We assume that you have already downloaded FREME and extracted the zip file to a folder. You can start FREME with different profiles. Each profile defines a set of functions that FREME starts. The profiles are also used to deploy FREME in the cloud with a different set of functionality on different servers. The different profiles are</p>
+
+<h2 id="broker-profile">broker Profile</h2>
+
+<p>Start the “broker” profile in order to start FREME with all endpoints, user management, and security features. The “broker” profile does not start FREME Named Entity Recognition. You can start the broker profile by running on the command line:</p>
+
+<pre><code>java -jar FREME*.jar eu.freme.broker.Broker
+</code></pre>
+
+<h2 id="fremener-profile">fremener Profile</h2>
+
+<p>The “fremener” profiles starts FREME only with the API endpoints for FREME Named Entity Recognition. It does not start security features.  You can start the fremener profile by running on the command line:</p>
+
+<pre><code>java -jar FREME*.jar eu.freme.broker.FremeNERStarter
+</code></pre>
+
+<p>FREME NER requires an installation of Apache Solr. Please add the URL of the Solr instance to your “application-fremener.properties” configuration file.</p>
+
+<h1 id="configuration">Configuration</h1>
+
+<p>FREME is configured via Java properties files. You can see an overview over the configuration options in <a href="configuration-options.html">FREME configuration options</a>. This page does not cover individual configuration options but the location of the configuration files.</p>
+
+<p>All configuration is located in the folder “config”. There is a file “application.properties” which contains general configuration that is used across all profiles. There is also profile specific configuration in “application-broker.properties” and “application-fremener.properties”.</p>
 
   </article>
 

@@ -71,14 +71,14 @@ pos: 2.2
     <li>Choosing the data set to be used for enrichment. FREME provides several data sets on the fly.</li>
 </ul>
 <h2 id="more-infos">More information</h2>
-<p>For more information visit the <a href="http://api.freme-project.eu/doc/0.2/">FREME API documentation</a>, <a href="https://github.com/freme-project/">FREME on GitHub</a> or the <a href="http://freme-project.eu/">FREME homepage</a>.</p>
+<p>For more information visit the <a target="_blank" href="http://api-dev.freme-project.eu/doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 <h2 id="try-it-out">Try it out</h2>
 <p>In the form below enter some English text (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>. Also, adapt the language and the data set used for enrichment to your needs.</p>
 <form name="input">
     <p>Set the language of the input:</p>
     <input type="radio" name="language" value="en" checked>English<input type="radio" name="language" value="de">German<input type="radio" name="language" value="nl">Dutch<input type="radio" name="language" value="fr">French<input type="radio" name="language" value="it">Italien<input type="radio" name="language" value="es">Spanish<br>
     <p>Set the data set to be used for enrichment:</p>
-    <input type="radio" name="dataset" value="dbpedia" checked><a href="http://dbpedia.org/">DBpedia</a><input type="radio" name="dataset" value="onld"><a href="http://www.lib.ncsu.edu/ld/onld/">ONLD</a><input type="radio" name="dataset" value="geopolitical"><a href="http://www.fao.org/countryprofiles/geoinfo/en/">Geopolitical ontology</a><input type="radio" name="dataset" value="viaf"><a href="http://viaf.org/">VIAF</a><input type="radio" name="dataset" value="orcid"><a href="http://orcid.org/">ORCID</a><br>
+    <input type="radio" name="dataset" value="dbpedia" checked><a target="_blank" href="http://dbpedia.org/">DBpedia</a><input type="radio" name="dataset" value="onld"><a target="_blank" href="http://www.lib.ncsu.edu/ld/onld/">ONLD</a><input type="radio" name="dataset" value="geopolitical"><a target="_blank" href="http://www.fao.org/countryprofiles/geoinfo/en/">Geopolitical ontology</a><input type="radio" name="dataset" value="viaf"><a target="_blank" href="http://viaf.org/">VIAF</a><input type="radio" name="dataset" value="orcid"><a target="_blank" href="http://orcid.org/">ORCID</a><br>
     <textarea rows="4" cols="50" name="content"  id="content"></textarea>
 </form>
 <button onclick="sendFreme();">Call FREME e-Entity</button>
