@@ -1,0 +1,14 @@
+Redirect 301 / /start.html
+Redirect 301 / /start
+
+Redirect 301 /doc doc/start.html
+Redirect 301 /doc doc/start
+
+Redirect 301 /doc/ /doc/start.html
+Redirect 301 /doc/ /doc/start
+
+Redirect 301 . start.html
+Redirect 301 . start
+
+Redirect 301 doc start.html
+Redirect 301 doc doc/start
