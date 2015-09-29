@@ -38,8 +38,10 @@ def main():
 			for method in included[path]:
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
+				else:
+					del full["paths"][path][method]['tags']
 	
-	full['info']['description']="This section only covers the most importand endpoints of FREME: the enrichment endpoints. A full Documentation is provided <a href=\"full.html\"> here  </a>."
+	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints. <br> A full Documentation is provided <a href=\"full.html\"> here  </a>."
 	
 	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
