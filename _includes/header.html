@@ -1,92 +1,71 @@
-<div class="container">
-<header class="site-header">
-
-    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-			<div class = "navbar-header">
-
-				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>
-					<span class = "icon-bar"></span>
-				</button>
-				<img src="img/Logo_FREME_icona_vert.png" alt="FREME Logo" class = "navbar-logo">
-				<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
-			</div>
-
-            
-            
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav ">
-					{% assign currentdropdown = 'None' %}
-					{% assign in_a_list = 'False' %}
-					{% assign sorted_pages = (site.pages | sort: 'pos') %}
-					{% for somepage in sorted_pages %}
-						{% if somepage.title %}
-							{% if in_a_list == 'True' %}
-								{% if {{somepage.dropdown}} == {{currentdropdown}} %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-								{% else %}
-										</ul>
-									</li>
-								{% if somepage.dropdown == 'None' %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
-								{% else %}
-
-									<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-										<ul class="dropdown-menu">
-
-										<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-									{% assign in_a_list = 'True' %}
-									{% assign currentdropdown = {{somepage.dropdown}} %}
-									{% continue %}
+<div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
 								
-									
-								{% endif %}
-									
-									{% assign in_a_list = 'False' %}
-									{% continue %}
-								{% endif %}
-							
-							{% else %}
-								{% if somepage.dropdown == 'None' %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
-								{% else %}
-									<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-										<ul class="dropdown-menu">
-										
-										<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
-									{% assign in_a_list = 'True' %}
-									{% assign currentdropdown = {{somepage.dropdown}} %}
-									{% continue %}
-								{% endif %}
-							{% endif %}
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<img src="img/Logo_FREME_icona_vert.png" alt="FREME Logo" class = "navbar-logo">
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			{% assign currentdropdown = 'None' %}
+			{% assign in_a_list = 'False' %}
+			{% assign sorted_pages = (site.pages | sort: 'pos') %}
+			{% for somepage in sorted_pages %}
+				{% if somepage.title %}
+					{% if in_a_list == 'True' %}
+						{% if {{somepage.dropdown}} == {{currentdropdown}} %}
+							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
+						{% else %}
+								</ul>
+							</li>
+						{% if somepage.dropdown == 'None' %}
+							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
+						{% else %}
+
+							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+
+								<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
+							{% assign in_a_list = 'True' %}
 							{% assign currentdropdown = {{somepage.dropdown}} %}
+							{% continue %}
+						
+							
 						{% endif %}
-					{% endfor %}
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-    </div>
-
-<!--
-    <nav class="site-nav">
-      <div class="trigger">
-        {% for page in site.pages %}
-          {% if somepage.title %}
-          <a class="page-link" href="{{ somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </nav>
--->
-
-
-</header>
-<!--
-<a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
--->
-<p></p>
-<div class="jumbotron">
+							
+							{% assign in_a_list = 'False' %}
+							{% continue %}
+						{% endif %}
+					
+					{% else %}
+						{% if somepage.dropdown == 'None' %}
+							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
+						{% else %}
+							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+								
+								<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
+							{% assign in_a_list = 'True' %}
+							{% assign currentdropdown = {{somepage.dropdown}} %}
+							{% continue %}
+						{% endif %}
+					{% endif %}
+					{% assign currentdropdown = {{somepage.dropdown}} %}
+				{% endif %}
+			{% endfor %}
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
