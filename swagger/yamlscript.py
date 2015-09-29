@@ -39,7 +39,7 @@ def main():
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
 				else:
-					full["paths"][path][method]['tags']="Enrichment Endpoints"
+					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
 	
 	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints. <br> A full Documentation is provided <a href=\"full.html\"> here  </a>."
 	

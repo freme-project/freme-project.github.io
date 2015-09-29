@@ -19,42 +19,9 @@ definitions:
       usableSpace: {format: int64, type: integer}
     type: object
 host: api-dev.freme-project.eu
-info: {description: "This web page documents the REST API of the FREME project. You\
-    \ can find more information about FREME on the [project website](http://freme-project.eu)\
-    \ and on the [FREME GitHub page](https://github.com/freme-project). The [FREME\
-    \ wiki](https://github.com/freme-project/technical-discussion/wiki) contains more\
-    \ technical documentation.\n# General Information\n\nThis section defines the\
-    \ default parameter set for all FREME e-Services. The parameters have a long and\
-    \ a short form. If both are set, the long form overrides the short form. The API\
-    \ follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html).\
-    \ Please note that all parameter values submitted via the URLs query string need\
-    \ to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).\n\
-    \n* input (short form: i):\n    * input of the e-Service in plaintext or nif\n\
-    \    * No default\n    * Depends on informat and intype\n    * All plain text\
-    \ sent to FREME has to be UTF-8 encoded\n* informat (short form: f):\n    * format\
-    \ of input parameter.\n    * possible values\n      * text (plaintext)\n     \
-    \ * text/turtle (default), short form: turtle\n      * application/ld+json, short\
-    \ form: json-ld\n      * application/n-triples, short form: n-triples\n      *\
-    \ application/rdf+xml, short form: rdf-xml\n      * text/n3, short form: n3\n\
-    \      * text/html: Submit HTML as input. This will convert the HTML to NIF and\
-    \ then send it to the underlying service.\n      * application/x-xliff+xml: Submit\
-    \ XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send it to the\
-    \ underlying service.\n* outformat (short form: o):\n  * output format\n  * possible\
-    \ values\n    * text/turtle (default), short form: turtle\n    * application/ld+json,\
-    \ short form: json-ld\n    * application/n-triples, short form: n-triples\n  \
-    \  * application/rdf+xml, short form: rdf-xml\n    * text/n3, short form: n3\n\
-    * prefix (short form: p)\n  * Controls the url of rdf resources generated from\
-    \ plaintext. Has default value \"http://freme-project.eu/\"\nThe following header\
-    \ values are used by all FREME e-Services\n* Accept\n  * possible values\n   \
-    \ * turtle for text/turtle (default)\n    * json-ld for application/ld+json\n\
-    \    * n-triples for application/n-triples\n    * rdf-xml for application/rdf+xml\n\
-    \    * n3 for text/n3\n  * When parameter outformat is set then the Accept header\
-    \ is not used by FREME API.\n* Content-Type\n  * possible values\n    * text (plaintext)\n\
-    \    * text/turtle (default), short form: turtle\n    * application/ld+json, short\
-    \ form: json-ld\n    * application/n-triples, short form: n-triples\n    * application/rdf+xml,\
-    \ short form: rdf-xml\n    * text/n3, short form: n3\n  * When parameter informat\
-    \ is set then the Content-Type header is not used by FREME api\n", title: FREME
-    API Documentation, version: '0.3'}
+info: {description: 'This section only covers the most important endpoints of FREME:
+    the enrichment endpoints. <br> A full Documentation is provided <a href="full.html">
+    here  </a>.', title: FREME API Documentation, version: '0.3'}
 paths:
   /e-entity/dbpedia-spotlight/documents:
     post:
@@ -119,7 +86,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
-      tags: [e-Entity]
+      tags: [Enrichment Endpoints]
   /e-entity/freme-ner/documents:
     post:
       consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
@@ -187,7 +154,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Entity recognition and linking using Freme-NER engine.
-      tags: [e-Entity]
+      tags: [Enrichment Endpoints]
   /e-link/documents/:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
@@ -260,7 +227,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Fetch data about named entities from various ontologies
-      tags: [e-Link]
+      tags: [Enrichment Endpoints]
   /e-publishing/html:
     post:
       consumes: [multipart/form-data]
@@ -332,7 +299,7 @@ paths:
             type: array
         400: {description: Bad request - input validation failed}
       summary: Create eBooks in the EPUB3 format
-      tags: [e-Publishing]
+      tags: [Enrichment Endpoints]
   /e-translation/tilde:
     post:
       consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
@@ -399,7 +366,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Perform machine translation using Tilde's API
-      tags: [e-Translation]
+      tags: [Enrichment Endpoints]
 schemes: [http]
 swagger: '2.0'
 tags:

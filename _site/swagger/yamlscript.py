@@ -20,7 +20,7 @@ def main():
 		with open(os.path.dirname(__file__)+"/swagger.yaml","r") as f:
 			full=yaml.load(f.read())
 	except IOError:
-		print("swagger/swagger.yaml could not be found. A simple-API-Doc was not created")
+		print(os.path.dirname(__file__)+"/swagger.yaml could not be found. A simple-API-Doc was not created")
 		return 0
 		
 	included={
@@ -38,9 +38,10 @@ def main():
 			for method in included[path]:
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
+				else:
+					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
 	
-	print full.keys()
-	raw_input(9
+	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints. <br> A full Documentation is provided <a href=\"full.html\"> here  </a>."
 	
 	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
