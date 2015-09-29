@@ -1,13 +1,7 @@
 <div class="container">
 <header class="site-header">
-  <div class="navbar navbar-default container-fluid hidden-xs" >
-      <h2><img alt="Brand" display="inline-block" width="180" height="45" alt="FREME Logo" src="http://www.freme-project.eu/wp-content/uploads/2015/02/FREME_LogoHor_250px.png">
-      Documentation</h2>
-  </div>
 
-  <div class="wrapper">
-
-    <nav class="navbar navbar-default navbar-static-top">
+    <div class="navbar navbar-default navbar-static-top">
         <div class="container">
 			<div class = "navbar-header">
 
@@ -16,7 +10,8 @@
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>
 				</button>
-				<img src="img/Logo_FREME_icona_vert.png" alt="FREME Logo" class = "navbar-logo">
+				<img src={% if {{page.path}} contains "/" %}{{ "img/Logo_FREME_icona_vert.png" alt="FREME Logo" class = "navbar-logo"> | prepend: site.baseurl }}{% else %}{{"img/Logo_FREME_icona_vert.png" alt="FREME Logo" class = "navbar-logo" | prepend: site.baseurl | prepend > }}{% endif %}
+
 				<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
 			</div>
 
@@ -75,7 +70,7 @@
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
-    </nav>
+    </div>
 
 <!--
     <nav class="site-nav">
@@ -89,7 +84,6 @@
     </nav>
 -->
 
-  </div>
 
 </header>
 <!--
