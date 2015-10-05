@@ -3,10 +3,6 @@ layout: default
 ---
 <div class="post">
 
-  <header class="post-header">
-    <h1 class="text-center post-title"><strong>{% if page.header %}{% if {{page.header}} == {{ "None" }} %}{% else %} {{ page.header }}{% endif %}{% else %}{{ page.title }}{% endif %}</strong></h1>
-  </header>
-
   <article class="post-content">
     {{ content }}
   </article>

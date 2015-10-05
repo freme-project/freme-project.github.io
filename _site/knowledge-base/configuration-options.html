@@ -11,6 +11,7 @@
 ">
 	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
 	<link rel="canonical" href="api-dev.freme-project.eu/doc/knowledge-base/configuration-options.html">
 	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="api-dev.freme-project.eu/doc/feed.xml" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -81,7 +82,7 @@
 				
 					
 						
-							<li  ><a href="/doc/api-doc/list-templates.html">FREME Enrichment Tempates</a></li>
+							<li  ><a href="/doc/api-doc/list-templates.html">FREME Enrichment Templates</a></li>
 						
 					
 					
@@ -244,16 +245,12 @@
 	<div class = "container">
 		<div class="post">
 
-  <header class="post-header">
-    <h1 class="text-center post-title"><strong>Configuration Options</strong></h1>
-  </header>
-
   <article class="post-content">
-    <p>FREME is configured via the file application.properties. In the standalone distribution this file is located in <code>config/application.properties</code>, in the source code it is located <code>insrc/main/resources/application.properties</code>. It is a standard spring property file. You can find additional information on this format in the official <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html"> spring documentation </a>. Here is an example configuration: </p>
-<code><pre>
-server.port=8080
+    <h1>FREME Configuration Options</h1>
+<p>FREME is configured via the file application.properties. In the standalone distribution this file is located in <code>config/application.properties</code>, in the source code it is located <code>insrc/main/resources/application.properties</code>. It is a standard spring property file. You can find additional information on this format in the official <a target="_blank" href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html"> spring documentation </a>. Here is an example configuration: </p>
+<pre><code>server.port=8080
 multipart.maxFileSize: 2048MB multipart.maxRequestSize: 2048MB
-workspace.location=workspace</pre></code>
+workspace.location=workspace</code></pre>
 
 <p> Each non-empty line contains a configuration option. The first line assigns the value 8080 to configuration option <code>server.port</code>. </p>
 
@@ -278,22 +275,18 @@ workspace.location=workspace</pre></code>
 	<li>
 		<h5>mysql database settings </h5>
 		<p>To connect FREME to a mysql database, use the following configuration: </p>
-		<code> <pre>
-		spring.datasource.url=jdbc:mysql://localhost/freme 
-		spring.datasource.username=username 
-		spring.datasource.password=password 
-		spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-		</pre> </code>
+		<pre><code>spring.datasource.url=jdbc:mysql://localhost/freme
+spring.datasource.username=username
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code></pre>
 		<p> In the first line, you specify host and database, in the second and third line you configure username and password.</p>
 	</li>
 	<li>
 		<h5>h2 database settings</h5>
 		<p>To make freme use an in-memory h2 database (useful for testing or local installations), add the following configuration:</p>
-		<code> <pre>
-		pring.jpa.hibernate.ddl-auto=create-drop 
-		spring.datasource.url = jdbc:h2:mem:~/freme 
-		spring.datasource.driverClassName = org.h2.Driver
-		</pre> </code>
+		<pre><code>spring.jpa.hibernate.ddl-auto=create-drop
+spring.datasource.url = jdbc:h2:mem:~/freme
+spring.datasource.driverClassName = org.h2.Driver</code></pre>
 		<p> When you do not provide any database settings then FREME will use an h2 in-memory database.</p>
 	</li>
 	<li>
@@ -319,7 +312,9 @@ workspace.location=workspace</pre></code>
 		<div class = "navbar navbar-default navbar-fixed-bottom">
 		
 			<div class = "container">
-				<p class = "navbar-text">FREME is being developed by the FREME Consortium.<br>Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40" 	 widtth="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
 			</div>
 			
 		</div>

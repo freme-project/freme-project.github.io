@@ -25,7 +25,7 @@
 
     {% include head.html %}
 
-    <link href='../css/unify.css' media='screen' rel='stylesheet' type='text/css'/>
+    <link href='../css/overwrite.css' media='screen' rel='stylesheet' type='text/css'/>
     <script type="text/javascript">
         $(function () {
             var url = "{{page.swagger}}";
@@ -106,6 +106,7 @@
 
         </div>
     </div>
+    {{ content }}
 </div>
 
 {% include footer.html %}

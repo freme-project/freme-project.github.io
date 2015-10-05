@@ -41,7 +41,7 @@ def main():
 				else:
 					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
 	
-	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints. <br> A full Documentation is provided <a href=\"full.html\"> here  </a>."
+	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints. <br> A full Documentation is provided <a href=\"full.html\"> here</a>."
 	
 	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:

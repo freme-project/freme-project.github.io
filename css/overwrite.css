@@ -1,0 +1,14 @@
+.navbar-text {
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+}
+
+h1 {
+    margin-bottom: 0.5em;
+    margin-top: 1.4em;
+    font-weight:bold;
+}
+
+code {
+    color:black;
+}
