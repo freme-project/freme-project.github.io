@@ -18,12 +18,12 @@ def main():
 	import yaml,os,sys
 	try:
 		with open(os.path.dirname(__file__)+"/swagger.yaml","r") as f:
-			full=yaml.load(f.read())
+			full=yaml.safe_load(f.read())
 	except IOError:
-		raise Exception("\n\tException Handled in /swagger/yamlscript.py:"+ os.path.dirname(__file__)+"/swagger.yaml could not be found. A simple-API-Doc was not created")
+		raise Exception("\n\tException Handled in /swagger/yamlscript.py:"+ os.path.dirname(__file__)+"/swagger.yaml could not be found. The generation of a simple API-Doc was skipped")
 		sys.exit(1)
 	except yaml.scanner.ScannerError:
-		raise Exception("\n\tException Handled in /swagger/yamlscript.py: The YAML File at "+ os.path.dirname(__file__)+"/swagger.yaml is invalid! The generation of a simple API-Doc was skipped")
+		raise Exception("\n\tException Handled in /swagger/yamlscript.py: The YAML File at "+ os.path.dirname(__file__)+"/swagger.yaml is invalid! The generation of a simple API-Doc was skipped")	
 		sys.exit(1)
 		
 	included={
@@ -32,6 +32,7 @@ def main():
 	"/e-publishing/html": ["post"],
 	"/e-link/documents/": ["post"],
 	"/e-translation/tilde": ["post"],	
+	"/e-terminology/tilde": ["post"]
 	}
 	
 	for path in full["paths"].keys():
