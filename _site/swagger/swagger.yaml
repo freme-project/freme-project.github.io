@@ -896,6 +896,25 @@ paths:
           \ linking which includes a list of entites and associated labels."
         required: true
         type: "string"
+      - name: "mode"
+        in: "query"
+        description:
+          This parameter allows to produce only partly results of named entity recognition.
+          This can speed up computation time. Spotting and classification are relatively fast operations, whereas linking
+          is a computationally expensive operation. When only "link" is given as the parameter, this service expects
+          NIF data with entity mentions, i.e. anchorOf, beginIndex, endIndex etc. are given and it does only entity linking.
+          Note that "all" is equivalent to "spot,link,classify". The order of the modes are irrelevant, i.e. "spot,link,classify"
+          is equivalent to "spot,classify,link".
+        required: false
+        type: "string"
+        default: "all"
+        enum:
+        - "spot"
+        - "spot,classify"
+        - "spot,link"
+        - "spot,link,classify"
+        - "all"
+        - "link"
       responses:
         200:
           description: "Successful response"

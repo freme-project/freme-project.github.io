@@ -15,13 +15,16 @@
 
 
 def main():
-	import yaml,os
+	import yaml,os,sys
 	try:
 		with open(os.path.dirname(__file__)+"/swagger.yaml","r") as f:
 			full=yaml.load(f.read())
 	except IOError:
-		print(os.path.dirname(__file__)+"/swagger.yaml could not be found. A simple-API-Doc was not created")
-		return 0
+		raise Exception("\n\tException Handled in /swagger/yamlscript.py:"+ os.path.dirname(__file__)+"/swagger.yaml could not be found. A simple-API-Doc was not created")
+		sys.exit(1)
+	except yaml.scanner.ScannerError:
+		raise Exception("\n\tException Handled in /swagger/yamlscript.py: The YAML File at "+ os.path.dirname(__file__)+"/swagger.yaml is invalid! The generation of a simple API-Doc was skipped")
+		sys.exit(1)
 		
 	included={
 	"/e-entity/freme-ner/documents": ["post"],
@@ -48,6 +51,7 @@ def main():
 		f.write(yaml.dump(full))
 	return 0
 
+		
 if __name__ == '__main__':
 	main()
 

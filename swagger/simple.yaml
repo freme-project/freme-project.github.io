@@ -146,6 +146,20 @@ paths:
       - {description: A mandatory parameter which indicates the dataset used for entity
           linking which includes a list of entites and associated labels., in: query,
         name: dataset, required: true, type: string}
+      - default: all
+        description: This parameter allows to produce only partly results of named
+          entity recognition. This can speed up computation time. Spotting and classification
+          are relatively fast operations, whereas linking is a computationally expensive
+          operation. When only "link" is given as the parameter, this service expects
+          NIF data with entity mentions, i.e. anchorOf, beginIndex, endIndex etc.
+          are given and it does only entity linking. Note that "all" is equivalent
+          to "spot,link,classify". The order of the modes are irrelevant, i.e. "spot,link,classify"
+          is equivalent to "spot,classify,link".
+        enum: [spot, 'spot,classify', 'spot,link', 'spot,link,classify', all, link]
+        in: query
+        name: mode
+        required: false
+        type: string
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
         application/rdf+xml]
       responses:
