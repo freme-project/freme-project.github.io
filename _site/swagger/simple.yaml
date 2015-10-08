@@ -86,7 +86,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
-      tags: [Enrichment Endpoints]
+      tags: [e-Entity]
   /e-entity/freme-ner/documents:
     post:
       consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
@@ -168,7 +168,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Entity recognition and linking using Freme-NER engine.
-      tags: [Enrichment Endpoints]
+      tags: [e-Entity]
   /e-link/documents/:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
@@ -241,7 +241,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Fetch data about named entities from various ontologies
-      tags: [Enrichment Endpoints]
+      tags: [e-Link]
   /e-publishing/html:
     post:
       consumes: [multipart/form-data]
@@ -313,7 +313,7 @@ paths:
             type: array
         400: {description: Bad request - input validation failed}
       summary: Create eBooks in the EPUB3 format
-      tags: [Enrichment Endpoints]
+      tags: [e-Publishing]
   /e-terminology/tilde:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
@@ -377,7 +377,7 @@ paths:
         400: {description: Bad request - input validation failed}
       summary: Annotate text with terminology information using Tilde Terminology
         service.
-      tags: [Enrichment Endpoints]
+      tags: [e-Terminology]
   /e-translation/tilde:
     post:
       consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
@@ -444,7 +444,7 @@ paths:
           schema: {type: string}
         400: {description: Bad request - input validation failed}
       summary: Perform machine translation using Tilde's API
-      tags: [Enrichment Endpoints]
+      tags: [e-Translation]
 schemes: [http]
 swagger: '2.0'
 tags:
