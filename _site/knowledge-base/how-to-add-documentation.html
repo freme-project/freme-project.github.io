@@ -263,15 +263,38 @@
 	<p>Here you can learn how to add or edit the content of this Documentation website!</p>
 	<p>This page is built using <a href="http://www.jekyllrb.com">jekyll</a> which makes it very easy to add or edit content.</p>
 	<p>To get started, visit our <a href="https://github.com/freme-project/Documentation">Documentation's GitHub page</a>.</p>
-	<p>All content of the Documentation is in the `_pages` folder. It should look something like this:</p>
+	<p>All content of the Documentation is in the <code>_pages</code> folder. It should look something like this:</p>
 	<p class="screenshot"><img height="400" width="795" src="../img/screenshot_pages.png"</p>
-	<p>You can immediately see that the contents of this folder match the elements in the navigation bar</p>
+	<p>You can immediately see that the contents of this folder match the elements in the navigation bar<br><br></p>
 	<p>To add a file, click on the "add" button at the top </p>
-	<p class="screenshot"><img height="60" width= "795" src="../img/screenshot_add.png"></p>
-	<p>To edit a file, click on the file name and then click on the "edit" </p>
-	<p class="screenshot"><img height="90" width= "795" src="../img/screenshot_click.png"></p>
-	<p class="screenshot"><img height="130" width= "795" src="../img/screenshot_edit.png"></p>
-	<p>All pages which are supposed to appear in dropdown boxes (e.g. this page appears in "Knowledge Base") belong in a specified folder.</p>
+	<p class="screenshot"><img height="50" width= "795" src="../img/screenshot_add.png"><br></p>
+	<p><br>To edit a file, click on the file name and then "Edit this file" </p>
+	<p class="screenshot"><img height="80" width= "795" src="../img/screenshot_click.png"></p>
+	<p class="screenshot"><img height="130" width= "795" src="../img/screenshot_edit.png"><br></p>
+	<p><br>All pages which are supposed to appear in dropdown boxes (e.g. this page appears in "Knowledge Base") belong in a specified folder.<br><br></p>
+	<h2>Example Documentation File</h2>
+	<p> This example takes you through the structure of how a Documentation File should look</p>
+	<pre><code>---
+layout: page
+title: How to add Documentation
+dropdown: Knowledge Base
+pos: 4.5
+---
+
+&lt;h1&gt; How to add Documentation&lt;/h1&gt;
+&lt;p&gt; Here you can learn how to add or edit the content of this Documentation website!&lt;/p&gt;
+&lt;p&gt; If you use HTML, any valid HTML tags will be rendered correctly! &lt;/p&gt;
+&lt;img width=&quot;400&quot; height=&quot;790&quot; src=&quot;../img/screenshot_pages.png&quot;&gt;
+&lt;p&gt; You can also use Markdown&lt;/p&gt;
+	</code></pre>
+	<p>Every Documentation file starts with the <i>Front Matter YAML</i>. It is enclosed by two triple-dashed lines.</p>
+	<p>The <i>Front Matter YAML</i> contains metadata on how this page is supposed to be rendered. </p>
+	<ul>
+	<li><p> The <code>layout</code> attribute determines the basic layout for rendering the page. For a basic page like this one, use <code>layout: page.</code> Any HTML layout specified in the <code>/_layouts</code> directory is valid. </p></li>
+	<li><p> The <code>title</code> attribute determines the title of a page in the navigation bar.</p></li>
+	<li><p> The <code>dropdown</code> attribute determines wether this page should appear in a dropdown in the navbar (like this page) or not. If you don't want the page to appear in any dropdown, just leave out this attribute. </p></li>
+	<li><p>The <code>pos</code> attribute determines the position of this page in the navigation bar. The position ascends from left to right in the navigation bar. Pages in a dropdown should all share the same number before the decimal - their position can be specified with what comes after the decimal - e.g. this page has the <code>pos</code> attribute 4.5 as it comes fifth in the <code>knowledge-base</code> dropdown</p></li>
+	</ul>
 </div>
 
   </article>
