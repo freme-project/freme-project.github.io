@@ -251,19 +251,25 @@ paths:
         of a resource from a given endpoint. The endpoint can be SPARQL or Linked
         Data Fragments endpoint.
 
-        The API accepts three parameters
+
+        **Example**
+
+
+        - resource: `http://dbpedia.org/resource/Berlin`
+
+        - endpoint: `http://dbpedia.org/sparql`
 
         '
       operationId: explore
       parameters:
-      - {description: a URI of the resource which should be described. Note that the
+      - {description: A URI of the resource which should be described. Note that the
           URI should be UTF-8 encoded., in: query, name: resource, required: true,
         type: string}
-      - {description: a URL of the endpoint which should be used to retrieve info
+      - {description: A URL of the endpoint which should be used to retrieve info
           about the resource. Note that the URL should be UTF-8 encoded, in: query,
         name: endpoint, required: true, type: string}
       - default: sparql
-        description: the type of the endpoint
+        description: The type of the endpoint
         enum: [sparql, ldf]
         in: query
         name: endpoint-type

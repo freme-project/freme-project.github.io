@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <!--    <link rel="icon" type="image/png" href="../swagger/images/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="../swagger/images/favicon-16x16.png" sizes="16x16" />-->
-        <link href='../swagger/css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
+    <meta charset="utf-8" />
+    <title>FREME API Documentation</title>
+    <link href='../swagger/css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../swagger/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../swagger/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../swagger/css/reset.css' media='print' rel='stylesheet' type='text/css'/>
@@ -20,7 +20,6 @@
     <script src='../swagger/lib/highlight.7.3.pack.js' type='text/javascript'></script>
     <script src='../swagger/lib/marked.js' type='text/javascript'></script>
     <script src='../swagger/lib/swagger-oauth.js' type='text/javascript'></script>
-
     
 	<link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
 	<meta charset="utf-8">
@@ -38,31 +37,48 @@
 	<script src=/doc/js/bootstrap.min.js
 	></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu";
+	</script>
 
     <link href='../css/overwrite.css' media='screen' rel='stylesheet' type='text/css'/>
     <script type="text/javascript">
         $(function () {
-            var url = "../../swagger/simple.yaml";
+            var url = window.location.search.match(/url=([^&]+)/);
+            if (url && url.length > 1) {
+                url = decodeURIComponent(url[1]);
+            } else {
+                url = "../../swagger/simple.yaml";
+            }
+
+            // Pre load translate...
+            if(window.SwaggerTranslator) {
+                window.SwaggerTranslator.translate();
+            }
             window.swaggerUi = new SwaggerUi({
                 url: url,
                 dom_id: "swagger-ui-container",
-                validatorUrl: null,
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
                 onComplete: function(swaggerApi, swaggerUi){
                     if(typeof initOAuth == "function") {
                         initOAuth({
                             clientId: "your-client-id",
+                            clientSecret: "your-client-secret",
                             realm: "your-realms",
-                            appName: "your-app-name"
+                            appName: "your-app-name",
+                            scopeSeparator: ","
                         });
+                    }
+
+                    if(window.SwaggerTranslator) {
+                        window.SwaggerTranslator.translate();
                     }
 
                     $('pre code').each(function(i, e) {
                         hljs.highlightBlock(e)
                     });
 
-                    //addApiKeyAuthorization();
+   //                 addApiKeyAuthorization();
                 },
                 onFailure: function(data) {
                     log("Unable to Load SwaggerUI");
@@ -71,18 +87,18 @@
                 apisSorter: "alpha",
                 showRequestHeaders: false
             });
+            /*
+            function addApiKeyAuthorization(){
+                var key = encodeURIComponent($('#input_apiKey')[0].value);
+                if(key && key.trim() != "") {
+                    var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+                    window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+                    log("added key " + key);
+                }
+            }
 
-            /*function addApiKeyAuthorization(){
-             var key = encodeURIComponent($('#input_apiKey')[0].value);
-             if(key && key.trim() != "") {
-             var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-             window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-             log("added key " + key);
-             }
-             }
-
-             $('#input_apiKey').change(addApiKeyAuthorization);
-             */
+            $('#input_apiKey').change(addApiKeyAuthorization);
+            */
             // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
             /*
              var apiKey = "myApiKeyXXXX123456789";

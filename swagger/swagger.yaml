@@ -929,7 +929,12 @@ paths:
       summary: "Retrieve Description for a resource"
       description: |
         Using the /e-link/explore endpoint a client can retrieve description of a resource from a given endpoint. The endpoint can be SPARQL or Linked Data Fragments endpoint.
-        The API accepts three parameters
+
+        **Example**
+
+        - resource: `http://dbpedia.org/resource/Berlin`
+        - endpoint: `http://dbpedia.org/sparql`
+
       produces:
       - "text/turtle"
       - "text/n3"
@@ -940,17 +945,17 @@ paths:
       operationId: "explore"
       parameters:
       - name: "resource"
-        description: "a URI of the resource which should be described. Note that the URI should be UTF-8 encoded."
+        description: "A URI of the resource which should be described. Note that the URI should be UTF-8 encoded."
         in: "query"
         required: true
         type: "string"
       - name: "endpoint"
-        description: "a URL of the endpoint which should be used to retrieve info about the resource. Note that the URL should be UTF-8 encoded"
+        description: "A URL of the endpoint which should be used to retrieve info about the resource. Note that the URL should be UTF-8 encoded"
         in: "query"
         required: true
         type: "string"
       - name: "endpoint-type"
-        description: "the type of the endpoint"
+        description: "The type of the endpoint"
         in: "query"
         required: false
         type: "string"
