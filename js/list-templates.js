@@ -8,9 +8,8 @@ $(document).ready(function(){
         }
         return 0;
     };
-
     $.ajax({
-        url: "http://api-dev.freme-project.eu/current/e-link/templates",
+        url: "{{ /e-link/templates | prepend: site.url }}",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

@@ -4,10 +4,10 @@
     <title>FREME Documentation</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>api-dev.freme-project.eu/doc/</link>
-    <atom:link href="api-dev.freme-project.eu/doc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Oct 2015 10:23:22 +0200</pubDate>
-    <lastBuildDate>Fri, 09 Oct 2015 10:23:22 +0200</lastBuildDate>
+    <link>http://api-dev.freme-project.eu/doc/</link>
+    <atom:link href="http://api-dev.freme-project.eu/doc/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 09 Oct 2015 11:12:38 +0200</pubDate>
+    <lastBuildDate>Fri, 09 Oct 2015 11:12:38 +0200</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
   </channel>

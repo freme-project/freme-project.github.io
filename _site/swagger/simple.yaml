@@ -20,8 +20,11 @@ definitions:
     type: object
 host: api-dev.freme-project.eu
 info: {description: 'This section only covers the most important endpoints of FREME:
-    the enrichment endpoints. <br> A full Documentation is provided <a href="full.html">
-    here</a>.', title: FREME API Documentation, version: '0.3'}
+    the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
+    via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
+    including all parameters, is provided <a href="full.html">here</a>. For usage
+    examples, see the <a href="../Tutorials/overview.html">tutorial section</a>.',
+  title: FREME API Documentation, version: '0.3'}
 paths:
   /e-entity/dbpedia-spotlight/documents:
     post:
