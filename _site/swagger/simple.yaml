@@ -242,6 +242,39 @@ paths:
         400: {description: Bad request - input validation failed}
       summary: Fetch data about named entities from various ontologies
       tags: [e-Link]
+  /e-link/explore:
+    post:
+      description: 'Using the /e-link/explore endpoint a client can retrieve description
+        of a resource from a given endpoint. The endpoint can be SPARQL or Linked
+        Data Fragments endpoint.
+
+        The API accepts three parameters
+
+        '
+      operationId: explore
+      parameters:
+      - {description: a URI of the resource which should be described. Note that the
+          URI should be UTF-8 encoded., in: query, name: resource, required: true,
+        type: string}
+      - {description: a URL of the endpoint which should be used to retrieve info
+          about the resource. Note that the URL should be UTF-8 encoded, in: query,
+        name: endpoint, required: true, type: string}
+      - default: sparql
+        description: the type of the endpoint
+        enum: [sparql, ldf]
+        in: query
+        name: endpoint-type
+        required: false
+        type: string
+      produces: [text/turtle, text/n3, application/ld+json, application/n-triples,
+        application/rdf+xml]
+      responses:
+        200:
+          description: Successful response
+          schema: {type: string}
+        400: {description: Bad request - input validation failed}
+      summary: Retrieve Description for a resource
+      tags: [e-Link]
   /e-publishing/html:
     post:
       consumes: [multipart/form-data]
@@ -328,7 +361,7 @@ paths:
         \ , nif:Context ;\n    nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger\
         \ ;\n    nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;\n    nif:isString\
         \    &quot;Welcome to Europe&quot;@en.\n</code></pre>\n"
-      operationId: tildeTranslate
+      operationId: e-terminology
       parameters:
       - {description: The text to annotate. Can be either plaintext or NIF (see parameter
           informat). Short form is i., in: query, name: input, required: false, type: string}

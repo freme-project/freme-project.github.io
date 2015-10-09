@@ -922,6 +922,51 @@ paths:
             type: "string"
         400:
           description: "Bad request - input validation failed"
+  /e-link/explore:
+    post:
+      tags:
+      - "e-Link"
+      summary: "Retrieve Description for a resource"
+      description: |
+        Using the /e-link/explore endpoint a client can retrieve description of a resource from a given endpoint. The endpoint can be SPARQL or Linked Data Fragments endpoint.
+        The API accepts three parameters
+      produces:
+      - "text/turtle"
+      - "text/n3"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+
+      operationId: "explore"
+      parameters:
+      - name: "resource"
+        description: "a URI of the resource which should be described. Note that the URI should be UTF-8 encoded."
+        in: "query"
+        required: true
+        type: "string"
+      - name: "endpoint"
+        description: "a URL of the endpoint which should be used to retrieve info about the resource. Note that the URL should be UTF-8 encoded"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "endpoint-type"
+        description: "the type of the endpoint"
+        in: "query"
+        required: false
+        type: "string"
+        default: "sparql"
+        enum:
+        - "sparql"
+        - "ldf"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+
+
   /e-link/documents/:
     post:
       tags:
@@ -1640,7 +1685,7 @@ paths:
             nif:isString    &quot;Welcome to Europe&quot;@en.
         </code></pre>
 
-      operationId: "tildeTranslate"
+      operationId: "e-terminology"
       consumes:
       - "text/n3"
       - "text/turtle"

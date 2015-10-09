@@ -32,7 +32,8 @@ def main():
 	"/e-publishing/html": ["post"],
 	"/e-link/documents/": ["post"],
 	"/e-translation/tilde": ["post"],	
-	"/e-terminology/tilde": ["post"]
+	"/e-terminology/tilde": ["post"],
+	"/e-link/explore": ["post"]
 	}
 	
 	for path in full["paths"].keys():
