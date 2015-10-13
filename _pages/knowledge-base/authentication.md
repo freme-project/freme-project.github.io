@@ -1,0 +1,67 @@
+---
+layout: page
+title: Authentication
+dropdown: Knowledge Base
+pos: 4.6
+---
+
+# Authentication
+
+This Article explains which FREME e-Services need authenticated access and how to perform this.
+
+## Restricted endpoints
+
+Some FREME endpoints are only accessible as authenticated user. At the moment these are:
+
+  * POST, PUT and DELETE `/e-link/templates/{templateID}` (template handling that needs write access)
+  * GET, DELETE `/user/{userName}` and GET `/user` (user handling, except POST `/user`)
+
+Furthermore, the following FREME endpoints are restricted in such a way, that you can use them only with public resources (e.g. public templates), if you are not authenticated:
+
+  * POST `/e-link/documents`
+  
+## Restricted resources
+
+At the moment only templates are restricted.
+
+In general, all public restricted resources can be accessed with read access, writing is permitted. Private restricted resources can not be written, read or used in any FREME e-service by anyone except the owner. By default, a created restricted resource is public. This can be changed by the parameter `visibility` when creating or updating a restricted resource.
+
+## How to authenticate
+
+To perform authenticated endpoint calls you have to do the following:
+
+  1. create an user
+  2. retrieve an access token
+  3. attach this token to the endpoint call
+
+### How to create a user
+
+If you haven't done before, you have to create an user. This can be established via the [FREME api documentation page](http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_user) or by performing a POST call to `/user`:
+  
+```
+curl -X POST "http://api-dev.freme-project.eu/current/user?username=YOUR_USERNAME&password=YOUR_PASSWORD"
+```
+
+### How to create an access token
+
+An access token can be retrieved via the [FREME api documentation page](http://api-dev.freme-project.eu/doc/api-doc/full.html#!/Authenticate/post_authenticate) or by calling the `/authenticate` endpoint with your user credentials:
+
+```
+curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "http://api-dev.freme-project.eu/current/authenticate"
+```
+
+The response will contain your access token. It will look similar to this:
+
+```
+  {
+      "token": "f81ccf99-1d01-4e79-9a0b-8dfe84d8303c"
+  }
+```
+
+### How to attach an access token to an API call
+
+To use FREME e-Services as authenticated user just attach your token as `X-Auth-Token` to the request header:
+
+```
+curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "http://api-dev.freme-project.eu/current/e-link/templates?outformat=turtle&informat=json"
+```
