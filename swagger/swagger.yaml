@@ -1,4 +1,4 @@
-swagger: "2.0"
+swagger: "2.1.1"
 info:
   version: "0.3"
   title: "FREME API Documentation"
