@@ -38,15 +38,22 @@ workspace.location=workspace</code></pre>
 spring.datasource.username=username
 spring.datasource.password=password
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code></pre>
-		<p> In the first line, you specify host and database, in the second and third line you configure username and password.</p>
+		<p> In the first line, you specify host and database, in the second and third line you configure username and password. This requires an installation of MySQL database. This is the recommended setting for production.</p>
 	</li>
 	<li>
-		<h5>h2 database settings</h5>
+		<h5>h2 in-memory database settings</h5>
 		<p>To make freme use an in-memory h2 database (useful for testing or local installations), add the following configuration:</p>
 		<pre><code>spring.jpa.hibernate.ddl-auto=create-drop
 spring.datasource.url = jdbc:h2:mem:~/freme
 spring.datasource.driverClassName = org.h2.Driver</code></pre>
-		<p> When you do not provide any database settings then FREME will use an h2 in-memory database.</p>
+		<p> When you do not provide any database settings then FREME will use an h2 in-memory database. This database will be freshly created upon each start of FREME.</p>
+	</li>
+	<li>
+		<h5>h2 file database</h5>
+		<p>To configure an h2 file database that will persist when you shutdown the broker you can use this configuration:</p>
+		<pre><code>spring.datasource.url = jdbc:h2:file:~/freme.h2
+spring.datasource.driverClassName = org.h2.Driver
+spring.jpa.hibernate.ddl-auto=update</code></pre>
 	</li>
 	<li>
 		<h5>spring.jpa.hibernate.ddl-auto</h5>
