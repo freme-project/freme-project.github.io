@@ -19,3 +19,11 @@ code {
 .navbar-text+img {
     margin-bottom:0px;
 }
+
+.token-bar{
+    background-color:#F8F8F8;
+    margin-bottom: 2em;
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+}
