@@ -9,7 +9,7 @@ $(document).ready(function(){
         return 0;
     };
     $.ajax({
-        url: fremeApiUrl+"/current/e-link/templates",
+        url: fremeApiUrl+"/e-link/templates",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

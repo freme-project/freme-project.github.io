@@ -56,6 +56,7 @@ info:
 
 host: "api-dev.freme-project.eu"
 basePath: "/current"
+
 tags:
 - name: "e-Translation"
 
@@ -1900,6 +1901,7 @@ paths:
             type: "string"
         400:
           description: "Bad request - input validation failed"
+
 definitions:
   File:
     type: "object"

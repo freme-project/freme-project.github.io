@@ -10,7 +10,7 @@ $(document).ready(function(){
     };
 
     $.ajax({
-        url: "http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets",
+        url: fremeApiUrl+ "/e-entity/freme-ner/datasets",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

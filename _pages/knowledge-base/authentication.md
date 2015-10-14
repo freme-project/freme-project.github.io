@@ -36,18 +36,18 @@ To perform authenticated endpoint calls you have to do the following:
 
 ### How to create a user
 
-If you haven't done before, you have to create an user. This can be established via the [FREME api documentation page](http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_user) or by performing a POST call to `/user`:
+If you haven't done before, you have to create an user. This can be established via the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/post_user) or by performing a POST call to `/user`:
   
 ```
-curl -X POST "http://api-dev.freme-project.eu/current/user?username=YOUR_USERNAME&password=YOUR_PASSWORD"
+curl -X POST "{{ site.apiurl | prepend: site.url }}/user?username=YOUR_USERNAME&password=YOUR_PASSWORD"
 ```
 
 ### How to create an access token
 
-An access token can be retrieved via the [FREME api documentation page](http://api-dev.freme-project.eu/doc/api-doc/full.html#!/Authenticate/post_authenticate) or by calling the `/authenticate` endpoint with your user credentials:
+An access token can be retrieved via the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/Authenticate/post_authenticate) or by calling the `/authenticate` endpoint with your user credentials:
 
 ```
-curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "http://api-dev.freme-project.eu/current/authenticate"
+curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "{{ site.apiurl | prepend: site.url }}/authenticate"
 ```
 
 The response will contain your access token. It will look similar to this:
@@ -63,5 +63,5 @@ The response will contain your access token. It will look similar to this:
 To use FREME e-Services as authenticated user just attach your token as `X-Auth-Token` to the request header:
 
 ```
-curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "http://api-dev.freme-project.eu/current/e-link/templates?outformat=turtle&informat=json"
+curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/e-link/templates?outformat=turtle&informat=json"
 ```
