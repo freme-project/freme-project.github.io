@@ -61,7 +61,7 @@
                         hljs.highlightBlock(e)
                     });
 
-   //                 addApiKeyAuthorization();
+                    addApiKeyAuthorization();
                 },
                 onFailure: function(data) {
                     log("Unable to Load SwaggerUI");
@@ -70,23 +70,23 @@
                 apisSorter: "alpha",
                 showRequestHeaders: false
             });
-            /*
+
             function addApiKeyAuthorization(){
                 var key = encodeURIComponent($('#input_apiKey')[0].value);
                 if(key && key.trim() != "") {
-                    var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+                    var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
                     window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
                     log("added key " + key);
                 }
             }
 
             $('#input_apiKey').change(addApiKeyAuthorization);
-            */
+
             // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
-            /*
-             var apiKey = "myApiKeyXXXX123456789";
-             $('#input_apiKey').val(apiKey);
-             */
+
+             //var apiKey = "myApiKeyXXXX123456789";
+             //$('#input_apiKey').val(apiKey);
+
 
             window.swaggerUi.load();
 
@@ -112,14 +112,16 @@
 
             <article class="post-content">
                 <div class="swagger-section">
-
                 <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+                <div class='input container text-center'><input placeholder="Access Token" id="input_apiKey" name="Access Token" type="text"/></div>
+
                 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
                 </div>
             </article>
 
         </div>
     </div>
+
     {{ content }}
 </div>
 

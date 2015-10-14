@@ -78,7 +78,7 @@
                         hljs.highlightBlock(e)
                     });
 
-   //                 addApiKeyAuthorization();
+                    addApiKeyAuthorization();
                 },
                 onFailure: function(data) {
                     log("Unable to Load SwaggerUI");
@@ -87,23 +87,23 @@
                 apisSorter: "alpha",
                 showRequestHeaders: false
             });
-            /*
+
             function addApiKeyAuthorization(){
                 var key = encodeURIComponent($('#input_apiKey')[0].value);
                 if(key && key.trim() != "") {
-                    var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+                    var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
                     window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
                     log("added key " + key);
                 }
             }
 
             $('#input_apiKey').change(addApiKeyAuthorization);
-            */
+
             // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
-            /*
-             var apiKey = "myApiKeyXXXX123456789";
-             $('#input_apiKey').val(apiKey);
-             */
+
+             //var apiKey = "myApiKeyXXXX123456789";
+             //$('#input_apiKey').val(apiKey);
+
 
             window.swaggerUi.load();
 
@@ -240,14 +240,14 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
-								<li  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Entity Recognition against Custom Dataset</a></li>
+								<li  ><a href="/doc/tutorials/translate-text-from-german-to-spanish.html">Translate Text from German to Spanish</a></li>
 							
 							
 							
 				
 					
 						
-							<li  ><a href="/doc/tutorials/translate-text-from-german-to-spanish.html">Translate Text from German to Spanish</a></li>
+							<li  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Entity Recognition against Custom Dataset</a></li>
 						
 					
 					
@@ -312,6 +312,16 @@
 				
 					
 						
+							<li  ><a href="/doc/knowledge-base/authentication.html">Authentication</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
 								</ul>
 							</li>
 						
@@ -347,14 +357,16 @@
 
             <article class="post-content">
                 <div class="swagger-section">
-
                 <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+                <div class='input container text-center'><input placeholder="Access Token" id="input_apiKey" name="Access Token" type="text"/></div>
+
                 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
                 </div>
             </article>
 
         </div>
     </div>
+
     <style>
 li.resource>.heading  {
     font-size:0;
