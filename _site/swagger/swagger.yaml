@@ -1,24 +1,35 @@
 swagger: "2.0"
 info:
-  version: "0.3"
+  version: "0.2"
   title: "FREME API Documentation"
-  description: |
-    This web page documents the REST API of the FREME project. You can find more information about FREME on the [project website](http://freme-project.eu) and on the [FREME GitHub page](https://github.com/freme-project). The [FREME wiki](https://github.com/freme-project/technical-discussion/wiki) contains more technical documentation.
-    # General Information
 
+host: "api-dev.freme-project.eu"
+basePath: "/current"
+tags:
+- name: "e-Entity"
+#  description: "Description of e-Entity"
+- name: "e-Link"
+#  description: "Description of e-Link"
+- name: "e-Publishing"
+#  description: "Description of e-Publishing"
+- name: "e-Translation"
+#  description: "Description of e-Translation"
+- name: "User"
+#  description: "Description of User"
+- name: "General Information"
+  description: |
     This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). Please note that all parameter values submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
 
     * input (short form: i):
         * input of the e-Service in plaintext or nif
         * No default
         * Depends on informat and intype
-        * All plain text sent to FREME has to be UTF-8 encoded
     * informat (short form: f):
         * format of input parameter.
         * possible values
           * text (plaintext)
           * text/turtle (default), short form: turtle
-          * application/ld+json, short form: json-ld
+          * application/json+ld, short form: json-ld
           * application/n-triples, short form: n-triples
           * application/rdf+xml, short form: rdf-xml
           * text/n3, short form: n3
@@ -28,7 +39,7 @@ info:
       * output format
       * possible values
         * text/turtle (default), short form: turtle
-        * application/ld+json, short form: json-ld
+        * application/json+ld, short form: json-ld
         * application/n-triples, short form: n-triples
         * application/rdf+xml, short form: rdf-xml
         * text/n3, short form: n3
@@ -38,7 +49,7 @@ info:
     * Accept
       * possible values
         * turtle for text/turtle (default)
-        * json-ld for application/ld+json
+        * json-ld for application/json+ld
         * n-triples for application/n-triples
         * rdf-xml for application/rdf+xml
         * n3 for text/n3
@@ -47,19 +58,11 @@ info:
       * possible values
         * text (plaintext)
         * text/turtle (default), short form: turtle
-        * application/ld+json, short form: json-ld
+        * application/json+ld, short form: json-ld
         * application/n-triples, short form: n-triples
         * application/rdf+xml, short form: rdf-xml
         * text/n3, short form: n3
       * When parameter informat is set then the Content-Type header is not used by FREME api
-
-
-host: "api-dev.freme-project.eu"
-basePath: "/current"
-
-tags:
-- name: "e-Translation"
-
 
 schemes:
 - "http"
