@@ -19,7 +19,12 @@ definitions:
       usableSpace: {format: int64, type: integer}
     type: object
 host: api-dev.freme-project.eu
-info: {title: FREME API Documentation, version: '0.2'}
+info: {description: 'This section only covers the most important endpoints of FREME:
+    the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
+    via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
+    including all parameters, is provided <a href="full.html">here</a>. For usage
+    examples, see the <a href="../Tutorials/overview.html">tutorial section</a>.',
+  title: FREME API Documentation, version: '0.2'}
 paths:
   /e-entity/dbpedia-spotlight/documents:
     post:
@@ -482,43 +487,11 @@ paths:
         400: {description: Bad request - input validation failed}
       summary: Perform machine translation using Tilde's API
       tags: [e-Translation]
-  General Information: 'This section only covers the most important endpoints of FREME:
-    the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
-    via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
-    including all parameters, is provided <a href="full.html">here</a>. For usage
-    examples, see the <a href="../Tutorials/overview.html">tutorial section</a>.'
 schemes: [http]
 swagger: '2.0'
 tags:
+- {name: e-Entity}
 - {name: e-Link}
+- {name: e-Publishing}
 - {name: e-Translation}
-- {description: "This section defines the default parameter set for all FREME e-Services.\
-    \ The parameters have a long and a short form. If both are set, the long form\
-    \ overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html).\
-    \ Please note that all parameter values submitted via the URLs query string need\
-    \ to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).\n\
-    \n* input (short form: i):\n    * input of the e-Service in plaintext or nif\n\
-    \    * No default\n    * Depends on informat and intype\n* informat (short form:\
-    \ f):\n    * format of input parameter.\n    * possible values\n      * text (plaintext)\n\
-    \      * text/turtle (default), short form: turtle\n      * application/json+ld,\
-    \ short form: json-ld\n      * application/n-triples, short form: n-triples\n\
-    \      * application/rdf+xml, short form: rdf-xml\n      * text/n3, short form:\
-    \ n3\n      * text/html: Submit HTML as input. This will convert the HTML to NIF\
-    \ and then send it to the underlying service.\n      * application/x-xliff+xml:\
-    \ Submit XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send\
-    \ it to the underlying service.\n* outformat (short form: o):\n  * output format\n\
-    \  * possible values\n    * text/turtle (default), short form: turtle\n    * application/json+ld,\
-    \ short form: json-ld\n    * application/n-triples, short form: n-triples\n  \
-    \  * application/rdf+xml, short form: rdf-xml\n    * text/n3, short form: n3\n\
-    * prefix (short form: p)\n  * Controls the url of rdf resources generated from\
-    \ plaintext. Has default value \"http://freme-project.eu/\"\nThe following header\
-    \ values are used by all FREME e-Services\n* Accept\n  * possible values\n   \
-    \ * turtle for text/turtle (default)\n    * json-ld for application/json+ld\n\
-    \    * n-triples for application/n-triples\n    * rdf-xml for application/rdf+xml\n\
-    \    * n3 for text/n3\n  * When parameter outformat is set then the Accept header\
-    \ is not used by FREME API.\n* Content-Type\n  * possible values\n    * text (plaintext)\n\
-    \    * text/turtle (default), short form: turtle\n    * application/json+ld, short\
-    \ form: json-ld\n    * application/n-triples, short form: n-triples\n    * application/rdf+xml,\
-    \ short form: rdf-xml\n    * text/n3, short form: n3\n  * When parameter informat\
-    \ is set then the Content-Type header is not used by FREME api\n", name: General
-    Information}
+- {name: User}
