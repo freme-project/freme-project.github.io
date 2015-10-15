@@ -27,25 +27,24 @@ This section describes some examples of input files and expected output for each
 
 Original document, containing text-analysis ITS 2.0 tags.
 ```
-<!DOCTYPE html>
-<html lang="en" its-annotators-ref="text-analysis|http://enrycher.ijs.si">
-  <head>
-    <meta charset="utf-8" />
-    <title>Text analysis: Local Test</title>
-  </head>      
-  <body>
-    <p><span 
-          its-ta-confidence="0.7"
-          its-ta-class-ref="http://nerd.eurecom.fr/ontology#Location"  
-          its-ta-ident-ref="http://dbpedia.org/resource/Dublin">Dublin</span> 
-      is the <span 
-          its-ta-source="Wordnet3.0" 
-          its-ta-ident="301467919" 
-          its-ta-confidence="0.5"
-          >capital</span> of Ireland.</p>
-  </body>
-</html>
-
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; its-annotators-ref=&quot;text-analysis|http://enrycher.ijs.si&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title>Text analysis: Local Test&lt;/title&gt;
+  &lt;\head&gt;      
+  &lt;body&gt;
+    &lt;p&gt;&lt;span 
+          its-ta-confidence=&quot;0.7&quot;
+          its-ta-class-ref=&quot;http://nerd.eurecom.fr/ontology#Location&quot;  
+          its-ta-ident-ref=&quot;http://dbpedia.org/resource/Dublin&quot;&gt;Dublin&lt;/span&gt;
+      is the &lt;span 
+          its-ta-source=&quot;Wordnet3.0&quot; 
+          its-ta-ident=&quot;301467919&quot; 
+          its-ta-confidence=&quot;0.5&quot;
+          >capital&lt;/span&gt; of Ireland.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 ```
 
 Converted NIF file
