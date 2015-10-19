@@ -218,6 +218,245 @@ paths:
             type: "string"
         400:
           description: "Bad Request - input validation failed"
+
+  /pipelining/templates/:
+    post:
+      tags:
+        - "pipelining"
+      summary: "Create a new pipelining template"
+      description: |
+        Here you can submit a new pipelining template as a JSON String. It represents an object with a label, a description, and a list of request objects.
+
+        #Example
+
+        <pre><code>
+        {
+          "label": "Spotlight-Link",
+          "description": "Recognises entities using Spotlight en enriches with geo information.",
+          "serializedRequests": [
+            {
+              "method": "POST",
+              "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
+              "parameters": {
+                "language": "en"
+              },
+              "headers": {
+                "content-type": "text/plain",
+                "accept": "text/turtle"
+              }
+            },
+            {
+              "method": "POST",
+              "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
+              "parameters": {
+                "templateid": "3"
+              },
+              "headers": {
+                "content-type": "text/turtle",
+                "accept": "text/turtle"
+              }
+            }
+          ]
+        }
+        </pre></code>
+
+        If the request was successful, the service will return the JSON object with the following parameters:
+
+        - `id`: the generated id if the template. This is also the timestamp of creation, in milliseconds.
+        - `owner`: the owner, in this case the creator, of the pipeline template.
+        - `label`: The name of the pipeline template.
+        - `description`: a description of the pipeline template.
+        - `persist`: if false, the template will not automatically be deleted; if false it will live only for one week. To be implemented.
+        - `serializedRequests`: the chained requests as described in /pipelining/chain.
+
+      consumes:
+        - "application/json"
+      prodcues:
+        - "application/json"
+      parameters:
+      - name: "persist"
+        in: "query"
+        description: "Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`"
+        required: false
+        type: "string"
+      - name: "visibility"
+        in: "query"
+        description: "Optional parameter: values can `PRIVATE` or `PUBLIC`. A template with visibility `PUBLIC` is visible and usable by anyone. A template with visibility `PRIVATE` is only visible and usable by the owner. Defaults to `PUBLIC`"
+        reqiured: false
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "The pipeline template as JSON"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+        401:
+          description: "Unauthorized - user needs to be logged in for this action"
+        500:
+          description: "Internal Server Error - something went wrong unexpectedly"
+          description: "Internal Server Error - something went wrong unexpectedly"
+    get:
+      tags:
+        - "pipelining"
+      summary:
+        - "Get all pipelining templates"
+      description:
+        - "Returns all visible pipelining templates"
+      produces:
+        - "application/json"
+
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        404:
+          description: "Not found - the template does not exist"
+
+  /pipelining/templates/{id}:
+    put:
+      tags:
+        - "pipelining"
+      summary: "Update an existing pipelining template"
+      description: "Update an existing pipelining template with new information"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "id"
+        description: "ID of the template you with to update"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "persist"
+        in: "query"
+        description: "Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`"
+        required: false
+        type: "string"
+      - name: "visibility"
+        in: "query"
+        description: "Optional parameter: values can `PRIVATE` or `PUBLIC`. A template with visibility `PUBLIC` is visible and usable by anyone. A template with visibility `PRIVATE` is only visible and usable by the owner. Defaults to `PUBLIC`"
+        reqiured: false
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "The pipeline template as JSON, as described in `POST /pipelining/templates/`"
+        required: false
+        type: "string"
+      - name: "owner"
+        description: "Optional parameter. Can be used to transfer ownership to a different user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+        403:
+          description: "Forbidden - user has no permission to udpate this template"
+        404:
+          description: "Not found - the template does not exist"
+        500:
+          description: "Internal Server Error - something went wrong unexpectedly"
+    get:
+      tags:
+        - "pipelining"
+      summary:
+        - "Get a specific pipelining template"
+      description:
+        - "Returns the pipeline with the given id found on the server the request is sent to. "
+      produces:
+        - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        description: "ID of template to return"
+        type: "string"
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        404:
+          description: "Not found - the template does not exist"
+    delete:
+      tags:
+        - "pipelining"
+      summary:
+        - "Delete a pipelining template"
+      description: "Deletes the pipelining template with the specified id"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        description: "ID of template that will be deleted"
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        403:
+          description: "Forbidden - user has no permission to delete this template"
+        404:
+          description: "Not found - the template does not exist"
+
+  /pipelining/chain/{id}:
+    post:
+      tags:
+        - "pipelining"
+      summary: "Pipelining with a template"
+      description: "Use an existing pipelining template to perform your pipelining task"
+      consumes:
+        - "text/turtle"
+        - "application/json"
+        - "application/ld+json"
+        - "application/n-triples"
+        - "application/rdf+xml"
+        - "text/n3"
+        - "text/plain"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the pipeline-template to be used"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "body"
+        description: "Input for pipeline chain, can be NIF or plain text"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful resposnse"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request - input validation failed"
+        401:
+          description: "Unauthorized - user needs to be logged in for this action"
+        404:
+          description: "Not found"
+        500:
+          description: "Internal Server Error - something went wrong unexpectedly"
+
+
+
   /pipelining/chain:
     post:
       tags:
