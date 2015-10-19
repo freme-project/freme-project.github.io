@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    //Calling GET /e-link/templates does not return templates ordered by templateID. This function returns the right index for the .after() function below
+    //Calling GET /e-link/templates does not return templates ordered by id. This function returns the right index for the .after() function below
     var insort =function (id) {
         for (var i=id-1;i>=0;i--) {
             if ($("#templateh"+i).length) {
@@ -19,13 +19,13 @@ $(document).ready(function(){
             $(data).each(
                 function (i, template) {
                     //Ternary operator to add any Description to Templates without description in the database
-                    (template.description == "") ? description = "This is template number " + template.templateId + " and it has no description in the database" : description = template.description;
-                    var index = insort(template.templateId);
+                    (template.description == "") ? description = "This is template number " + template.id + " and it has no description in the database" : description = template.description;
+                    var index = insort(template.id);
                     //Adds a templateOuter div containing a templateInner div for each template with all available information
                     $('#templatediv' + index).after(
-                        "<h3  id=\"templateh" + template.templateId + "\">" + template.templateId + " - " + template.label +
+                        "<h3  id=\"templateh" + template.id + "\">" + template.id + " - " + template.label +
                         "</h3>" +
-                        "<div id=\"templatediv"+template.templateId+"\">"+
+                        "<div id=\"templatediv"+template.id+"\">"+
                             "<h4> Description: </h4>" +
                             "<div>" + description + "</div>" +
                             "<h4> SPARQL Endpoint: </h4>"+
