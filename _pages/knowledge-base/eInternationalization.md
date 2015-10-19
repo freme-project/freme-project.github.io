@@ -28,7 +28,6 @@ This section describes some examples of input files and expected output for each
 Original document, containing text-analysis ITS 2.0 tags.
 
 ```
-
 <!DOCTYPE html>
 <html lang="en" its-annotators-ref="text-analysis|http://enrycher.ijs.si">
   <head>
@@ -47,14 +46,12 @@ Original document, containing text-analysis ITS 2.0 tags.
           >capital</span> of Ireland.</p>
   </body>
 </html>
-
 ```
 
 
 Converted NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -105,7 +102,6 @@ Converted NIF file
         nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
         nif:endIndex    "59"^^xsd:nonNegativeInteger ;
         nif:isString    "Text analysis: Local Test Dublin is the capital of Ireland."@en .
-        
 ```
 
 ### XML
@@ -113,7 +109,6 @@ Converted NIF file
 Original document containing ITS annotations (Note that the ITS annotation management for XML files is still draft).
 
 ```
-
 <?xml version="1.0"?>
 <db>
   <its:rules xmlns:its="http://www.w3.org/2005/11/its" version="2.0">
@@ -125,13 +120,11 @@ Original document containing ITS annotations (Note that the ITS annotation manag
     <country id="139">République Dominicaine</country>
   </data>
 </db>
-
 ```
 
 Converted NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -164,7 +157,6 @@ Converted NIF file
         nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
         nif:endIndex    "48"^^xsd:nonNegativeInteger ;
         nif:isString    "Papouasie-Nouvelle-Guinée République Dominicaine"@en .
-
 ```
 
 ### XLIFF 1.2
@@ -172,7 +164,6 @@ Converted NIF file
 Original document containing ITS annotations.
 
 ```
-
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-stylesheet type="text/xsl" href="file:///S:/PhilR/Rome/XliffToRWHtml5_target.xslt"?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:dl="http://www.digitallinguistics.com" xmlns:its="http://www.w3.org/2005/11/its" version="1.2">
 	<file datatype="plaintext" original="PCWorldArticle.txt" source-language="en" target-language="it">
 		<body>
@@ -187,13 +178,11 @@ Original document containing ITS annotations.
 		</body>
 	</file>
 </xliff>
-
 ```
 
 Converted NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -262,7 +251,6 @@ Converted NIF file
         nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
         nif:endIndex    "45"^^xsd:nonNegativeInteger ;
         nif:isString    "Benvenuti a Dublino! Questo è il mio computer"@en .
-        
 ```
 
 ### ODT
@@ -275,7 +263,6 @@ Original file
 Converted NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -398,7 +385,6 @@ Converted NIF file
         nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
         nif:endIndex          "9"^^xsd:nonNegativeInteger ;
         dc:identifier         "1" .
-        
 ```
 
 ### Note on ITS tags
@@ -424,7 +410,6 @@ A HTML file is converted to NIF and enriched with the e-Entity service. Finally 
 Original HTML file
 
 ```
-
 <html>
 <head>
 	<title>Roundtripping</title>
@@ -438,7 +423,6 @@ Original HTML file
 Converted NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -465,14 +449,12 @@ Converted NIF file
         nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
         nif:endIndex          "13"^^xsd:nonNegativeInteger ;
         dc:identifier         "1" .
-        
 ```
 
 
 Enriched NIF file
 
 ```
-
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
@@ -507,13 +489,11 @@ Enriched NIF file
         nif:beginIndex        "25"^^xsd:nonNegativeInteger ;
         nif:endIndex          "31"^^xsd:nonNegativeInteger ;
         itsrdf:taIdentRef <http://http://dbpedia.org/resource/Dublin> .
-        
 ```
 
 Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant for new lines don’t affect the HTML file appearance in the browser.
 
 ```
-
 <!DOCTYPE html>
 <html><head>
 	<title>Roundtripping</title>
@@ -522,5 +502,4 @@ Original enriched HTML file. Note that some new lines get lost. Anyway it is not
 <p>Welcome to <span its-ta-ident-ref="http://http://dbpedia.org/resource/Dublin">Dublin</span></p>
 
 </body></html>
-
 ```
