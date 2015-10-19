@@ -101,13 +101,6 @@ paths:
       tags:
       - "User"
       summary: "Get information about all users"
-      parameters:
-      - name: "X-Auth-Token"
-        in: "header"
-        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
-        required: false
-        type: "string"
-
       description: |
         Get information about all users in the system. You need to be authenticated as administrator to have access to this API call.
       produces:
@@ -149,11 +142,6 @@ paths:
       produces:
         - "application/json"
       parameters:
-      - name: "X-Auth-Token"
-        in: "header"
-        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
-        required: false
-        type: "string"
 
       - name: "username"
         in: "path"
@@ -176,11 +164,6 @@ paths:
         Delete a user. This will also delete all of his access tokens.
         You need to be authenticated as that user or as an admin user to access this API call.
       parameters:
-      - name: "X-Auth-Token"
-        in: "header"
-        description: "The X-Auth-Token from /authenticate is used to authenticate as this user"
-        required: false
-        type: "string"
 
       - name: "username"
         in: "path"

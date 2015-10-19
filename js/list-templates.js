@@ -1,5 +1,6 @@
 $(document).ready(function(){
     //Calling GET /e-link/templates does not return templates ordered by id. This function returns the right index for the .after() function below
+
     var insort =function (id) {
         for (var i=id-1;i>=0;i--) {
             if ($("#templateh"+i).length) {
@@ -29,9 +30,9 @@ $(document).ready(function(){
                             "<h4> Description: </h4>" +
                             "<div>" + description + "</div>" +
                             "<h4> SPARQL Endpoint: </h4>"+
-                            "<div><code><a href=\""+template.endpoint+"\">" +template.endpoint+"</a></code></div>" +
+                            "<div><code><a href=\""+encodeURI( template.endpoint)+"\">" +encodeURI(template.endpoint)+"</a></code></div>" +
                             "<h4> SPARQL Query: </h4>"+
-                            "<div><pre><code>"+template.query+"</code></pre></div>" +
+                            "<div><pre><code>"+htmlEncode(template.query)+"</code></pre></div>" +
                         "</div>")
 
 
