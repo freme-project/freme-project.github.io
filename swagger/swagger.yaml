@@ -1885,6 +1885,7 @@ paths:
         required: true
         description: "Metadata JSON as specified above"
         type: "string"
+        x-force-textarea: true
       responses:
         200:
           description: "Successful response"
@@ -2071,6 +2072,7 @@ paths:
           \ over the body content."
         required: false
         type: "string"
+        x-force-textarea: true
       - name: "informat"
         in: "query"
         description: "Format of input string. Can be json-ld, turtle, n3, n-triples,\
@@ -2130,6 +2132,7 @@ paths:
           \ is [here](https://services.tilde.com/translationsystems)."
         required: true
         type: "string"
+
       - name: "domain"
         in: "query"
         description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystem)."

@@ -345,7 +345,7 @@ paths:
       - {description: The html zip file to generate the epub from., in: formData,
         name: htmlZip, required: false, type: file}
       - {description: Metadata JSON as specified above, in: formData, name: metadata,
-        required: true, type: string}
+        required: true, type: string, x-force-textarea: true}
       produces: [application/epub+zip]
       responses:
         200:
@@ -450,7 +450,8 @@ paths:
       parameters:
       - {description: 'The string to be translated. Can be either plaintext or NIF
           (see parameter informat). Short form is i. If set, it will be prefered over
-          the body content.', in: query, name: input, required: false, type: string}
+          the body content.', in: query, name: input, required: false, type: string,
+        x-force-textarea: true}
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xmlor text. Defaults to "turtle". This parameter overrides Content-Type
