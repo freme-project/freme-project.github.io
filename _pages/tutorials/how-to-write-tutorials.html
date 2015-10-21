@@ -1,0 +1,61 @@
+---
+dropdown: Tutorials
+pos: 3.1
+layout: page
+title: How to write a Tutorial
+---
+
+<h1>Title of the Tutorial</h1>
+<div class="introduction">
+    <h2>Introduction</h2>
+    <p>Here comes a short introduction on what this tutorial is about. Make this introduction as human readable as possible and spare the user any kind of techincal details. Make sure to answer the following questions:</p>
+    <ul>
+        <li>What is the purpose of this tutorial?</li>
+        <li>What is explained?</li>
+    </ul>
+</div>
+
+<div class="technical-instructions">
+    <h2>Technical Instructions</h2>
+    <p>See <a href="api-dev.freme-project.eu/doc/knowledge-base/how-to-add-documentation" target="_blank">this article on how to add content to this site.</a></p>
+    <p>Please use HTML and not Markdown. It is easiest if you just use <a href="http://github.com/freme-project/Documentation/blob/master/_pages/tutorials/how-to-write-tutorials.html" target="_blank">this page </a>as a template!</p>
+</div>
+
+<div class="api-call">
+    <h2>Example API Call</h2>
+    <p>Heres comes a short description of your API call. For demonstration purposes we included an API call to /e-translation/tilde</p>
+    <script type="text/javascript">
+        request="POST"
+        url="http://api-dev.freme-project.eu/current/e-translation/tilde"
+        parameters=[
+            {
+                "parameter_name":"input",
+                "user_friendly_name":"Enter text that you wish to translate",
+                "value":"Dies it ein Deutscher Satz!",
+                "type":"entry"
+            },
+            {
+                "parameter_name":"informat",
+                "value":"text",
+                "type":"hidden"
+            },
+            {
+                "parameter_name":"outformat",
+                "value":"text",
+                "type":"hidden"
+            },
+            {
+                "parameter_name":"source-lang",
+                "user_friendly_name":"Language you wish to translate from",
+                "value":"de",
+                "type":"entry"
+            },
+            {
+                "parameter_name":"target-lang",
+                "user_friendly_name":"Language you wish to translate to",
+                "value":"es",
+                "type":"entry"
+            }
+        ]
+</script>
+</div>
