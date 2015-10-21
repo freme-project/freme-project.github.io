@@ -1997,6 +1997,20 @@ paths:
           \ terms. A list of supported language codes is [here](https://term.tilde.com/resources)."
         required: true
         type: "string"
+      - name: "collection"
+        in: "query"
+        required: false
+        type: "string"
+        description: "collection id from https://term.tilde.com portal. If filled then annotates only with terms from that collection"
+      - name: "mode"
+        required: false
+        type: "string"
+        description: "Whether the result must contain full terminology information or only term annotations with references to the full information"
+        in: "query"
+        enum:
+          - "full"
+          - "annotation"
+        default: "full"
       - name: "domain"
         in: "query"
         description: "If given - it filters out by domain proposed terms. Available\
@@ -2118,8 +2132,13 @@ paths:
         type: "string"
       - name: "domain"
         in: "query"
-        description: "Currently not used"
+        description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystem)."
         required: false
+        type: "string"
+      - name: "system"
+        in: "query"
+        required: false
+        description: "select translation system by ID [an alternative to source, target language and domain selection]. ID of public translation system can be retrieved at https://services.tilde.com/translationsystems or private system ID can be found at portal http://tilde.com/mt with authentication [optional, if omitted then source and target languages and also domain parameters are used]"
         type: "string"
       responses:
         200:

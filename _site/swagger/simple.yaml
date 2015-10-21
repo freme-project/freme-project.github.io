@@ -407,6 +407,17 @@ paths:
       - {description: 'Target language, e.g. "de", "en". Language for targeted terms.
           A list of supported language codes is [here](https://term.tilde.com/resources).',
         in: query, name: target-lang, required: true, type: string}
+      - {description: 'collection id from https://term.tilde.com portal. If filled
+          then annotates only with terms from that collection', in: query, name: collection,
+        required: false, type: string}
+      - default: full
+        description: Whether the result must contain full terminology information
+          or only term annotations with references to the full information
+        enum: [full, annotation]
+        in: query
+        name: mode
+        required: false
+        type: string
       - {description: 'If given - it filters out by domain proposed terms. Available
           domains here: https://term.tilde.com/domains (should pass just ID, eg, TaaS-1001,
           that means Agriculture)', in: query, name: domain, required: false, type: string}
@@ -476,8 +487,15 @@ paths:
       - {description: 'Target language, e.g. "de". A list of available language pairs
           is [here](https://services.tilde.com/translationsystems).', in: query, name: target-lang,
         required: true, type: string}
-      - {description: Currently not used, in: query, name: domain, required: false,
-        type: string}
+      - {description: 'specify domain of translation system. List of supported domains
+          and language pairs can be found [here](https://services.tilde.com/translationsystem).',
+        in: query, name: domain, required: false, type: string}
+      - {description: 'select translation system by ID [an alternative to source,
+          target language and domain selection]. ID of public translation system can
+          be retrieved at https://services.tilde.com/translationsystems or private
+          system ID can be found at portal http://tilde.com/mt with authentication
+          [optional, if omitted then source and target languages and also domain parameters
+          are used]', in: query, name: system, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
         application/rdf+xml]
       responses:
