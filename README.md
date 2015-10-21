@@ -22,26 +22,43 @@ This project uses 3rd party tools. You can find the list of 3rd party tools incl
 
 ----------------------------------------------------------------------------
 
+#Maintaining the Documentation Project
 
+#On Api-Dev
+Jekyll, the CMS for this project is installed on the api-dev server. Everytime you push an updated version of this Documentation to the master branch, Jenkins will build a new version, so you don't need Jekyll installed.
 
-To use:
+#Locally
 
 Install jekyll
+
 ``` 
 sudo apt-get install jekyll 
 ```
 
 If it doesn't work the first time go for:
+
 ```
 sudo apt-get install ruby-dev
 ```
 
+
+To edit the content of the pages, edit the files in the `_pages` folder. A full guide on how to add Documentation can be found at [here](api-dev.freme-project.eu/doc/knowledge-base/how-to-add-documentation.html).
+To edit the API Documentation, edit `swagger/swagger.yaml`.
+
+
 To build the _site folder:
+
 ```
 jekyll build
 ```
 
-To edit the content, edit the files in the _pages folder
-When pushing this to the FREME server make sure to adapt the "basepath" parameter in _config.yml before building with jekyll
+To have the site served correctly (also calls `jekyll build`, updates itself with every edit in the files), run
 
-To edit the API Documentation, edit `swagger/swagger.yaml`
+```
+jekyll serve
+```
+
+And go to `localhost:4000/<baseurl>/start.html` where baseurl is as of now `doc`. You can configure parameters such as `baseurl`, `url`, `fremeapiurl` (used for FREME Showcase) in the file `_config.yml`. Each call to `jekyll serve` will execute `swagger/yamlscript.py` which generates the Simple Api Documentation from the Full Api Documentation.
+
+
+If you edit files in `_config.yml` then `jekyll serve` will not update these changes automatically. Close the `serve` process and restart it to see the changes.
