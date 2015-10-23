@@ -9,6 +9,10 @@ h1 {
     font-weight:bold;
 }
 
+h2, h3{
+    margin-top:1.6em;
+}
+
 code {
     color:black;
 }
