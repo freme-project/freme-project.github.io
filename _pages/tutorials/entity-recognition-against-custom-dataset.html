@@ -38,6 +38,7 @@ pos: 3.1
                 'name': encodeURIComponent($("#dataset-name").val()),
                 'description': $("#dataset-description").val(),
                 'language': $("#dataset-language").val(),
+                'outformat': "json",
                 'input': encodeURIComponent($("#input-dataset").val())
             }
         }).done(function(result){
