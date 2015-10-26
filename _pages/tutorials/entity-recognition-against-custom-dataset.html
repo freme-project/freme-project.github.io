@@ -30,17 +30,15 @@ pos: 3.1
     function sendDatasetCreateRequest() {
 
 	$.ajax({
-	    url: fremeApiUrl + "/e-entity/freme-ner/datasets",
+	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
+	    +"informat"+$("#informat-dataset").val()
+	    +"&name"+$("#dataset-name").val()
+	    +"&description"+$("#dataset-description").val()
+	    +"&language"+$("#dataset-language").val()
+	    +"&outformat=json",
             type: "POST",
 	    dataType: "text",
-            data: {
-                'informat': encodeURIComponent($("#informat-dataset").val()),
-                'name': encodeURIComponent($("#dataset-name").val()),
-                'description': $("#dataset-description").val(),
-                'language': $("#dataset-language").val(),
-                'outformat': "json",
-                'input': encodeURIComponent($("#input-dataset").val())
-            }
+            data: $("#input-dataset").val()
         }).done(function(result){
     	    $("#dataset-creation-response").text(result);
 	});
