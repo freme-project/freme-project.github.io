@@ -1,9 +1,79 @@
 ---
 layout: page 
-title: Entity Recognition against Custom Dataset
+title: Named Entity Recognition against Custom Dataset
 dropdown: Tutorials
 pos: 3.1
 ---
 
-<div>Should be written by InfAi</div>
+<h1>Still draft..</h1>
 
+<h1>Named Entity Recognition against Custom Dataset</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>TODO</p>
+</div>
+
+<div>
+    <h2>Technical Instructions</h2>
+    <p>TODO</p>
+</div>
+
+<script type="text/javascript">
+	
+    function sendAPIRequest() {
+
+	$.ajax({
+	    url: fremeApiUrl + "/e-translation/tilde",
+            type: "POST",
+	    dataType: "text",
+            data: {
+                'informat': "text",
+                'outformat': "json-ld",
+                'source-lang': encodeURIComponent($("#source-lang").val()),
+                'target-lang': encodeURIComponent($("#target-lang").val()),
+                'input': encodeURIComponent($("#input").val())
+            }
+        }).done(function(result){
+    	    $("#response").text(result);
+	});
+       };
+
+</script>
+
+<div>
+    <h2>Example API Call</h2>
+    <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+
+    <p>
+    <strong>Query string parameter input</strong><br/>
+    Specify the text you want to translate here.<br/>
+    <input id="input" type="text" value="Show me the source of the light." /></p>
+    <br/>
+    
+    <p><strong>Query string parameter source-lang</strong><br/>
+    Enter the language you want to translate from<br/>
+    <input id="source-lang" type="text" value="en" /></p>
+    <br/>
+    
+    <p><strong>Query string parameter source-lang</strong><br/>
+    Enter the language you want to translate to<br/>
+    <input id="target-lang" type="text" value="de"></p>
+    <br/>
+
+    <p><strong>Query string parameter informat</strong><br/>
+    Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"</p>
+    <br/>
+
+    <p><strong>Query string parameter outformat</strong><br/>
+    Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"</p>
+    <br/>
+
+    <button onclick="sendAPIRequest();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre id="response">
+
+
+</pre>
+
+</div>
