@@ -38,6 +38,7 @@ pos: 3.1
 	    +"&outformat=json",
             type: "POST",
 	    dataType: "text",
+	    contentType: 'text/plain',
             data: $("#input-dataset").val()
         }).done(function(result){
     	    $("#dataset-creation-response").text(result);
