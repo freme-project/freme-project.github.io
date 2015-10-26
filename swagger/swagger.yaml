@@ -2019,6 +2019,11 @@ paths:
           \ TaaS-1001, that means Agriculture)"
         required: false
         type: "string"
+      - name: "key"
+        description: A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems
+        required: false
+        type: "string"
+        in: "query"
       responses:
         200:
           description: "Successful response"
@@ -2132,7 +2137,11 @@ paths:
           \ is [here](https://services.tilde.com/translationsystems)."
         required: true
         type: "string"
-
+      - name: "key"
+        description: A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems
+        required: false
+        type: "string"
+        in: "query"
       - name: "domain"
         in: "query"
         description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystem)."

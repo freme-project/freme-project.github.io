@@ -21,9 +21,31 @@ code {
 }
 
 .token-bar{
-    background-color:#F8F8F8;
+    background-color: #F8F8F8;
     margin-bottom: 2em;
     padding: 0.5em;
     border-radius: 10px;
     border: 1px solid #E7E7E7;
+}
+.apicall {
+    margin-top: 0;
+    padding-top:0;
+    background-color: #F8F8F8;
+    margin-bottom: 2em;
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 1px solid #E7E7E7;
+}
+.apicall > div {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.apicall > ul {
+    display: inline-block;
+    list-style: none;
+}
+.apicall > ul > li {
+    margin: 0.5em;
+    background-color: #FFFFFF;
+    border: 1px solid #F0F0F0;
 }
