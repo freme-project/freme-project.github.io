@@ -36,6 +36,7 @@ pos: 3.1
             data: {
                 'informat': encodeURIComponent($("#informat-dataset").val()),
                 'name': encodeURIComponent($("#dataset-name").val()),
+                'description': $("#dataset-description").val(),
                 'input': encodeURIComponent($("#input-dataset").val())
             }
         }).done(function(result){
@@ -84,6 +85,11 @@ pos: 3.1
     <input id="dataset-name" type="text" value="mydataset"></p>
     <br/>
 
+    <p><strong>Dataset description</strong><br/>
+    Short description of the dataset.<br/>
+    <input id="dataset-description" type="text" value="This is a test dataset provided via the tutorial page."></p>
+    <br/>
+    
     <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
 
     <h2>Response</h2>
