@@ -36,9 +36,7 @@ pos: 3.1
             data: {
                 'informat': "text",
                 'outformat': "turtle",
-                'outformat': "turtle",
-                'language': encodeURIComponent($("#source-lang").val()),
-                'dataset': encodeURIComponent($("#target-lang").val()),
+                'name': encodeURIComponent($("#dataset-name").val()),
                 'input': encodeURIComponent($("#input").val())
             }
         }).done(function(result){
@@ -65,12 +63,12 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset. It will be used as its ID.<br/>
-    <input id="target-lang" type="text" value="de"></p>
+    <input id="dataset-name" type="text" value="mydataset"></p>
     <br/>
 
     <p><strong>Query string parameter outformat</strong><br/>
     Specifies the format of the data returned by FREME. In this example we want to return the results in the turtle format, thus setting "outformat=turtle"<br/>
-    <input id="target-lang" type="text" value="de"></p>
+    <input id="outformat" type="text" value="turtle"></p>
     <br/>
 
     <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
