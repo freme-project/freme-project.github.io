@@ -10,27 +10,35 @@ pos: 3.1
 <h1>Named Entity Recognition against Custom Dataset</h1>
 <div>
     <h2>Introduction</h2>
-    <p>TODO</p>
+    <p>Most named entity recognition tools (NER) perform linking of the entities occurring in the text with only one dataset provided by the NER system.
+    However, very often a user would like to match (link) the entities occurring in the document with a proprietary domain specific dataset.
+    In this tutorial you can learn how to perform named entity linking against a custom dataset using the e-Entity sevices.</p>
 </div>
 
 <div>
-    <h2>Technical Instructions</h2>
-    <p>TODO</p>
+    <h2>Pre-requisites</h2>
+    <p>
+    	<ol>
+    		<li>A custom dataset provided in RDF containing entities and labels for the entities.</li>
+    		<li>A document which will be used for processing.</li>
+    	</ol>
+    </p>
 </div>
 
 <script type="text/javascript">
 	
-    function sendAPIRequest() {
+    function sendDatasetCreateRequest() {
 
 	$.ajax({
-	    url: fremeApiUrl + "/e-translation/tilde",
+	    url: fremeApiUrl + "/e-entity/freme-ner",
             type: "POST",
 	    dataType: "text",
             data: {
                 'informat': "text",
-                'outformat': "json-ld",
-                'source-lang': encodeURIComponent($("#source-lang").val()),
-                'target-lang': encodeURIComponent($("#target-lang").val()),
+                'outformat': "turtle",
+                'outformat': "turtle",
+                'language': encodeURIComponent($("#source-lang").val()),
+                'dataset': encodeURIComponent($("#target-lang").val()),
                 'input': encodeURIComponent($("#input").val())
             }
         }).done(function(result){
@@ -41,34 +49,31 @@ pos: 3.1
 </script>
 
 <div>
-    <h2>Example API Call</h2>
+    <h2>Step 1: submit the custom dataset to the e-Entity service</h2>
     <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
 
+    <p><strong>Dataset content</strong><br/>
+    Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="input" cols="40" rows="10" ></textarea></p>
+    <br/>
+
     <p>
-    <strong>Query string parameter input</strong><br/>
-    Specify the text you want to translate here.<br/>
-    <input id="input" type="text" value="Show me the source of the light." /></p>
+    <strong>Dataset serialization format</strong><br/>
+    Specify the RDF serialization format of the dataset.<br/>
+    <input id="informat" type="text" value="n-triples" /></p>
     <br/>
     
-    <p><strong>Query string parameter source-lang</strong><br/>
-    Enter the language you want to translate from<br/>
-    <input id="source-lang" type="text" value="en" /></p>
-    <br/>
-    
-    <p><strong>Query string parameter source-lang</strong><br/>
-    Enter the language you want to translate to<br/>
+    <p><strong>Dataset name</strong><br/>
+    The name of the dataset. It will be used as its ID.<br/>
     <input id="target-lang" type="text" value="de"></p>
     <br/>
 
-    <p><strong>Query string parameter informat</strong><br/>
-    Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"</p>
-    <br/>
-
     <p><strong>Query string parameter outformat</strong><br/>
-    Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"</p>
+    Specifies the format of the data returned by FREME. In this example we want to return the results in the turtle format, thus setting "outformat=turtle"<br/>
+    <input id="target-lang" type="text" value="de"></p>
     <br/>
 
-    <button onclick="sendAPIRequest();">Try it out!</button>
+    <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
 
     <h2>Response</h2>
     <pre id="response">
