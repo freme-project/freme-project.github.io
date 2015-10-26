@@ -11,3 +11,4 @@ Here you can find a collection of links to tutorials explaining how to use our A
 
 * [Entity Recognition against Custom Dataset](./entity-recognition-against-custom-dataset.html)
 * [Translate Text from German to Spanish](./translate-text-from-german-to-spanish.html)
+* [Create EPUB using existing HTML content](./html-to-epub.html)
