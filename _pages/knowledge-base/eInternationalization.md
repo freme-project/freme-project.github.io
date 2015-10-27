@@ -22,7 +22,7 @@ The e-Internationalization service provides methods for converting following for
   *	XLIFF 1.2 – MIME-type: application/x-xliff+xml
   *	ODT – MIME-type: application/x-openoffice
   
-If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the itsrdf domain (see [Supported ITS categories](#Supported ITS categories) section).
+If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the itsrdf domain (see [Supported ITS categories](https://github.com/freme-project/Documentation/blob/master/_pages/knowledge-base/eInternationalization.md#supported-its-categories) section).
 
 Beside the conversion to NIF, the e-Internationalization service also provides a method for converting the enriched NIF back to the original file format. We call this functionality `round-tripping` and at the moment it is only available with the HTML format. For example, the user can invoke the e-Entity service by submitting a HTML file and specifying "outformat=html". The HTML file is converted to NIF and then the latter is sent to the e-Entity service. Once the NIF has been enriched, it is converted back to the HTML format. The final HTML file contains enrichments retrieved by the e-Entity service. As for the simple conversion, the process is completely transparent to the user: he doesn't have to explicitly call the e-Internationalization service. Note that only entity and terminology enrichments can be included in the original file format. Although user is allowed to specify HTML output format even for e-Link and e-Translation services, he should be aware that the returned HTML file won't contain enrichments retrieved by those services.
 
@@ -548,7 +548,7 @@ Original enriched HTML file. Note that some new lines get lost. Anyway it is not
 
 ## ITS properties and NIF files
 
-This section shows how some examples each supported format is converted to NIF, including the translation of ITS to itsrdf properties.
+This section shows how each supported format is converted to NIF, including the translation of ITS to itsrdf properties.
 Note that all markups are discarded (excepting for ITS annotations) and only plain text is extracted.
 
 ### HTML
