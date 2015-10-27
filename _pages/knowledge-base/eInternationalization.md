@@ -59,19 +59,19 @@ Converted NIF file
 
 <http://freme-project.eu/#char=26,59>
         a                       nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext    "http://freme-project.eu/#char=0,59" ;
         nif:anchorOf            "Dublin is the capital of Ireland."@en ;
         nif:beginIndex          "26"^^xsd:nonNegativeInteger ;
         nif:endIndex            "59"^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <http://freme-project.eu/#char=0,59> ;
         dc:identifier           "2" ;
         itsrdf:taAnnotatorsRef  <http://enrycher.ijs.si> .
 
 <http://freme-project.eu/#char=26,32>
         a                       nif:String , nif:RFC5147String , nif:Phrase ;
-        nif:ReferenceContext    "http://freme-project.eu/#char=0,59" ;
         nif:anchorOf            "Dublin"@en ;
         nif:beginIndex          "26"^^xsd:nonNegativeInteger ;
         nif:endIndex            "32"^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <http://freme-project.eu/#char=0,59> ;
         itsrdf:taAnnotatorsRef  <http://enrycher.ijs.si> ;
         itsrdf:taClassRef       <http://nerd.eurecom.fr/ontology#Location> ;
         itsrdf:taConfidence     "0.7"^^xsd:double ;
@@ -79,10 +79,10 @@ Converted NIF file
 
 <http://freme-project.eu/#char=40,47>
         a                       nif:String , nif:RFC5147String , nif:Phrase ;
-        nif:ReferenceContext    "http://freme-project.eu/#char=0,59" ;
         nif:anchorOf            "capital"@en ;
         nif:beginIndex          "40"^^xsd:nonNegativeInteger ;
         nif:endIndex            "47"^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <http://freme-project.eu/#char=0,59> ;
         itsrdf:taAnnotatorsRef  <http://enrycher.ijs.si> ;
         itsrdf:taConfidence     "0.5"^^xsd:double ;
         itsrdf:taIdent          "301467919" ;
@@ -90,10 +90,10 @@ Converted NIF file
 
 <http://freme-project.eu/#char=0,25>
         a                       nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext    "http://freme-project.eu/#char=0,59" ;
         nif:anchorOf            "Text analysis: Local Test"@en ;
         nif:beginIndex          "0"^^xsd:nonNegativeInteger ;
         nif:endIndex            "25"^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <http://freme-project.eu/#char=0,59> ;
         dc:identifier           "1" ;
         itsrdf:taAnnotatorsRef  <http://enrycher.ijs.si> .
 
@@ -130,33 +130,27 @@ Converted NIF file
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-<http://example.org/test2-storagesize.xml/#char=0,25>
-        a                       nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext    "http://example.org/test2-storagesize.xml/#char=0,48" ;
-        nif:anchorOf            "Papouasie-Nouvelle-Guinée"@en ;
-        nif:beginIndex          "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex            "25"^^xsd:nonNegativeInteger ;
-        dc:identifier           "1" ;
-        itsrdf:lineBreakType    "lf" ;
-        itsrdf:storageEncoding  "ISO-8859-1" ;
-        itsrdf:storageSize      "25"^^xsd:unsignedInt .
-
-<http://example.org/test2-storagesize.xml/#char=26,48>
-        a                       nif:RFC5147String , nif:Phrase , nif:String ;
-        nif:ReferenceContext    "http://example.org/test2-storagesize.xml/#char=0,48" ;
-        nif:anchorOf            "République Dominicaine"@en ;
-        nif:beginIndex          "26"^^xsd:nonNegativeInteger ;
-        nif:endIndex            "48"^^xsd:nonNegativeInteger ;
-        dc:identifier           "2" ;
-        itsrdf:lineBreakType    "lf" ;
-        itsrdf:storageEncoding  "ISO-8859-1" ;
-        itsrdf:storageSize      "25"^^xsd:unsignedInt .
-
-<http://example.org/test2-storagesize.xml/#char=0,48>
+<http://freme-project.eu/#char=0,48>
         a               nif:RFC5147String , nif:Context , nif:String ;
         nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
         nif:endIndex    "48"^^xsd:nonNegativeInteger ;
         nif:isString    "Papouasie-Nouvelle-Guinée République Dominicaine"@en .
+
+<http://freme-project.eu/#char=26,48>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "République Dominicaine"@en ;
+        nif:beginIndex        "26"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "48"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,48> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=0,25>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Papouasie-Nouvelle-Guinée"@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "25"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,48> ;
+        dc:identifier         "1" .
 ```
 
 ### XLIFF 1.2
@@ -188,69 +182,67 @@ Converted NIF file
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-<http://example.org/entityAndTerm.xlf/target-it#char=21,45>
+<http://freme-project.eu/#char=0,11>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/entityAndTerm.xlf/target-it#char=0,45" ;
-        nif:anchorOf          "Questo è il mio computer"@en ;
-        nif:beginIndex        "21"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "45"^^xsd:nonNegativeInteger ;
+        nif:anchorOf          "Welcome to "@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "11"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
         dc:identifier         "1" .
 
-<http://example.org/entityAndTerm.xlf/#char=11,17>
-        a                       nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext    "http://example.org/entityAndTerm.xlf/#char=0,38" ;
-        nif:anchorOf            "Dublin"@en ;
-        nif:beginIndex          "11"^^xsd:nonNegativeInteger ;
-        nif:endIndex            "17"^^xsd:nonNegativeInteger ;
-        itsrdf:taAnnotatorsRef  <http://spotlight.dbpedia.org/> ;
-        itsrdf:taIdentRef       <http://dbpedia.org/resource/Dublin> .
-
-<http://example.org/entityAndTerm.xlf/#char=19,38>
+<http://freme-project.eu/#char=43,54>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/entityAndTerm.xlf/#char=0,38" ;
-        nif:anchorOf          "This is my computer"@en ;
+        nif:anchorOf          "This is my "@en ;
+        nif:beginIndex        "43"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "54"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "5" .
+
+<http://freme-project.eu/#char=12,18>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Dublin"@en ;
+        nif:beginIndex        "12"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "18"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=19,21>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "! "@en ;
         nif:beginIndex        "19"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "38"^^xsd:nonNegativeInteger ;
-        dc:identifier         "1" ;
-        itsrdf:target         <http://example.org/entityAndTerm.xlf/target-it#char=21,45> .
+        nif:endIndex          "21"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "3" .
 
-<http://example.org/entityAndTerm.xlf/#char=0,18>
-        a                       nif:RFC5147String , nif:Phrase , nif:String ;
-        nif:ReferenceContext    "http://example.org/entityAndTerm.xlf/#char=0,38" ;
-        nif:anchorOf            "Welcome to Dublin!"@en ;
-        nif:beginIndex          "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex            "18"^^xsd:nonNegativeInteger ;
-        dc:identifier           "0" ;
-        itsrdf:taAnnotatorsRef  <http://spotlight.dbpedia.org/> ;
-        itsrdf:target           <http://example.org/entityAndTerm.xlf/target-it#char=0,20> .
-
-<http://example.org/entityAndTerm.xlf/#char=30,38>
+<http://freme-project.eu/#char=22,42>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/entityAndTerm.xlf/#char=0,38" ;
-        nif:anchorOf          "computer"@en ;
-        nif:beginIndex        "30"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "38"^^xsd:nonNegativeInteger ;
-        itsrdf:term           "yes" .
-
-<http://example.org/entityAndTerm.xlf/target-it#char=0,20>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/entityAndTerm.xlf/target-it#char=0,45" ;
         nif:anchorOf          "Benvenuti a Dublino!"@en ;
-        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "20"^^xsd:nonNegativeInteger ;
-        dc:identifier         "0" .
+        nif:beginIndex        "22"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "42"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "4" .
 
-<http://example.org/entityAndTerm.xlf/#char=0,38>
+<http://freme-project.eu/#char=64,88>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Questo è il mio computer"@en ;
+        nif:beginIndex        "64"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "88"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "7" .
+
+<http://freme-project.eu/#char=0,88>
         a               nif:RFC5147String , nif:Context , nif:String ;
         nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "38"^^xsd:nonNegativeInteger ;
-        nif:isString    "Welcome to Dublin! This is my computer"@en .
+        nif:endIndex    "88"^^xsd:nonNegativeInteger ;
+        nif:isString    "Welcome to  Dublin !  Benvenuti a Dublino! This is my  computer Questo è il mio computer"@en .
 
-<http://example.org/entityAndTerm.xlf/target-it#char=0,45>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "45"^^xsd:nonNegativeInteger ;
-        nif:isString    "Benvenuti a Dublino! Questo è il mio computer"@en .
+<http://freme-project.eu/#char=55,63>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "computer"@en ;
+        nif:beginIndex        "55"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "63"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,88> ;
+        dc:identifier         "6" .
 ```
 
 ### ODT
@@ -268,123 +260,123 @@ Converted NIF file
 @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-<http://example.org/TestDocument02.odt/#char=30,39>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Text body"@en ;
-        nif:beginIndex        "30"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "39"^^xsd:nonNegativeInteger ;
-        dc:identifier         "4" .
-
-<http://example.org/TestDocument02.odt/#char=239,258>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Before column break"@en ;
-        nif:beginIndex        "239"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "258"^^xsd:nonNegativeInteger ;
-        dc:identifier         "10" .
-
-<http://example.org/TestDocument02.odt/#char=347,372>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Section with normal text."@en ;
-        nif:beginIndex        "347"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "372"^^xsd:nonNegativeInteger ;
-        dc:identifier         "14" .
-
-<http://example.org/TestDocument02.odt/#char=279,314>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Section that is password-protected."@en ;
-        nif:beginIndex        "279"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "314"^^xsd:nonNegativeInteger ;
-        dc:identifier         "12" .
-
-<http://example.org/TestDocument02.odt/#char=315,346>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=315,346>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
         nif:anchorOf          "Section that is just protected."@en ;
         nif:beginIndex        "315"^^xsd:nonNegativeInteger ;
         nif:endIndex          "346"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
         dc:identifier         "13" .
 
-<http://example.org/TestDocument02.odt/#char=168,185>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Before page break"@en ;
-        nif:beginIndex        "168"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "185"^^xsd:nonNegativeInteger ;
-        dc:identifier         "7" .
-
-<http://example.org/TestDocument02.odt/#char=127,167>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Non-breaking space= , optional hyphen=­."@en ;
-        nif:beginIndex        "127"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "167"^^xsd:nonNegativeInteger ;
-        dc:identifier         "6" .
-
-<http://example.org/TestDocument02.odt/#char=186,202>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "After page break"@en ;
-        nif:beginIndex        "186"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "202"^^xsd:nonNegativeInteger ;
-        dc:identifier         "8" .
-
-<http://example.org/TestDocument02.odt/#char=0,372>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "372"^^xsd:nonNegativeInteger ;
-        nif:isString    "Heading 1 Heading 2 Heading 3 Text body Paragraph with an inserted script: Text of the script in any language. and text after. Non-breaking space= , optional hyphen=­. Before page break After page break Before line breakAfter line break. Before column break After column break. Section that is password-protected. Section that is just protected. Section with normal text."@en .
-
-<http://example.org/TestDocument02.odt/#char=20,29>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Heading 3"@en ;
-        nif:beginIndex        "20"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "29"^^xsd:nonNegativeInteger ;
-        dc:identifier         "3" .
-
-<http://example.org/TestDocument02.odt/#char=203,238>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Before line breakAfter line break."@en ;
-        nif:beginIndex        "203"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "238"^^xsd:nonNegativeInteger ;
-        dc:identifier         "9" .
-
-<http://example.org/TestDocument02.odt/#char=10,19>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "Heading 2"@en ;
-        nif:beginIndex        "10"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "19"^^xsd:nonNegativeInteger ;
-        dc:identifier         "2" .
-
-<http://example.org/TestDocument02.odt/#char=259,278>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
-        nif:anchorOf          "After column break."@en ;
-        nif:beginIndex        "259"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "278"^^xsd:nonNegativeInteger ;
-        dc:identifier         "11" .
-
-<http://example.org/TestDocument02.odt/#char=40,126>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=40,126>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
         nif:anchorOf          "Paragraph with an inserted script: Text of the script in any language. and text after."@en ;
         nif:beginIndex        "40"^^xsd:nonNegativeInteger ;
         nif:endIndex          "126"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
         dc:identifier         "5" .
 
-<http://example.org/TestDocument02.odt/#char=0,9>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://example.org/TestDocument02.odt/#char=0,372" ;
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=127,167>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Non-breaking space= , optional hyphen=­."@en ;
+        nif:beginIndex        "127"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "167"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "6" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=186,202>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "After page break"@en ;
+        nif:beginIndex        "186"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "202"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "8" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=30,39>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Text body"@en ;
+        nif:beginIndex        "30"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "39"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "4" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=203,238>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Before line breakAfter line break."@en ;
+        nif:beginIndex        "203"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "238"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "9" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=20,29>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Heading 3"@en ;
+        nif:beginIndex        "20"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "29"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "3" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=279,314>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Section that is password-protected."@en ;
+        nif:beginIndex        "279"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "314"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "12" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,9>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
         nif:anchorOf          "Heading 1"@en ;
         nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
         nif:endIndex          "9"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
         dc:identifier         "1" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372>
+        a               nif:String , nif:Context , nif:RFC5147String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "372"^^xsd:nonNegativeInteger ;
+        nif:isString    "Heading 1 Heading 2 Heading 3 Text body Paragraph with an inserted script: Text of the script in any language. and text after. Non-breaking space= , optional hyphen=­. Before page break After page break Before line breakAfter line break. Before column break After column break. Section that is password-protected. Section that is just protected. Section with normal text."@en .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=168,185>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Before page break"@en ;
+        nif:beginIndex        "168"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "185"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "7" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=259,278>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "After column break."@en ;
+        nif:beginIndex        "259"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "278"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "11" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=10,19>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Heading 2"@en ;
+        nif:beginIndex        "10"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "19"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=239,258>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Before column break"@en ;
+        nif:beginIndex        "239"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "258"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "10" .
+
+<http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=347,372>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Section with normal text."@en ;
+        nif:beginIndex        "347"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "372"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
+        dc:identifier         "14" .
 ```
 
 ### Note on ITS tags
@@ -436,21 +428,59 @@ Converted NIF file
 
 <http://freme-project.eu/#char=14,31>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://freme-project.eu/#char=0,31" ;
         nif:anchorOf          "Welcome to Dublin"@en ;
         nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
         nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
         dc:identifier         "2" .
 
 <http://freme-project.eu/#char=0,13>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://freme-project.eu/#char=0,31" ;
         nif:anchorOf          "Roundtripping"@en ;
         nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
         nif:endIndex          "13"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
         dc:identifier         "1" .
 ```
 
+Skeleton NIF file
+
+```
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+<http://freme-project.eu/doc1/#char=0,121>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "121"^^xsd:nonNegativeInteger ;
+        nif:isString    "<!DOCTYPE html>\r\n<html><head>\r\n\t<title>Roundtripping</title>\r\n</head>\r\n<body>\r\n<p>Welcome to Dublin</p>\r\n\r\n</body></html>"@en .
+
+<http://freme-project.eu/#char=14,31>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Welcome to Dublin"@en ;
+        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=82,99> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=0,13>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Roundtripping"@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=39,52> ;
+        dc:identifier         "1" .
+
+<http://freme-project.eu/#char=0,31>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
+        nif:isString    "Roundtripping Welcome to Dublin"@en .
+```
 
 Enriched NIF file
 
@@ -468,7 +498,7 @@ Enriched NIF file
 
 <http://freme-project.eu/#char=14,31>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://freme-project.eu/#char=0,31" ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
         nif:anchorOf          "Welcome to Dublin"@en ;
         nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
         nif:endIndex          "31"^^xsd:nonNegativeInteger ;
@@ -476,7 +506,7 @@ Enriched NIF file
 
 <http://freme-project.eu/#char=0,13>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://freme-project.eu/#char=0,31" ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
         nif:anchorOf          "Roundtripping"@en ;
         nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
         nif:endIndex          "13"^^xsd:nonNegativeInteger ;
@@ -484,7 +514,7 @@ Enriched NIF file
 		
 <http://freme-project.eu/#char=25,31>
         a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:ReferenceContext  "http://freme-project.eu/#char=0,31" ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
         nif:anchorOf          "Dublin"@en ;
         nif:beginIndex        "25"^^xsd:nonNegativeInteger ;
         nif:endIndex          "31"^^xsd:nonNegativeInteger ;

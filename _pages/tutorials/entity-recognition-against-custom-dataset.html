@@ -1,9 +1,143 @@
 ---
 layout: page 
-title: Entity Recognition against Custom Dataset
+title: Named Entity Recognition against Custom Dataset
 dropdown: Tutorials
 pos: 3.1
 ---
 
-<div>Should be written by InfAi</div>
+<h1>Still draft..</h1>
 
+<h1>Named Entity Recognition against Custom Dataset</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>Most named entity recognition tools (NER) perform linking of the entities occurring in the text with only one dataset provided by the NER system.
+    However, very often a user would like to match (link) the entities occurring in the document with a proprietary domain specific dataset.
+    In this tutorial you can learn how to perform named entity linking against a custom dataset using the e-Entity sevices.</p>
+</div>
+
+<div>
+    <h2>Pre-requisites</h2>
+    <p>
+    	<ol>
+    		<li>A custom dataset provided in RDF containing entities and labels for the entities.</li>
+    		<li>A document which will be used for processing.</li>
+    	</ol>
+    </p>
+</div>
+
+<script type="text/javascript">
+	
+    function sendDatasetCreateRequest() {
+
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
+	    +"informat="+$("#informat-dataset").val()
+	    +"&name="+$("#dataset-name").val()
+	    +"&description="+$("#dataset-description").val()
+	    +"&language="+$("#dataset-language").val()
+	    +"&outformat=json",
+            type: "POST",
+	    dataType: "text",
+	    contentType: 'text/plain',
+            data: $("#input-dataset").val()
+        }).done(function(result){
+    	    $("#dataset-creation-response").text(result);
+	});
+       };
+
+    function sendTextProcessingRequest() {
+
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/documents",
+            type: "POST",
+	    dataType: "text",
+            data: {
+                'informat': encodeURIComponent($("#informat-text").val()),
+                'outformat': encodeURIComponent($("#outformat-text").val()),
+                'language': encodeURIComponent($("#text-language").val()),
+                'dataset': encodeURIComponent($("#target-dataset").val()),
+                //'input': encodeURIComponent($("#input-text").val())
+                'input': $("#input-text").val()
+            }
+        }).done(function(result){
+    	    $("#ner-results").text(result);
+	});
+       };
+       
+</script>
+
+<div>
+    <h2>Step 1: submit the custom dataset to the e-Entity service</h2>
+    <p>First we need to submit our dataset before we use it for entity linking.</p>
+
+    <p><strong>Dataset content</strong><br/>
+    Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="input-dataset" cols="80" rows="10" ></textarea></p>
+    <br/>
+
+    <p>
+    <strong>Dataset serialization format</strong><br/>
+    Specify the RDF serialization format of the dataset.<br/>
+    <input id="informat-dataset" type="text" value="n-triples" /></p>
+    <br/>
+    
+    <p><strong>Dataset name</strong><br/>
+    The name of the dataset. It will be used as its ID.<br/>
+    <input id="dataset-name" type="text" value="mydataset"></p>
+    <br/>
+
+    <p><strong>Dataset description</strong><br/>
+    Short description of the dataset.<br/>
+    <input id="dataset-description" type="text" value="This is a test dataset provided via the tutorial page."></p>
+    <br/>
+    
+    <p><strong>Dataset language</strong><br/>
+    Language of the dataset labels.<br/>
+    <input id="dataset-language" type="text" value="en"></p>
+    <br/>
+    
+    <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
+
+    <h2>Response</h2>
+    <pre id="dataset-creation-response">
+    </pre>
+
+    <h2>Step 2: submit text for processing</h2>
+    <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
+
+    <p><strong>Text for processing</strong><br/>
+    Paste here the text that should be processed.<br/>
+    <textarea id="input-text" cols="80" rows="10" ></textarea></p>
+    <br/>
+
+    <p>
+    <strong>Text language</strong><br/>
+    Specify the language of the input. E.g. "language=en".<br/>
+    <input id="text-language" type="text" value="en" /></p>
+    <br/>
+
+    <p>
+    <strong>Input format</strong><br/>
+    Specify the format of the input. Since we submit plain text we can set "informat=text".<br/>
+    <input id="informat-text" type="text" value="text" /></p>
+    <br/>
+    
+    <p>
+    <strong>Outformat format</strong><br/>
+    Specify the RDF serialization format for the output.<br/>
+    <input id="outformat-text" type="text" value="turtle" /></p>
+    <br/>
+    
+    <p><strong>Dataset name</strong><br/>
+    The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation.<br/>
+    <input id="target-dataset" type="text" value="dbpedia"></p>
+    <br/>
+
+    <button onclick="sendTextProcessingRequest();">Submit the dataset!</button>
+
+    <h2>Response</h2>
+    <pre id="ner-results">
+
+    </pre>
+
+</div>
