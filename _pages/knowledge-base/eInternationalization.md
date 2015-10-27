@@ -16,7 +16,7 @@ The e-Internationalization service provides methods for converting following for
   *	XLIFF 1.2 – MIME-type: application/x-xliff+xml
   *	ODT – MIME-type: application/x-openoffice
   
-If the original document contains ITS 2.0 tags, they are translated to proper NIF properties from the itsrdf domain.
+If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the itsrdf domain.
 
 ## Conversion to NIF
 
@@ -25,7 +25,7 @@ This section describes some examples of input files and expected output for each
 
 ### HTML
 
-Original document, containing text-analysis ITS 2.0 tags.
+Original document, containing text-analysis ITS 2.0 properties.
 
 ```
 <!DOCTYPE html>
@@ -379,13 +379,13 @@ Converted NIF file
         dc:identifier         "14" .
 ```
 
-### Note on ITS tags
+### Note on ITS properties
 
 Some ITS 2.0 categories are not supported: they are not translated to itsrdf properties. Known unsupported categories are:
 
 * Translate for XLIFF files
 * Translate, Locale Filter, MT Confidence and Domain for HTML
-* ITS tags support for XML files is still draft. Some categories could not be translated. At the moment a list of unsupported tags is not available.
+* ITS properties support for XML files is still draft. Some categories could not be translated. At the moment a list of unsupported properties is not available.
 
 ## Roundtripping
 
