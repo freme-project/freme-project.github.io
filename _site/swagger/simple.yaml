@@ -29,7 +29,8 @@ paths:
   /e-entity/dbpedia-spotlight/documents:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        text/plain, application/rdf+xml, application/x-xliff+xml, text/html]
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: ' Enriches Text content with entities gathered from various datasets
         by the DBPedia-Spotlight Engine.
 
@@ -40,13 +41,13 @@ paths:
         type: string}
       - default: turtle
         description: Format of input string.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml, application/x-xliff+xml, text/html,
-          text]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: informat
         required: false
         type: string
-      - default: [turtle]
+      - default: turtle
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
@@ -83,7 +84,8 @@ paths:
           parameter is between 0 and 1. Default is 0.3, in: query, name: confidence,
         required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -93,8 +95,9 @@ paths:
       tags: [e-Entity]
   /e-entity/freme-ner/documents:
     post:
-      consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
-        application/n-triples, text/plain, application/rdf+xml]
+      consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Enriches Text content with entities gathered from various datasets\n\
         by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\n\
         as NIF document. The text of the nif:isString property (attached to the\n\
@@ -111,7 +114,7 @@ paths:
       parameters:
       - {description: The text to enrich. Can be either plaintext or NIF (see parameter
           informat). Short form is i., in: query, name: input, required: false, type: string}
-      - default: [turtle]
+      - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xmlor text. Overrides Content-Type header. Short form is f.
         enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
@@ -120,7 +123,7 @@ paths:
         name: informat
         required: false
         type: string
-      - default: [turtle]
+      - default: turtle
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short
           form is o.
@@ -166,7 +169,8 @@ paths:
         required: false
         type: string
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -177,7 +181,8 @@ paths:
   /e-link/documents/:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "This service accepts a NIF document (with annotated entities)\
         \ and performs enrichment with pre-defined templates. The templates contain\
         \ \"fields\" marked between three at-signs @@@field-name@@@. If a user, while\
@@ -213,7 +218,7 @@ paths:
         \n\n\n</code></pre>\n"
       operationId: enrich
       parameters:
-      - default: [turtle]
+      - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xml. Overrides Content-Type header. Short form is f.
         enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
@@ -222,7 +227,7 @@ paths:
         name: informat
         required: false
         type: string
-      - default: [turtle]
+      - default: turtle
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
@@ -241,7 +246,8 @@ paths:
       - {description: the ID of the template to be used for enrichment, format: int32,
         in: query, name: templateid, required: true, type: integer}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -363,7 +369,8 @@ paths:
   /e-terminology/tilde:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        text/plain, application/rdf+xml, application/x-xliff+xml, text/html]
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Annotate text with terminology information using Tilde Terminology\n\
         service. This example shows NIF that can be consumed by the service:\n\n<pre\
         \ lang=\\\"sparql\\\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;\
@@ -378,7 +385,7 @@ paths:
       parameters:
       - {description: The text to annotate. Can be either plaintext or NIF (see parameter
           informat). Short form is i., in: query, name: input, required: false, type: string}
-      - default: [turtle]
+      - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xml or text. Overrides Content-Type header. Short form is f.
         enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
@@ -387,7 +394,7 @@ paths:
         name: informat
         required: false
         type: string
-      - default: [turtle]
+      - default: turtle
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
@@ -432,7 +439,8 @@ paths:
           Tilde team</a>. Optional, if omitted then translates with public systems',
         in: query, name: key, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -443,8 +451,9 @@ paths:
       tags: [e-Terminology]
   /e-translation/tilde:
     post:
-      consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
-        application/n-triples, text/plain, application/rdf+xml]
+      consumes: [text/n3, text/turtle, application/x-xliff+xml, application/ld+json,
+        application/n-triples, text/plain, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Parameters can be submitted via URL or via form-data post body.\
         \ A list of available\nlanguage pairs is [here](https://services.tilde.com/translationsystems).\
         \ This is a\nNIF example that can be consumed by e-Translation:\n\n<pre lang=\"\
@@ -462,7 +471,7 @@ paths:
           (see parameter informat). Short form is i. If set, it will be prefered over
           the body content.', in: query, name: input, required: false, type: string,
         x-force-textarea: true}
-      - default: [turtle]
+      - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xmlor text. Defaults to "turtle". This parameter overrides Content-Type
           header. Short form is f.
@@ -472,7 +481,7 @@ paths:
         name: informat
         required: false
         type: string
-      - default: [turtle]
+      - default: turtle
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". This parameter overrides Accept
           header (Response Content Type). Short form is o.
@@ -514,7 +523,8 @@ paths:
           [optional, if omitted then source and target languages and also domain parameters
           are used]', in: query, name: system, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response

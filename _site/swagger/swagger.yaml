@@ -318,9 +318,6 @@ paths:
           description: "Successful resposnse"
           schema:
             type: "string"
-        404:
-          description: "Not found - the template does not exist"
-
   /pipelining/templates/{id}:
     put:
       tags:
@@ -650,6 +647,8 @@ paths:
       - "application/rdf+xml"
       - "application/x-xliff+xml"
       - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
 
       produces:
       - "text/n3"
@@ -657,6 +656,10 @@ paths:
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
 
       parameters:
       - name: "input"
@@ -679,22 +682,10 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
-#         Can be json-ld, turtle, n3, n-triples,\
-#          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
+        default: "turtle"
         required: false
         type: "string"
-        default: "turtle"
-        enum:
-        - "json-ld"
-        - "turtle"
-        - "n3"
-        - "n-triples"
-        - "rdf-xml"
-        - "application/x-xliff+xml"
-        - "text/html"
-        - "text"
+
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -702,6 +693,7 @@ paths:
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
+        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
@@ -712,8 +704,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -1059,18 +1050,26 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
-      - "application/x-xliff+xml"
       - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       parameters:
       - name: "input"
         in: "query"
@@ -1095,8 +1094,7 @@ paths:
         - "application/x-xliff+xml"
         - "application/x-openoffice"
         - "text"
-        default:
-        - "turtle"
+        default:  "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1115,8 +1113,7 @@ paths:
         - "application/x-xliff+xml"
         - "application/x-openoffice"
         - "text"
-        default:
-        - "turtle"
+        default:  "turtle"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -1283,12 +1280,22 @@ paths:
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       parameters:
       - name: "informat"
         in: "query"
@@ -1307,8 +1314,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default: "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1327,8 +1333,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default:  "turtle"
       - in: "body"
         name: "body"
         description: "The text to enrich with data. The format of the body can be\
@@ -2008,12 +2013,19 @@ paths:
       - "application/rdf+xml"
       - "application/x-xliff+xml"
       - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       parameters:
       - name: "input"
         in: "query"
@@ -2038,8 +2050,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default:  "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -2058,8 +2069,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default: "turtle"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -2145,18 +2155,25 @@ paths:
       consumes:
       - "text/n3"
       - "text/turtle"
-      - "text/html"
       - "application/x-xliff+xml"
       - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
-      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
       produces:
       - "text/n3"
       - "text/turtle"
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
       parameters:
       - name: "input"
         in: "query"
@@ -2184,8 +2201,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default:  "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -2204,8 +2220,7 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        default:
-        - "turtle"
+        default:  "turtle"
       - name: "prefix"
         in: "query"
         description: "Controls the url of rdf resources generated from plaintext.\
