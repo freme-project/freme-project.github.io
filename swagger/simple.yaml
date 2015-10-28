@@ -421,6 +421,10 @@ paths:
       - {description: 'If given - it filters out by domain proposed terms. Available
           domains here: https://term.tilde.com/domains (should pass just ID, eg, TaaS-1001,
           that means Agriculture)', in: query, name: domain, required: false, type: string}
+      - {description: 'A private key to access private and not publicly available
+          translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts">
+          Tilde team</a>. Optional, if omitted then translates with public systems',
+        in: query, name: key, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
         application/rdf+xml]
       responses:
@@ -488,6 +492,10 @@ paths:
       - {description: 'Target language, e.g. "de". A list of available language pairs
           is [here](https://services.tilde.com/translationsystems).', in: query, name: target-lang,
         required: true, type: string}
+      - {description: 'A private key to access private and not publicly available
+          translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts">
+          Tilde team</a>. Optional, if omitted then translates with public systems',
+        in: query, name: key, required: false, type: string}
       - {description: 'specify domain of translation system. List of supported domains
           and language pairs can be found [here](https://services.tilde.com/translationsystem).',
         in: query, name: domain, required: false, type: string}

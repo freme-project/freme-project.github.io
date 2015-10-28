@@ -74,7 +74,7 @@ paths:
       - "User"
       summary: "Create a new user"
       description: |
-        Creates a new user.
+        Creates a new user. See the<a href="./../knowledge-base/authentication.html" target="_blank"> Authentication article</a> for detailed information.
 
       produces:
         - "application/json"
@@ -187,7 +187,9 @@ paths:
       summary: "Authenticate as an existing user"
       description: |
         Create an access token for given user that was previously created by POST /user.
-        An access token is a 36 characters long string. You can attach the access token to every FREME API call using the header field X-Auth-Token.
+        An access token is a 36 characters long string. You can attach the access token to every FREME API call using the header field X-Auth-Token, or in this API-Documentation, with the input field at the very bottom.
+        See the<a href="./../knowledge-base/authentication.html" target="_blank"> Authentication article</a> for detailed information.
+
 
 
         **Example Response**
@@ -2019,6 +2021,11 @@ paths:
           \ TaaS-1001, that means Agriculture)"
         required: false
         type: "string"
+      - name: "key"
+        description: A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems
+        required: false
+        type: "string"
+        in: "query"
       responses:
         200:
           description: "Successful response"
@@ -2132,7 +2139,11 @@ paths:
           \ is [here](https://services.tilde.com/translationsystems)."
         required: true
         type: "string"
-
+      - name: "key"
+        description: A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems
+        required: false
+        type: "string"
+        in: "query"
       - name: "domain"
         in: "query"
         description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystem)."
