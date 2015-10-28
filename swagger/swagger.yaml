@@ -318,9 +318,6 @@ paths:
           description: "Successful resposnse"
           schema:
             type: "string"
-        404:
-          description: "Not found - the template does not exist"
-
   /pipelining/templates/{id}:
     put:
       tags:
