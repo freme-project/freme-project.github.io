@@ -668,6 +668,19 @@ paths:
       - name: "informat"
         in: "query"
         description: "Format of input string."
+        enum:
+        - "text"
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
 #         Can be json-ld, turtle, n3, n-triples,\
 #          \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
@@ -689,13 +702,18 @@ paths:
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
-        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -1066,7 +1084,6 @@ paths:
           \ rdf-xmlor text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
@@ -1074,8 +1091,12 @@ paths:
         - "n-triples"
         - "rdf-xml"
         - "text/html"
+        - "text/xml"
         - "application/x-xliff+xml"
+        - "application/x-openoffice"
         - "text"
+        default:
+        - "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1083,13 +1104,19 @@ paths:
           \ Short form is o."
         required: false
         type: "string"
-        default: "turtle"
         enum:
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        - "text"
+        default:
+        - "turtle"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -1269,13 +1296,19 @@ paths:
           \ rdf-xml. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -1283,13 +1316,19 @@ paths:
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - in: "body"
         name: "body"
         description: "The text to enrich with data. The format of the body can be\
@@ -1988,16 +2027,19 @@ paths:
           \ rdf-xml or text. Overrides Content-Type header. Short form is f."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text"
         - "text/html"
+        - "text/xml"
         - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -2005,13 +2047,19 @@ paths:
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "prefix"
         in: "query"
         description: "Unused optional Parameter. Short form is p."
@@ -2125,16 +2173,19 @@ paths:
           \ header. Short form is f."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text"
         - "text/html"
+        - "text/xml"
         - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "outformat"
         in: "query"
         description: "RDF serialization format of Output. Can be json-ld, turtle,\
@@ -2142,13 +2193,19 @@ paths:
           \ Accept header (Response Content Type). Short form is o."
         required: false
         type: "string"
-        default: "turtle"
         enum:
+        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default:
+        - "turtle"
       - name: "prefix"
         in: "query"
         description: "Controls the url of rdf resources generated from plaintext.\
