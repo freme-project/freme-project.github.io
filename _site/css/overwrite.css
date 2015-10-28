@@ -39,3 +39,8 @@ code {
      padding:0;
      height:0;
  }
+
+#resources_container {
+    max-width: 1000px;
+
+}
