@@ -840,8 +840,7 @@ paths:
           \ application/n-triples, application/rdf+xml, text/n3. Defaults to \"text/turtle\"\
           . The parameter *informat* overrides the Content-Type."
         required: false
-        schema:
-          type: "string"
+        type: "string"
       - name: "name"
         in: "query"
         description: "proposed dataset name. It can be considered as ID for the dataset.\
@@ -858,6 +857,7 @@ paths:
         description: "This parameter should be used in combination with the \"endpoint\" parameter. The value of the sparql parameter is a SPARQL query which selects subset of a dataset for import in FREME NER."
         required: false
         type: "string"
+        x-force-textarea: true
       - name: "endpoint"
         in: "query"
         description: "a SPARQL endpoint against which the SPARQL query specified with the \"sparql\" parameter should be executed. The endpoint parameter makes sense to use only in combination with the \"sparql\" parameter. An example is \"http://dbpedia.org/sparql\" "
@@ -881,6 +881,7 @@ paths:
         description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`."
         in: "query"
         type: "string"
+        x-force-textarea: true
       responses:
         201:
           description: "Created - the dataset was successfuly created"
@@ -956,8 +957,7 @@ paths:
           \ n3, n-triples, rdf-xml. Defaults to \"text/turtle\". The parameter *informat*\
           \ overrides the Content-Type."
         required: false
-        schema:
-          type: "string"
+        type: "string"
       - name: "name"
         in: "path"
         description: "The name name of the dataset to update. It can be considered\
@@ -1546,36 +1546,64 @@ paths:
       tags:
       - "e-Link"
       summary: "Creates a new enrichment template."
-      description: "\n
-        Creates a new enrichment template.  \n\n
-        **Example of input in JSON format:**\n \n
-        <pre lang=\"javascript\"><code>
-        {\n
-        \"query\":\"a SPARQL CONSTRUCT query\",\n
-        \"endpoint\":\"the SPARQL endpoint which will be used to execute the template\",\n
-        \"label\":\"the title of the template\",\n
-        \"description\":\"a description of the template\"\n
+      description: |
+        Creates a new enrichment template.
+        The input has to contain the following entries:
+        - `query:` a SPARQL CONSTRUCT query
+        - `endpoint:` the SPARQL endpoint which will be used to execute the template
+        - `label:` the title of the template
+        - `description:` a description of the template
+
+        **Optional entries:**
+        - `endpointType`: This parameter describes the type of the endpoint data. The value has to be either "sparql" (default) or "ldf".
+        - `visibility`: visibility: This parameter controlls, how the template can be accessed by other users than the owner. This includes enrichment etc. via this template. See the Restricted Endpoints and Restricted Resources section of the <a href= "./../knowledge-base/authentication.html" target="_blank">authentication article</a> for further information. The value has to be either "public" (default) or "private".
+        **Example of input in JSON format:**
+        <pre lang="javascript"><code>
+        {
+            "query":"PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;
+                PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;
+                PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+                PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
+                CONSTRUCT
+                {
+                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .
+                }
+                WHERE
+                {
+                    &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .
+                    ?museum rdf:type &lt;http://schema.org/Museum&gt; .
+                    ?museum geo:geometry ?museumgeo .
+                    FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))
+                }
+                LIMIT 10",
+          "endpoint":"http://dbpedia.org/sparql/",
+          "label":"template title",
+          "description":"template description",
+          "endpointType":"sparql",
+          "visibility":"public"
         }
-        </code></pre>\n
-        Here is an example SPARQL COSTRUCT QUERY:\n
-        <pre lang=\"sparql\"><code>
-        PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt\n
-        CONSTRUCT {\n
-            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
-            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
-        } WHERE {\n
-            &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .\n
-            &lt;@@@entity_uri@@@&gt geo-pos:long ?long .\n
-        }
-        </code></pre>\n
-        \n
-        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.\n
-        \n
-        However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):\n
-        <pre lang=\"bash\"><code>
-        curl -v -d @example.ttl -X POST -H \"Content-Type: text/turtle\" \"http://localhost:8080/e-link/documents?templateid=116&my_limit=5\"
         </code></pre>
-        "
+
+        Here is an example SPARQL COSTRUCT QUERY:
+
+        <pre lang="sparql"><code>
+                PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt
+                CONSTRUCT {
+                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
+                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
+                } WHERE {
+                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
+                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
+                }
+        </code></pre>
+
+        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.
+
+        However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):
+
+        <pre lang="bash"><code>curl -v -d @example.ttl -X POST -H "Content-Type: text/turtle" "http://localhost:8080/e-link/documents?templateid=116&my_limit=5"
+        </code></pre>
+
 
       operationId: "createTemplate"
       consumes:
@@ -1630,6 +1658,11 @@ paths:
         required: false
         schema:
           type: "string"
+      - in: "query"
+        name: "owner"
+        description: "If this parameter is not empty, the owner of the template will be changed. The value of this parameter has to be the name of an existing user."
+        required: false
+        type: "string"
       responses:
         200:
           description: "Successful response"
@@ -1749,6 +1782,11 @@ paths:
         description: "The ID of the template to update."
         required: true
         type: "string"
+      - name: "owner"
+        in: "query"
+        required: false
+        description: Transfers ownership to another user. This has to be the name of an existing user.
+        type: "string"
       responses:
         200:
           description: "Successful response"
@@ -1788,7 +1826,7 @@ paths:
         Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
 
         **Example Call**
-        <pre lang=\"bash\"><code>
+        <pre lang="bash\"><code>
         curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
         </code></pre>
 

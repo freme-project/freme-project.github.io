@@ -289,8 +289,8 @@ paths:
       consumes: [multipart/form-data]
       description: "Creates an eBook in the EPUB3 format from a zip file containing\
         \ HTML Files and more (images etc.) and a json file containing all necessary\
-        \ metadata for the creation of the eBook.\n\n**Example Call**\n<pre lang=\\\
-        \"bash\\\"><code>\ncurl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39;\
+        \ metadata for the creation of the eBook.\n\n**Example Call**\n<pre lang=\"\
+        bash\\\"><code>\ncurl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39;\
         \ http://api-dev.freme-project.eu/current/e-publishing/html\n</code></pre>\n\
         \n**The Metadata JSON supports the following options:**\n\n* `epubVersion\
         \ (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is\
