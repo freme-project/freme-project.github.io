@@ -1591,54 +1591,50 @@ paths:
       - "e-Link"
       summary: "Creates a new enrichment template."
       description: |
-        Creates a new enrichment template.
-        The input has to contain the following entries:
+        Creates a new enrichment template. The template will be constructed from JSON data submitted as body.
+        
+        **The JSON input has to contain the following fields:**
         - `query:` a SPARQL CONSTRUCT query
         - `endpoint:` the SPARQL endpoint which will be used to execute the template
         - `label:` the title of the template
         - `description:` a description of the template
 
-        **Optional entries:**
+        **Optional fields:**
         - `endpointType`: This parameter describes the type of the endpoint data. The value has to be either "sparql" (default) or "ldf".
         - `visibility`: visibility: This parameter controlls, how the template can be accessed by other users than the owner. This includes enrichment etc. via this template. See the Restricted Endpoints and Restricted Resources section of the <a href= "./../knowledge-base/authentication.html" target="_blank">authentication article</a> for further information. The value has to be either "public" (default) or "private".
+        
         **Example of input in JSON format:**
+        
         <pre lang="javascript"><code>
         {
-            "query":"PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;
-                PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;
-                PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-                PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
-                CONSTRUCT
-                {
-                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .
-                }
-                WHERE
-                {
-                    &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .
-                    ?museum rdf:type &lt;http://schema.org/Museum&gt; .
-                    ?museum geo:geometry ?museumgeo .
-                    FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))
-                }
-                LIMIT 10",
-          "endpoint":"http://dbpedia.org/sparql/",
-          "label":"template title",
-          "description":"template description",
-          "endpointType":"sparql",
-          "visibility":"public"
+            "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
+            "endpoint": "http://dbpedia.org/sparql/",
+            "label": "template title",
+            "description": "template description",
+            "endpointType": "sparql",
+            "visibility": "public"
         }
         </code></pre>
 
-        Here is an example SPARQL COSTRUCT QUERY:
+        Here is an example SPARQL COSTRUCT QUERY. Please note that you have to convert newline characters to \n before copy & pasting it in JSON:
 
         <pre lang="sparql"><code>
-                PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt
-                CONSTRUCT {
-                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
-                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
-                } WHERE {
-                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
-                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
-                }
+        PREFIX dbpedia: <http://dbpedia.org/resource/>
+        PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+        CONSTRUCT
+        {
+          ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .
+        }
+        WHERE
+        {
+            <@@@entity_uri@@@> geo:geometry ?citygeo .
+            ?museum rdf:type <http://schema.org/Museum> .
+            ?museum geo:geometry ?museumgeo .
+            FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))
+        }
+        LIMIT 10
         </code></pre>
 
         In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.
@@ -1702,11 +1698,6 @@ paths:
         required: false
         schema:
           type: "string"
-      - in: "query"
-        name: "owner"
-        description: "If this parameter is not empty, the owner of the template will be changed. The value of this parameter has to be the name of an existing user."
-        required: false
-        type: "string"
       responses:
         200:
           description: "Successful response"
