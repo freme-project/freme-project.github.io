@@ -49,7 +49,7 @@ pos: 3.1
 
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
-	    +"informat="+$("#informat-text").val()
+	    +"informat=text"
 	    +"&outformat="+$("#outformat-text").val()
 	    +"&language="+$("#text-language").val()
 	    +"&dataset="+$("#target-dataset").val(),
@@ -141,13 +141,12 @@ pos: 3.1
 
     <p>
     <strong>Input format</strong><br/>
-    Specify the format of the input. Since we submit plain text we can set "informat=text".<br/>
-    <input id="informat-text" type="text" value="text" /></p>
+    Since we send plain text we will set the input format to text/plain by setting the Content-Type parameter to "Content-Type: text/plain" or by setting the "informat" parameter to "text" ("informat=text").<br/></p>
     <br/>
     
     <p>
     <strong>Outformat format</strong><br/>
-    Specify the RDF serialization format for the output.<br/>
+    Specify the RDF serialization format for the output. This <br/>
     <input id="outformat-text" type="text" value="turtle" /></p>
     <br/>
     
