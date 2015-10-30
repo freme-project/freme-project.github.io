@@ -61,6 +61,8 @@ pos: 3.1
             }
         }).done(function(result){
     	    $("#ner-results").text(result);
+	}).fail(function() {
+    	    $("#ner-results").text(result);
 	});
        };
        
