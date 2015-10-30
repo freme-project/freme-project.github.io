@@ -67,7 +67,30 @@ pos: 3.1
 </script>
 
 <div>
-    <h2>Step 1: submit the custom dataset to the e-Entity service</h2>
+    <h2>Step 1: Prepare your dataset</h2>
+    <p>First we need to prepare our custom dataset.
+    The dataset should be provided in RDF and contain list of entities names for the entities.
+    Bellow is small example of such dataset in the N-triples format where in each record, the subject (first element) is a URI identifier for the entity, the predicate (second element) is the type of the information we describe (preferred or alternative label for the entity), and the object (last element) is the actual name for the entity.</p>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Milan Dojchinovski&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Milan&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Sebastian Hellmann&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Sebastian&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Felix Sasaki&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Felix&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Jan Nehring&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Jan&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/INFAI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;INFAI&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/DFKI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;DFKI&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Tilde&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Tilde&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/ISMB&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;ISMB&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Wripl&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Wripl&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Vistatec&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Vistatec&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/AgroKnow&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;AgroKnow&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/iMinds&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;iMinds&quot; .
+</pre></div>
+
+    <p>The dataset above contains</p>
+    <h2>Step 2: submit the custom dataset to the e-Entity service</h2>
     <p>First we need to submit our dataset before we use it for entity linking.</p>
 
     <p><strong>Dataset content</strong><br/>
