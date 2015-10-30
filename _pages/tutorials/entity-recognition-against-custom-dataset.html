@@ -48,16 +48,16 @@ pos: 3.1
     function sendTextProcessingRequest() {
 
 	$.ajax({
-	    url: fremeApiUrl + "/e-entity/freme-ner/documents",
+	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
+	    +"informat="+$("#informat-text").val()
+	    +"&outformat="+$("#outformat-text").val()
+	    +"&language"="+$("#text-language").val()
+	    +"&dataset"="+$("#target-dataset").val()
+	    ,
             type: "POST",
 	    dataType: "text",
 	    contentType: '',
             data: {
-                'informat': encodeURIComponent($("#informat-text").val()),
-                'outformat': encodeURIComponent($("#outformat-text").val()),
-                'language': encodeURIComponent($("#text-language").val()),
-                'dataset': encodeURIComponent($("#target-dataset").val()),
-                //'input': encodeURIComponent($("#input-text").val())
                 'input': $("#input-text").val()
             }
         }).done(function(result){
@@ -159,7 +159,7 @@ pos: 3.1
     <input id="target-dataset" type="text" value="mydataset"></p>
     <br/>
 
-    <button onclick="sendTextProcessingRequest();">Process the text!</button>
+    <button onclick="sendTextProcessingRequest();">Process the text</button>
 
     <h2>Response</h2>
     <pre id="ner-results">
