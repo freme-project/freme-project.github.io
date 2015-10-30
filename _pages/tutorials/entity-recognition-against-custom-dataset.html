@@ -51,6 +51,7 @@ pos: 3.1
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents",
             type: "POST",
 	    dataType: "text",
+	    contentType: '',
             data: {
                 'informat': encodeURIComponent($("#informat-text").val()),
                 'outformat': encodeURIComponent($("#outformat-text").val()),
