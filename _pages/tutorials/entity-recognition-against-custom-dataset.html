@@ -34,7 +34,7 @@ pos: 3.1
 	    +"informat="+$("#informat-dataset").val()
 	    +"&name="+$("#dataset-name").val()
 	    +"&description="+$("#dataset-description").val()
-	    +"&language="+$("#dataset-language").val()
+	    +"&language=en"
 	    +"&outformat=json",
             type: "POST",
 	    dataType: "text",
@@ -89,9 +89,11 @@ pos: 3.1
 &lt;http://www.freme-projects.eu/dataset/org/iMinds&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;iMinds&quot; .
 </pre></div>
 
-    <p>The dataset above contains</p>
-    <h2>Step 2: submit the custom dataset to the e-Entity service</h2>
-    <p>First we need to submit our dataset before we use it for entity linking.</p>
+    <p>The dataset above contains description for 12 entities and names associated with these entities.
+    For example, we have information that the entity Milan Dojchinovski is known as "Milan" and also as "Milan Dojchinovski".</p>
+    
+    <h2>Step 2: Submit the custom dataset to the e-Entity service</h2>
+    <p>First we need to submit our dataset before we use it for entity linking. You can re-use the example dataset above.</p>
 
     <p><strong>Dataset content</strong><br/>
     Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
@@ -112,11 +114,6 @@ pos: 3.1
     <p><strong>Dataset description</strong><br/>
     Short description of the dataset.<br/>
     <input id="dataset-description" type="text" value="This is a test dataset provided via the tutorial page."></p>
-    <br/>
-    
-    <p><strong>Dataset language</strong><br/>
-    Language of the dataset labels.<br/>
-    <input id="dataset-language" type="text" value="en"></p>
     <br/>
     
     <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
