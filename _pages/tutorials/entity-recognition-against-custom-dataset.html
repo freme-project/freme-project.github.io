@@ -20,7 +20,7 @@ pos: 3.1
     	<li><a href="#step-1-prepare-your-dataset">Step 1: Prepare your dataset</a></li>
     	<li><a href="#step-2-submit-your-dataset">Step 2: Submit your dataset</a></li>
     	<li><a href="#step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</a></li>
-    	<li><a href="#curl-tip">cURL examples</a></li>
+    	<li><a href="#curl-examples">cURL examples</a></li>
     </ol>
     
 </div>
@@ -173,5 +173,11 @@ pos: 3.1
     </pre>
     <h2 id="curl-examples">cURL Examples</h2>
     <p>Bellow you can find some useful cURL command examples.</p>
+    
+    <h3>Submit dataset</h3>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot;http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&quot; -H &quot;Content-Type: text/plain&quot;
+</pre></div>
+    <h3>Submit text for named entity recognition</h3>
+TODO
 
 </div>
