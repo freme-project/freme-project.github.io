@@ -129,7 +129,7 @@ pos: 3.1
     <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
 
     <p><strong>Text for processing</strong><br/>
-    Paste here the text that should be processed. The recognized entities will be linked with your dataset.<br/>
+    Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is send as body of the request.<br/>
     <textarea id="input-text" cols="130" rows="10" ></textarea></p>
     <br/>
 
@@ -146,12 +146,12 @@ pos: 3.1
     
     <p>
     <strong>Outformat format</strong><br/>
-    Specify the RDF serialization format for the output. This <br/>
+    Specify the RDF serialization format for the output. You can set the output format by setting the outformat parameter, e.g. "outformat=turtle", or by setting the "Accept" header, e.g. "Accept: text/turtle".<br/>
     <input id="outformat-text" type="text" value="turtle" /></p>
     <br/>
     
     <p><strong>Dataset name</strong><br/>
-    The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation.<br/>
+    The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
     <input id="target-dataset" type="text" value="mydataset"></p>
     <br/>
 
