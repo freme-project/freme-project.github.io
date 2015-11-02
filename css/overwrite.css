@@ -32,13 +32,15 @@ code {
     border: 1px solid #E7E7E7;
 }
 
-.heading> ul.options {
-     font-size:0;
-     margin-top:0;
-     margin-bottom:0;
-     padding:0;
-     height:0;
- }
+.swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li {
+    padding: 0;
+    color: transparent;
+    border: 0px transparent;
+}
+
+.toggleEndpointList ,.collapseResource,  .expandResource{
+    display:none;
+}
 
 #resources_container {
     max-width: 990px;
