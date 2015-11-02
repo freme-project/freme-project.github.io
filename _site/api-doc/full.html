@@ -40,7 +40,32 @@
 	<script type="text/javascript">
 		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
 	</script>
+    <script type="text/javascript">
+        /*
+        This overwrites the function /swagger/swagger-ui.js/ApiKeyAuthorization.prototype.apply
+        In the code below the difference is marked. Headers will only be added if they contain a value other than the empty string.
+        This code might break when migrating to another swagger version.
+         */
+        SwaggerClient.ApiKeyAuthorization.prototype.apply = function (obj) {
+            if (this.type === 'query') {
+                if (obj.url.indexOf('?') > 0) {
+                    obj.url = obj.url + '&' + this.name + '=' + this.value;
+                } else {
+                    obj.url = obj.url + '?' + this.name + '=' + this.value;
+                }
 
+                return true;
+            } else if (this.type === 'header') {
+                // Here! this.value==="" is not a permissible value
+                if(this.value!="" && (typeof obj.headers[this.name] === 'undefined')) {
+                    obj.headers[this.name] = this.value;
+                }
+
+                return true;
+            }
+        };
+
+    </script>
     <script type="text/javascript">
         $(function () {
             var url = window.location.search.match(/url=([^&]+)/);
