@@ -40,7 +40,32 @@
 	<script type="text/javascript">
 		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
 	</script>
+    <script type="text/javascript">
+        /*
+         This is a direct copy of swagger/swagger-ui.js
+         The only change is that there will be no header added if the value of the header is "".
+         This enables us to remove an X-Auth-Token (api_key)
+         */
+        SwaggerClient.ApiKeyAuthorization.prototype.apply = function (obj) {
+            if (this.type === 'query') {
+                if (obj.url.indexOf('?') > 0) {
+                    obj.url = obj.url + '&' + this.name + '=' + this.value;
+                } else {
+                    obj.url = obj.url + '?' + this.name + '=' + this.value;
+                }
 
+                return true;
+            } else if (this.type === 'header') {
+                if(this.value!="" && (typeof obj.headers[this.name] === 'undefined')) {
+                    //           console.log("added X-Auth-Token " + this.value);
+                    obj.headers[this.name] = this.value;
+                }
+
+                return true;
+            }
+        };
+
+    </script>
     <script type="text/javascript">
         $(function () {
             var url = window.location.search.match(/url=([^&]+)/);
@@ -93,7 +118,7 @@
                 if (key==="" || (key && key.trim() != "")) {
                     var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
                     window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-                    log("added key " + key);
+                  //  log("added key " + key);
                 }
             }
 
@@ -114,6 +139,7 @@
             }
         });
     </script>
+
 </head>
 
 <div class = "navbar navbar-default navbar-static-top">

@@ -1754,10 +1754,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
-      description: "\n
-        Update or creates an enrichment template (if it does not exist) with specified ID. The new data is submitted as body of a PUT request.\n
-        For correct format of the submitted data see POST /e-link/templates.
-        "
+      description: "Update an enrichment template with specified ID."
 
       operationId: "updateTemplateById"
       consumes:
