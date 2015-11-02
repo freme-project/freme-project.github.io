@@ -23,7 +23,27 @@
     <script src='../swagger/lib/marked.js' type='text/javascript'></script>
     <script src='../swagger/lib/swagger-oauth.js' type='text/javascript'></script>
     {% include head.html %}
+    <script type="text/javascript">
 
+        SwaggerClient.ApiKeyAuthorization.prototype.apply = function (obj) {
+            if (this.type === 'query') {
+                if (obj.url.indexOf('?') > 0) {
+                    obj.url = obj.url + '&' + this.name + '=' + this.value;
+                } else {
+                    obj.url = obj.url + '?' + this.name + '=' + this.value;
+                }
+
+                return true;
+            } else if (this.type === 'header') {
+                if(this.value!="" && (typeof obj.headers[this.name] === 'undefined')) {
+                    obj.headers[this.name] = this.value;
+                }
+
+                return true;
+            }
+        };
+
+    </script>
     <script type="text/javascript">
         $(function () {
             var url = window.location.search.match(/url=([^&]+)/);
