@@ -38,10 +38,16 @@ code {
     border: 0px transparent;
 }
 
-.toggleEndpointList ,.collapseResource,  .expandResource{
+.swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li > a.toggleEndpointList {
     display:none;
 }
 
+.swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li > a.collapseResource{
+    display:none;
+}
+.swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li > a.expandResource {
+    display: none;
+}
 #resources_container {
     max-width: 990px;
 }
