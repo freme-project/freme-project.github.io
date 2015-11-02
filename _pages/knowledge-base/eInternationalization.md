@@ -775,8 +775,7 @@ Converted NIF file
 ### ODT
 
 Original file
-![Image of ODT file]
-(https://github.com/freme-project/Documentation/blob/master/img/odtFile.png)
+![Image of ODT file]({{site.baseurl | prepend: site.url}}/img/odtFile.png)
 
 
 Converted NIF file
