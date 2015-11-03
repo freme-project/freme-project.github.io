@@ -20,7 +20,7 @@ title: Translate from English to Dutch including Terminology
         </pre>
                 <h4>Result</h4>
                 <p>
-                    There are following terms found (term rank in brackets): continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0],
+                    There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
                     <h3>Step 2: using e-Translation to translate</h3>
                 </p>
                 <p>Translate text taking in account annotated term in Step 1.</p>
@@ -1066,3 +1066,55 @@ title: Translate from English to Dutch including Terminology
                 <code id="response2"></code>
                 </pre>
             </div>
+
+            <div>
+                <h2>Using Pipelines - alternative approuch</h2>
+                <h3>Query e-services with  single API call</h3>
+                <p>Instead of querying the FREME server in two steps, you can also use pipelines to force chaining the services on server side.</p>
+               
+                <h4>Curl</h4>
+                <div>
+                    <pre style="height:200px;">
+                    <code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 824fc22f-6e0b-8026-929a-3d6d5b2bff60" -d '[
+    {
+      "method": "POST",
+      "endpoint": "http://api-dev.freme-project.eu/current/e-terminology/tilde",
+      "parameters": {
+        "source-lang": "en",
+        "target-lang": "nl"
+      },
+      "headers": {
+        "content-type": "text/plain",
+        "accept": "application/json+ld"
+      },
+  "body": "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent."
+    },
+    {
+      "method": "POST",
+      "endpoint": "http://api-dev.freme-project.eu/current/e-translation/tilde",
+      "parameters": {
+        "source-lang": "en",
+        "target-lang": "nl"
+      },
+      "headers": {
+        "content-type": "application/json+ld",
+        "accept": "application/json+ld"
+      }
+    }
+  ]
+' 'http://api-dev.freme-project.eu/current/pipelining/chain'
+                        </code> 
+</pre>
+                </div>
+
+                <h4>Result</h4>
+                <p>Results from both services are in the output:</p>
+                <p>There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
+                <p>
+                    Result of Machine translation is:
+                    <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
+                    <br />With MT confidence score <strong>0.66955627717300892</strong>
+                </p>
+            </div>
+
+
