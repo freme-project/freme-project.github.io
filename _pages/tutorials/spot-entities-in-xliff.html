@@ -53,7 +53,18 @@ title: Recognizing entities in XLIFF content
 	<p>Insert the XLIFF 1.2 file content in the text area. Then specify the language and press the <em>Try it out!</em> button. The named entity recognition will be performed by submitting the text to the FREME-NER service against the <em>dbpedia</em> dataset. </p>
     <p><strong>XLIFF file content for processing</strong><br/>
     Paste here the XLIFF file content that should be processed. This is send as body of the request.<br/>
-    <textarea id="input-text" cols="130" rows="10" ></textarea></p>
+    <textarea id="input-text" cols="130" rows="13">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot;?&gt;
+&lt;xliff xmlns:dl=&quot;http://www.digitallinguistics.com&quot; xmlns=&quot;urn:oasis:names:tc:xliff:document:1.2&quot; xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; version=&quot;1.2&quot;&gt;
+	&lt;file original=&quot;PCWorldArticle.txt&quot; source-language=&quot;en&quot; target-language=&quot;it&quot; datatype=&quot;plaintext&quot;&gt;
+		&lt;body&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;0&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Berlin is the capital of Germany!&lt;/source&gt;
+			&lt;/trans-unit&gt;
+		&lt;/body&gt;
+	&lt;/file&gt;
+&lt;/xliff&gt;
+</textarea></p>
     <br/>
 
     <p><strong>Query string parameter language</strong><br/>
