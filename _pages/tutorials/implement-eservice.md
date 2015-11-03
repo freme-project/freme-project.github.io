@@ -1,7 +1,7 @@
 ---
-layout: page
 title: Create a new e-Service
 dropdown: Tutorials
+layout: default
 ---
 
 # Create a new e-Service
