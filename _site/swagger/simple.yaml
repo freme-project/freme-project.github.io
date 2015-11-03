@@ -24,12 +24,13 @@ info: {description: 'This section only covers the most important endpoints of FR
     via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
     including all parameters, is provided <a href="full.html">here</a>. For usage
     examples, see the <a href="../Tutorials/overview.html">tutorial section</a>.',
-  title: FREME API Documentation, version: '0.3'}
+  title: FREME API Documentation, version: '0.2'}
 paths:
   /e-entity/dbpedia-spotlight/documents:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        text/plain, application/rdf+xml, application/x-xliff+xml, text/html]
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: ' Enriches Text content with entities gathered from various datasets
         by the DBPedia-Spotlight Engine.
 
@@ -40,8 +41,8 @@ paths:
         type: string}
       - default: turtle
         description: Format of input string.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml, application/x-xliff+xml, text/html,
-          text]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: informat
         required: false
@@ -50,7 +51,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
+          application/x-openoffice]
         in: query
         name: outformat
         required: false
@@ -82,7 +84,8 @@ paths:
           parameter is between 0 and 1. Default is 0.3, in: query, name: confidence,
         required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -92,8 +95,9 @@ paths:
       tags: [e-Entity]
   /e-entity/freme-ner/documents:
     post:
-      consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
-        application/n-triples, text/plain, application/rdf+xml]
+      consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Enriches Text content with entities gathered from various datasets\n\
         by the DBPedia-Spotlight Engine. The service accepts plaintext or text sent\n\
         as NIF document. The text of the nif:isString property (attached to the\n\
@@ -113,8 +117,8 @@ paths:
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xmlor text. Overrides Content-Type header. Short form is f.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, application/x-xliff+xml,
-          text]
+        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
+          application/x-openoffice, text]
         in: query
         name: informat
         required: false
@@ -123,7 +127,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short
           form is o.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
+          application/x-openoffice, text]
         in: query
         name: outformat
         required: false
@@ -164,7 +169,8 @@ paths:
         required: false
         type: string
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -175,7 +181,8 @@ paths:
   /e-link/documents/:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "This service accepts a NIF document (with annotated entities)\
         \ and performs enrichment with pre-defined templates. The templates contain\
         \ \"fields\" marked between three at-signs @@@field-name@@@. If a user, while\
@@ -214,7 +221,8 @@ paths:
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xml. Overrides Content-Type header. Short form is f.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: informat
         required: false
@@ -223,7 +231,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: outformat
         required: false
@@ -237,7 +246,8 @@ paths:
       - {description: the ID of the template to be used for enrichment, format: int32,
         in: query, name: templateid, required: true, type: integer}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -289,8 +299,8 @@ paths:
       consumes: [multipart/form-data]
       description: "Creates an eBook in the EPUB3 format from a zip file containing\
         \ HTML Files and more (images etc.) and a json file containing all necessary\
-        \ metadata for the creation of the eBook.\n\n**Example Call**\n<pre lang=\\\
-        \"bash\\\"><code>\ncurl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39;\
+        \ metadata for the creation of the eBook.\n\n**Example Call**\n<pre lang=\"\
+        bash\\\"><code>\ncurl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39;\
         \ http://api-dev.freme-project.eu/current/e-publishing/html\n</code></pre>\n\
         \n**The Metadata JSON supports the following options:**\n\n* `epubVersion\
         \ (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is\
@@ -338,14 +348,14 @@ paths:
         \ },\n &quot;tableOfContents&quot;:[\n    {\n       &quot;title&quot;:&quot;Chapter\
         \ 1&quot;,\n       &quot;resource&quot;:&quot;01.xhtml&quot;\n    },\n   \
         \ {\n       &quot;title&quot;:&quot;Chapter 2&quot;,\n       &quot;resource&quot;:&quot;02.xhtml&quot;\n\
-        \    }\n ]\n}\n</code></pre>\n\n **Sample .zips**\n \n* [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
+        \    }\n ]\n}\n</code></pre>\n\n **Sample .zips**\n\n* [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n\
         * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)\n"
       operationId: htmlToEPub
       parameters:
       - {description: The html zip file to generate the epub from., in: formData,
         name: htmlZip, required: false, type: file}
       - {description: Metadata JSON as specified above, in: formData, name: metadata,
-        required: true, type: string}
+        required: true, type: string, x-force-textarea: true}
       produces: [application/epub+zip]
       responses:
         200:
@@ -359,7 +369,8 @@ paths:
   /e-terminology/tilde:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        text/plain, application/rdf+xml, application/x-xliff+xml, text/html]
+        text/plain, application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Annotate text with terminology information using Tilde Terminology\n\
         service. This example shows NIF that can be consumed by the service:\n\n<pre\
         \ lang=\\\"sparql\\\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;\
@@ -377,7 +388,8 @@ paths:
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xml or text. Overrides Content-Type header. Short form is f.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text, text/html, application/x-xliff+xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: informat
         required: false
@@ -386,7 +398,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: outformat
         required: false
@@ -407,11 +420,27 @@ paths:
       - {description: 'Target language, e.g. "de", "en". Language for targeted terms.
           A list of supported language codes is [here](https://term.tilde.com/resources).',
         in: query, name: target-lang, required: true, type: string}
+      - {description: 'collection id from https://term.tilde.com portal. If filled
+          then annotates only with terms from that collection', in: query, name: collection,
+        required: false, type: string}
+      - default: full
+        description: Whether the result must contain full terminology information
+          or only term annotations with references to the full information
+        enum: [full, annotation]
+        in: query
+        name: mode
+        required: false
+        type: string
       - {description: 'If given - it filters out by domain proposed terms. Available
           domains here: https://term.tilde.com/domains (should pass just ID, eg, TaaS-1001,
           that means Agriculture)', in: query, name: domain, required: false, type: string}
+      - {description: 'A private key to access private and not publicly available
+          translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts">
+          Tilde team</a>. Optional, if omitted then translates with public systems',
+        in: query, name: key, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -422,10 +451,11 @@ paths:
       tags: [e-Terminology]
   /e-translation/tilde:
     post:
-      consumes: [text/n3, text/turtle, text/html, application/x-xliff+xml, application/ld+json,
-        application/n-triples, text/plain, application/rdf+xml]
+      consumes: [text/n3, text/turtle, application/x-xliff+xml, application/ld+json,
+        application/n-triples, text/plain, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       description: "Parameters can be submitted via URL or via form-data post body.\
-        \ A list of available \nlanguage pairs is [here](https://services.tilde.com/translationsystems).\
+        \ A list of available\nlanguage pairs is [here](https://services.tilde.com/translationsystems).\
         \ This is a\nNIF example that can be consumed by e-Translation:\n\n<pre lang=\"\
         sparql\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt;\
         \ .\n@prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#\
@@ -439,12 +469,14 @@ paths:
       parameters:
       - {description: 'The string to be translated. Can be either plaintext or NIF
           (see parameter informat). Short form is i. If set, it will be prefered over
-          the body content.', in: query, name: input, required: false, type: string}
+          the body content.', in: query, name: input, required: false, type: string,
+        x-force-textarea: true}
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xmlor text. Defaults to "turtle". This parameter overrides Content-Type
           header. Short form is f.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text, text/html, application/x-xliff+xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: informat
         required: false
@@ -453,7 +485,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". This parameter overrides Accept
           header (Response Content Type). Short form is o.
-        enum: [json-ld, turtle, n3, n-triples, rdf-xml]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
+          application/x-xliff+xml, application/x-openoffice]
         in: query
         name: outformat
         required: false
@@ -476,10 +509,22 @@ paths:
       - {description: 'Target language, e.g. "de". A list of available language pairs
           is [here](https://services.tilde.com/translationsystems).', in: query, name: target-lang,
         required: true, type: string}
-      - {description: Currently not used, in: query, name: domain, required: false,
-        type: string}
+      - {description: 'A private key to access private and not publicly available
+          translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts">
+          Tilde team</a>. Optional, if omitted then translates with public systems',
+        in: query, name: key, required: false, type: string}
+      - {description: 'specify domain of translation system. List of supported domains
+          and language pairs can be found [here](https://services.tilde.com/translationsystem).',
+        in: query, name: domain, required: false, type: string}
+      - {description: 'select translation system by ID [an alternative to source,
+          target language and domain selection]. ID of public translation system can
+          be retrieved at https://services.tilde.com/translationsystems or private
+          system ID can be found at portal http://tilde.com/mt with authentication
+          [optional, if omitted then source and target languages and also domain parameters
+          are used]', in: query, name: system, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml]
+        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
+        text/xml]
       responses:
         200:
           description: Successful response
@@ -490,4 +535,8 @@ paths:
 schemes: [http]
 swagger: '2.0'
 tags:
+- {name: e-Entity}
+- {name: e-Link}
+- {name: e-Publishing}
 - {name: e-Translation}
+- {name: User}

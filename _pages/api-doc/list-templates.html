@@ -5,12 +5,174 @@ layout: page
 title: FREME Enrichment Templates
 ---
 <h1> FREME Enrichment Templates</h1>
-<h4>These templates are used by the e-Link service.</h4>
-<script src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/list-templates.js"></script>
-<link rel="stylesheet" href="../js/jquery-ui-1.11.4/jquery-ui.min.css">
+<p>These templates are used by the e-Link service.</p>
 
+
+<script src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<!--<script type="text/javascript" src="../js/htmlEncode.js"></script>
+<script type="text/javascript" src="../js/list-templates.js"></script>-->
+<link rel="stylesheet" href="../js/jquery-ui-1.11.4/jquery-ui.min.css">
+<link rel="stylesheet" href="../css/overwrite.css">
+
+<!--
 <div id="templates">
 	<h3 id="templateh0"></h3>
 	<div id="templatediv0"></div>
 </div>
+-->
+<div id="templates">
+	<h1 id="template-id-1-dbpedia">Template id: 1 - DBpedia</h1>
+	<div>
+		<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of museums close to that entity. The template is executed for every named entity in the input document.</p>
+		<h4><strong>SPARQL Endpoint:</strong></h4>
+		<p> <a href="http://dbpedia.org/sparql">http://dbpedia.org/sparql</a> </p>
+	<pre lang="sparql"><code class="xml"> PREFIX dbpedia: &lt;http://dbpedia.org/resource/ &gt;
+		PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/ &gt;
+		PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;
+		PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;
+		CONSTRUCT {
+		?museum &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
+		}
+		WHERE {
+		&lt;@@@entity_uri@@@ &gt; geo:geometry ?citygeo .
+		?museum rdf:type &lt;http://schema.org/Museum &gt; .
+		?museum geo:geometry ?museumgeo .
+		FILTER (&lt;bif:st_intersects &gt;(?museumgeo, ?citygeo, 10))
+		} LIMIT 10 </code></pre> Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-1.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-1.ttl "href="http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=1">http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=1" -H "Content-Type: text/turtle"
+	</code></pre><p></p>
+
+	</div>
+	<h1 id="template-id-2-dbpedia-live">Template id: 2 - DBpedia live</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of events close to that entity. The template is executed for every named entity in the input document.</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4>
+		<p> <a href="http://live.dbpedia.org/sparql">http://live.dbpedia.org/sparql</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml"> PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;
+		CONSTRUCT {
+		?event &lt;http://dbpedia.org/ontology/place &gt; &lt;@@@entity_uri@@@ &gt; .
+		}
+		WHERE {
+		?event rdf:type &lt;http://dbpedia.org/ontology/Event &gt; .
+		?event &lt;http://dbpedia.org/ontology/place &gt; &lt;@@@entity_uri@@@ &gt; .
+		} LIMIT 10 </code></pre>
+	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-2.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-2.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=2" -H "Content-Type: text/turtle" </code></pre><p></p>
+	</div>
+	<h1 id="template-id-3-geoknow">Template id: 3 - GeoKnow</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> Enrich place with longitude and latitude coordinates fetched form the GeoKnow database.</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://factforge.net/sparql">http://factforge.net/sparql</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml"> PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;
+		CONSTRUCT {
+		&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?long .
+		&lt;@@@entity_uri@@@ &gt; geo-pos:lat ?lat .
+		}
+		WHERE {
+		&lt;@@@entity_uri@@@/ &gt; geo-pos:lat ?lat .
+		&lt;@@@entity_uri@@@/ &gt; geo-pos:long ?long .
+		} </code></pre>
+	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-3.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-3.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=3" -H "Content-Type: text/turtle" </code></pre><p></p>
+	</div>
+	<h1 id="template-id-4-linked-geo-data">Template id: 4 - Linked Geo Data</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> Retrieve all bakeries 10km close to a place.</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4>
+		<p> <a href="http://linkedgeodata.org/vsnorql">http://linkedgeodata.org/vsnorql</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml">  PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
+		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
+		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
+		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
+		CONSTRUCT {
+		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
+		} WHERE {
+		?s
+		a lgdo:Bakery ;
+		geom:geometry [ ogc:asWKT ?sg ] .
+		?a
+		owl:sameAs &lt;@@@entity_uri@@@ &gt; ;
+		geom:geometry [ ogc:asWKT ?ag ] .
+		FILTER(bif:st_intersects(?sg, ?ag, 10))
+		} LIMIT 10 </code></pre><p></p>
+	</div>
+	<h1 id="template-id-5-europeana">Template id: 5 - Europeana</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> Retrieve 5 18th century Europeana objects from a place (country).</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://europeana.ontotext.com/sparql">http://europeana.ontotext.com/sparql</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml"> PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/ &gt;
+		PREFIX ore: &lt;http://www.openarchives.org/ore/terms/ &gt;
+		CONSTRUCT {
+		?CHO edm:HasMet &lt;@@@entity_uri@@@ &gt;
+		} WHERE {
+		?EuropeanaObject  edm:year  ?year ;
+		edm:hasMet &lt;@@@entity_uri@@@ &gt; .
+		?EuropeanaObject ore:proxyFor ?CHO .
+		FILTER (?year &lt; &quot;1800&quot;)
+		FILTER (?year &gt; &quot;1700&quot;)
+		} LIMIT 5 </code></pre>
+	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-5.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-5.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=5" -H "Content-Type: text/turtle" </code></pre>
+	Note: there is issue with the SPARQL endpoint.<p></p>
+	</div>
+	<h1 id="template-id-6-dbpedia-live">Template id: 6 -  DBpedia live</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of events close to that entity. This is a template with a user defined parameter event_type, so when calling the endpoint the event_type parameter should be specified.</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://live.dbpedia.org/sparql">http://live.dbpedia.org/sparql</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml"> PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;
+		CONSTRUCT {
+		?event &lt;http://dbpedia.org/ontology/place &gt; &lt;http://dbpedia.org/resource/Berlin &gt; .
+		}
+		WHERE {
+		?event rdf:type &lt;http://dbpedia.org/ontology/@@@event_type@@@ &gt; .
+		?event &lt;http://dbpedia.org/ontology/place &gt; ?o .
+		} LIMIT 10 </code></pre>
+	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-6.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-6.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=6&amp;event_type=SocietalEvent" -H "Content-Type: text/turtle" </code></pre><p></p>
+	</div>
+	<h1 id="template-id-7-linked-geo-data">Template id: 7 -  Linked Geo Data</h1>
+	<div>
+	<h4><strong>Description:</strong></h4><p> enriches a named entity of type place with a list of 10 bakaries in radius of 10km from the place.</p>
+	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://linkedgeodata.org/vsnorql/">http://linkedgeodata.org/vsnorql/</a></p>
+	<p></p>
+	<pre lang="sparql"><code class="xml"> PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
+		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
+		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
+		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
+		PREFIX bif: &lt;http://www.openlinksw.com/schemas/bif# &gt;
+		CONSTRUCT {
+		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
+		} WHERE {
+		?s
+		a lgdo:Bakery ;
+		geom:geometry [ ogc:asWKT ?sg ] .
+		?a
+		owl:sameAs &lt;@@@entity_uri@@@ &gt;
+		geom:geometry [ ogc:asWKT ?ag ] .
+		FILTER(bif:st_intersects(?sg, ?ag, 10))
+		} LIMIT 10 </code></pre>
+	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-7.ttl">here</a>.
+	</p><h4><strong>Test Query:</strong></h4><p></p>
+	<p></p>
+	<pre lang="bash"><code class="undefined"> curl -v -X POST -d @test-for-template-7.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=7" -H "Content-Type: text/turtle" </code></pre>
+	Note: there is an issue with the SPARQL endpoint.<p></p>
+	</div>
+</div>
+<script javascript>
+	$("#templates").accordion();
+</script>

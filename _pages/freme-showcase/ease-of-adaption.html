@@ -24,7 +24,7 @@ pos: 2.2
 			var selectedLanguage = $("input[name=language]:checked").val();
 			var selectedDataset = $("input[name=dataset]:checked").val();
 			var content = encodeURIComponent($('#content').val());
-			var requestURL = "http://api.freme-project.eu/0.2/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=" + selectedLanguage + "&dataset=" + selectedDataset;
+			var requestURL = fremeApiUrl+"/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=" + selectedLanguage + "&dataset=" + selectedDataset;
 			$.ajax({
 				type: 'POST',
 				url: requestURL,
@@ -72,7 +72,7 @@ pos: 2.2
     <li>Choosing the data set to be used for enrichment. FREME provides several data sets on the fly.</li>
 </ul>
 <h2 id="more-infos">More information</h2>
-<p>For more information visit the <a target="_blank" href="http://api-dev.freme-project.eu/doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
+<p>For more information visit the <a target="_blank" href="{{ site.baseurl | prepend: site.url }}/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 <h2 id="try-it-out">Try it out</h2>
 <p>In the form below enter some English text (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>. Also, adapt the language and the data set used for enrichment to your needs.</p>
 <form name="input">

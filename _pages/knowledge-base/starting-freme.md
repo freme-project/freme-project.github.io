@@ -12,7 +12,7 @@ Starting FREME is as easy as downloading the FREME distribution and executing a 
 
 ## Download FREME distribution
 
-You can download the distribution from http://api-dev.freme-project.eu/freme-distributions. In that link you can find several versions of FREME. There are snapshot versions that have SNAPSHOT in the filename. These versions contains the latest development version and is unstable and untested. All files that do not contain SNAPSHOT in the name are release versions. We advise to download the latest release version.
+You can download the distribution from {{ site.url }}/freme-distributions. In that link you can find several versions of FREME. There are snapshot versions that have SNAPSHOT in the filename. These versions contains the latest development version and is unstable and untested. All files that do not contain SNAPSHOT in the name are release versions. We advise to download the latest release version.
 
 ## Start FREME
 

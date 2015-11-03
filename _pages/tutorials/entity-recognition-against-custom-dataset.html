@@ -1,9 +1,183 @@
 ---
 layout: page 
-title: Entity Recognition against Custom Dataset
+title: Named Entity Recognition against Custom Dataset
 dropdown: Tutorials
-pos: 3
+pos: 3.1
 ---
 
-<div>Should be written by InfAi</div>
+<h1>Named Entity Recognition against Custom Dataset</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>Most named entity recognition tools (NER) perform linking of the entities occurring in the text with only one dataset provided by the NER system.
+    However, very often a user would like to match (link) the entities occurring in the document with a proprietary domain specific dataset.
+    In this tutorial you can learn how to perform named entity linking against a custom dataset using the e-Entity sevices.</p>
+    
+    <h3>Quick links</h3>
+    <ol>
+    	<li><a href="#pre-requisites">Pre-requisites</a></li>
+    	<li><a href="#step-1-prepare-your-dataset">Step 1: Prepare your dataset</a></li>
+    	<li><a href="#step-2-submit-your-dataset">Step 2: Submit your dataset</a></li>
+    	<li><a href="#step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</a></li>
+    	<li><a href="#curl-examples">cURL examples</a></li>
+    </ol>
+    
+</div>
 
+<div>
+    <h2 id="pre-requisites">Pre-requisites</h2>
+    <p>
+    	<ol>
+    		<li>A custom dataset provided in RDF containing entities and labels for the entities.</li>
+    		<li>A document/text which will be used for processing.</li>
+    	</ol>
+    </p>
+</div>
+
+<script type="text/javascript">
+	
+    function sendDatasetCreateRequest() {
+
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
+	    +"informat="+$("#informat-dataset").val()
+	    +"&name="+$("#dataset-name").val()
+	    +"&description="+$("#dataset-description").val()
+	    +"&language=en"
+	    +"&outformat=json",
+            type: "POST",
+	    dataType: "text",
+	    contentType: 'text/plain',
+            data: $("#input-dataset").val()
+        }).done(function(result){
+    	    $("#dataset-creation-response").text(result);
+	});
+       };
+
+    function sendTextProcessingRequest() {
+
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
+	    +"informat=text"
+	    +"&outformat="+$("#outformat-text").val()
+	    +"&language="+$("#text-language").val()
+	    +"&dataset="+$("#target-dataset").val(),
+            type: "POST",
+	    dataType: "text",
+	    contentType: "text/plain",
+            data: $("#input-text").val()
+        }).done(function(result){
+    	    $("#ner-results").text(result);
+	}).fail(function(result) {
+    	    $("#ner-results").text(JSON.stringify(result));
+	});
+       };
+       
+</script>
+
+<div>
+    <h2 id="step-1-prepare-your-dataset">Step 1: Prepare your dataset</h2>
+    <p>First we need to prepare our custom dataset.
+    The dataset should be provided in RDF and contain list of entities names for the entities.
+    Bellow is small example of such dataset in the N-triples format where in each record, the subject (first element) is a URI identifier for the entity, the predicate (second element) is the type of the information we describe (preferred or alternative label for the entity), and the object (last element) is the actual name for the entity.</p>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Milan Dojchinovski&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Milan&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Sebastian Hellmann&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Sebastian&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Felix Sasaki&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Felix&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Jan Nehring&quot; .
+&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Jan&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/INFAI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;INFAI&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/DFKI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;DFKI&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Tilde&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Tilde&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/ISMB&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;ISMB&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Wripl&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Wripl&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/Vistatec&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Vistatec&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/AgroKnow&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;AgroKnow&quot; .
+&lt;http://www.freme-projects.eu/dataset/org/iMinds&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;iMinds&quot; .
+</pre></div>
+    <br/>
+    <br/>
+
+    <p>The dataset above contains description for 12 entities and names associated with these entities.
+    For example, we have information that the entity Milan Dojchinovski is known as "Milan" and also as "Milan Dojchinovski".</p>
+    
+    <h2 id="step-2-submit-your-dataset">Step 2: Submit the custom dataset to the e-Entity service</h2>
+    <p>First we need to submit our dataset before we use it for entity linking. You can re-use the example dataset above.</p>
+
+    <p><strong>Dataset content</strong><br/>
+    Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="input-dataset" cols="130" rows="10" ></textarea></p>
+    <br/>
+
+    <p>
+    <strong>Dataset serialization format</strong><br/>
+    Specify the RDF serialization format of the dataset.<br/>
+    <input id="informat-dataset" type="text" value="n-triples" /></p>
+    <br/>
+    
+    <p><strong>Dataset name</strong><br/>
+    The name of the dataset. It will be used as its ID.<br/>
+    <input id="dataset-name" type="text" value="mydataset"></p>
+    <br/>
+
+    <p><strong>Dataset description</strong><br/>
+    Short description of the dataset.<br/>
+    <textarea id="dataset-description" cols="100" rows="2" value="This is a test dataset provided via the tutorial page."></textarea></p>
+    <br/>
+    
+    <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
+
+    <h3>Response</h3>
+    <pre id="dataset-creation-response">
+    	Here you will get information whether your dataset was successfully accepted and processed.
+    </pre>
+
+    <h2 id="step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</h2>
+    <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
+
+    <p><strong>Text for processing</strong><br/>
+    Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is send as body of the request.<br/>
+    <textarea id="input-text" cols="130" rows="10" ></textarea></p>
+    <br/>
+
+    <p>
+    <strong>Text language</strong><br/>
+    Specify the language of the input. E.g. "language=en".<br/>
+    <input id="text-language" type="text" value="en" /></p>
+    <br/>
+
+    <p>
+    <strong>Input format</strong><br/>
+    Since we send plain text we will set the input format to text/plain by setting the Content-Type parameter to "Content-Type: text/plain" or by setting the "informat" parameter to "text" ("informat=text").<br/></p>
+    <br/>
+    
+    <p>
+    <strong>Outformat format</strong><br/>
+    Specify the RDF serialization format for the output. You can set the output format by setting the outformat parameter, e.g. "outformat=turtle", or by setting the "Accept" header, e.g. "Accept: text/turtle".<br/>
+    <input id="outformat-text" type="text" value="turtle" /></p>
+    <br/>
+    
+    <p><strong>Dataset name</strong><br/>
+    The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
+    <input id="target-dataset" type="text" value="mydataset"></p>
+    <br/>
+
+    <button onclick="sendTextProcessingRequest();">Process the text!</button>
+
+    <h3>Response</h3>
+    <pre id="ner-results">
+    	Here you will get the results from the named entity recognition using your dataset.
+    </pre>
+    <h2 id="curl-examples">cURL Examples</h2>
+    <p>Bellow you can find some useful cURL command examples.</p>
+    
+    <h3>Submit dataset</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot;http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
+</pre></div>
+    <h3>Submit text for named entity recognition</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d &quot;Diego Maradona is from Argentina.&quot; &quot;http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?dataset=dbpedia&amp;informat=text&amp;outformat=turtle&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
+</pre></div><br/><br/><br/><br/>
+
+
+</div>

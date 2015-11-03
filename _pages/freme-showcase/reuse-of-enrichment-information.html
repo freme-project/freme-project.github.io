@@ -2,7 +2,7 @@
 layout: page 
 title: Reuse of Enrichment Information
 dropdown: FREME-Showroom
-pos: 2.0
+pos: 2.3
 ---
 
 <style>
@@ -23,7 +23,7 @@ pos: 2.0
 			content = encodeURIComponent($('#content').val());
 			return $.ajax({
 				type: 'POST',
-				url: "http://api.freme-project.eu/0.2/e-entity/dbpedia-spotlight/documents?input=" + content + "&informat=text&language=en&confidence=0.3",
+				url: fremeApiUrl+"/e-entity/dbpedia-spotlight/documents?input=" + content + "&informat=text&language=en&confidence=0.3",
 				headers: {
 					'Accept': 'application/json+ld'
 				}
@@ -31,7 +31,7 @@ pos: 2.0
 					.done(function (result) {
 						console.log("success");
 						eentityOutput = result;
-						var requestURL = "http://api.freme-project.eu/0.2/e-link/documents/?informat=json-ld&outformat=json-ld&templateid=2";
+						var requestURL = fremeApiUrl+"/e-link/documents/?informat=json-ld&outformat=json-ld&templateid=2";
 						$.ajax({
 							type: 'POST',
 							url: requestURL,
@@ -72,7 +72,7 @@ pos: 2.0
     <li>The annotations are reused in an e-Service call of FREME e-Link. Here we annotate information based on a query template for events related to a location. The output is a list of such events.</li>
 </ul>
 <h2 id="more-infos">More information</h2>
-<p>For more information visit the <a target="_blank" href="http://api.freme-project.eu/doc/0.2/">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
+<p>For more information visit the <a target="_blank" href="{{ site.baseurl | prepend: site.url }}/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 <h2 id="try-it-out">Try it out</h2>
 <p>In the form below enter some English text that contains the name of a location (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>.</p>
 <form name="input">

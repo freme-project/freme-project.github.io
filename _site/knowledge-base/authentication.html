@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+	<link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FREME Documentation - Authentication</title>
+	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
+	<link rel="canonical" href="http://api-dev.freme-project.eu/doc/knowledge-base/authentication.html">
+	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="http://api-dev.freme-project.eu/doc/feed.xml" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src=/doc/js/bootstrap.min.js
+	></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
+	</script>
+  </head>
+  <body>
+
+    <div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
+								
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<img src=/doc/img/Logo_FREME_icona_vert.png alt="FREME Logo" class = "navbar-logo">
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			
+			
+			
+			
+				
+			
+				
+			
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/start.html">Start</a></li>
+						
+					
+					
+				
+			
+				
+					
+						
+							<li class="dropdown ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API Documentation <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+								
+								<li  ><a href="/doc/api-doc/simple.html">Simple API Documentation</a></li>
+							
+							
+							
+				
+					
+						
+							<li  ><a href="/doc/api-doc/full.html">Full API Documentation</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/api-doc/list-templates.html">FREME Enrichment Templates</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/api-doc/list-datasets.html">FREME Datasets</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+								</ul>
+							</li>
+						
+
+							<li class="dropdown ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FREME-Showroom <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+
+								<li  ><a href="/doc/freme-showcase/overview.html">Overview</a></li>
+							
+							
+							
+				
+					
+						
+							<li  ><a href="/doc/freme-showcase/ckeditor-freme-plugin.html">CKEditor FREME Plugin</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/freme-showcase/ease-of-integration.html">Ease of Integration</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/freme-showcase/ease-of-adaption.html">Ease of Adaption</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/freme-showcase/reuse-of-enrichment-information.html">Reuse of Enrichment Information</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+								</ul>
+							</li>
+						
+
+							<li class="dropdown ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+
+								<li  ><a href="/doc/tutorials/overview.html">Overview</a></li>
+							
+							
+							
+				
+					
+						
+							<li  ><a href="/doc/tutorials/how-to-write-tutorials.html">How to write a Tutorial</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Named Entity Recognition against Custom Dataset</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/pipeline-entity-link.html">Using the e-Entity & e-Link Pipeline</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/html-to-epub.html">Creating an EPUB using existing HTML content</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/translate-text-from-german-to-spanish.html">Translate Text from German to Spanish</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+								</ul>
+							</li>
+						
+
+							<li class="dropdown  active ">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Knowledge Base <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+
+								<li  ><a href="/doc/knowledge-base/overview.html">Overview</a></li>
+							
+							
+							
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/starting-freme.html">Starting FREME</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/compile-freme-from-source.html">Compile FREME from Source</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/configuration-options.html">Configuration Options</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/freme-on-github.html">FREME on Github</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/how-to-add-documentation.html">How to add Documentation</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  class="active"  ><a href="/doc/knowledge-base/authentication.html">Authentication</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/eInternationalization.html">e-Internationalization Service</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+								</ul>
+							</li>
+						
+							<li  ><a href="/doc/license.html">License</a></li>
+						
+							
+							
+							
+				
+					
+						
+							<li  ><a href="/doc/contact.html">Contact</a></li>
+						
+					
+					
+				
+			
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+	<div class = "container">
+		<div class="post">
+
+  <article class="post-content">
+    <h1 id="authentication">Authentication</h1>
+
+<p>This Article explains which FREME e-Services need authenticated access and how to perform this.</p>
+
+<h2 id="restricted-endpoints">Restricted endpoints</h2>
+
+<p>Some FREME endpoints are only accessible as authenticated user. At the moment these are:</p>
+
+<ul>
+  <li>POST, PUT and DELETE <code>/e-link/templates/{templateID}</code> (template handling that needs write access)</li>
+  <li>GET, DELETE <code>/user/{userName}</code> and GET <code>/user</code> (user handling, except POST <code>/user</code>)</li>
+</ul>
+
+<p>Furthermore, the following FREME endpoints are restricted in such a way, that you can use them only with public resources (e.g. public templates), if you are not authenticated:</p>
+
+<ul>
+  <li>POST <code>/e-link/documents</code></li>
+</ul>
+
+<h2 id="restricted-resources">Restricted resources</h2>
+
+<p>At the moment only templates are restricted.</p>
+
+<p>In general, all public restricted resources can be accessed with read access, writing is permitted. Private restricted resources can not be written, read or used in any FREME e-service by anyone except the owner. By default, a created restricted resource is public. This can be changed by the parameter <code>visibility</code> when creating or updating a restricted resource.</p>
+
+<h2 id="how-to-authenticate">How to authenticate</h2>
+
+<p>To perform authenticated endpoint calls you have to do the following:</p>
+
+<ol>
+  <li>create an user</li>
+  <li>retrieve an access token</li>
+  <li>attach this token to the endpoint call</li>
+</ol>
+
+<h3 id="how-to-create-a-user">How to create a user</h3>
+
+<p>If you haven’t done before, you have to create an user. This can be established via the <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_user">FREME api documentation page</a> or by performing a POST call to <code>/user</code>:</p>
+
+<pre><code>curl -X POST "http://api-dev.freme-project.eu/current/user?username=YOUR_USERNAME&amp;password=YOUR_PASSWORD"
+</code></pre>
+
+<h3 id="how-to-create-an-access-token">How to create an access token</h3>
+
+<p>An access token can be retrieved via the <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/Authenticate/post_authenticate">FREME api documentation page</a> or by calling the <code>/authenticate</code> endpoint with your user credentials:</p>
+
+<pre><code>curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "http://api-dev.freme-project.eu/current/authenticate"
+</code></pre>
+
+<p>The response will contain your access token. It will look similar to this:</p>
+
+<pre><code>  {
+      "token": "f81ccf99-1d01-4e79-9a0b-8dfe84d8303c"
+  }
+</code></pre>
+
+<h3 id="how-to-attach-an-access-token-to-an-api-call">How to attach an access token to an API call</h3>
+
+<p>To use FREME e-Services as authenticated user just attach your token as <code>X-Auth-Token</code> to the request header:</p>
+
+<pre><code>curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "http://api-dev.freme-project.eu/current/e-link/templates?outformat=turtle&amp;informat=json"
+</code></pre>
+
+<h2 id="user-roles">User roles</h2>
+
+<p>In FREME users can have two roles: ROLE_USER and ROLE_ADMIN. All users registered via the API have ROLE_USER. Admin users can promote normal users to be administrators. An admin user can be configured using the admin.create, admin.username, admin.password configuration options (see <a href="http://api-dev.freme-project.eu/doc/knowledge-base/configuration-options.html">FREME configuration options</a>).</p>
+
+<p>In general ROLE_USER implies read access to all public resources and to all private resources the user owns. ROLE_USER implies write access to all resources the user owns.</p>
+
+<p>ROLE_ADMIN provides read and write access to all resources in the system.</p>
+
+  </article>
+
+</div>
+
+	</div>
+
+    </div>
+</div>
+<footer class="footer">
+
+		<div class = "navbar navbar-default navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40" 	 widtth="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+			</div>
+			
+		</div>
+		
+</footer>
+
+
+  </body>
+
+</html>

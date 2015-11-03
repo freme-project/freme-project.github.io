@@ -26,7 +26,7 @@ def main():
 		raise Exception("\n\tException Handled in /swagger/yamlscript.py: The YAML File at "+ os.path.dirname(__file__)+"/swagger.yaml is invalid! The generation of a simple API-Doc was skipped")	
 		sys.exit(1)
 		
-	included={
+	included_paths={
 	"/e-entity/freme-ner/documents": ["post"],
 	"/e-entity/dbpedia-spotlight/documents": ["post"],
 	"/e-publishing/html": ["post"],
@@ -37,15 +37,16 @@ def main():
 	}
 	
 	for path in full["paths"].keys():
-		if path not in included:
+		if path not in included_paths:
 			del full["paths"][path]
 		else:
-			for method in included[path]:
+			for method in included_paths[path]:
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
 #				else:
 #					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
-	
+	full["tags"]=[x for x in full["tags"] if x["name"]!="General Information"]
+
 	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services via common HTTP requests.<br><br> A full documentation of all e-Service endpoints, including all parameters, is provided <a href=\"full.html\">here</a>. For usage examples, see the <a href=\"../Tutorials/overview.html\">tutorial section</a>."
 
 	

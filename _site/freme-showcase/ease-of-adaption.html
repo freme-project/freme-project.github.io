@@ -19,7 +19,7 @@
 	></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript">
-		var fremeApiUrl= "http://api-dev.freme-project.eu";
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
 	</script>
   </head>
   <body>
@@ -112,10 +112,20 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FREME-Showroom <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
-								<li  ><a href="/doc/freme-showcase/reuse-of-enrichment-information.html">Reuse of Enrichment Information</a></li>
+								<li  ><a href="/doc/freme-showcase/overview.html">Overview</a></li>
 							
 							
 							
+				
+					
+						
+							<li  ><a href="/doc/freme-showcase/ckeditor-freme-plugin.html">CKEditor FREME Plugin</a></li>
+						
+					
+					
+					
+				
+			
 				
 					
 						
@@ -139,6 +149,16 @@
 				
 					
 						
+							<li  ><a href="/doc/freme-showcase/reuse-of-enrichment-information.html">Reuse of Enrichment Information</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
 								</ul>
 							</li>
 						
@@ -147,10 +167,50 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
-								<li  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Entity Recognition against Custom Dataset</a></li>
+								<li  ><a href="/doc/tutorials/overview.html">Overview</a></li>
 							
 							
 							
+				
+					
+						
+							<li  ><a href="/doc/tutorials/how-to-write-tutorials.html">How to write a Tutorial</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Named Entity Recognition against Custom Dataset</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/pipeline-entity-link.html">Using the e-Entity & e-Link Pipeline</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/tutorials/html-to-epub.html">Creating an EPUB using existing HTML content</a></li>
+						
+					
+					
+					
+				
+			
 				
 					
 						
@@ -172,10 +232,20 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Knowledge Base <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 
-								<li  ><a href="/doc/knowledge-base/starting-freme.html">Starting FREME</a></li>
+								<li  ><a href="/doc/knowledge-base/overview.html">Overview</a></li>
 							
 							
 							
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/starting-freme.html">Starting FREME</a></li>
+						
+					
+					
+					
+				
+			
 				
 					
 						
@@ -210,6 +280,26 @@
 					
 						
 							<li  ><a href="/doc/knowledge-base/how-to-add-documentation.html">How to add Documentation</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/authentication.html">Authentication</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
+							<li  ><a href="/doc/knowledge-base/eInternationalization.html">e-Internationalization Service</a></li>
 						
 					
 					
@@ -267,7 +357,7 @@
 			var selectedLanguage = $("input[name=language]:checked").val();
 			var selectedDataset = $("input[name=dataset]:checked").val();
 			var content = encodeURIComponent($('#content').val());
-			var requestURL = "http://api.freme-project.eu/0.2/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=" + selectedLanguage + "&dataset=" + selectedDataset;
+			var requestURL = fremeApiUrl+"/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=" + selectedLanguage + "&dataset=" + selectedDataset;
 			$.ajax({
 				type: 'POST',
 				url: requestURL,
@@ -315,7 +405,7 @@
     <li>Choosing the data set to be used for enrichment. FREME provides several data sets on the fly.</li>
 </ul>
 <h2 id="more-infos">More information</h2>
-<p>For more information visit the <a target="_blank" href="http://api-dev.freme-project.eu/doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
+<p>For more information visit the <a target="_blank" href="http://api-dev.freme-project.eu/doc/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 <h2 id="try-it-out">Try it out</h2>
 <p>In the form below enter some English text (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>. Also, adapt the language and the data set used for enrichment to your needs.</p>
 <form name="input">
