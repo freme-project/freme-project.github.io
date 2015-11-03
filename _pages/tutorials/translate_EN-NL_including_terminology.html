@@ -968,10 +968,11 @@ title: Translate from English to Dutch including Terminology
                 function sendTranslationRequest(turtleData) {
                 $("#response2").text("loading...");
                 $.ajax({
-                url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=turtle&source-lang="+encodeURIComponent($("#source-lang").val())+"&target-lang="+encodeURIComponent($("#target-lang").val()),
+                url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang="+encodeURIComponent($("#source-lang").val())+"&target-lang="+encodeURIComponent($("#target-lang").val()),
                 type: "POST",
                 data: turtleData,
                 contentType:false,
+                dataType: 'text',
                 statusCode: {
                 400: function () {
                 $("#response2").text("Bad request");
