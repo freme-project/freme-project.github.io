@@ -1,0 +1,84 @@
+---
+dropdown: Tutorials
+pos: 3.7
+layout: default
+title: Recognizing entities in XLIFF content
+---
+
+<h1>Recognizing entities in XLIFF content</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>In this tutorial you can learn how to spot entities in a XLIFF file. It could be useful in a localization scenario where you may want to enrich the text going beyond the mere translation.</p>
+</div>
+
+<div>
+    <h2>Pre-requisites</h2>
+    <p>A XLIFF 1.2 file with a source language supported by FREME-NER service. <br/> Supported languages are: <br/>
+		<ul>
+			<li>English (en);</li>
+			<li>German (de);</li>
+			<li>French (fr);</li>
+			<li>Dutch (nl);</li>
+			<li>Italian (it);</li>
+			<li>Spanish (es).</li>
+		</ul>
+	
+	</p>
+</div>
+
+<script type="text/javascript">
+	
+    function sendAPIRequest() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
+	    +"informat=" +encodeURIComponent("application/x-xliff+xml")
+	    +"&outformat="+$("#outformat").val()
+	    +"&language="+$("#language").val()
+	    +"&dataset=dbpedia",
+            type: "POST",
+	    dataType: "text",
+	    contentType: "application/x-xliff+xml",
+            data: $("#input-text").val()
+        }).done(function(result){
+    	    $("#response").text(result);
+	}).fail(function(result) {
+    	    $("#response").text(JSON.stringify(result));
+	});
+       };
+
+</script>
+
+<div>
+    <h2>Perform Named Entity Recognition</h2>
+	<p>Insert the XLIFF 1.2 file content in the text area. Then specify the language and press the <em>Try it out!</em> button. The named entity recognition will be performed by submitting the text to the FREME-NER service against the <em>dbpedia</em> dataset. </p>
+    <p><strong>XLIFF file content for processing</strong><br/>
+    Paste here the XLIFF file content that should be processed. This is send as body of the request.<br/>
+    <textarea id="input-text" cols="130" rows="10" ></textarea></p>
+    <br/>
+
+    <p><strong>Query string parameter language</strong><br/>
+    Enter the source language used in the XLIFF file<br/>
+    <input id="language" type="text" value="en" /></p>
+    <br/>
+    
+    <p><strong>Query string parameter informat</strong><br/>
+    Specifies the format of the input data. In this example we submit a XLIFF 1.2 file so we set this parameter to "application/x-xliff+xml"</p>
+    <br/>
+
+    <p><strong>Query string parameter outformat</strong><br/>
+    Specifies the format of the data returned by FREME. You can choose between "turtle" and "json-ld" formats. <br/>
+	<input id="outformat" type="text" value="turtle" /></p>
+    <br/>
+
+    <button onclick="sendAPIRequest();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre style="height:300px;">
+		<code id="response"></code>
+	</pre>
+	
+	<h2 id="curl-examples">cURL Examples</h2>
+    <p>Below you can find an example of a cURL command.</p>
+
+
+</div>
