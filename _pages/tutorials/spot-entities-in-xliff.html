@@ -13,7 +13,7 @@ title: Recognizing entities in XLIFF content
 
 <div>
     <h2>Pre-requisites</h2>
-    <p>A XLIFF 1.2 file with a source language supported by FREME-NER service. <br/> Supported languages are: <br/>
+    <p>A XLIFF 1.2 file with a source language supported by FREME-NER service. <br/> Supported languages are: <br/></p>
 		<ul>
 			<li>English (en);</li>
 			<li>German (de);</li>
@@ -23,7 +23,7 @@ title: Recognizing entities in XLIFF content
 			<li>Spanish (es).</li>
 		</ul>
 	
-	</p>
+
 </div>
 
 <script type="text/javascript">
@@ -91,7 +91,7 @@ title: Recognizing entities in XLIFF content
 	<h2 id="curl-examples">cURL Examples</h2>
     <p>Below you can find an example of a cURL command. Replace <em>Entity.xlf</em> with the path of your XLIFF file.</p>
 	<pre>
-<code>curl -X POST --header "Content-Type: application/x-xliff+xml" -d@Entity.xlf "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=turtle&language=en&dataset=dbpedia&mode=all" -v
+<code>curl -X POST --header "Content-Type: application/x-xliff+xml" -d@Entity.xlf "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=turtle&amp;language=en&amp;dataset=dbpedia&amp;mode=all" -v
 </code>
 	</pre>
 
