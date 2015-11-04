@@ -1130,7 +1130,7 @@ paths:
           type: "string"
       - name: "language"
         in: "query"
-        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+        description: "Source language. Can be en, de, nl, fr, it, es, ru(according to\
           \ supported NER engine)."
         required: true
         type: "string"
@@ -1141,6 +1141,7 @@ paths:
         - "fr"
         - "it"
         - "es"
+        - "ru"
         default : "en"
       - name: "dataset"
         in: "query"
