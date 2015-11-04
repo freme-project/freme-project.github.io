@@ -45,6 +45,7 @@ Below the list of **not** supported ITS 2.0 categories for each file format
 For the sake of completeness, below are the lists of supported ITS 2.0 categories for each format.
 
 **XLIFF**
+
 * Localization Note
 * Terminology
 * Text Analysis
@@ -58,6 +59,7 @@ For the sake of completeness, below are the lists of supported ITS 2.0 categorie
 * Domain
 
 **HTML**
+
 * Localization Note
 * Terminology
 * Text Analysis
