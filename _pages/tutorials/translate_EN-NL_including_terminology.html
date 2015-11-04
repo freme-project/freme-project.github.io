@@ -15,8 +15,8 @@ title: Translate from English to Dutch including Terminology
                 <h2>Technical Instructions</h2>
                 <h3>Step 1 - using e-Terminology </h3>
                 <p>Annotate terms within the source text</p>
-                <h4>Curl</h4>
-                <pre>-X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=en&target-lang=nl'
+                <h4>cURL</h4>
+                <pre>curl -X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=en&target-lang=nl'
         </pre>
                 <h4>Result</h4>
                 <p>
@@ -25,11 +25,10 @@ title: Translate from English to Dutch including Terminology
                 </p>
                 <p>Translate text taking in account annotated term in Step 1.</p>
                 <p>The input data is the output of Step 1 - response of e-Terminology</p>
-                <h4>Curl</h4>
+                <h4>cURL</h4>
                 <div>
                     <pre style="height:200px;">
-                    <code>
-                     -X POST  -d '{
+                    <code>curl -X POST  -d '{
   "@graph" : [ {
     "@id" : "_:b0",
     "label" : {
@@ -1073,13 +1072,13 @@ title: Translate from English to Dutch including Terminology
                 <h3>Query e-services with  single API call</h3>
                 <p>Instead of querying the FREME server in two steps, you can also use pipelines to force chaining the services on server side.</p>
                
-                <h4>Curl</h4>
+                <h4>cURL</h4>
                 <div>
                     <pre style="height:200px;">
                     <code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 824fc22f-6e0b-8026-929a-3d6d5b2bff60" -d '[
     {
       "method": "POST",
-      "endpoint": "http://dev.freme-project.eu/current/e-terminology/tilde",
+      "endpoint": "http://api.freme-project.eu/current/e-terminology/tilde",
       "parameters": {
         "source-lang": "en",
         "target-lang": "nl"
