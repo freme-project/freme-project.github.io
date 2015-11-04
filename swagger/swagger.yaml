@@ -876,8 +876,7 @@ paths:
         in: "query"
         description: "language of the labels in the dataset. If the parameter is not\
           \ specified, all labels without language tag will be used while performing\
-          \ linking. At the moment only following languages are supported - FREME\
-          \ NER (en/de/fr/es/it), DBpedia Spotlight (en)."
+          \ linking."
         required: false
         type: "string"
         enum:
@@ -886,6 +885,8 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "nl"
+        - "ru"
       - name: "properties"
         description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`."
         in: "query"
@@ -989,6 +990,7 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "ru"
       responses:
         200:
           description: "Successful response"
