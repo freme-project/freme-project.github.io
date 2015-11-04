@@ -1,6 +1,6 @@
 ---
 layout: page
-title: e-Internationalization Service
+title: e-Internationalization
 dropdown: Knowledge Base
 pos: 4.7
 ---
