@@ -1,10 +1,4 @@
 
-	<link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FREME Documentation - {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 	<link rel="stylesheet" href="{% if {{page.path}} contains "/" %}{{ "/css/bootstrap.min.css" |  prepend: site.baseurl }}{% else %}{{"/css/bootstrap.min.css" | prepend: site.baseurl }}{% endif %}">
 	<link rel="stylesheet" href="{% if {{page.path}} contains "/" %}{{ "/css/style.css"  | prepend: site.baseurl }}{% else %}{{"/css/style.css" | prepend: site.baseurl }}{% endif %}">
 	<link rel="stylesheet" href="{% if {{page.path}} contains "/" %}{{ "/css/overwrite.css"  | prepend: site.baseurl }}{% else %}{{"/css/overwrite.css" | prepend: site.baseurl }}{% endif %}">
