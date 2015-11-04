@@ -13,3 +13,7 @@ li.resource>.heading  {
     padding:0;
     height:0;
 }
+
+#input_apiKey_div {
+    display:none;
+}
