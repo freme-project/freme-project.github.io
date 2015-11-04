@@ -8,6 +8,7 @@ pos: 4.7
 # e-Internationalization
 
 FREME e-Services work with either plain text or NIF files. The e-Internationalization let users enrich HTML, XML, XLIFF and ODT files as well. It is not an individual service, but it is indirectly used via other services. The e-Services supporting the e-Internationalization are 
+
   * e-Entity
   * e-Link
   * e-Terminology
