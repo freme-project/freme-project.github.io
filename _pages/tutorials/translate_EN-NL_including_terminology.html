@@ -16,7 +16,7 @@ title: Translate from English to Dutch including Terminology
                 <h3>Step 1 - using e-Terminology </h3>
                 <p>Annotate terms within the source text</p>
                 <h4>cURL</h4>
-                <pre>curl -X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&outformat=json-ld&amp;source-lang=en&amp;target-lang=nl'
+                <pre>curl -X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl'
         </pre>
                 <h4>Result</h4>
                 <p>
@@ -27,8 +27,7 @@ title: Translate from English to Dutch including Terminology
                 <p>The input data is the output of Step 1 - response of e-Terminology</p>
                 <h4>cURL</h4>
                 <div>
-                    <pre style="height:200px;">
-                    <code>curl -X POST  -d &#39;{
+                    <pre style="height:200px;"><code>curl -X POST  -d &#39;{
   &quot;@graph&quot; : [ {
     &quot;@id&quot; : &quot;_:b0&quot;,
     &quot;label&quot; : {
@@ -549,7 +548,7 @@ title: Translate from English to Dutch including Terminology
     &quot;@id&quot; : &quot;:economie-nl#Sense&quot;,
     &quot;reference&quot; : [ &quot;:652962&quot;, &quot;:2740304&quot; ]
   }, {
-    &quot;@id&quot                        ; : &quot;:economische+wetenschap-nl&quot;,
+    &quot;@id&quot; : &quot;:economische+wetenschap-nl&quot;,
     &quot;@type&quot; : &quot;ontolex:LexicalEntry&quot;,
     &quot;canonicalForm&quot; : &quot;:economische+wetenschap-nl#CanonicalForm&quot;,
     &quot;language&quot; : &quot;http://www.lexvo.org/page/iso639-3/dut&quot;,
