@@ -7,7 +7,7 @@ pos: 4.7
 
 # e-Internationalization
 
-FREME e-Services work with either plain text or NIF files. The e-Internationalization service let users enrich HTML, XML, XLIFF and ODT files as well. It is not an individual service, but it is indirectly used via other services. The e-Services supporting the e-Internationalization are 
+FREME e-Services work with either plain text or NIF files. The e-Internationalization let users enrich HTML, XML, XLIFF and ODT files as well. It is not an individual service, but it is indirectly used via other services. The e-Services supporting the e-Internationalization are 
   * e-Entity
   * e-Link
   * e-Terminology
@@ -42,6 +42,181 @@ Below the list of **not** supported ITS 2.0 categories for each file format
 * Translate, Locale Filter, MT Confidence and Domain for HTML
 * ITS properties support for XML files is still draft. Some categories could not be translated. At the moment a list of unsupported properties is not available.
 
+For the sake of completeness, below are the lists of supported ITS 2.0 categories for each format.
+
+**XLIFF**
+* Localization Note
+* Terminology
+* Text Analysis
+* Locale Filter
+* Provenance
+* Localization Quality Issue
+* Localization Quality Rating
+* MT Confidence
+* Allowed Characters
+* Storage Size
+* Domain
+
+**HTML**
+* Localization Note
+* Terminology
+* Text Analysis
+* Provenance
+* Localization Quality Issue
+* Localization Quality Rating
+* Allowed Characters
+* Storage Size
+
+**XML**
+Not available.
+
+## Round-tripping: how does it work?
+
+The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. 
+At the moment the round-tripping is only available for HTML documents. Users must specify `text/html` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
+
+This section explains how the e-Internationalization service implements this functionality.
+
+When converting a HTML file to NIF a second NIF file is produced, containing a context that also includes markups. Let’s call such a file “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalization service which returns the original HTML document with the addition of enrichment annotations.
+
+### Roundtripping example
+
+A HTML file is converted to NIF and enriched with the e-Entity service. Finally it is converted back to the original format. 
+
+Original HTML file
+
+```
+<html>
+<head>
+	<title>Roundtripping</title>
+</head>
+<body>
+<p>Welcome to Dublin</p>
+</body>
+</html>
+```
+
+Converted NIF file
+
+```
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+<http://freme-project.eu/#char=0,31>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
+        nif:isString    "Roundtripping Welcome to Dublin"@en .
+
+<http://freme-project.eu/#char=14,31>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Welcome to Dublin"@en ;
+        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=0,13>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Roundtripping"@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        dc:identifier         "1" .
+```
+
+Skeleton NIF file
+
+```
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+<http://freme-project.eu/doc1/#char=0,121>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "121"^^xsd:nonNegativeInteger ;
+        nif:isString    "<!DOCTYPE html>\r\n<html><head>\r\n\t<title>Roundtripping</title>\r\n</head>\r\n<body>\r\n<p>Welcome to Dublin</p>\r\n\r\n</body></html>"@en .
+
+<http://freme-project.eu/#char=14,31>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Welcome to Dublin"@en ;
+        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=82,99> ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=0,13>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          "Roundtripping"@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=39,52> ;
+        dc:identifier         "1" .
+
+<http://freme-project.eu/#char=0,31>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
+        nif:isString    "Roundtripping Welcome to Dublin"@en .
+```
+
+Enriched NIF file
+
+```
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+<http://freme-project.eu/#char=0,31>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
+        nif:isString    "Roundtripping Welcome to Dublin"@en .
+
+<http://freme-project.eu/#char=14,31>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:anchorOf          "Welcome to Dublin"@en ;
+        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        dc:identifier         "2" .
+
+<http://freme-project.eu/#char=0,13>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:anchorOf          "Roundtripping"@en ;
+        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
+        dc:identifier         "1" .
+		
+<http://freme-project.eu/#char=25,31>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
+        nif:anchorOf          "Dublin"@en ;
+        nif:beginIndex        "25"^^xsd:nonNegativeInteger ;
+        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
+        itsrdf:taIdentRef <http://http://dbpedia.org/resource/Dublin> .
+```
+
+Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant for new lines don’t affect the HTML file appearance in the browser.
+
+```
+<!DOCTYPE html>
+<html><head>
+	<title>Roundtripping</title>
+</head>
+<body>
+<p>Welcome to <span its-ta-ident-ref="http://http://dbpedia.org/resource/Dublin">Dublin</span></p>
+
+</body></html>
+```
 
 ## Entity recognition over HTML
 This example shows how to invoke the e-Entity service over a HMTL file.
@@ -397,154 +572,6 @@ Converted NIF
 
 The translation is not reported in the original HTML. The user is still allowed to specify `text/html` as output format, but no information about the translation are contained in the final HTML file.
 
-
-## Round-tripping: how does it work?
-
-The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. 
-At the moment the round-tripping is only available for HTML documents. Users must specify `text/html` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
-
-This section explains how the e-Internationalization service implements this functionality.
-
-When converting a HTML file to NIF a second NIF file is produced, containing a context that also includes markups. Let’s call such a file “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalization service which returns the original HTML document with the addition of enrichment annotations.
-
-### Roundtripping example
-
-A HTML file is converted to NIF and enriched with the e-Entity service. Finally it is converted back to the original format. 
-
-Original HTML file
-
-```
-<html>
-<head>
-	<title>Roundtripping</title>
-</head>
-<body>
-<p>Welcome to Dublin</p>
-</body>
-</html>
-```
-
-Converted NIF file
-
-```
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
-@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-@prefix dc:    <http://purl.org/dc/elements/1.1/> .
-
-<http://freme-project.eu/#char=0,31>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
-        nif:isString    "Roundtripping Welcome to Dublin"@en .
-
-<http://freme-project.eu/#char=14,31>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:anchorOf          "Welcome to Dublin"@en ;
-        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        dc:identifier         "2" .
-
-<http://freme-project.eu/#char=0,13>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:anchorOf          "Roundtripping"@en ;
-        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        dc:identifier         "1" .
-```
-
-Skeleton NIF file
-
-```
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
-@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-@prefix dc:    <http://purl.org/dc/elements/1.1/> .
-
-<http://freme-project.eu/doc1/#char=0,121>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "121"^^xsd:nonNegativeInteger ;
-        nif:isString    "<!DOCTYPE html>\r\n<html><head>\r\n\t<title>Roundtripping</title>\r\n</head>\r\n<body>\r\n<p>Welcome to Dublin</p>\r\n\r\n</body></html>"@en .
-
-<http://freme-project.eu/#char=14,31>
-        a                     nif:RFC5147String , nif:String ;
-        nif:anchorOf          "Welcome to Dublin"@en ;
-        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=82,99> ;
-        dc:identifier         "2" .
-
-<http://freme-project.eu/#char=0,13>
-        a                     nif:RFC5147String , nif:String ;
-        nif:anchorOf          "Roundtripping"@en ;
-        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        nif:wasConvertedFrom  <http://freme-project.eu/doc1/#char=39,52> ;
-        dc:identifier         "1" .
-
-<http://freme-project.eu/#char=0,31>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
-        nif:isString    "Roundtripping Welcome to Dublin"@en .
-```
-
-Enriched NIF file
-
-```
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
-@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-@prefix dc:    <http://purl.org/dc/elements/1.1/> .
-
-<http://freme-project.eu/#char=0,31>
-        a               nif:RFC5147String , nif:Context , nif:String ;
-        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex    "31"^^xsd:nonNegativeInteger ;
-        nif:isString    "Roundtripping Welcome to Dublin"@en .
-
-<http://freme-project.eu/#char=14,31>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        nif:anchorOf          "Welcome to Dublin"@en ;
-        nif:beginIndex        "14"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
-        dc:identifier         "2" .
-
-<http://freme-project.eu/#char=0,13>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        nif:anchorOf          "Roundtripping"@en ;
-        nif:beginIndex        "0"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "13"^^xsd:nonNegativeInteger ;
-        dc:identifier         "1" .
-		
-<http://freme-project.eu/#char=25,31>
-        a                     nif:Phrase , nif:RFC5147String , nif:String ;
-        nif:referenceContext  <http://freme-project.eu/#char=0,31> ;
-        nif:anchorOf          "Dublin"@en ;
-        nif:beginIndex        "25"^^xsd:nonNegativeInteger ;
-        nif:endIndex          "31"^^xsd:nonNegativeInteger ;
-        itsrdf:taIdentRef <http://http://dbpedia.org/resource/Dublin> .
-```
-
-Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant for new lines don’t affect the HTML file appearance in the browser.
-
-```
-<!DOCTYPE html>
-<html><head>
-	<title>Roundtripping</title>
-</head>
-<body>
-<p>Welcome to <span its-ta-ident-ref="http://http://dbpedia.org/resource/Dublin">Dublin</span></p>
-
-</body></html>
-```
 
 ## ITS properties and NIF files
 
