@@ -16,7 +16,7 @@ title: Translate from English to Dutch including Terminology
                 <h3>Step 1 - using e-Terminology </h3>
                 <p>Annotate terms within the source text</p>
                 <h4>Curl</h4>
-                <pre>-X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api-dev.freme-project.eu/current/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=en&target-lang=nl'
+                <pre>-X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=en&target-lang=nl'
         </pre>
                 <h4>Result</h4>
                 <p>
@@ -952,7 +952,7 @@ title: Translate from English to Dutch including Terminology
     "dcat" : "http://www.w3.org/ns/dcat#",
     "prov" : "http://www.w3.org/ns/prov#"
   }
-}' 'http://api-dev.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl'
+}' 'http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl'
      </code>   </pre>
                 </div>
 <a name="step2response"></a>
@@ -1079,7 +1079,7 @@ title: Translate from English to Dutch including Terminology
                     <code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 824fc22f-6e0b-8026-929a-3d6d5b2bff60" -d '[
     {
       "method": "POST",
-      "endpoint": "http://api-dev.freme-project.eu/current/e-terminology/tilde",
+      "endpoint": "http://dev.freme-project.eu/current/e-terminology/tilde",
       "parameters": {
         "source-lang": "en",
         "target-lang": "nl"
@@ -1092,7 +1092,7 @@ title: Translate from English to Dutch including Terminology
     },
     {
       "method": "POST",
-      "endpoint": "http://api-dev.freme-project.eu/current/e-translation/tilde",
+      "endpoint": "http://api.freme-project.eu/current/e-translation/tilde",
       "parameters": {
         "source-lang": "en",
         "target-lang": "nl"
@@ -1103,7 +1103,7 @@ title: Translate from English to Dutch including Terminology
       }
     }
   ]
-' 'http://api-dev.freme-project.eu/current/pipelining/chain'
+' 'http://api.freme-project.eu/current/pipelining/chain'
                         </code> 
 </pre>
                 </div>
