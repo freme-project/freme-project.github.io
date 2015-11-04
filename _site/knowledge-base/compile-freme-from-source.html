@@ -375,7 +375,7 @@
 <p>
 To do it, you just need to create a xml file “settings.xml” with the following content:
 
-<p>
+
 <pre><code>
 &lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -390,7 +390,7 @@ To do it, you just need to create a xml file “settings.xml” with the followi
   &lt;/servers&gt;
 &lt;/settings&gt;
 </code></pre>
-</p>
+
 <h3>1.2 Location:</h3>
 <p>For machines using linux or mac: ~/.m2/settings.xml</p>
 <p>For machines using windows: USERHOME/.m2/settings.xml</p>
@@ -405,32 +405,32 @@ To do it, you just need to create a xml file “settings.xml” with the followi
 <h2>3rd Step: Create FREME distribution</h2>
 <p>This creates the FREME distribution in folder target/FREME-VERSION-full/FREME-VERSION/ where VERSION is the version number of FREME.</p>
 <p>Execute the following script:    </p>
-<p>
+
 <pre><code>
 git clone https://github.com/freme-project/Broker.git
 cd Broker
 mvn package
 </code></pre>
-</p>
+
 <h2>4th Steps: Failing unit tests</h2>
 <p>FREME relies on some external APIs and when these APIs are unavailable then some unit tests might fail. </p>
 <p>When this happens then you use the skipTests=true option to run the maven goal without unit tests, e.g.:</p>
-<p><pre><code>mvn install -DskipTests=true.</code></pre></p>
+<pre><code>mvn install -DskipTests=true.</code></pre>
 
 <h2>5th Step: Start server</h2>
 <p>    To start FREME on <code>http://localhost:8080</code></p>
 <p>For machines using Linux or Mac: </p>
 <p>Open a command line in the distribution folder and type:</p>
-<p><pre><code>
+<pre><code>
 chmod +x bin/start_local.sh
 bin/start_local.sh
-</code></pre></p>
+</code></pre>
 <p>For machines using Windows:</p>
 <p>Open distribution folder in the following command line:</p>
-<p><pre><code>
+<pre><code>
 java -cp "./*:conf" eu.freme.broker.Broker
 </code></pre>
-</p>
+
 <h2>6th Action: Create execution environment in IDE</h2>
 <p>You can start the broker in your favourite IDE creating an execution environment that uses the following main class:
   <code>eu.freme.broker.Broker</code>
