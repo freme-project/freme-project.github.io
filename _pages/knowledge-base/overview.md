@@ -7,11 +7,20 @@ pos: 4.0
 
 # Knowledge Base
 
-Here you can find a collection of links to tutorials explaining how to contribute to FREME and how to get FREME up and running.
+This section contains a series of articles with documentation about various aspects of FREME.
+                  
+## Knowledge base for FREME system administrators
+                                             
+[Starting FREME](starting-freme.html)
+[Configuration Options](configuration-options.html)
 
- * [Starting FREME](./starting-freme.html)
- * [Compile FREME from Source](./compile-freme-from-source.html)
- * [Configuration Options](./configuration-oprtions.html)
- * [FREME on GitHub](./freme-on-github.html)
- * [How to add Documentation](./how-to-add-documentation.html)
- * [Authentication](./authentication.html)
+## Knowledge base for FREME users
+                                          
+[Authentication](authentication.html)
+[e-Internationalization Service](eInternationalization.html)
+
+## Knowledge base for FREME developers
+
+[Compile FREME from Source](compile-freme-from-source.html) 
+[FREME on Github](freme-on-github.html)
+[How to add Documentation](how-to-add-documentation.html)

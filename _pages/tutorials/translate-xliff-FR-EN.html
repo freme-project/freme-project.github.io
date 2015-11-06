@@ -1,0 +1,100 @@
+---
+dropdown: Tutorials
+pos: 3.9
+layout: default
+title: Translate XLIFF 1.2 from English to French
+---
+
+<h1>Translate XLIFF 1.2 from English to French</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>XLIFF files are widely used in localisation field. This tutorial shows how to retrieve the translation to French of a XLIFF 1.2 content where the source language is English. </p>
+</div>
+
+<div>
+    <h2>Pre-requisites</h2>
+    <p>A XLIFF 1.2 file with English source language and empty targets. <br/>	
+	</p>
+</div>
+
+<script type="text/javascript">
+	
+    function sendAPIRequest() {
+	$.ajax({
+		url: fremeApiUrl + "/e-translation/tilde?"
+		+ "informat=" +encodeURIComponent("application/x-xliff+xml")
+		+ "&outformat="+$("#outformat").val()
+		+ "&source-lang=en&target-lang=fr",
+		type: "POST",
+	    dataType: "text",
+	    contentType: "application/x-xliff+xml",
+            data: $("#input-text").val()
+        }).done(function(result){
+    	    $("#response").text(result);
+		}).fail(function(result) {
+    	    $("#response").text(JSON.stringify(result));
+		});
+            
+       };
+
+</script>
+
+<div>
+    <h2>Perform translation to English</h2>
+	<p>Insert the XLIFF 1.2 file content in the text area and press the <em>Try it out!</em> button. The translation will be performed by invoking the FREME e-Translation service. </p>
+    <p><strong>XLIFF file content for processing</strong><br/>
+    Paste here the XLIFF file content that should be processed. This is send as body of the request.<br/>
+    <textarea id="input-text" cols="130" rows="22">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot;?&gt;
+&lt;xliff xmlns:dl=&quot;http://www.digitallinguistics.com&quot; xmlns=&quot;urn:oasis:names:tc:xliff:document:1.2&quot; xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; version=&quot;1.2&quot;&gt;
+	&lt;file original=&quot;PCWorldArticle.txt&quot; source-language=&quot;en&quot; target-language=&quot;fr&quot; datatype=&quot;plaintext&quot;&gt;
+		&lt;body&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;0&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Excuse me, I'm lost.&lt;/source&gt;
+			&lt;/trans-unit&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;1&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Could you help me, please?&lt;/source&gt;
+			&lt;/trans-unit&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;2&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Go straight, then turn left.&lt;/source&gt;
+			&lt;/trans-unit&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;3&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Thank you very much!&lt;/source&gt;
+			&lt;/trans-unit&gt;
+		&lt;/body&gt;
+	&lt;/file&gt;
+&lt;/xliff&gt;
+</textarea></p>
+    <br/>
+
+    <p><strong>Query string parameter source-language</strong><br/>
+    Specifies the source language for the translation. In this example we set this parameter to "en".
+    <br/>
+	
+	<p><strong>Query string parameter target-language</strong><br/>
+    Specifies the target language for the translation. In this example we set this parameter to "fr".
+    <br/>
+    
+    <p><strong>Query string parameter informat</strong><br/>
+    Specifies the format of the input data. In this example we submit a XLIFF 1.2 file so we set this parameter to "application/x-xliff+xml".</p>
+
+    <p><strong>Query string parameter outformat</strong><br/>
+    Specifies the format of the data returned by FREME. You can choose between "turtle" and "json-ld" formats. <br/>
+	<input id="outformat" type="text" value="turtle" /></p>
+    <br/>
+
+    <button onclick="sendAPIRequest();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre style="height:300px;">
+		<code id="response"></code>
+	</pre>
+	
+	<h2 id="curl-examples">cURL Examples</h2>
+    <p>Below you can find an example of a cURL command. Replace <em>Entity.xlf</em> with the path of your XLIFF file.</p>
+	<pre>
+<code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "http://api-dev.freme-project.eu/current/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=fr" -v
+</code>
+	</pre>
+
+</div>

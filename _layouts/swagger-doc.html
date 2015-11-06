@@ -3,9 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta charset="utf-8" />
-    <title>FREME API Documentation</title>
+    {% include head-meta.html %}
     <link href='../swagger/css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../swagger/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
     <link href='../swagger/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
@@ -23,8 +21,32 @@
     <script src='../swagger/lib/marked.js' type='text/javascript'></script>
     <script src='../swagger/lib/swagger-oauth.js' type='text/javascript'></script>
     {% include head.html %}
+    <script type="text/javascript">
+        /*
+        This overwrites the function /swagger/swagger-ui.js/ApiKeyAuthorization.prototype.apply
+        In the code below the difference is marked. Headers will only be added if they contain a value other than the empty string.
+        This code might break when migrating to another swagger version.
+         */
+        SwaggerClient.ApiKeyAuthorization.prototype.apply = function (obj) {
+            if (this.type === 'query') {
+                if (obj.url.indexOf('?') > 0) {
+                    obj.url = obj.url + '&' + this.name + '=' + this.value;
+                } else {
+                    obj.url = obj.url + '?' + this.name + '=' + this.value;
+                }
 
-    <link href='../css/overwrite.css' media='screen' rel='stylesheet' type='text/css'/>
+                return true;
+            } else if (this.type === 'header') {
+                // Here! this.value==="" is not a permissible value
+                if(this.value!="" && (typeof obj.headers[this.name] === 'undefined')) {
+                    obj.headers[this.name] = this.value;
+                }
+
+                return true;
+            }
+        };
+
+    </script>
     <script type="text/javascript">
         $(function () {
             var url = window.location.search.match(/url=([^&]+)/);
@@ -74,11 +96,11 @@
 
             function addApiKeyAuthorization(){
                 var key = encodeURIComponent($('#input_apiKey')[0].value);
-                if(key && key.trim() != "") {
+                //if (key && key.trim() != "") {
                     var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
                     window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-                    log("added key " + key);
-                }
+                  //  log("added key " + key);
+                //}
             }
 
             $('#input_apiKey').change(addApiKeyAuthorization);
@@ -98,6 +120,7 @@
             }
         });
     </script>
+
 </head>
 
 {% include header.html %}
@@ -106,15 +129,13 @@
     <div class="wrapper">
         <div class="post">
 
-            <header class="post-header">
-                <h1 class="post-title">{% if page.header %}{% if {{page.header}} ==  "None"  %}{% else %} {{ page.header }}{% endif %}{% else %}{{ page.title }}{% endif %}</h1>
-            </header>
 
             <article class="post-content">
                 <div class="swagger-section">
                 <div id="swagger-ui-container" class="swagger-ui-wrap">
                 </div>
                     {{ content }}
+                    <div class='input swagger-ui-wrap text-center token-bar' id="input_apiKey_div" >You can reuse your access token from /authenticate to stay authenticated for all further requests:        <input style="width:300px" placeholder="token" id="input_apiKey" name="Access Token" type="text"/></div>
                 </div>
             </article>
 

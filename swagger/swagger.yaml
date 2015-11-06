@@ -876,8 +876,7 @@ paths:
         in: "query"
         description: "language of the labels in the dataset. If the parameter is not\
           \ specified, all labels without language tag will be used while performing\
-          \ linking. At the moment only following languages are supported - FREME\
-          \ NER (en/de/fr/es/it), DBpedia Spotlight (en)."
+          \ linking."
         required: false
         type: "string"
         enum:
@@ -886,6 +885,8 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "nl"
+        - "ru"
       - name: "properties"
         description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`."
         in: "query"
@@ -989,6 +990,7 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "ru"
       responses:
         200:
           description: "Successful response"
@@ -1130,7 +1132,7 @@ paths:
           type: "string"
       - name: "language"
         in: "query"
-        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+        description: "Source language. Can be en, de, nl, fr, it, es, ru(according to\
           \ supported NER engine)."
         required: true
         type: "string"
@@ -1141,6 +1143,7 @@ paths:
         - "fr"
         - "it"
         - "es"
+        - "ru"
         default : "en"
       - name: "dataset"
         in: "query"
@@ -1754,10 +1757,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
-      description: "\n
-        Update or creates an enrichment template (if it does not exist) with specified ID. The new data is submitted as body of a PUT request.\n
-        For correct format of the submitted data see POST /e-link/templates.
-        "
+      description: "Update an enrichment template with specified ID."
 
       operationId: "updateTemplateById"
       consumes:

@@ -144,9 +144,9 @@ paths:
         required: false
         schema: {type: string}
       - default: en
-        description: Source language. Can be en, de, nl, fr, it, es (according to
-          supported NER engine).
-        enum: [en, de, nl, fr, it, es]
+        description: Source language. Can be en, de, nl, fr, it, es, ru(according
+          to supported NER engine).
+        enum: [en, de, nl, fr, it, es, ru]
         in: query
         name: language
         required: true

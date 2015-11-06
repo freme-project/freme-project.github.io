@@ -876,8 +876,7 @@ paths:
         in: "query"
         description: "language of the labels in the dataset. If the parameter is not\
           \ specified, all labels without language tag will be used while performing\
-          \ linking. At the moment only following languages are supported - FREME\
-          \ NER (en/de/fr/es/it), DBpedia Spotlight (en)."
+          \ linking."
         required: false
         type: "string"
         enum:
@@ -886,6 +885,8 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "nl"
+        - "ru"
       - name: "properties"
         description: "Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`."
         in: "query"
@@ -989,6 +990,7 @@ paths:
         - "it"
         - "fr"
         - "es"
+        - "ru"
       responses:
         200:
           description: "Successful response"
@@ -1130,7 +1132,7 @@ paths:
           type: "string"
       - name: "language"
         in: "query"
-        description: "Source language. Can be en, de, nl, fr, it, es (according to\
+        description: "Source language. Can be en, de, nl, fr, it, es, ru(according to\
           \ supported NER engine)."
         required: true
         type: "string"
@@ -1141,6 +1143,7 @@ paths:
         - "fr"
         - "it"
         - "es"
+        - "ru"
         default : "en"
       - name: "dataset"
         in: "query"
@@ -1591,54 +1594,50 @@ paths:
       - "e-Link"
       summary: "Creates a new enrichment template."
       description: |
-        Creates a new enrichment template.
-        The input has to contain the following entries:
+        Creates a new enrichment template. The template will be constructed from JSON data submitted as body.
+        
+        **The JSON input has to contain the following fields:**
         - `query:` a SPARQL CONSTRUCT query
         - `endpoint:` the SPARQL endpoint which will be used to execute the template
         - `label:` the title of the template
         - `description:` a description of the template
 
-        **Optional entries:**
+        **Optional fields:**
         - `endpointType`: This parameter describes the type of the endpoint data. The value has to be either "sparql" (default) or "ldf".
         - `visibility`: visibility: This parameter controlls, how the template can be accessed by other users than the owner. This includes enrichment etc. via this template. See the Restricted Endpoints and Restricted Resources section of the <a href= "./../knowledge-base/authentication.html" target="_blank">authentication article</a> for further information. The value has to be either "public" (default) or "private".
+        
         **Example of input in JSON format:**
+        
         <pre lang="javascript"><code>
         {
-            "query":"PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;
-                PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;
-                PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-                PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
-                CONSTRUCT
-                {
-                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .
-                }
-                WHERE
-                {
-                    &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .
-                    ?museum rdf:type &lt;http://schema.org/Museum&gt; .
-                    ?museum geo:geometry ?museumgeo .
-                    FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))
-                }
-                LIMIT 10",
-          "endpoint":"http://dbpedia.org/sparql/",
-          "label":"template title",
-          "description":"template description",
-          "endpointType":"sparql",
-          "visibility":"public"
+            &quot;query&quot;: &quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;\n      PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;\n      PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\n      PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;\n      CONSTRUCT\n      {\n        ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .\n      }\n      WHERE\n      {\n          &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .\n          ?museum rdf:type &lt;http://schema.org/Museum&gt; .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10&quot;,
+            &quot;endpoint&quot;: &quot;http://dbpedia.org/sparql/&quot;,
+            &quot;label&quot;: &quot;template title&quot;,
+            &quot;description&quot;: &quot;template description&quot;,
+            &quot;endpointType&quot;: &quot;sparql&quot;,
+            &quot;visibility&quot;: &quot;public&quot;
         }
         </code></pre>
 
-        Here is an example SPARQL COSTRUCT QUERY:
+        Here is a simple SPARQL COSTRUCT QUERY. Please note that you have to convert newline characters to \n before copy & pasting it in JSON:
 
         <pre lang="sparql"><code>
-                PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt
-                CONSTRUCT {
-                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
-                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
-                } WHERE {
-                    &lt;@@@entity_uri@@@&gt geo-pos:lat ?lat .
-                    &lt;@@@entity_uri@@@&gt geo-pos:long ?long .
-                }
+        PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;
+        PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;
+        PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+        PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
+        CONSTRUCT
+        {
+          ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .
+        }
+        WHERE
+        {
+            &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .
+            ?museum rdf:type &lt;http://schema.org/Museum&gt; .
+            ?museum geo:geometry ?museumgeo .
+            FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))
+        }
+        LIMIT 10
         </code></pre>
 
         In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.
@@ -1702,11 +1701,6 @@ paths:
         required: false
         schema:
           type: "string"
-      - in: "query"
-        name: "owner"
-        description: "If this parameter is not empty, the owner of the template will be changed. The value of this parameter has to be the name of an existing user."
-        required: false
-        type: "string"
       responses:
         200:
           description: "Successful response"
@@ -1763,10 +1757,7 @@ paths:
       tags:
       - "e-Link"
       summary: "Update an enrichment template with specified ID. "
-      description: "\n
-        Update or creates an enrichment template (if it does not exist) with specified ID. The new data is submitted as body of a PUT request.\n
-        For correct format of the submitted data see POST /e-link/templates.
-        "
+      description: "Update an enrichment template with specified ID."
 
       operationId: "updateTemplateById"
       consumes:
