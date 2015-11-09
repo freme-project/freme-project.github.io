@@ -8,7 +8,7 @@ title: Translate from English to Dutch including Terminology
             <h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
             <div>
                 <h2>Introduction</h2>
-                <p>Use e-Terminology before e-Translation to improve or adjust translation senses. e-Terminology identifies terms within the source text and help machine translation use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
+                <p>Use e-Terminology before e-Translation to improve or adjust translation senses. e-Terminology identifies terms within the source text and helps machine translation use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
             </div>
 
             <div>
@@ -16,7 +16,7 @@ title: Translate from English to Dutch including Terminology
                 <h3>Step 1 - using e-Terminology </h3>
                 <p>Annotate terms within the source text</p>
                 <h4>cURL</h4>
-                <pre>curl -X POST -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' 'http://api.freme-project.eu/current/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl'
+                <pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "http://api.freme-project.eu/current/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
         </pre>
                 <h4>Result</h4>
                 <p>
@@ -28,7 +28,7 @@ title: Translate from English to Dutch including Terminology
                 <p>The input data is the output of Step 1 - response of e-Terminology</p>
                 <h4>cURL</h4>
                 <div>
-                    <pre style="height:200px;"><code>curl -X POST  -d &#39;{
+                    <pre style="height:200px;"><code>curl -X POST  -d "{
   &quot;@graph&quot; : [ {
     &quot;@id&quot; : &quot;_:b0&quot;,
     &quot;label&quot; : {
@@ -951,13 +951,13 @@ title: Translate from English to Dutch including Terminology
     &quot;dcat&quot; : &quot;http://www.w3.org/ns/dcat#&quot;,
     &quot;prov&quot; : &quot;http://www.w3.org/ns/prov#&quot;
   }
-}&#39; &#39;http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl&#39;
+}" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl";
 </code>   </pre>
                 </div>
 <a name="step2response"></a>
                 <h4>Result</h4>
                 <p>
-                    Result of Machine translation is:
+                    Result of machine translation is:
                     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
                     <br/>With MT confidence score <strong>0.66955627717300892</strong>
                 </p>
@@ -1070,7 +1070,7 @@ title: Translate from English to Dutch including Terminology
             <div>
                 <h2>Using Pipelines - alternative approuch</h2>
                 <h3>Query e-services with  single API call</h3>
-                <p>Instead of querying the FREME server in two steps, you can also use pipelines to force chaining the services on server side.</p>
+                <>Instead of querying the FREME server in two steps, you can also use pipelines to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
                
                 <h4>cURL</h4>
                 <div>
@@ -1109,9 +1109,9 @@ title: Translate from English to Dutch including Terminology
 
                 <h4>Result</h4>
                 <p>Results from both services are in the output (same as in <a href="#step2response">Step 2: using e-Translation to translate</a>):</p>
-                <p>There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
+                <p>There following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
                 <p>
-                    Result of Machine translation is:
+                    Result of machine translation is:
                     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
                     <br />With MT confidence score <strong>0.66955627717300892</strong>
                 </p>

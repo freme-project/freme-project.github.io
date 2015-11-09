@@ -117,7 +117,7 @@
 				
 					
 						
-							<li  ><a href="/doc/freme-showcase/ckeditor-freme-plugin.html">CKEditor FREME Plugin</a></li>
+							<li  ><a href="/doc/freme-showcase/ckeditor-freme-plugin.html">Mockup of a plugin for the CKEditor using FREME e-Services</a></li>
 						
 					
 					
@@ -386,7 +386,7 @@
 	<h1 id="template-id-1-dbpedia">Template id: 1 - DBpedia</h1>
 	<div>
 		<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of museums close to that entity. The template is executed for every named entity in the input document.</p>
-		<h4><strong>SPARQL Endpoint:</strong></h4>
+		<h4><strong>Endpoint:</strong></h4>
 		<p> <a href="http://dbpedia.org/sparql">http://dbpedia.org/sparql</a> </p>
 	<pre ><code class="xml"> PREFIX dbpedia: &lt;http://dbpedia.org/resource/ &gt;
 		PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/ &gt;
@@ -410,7 +410,7 @@
 	<h1 id="template-id-2-dbpedia-live">Template id: 2 - DBpedia live</h1>
 	<div>
 	<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of events close to that entity. The template is executed for every named entity in the input document.</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4>
+	<h4><strong>Endpoint:</strong></h4>
 		<p> <a href="http://live.dbpedia.org/sparql">http://live.dbpedia.org/sparql</a></p>
 	<p></p>
 	<pre ><code class="xml"> PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;
@@ -429,7 +429,7 @@
 	<h1 id="template-id-3-geoknow">Template id: 3 - GeoKnow</h1>
 	<div>
 	<h4><strong>Description:</strong></h4><p> Enrich place with longitude and latitude coordinates fetched form the GeoKnow database.</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://factforge.net/sparql">http://factforge.net/sparql</a></p>
+	<h4><strong>Endpoint:</strong></h4><p> <a href="http://factforge.net/sparql">http://factforge.net/sparql</a></p>
 	<p></p>
 	<pre ><code class="xml"> PREFIX geo-pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos# &gt;
 		CONSTRUCT {
@@ -445,32 +445,10 @@
 	<p></p>
 	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-3.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=3" -H "Content-Type: text/turtle" </code></pre><p></p>
 	</div>
-	<h1 id="template-id-4-linked-geo-data">Template id: 4 - Linked Geo Data</h1>
-	<div>
-	<h4><strong>Description:</strong></h4><p> Retrieve all bakeries 10km close to a place.</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4>
-		<p> <a href="http://linkedgeodata.org/vsnorql">http://linkedgeodata.org/vsnorql</a></p>
-	<p></p>
-	<pre ><code class="xml">  PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
-		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
-		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
-		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
-		CONSTRUCT {
-		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
-		} WHERE {
-		?s
-		a lgdo:Bakery ;
-		geom:geometry [ ogc:asWKT ?sg ] .
-		?a
-		owl:sameAs &lt;@@@entity_uri@@@ &gt; ;
-		geom:geometry [ ogc:asWKT ?ag ] .
-		FILTER(bif:st_intersects(?sg, ?ag, 10))
-		} LIMIT 10 </code></pre><p></p>
-	</div>
 	<h1 id="template-id-5-europeana">Template id: 5 - Europeana</h1>
 	<div>
 	<h4><strong>Description:</strong></h4><p> Retrieve 5 18th century Europeana objects from a place (country).</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://europeana.ontotext.com/sparql">http://europeana.ontotext.com/sparql</a></p>
+	<h4><strong>Endpoint:</strong></h4><p> <a href="http://europeana.ontotext.com/sparql">http://europeana.ontotext.com/sparql</a></p>
 	<p></p>
 	<pre ><code class="xml"> PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/ &gt;
 		PREFIX ore: &lt;http://www.openarchives.org/ore/terms/ &gt;
@@ -492,7 +470,7 @@
 	<h1 id="template-id-6-dbpedia-live">Template id: 6 -  DBpedia live</h1>
 	<div>
 	<h4><strong>Description:</strong></h4><p> enriches named entities in the input document with a list of events close to that entity. This is a template with a user defined parameter event_type, so when calling the endpoint the event_type parameter should be specified.</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://live.dbpedia.org/sparql">http://live.dbpedia.org/sparql</a></p>
+	<h4><strong>Endpoint:</strong></h4><p> <a href="http://live.dbpedia.org/sparql">http://live.dbpedia.org/sparql</a></p>
 	<p></p>
 	<pre ><code class="xml"> PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns# &gt;
 		CONSTRUCT {
@@ -509,8 +487,8 @@
 	</div>
 	<h1 id="template-id-7-linked-geo-data">Template id: 7 -  Linked Geo Data</h1>
 	<div>
-	<h4><strong>Description:</strong></h4><p> enriches a named entity of type place with a list of 10 bakaries in radius of 10km from the place.</p>
-	<h4><strong>SPARQL Endpoint:</strong></h4><p> <a href="http://linkedgeodata.org/vsnorql/">http://linkedgeodata.org/vsnorql/</a></p>
+	<h4><strong>Description:</strong></h4><p> enriches a named entity of type place with a list of 10 bakeries in radius of 10km from the place.</p>
+	<h4><strong>Endpoint:</strong></h4><p> <a href="http://linkedgeodata.org/vsnorql/">http://linkedgeodata.org/vsnorql/</a></p>
 	<p></p>
 	<pre ><code class="xml"> PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
 		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
@@ -533,6 +511,49 @@
 	<p></p>
 	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-7.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=7" -H "Content-Type: text/turtle" </code></pre>
 	Note: there is an issue with the SPARQL endpoint.<p></p>
+	</div>
+	<h1 id="template-id-4447-dbpedia-categories-via-ldf">Template id: 4447 -  DBPedia Categories via LDF</h1>
+	<div>
+		<h4><strong>Description:</strong></h4><p>This template is using a Linked Data Frament endpoint to fetch DBpedia categories for a DBpedia resource.</p>
+		<h4><strong>Endpoint:</strong></h4><p> <a href="http://rv2622.1blu.de:5000/dbpedia-categories">http://rv2622.1blu.de:5000/dbpedia-categories</a></p>
+		<p></p>
+	<pre ><code>&quot;CONSTRUCT {  &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category .  ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label } WHERE { &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category . ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label }&quot;,
+		&quot;label&quot; : &quot;DBpedia Categories via LDF&quot;,
+		&quot;description&quot; : &quot;This template is using a Linked Data Frament endpoint to fetch DBpedia categories for a DBpedia resource.&quot;,
+		&quot;endpointType&quot; : &quot;LDF&quot;
+		</code></pre>
+		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
+		<h4><strong>Test Query:</strong></h4><p></p>
+		<p></p>
+		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4447&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
+		</code></pre>
+		<p></p>
+	</div>
+	<h1 id="template-id-4448-linked-geo-data">Template id: 4448 - Linked Geo Data</h1>
+	<div>
+		<h4><strong>Description:</strong></h4><p> Retrieve all bakeries 10km close to a place.</p>
+		<h4><strong>Endpoint:</strong></h4>
+		<p> <a href="http://linkedgeodata.org/vsnorql">http://linkedgeodata.org/vsnorql</a></p>
+		<p></p>
+	<pre ><code class="xml">  PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
+		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
+		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
+		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
+		CONSTRUCT {
+		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
+		} WHERE {
+		?s
+		a lgdo:Bakery ;
+		geom:geometry [ ogc:asWKT ?sg ] .
+		?a
+		owl:sameAs &lt;@@@entity_uri@@@ &gt; ;
+		geom:geometry [ ogc:asWKT ?ag ] .
+		FILTER(bif:st_intersects(?sg, ?ag, 10))
+		} LIMIT 10 </code></pre><p></p>
+
+		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
+		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4448&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
+
 	</div>
 </div>
 <script type="text/javascript">

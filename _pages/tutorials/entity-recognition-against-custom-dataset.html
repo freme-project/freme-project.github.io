@@ -75,8 +75,8 @@ pos: 3.1
 <div>
     <h2 id="step-1-prepare-your-dataset">Step 1: Prepare your dataset</h2>
     <p>First we need to prepare our custom dataset.
-    The dataset should be provided in RDF and contain list of entities names for the entities.
-    Bellow is small example of such dataset in the N-triples format where in each record, the subject (first element) is a URI identifier for the entity, the predicate (second element) is the type of the information we describe (preferred or alternative label for the entity), and the object (last element) is the actual name for the entity.</p>
+    The dataset should be provided in RDF and contain a list of entity names.
+    Below is a small example of such dataset in the N-triples format where in each record, the subject (first element) is a URI identifier for the entity, the predicate (second element) is the type of the information we describe (preferred or alternative label for the entity), and the object (last element) is the actual name for the entity.</p>
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Milan Dojchinovski&quot; .
 &lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Milan&quot; .
 &lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Sebastian Hellmann&quot; .
@@ -97,7 +97,7 @@ pos: 3.1
     <br/>
     <br/>
 
-    <p>The dataset above contains description for 12 entities and names associated with these entities.
+    <p>The dataset above contains description for 12 entities.
     For example, we have information that the entity Milan Dojchinovski is known as "Milan" and also as "Milan Dojchinovski".</p>
     
     <h2 id="step-2-submit-your-dataset">Step 2: Submit the custom dataset to the e-Entity service</h2>
@@ -135,7 +135,7 @@ pos: 3.1
     <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
 
     <p><strong>Text for processing</strong><br/>
-    Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is send as body of the request.<br/>
+    Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
     <textarea id="input-text" cols="130" rows="10" ></textarea></p>
     <br/>
 

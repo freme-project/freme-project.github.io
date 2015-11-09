@@ -128,7 +128,7 @@ paths:
           n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short
           form is o.
         enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
-          application/x-openoffice, text]
+          application/x-openoffice]
         in: query
         name: outformat
         required: false

@@ -8,7 +8,7 @@ title: Translate XLIFF 1.2 from English to French
 <h1>Translate XLIFF 1.2 from English to French</h1>
 <div>
     <h2>Introduction</h2>
-    <p>XLIFF files are widely used in localisation field. This tutorial shows how to retrieve the translation to French of a XLIFF 1.2 content where the source language is English. </p>
+    <p>XLIFF files are widely used in localization field. This tutorial shows how to retrieve the translation to French of a XLIFF 1.2 content where the source language is English. </p>
 </div>
 
 <div>
@@ -40,7 +40,7 @@ title: Translate XLIFF 1.2 from English to French
 </script>
 
 <div>
-    <h2>Perform translation to English</h2>
+    <h2>Perform translation from English</h2>
 	<p>Insert the XLIFF 1.2 file content in the text area and press the <em>Try it out!</em> button. The translation will be performed by invoking the FREME e-Translation service. </p>
     <p><strong>XLIFF file content for processing</strong><br/>
     Paste here the XLIFF file content that should be processed. This is send as body of the request.<br/>
@@ -91,7 +91,7 @@ title: Translate XLIFF 1.2 from English to French
 	</pre>
 	
 	<h2 id="curl-examples">cURL Examples</h2>
-    <p>Below you can find an example of a cURL command. Replace <em>Entity.xlf</em> with the path of your XLIFF file.</p>
+    <p>Below you can find an example of a cURL command. Replace <em>translation.xlf</em> with the path of your XLIFF file.</p>
 	<pre>
 <code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "http://api-dev.freme-project.eu/current/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=fr" -v
 </code>

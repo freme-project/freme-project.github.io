@@ -155,20 +155,11 @@ title: FREME Enrichment Templates
 		<h4><strong>Description:</strong></h4><p>This template is using a Linked Data Frament endpoint to fetch DBpedia categories for a DBpedia resource.</p>
 		<h4><strong>Endpoint:</strong></h4><p> <a href="http://rv2622.1blu.de:5000/dbpedia-categories">http://rv2622.1blu.de:5000/dbpedia-categories</a></p>
 		<p></p>
-	<pre ><code>{
-		&quot;id&quot; : 4447,
-		&quot;creationTime&quot; : 1446716795534,
-		&quot;owner&quot; : {
-		&quot;name&quot; : &quot;admin&quot;,
-		&quot;role&quot; : &quot;ROLE_ADMIN&quot;
-		},
-		&quot;visibility&quot; : &quot;PUBLIC&quot;,
-		&quot;endpoint&quot; : &quot;http://rv2622.1blu.de:5000/dbpedia-categories&quot;,
-		&quot;query&quot; : &quot;CONSTRUCT {  &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category .  ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label } WHERE { &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category . ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label }&quot;,
+	<pre ><code>&quot;CONSTRUCT {  &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category .  ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label } WHERE { &lt;@@@entity_uri@@@&gt; &lt;http://purl.org/dc/terms/subject&gt; ?category . ?category &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label }&quot;,
 		&quot;label&quot; : &quot;DBpedia Categories via LDF&quot;,
 		&quot;description&quot; : &quot;This template is using a Linked Data Frament endpoint to fetch DBpedia categories for a DBpedia resource.&quot;,
 		&quot;endpointType&quot; : &quot;LDF&quot;
-		}</code></pre>
+		</code></pre>
 		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
 		<h4><strong>Test Query:</strong></h4><p></p>
 		<p></p>
@@ -197,6 +188,10 @@ title: FREME Enrichment Templates
 		geom:geometry [ ogc:asWKT ?ag ] .
 		FILTER(bif:st_intersects(?sg, ?ag, 10))
 		} LIMIT 10 </code></pre><p></p>
+
+		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
+		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4448&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
+
 	</div>
 </div>
 <script type="text/javascript">
