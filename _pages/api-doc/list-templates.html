@@ -83,28 +83,6 @@ title: FREME Enrichment Templates
 	<p></p>
 	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-3.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=3" -H "Content-Type: text/turtle" </code></pre><p></p>
 	</div>
-	<h1 id="template-id-4-linked-geo-data">Template id: 4 - Linked Geo Data</h1>
-	<div>
-	<h4><strong>Description:</strong></h4><p> Retrieve all bakeries 10km close to a place.</p>
-	<h4><strong>Endpoint:</strong></h4>
-		<p> <a href="http://linkedgeodata.org/vsnorql">http://linkedgeodata.org/vsnorql</a></p>
-	<p></p>
-	<pre ><code class="xml">  PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
-		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
-		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
-		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
-		CONSTRUCT {
-		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
-		} WHERE {
-		?s
-		a lgdo:Bakery ;
-		geom:geometry [ ogc:asWKT ?sg ] .
-		?a
-		owl:sameAs &lt;@@@entity_uri@@@ &gt; ;
-		geom:geometry [ ogc:asWKT ?ag ] .
-		FILTER(bif:st_intersects(?sg, ?ag, 10))
-		} LIMIT 10 </code></pre><p></p>
-	</div>
 	<h1 id="template-id-5-europeana">Template id: 5 - Europeana</h1>
 	<div>
 	<h4><strong>Description:</strong></h4><p> Retrieve 5 18th century Europeana objects from a place (country).</p>
@@ -197,6 +175,28 @@ title: FREME Enrichment Templates
 		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4447&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
 		</code></pre>
 		<p></p>
+	</div>
+	<h1 id="template-id-4448-linked-geo-data">Template id: 4448 - Linked Geo Data</h1>
+	<div>
+		<h4><strong>Description:</strong></h4><p> Retrieve all bakeries 10km close to a place.</p>
+		<h4><strong>Endpoint:</strong></h4>
+		<p> <a href="http://linkedgeodata.org/vsnorql">http://linkedgeodata.org/vsnorql</a></p>
+		<p></p>
+	<pre ><code class="xml">  PREFIX owl: &lt;http://www.w3.org/2002/07/owl# &gt;
+		PREFIX ogc: &lt;http://www.opengis.net/ont/geosparql# &gt;
+		PREFIX geom: &lt;http://geovocab.org/geometry# &gt;
+		PREFIX lgdo: &lt;http://linkedgeodata.org/ontology/ &gt;
+		CONSTRUCT {
+		?s &lt;http://xmlns.com/foaf/0.1/based_near &gt; &lt;@@@entity_uri@@@ &gt; .
+		} WHERE {
+		?s
+		a lgdo:Bakery ;
+		geom:geometry [ ogc:asWKT ?sg ] .
+		?a
+		owl:sameAs &lt;@@@entity_uri@@@ &gt; ;
+		geom:geometry [ ogc:asWKT ?ag ] .
+		FILTER(bif:st_intersects(?sg, ?ag, 10))
+		} LIMIT 10 </code></pre><p></p>
 	</div>
 </div>
 <script type="text/javascript">
