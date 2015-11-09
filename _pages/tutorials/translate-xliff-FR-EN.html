@@ -93,7 +93,7 @@ title: Translate XLIFF 1.2 from English to French
 	<h2 id="curl-examples">cURL Examples</h2>
     <p>Below you can find an example of a cURL command. Replace <em>translation.xlf</em> with the path of your XLIFF file.</p>
 	<pre>
-<code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "http://api-dev.freme-project.eu/current/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=fr" -v
+<code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "{{site.apiurl | prepend: site.url}}/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=fr" -v
 </code>
 	</pre>
 

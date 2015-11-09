@@ -91,7 +91,7 @@ title: Recognizing entities in XLIFF content
 	<h2 id="curl-examples">cURL Examples</h2>
     <p>Below you can find an example of a cURL command. Replace <em>Entity.xlf</em> with the path of your XLIFF file.</p>
 	<pre>
-<code>curl -X POST --header "Content-Type: application/x-xliff+xml" -d@Entity.xlf "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=turtle&amp;language=en&amp;dataset=dbpedia&amp;mode=all" -v
+<code>curl -X POST --header "Content-Type: application/x-xliff+xml" -d@Entity.xlf {{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents?outformat=turtle&amp;language=en&amp;dataset=dbpedia&amp;mode=all" -v
 </code>
 	</pre>
 

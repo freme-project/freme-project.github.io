@@ -16,7 +16,7 @@ title: Translate from English to Dutch including Terminology
                 <h3>Step 1 - using e-Terminology </h3>
                 <p>Annotate terms within the source text</p>
                 <h4>cURL</h4>
-                <pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "http://api.freme-project.eu/current/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
+                <pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "{{site.apiurl | prepend: site.url}}/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
         </pre>
                 <h4>Result</h4>
                 <p>
@@ -951,7 +951,7 @@ title: Translate from English to Dutch including Terminology
     &quot;dcat&quot; : &quot;http://www.w3.org/ns/dcat#&quot;,
     &quot;prov&quot; : &quot;http://www.w3.org/ns/prov#&quot;
   }
-}" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl";
+}" "{{site.apiurl | prepend: site.url}}/e-translation/tilde?informat=json-ld&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl";
 </code>   </pre>
                 </div>
 <a name="step2response"></a>
@@ -1075,34 +1075,34 @@ title: Translate from English to Dutch including Terminology
                 <h4>cURL</h4>
                 <div>
                     <pre style="height:200px;">
-                    <code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 824fc22f-6e0b-8026-929a-3d6d5b2bff60" -d '[
+                    <code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 824fc22f-6e0b-8026-929a-3d6d5b2bff60" -d "[
     {
-      "method": "POST",
-      "endpoint": "http://api.freme-project.eu/current/e-terminology/tilde",
-      "parameters": {
-        "source-lang": "en",
-        "target-lang": "nl"
+      \"method\": \"POST\",
+      \"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-terminology/tilde\",
+      \"parameters\": {
+        \"source-lang\": \"en\",
+        \"target-lang\": \"nl\"
       },
-      "headers": {
-        "content-type": "text/plain",
-        "accept": "application/json+ld"
+      \"headers\": {
+        \"content-type\": \"text/plain\",
+        \"accept\": \"application/json+ld\"
       },
-  "body": "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent."
+  \"body\": \"The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.\"
     },
     {
-      "method": "POST",
-      "endpoint": "http://api.freme-project.eu/current/e-translation/tilde",
-      "parameters": {
-        "source-lang": "en",
-        "target-lang": "nl"
+      \"method\": \"POST\",
+      \"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-translation/tilde\",
+      \"parameters\": {
+        \"source-lang\": \"en\",
+        \"target-lang\": \"nl\"
       },
-      "headers": {
-        "content-type": "application/json+ld",
-        "accept": "application/json+ld"
+      \"headers\": {
+        \"content-type\": \"application/json+ld\",
+        \"accept\": \"application/json+ld\"
       }
     }
   ]
-' 'http://api.freme-project.eu/current/pipelining/chain'
+" "{{site.apiurl | prepend: site.url}}/pipelining/chain"
                         </code> 
 </pre>
                 </div>

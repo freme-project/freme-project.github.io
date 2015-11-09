@@ -569,18 +569,19 @@
     </pre>
     <h2> Step 3: Delete your Template </h2>
     <p>Only the owner of a template or an admin can delete a template.</p>
-    <p> Name of Dataset which you want to delete:<br></p>
+    <p> Name of Dataset which you want to delete:<br><br></p>
     <input id="delete-dataset-name" type="text" value="">
+    <p></p>
     <pre id="delete-results">
     	Here you will get the response from your delete request.
     </pre>
-
+    <p></p>
     <button onclick="sendDatasetDeleteRequest()">Delete the Dataset </button>
     <h2 id="curl-examples">cURL Examples</h2>
     <p>Below you can find some useful cURL command examples.</p>
     
     <h3>Submit dataset</h3>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot;http://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quothttp://api-dev.freme-project.eu/current/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
 </pre></div>
     <h3>Submit text for named entity recognition</h3>
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d &quot;Diego Maradona is from Argentina.&quot; &quot;http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?dataset=dbpedia&amp;informat=text&amp;outformat=turtle&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
