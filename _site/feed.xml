@@ -5,8 +5,8 @@
     <description>This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.</description>
     <link>http://api-dev.freme-project.eu/doc/</link>
     <atom:link href="http://api-dev.freme-project.eu/doc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Nov 2015 14:39:19 +0100</pubDate>
-    <lastBuildDate>Mon, 09 Nov 2015 14:39:19 +0100</lastBuildDate>
+    <pubDate>Mon, 09 Nov 2015 14:50:05 +0100</pubDate>
+    <lastBuildDate>Mon, 09 Nov 2015 14:50:05 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
   </channel>
