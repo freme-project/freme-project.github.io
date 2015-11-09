@@ -22,8 +22,8 @@ tags:
 
     * input (short form: i):
         * input of the e-Service in plaintext or nif
-        * No default
-        * Depends on informat and intype
+        * no default
+        * depends on informat and intype
     * informat (short form: f):
         * format of input parameter.
         * possible values
@@ -35,33 +35,41 @@ tags:
           * text/n3, short form: n3
           * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
           * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send it to the underlying service.
+          * application/x-openoffice
+          * text/xml
     * outformat (short form: o):
       * output format
       * possible values
-        * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
-        * application/n-triples, short form: n-triples
-        * application/rdf+xml, short form: rdf-xml
-        * text/n3, short form: n3
+          * text/turtle (default), short form: turtle
+          * application/json+ld, short form: json-ld
+          * application/n-triples, short form: n-triples
+          * application/rdf+xml, short form: rdf-xml
+          * text/n3, short form: n3
+          * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
     * prefix (short form: p)
       * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/"
     The following header values are used by all FREME e-Services
     * Accept
       * possible values
-        * turtle for text/turtle (default)
-        * json-ld for application/json+ld
-        * n-triples for application/n-triples
-        * rdf-xml for application/rdf+xml
-        * n3 for text/n3
+        * text/n3
+        * text/turtle
+        * application/ld+json
+        * application/n-triples
+        * application/rdf+xml
+        * text/html
       * When parameter outformat is set then the Accept header is not used by FREME API.
     * Content-Type
       * possible values
         * text (plaintext)
-        * text/turtle (default), short form: turtle
-        * application/json+ld, short form: json-ld
-        * application/n-triples, short form: n-triples
-        * application/rdf+xml, short form: rdf-xml
-        * text/n3, short form: n3
+        * text/n3
+        * text/turtle
+        * application/ld+json
+        * application/n-triples
+        * application/rdf+xml
+        * application/x-xliff+xml
+        * text/html
+        * application/x-openoffice
+        * text/xml
       * When parameter informat is set then the Content-Type header is not used by FREME api
 
 schemes:
@@ -1114,7 +1122,6 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
-        - "text"
         default:  "turtle"
       - name: "prefix"
         in: "query"
