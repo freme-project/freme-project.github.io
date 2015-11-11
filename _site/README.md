@@ -35,7 +35,7 @@ You can configure parameters such as `baseurl`, `url`, `fremeapiurl` (used for F
 
 **On Api-Dev**
 
-Jekyll, the CMS for this project is installed on the api-dev server. Everytime you push an updated version of this Documentation to the master branch, Jenkins will build a new version, so you don't need Jekyll installed.
+Jekyll, the Static Site Generator for this project is installed on the api-dev server. Every time you push an updated version of this Documentation to the master branch, Jenkins will build a new version, so you don't need Jekyll installed.
 
 **Locally**
 
