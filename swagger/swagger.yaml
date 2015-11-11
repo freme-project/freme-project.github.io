@@ -715,7 +715,8 @@ paths:
 
       - name: "prefix"
         in: "query"
-        description: "Unused optional Parameter. Short form is p."
+        description: "Controls the url of rdf resources generated from plaintext.\
+          \ Has default value \"http://freme-project.eu/\". Short form is p."
         required: false
         type: "string"
       - in: "body"
@@ -1125,7 +1126,8 @@ paths:
         default:  "turtle"
       - name: "prefix"
         in: "query"
-        description: "Unused optional Parameter. Short form is p."
+        description: "Controls the url of rdf resources generated from plaintext.\
+          \ Has default value \"http://freme-project.eu/\". Short form is p."
         required: false
         type: "string"
       - in: "body"
@@ -1877,7 +1879,8 @@ paths:
         default: "turtle"
       - name: "prefix"
         in: "query"
-        description: "Unused optional Parameter. Short form is p."
+        description: "Controls the url of rdf resources generated from plaintext.\
+          \ Has default value \"http://freme-project.eu/\". Short form is p."
         required: false
         type: "string"
       - in: "body"
