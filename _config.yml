@@ -2,7 +2,7 @@
 title: FREME Documentation
 email: jonathan_paul.sauder@dfki.de
 description: This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.
-baseurl: "/doc" # the subpath of your site, e.g. /blog/
+baseurl: "/doc/0.4" # the subpath of your site, e.g. /blog/
 apiurl: "/0.4"
 url: "http://api.freme-project.eu" # the base hostname & protocol for your site
 github_username:  josauder
