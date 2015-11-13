@@ -63,9 +63,8 @@ pos: 3.1
             $("#dataset-creation-response").text(JSON.stringify(result))}
 	});
        };
-
+       
     function sendTextProcessingRequest() {
-
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
 	    +"informat=text"
@@ -73,15 +72,16 @@ pos: 3.1
 	    +"&language="+$("#text-language").val()
 	    +"&dataset="+$("#target-dataset").val(),
             type: "POST",
-	    contentType: "application/json",
-        success:function(result){
-            $("#ner-results").text(result)},
-        error:function(result) {
-            $("#ner-results").text(JSON.stringify(result))}
-
+	    dataType: "text",
+	    contentType: "text/plain",
+            data: $("#input-text").val()
+        }).done(function(result){
+    	    $("#ner-results").text(result);
+	}).fail(function(result) {
+    	    $("#ner-results").text(JSON.stringify(result));
 	});
        };
-
+       
     function sendDatasetDeleteRequest() {
         var datasetToDelete= $("#delete-dataset-name").val();
         if (datasetToDelete!="") {
