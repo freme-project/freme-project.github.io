@@ -172,7 +172,7 @@
 				
 					
 						
-							<li  ><a href="/doc/tutorials/how-to-write-tutorials.html">How to write a Tutorial</a></li>
+							<li  class="active"  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Named Entity Recognition against Custom Dataset</a></li>
 						
 					
 					
@@ -182,7 +182,7 @@
 				
 					
 						
-							<li  class="active"  ><a href="/doc/tutorials/entity-recognition-against-custom-dataset.html">Named Entity Recognition against Custom Dataset</a></li>
+							<li  ><a href="/doc/tutorials/how-to-write-tutorials.html">How to write a Tutorial</a></li>
 						
 					
 					
@@ -202,7 +202,7 @@
 				
 					
 						
-							<li  ><a href="/doc/tutorials/pipeline-entity-link.html">Using the e-Entity & e-Link Pipeline</a></li>
+							<li  ><a href="/doc/tutorials/translate_EN-NL_including_terminology.html">Translate from English to Dutch including Terminology</a></li>
 						
 					
 					
@@ -212,7 +212,7 @@
 				
 					
 						
-							<li  ><a href="/doc/tutorials/translate_EN-NL_including_terminology.html">Translate from English to Dutch including Terminology</a></li>
+							<li  ><a href="/doc/tutorials/pipeline-entity-link.html">Using the e-Entity & e-Link Pipeline</a></li>
 						
 					
 					
@@ -337,6 +337,16 @@
 				
 					
 						
+							<li  ><a href="/doc/knowledge-base/maintaining-the-documentation-project.html">Maintaining the Documentation Project</a></li>
+						
+					
+					
+					
+				
+			
+				
+					
+						
 								</ul>
 							</li>
 						
@@ -379,6 +389,7 @@
     	<li><a href="#step-1-prepare-your-dataset">Step 1: Prepare your dataset</a></li>
     	<li><a href="#step-2-submit-your-dataset">Step 2: Submit your dataset</a></li>
     	<li><a href="#step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</a></li>
+    	<li><a href="#step-4-remove-your-dataset">Step 4: Remove your dataset</a></li>
     	<li><a href="#curl-examples">cURL examples</a></li>
     </ol>
     
@@ -423,9 +434,8 @@
             $("#dataset-creation-response").text(JSON.stringify(result))}
 	});
        };
-
+       
     function sendTextProcessingRequest() {
-
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
 	    +"informat=text"
@@ -433,15 +443,16 @@
 	    +"&language="+$("#text-language").val()
 	    +"&dataset="+$("#target-dataset").val(),
             type: "POST",
-	    contentType: "application/json",
-        success:function(result){
-            $("#ner-results").text(result)},
-        error:function(result) {
-            $("#ner-results").text(JSON.stringify(result))}
-
+	    dataType: "text",
+	    contentType: "text/plain",
+            data: $("#input-text").val()
+        }).done(function(result){
+    	    $("#ner-results").text(result);
+	}).fail(function(result) {
+    	    $("#ner-results").text(JSON.stringify(result));
 	});
        };
-
+       
     function sendDatasetDeleteRequest() {
         var datasetToDelete= $("#delete-dataset-name").val();
         if (datasetToDelete!="") {
@@ -558,7 +569,7 @@
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset" type="text" value="mydataset"></p>
+    <input id="target-dataset" type="text" placeholder="mydataset"></p>
     <br/>
 
     <button onclick="sendTextProcessingRequest();">Process the text!</button>
@@ -567,9 +578,10 @@
     <pre id="ner-results">
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
-    <h2> Step 3: Delete your Template </h2>
-    <p>Only the owner of a template or an admin can delete a template.</p>
-    <p> Name of Dataset which you want to delete:<br><br></p>
+
+    <h2 id="step-4-remove-your-dataset">Step 4: Remove your dataset</h2>
+    
+    <p> Name of dataset which you want to delete:<br><br></p>
     <input id="delete-dataset-name" type="text" value="">
     <p></p>
     <pre id="delete-results">
