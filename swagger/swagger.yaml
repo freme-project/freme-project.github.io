@@ -1413,7 +1413,7 @@ paths:
         Creates a new enrichment template. The template will be constructed from JSON data submitted as body.
         
         **The JSON input has to contain the following fields:**
-        - `query:` a SPARQL CONSTRUCT query
+        - `query:` a SPARQL CONSTRUCT query. Only SPARQL CONSTRUCT templates are supported by e-Link
         - `endpoint:` the SPARQL endpoint which will be used to execute the template
         - `label:` the title of the template
         - `description:` a description of the template
@@ -2018,7 +2018,6 @@ paths:
         required: false
         type: "string"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
