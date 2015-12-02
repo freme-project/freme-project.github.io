@@ -941,7 +941,7 @@ paths:
       - "e-Entity"
       summary: "Updating dataset for use in the e-Entity service"
       description:  |
-        Update a dataset with new data for use in the e-Entity service. See ` POST /e-entity/freme-ner/datasets `
+        Update a dataset with new data for use in the e-Entity service. The new data will be added to the existing dataset instead of overwriting the existing data. This can be used to upload a large dataset in multiple chunks.
         for an example SKOS Dataset.
       operationId: "updateDataset"
       consumes:
