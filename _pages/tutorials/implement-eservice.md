@@ -9,9 +9,7 @@ pos: 3.7
 
 This tutorial explains how to implement a new e-Service in FREME. A FREME e-Service is an enrichment service for Natural Language Processing exposed via a REST API and that follows the NIF API specifications.
 
-## Implementing the e-Service
-
-You can use this boilerplate code to create an e-Service in the [source code of the broker](https://github.com/freme-project/broker). The full code example (including imports) can be downloaded [here](https://drive.google.com/file/d/0B8CeKhHCOSqUTWdNTFNGdjlGdnM/view?usp=sharing). Similar e-Services are implement in the broker in the package eu.freme.broker.eservices.
+## Explanation of the e-Service
 
 This e-Service enriches each text with a capitalized version of it. Like all FREME e-Services it takes NIF or plaintext as input. Example for NIF input is
 
@@ -47,6 +45,10 @@ The output of above example is
         nif:endIndex    "11"^^xsd:nonNegativeInteger ;
         nif:isString    "hello world" .
 ```
+
+## Example code
+
+You can use this boilerplate code to create an e-Service in the [source code of the broker](https://github.com/freme-project/broker). The full code example (including imports) can be downloaded [here](https://drive.google.com/file/d/0B8CeKhHCOSqUTWdNTFNGdjlGdnM/view?usp=sharing). Similar e-Services are implement in the broker in the package eu.freme.broker.eservices.
 
 ```
 @RestController
