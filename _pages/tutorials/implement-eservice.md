@@ -11,26 +11,61 @@ This tutorial explains how to implement a new e-Service in FREME. A FREME e-Serv
 
 ## Implementing the e-Service
 
-You can use this boilerplate code to create an e-Service in the [source code of the broker](https://github.com/freme-project/broker). Similar e-Services are implement in the broker in the package eu.freme.broker.eservices:
+You can use this boilerplate code to create an e-Service in the [source code of the broker](https://github.com/freme-project/broker). The full code example (including imports) can be downloaded [here](https://drive.google.com/file/d/0B8CeKhHCOSqUTWdNTFNGdjlGdnM/view?usp=sharing). Similar e-Services are implement in the broker in the package eu.freme.broker.eservices.
+
+This e-Service enriches each text with a capitalized version of it. Like all FREME e-Services it takes NIF or plaintext as input. Example for NIF input is
+
+```
+@prefix nif:<http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+<http://example.org/document/1#char=0,21>
+  a nif:String , nif:Context, nif:RFC5147String ;
+  nif:isString "Welcome to Berlin"^^xsd:string;
+  nif:beginIndex "0"^^xsd:nonNegativeInteger;
+  nif:endIndex "21"^^xsd:nonNegativeInteger;
+  nif:sourceUrl <http://differentday.blogspot.com/2007_01_01_archive.html>.
+```
+
+An example CURL request to the e-Service is
+
+```
+curl -X POST "http://localhost:8080/example-eservice/capitalize?input=hello+world&informat=text"
+```
+
+The output of above example is
+
+```
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+
+<http://freme-project.eu/#char=0,11>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        <http://freme-project.eu/capitalize>
+                "HELLO WORLD"^^xsd:string ;
+        nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+        nif:endIndex    "11"^^xsd:nonNegativeInteger ;
+        nif:isString    "hello world" .
+```
 
 ```
 @RestController
 public class ExampleEService extends BaseRestController {
 
-  @Autowired
-  RDFConversionService rdfConversionService;
-  
-  Logger logger = Logger.getLogger(ExampleEService.class);
+	@Autowired
+	RDFConversionService rdfConversionService;
 
-	@RequestMapping(value = "/example-eservice/annotate", method = RequestMethod.POST)
+	Logger logger = Logger.getLogger(ExampleEService.class);
+
+	@RequestMapping(value = "/example-eservice/capitalize", method = RequestMethod.POST)
 	public ResponseEntity<String> tildeTranslate(
-      @RequestHeader(value = "Accept", required = false) String acceptHeader,
+			@RequestHeader(value = "Accept", required = false) String acceptHeader,
 			@RequestHeader(value = "Content-Type", required = false) String contentTypeHeader,
-			@RequestBody String postBody,
-			@RequestParam Map<String, String> parameterMap	) {
+			@RequestBody(required = false) String postBody,
+			@RequestParam Map<String, String> parameterMap) {
 
-		  NIFParameterSet parameters = this.normalizeNif(postBody,
-					acceptHeader, contentTypeHeader, parameterMap, false);
+		NIFParameterSet parameters = this.normalizeNif(postBody, acceptHeader,
+				contentTypeHeader, parameterMap, false);
 
 		// create rdf model
 		String plaintext = null;
@@ -49,19 +84,23 @@ public class ExampleEService extends BaseRestController {
 		} else {
 			// input is plaintext
 			plaintext = parameters.getInput();
-			rdfConversionService.plaintextToRDF(inputModel, plaintext,
-					sourceLang, parameters.getPrefix());
+			rdfConversionService.plaintextToRDF(inputModel, plaintext, null,
+					parameters.getPrefix());
 		}
 
-		Model responseModel = null;
 		try {
-      responseModel = ... // create response here
+			Property property = inputModel.getProperty("http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString");	
+			Statement stmt = inputModel.listStatements((Resource)null, property, (String)null).next();
+			plaintext = stmt.getLiteral().getString();
+			String enrichment = plaintext.toUpperCase();
+			Property enrichmentProperty = inputModel.createProperty("http://freme-project.eu/capitalize");		
+			stmt.getSubject().addLiteral(enrichmentProperty, enrichment);
 		} catch (Exception e) {
-      logger.error("exception was thrown", e);
-      throw new BadRequestException();
+			logger.error("exception was thrown", e);
+			throw new InternalServerErrorException();
 		}
-                                                         
-		return createSuccessResponse(responseModel, parameters.getOutformat());
+
+		return createSuccessResponse(inputModel, parameters.getOutformat());
 	}
 }
 ```  
