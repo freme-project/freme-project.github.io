@@ -29,7 +29,7 @@ tags:
         * possible values
           * text (plaintext)
           * text/turtle (default), short form: turtle
-          * application/json+ld, short form: json-ld
+          * application/ld+json, short form: json-ld
           * application/n-triples, short form: n-triples
           * application/rdf+xml, short form: rdf-xml
           * text/n3, short form: n3
@@ -41,7 +41,7 @@ tags:
       * output format
       * possible values
           * text/turtle (default), short form: turtle
-          * application/json+ld, short form: json-ld
+          * application/ld+json, short form: json-ld
           * application/n-triples, short form: n-triples
           * application/rdf+xml, short form: rdf-xml
           * text/n3, short form: n3
