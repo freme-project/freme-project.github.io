@@ -1292,10 +1292,6 @@ paths:
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
-      - "application/x-xliff+xml"
-      - "text/html"
-      - "application/x-openoffice"
-      - "text/xml"
 
       produces:
       - "text/n3"
@@ -1303,10 +1299,6 @@ paths:
       - "application/ld+json"
       - "application/n-triples"
       - "application/rdf+xml"
-      - "application/x-xliff+xml"
-      - "text/html"
-      - "application/x-openoffice"
-      - "text/xml"
 
       parameters:
       - name: "informat"
@@ -1322,10 +1314,6 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/html"
-        - "text/xml"
-        - "application/x-xliff+xml"
-        - "application/x-openoffice"
         default: "turtle"
       - name: "outformat"
         in: "query"
@@ -1341,10 +1329,6 @@ paths:
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/html"
-        - "text/xml"
-        - "application/x-xliff+xml"
-        - "application/x-openoffice"
         default:  "turtle"
       - in: "body"
         name: "body"
@@ -2063,7 +2047,7 @@ paths:
         in: "query"
       - name: "domain"
         in: "query"
-        description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystem)."
+        description: "specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystems)."
         required: false
         type: "string"
       - name: "system"

@@ -488,8 +488,8 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". This parameter overrides Accept
           header (Response Content Type). Short form is o.
-        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
-          application/x-xliff+xml, application/x-openoffice]
+        enum: [json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml, application/x-xliff+xml,
+          application/x-openoffice]
         in: query
         name: outformat
         required: false
