@@ -448,6 +448,15 @@ paths:
         description: "Input for pipeline chain, can be NIF or plain text"
         required: true
         type: "string"
+      - name: "stats"
+        required: false
+        description: "If true, adds timing statistics to the response: total duration of the pipeline and duration of each service called in the pipeline (in milliseconds)."
+        enum:
+        - "true"
+        - "false"
+        default: "false"
+        in: "query"
+        type: "string"
       responses:
         200:
           description: "Successful resposnse"
@@ -610,6 +619,15 @@ paths:
         in: "body"
         description: Body of request in JSON format, see above.
         requird: true
+        type: "string"
+      - name: "stats"
+        required: false
+        description: "If true, adds timing statistics to the response: total duration of the pipeline and duration of each service called in the pipeline (in milliseconds)."
+        enum:
+        - "true"
+        - "false"
+        default: "false"
+        in: "query"
         type: "string"
       responses:
         200:

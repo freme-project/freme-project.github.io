@@ -183,8 +183,7 @@ paths:
   /e-link/documents/:
     post:
       consumes: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
-        text/xml]
+        application/rdf+xml]
       description: "This service accepts a NIF document (with annotated entities)\
         \ and performs enrichment with pre-defined templates. The templates contain\
         \ \"fields\" marked between three at-signs @@@field-name@@@. If a user, while\
@@ -223,8 +222,7 @@ paths:
       - default: turtle
         description: Format of input string. Can be json-ld, turtle, n3, n-triples,
           rdf-xml. Overrides Content-Type header. Short form is f.
-        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
-          application/x-xliff+xml, application/x-openoffice]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml]
         in: query
         name: informat
         required: false
@@ -233,8 +231,7 @@ paths:
         description: RDF serialization format of Output. Can be json-ld, turtle, n3,
           n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response
           Content Type). Short form is o.
-        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml, text/html, text/xml,
-          application/x-xliff+xml, application/x-openoffice]
+        enum: [text, json-ld, turtle, n3, n-triples, rdf-xml]
         in: query
         name: outformat
         required: false
@@ -248,8 +245,7 @@ paths:
       - {description: the ID of the template to be used for enrichment, format: int32,
         in: query, name: templateid, required: true, type: integer}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
-        application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
-        text/xml]
+        application/rdf+xml]
       responses:
         200:
           description: Successful response
@@ -517,7 +513,7 @@ paths:
           Tilde team</a>. Optional, if omitted then translates with public systems',
         in: query, name: key, required: false, type: string}
       - {description: 'specify domain of translation system. List of supported domains
-          and language pairs can be found [here](https://services.tilde.com/translationsystem).',
+          and language pairs can be found [here](https://services.tilde.com/translationsystems).',
         in: query, name: domain, required: false, type: string}
       - {description: 'select translation system by ID [an alternative to source,
           target language and domain selection]. ID of public translation system can
