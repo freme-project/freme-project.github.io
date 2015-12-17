@@ -14,15 +14,23 @@ This Article explains which FREME e-Services need authenticated access and how t
 Some FREME endpoints are only accessible as authenticated user. At the moment these are:
 
   * POST, PUT and DELETE `/e-link/templates/{templateID}` (template handling that needs write access)
+  * POST, PUT and DELETE `/toolbox/filter/manage/{filterName}` (filter handling that needs write access)
   * GET, DELETE `/user/{userName}` and GET `/user` (user handling, except POST `/user`)
 
 Furthermore, the following FREME endpoints are restricted in such a way, that you can use them only with public resources (e.g. public templates), if you are not authenticated:
 
   * POST `/e-link/documents`
+
+The result of the resource managament endpoints
+  * GET `/e-link/templates`  
+  * GET `/toolbox/filter/manage`
+differs according to the authenticated user: only the resources to which the user has read access are returned.
+
+
   
 ## Restricted resources
 
-At the moment only templates are restricted.
+At the moment `templates` and `filters` are restricted.
 
 In general, all public restricted resources can be accessed with read access, writing is permitted. Private restricted resources can not be written, read or used in any FREME e-service by anyone except the owner. By default, a created restricted resource is public. This can be changed by the parameter `visibility` when creating or updating a restricted resource.
 
