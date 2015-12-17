@@ -13,7 +13,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 ## Available filters
 
-* `extract-entities-only`
+* `extract-entities-only`: extract all objects of triples with "itsrdf:taIdentRef" property
 * `terminology-terms-only` 
 
 ## Using filters
