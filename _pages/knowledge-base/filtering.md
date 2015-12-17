@@ -54,24 +54,17 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 
 ### Update a filter
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEWFILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEWFILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
 ```
 
 Examples:
 
-This changes the filter:
+This changes the filter, owner and visibility at once:
 
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
-```
-
-To change the owner and the visibility, you can do this:
-
-```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
 ```
 NOTE: The User `klaus` has to exist.
-NOTE: The two example requests can be merged, it was splitted just for explanation purposes.
 
 ### Delete a filter
 ```
