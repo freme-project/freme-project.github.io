@@ -24,7 +24,7 @@ curl -X POST -d FILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/man
 Example:
 
 ```
-curl -X POST -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X POST -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
 ### Get a filter
@@ -62,7 +62,7 @@ Examples:
 This changes the filter:
 
 ```
-curl -X PUT -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X PUT -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
 To change the owner and the visibility, you can do this:
