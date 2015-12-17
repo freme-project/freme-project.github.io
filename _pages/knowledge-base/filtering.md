@@ -67,7 +67,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract
 
 ### Get all filters
 
-This returns all filters to which the currently authenticated user has read access, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
+This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
 
 ```
 curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
