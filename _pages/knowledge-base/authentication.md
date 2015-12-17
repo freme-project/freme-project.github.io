@@ -22,9 +22,11 @@ Furthermore, the following FREME endpoints are restricted in such a way, that yo
   * POST `/e-link/documents`
 
 The result of the resource managament endpoints
+
   * GET `/e-link/templates`  
   * GET `/toolbox/filter/manage`
-differs according to the authenticated user: only the resources to which the user has read access are returned.
+
+differs according to the authenticated user: only the resources the user has read access to will be returned.
 
 
   
