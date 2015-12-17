@@ -20,8 +20,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 A filter with the name `FILTERNAME` can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
 
-Furthermore, the possible outformat/accept-header values differ when using filters.
-
+When using filters, the possible outformat/accept-header values differ from standard usage.
 In the case of **SELECT** filters the following output formats are allowed (mime type versions for accept header in brackets):
 
 * **csv** (text/comma-separated-values)
@@ -46,7 +45,7 @@ Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filter
 
 ### Add a filter
 ```
-curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d FILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
 ```
 
 Example:
@@ -82,7 +81,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 
 ### Update a filter
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEWFILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY|"EMPTY" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
 ```
 
 Examples:
@@ -97,7 +96,7 @@ curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/pla
 To change the owner and the visibility, you can do this:
 
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "empty" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "EMPTY" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
 ```
 NOTE: The User `klaus` has to exist.
 NOTE: The two example requests can be merged, it was splitted just for explanation purposes.
