@@ -18,7 +18,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 ## Using filters
 
-A filtes can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
+A filter with the name `FILTERNAME` can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
 
 Furthermore, the possible outformat/accept-header values differ when using filters.
 
