@@ -7,17 +7,12 @@ pos: 4.8
 
 # Postprocessing with SPARQL filters
 
-The FREME e-services provide postprocessing functionality. 
-All retrievable RDF content, like NER output, can be filtered 
-e.g. to get only a list of entities instead of full NIF. 
-This is achieved by executing SPARQL queries against the output of
+The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of
 the FREME e-services.
 
 ## Managing filters
 
-Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. 
-Filters are restricted resources, so some requests need authenticated access. 
-See [authentication]({{ site.url }}/doc/knowledge-base/authentication.md) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information. 
 
 A filter has to be a valid SPARQL query. At the moment, only SELECT queries are permitted.
 
@@ -90,5 +85,15 @@ curl -X DELETE "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extr
 ```
 
 ## Using filters
+
+Filters can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
+
+Furthermore, the possible outformat/accept-header values differ when using filters.
+
+In the case of **SELECT** filters the following output formats are allowed (mime type versions for accept header in brackets):
+* **csv** (text/comma-separated-values)
+* **json** (application/json)
+* **xml** (text/xml)
+* any RDF format accepted by FREME enrichment e-services e.g. turtle (text/turtle)
 
 
