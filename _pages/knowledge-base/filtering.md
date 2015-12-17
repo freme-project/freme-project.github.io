@@ -98,10 +98,12 @@ In the case of **SELECT** filters the following output formats are allowed (mime
 * any RDF format accepted by FREME enrichment e-services e.g. turtle (text/turtle)
 
 
-*Example query:*
+**Example query:**
 
 ```
 curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
 ```
+
+This query should return all named entities in the first sentence of [the eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list.
 
 
