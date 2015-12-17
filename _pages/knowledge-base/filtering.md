@@ -29,7 +29,7 @@ curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/pl
 
 ### Get a filter
 ```
-curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
 ```
 
 Example:
@@ -43,7 +43,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract
 This returns all filters to which the currently authenticated user has read access, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
 
 ```
-curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 ```
 
 Example:
