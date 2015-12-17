@@ -26,13 +26,13 @@ The result of the resource managament endpoints
   * GET `/e-link/templates`  
   * GET `/toolbox/filter/manage`
 
-differs according to the authenticated user: only the resources the user has read access to will be returned.
+differs according to the authenticated user: only the resources the user has read access to are returned.
 
 
   
 ## Restricted resources
 
-At the moment `templates` and `filters` are restricted.
+At the moment **templates** and **filters** are restricted.
 
 In general, all public restricted resources can be accessed with read access, writing is permitted. Private restricted resources can not be written, read or used in any FREME e-service by anyone except the owner. By default, a created restricted resource is public. This can be changed by the parameter `visibility` when creating or updating a restricted resource.
 
