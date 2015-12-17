@@ -91,9 +91,17 @@ Filters can be used by adding the parameter `filter=FILTERNAME` to any enrichmen
 Furthermore, the possible outformat/accept-header values differ when using filters.
 
 In the case of **SELECT** filters the following output formats are allowed (mime type versions for accept header in brackets):
+
 * **csv** (text/comma-separated-values)
 * **json** (application/json)
 * **xml** (text/xml)
 * any RDF format accepted by FREME enrichment e-services e.g. turtle (text/turtle)
+
+
+*Example query:*
+
+```
+curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=turtle&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
+```
 
 
