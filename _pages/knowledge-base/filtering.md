@@ -18,7 +18,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 ## Using filters
 
-Filters can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
+A filtes can be used by adding the parameter `filter=FILTERNAME` to any enrichment request.
 
 Furthermore, the possible outformat/accept-header values differ when using filters.
 
@@ -41,6 +41,8 @@ This query should return all named entities in the first sentence of the [eiffel
 ## Managing filters
 
 Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information. 
+
+**NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
 ### Add a filter
 ```
