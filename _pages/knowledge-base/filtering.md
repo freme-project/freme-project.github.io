@@ -24,7 +24,7 @@ curl -X POST -d FILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/man
 Example:
 
 ```
-curl -X POST -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#>\nSELECT ?s ?o\nWHERE {?s itsrdf:taIdentRef ?o}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X POST -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#>\nSELECT ?charsequence ?entity\nWHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
 ### Get a filter
@@ -62,7 +62,7 @@ Examples:
 This changes the filter:
 
 ```
-curl -X PUT -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#>\nSELECT ?o\nWHERE {?s itsrdf:taIdentRef ?o}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X PUT -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#>\nSELECT ?entity\nWHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
 To change the owner and the visibility, you can do this:
@@ -101,7 +101,7 @@ In the case of **SELECT** filters the following output formats are allowed (mime
 *Example query:*
 
 ```
-curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=turtle&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
+curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
 ```
 
 
