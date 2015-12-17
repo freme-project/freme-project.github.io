@@ -37,6 +37,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filter
 ```
 
 Example:
+
 ```
 curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
@@ -47,6 +48,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 ```
 
 Example:
+
 ```
 curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 ```
@@ -59,11 +61,13 @@ curl -X PUT -d NEWFILTER "{{ site.apiurl | prepend: site.url }}/toolbox/filter/m
 Examples:
 
 This changes the filter:
+
 ```
 curl -X PUT -d "PREFIX itsrdf: <http://www.w3.org/2005/131/its/rdf#>\nSELECT ?o\nWHERE {?s itsrdf:taIdentRef ?o}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
 To change the owner and the visibility, you can do this:
+
 ```
 curl -X PUT "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
 ```
@@ -75,6 +79,7 @@ curl -X DELETE "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{fil
 ```
 
 Example:
+
 ```
 curl -X DELETE "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
