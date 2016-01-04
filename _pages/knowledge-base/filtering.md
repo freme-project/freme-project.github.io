@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Postprocessing with SPARQL filters
+title: Simply FREME output using SPARQL filters
 dropdown: Knowledge Base
 pos: 4.8
 ---
 
-# Postprocessing with SPARQL filters
+# Simply FREME output using SPARQL filters
 
 The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of the FREME e-services.
 
@@ -15,6 +15,8 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 * `extract-entities-only`: extract all objects of triples with "itsrdf:taIdentRef" property
 * `terminology-terms-only` 
+
+**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.url }}/toolbox/filter/manage`, see [this section](#get-all-filters).
 
 ## Using filters
 
@@ -32,14 +34,14 @@ In the case of **SELECT** filters the following output formats are allowed (mime
 **Example query:**
 
 ```
-curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
+curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
 ```
 
 This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list.
 
 ## Managing filters
 
-Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiurl | prepend: site.url }}/doc/knowledge-base/authentication.html) for further information. 
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
@@ -65,7 +67,7 @@ Example:
 curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
-### Get all filters
+<a name="getAllFilters">### Get all filters</a>
 
 This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
 
