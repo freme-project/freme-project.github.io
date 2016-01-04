@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Simply FREME output using SPARQL filters
+title: Simplify FREME output using SPARQL filters
 dropdown: Knowledge Base
 pos: 4.8
 ---
 
-# Simply FREME output using SPARQL filters
+# Simplify FREME output using SPARQL filters
 
 The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of the FREME e-services.
 
@@ -14,7 +14,8 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 ## Available filters
 
 * `extract-entities-only`: extract all objects of triples with "itsrdf:taIdentRef" property
-* `terminology-terms-only` 
+* `terminology-terms-only`
+* `sourcelang-targetlang`
 
 **NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.url }}/toolbox/filter/manage`, see [this section](#get-all-filters).
 
