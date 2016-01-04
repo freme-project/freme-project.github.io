@@ -199,7 +199,7 @@ NOTE: The two example requests can be merged, it was splitted just for explanati
 
 ### Delete a filter
 ```
-curl -X DELETE--header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
 ```
 
 Example:
