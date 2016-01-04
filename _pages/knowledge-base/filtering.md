@@ -38,6 +38,7 @@ curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfə
 ```
 
 This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list:
+
 ```
 entity
 http://dbpedia.org/resource/Champ_de_Mars
@@ -49,6 +50,7 @@ http://dbpedia.org/resource/Eiffel_(programming_language)
 ```
 
 This would be the result without using a filter:
+
 ```
 @prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
 @prefix dbc:   <http://dbpedia.org/resource/Category:> .
@@ -129,7 +131,6 @@ This would be the result without using a filter:
         itsrdf:taClassRef     <http://nerd.eurecom.fr/ontology#Location> ;
         itsrdf:taConfidence   "0.8939840501437454"^^xsd:double ;
         itsrdf:taIdentRef     dbpedia:Champ_de_Mars .
-
 ```
 
 ## Managing filters
