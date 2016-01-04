@@ -37,7 +37,100 @@ In the case of **SELECT** filters the following output formats are allowed (mime
 curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
 ```
 
-This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list.
+This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list:
+```
+entity
+http://dbpedia.org/resource/Champ_de_Mars
+http://dbpedia.org/resource/Torkham
+http://dbpedia.org/resource/Eiffel_Tower
+http://dbpedia.org/resource/France
+http://dbpedia.org/resource/Paris
+http://dbpedia.org/resource/Eiffel_(programming_language)
+```
+
+This would be the result without using a filter:
+```
+@prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
+@prefix dbc:   <http://dbpedia.org/resource/Category:> .
+@prefix dbpedia-es: <http://es.dbpedia.org/resource/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix dbpedia-de: <http://de.dbpedia.org/resource/> .
+@prefix dbpedia-ru: <http://ru.dbpedia.org/resource/> .
+@prefix freme-onto: <http://freme-project.eu/ns#> .
+@prefix dbpedia-nl: <http://nl.dbpedia.org/resource/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dbpedia-it: <http://it.dbpedia.org/resource/> .
+
+<http://freme-project.eu/#char=61,67>
+        a                     nif:Phrase , nif:String , nif:RFC5147String , nif:Word ;
+        nif:anchorOf          "Eiffel"^^xsd:string ;
+        nif:beginIndex        "61"^^xsd:int ;
+        nif:endIndex          "67"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://nerd.eurecom.fr/ontology#Person> ;
+        itsrdf:taConfidence   "0.7492976009002771"^^xsd:double ;
+        itsrdf:taIdentRef     <http://dbpedia.org/resource/Eiffel_(programming_language)> .
+
+<http://freme-project.eu/#char=160,165>
+        a                     nif:String , nif:Word , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          "Paris"^^xsd:string ;
+        nif:beginIndex        "160"^^xsd:int ;
+        nif:endIndex          "165"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://nerd.eurecom.fr/ontology#Location> ;
+        itsrdf:taConfidence   "0.9414122694394742"^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Paris .
+
+<http://freme-project.eu/#char=48,54>
+        a                     nif:Word , nif:RFC5147String , nif:String , nif:Phrase ;
+        nif:anchorOf          "French"^^xsd:string ;
+        nif:beginIndex        "48"^^xsd:int ;
+        nif:endIndex          "54"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://www.w3.org/2002/07/owl#Thing> ;
+        itsrdf:taConfidence   "0.9138189959833969"^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:France .
+
+<http://freme-project.eu/#char=34,41>
+        a                     nif:RFC5147String , nif:Word , nif:Phrase , nif:String ;
+        nif:anchorOf          "EYE-fəl"^^xsd:string ;
+        nif:beginIndex        "34"^^xsd:int ;
+        nif:endIndex          "41"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://www.w3.org/2002/07/owl#Thing> ;
+        itsrdf:taConfidence   "0.5444451198595404"^^xsd:double .
+
+<http://freme-project.eu/#char=0,166>
+        a               nif:String , nif:Context , nif:RFC5147String ;
+        nif:beginIndex  "0"^^xsd:int ;
+        nif:endIndex    "166"^^xsd:int ;
+        nif:isString    "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris."^^xsd:string .
+
+<http://freme-project.eu/#char=4,16>
+        a                     nif:String , nif:RFC5147String , nif:Phrase , nif:Word ;
+        nif:anchorOf          "Eiffel Tower"^^xsd:string ;
+        nif:beginIndex        "4"^^xsd:int ;
+        nif:endIndex          "16"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://nerd.eurecom.fr/ontology#Location> ;
+        itsrdf:taConfidence   "0.9992749049645933"^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Eiffel_Tower .
+
+<http://freme-project.eu/#char=143,156>
+        a                     nif:RFC5147String , nif:Word , nif:String , nif:Phrase ;
+        nif:anchorOf          "Champ de Mars"^^xsd:string ;
+        nif:beginIndex        "143"^^xsd:int ;
+        nif:endIndex          "156"^^xsd:int ;
+        nif:referenceContext  <http://freme-project.eu/#char=0,166> ;
+        itsrdf:taClassRef     <http://nerd.eurecom.fr/ontology#Location> ;
+        itsrdf:taConfidence   "0.8939840501437454"^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Champ_de_Mars .
+
+```
 
 ## Managing filters
 
@@ -67,7 +160,7 @@ Example:
 curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
 ```
 
-<a name="getAllFilters">### Get all filters</a>
+### Get all filters
 
 This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
 
