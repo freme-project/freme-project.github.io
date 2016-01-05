@@ -17,7 +17,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 * `terminology-terms-only`
 * `sourcelang-targetlang`
 
-**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.url }}/toolbox/filter/manage`, see [this section](#get-all-filters).
+**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.apiurl | prepend: site.url }}/toolbox/filter/manage`, see [this section](#get-all-filters).
 
 ## Using filters
 
