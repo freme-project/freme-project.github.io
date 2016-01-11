@@ -2,9 +2,9 @@
 layout: page
 title: Rate Limiting
 dropdown: Knowledge Base
-pos: 4.10
+pos: 4.9
 ---
-## Rate Limiting
+### Rate Limiting
 Using the Rate-Limiting Filter one can limit the amount of requests as well as the size of all requests made by one user.
 Unauthenticated users are mapped to their IP-Address, Authenticated users to their username.
 
@@ -48,14 +48,14 @@ henry:
 
 Every request will attempt to match one of these properties in the following order:
 
-1. - `ratelimits.<username-or-ip>.<requested-endpoint>`
-2. - `ratelimits.<username-or-ip>.default`
-3. - `ratelimits.<role-of-caller>.<requested-endpoint>`
-4. - `ratelimits.<role-of-caller>.default`
-5. - Throw internal server error `"No identifier found for "+<username-or-ip>+"with role"+ <role-of-caller> + "for resource" + <requested-endpoint>`
+1. `ratelimits.<username-or-ip>.<requested-endpoint>`
+2. `ratelimits.<username-or-ip>.default`
+3. `ratelimits.<role-of-caller>.<requested-endpoint>`
+4. `ratelimits.<role-of-caller>.default`
+5. Throw internal server error `"No identifier found for "+<username-or-ip>+"with role"+ <role-of-caller> + "for resource" + <requested-endpoint>`
 
 To ensure safe behaviour, the usernames `ROLE_ANONYMOUS`, `ROLE_USER`, and `ROLE_ADMIN` are not permitted anymore in the UserController.
 
-This means that the user with the username `henry` can make 50 requests or requests totalling less than 100 000 characters in 600 seconds to `/e-translation/tilde` service. Since `henry` is an authenticated user (and thus has the ROLE_USER), he can also make 50 requests totalling less than 2 000 000 characters to `/e-entity/freme-ner/datasets`.
-An anonymous user (who will be mapped to his IP-Address) can only make 10 requests to `/e-entity/freme-ner/datasets` totalling 1 000 000 characters in 600 seconds because he has the ROLE_ANONYMOUS.
+This means that the user with the username `henry` can make 50 requests or requests totalling less than 100 000 characters in 600 seconds to `/e-translation/tilde` service. Since `henry` is an authenticated user (and thus has the `ROLE_USER`), he can also make 50 requests totalling less than 2 000 000 characters to `/e-entity/freme-ner/datasets`.
+An anonymous user (who will be mapped to his IP-Address) can only make 10 requests to `/e-entity/freme-ner/datasets` totalling 1 000 000 characters in 600 seconds because he has the `ROLE_ANONYMOUS`.
 An admin user can make unlimited requests to any e-service, which can be seen that his number of requests and also his size are set to 0.

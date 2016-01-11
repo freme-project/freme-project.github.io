@@ -13,6 +13,7 @@ This section contains a series of articles with documentation about various aspe
                                              
 [Starting FREME](starting-freme.html)
 [Configuration Options](configuration-options.html)
+[Rate Limiting](rate-limiting.html)
 
 ## Knowledge base for FREME users
                                           
