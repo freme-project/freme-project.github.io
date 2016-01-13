@@ -52,7 +52,7 @@ http://dbpedia.org/resource/Eiffel_(programming_language)
 **NOTE**: The first row of the output above contains the table header.
 
 
-This would be the result without using a filter:
+The following output would be the result without using a filter:
 
 ```
 @prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
