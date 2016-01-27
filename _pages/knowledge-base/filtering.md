@@ -38,7 +38,7 @@ In the case of **SELECT** filters the following output formats are allowed (mime
 curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?outformat=csv&language=en&dataset=dbpedia&mode=all&filter=extract-entities-only"
 ```
 
-This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as CSV list:
+This query should return all named entities in the first sentence of the [eiffel tower wikipedia article](https://en.wikipedia.org/wiki/Eiffel_Tower) as **CSV table**:
 
 ```
 entity
@@ -49,8 +49,10 @@ http://dbpedia.org/resource/France
 http://dbpedia.org/resource/Paris
 http://dbpedia.org/resource/Eiffel_(programming_language)
 ```
+**NOTE**: The first row of the output above contains the table header.
 
-This would be the result without using a filter:
+
+The following output would be the result without using a filter:
 
 ```
 @prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
