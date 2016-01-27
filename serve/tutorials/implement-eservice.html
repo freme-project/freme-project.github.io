@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FREME Documentation - Create a new e-Service</title>
+    <meta name="description" content="This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.">
+
+  
+	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
+	<link rel="canonical" href="http://api-dev.freme-project.eu/doctutorials/implement-eservice.html">
+	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="http://api-dev.freme-project.eu/doc/feed.xml" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src=/doc/js/bootstrap.min.js
+	></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
+	</script>
+  </head>
+  <body>
+
+    <div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
+								
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<a href="/doc/home.html"><img src=/doc/img/Logo_FREME_icona_vert.png alt="FREME Logo" class = "navbar-logo"></a>
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			
+			
+			
+			
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+	<div class = "container">
+		<h1 id="create-a-new-e-service">Create a new e-Service</h1>
+
+<p>This tutorial explains how to implement a new e-Service in FREME. A FREME e-Service is an enrichment service for Natural Language Processing exposed via a REST API and that follows the NIF API specifications.</p>
+
+<h2 id="explanation-of-the-e-service">Explanation of the e-Service</h2>
+
+<p>This e-Service enriches each text with a capitalized version of it. Like all FREME e-Services it takes NIF or plaintext as input. Example for NIF input is</p>
+
+<p><code>
+@prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+&lt;http://example.org/document/1#char=0,21&gt;
+  a nif:String , nif:Context, nif:RFC5147String ;
+  nif:isString "Welcome to Berlin"^^xsd:string;
+  nif:beginIndex "0"^^xsd:nonNegativeInteger;
+  nif:endIndex "21"^^xsd:nonNegativeInteger;
+  nif:sourceUrl &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.
+</code></p>
+
+<p>An example CURL request to the e-Service is</p>
+
+<p><code>
+curl -X POST "http://localhost:8080/example-eservice/capitalize?input=hello+world&amp;informat=text"
+</code></p>
+
+<p>The output of above example is</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,11">http://freme-project.eu/#char=0,11</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        <a href="http://freme-project.eu/capitalize">http://freme-project.eu/capitalize</a>
+                “HELLO WORLD”^^xsd:string ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “11”^^xsd:nonNegativeInteger ;
+        nif:isString    “hello world” .
+```</p>
+
+<h2 id="example-code">Example code</h2>
+
+<p>You can use this boilerplate code to create an e-Service in the <a href="https://github.com/freme-project/broker">source code of the broker</a>. The full code example (including imports) can be downloaded <a href="https://drive.google.com/file/d/0B8CeKhHCOSqUTWdNTFNGdjlGdnM/view?usp=sharing">here</a>. Similar e-Services are implement in the broker in the package eu.freme.broker.eservices.</p>
+
+<p>```
+@RestController
+public class ExampleEService extends BaseRestController {</p>
+
+<pre><code>@Autowired
+RDFConversionService rdfConversionService;
+
+Logger logger = Logger.getLogger(ExampleEService.class);
+
+@RequestMapping(value = "/example-eservice/capitalize", method = RequestMethod.POST)
+public ResponseEntity&lt;String&gt; tildeTranslate(
+		@RequestHeader(value = "Accept", required = false) String acceptHeader,
+		@RequestHeader(value = "Content-Type", required = false) String contentTypeHeader,
+		@RequestBody(required = false) String postBody,
+		@RequestParam Map&lt;String, String&gt; parameterMap) {
+
+	NIFParameterSet parameters = this.normalizeNif(postBody, acceptHeader,
+			contentTypeHeader, parameterMap, false);
+
+	// create rdf model
+	String plaintext = null;
+	Model inputModel = ModelFactory.createDefaultModel();
+
+	if (!parameters.getInformat().equals(
+			RDFConstants.RDFSerialization.PLAINTEXT)) {
+		// input is nif
+		try {
+			inputModel = this.unserializeNif(parameters.getInput(),
+					parameters.getInformat());
+		} catch (Exception e) {
+			logger.error("failed", e);
+			throw new BadRequestException("Error parsing NIF input");
+		}
+	} else {
+		// input is plaintext
+		plaintext = parameters.getInput();
+		rdfConversionService.plaintextToRDF(inputModel, plaintext, null,
+				parameters.getPrefix());
+	}
+
+	try {
+		Property property = inputModel.getProperty("http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString");	
+		Statement stmt = inputModel.listStatements((Resource)null, property, (String)null).next();
+		plaintext = stmt.getLiteral().getString();
+		String enrichment = plaintext.toUpperCase();
+		Property enrichmentProperty = inputModel.createProperty("http://freme-project.eu/capitalize");		
+		stmt.getSubject().addLiteral(enrichmentProperty, enrichment);
+	} catch (Exception e) {
+		logger.error("exception was thrown", e);
+		throw new InternalServerErrorException();
+	}
+
+	return createSuccessResponse(inputModel, parameters.getOutformat());
+} } ```  
+</code></pre>
+
+<ul>
+  <li>Line 1 advises Spring MVC to create a REST endpoint out of this class</li>
+  <li>Line 9 defines the URL of the REST endpoint. All FREME enrichment services should be accessible via HTTP POST.</li>
+  <li>Line 10-14 define the input parameters of the request using Spring MVC syntax.</li>
+  <li>Line 16 extracts all the standard NIF parameters from the request. It makes sure that the request is compliant with the <a href="http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html">NIF API specification</a>.</li>
+  <li>The broker accepts many different input formats, including plaintext and several RDF serialization formats. Line 19-38 unifies all these approaches by creating a Jena model from the several input formats.</li>
+  <li>Line 41-46 adds the enrichment to the RDF model. It is surrounded by a try catch block. The reason for this try-catch block is that exceptions in the underlying services should not be passed to the user. The message of the exception might reveal internal information to the user. Or the error message of the internal exception is so confusing that is does not help the user. Instead they should be caught and well controlled error messages should be thrown. The most common errors are BadRequestException, InternalServerException and ExternalServiceFailedException. You should only send exceptions from the package eu.freme.broker.exception to the user. These exception also contain an annotation that controls the http response code send to the user.</li>
+  <li>Line 52 returns a succesful response in the output format that the user specified.</li>
+</ul>
+
+<p>Useful links:</p>
+
+<ul>
+  <li><a href="https://github.com/freme-project/broker">source code of the broker</a></li>
+  <li><a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html">Documentation of Spring MVC</a></li>
+  <li><a href="http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html">NIF API specification</a></li>
+</ul>
+
+<h2 id="embedding-the-e-service-in-freme">Embedding the e-Service in FREME</h2>
+
+<p>FREME differentiates between two kinds of e-Services. e-Services hosted on FREME and external services.</p>
+
+<p>An external service is a service that is hosted on another server and that is accessible via a web interface. So FREME proxies a the requests it receives to this server. In this case FREME adds NIF compatibility and more input / output formats to the external service. This is the easiest way of integrating an e-Service into FREME. In this case you can directly implement the API call in line 46 of the example code.</p>
+
+<p>An e-Service hosted on FREME is more complicated. In this case FREME does not simply redirect the call to an external service but it the code that produces the enrichment resides on FREME also. We suggest to implement this enrichment service as a separate project and as a Java library. It should be implemented as a spring bean for easy integration in FREME. Then the e-Service calls this Java library.</p>
+
+	</div>
+
+    
+<footer class="footer">
+
+		<div class = "navbar navbar-default navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40"  alt="eu-flag"	 width="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+			</div>
+			
+		</div>
+		
+</footer>
+
+
+  </body>
+
+</html>

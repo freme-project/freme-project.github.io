@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FREME Documentation - Maintaining the Documentation Project</title>
+    <meta name="description" content="This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.">
+
+  
+	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
+	<link rel="canonical" href="http://api-dev.freme-project.eu/docknowledge-base/maintaining-the-documentation-project.html">
+	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="http://api-dev.freme-project.eu/doc/feed.xml" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src=/doc/js/bootstrap.min.js
+	></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
+	</script>
+  </head>
+  <body>
+
+    <div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
+								
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<a href="/doc/home.html"><img src=/doc/img/Logo_FREME_icona_vert.png alt="FREME Logo" class = "navbar-logo"></a>
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			
+			
+			
+			
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+	<div class = "container">
+		<div class="post">
+
+  <article class="post-content">
+    <h1 id="maintaining-the-documentation-project">Maintaining the Documentation Project</h1>
+
+<h2 id="editing-configuration">Editing configuration</h2>
+
+<p>You can configure parameters in the file <code>_config.yml</code>.</p>
+
+<ul>
+  <li>The <code>url</code> parameter should be the hostname &amp; protocol for this site e.g http://api-dev.freme-project.eu</li>
+  <li>The <code>baseurl</code> parameter should be the subpath of where this documentation site is hosted e.g. “/doc/0.x”</li>
+  <li>The <code>apiurl</code> parameter should be the subpath to the FREME Api that all requests made from this documentation site go to, e.g. /current</li>
+</ul>
+
+<h2 id="editing-content">Editing content</h2>
+
+<p>To edit the content of the pages, edit the files in the <code>_pages</code> folder. A full guide on how to add Documentation can be found at <a href="how-to-add-documentation.html">here</a>.
+To edit the API Documentation, edit <code>swagger/swagger.yaml</code>.</p>
+
+<h2 id="building">Building</h2>
+
+<p><strong>On Api-Dev</strong></p>
+
+<p>Jekyll, the Static Site Generator for this project is installed on the api-dev server. Every time you push an updated version of this Documentation to the master branch, Jenkins will build a new version, so you don’t need Jekyll installed.</p>
+
+<p><strong>Locally</strong></p>
+
+<p>Install jekyll</p>
+
+<p><code>
+sudo apt-get install jekyll
+</code></p>
+
+<p>If it doesn’t work the first time go for:</p>
+
+<p><code>
+sudo apt-get install ruby-dev
+</code></p>
+
+<p>To build the _site folder:</p>
+
+<p><code>
+jekyll build
+</code></p>
+
+<p>To have the site served correctly (also calls <code>jekyll build</code>, updates itself with every edit in the files), run</p>
+
+<p><code>
+jekyll serve
+</code></p>
+
+<p>And go to <code>localhost:4000/&lt;baseurl&gt;/start.html</code> where baseurl is as of now <code>doc</code>.  Each call to <code>jekyll serve</code> will execute <code>swagger/yamlscript.py</code> which generates the Simple Api Documentation from the Full Api Documentation.</p>
+
+<p>If you edit files in <code>_config.yml</code> then <code>jekyll serve</code> will not update these changes automatically. Close the <code>serve</code> process and restart it to see the changes.</p>
+
+<h2 id="migrating-swagger-ui-versions">Migrating Swagger-UI versions</h2>
+
+<p>Change into the <code>swagger-ui</code> branch of the <a href="https://github.com/freme-project/Documentation/tree/swagger-ui">documentation project</a>.</p>
+
+<p>Replace all files with the new Swagger-UI files except for:</p>
+
+<ul>
+  <li><code>src/main/template/resource.handlebars</code></li>
+  <li><code>src/main/javascript/MainView</code></li>
+  <li><code>src/main/javascript/ResourceView</code></li>
+</ul>
+
+<p><strong>Build the new dist directory</strong>
+Build the new <code>dist</code> directory for Swagger UI from the <code>swagger-ui</code> branch by changing into the directory containing <code>gulpfile.js</code> and running:</p>
+
+<p><code>
+npm install
+gulp
+</code></p>
+
+<p>You should now see a new directory <code>dist</code>. If this did not work, make sure you have <code>npm</code> and <code>gulp</code> properly installed.</p>
+
+<p><strong>Merge new dist folder into existing Documentation master</strong></p>
+
+<p>Replace every file in the <code>swagger</code> directory in the <code>master</code> branch with the new files from the <code>dist</code> directory created previously except:</p>
+
+<ul>
+  <li><code>/swagger/swagger.yaml</code></li>
+  <li><code>/swagger/lib/jquery-1.9.1.min.js</code></li>
+</ul>
+
+<p>See if this works out of the box by running <code>jekyll serve</code> as describe above. If it does, then you are done.</p>
+
+<p>If it does not, replace the javascript in <code>_layouts/swagger-doc.html</code> with the javascript in <code>swagger/index.html</code>.
+Uncomment the function <code>addApiKeyAuthorization</code> and replace the line</p>
+
+<p><code>
+var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
+</code></p>
+
+<p>with</p>
+
+<p><code>
+var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
+</code>
+to enable the use of X-Auth-Tokens in the documentation.
+If there are unresolved dependencies, add them in <code>_layouts/swagger-doc.html</code> with the correct relative path.</p>
+
+
+  </article>
+
+</div>
+
+	</div>
+
+    
+<footer class="footer">
+
+		<div class = "navbar navbar-default navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40"  alt="eu-flag"	 width="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+			</div>
+			
+		</div>
+		
+</footer>
+
+
+  </body>
+
+</html>

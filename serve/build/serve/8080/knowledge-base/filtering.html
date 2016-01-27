@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FREME Documentation - Simplify FREME output using SPARQL filters</title>
+    <meta name="description" content="This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.">
+
+  
+	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
+	<link rel="canonical" href="http://api-dev.freme-project.eu/docknowledge-base/filtering.html">
+	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="http://api-dev.freme-project.eu/doc/feed.xml" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src=/doc/js/bootstrap.min.js
+	></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
+	</script>
+  </head>
+  <body>
+
+    <div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
+								
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<a href="/doc/home.html"><img src=/doc/img/Logo_FREME_icona_vert.png alt="FREME Logo" class = "navbar-logo"></a>
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			
+			
+			
+			
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+	<div class = "container">
+		<div class="post">
+
+  <article class="post-content">
+    <h1 id="simplify-freme-output-using-sparql-filters">Simplify FREME output using SPARQL filters</h1>
+
+<p>The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of the FREME e-services.</p>
+
+<p>A filter has to be a valid SPARQL query. At the moment, only SELECT queries are permitted.</p>
+
+<h2 id="available-filters">Available filters</h2>
+
+<ul>
+  <li><code>extract-entities-only</code>: extract all objects of triples with “itsrdf:taIdentRef” property</li>
+  <li><code>terminology-terms-only</code></li>
+  <li><code>sourcelang-targetlang</code></li>
+</ul>
+
+<p><strong>NOTE:</strong> The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint <code>GET http://api-dev.freme-project.eu/current/toolbox/filter/manage</code>, see <a href="#get-all-filters">this section</a>.</p>
+
+<h2 id="using-filters">Using filters</h2>
+
+<p>A filter with the name <code>FILTERNAME</code> can be used by adding the parameter <code>filter=FILTERNAME</code> to any enrichment request.</p>
+
+<p>When using filters, the possible outformat/accept-header values differ from standard usage.
+In the case of <strong>SELECT</strong> filters the following output formats are allowed (mime type versions for accept header in brackets):</p>
+
+<ul>
+  <li><strong>csv</strong> (text/comma-separated-values)</li>
+  <li><strong>json</strong> (application/json)</li>
+  <li><strong>xml</strong> (text/xml)</li>
+  <li>any RDF format accepted by FREME enrichment e-services e.g. turtle (text/turtle)</li>
+</ul>
+
+<p><strong>Example query:</strong></p>
+
+<p><code>
+curl -X POST --header "Content-Type: text/plain" -d "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris." "http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents?outformat=csv&amp;language=en&amp;dataset=dbpedia&amp;mode=all&amp;filter=extract-entities-only"
+</code></p>
+
+<p>This query should return all named entities in the first sentence of the <a href="https://en.wikipedia.org/wiki/Eiffel_Tower">eiffel tower wikipedia article</a> as CSV list:</p>
+
+<p><code>
+entity
+http://dbpedia.org/resource/Champ_de_Mars
+http://dbpedia.org/resource/Torkham
+http://dbpedia.org/resource/Eiffel_Tower
+http://dbpedia.org/resource/France
+http://dbpedia.org/resource/Paris
+http://dbpedia.org/resource/Eiffel_(programming_language)
+</code></p>
+
+<p>This would be the result without using a filter:</p>
+
+<p>```
+@prefix dbpedia-fr: <a href="http://fr.dbpedia.org/resource/">http://fr.dbpedia.org/resource/</a> .
+@prefix dbc:   <a href="http://dbpedia.org/resource/Category:">http://dbpedia.org/resource/Category:</a> .
+@prefix dbpedia-es: <a href="http://es.dbpedia.org/resource/">http://es.dbpedia.org/resource/</a> .
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix dbpedia: <a href="http://dbpedia.org/resource/">http://dbpedia.org/resource/</a> .
+@prefix rdfs:  <a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dbpedia-de: <a href="http://de.dbpedia.org/resource/">http://de.dbpedia.org/resource/</a> .
+@prefix dbpedia-ru: <a href="http://ru.dbpedia.org/resource/">http://ru.dbpedia.org/resource/</a> .
+@prefix freme-onto: <a href="http://freme-project.eu/ns#">http://freme-project.eu/ns#</a> .
+@prefix dbpedia-nl: <a href="http://nl.dbpedia.org/resource/">http://nl.dbpedia.org/resource/</a> .
+@prefix dcterms: <a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a> .
+@prefix dbpedia-it: <a href="http://it.dbpedia.org/resource/">http://it.dbpedia.org/resource/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=61,67">http://freme-project.eu/#char=61,67</a>
+        a                     nif:Phrase , nif:String , nif:RFC5147String , nif:Word ;
+        nif:anchorOf          “Eiffel”^^xsd:string ;
+        nif:beginIndex        “61”^^xsd:int ;
+        nif:endIndex          “67”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Person">http://nerd.eurecom.fr/ontology#Person</a> ;
+        itsrdf:taConfidence   “0.7492976009002771”^^xsd:double ;
+        itsrdf:taIdentRef     <a href="http://dbpedia.org/resource/Eiffel_(programming_language)">http://dbpedia.org/resource/Eiffel_(programming_language)</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=160,165">http://freme-project.eu/#char=160,165</a>
+        a                     nif:String , nif:Word , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Paris”^^xsd:string ;
+        nif:beginIndex        “160”^^xsd:int ;
+        nif:endIndex          “165”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence   “0.9414122694394742”^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Paris .</p>
+
+<p><a href="http://freme-project.eu/#char=48,54">http://freme-project.eu/#char=48,54</a>
+        a                     nif:Word , nif:RFC5147String , nif:String , nif:Phrase ;
+        nif:anchorOf          “French”^^xsd:string ;
+        nif:beginIndex        “48”^^xsd:int ;
+        nif:endIndex          “54”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://www.w3.org/2002/07/owl#Thing">http://www.w3.org/2002/07/owl#Thing</a> ;
+        itsrdf:taConfidence   “0.9138189959833969”^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:France .</p>
+
+<p><a href="http://freme-project.eu/#char=34,41">http://freme-project.eu/#char=34,41</a>
+        a                     nif:RFC5147String , nif:Word , nif:Phrase , nif:String ;
+        nif:anchorOf          “EYE-fəl”^^xsd:string ;
+        nif:beginIndex        “34”^^xsd:int ;
+        nif:endIndex          “41”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://www.w3.org/2002/07/owl#Thing">http://www.w3.org/2002/07/owl#Thing</a> ;
+        itsrdf:taConfidence   “0.5444451198595404”^^xsd:double .</p>
+
+<p><a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a>
+        a               nif:String , nif:Context , nif:RFC5147String ;
+        nif:beginIndex  “0”^^xsd:int ;
+        nif:endIndex    “166”^^xsd:int ;
+        nif:isString    “The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: tour Eiffel [tuʁ‿ɛfɛl] About this sound listen) is a wrought iron lattice tower on the Champ de Mars in Paris.”^^xsd:string .</p>
+
+<p><a href="http://freme-project.eu/#char=4,16">http://freme-project.eu/#char=4,16</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase , nif:Word ;
+        nif:anchorOf          “Eiffel Tower”^^xsd:string ;
+        nif:beginIndex        “4”^^xsd:int ;
+        nif:endIndex          “16”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence   “0.9992749049645933”^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Eiffel_Tower .</p>
+
+<p><a href="http://freme-project.eu/#char=143,156">http://freme-project.eu/#char=143,156</a>
+        a                     nif:RFC5147String , nif:Word , nif:String , nif:Phrase ;
+        nif:anchorOf          “Champ de Mars”^^xsd:string ;
+        nif:beginIndex        “143”^^xsd:int ;
+        nif:endIndex          “156”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,166">http://freme-project.eu/#char=0,166</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence   “0.8939840501437454”^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Champ_de_Mars .
+```</p>
+
+<h2 id="managing-filters">Managing filters</h2>
+
+<p>Filters can be managed via the REST API endpoint <code>/toolbox/filter/manage/{filterName}</code>. Filters are restricted resources, so some requests need authenticated access. See <a href="http://api-dev.freme-project.eu/current/doc/knowledge-base/authentication.html">authentication</a> for further information. </p>
+
+<p><strong>NOTE:</strong> When using the following examples, don’t forget to replace <code>YOUR_TOKEN</code> by your authentication token.</p>
+
+<h3 id="add-a-filter">Add a filter</h3>
+<p><code>
+curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d SPARQL_QUERY "http://api-dev.freme-project.eu/current/toolbox/filter/manage/{filterName}"
+</code></p>
+
+<p>Example:</p>
+
+<p><code>
+curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/extract-entities-only"
+</code></p>
+
+<h3 id="get-a-filter">Get a filter</h3>
+<p><code>
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "http://api-dev.freme-project.eu/current/toolbox/filter/manage/{filterName}"
+</code></p>
+
+<p>Example:</p>
+
+<p><code>
+curl -X GET "http://api-dev.freme-project.eu/current/toolbox/filter/manage/extract-entities-only"
+</code></p>
+
+<h3 id="get-all-filters">Get all filters</h3>
+
+<p>This request returns all filters to which the currently authenticated user has <strong>read access</strong>, see <a href="http://api-dev.freme-project.eu/doc/knowledge-base/authentication.html">authentication</a> for further information.</p>
+
+<p><code>
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "http://api-dev.freme-project.eu/current/toolbox/filter/manage"
+</code></p>
+
+<p>Example:</p>
+
+<p><code>
+curl -X GET "http://api-dev.freme-project.eu/current/toolbox/filter/manage"
+</code></p>
+
+<h3 id="update-a-filter">Update a filter</h3>
+<p><code>
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY|"EMPTY" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/{filterName}[&amp;newOwner=NEW_OWNER_NAME][&amp;visibility=NEW_VISIBILITY]"
+</code></p>
+
+<p>Examples:</p>
+
+<p>This changes the filter:</p>
+
+<p><code>
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/extract-entities-only"
+</code></p>
+
+<p>To change the owner and the visibility, you can do this:</p>
+
+<p><code>
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "EMPTY" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/extract-entities-only?newOwner=klaus&amp;visibility=private"
+</code>
+NOTE: The User <code>klaus</code> has to exist.
+NOTE: The two example requests can be merged, it was splitted just for explanation purposes.</p>
+
+<h3 id="delete-a-filter">Delete a filter</h3>
+<p><code>
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/{filterName}"
+</code></p>
+
+<p>Example:</p>
+
+<p><code>
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "http://api-dev.freme-project.eu/current/toolbox/filter/manage/extract-entities-only"
+</code></p>
+
+
+  </article>
+
+</div>
+
+	</div>
+
+    
+<footer class="footer">
+
+		<div class = "navbar navbar-default navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40"  alt="eu-flag"	 width="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+			</div>
+			
+		</div>
+		
+</footer>
+
+
+  </body>
+
+</html>

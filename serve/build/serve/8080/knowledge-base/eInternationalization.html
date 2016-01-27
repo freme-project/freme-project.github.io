@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="shortcut icon" href="http://www.freme-project.eu/wp-content/themes/vantage-child-01/favicon.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FREME Documentation - e-Internationalization</title>
+    <meta name="description" content="This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.">
+
+  
+	<link rel="stylesheet" href="/doc/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/doc/css/style.css">
+	<link rel="stylesheet" href="/doc/css/overwrite.css">
+	<link rel="canonical" href="http://api-dev.freme-project.eu/docknowledge-base/eInternationalization.html">
+	<link rel="alternate" type="application/rss+xml" title="FREME Documentation" href="http://api-dev.freme-project.eu/doc/feed.xml" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src=/doc/js/bootstrap.min.js
+	></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+		var fremeApiUrl= "http://api-dev.freme-project.eu/current";
+	</script>
+  </head>
+  <body>
+
+    <div class = "navbar navbar-default navbar-static-top">
+	<div class = "container">
+	
+		<div class = "navbar-header">
+								
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<a href="/doc/home.html"><img src=/doc/img/Logo_FREME_icona_vert.png alt="FREME Logo" class = "navbar-logo"></a>
+			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
+		</div>
+			
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+			
+			
+			
+			
+			</ul>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+	<div class = "container">
+		<div class="post">
+
+  <article class="post-content">
+    <h1 id="e-internationalization">e-Internationalization</h1>
+
+<p>FREME e-Services work with either plain text or NIF files. The e-Internationalization let users enrich HTML, XML, XLIFF and ODT files as well. It is not an individual service, but it is indirectly used via other services. The e-Services supporting the e-Internationalization are </p>
+
+<ul>
+  <li>e-Entity</li>
+  <li>e-Link</li>
+  <li>e-Terminology</li>
+  <li>e-Translation</li>
+</ul>
+
+<p>Wit this new functionality a user can invoke one of the supported FREME e-Services, let’s say e-Entity, and submit a HTML file. The control goes to the e-Internationalization first that converts the HTML file to NIF. Finally this NIF file is submitted to e-Entity service. The conversion to NIF is done internally and it’s transparent to the user. </p>
+
+<p>The e-Internationalization service provides methods for converting following formats to NIF:</p>
+
+<ul>
+  <li>HTML – MIME-type: text/html</li>
+  <li>XML – MIME-type: text/xml</li>
+  <li>XLIFF 1.2 – MIME-type: application/x-xliff+xml</li>
+  <li>ODT – MIME-type: application/x-openoffice</li>
+</ul>
+
+<p>If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the itsrdf domain (see <a href="#supported-its-categories">Supported ITS categories</a> section).</p>
+
+<p>Beside the conversion to NIF, the e-Internationalization service also provides a method for converting the enriched NIF back to the original file format. We call this functionality <code>round-tripping</code> and at the moment it is only available with the HTML format. For example, the user can invoke the e-Entity service by submitting a HTML file and specifying “outformat=html”. The HTML file is converted to NIF and then the latter is sent to the e-Entity service. Once the NIF has been enriched, it is converted back to the HTML format. The final HTML file contains enrichments retrieved by the e-Entity service. As for the simple conversion, the process is completely transparent to the user: he doesn’t have to explicitly call the e-Internationalization service. Note that only entity and terminology enrichments can be included in the original file format. Although user is allowed to specify HTML output format even for e-Link and e-Translation services, he should be aware that the returned HTML file won’t contain enrichments retrieved by those services.</p>
+
+<p>So with the introduction of the e-Internationalization service, new input and output formats are supported when invoking FREME e-Services. </p>
+
+<p>New input formats are <code>text/html</code>, <code>text/xml</code>, <code>application/x-xliff+xml</code> and <code>application/x-openoffice</code>.</p>
+
+<p>New output format is <code>text/html</code>. Note that this output format can be only used when the starting document is a HTML file as well. This is a general rule when performing the round-tripping: input and output formats must be the same. </p>
+
+<h2 id="supported-its-categories">Supported ITS categories</h2>
+
+<p>The e-Internationalization service supports almost all <a href="http://www.w3.org/TR/2013/PR-its20-20130924/#datacategory-description">ITS 2.0 categories</a></p>
+
+<p>Below the list of <strong>not</strong> supported ITS 2.0 categories for each file format</p>
+
+<ul>
+  <li>Translate for XLIFF files</li>
+  <li>Translate, Locale Filter, MT Confidence and Domain for HTML</li>
+  <li>ITS properties support for XML files is still draft. Some categories could not be translated. At the moment a list of unsupported properties is not available.</li>
+</ul>
+
+<p>For the sake of completeness, below are the lists of supported ITS 2.0 categories for each format.</p>
+
+<p><strong>XLIFF</strong></p>
+
+<ul>
+  <li>Localization Note</li>
+  <li>Terminology</li>
+  <li>Text Analysis</li>
+  <li>Locale Filter</li>
+  <li>Provenance</li>
+  <li>Localization Quality Issue</li>
+  <li>Localization Quality Rating</li>
+  <li>MT Confidence</li>
+  <li>Allowed Characters</li>
+  <li>Storage Size</li>
+  <li>Domain</li>
+</ul>
+
+<p><strong>HTML</strong></p>
+
+<ul>
+  <li>Localization Note</li>
+  <li>Terminology</li>
+  <li>Text Analysis</li>
+  <li>Provenance</li>
+  <li>Localization Quality Issue</li>
+  <li>Localization Quality Rating</li>
+  <li>Allowed Characters</li>
+  <li>Storage Size</li>
+</ul>
+
+<p><strong>XML</strong>
+Not available.</p>
+
+<h2 id="round-tripping-how-does-it-work">Round-tripping: how does it work?</h2>
+
+<p>The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. 
+At the moment the round-tripping is only available for HTML documents. Users must specify <code>text/html</code> as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.</p>
+
+<p>This section explains how the e-Internationalization service implements this functionality.</p>
+
+<p>When converting a HTML file to NIF a second NIF file is produced, containing a context that also includes markups. Let’s call such a file “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalization service which returns the original HTML document with the addition of enrichment annotations.</p>
+
+<h3 id="roundtripping-example">Roundtripping example</h3>
+
+<p>A HTML file is converted to NIF and enriched with the e-Entity service. Finally it is converted back to the original format. </p>
+
+<p>Original HTML file</p>
+
+<p>```</p>
+<html>
+<head>
+	<title>Roundtripping</title>
+</head>
+<body>
+<p>Welcome to Dublin</p>
+</body>
+</html>
+<p>```</p>
+
+<p>Converted NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “31”^^xsd:nonNegativeInteger ;
+        nif:isString    “Roundtripping Welcome to Dublin”@en .</p>
+
+<p><a href="http://freme-project.eu/#char=14,31">http://freme-project.eu/#char=14,31</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Welcome to Dublin”@en ;
+        nif:beginIndex        “14”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “31”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,13">http://freme-project.eu/#char=0,13</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Roundtripping”@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “13”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        dc:identifier         “1” .
+```</p>
+
+<p>Skeleton NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/doc1/#char=0,121">http://freme-project.eu/doc1/#char=0,121</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “121”^^xsd:nonNegativeInteger ;
+        nif:isString    “&lt;!DOCTYPE html&gt;\r\n&lt;html&gt;&lt;head&gt;\r\n\t<title>Roundtripping</title>\r\n&lt;/head&gt;\r\n&lt;body&gt;\r\n&lt;p&gt;Welcome to Dublin&lt;/p&gt;\r\n\r\n&lt;/body&gt;&lt;/html&gt;“@en .</p>
+
+<p><a href="http://freme-project.eu/#char=14,31">http://freme-project.eu/#char=14,31</a>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Welcome to Dublin”@en ;
+        nif:beginIndex        “14”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “31”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        nif:wasConvertedFrom  <a href="http://freme-project.eu/doc1/#char=82,99">http://freme-project.eu/doc1/#char=82,99</a> ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,13">http://freme-project.eu/#char=0,13</a>
+        a                     nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Roundtripping”@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “13”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        nif:wasConvertedFrom  <a href="http://freme-project.eu/doc1/#char=39,52">http://freme-project.eu/doc1/#char=39,52</a> ;
+        dc:identifier         “1” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “31”^^xsd:nonNegativeInteger ;
+        nif:isString    “Roundtripping Welcome to Dublin”@en .
+```</p>
+
+<p>Enriched NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “31”^^xsd:nonNegativeInteger ;
+        nif:isString    “Roundtripping Welcome to Dublin”@en .</p>
+
+<p><a href="http://freme-project.eu/#char=14,31">http://freme-project.eu/#char=14,31</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        nif:anchorOf          “Welcome to Dublin”@en ;
+        nif:beginIndex        “14”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “31”^^xsd:nonNegativeInteger ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,13">http://freme-project.eu/#char=0,13</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        nif:anchorOf          “Roundtripping”@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “13”^^xsd:nonNegativeInteger ;
+        dc:identifier         “1” .</p>
+
+<p><a href="http://freme-project.eu/#char=25,31">http://freme-project.eu/#char=25,31</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,31">http://freme-project.eu/#char=0,31</a> ;
+        nif:anchorOf          “Dublin”@en ;
+        nif:beginIndex        “25”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “31”^^xsd:nonNegativeInteger ;
+        itsrdf:taIdentRef <a href="http://http://dbpedia.org/resource/Dublin">http://http://dbpedia.org/resource/Dublin</a> .
+```</p>
+
+<p>Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant for new lines don’t affect the HTML file appearance in the browser.</p>
+
+<p>```
+&lt;!DOCTYPE html&gt;</p>
+<html><head>
+	<title>Roundtripping</title>
+</head>
+<body>
+<p>Welcome to <span its-ta-ident-ref="http://http://dbpedia.org/resource/Dublin">Dublin</span></p>
+
+</body></html>
+<p>```</p>
+
+<h2 id="entity-recognition-over-html">Entity recognition over HTML</h2>
+<p>This example shows how to invoke the e-Entity service over a HMTL file.</p>
+
+<p>HTML File</p>
+
+<p>```
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;</p>
+<head>
+    <meta charset="utf-8" />
+  </head>
+<body>
+    <p>Dublin is the capital of Ireland!</p>
+  </body>
+<p>&lt;/html&gt;
+```</p>
+
+<p>curl HTTP Request</p>
+
+<p><code>
+curl -X POST -d @docTest.html "http://api.freme-project.eu/current/e-entity/freme-ner/documents?language=en&amp;dataset=dbpedia&amp;mode=all&amp;outformat=turtle"  -H "Content-Type:text/html"
+</code></p>
+
+<p>Enriched NIF file</p>
+
+<p>```
+@prefix dbpedia-fr: <a href="http://fr.dbpedia.org/resource/">http://fr.dbpedia.org/resource/</a> .
+@prefix dbc:   <a href="http://dbpedia.org/resource/Category:">http://dbpedia.org/resource/Category:</a> .
+@prefix dbpedia-es: <a href="http://es.dbpedia.org/resource/">http://es.dbpedia.org/resource/</a> .
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix dbpedia: <a href="http://dbpedia.org/resource/">http://dbpedia.org/resource/</a> .
+@prefix rdfs:  <a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dbpedia-de: <a href="http://de.dbpedia.org/resource/">http://de.dbpedia.org/resource/</a> .
+@prefix dbpedia-ru: <a href="http://ru.dbpedia.org/resource/">http://ru.dbpedia.org/resource/</a> .
+@prefix freme-onto: <a href="http://freme-project.eu/ns#">http://freme-project.eu/ns#</a> .
+@prefix dbpedia-nl: <a href="http://nl.dbpedia.org/resource/">http://nl.dbpedia.org/resource/</a> .
+@prefix dcterms: <a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a> .
+@prefix dbpedia-it: <a href="http://it.dbpedia.org/resource/">http://it.dbpedia.org/resource/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a>
+        a               nif:Context , nif:RFC5147String , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger , “0”^^xsd:int ;
+        nif:endIndex    “33”^^xsd:nonNegativeInteger , “33”^^xsd:int ;
+        nif:isString    “Dublin is the capital of Ireland!”@en , “Dublin is the capital of Ireland!”^^xsd:string ;
+        <a href="http://purl.org/dc/elements/1.1/identifier">http://purl.org/dc/elements/1.1/identifier</a>
+                “1” .</p>
+
+<p><a href="http://freme-project.eu/#char=25,32">http://freme-project.eu/#char=25,32</a>
+        a                     nif:RFC5147String , nif:Phrase , nif:Word , nif:String ;
+        nif:anchorOf          “Ireland”^^xsd:string ;
+        nif:beginIndex        “25”^^xsd:int ;
+        nif:endIndex          “32”^^xsd:int ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence   “0.9450589604243311”^^xsd:double ;
+        itsrdf:taIdentRef     dbpedia:Ireland .</p>
+
+<p>```</p>
+
+<h3 id="entity-recognition-with-round-tripping">Entity recognition with round-tripping</h3>
+
+<p>curl HTTP Request</p>
+
+<p><code>
+curl -X POST -d @docTest.html "http://api.freme-project.eu/current/e-entity/freme-ner/documents?language=en&amp;dataset=dbpedia&amp;mode=all&amp;outformat=turtle"  -H "Content-Type:text/html"
+</code></p>
+
+<p>Enriched HTML file</p>
+
+<p><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;    &lt;meta charset="UTF-8"&gt;  &lt;/head&gt;        &lt;body&gt;    &lt;p&gt;Dublin is the capital of &lt;span its-ta-ident-ref="http://dbpedia.org/resource/Ireland" its-ta-class-ref="http://nerd.eurecom.fr/ontology#Location" its-ta-confidence="0.9450589604243311"&gt;Ireland&lt;/span&gt;!&lt;/p&gt;  &lt;/body&gt;&lt;/html&gt;
+</code></p>
+
+<h2 id="enrichment-of-html-with-e-link">Enrichment of HTML with e-Link</h2>
+
+<p>This example shows how to invoke the e-Link service over a HMTL file.</p>
+
+<p>HTML file containing an entity</p>
+
+<p><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;  
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Dublin is the capital of &lt;span its-ta-ident-ref="http://dbpedia.org/resource/Ireland" its-ta-class-ref="http://nerd.eurecom.fr/ontology#Location" its-ta-confidence="0.9450589604243311"&gt;Ireland&lt;/span&gt;!&lt;/p&gt;  
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>curl HTTP request</p>
+
+<p><code>
+curl -X POST -d @docTestWithEntity.html --header "Content-Type: text/html" "http://api.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=3"
+</code></p>
+
+<p>Enriched NIF file</p>
+
+<p>```
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a>
+        a               nif:Context , nif:RFC5147String , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “33”^^xsd:nonNegativeInteger ;
+        nif:isString    “Dublin is the capital of Ireland!”@en ;
+        dc:identifier   “1” .</p>
+
+<p><a href="http://dbpedia.org/resource/Ireland">http://dbpedia.org/resource/Ireland</a>
+        <a href="http://www.w3.org/2003/01/geo/wgs84_pos#lat">http://www.w3.org/2003/01/geo/wgs84_pos#lat</a>
+                “53.344166666666666”^^xsd:float , “53.0” , “53.333333333333336”^^xsd:float , “53.0”^^xsd:double , “53” ;
+        <a href="http://www.w3.org/2003/01/geo/wgs84_pos#long">http://www.w3.org/2003/01/geo/wgs84_pos#long</a>
+                “-8.0”^^xsd:float , “-8.0” , “-8.0”^^xsd:double , “-8” , “-6.2675”^^xsd:float .</p>
+
+<p><a href="http://freme-project.eu/#char=25,32">http://freme-project.eu/#char=25,32</a>
+        a                     nif:RFC5147String , nif:Phrase , nif:String ;
+        nif:anchorOf          “Ireland”@en ;
+        nif:beginIndex        “25”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “32”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a> ;
+        itsrdf:taClassRef     <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence   “0.9450589604243311”^^xsd:double ;
+        itsrdf:taIdentRef     <a href="http://dbpedia.org/resource/Ireland">http://dbpedia.org/resource/Ireland</a> .
+```</p>
+
+<h3 id="enrichment-of-html-with-e-link-and-round-tripping">Enrichment of HTML with e-Link and round-tripping</h3>
+
+<p>Link enrichments are not reported in the original HTML. The user is still allowed to specify <code>text/html</code> as output format, but no information about the links are contained in the final HTML file.</p>
+
+<h2 id="terms-extraction-in-html">Terms extraction in HTML</h2>
+
+<p>This example shows how to invoke the e-Terminology service over a HMTL file.</p>
+
+<p>HTML file </p>
+
+<p>```
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;</p>
+<head>
+    <meta charset="utf-8" />
+  </head>
+<body>
+    <p>Dublin is the capital of Ireland!</p>
+  </body>
+<p>&lt;/html&gt;
+```</p>
+
+<p>curl HTTP Request</p>
+
+<p><code>
+curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=it&amp;mode=full"
+</code></p>
+
+<p>Enriched NIF file</p>
+
+<p>```
+@prefix cc:    <a href="http://creativecommons.org/ns#">http://creativecommons.org/ns#</a> .
+@prefix :      <a href="https://term.tilde.com/terms/">https://term.tilde.com/terms/</a> .
+@prefix void:  <a href="http://rdfs.org/ns/void#">http://rdfs.org/ns/void#</a> .
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix its:   <a href="http://www.w3.org/2005/11/its">http://www.w3.org/2005/11/its</a> .
+@prefix skos:  <a href="http://www.w3.org/2004/02/skos/core#">http://www.w3.org/2004/02/skos/core#</a> .
+@prefix rdfs:  <a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix tbx:   <a href="http://tbx2rdf.lider-project.eu/tbx#">http://tbx2rdf.lider-project.eu/tbx#</a> .
+@prefix decomp: <a href="http://www.w3.org/ns/lemon/decomp#">http://www.w3.org/ns/lemon/decomp#</a> .
+@prefix dct:   <a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a> .
+@prefix rdf:   <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a> .
+@prefix ontolex: <a href="http://www.w3.org/ns/lemon/ontolex#">http://www.w3.org/ns/lemon/ontolex#</a> .
+@prefix ldr:   <a href="http://purl.oclc.org/NET/ldr/ns#">http://purl.oclc.org/NET/ldr/ns#</a> .
+@prefix odrl:  <a href="http://www.w3.org/ns/odrl/2/">http://www.w3.org/ns/odrl/2/</a> .
+@prefix dcat:  <a href="http://www.w3.org/ns/dcat#">http://www.w3.org/ns/dcat#</a> .
+@prefix prov:  <a href="http://www.w3.org/ns/prov#">http://www.w3.org/ns/prov#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p>:615455  a                  skos:Concept ;
+        rdfs:comment        “Europe and the former Soviet Union”@en , “information and information processing”@en , “political geography”@en , “econom
+ic geography”@en ;
+        tbx:relatedConcept  “regions of Ireland”@en ;
+        tbx:subjectField    <a href="https://term.tilde.com/domains/3231">https://term.tilde.com/domains/3231</a> , <a href="https://term.tilde.com/domains/TaaS-2105">https://term.tilde.com/domains/TaaS-2105</a> , <a href="https://term.tilde.com/domains/7206">https://term.tilde.com/domains/7206</a>
+ , <a href="https://term.tilde.com/domains/7231">https://term.tilde.com/domains/7231</a> , <a href="https://term.tilde.com/domains/TaaS-2000">https://term.tilde.com/domains/TaaS-2000</a> , <a href="https://term.tilde.com/domains/7236">https://term.tilde.com/domains/7236</a> .</p>
+
+<p><a href="https://term.tilde.com/terms/Irlanda-it#Sense">https://term.tilde.com/terms/Irlanda-it#Sense</a>
+        ontolex:reference  :615455 .</p>
+
+<p>:2745688  a               skos:Concept ;
+        tbx:subjectField  <a href="https://term.tilde.com/domains/TaaS-0303">https://term.tilde.com/domains/TaaS-0303</a> , <a href="https://term.tilde.com/domains/TaaS-0200">https://term.tilde.com/domains/TaaS-0200</a> , &lt;https://term.tilde.com/domains/40
+26&gt; , <a href="https://term.tilde.com/domains/2416004">https://term.tilde.com/domains/2416004</a> , <a href="https://term.tilde.com/domains/12">https://term.tilde.com/domains/12</a> .</p>
+
+<p>:it     a                 ontolex:Lexicon ;
+        ontolex:entry     :capitale-it , :Irlanda-it ;
+        ontolex:language  <a href="http://www.lexvo.org/page/iso639-3/ita">http://www.lexvo.org/page/iso639-3/ita</a> .</p>
+
+<p><a href="https://term.tilde.com/terms/capital-en#Sense">https://term.tilde.com/terms/capital-en#Sense</a>
+        ontolex:reference  :2745688 , :1217415 .</p>
+
+<p><a href="https://term.tilde.com/terms/Ireland-en#CanonicalForm">https://term.tilde.com/terms/Ireland-en#CanonicalForm</a>
+        ontolex:writtenRep  “Ireland”@en .</p>
+
+<p><a href="http://freme-project.eu/#char=14,21">http://freme-project.eu/#char=14,21</a>
+        a                     nif:RFC5147String ;
+        nif:anchorOf          “capital”@en ;
+        nif:annotationUnit    [ rdfs:label           “capital”@en ;
+                                itsrdf:taConfidence  0
+                              ] ;
+        nif:beginIndex        “14”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “21”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a> ;
+        itsrdf:term           “yes” ;
+        itsrdf:termInfoRef    :1217415 , <a href="http://aims.fao.org/aos/agrovoc/c_1271">http://aims.fao.org/aos/agrovoc/c_1271</a> , :2745688 .</p>
+
+<p>:Irlanda-it  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  <a href="https://term.tilde.com/terms/Irlanda-it#CanonicalForm">https://term.tilde.com/terms/Irlanda-it#CanonicalForm</a> ;
+        ontolex:language       <a href="http://www.lexvo.org/page/iso639-3/ita">http://www.lexvo.org/page/iso639-3/ita</a> ;
+        ontolex:sense          <a href="https://term.tilde.com/terms/Irlanda-it#Sense">https://term.tilde.com/terms/Irlanda-it#Sense</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a>
+        a               nif:String , nif:RFC5147String , nif:Context ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “33”^^xsd:nonNegativeInteger ;
+        nif:isString    “Dublin is the capital of Ireland!”@en ;
+        dc:identifier   “1” .</p>
+
+<p><a href="https://term.tilde.com/terms/Ireland-en#Sense">https://term.tilde.com/terms/Ireland-en#Sense</a>
+        ontolex:reference  :615455 .</p>
+
+<p>:en     a                 ontolex:Lexicon ;
+        ontolex:entry     :capital-en , :Ireland-en ;
+        ontolex:language  <a href="http://www.lexvo.org/page/iso639-3/eng">http://www.lexvo.org/page/iso639-3/eng</a> .</p>
+
+<p>:Ireland-en  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  <a href="https://term.tilde.com/terms/Ireland-en#CanonicalForm">https://term.tilde.com/terms/Ireland-en#CanonicalForm</a> ;
+        ontolex:language       <a href="http://www.lexvo.org/page/iso639-3/eng">http://www.lexvo.org/page/iso639-3/eng</a> ;
+        ontolex:sense          <a href="https://term.tilde.com/terms/Ireland-en#Sense">https://term.tilde.com/terms/Ireland-en#Sense</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=25,32">http://freme-project.eu/#char=25,32</a>
+        a                     nif:RFC5147String ;
+        nif:anchorOf          “Ireland”@en ;
+        nif:annotationUnit    [ rdfs:label           “Ireland”@en ;
+                                itsrdf:taConfidence  1
+                              ] ;
+        nif:beginIndex        “25”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “32”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,33">http://freme-project.eu/#char=0,33</a> ;
+        itsrdf:term           “yes” ;
+        itsrdf:termInfoRef    :615455 , <a href="http://aims.fao.org/aos/agrovoc/c_3948">http://aims.fao.org/aos/agrovoc/c_3948</a> .</p>
+
+<p>:capitale-it  a                ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        ontolex:canonicalForm  <a href="https://term.tilde.com/terms/capitale-it#CanonicalForm">https://term.tilde.com/terms/capitale-it#CanonicalForm</a> ;
+        ontolex:language       <a href="http://www.lexvo.org/page/iso639-3/ita">http://www.lexvo.org/page/iso639-3/ita</a> ;
+        ontolex:sense          <a href="https://term.tilde.com/terms/capitale-it#Sense">https://term.tilde.com/terms/capitale-it#Sense</a> .</p>
+
+<dl>
+  <dt>:1217415  a               skos:Concept ;</dt>
+  <dt>        rdfs:comment      “information technology and data processing”@en ;</dt>
+  <dt>        tbx:subjectField  <a href="https://term.tilde.com/domains/TaaS-1501">https://term.tilde.com/domains/TaaS-1501</a> , <a href="https://term.tilde.com/domains/3236">https://term.tilde.com/domains/3236</a> .</dt>
+  <dd>
+    <p>a                 dcat:Dataset , tbx:MartifHeader ;
+dc:source         “” ;
+dct:type          “TBX” ;
+tbx:encodingDesc  “&lt;p type="XCSURI"&gt;http://www.ttt.org/oscarstandards/tbx/TBXXCS.xcs&lt;/p&gt;”^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLL
+iteral&gt; ;
+tbx:sourceDesc    “<sourcedesc>&lt;p/&gt;</sourcedesc>”^^<a href="http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral">http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral</a> .</p>
+  </dd>
+</dl>
+
+<p>:capital-en  a                 ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        ontolex:canonicalForm  <a href="https://term.tilde.com/terms/capital-en#CanonicalForm">https://term.tilde.com/terms/capital-en#CanonicalForm</a> ;
+        ontolex:language       <a href="http://www.lexvo.org/page/iso639-3/eng">http://www.lexvo.org/page/iso639-3/eng</a> ;
+        ontolex:sense          <a href="https://term.tilde.com/terms/capital-en#Sense">https://term.tilde.com/terms/capital-en#Sense</a> .</p>
+
+<p><a href="https://term.tilde.com/terms/capital-en#CanonicalForm">https://term.tilde.com/terms/capital-en#CanonicalForm</a>
+        ontolex:writtenRep  “capital”@en .</p>
+
+<p><a href="https://term.tilde.com/terms/capitale-it#Sense">https://term.tilde.com/terms/capitale-it#Sense</a>
+        ontolex:reference  :2745688 , :1217415 .</p>
+
+<p><a href="https://term.tilde.com/terms/capitale-it#CanonicalForm">https://term.tilde.com/terms/capitale-it#CanonicalForm</a>
+        ontolex:writtenRep  “capitale”@it .</p>
+
+<p><a href="https://term.tilde.com/terms/Irlanda-it#CanonicalForm">https://term.tilde.com/terms/Irlanda-it#CanonicalForm</a>
+        ontolex:writtenRep  “Irlanda”@it .
+```</p>
+
+<h3 id="terms-extraction-with-round-tripping">Terms extraction with round-tripping</h3>
+
+<p>curl HTTP Request</p>
+
+<p><code>
+curl -X POST -d @docTest.html --header "Content-Type: text/html" --header "Accept: text/html" "http://api-dev.freme-project.eu/current/e-terminology/tilde?source-lang=en&amp;target-lang=it&amp;mode=full"
+</code></p>
+
+<p>Enriched HTML file</p>
+
+<p><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;    &lt;meta charset="UTF-8"&gt;  &lt;/head&gt;        &lt;body&gt;    &lt;p&gt;Dublin is the &lt;span its-term="yes"&gt;capital&lt;/span&gt; of &lt;span its-term="yes"&gt;Ireland&lt;/span&gt;!&lt;/p&gt;  &lt;/body&gt;&lt;/html&gt;
+</code></p>
+
+<h2 id="translation-of-html">Translation of HTML</h2>
+
+<p>This example shows how to invoke the e-Translation service over a HMTL file.</p>
+
+<p>HTML file</p>
+
+<p>```
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;</p>
+<head>
+    <meta charset="utf-8" />
+  </head>
+<body>
+    <p>Welcome to Dublin!</p>
+  </body>
+<p>&lt;/html&gt;
+```</p>
+
+<p>curl HTTP Request</p>
+
+<p><code>
+curl -X POST -d @docTest-Translation.html --header "Content-Type: text/html" --header "Accept: text/n3" "http://api-dev.freme-project.eu/current/e-translation/tilde?source-lang=en&amp;target-lang=it"
+</code></p>
+
+<p>Converted NIF</p>
+
+<p>```
+@prefix rdf:   <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a> .
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix rdfs:  <a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,18">http://freme-project.eu/#char=0,18</a>
+        a               nif:String , nif:RFC5147String , nif:Context ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “18”^^xsd:nonNegativeInteger ;
+        nif:isString    “Welcome to Dublin!”@en ;
+        dc:identifier   “1” ;
+        itsrdf:target   “Benvenuti a Dublino.”@it .
+```</p>
+
+<h3 id="translation-of-html-with-round-tripping">Translation of HTML with round-tripping</h3>
+
+<p>The translation is not reported in the original HTML. The user is still allowed to specify <code>text/html</code> as output format, but no information about the translation are contained in the final HTML file.</p>
+
+<h2 id="its-properties-and-nif-files">ITS properties and NIF files</h2>
+
+<p>This section shows how each supported format is converted to NIF, including the translation of ITS to itsrdf properties.
+Note that all markups are discarded (excepting for ITS annotations) and only plain text is extracted.</p>
+
+<h3 id="html">HTML</h3>
+
+<p>Original document, containing text-analysis ITS 2.0 properties.</p>
+
+<p>```
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" its-annotators-ref="text-analysis|http://enrycher.ijs.si"&gt;</p>
+<head>
+    <meta charset="utf-8" />
+    <title>Text analysis: Local Test</title>
+  </head>
+<body>
+    <p><span its-ta-confidence="0.7" its-ta-class-ref="http://nerd.eurecom.fr/ontology#Location" its-ta-ident-ref="http://dbpedia.org/resource/Dublin">Dublin</span> 
+      is the <span its-ta-source="Wordnet3.0" its-ta-ident="301467919" its-ta-confidence="0.5">capital</span> of Ireland.</p>
+  </body>
+<p>&lt;/html&gt;
+```</p>
+
+<p>Converted NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=26,59">http://freme-project.eu/#char=26,59</a>
+        a                       nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf            “Dublin is the capital of Ireland.”@en ;
+        nif:beginIndex          “26”^^xsd:nonNegativeInteger ;
+        nif:endIndex            “59”^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <a href="http://freme-project.eu/#char=0,59">http://freme-project.eu/#char=0,59</a> ;
+        dc:identifier           “2” ;
+        itsrdf:taAnnotatorsRef  <a href="http://enrycher.ijs.si">http://enrycher.ijs.si</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=26,32">http://freme-project.eu/#char=26,32</a>
+        a                       nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf            “Dublin”@en ;
+        nif:beginIndex          “26”^^xsd:nonNegativeInteger ;
+        nif:endIndex            “32”^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <a href="http://freme-project.eu/#char=0,59">http://freme-project.eu/#char=0,59</a> ;
+        itsrdf:taAnnotatorsRef  <a href="http://enrycher.ijs.si">http://enrycher.ijs.si</a> ;
+        itsrdf:taClassRef       <a href="http://nerd.eurecom.fr/ontology#Location">http://nerd.eurecom.fr/ontology#Location</a> ;
+        itsrdf:taConfidence     “0.7”^^xsd:double ;
+        itsrdf:taIdentRef       <a href="http://dbpedia.org/resource/Dublin">http://dbpedia.org/resource/Dublin</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=40,47">http://freme-project.eu/#char=40,47</a>
+        a                       nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf            “capital”@en ;
+        nif:beginIndex          “40”^^xsd:nonNegativeInteger ;
+        nif:endIndex            “47”^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <a href="http://freme-project.eu/#char=0,59">http://freme-project.eu/#char=0,59</a> ;
+        itsrdf:taAnnotatorsRef  <a href="http://enrycher.ijs.si">http://enrycher.ijs.si</a> ;
+        itsrdf:taConfidence     “0.5”^^xsd:double ;
+        itsrdf:taIdent          “301467919” ;
+        itsrdf:taSource         “Wordnet3.0” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,25">http://freme-project.eu/#char=0,25</a>
+        a                       nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf            “Text analysis: Local Test”@en ;
+        nif:beginIndex          “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex            “25”^^xsd:nonNegativeInteger ;
+        nif:referenceContext    <a href="http://freme-project.eu/#char=0,59">http://freme-project.eu/#char=0,59</a> ;
+        dc:identifier           “1” ;
+        itsrdf:taAnnotatorsRef  <a href="http://enrycher.ijs.si">http://enrycher.ijs.si</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,59">http://freme-project.eu/#char=0,59</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “59”^^xsd:nonNegativeInteger ;
+        nif:isString    “Text analysis: Local Test Dublin is the capital of Ireland.”@en .
+```</p>
+
+<h3 id="xml">XML</h3>
+
+<p>Original document containing ITS annotations (Note that the ITS annotation management for XML files is still draft).</p>
+
+<p>```
+<?xml version="1.0"?></p>
+<db>
+  <its:rules xmlns:its="http://www.w3.org/2005/11/its" version="2.0">
+    <its:storagesizerule selector="//country" storagesize="25" storageencoding="ISO-8859-1" />
+  </its:rules>
+  <data>
+    <country id="123">Papouasie-Nouvelle-Guinée</country>
+    <country id="139">République Dominicaine</country>
+  </data>
+</db>
+<p>```</p>
+
+<p>Converted NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,48">http://freme-project.eu/#char=0,48</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “48”^^xsd:nonNegativeInteger ;
+        nif:isString    “Papouasie-Nouvelle-Guinée République Dominicaine”@en .</p>
+
+<p><a href="http://freme-project.eu/#char=26,48">http://freme-project.eu/#char=26,48</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “République Dominicaine”@en ;
+        nif:beginIndex        “26”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “48”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,48">http://freme-project.eu/#char=0,48</a> ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,25">http://freme-project.eu/#char=0,25</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Papouasie-Nouvelle-Guinée”@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “25”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,48">http://freme-project.eu/#char=0,48</a> ;
+        dc:identifier         “1” .
+```</p>
+
+<h3 id="xliff-12">XLIFF 1.2</h3>
+
+<p>Original document containing ITS annotations.</p>
+
+<p><code>
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;&lt;?xml-stylesheet type="text/xsl" href="file:///S:/PhilR/Rome/XliffToRWHtml5_target.xslt"?&gt;&lt;xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:dl="http://www.digitallinguistics.com" xmlns:its="http://www.w3.org/2005/11/its" version="1.2"&gt;
+	&lt;file datatype="plaintext" original="PCWorldArticle.txt" source-language="en" target-language="it"&gt;
+		&lt;body&gt;
+			&lt;trans-unit id="0" its:annotatorsRef="text-analysis|http://spotlight.dbpedia.org/" its:version="2.0"&gt;
+				&lt;source&gt;Welcome to &lt;mrk id="freme-1" its:taIdentRef="http://dbpedia.org/resource/Dublin" mtype="its:any"&gt;Dublin&lt;/mrk&gt;!&lt;/source&gt;
+				&lt;target state-qualifier="id-match"&gt;Benvenuti a Dublino!&lt;/target&gt;
+			&lt;/trans-unit&gt;
+			&lt;trans-unit id="1" its:version="2.0"&gt;
+				&lt;source&gt;This is my &lt;mrk id="freme-2" mtype="term" &gt;computer&lt;/mrk&gt;&lt;/source&gt;
+				&lt;target state-qualifier="id-match"&gt;Questo è il mio computer&lt;/target&gt;
+			&lt;/trans-unit&gt;
+		&lt;/body&gt;
+	&lt;/file&gt;
+&lt;/xliff&gt;
+</code></p>
+
+<p>Converted NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/#char=0,11">http://freme-project.eu/#char=0,11</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Welcome to “@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “11”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “1” .</p>
+
+<p><a href="http://freme-project.eu/#char=43,54">http://freme-project.eu/#char=43,54</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “This is my “@en ;
+        nif:beginIndex        “43”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “54”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “5” .</p>
+
+<p><a href="http://freme-project.eu/#char=12,18">http://freme-project.eu/#char=12,18</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Dublin”@en ;
+        nif:beginIndex        “12”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “18”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/#char=19,21">http://freme-project.eu/#char=19,21</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “! “@en ;
+        nif:beginIndex        “19”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “21”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “3” .</p>
+
+<p><a href="http://freme-project.eu/#char=22,42">http://freme-project.eu/#char=22,42</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Benvenuti a Dublino!”@en ;
+        nif:beginIndex        “22”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “42”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “4” .</p>
+
+<p><a href="http://freme-project.eu/#char=64,88">http://freme-project.eu/#char=64,88</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “Questo è il mio computer”@en ;
+        nif:beginIndex        “64”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “88”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “7” .</p>
+
+<p><a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a>
+        a               nif:RFC5147String , nif:Context , nif:String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “88”^^xsd:nonNegativeInteger ;
+        nif:isString    “Welcome to  Dublin !  Benvenuti a Dublino! This is my  computer Questo è il mio computer”@en .</p>
+
+<p><a href="http://freme-project.eu/#char=55,63">http://freme-project.eu/#char=55,63</a>
+        a                     nif:Phrase , nif:RFC5147String , nif:String ;
+        nif:anchorOf          “computer”@en ;
+        nif:beginIndex        “55”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “63”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/#char=0,88">http://freme-project.eu/#char=0,88</a> ;
+        dc:identifier         “6” .
+```</p>
+
+<h3 id="odt">ODT</h3>
+
+<p>Original file
+<img src="http://api-dev.freme-project.eu/doc/img/odtFile.png" alt="Image of ODT file" /></p>
+
+<p>Converted NIF file</p>
+
+<p>```
+@prefix xsd:   <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .
+@prefix itsrdf: <a href="http://www.w3.org/2005/11/its/rdf#">http://www.w3.org/2005/11/its/rdf#</a> .
+@prefix nif:   <a href="http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#">http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#</a> .
+@prefix dc:    <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=315,346">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=315,346</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Section that is just protected.”@en ;
+        nif:beginIndex        “315”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “346”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “13” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=40,126">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=40,126</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Paragraph with an inserted script: Text of the script in any language. and text after.”@en ;
+        nif:beginIndex        “40”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “126”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “5” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=127,167">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=127,167</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Non-breaking space= , optional hyphen=­.”@en ;
+        nif:beginIndex        “127”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “167”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “6” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=186,202">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=186,202</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “After page break”@en ;
+        nif:beginIndex        “186”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “202”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “8” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=30,39">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=30,39</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Text body”@en ;
+        nif:beginIndex        “30”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “39”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “4” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=203,238">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=203,238</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Before line breakAfter line break.”@en ;
+        nif:beginIndex        “203”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “238”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “9” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=20,29">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=20,29</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Heading 3”@en ;
+        nif:beginIndex        “20”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “29”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “3” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=279,314">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=279,314</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Section that is password-protected.”@en ;
+        nif:beginIndex        “279”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “314”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “12” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,9">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,9</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Heading 1”@en ;
+        nif:beginIndex        “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “9”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “1” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a>
+        a               nif:String , nif:Context , nif:RFC5147String ;
+        nif:beginIndex  “0”^^xsd:nonNegativeInteger ;
+        nif:endIndex    “372”^^xsd:nonNegativeInteger ;
+        nif:isString    “Heading 1 Heading 2 Heading 3 Text body Paragraph with an inserted script: Text of the script in any language. and text after. Non-breaking space= , optional hyphen=­. Before page break After page break Before line breakAfter line break. Before column break After column break. Section that is password-protected. Section that is just protected. Section with normal text.”@en .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=168,185">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=168,185</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Before page break”@en ;
+        nif:beginIndex        “168”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “185”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “7” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=259,278">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=259,278</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “After column break.”@en ;
+        nif:beginIndex        “259”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “278”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “11” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=10,19">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=10,19</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Heading 2”@en ;
+        nif:beginIndex        “10”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “19”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “2” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=239,258">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=239,258</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Before column break”@en ;
+        nif:beginIndex        “239”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “258”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “10” .</p>
+
+<p><a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=347,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=347,372</a>
+        a                     nif:String , nif:RFC5147String , nif:Phrase ;
+        nif:anchorOf          “Section with normal text.”@en ;
+        nif:beginIndex        “347”^^xsd:nonNegativeInteger ;
+        nif:endIndex          “372”^^xsd:nonNegativeInteger ;
+        nif:referenceContext  <a href="http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372">http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372</a> ;
+        dc:identifier         “14” .
+```</p>
+
+  </article>
+
+</div>
+
+	</div>
+
+    
+<footer class="footer">
+
+		<div class = "navbar navbar-default navbar-fixed-bottom">
+		
+			<div class = "container">
+				<p class = "navbar-text">FREME is being developed by the FREME Consortium.</p>
+					<p class="text-center"><img height="40"  alt="eu-flag"	 width="60" src="http://www.freme-project.eu/wp-content/uploads/2015/02/flag_yellow_high-272x182.jpg"></p>
+				<p class="navbar-text">Co-funded by the EC under the H2020 Framework Programme for Research and Innovation | Grant agreement number 644771.</p>
+			</div>
+			
+		</div>
+		
+</footer>
+
+
+  </body>
+
+</html>
