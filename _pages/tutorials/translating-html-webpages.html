@@ -16,22 +16,14 @@ title: Translating HTML Webpages
 </div>
 
 <script type="text/javascript">
-    var htmlres="";
+    var page_content;
+
     function getHTML() {
-        var getURL= $("#url").val();
-        console.log(getURL);
-        $.ajax({
-            url: getURL,
-            type: 'GET',
-            crossDomain: true,
-            dataType: 'html',
-            headers: {'Access-Control-Allow-Origin':'*'}
-        }).done(function(result){
-            htmlres=result;
-            $("#response").text(htmlEncode(result));
-            console.log(result)
+        $.get("somepage.php", function (data) {
+            page_content = data;
         });
     };
+
 
     function sendAPIRequest() {
     getHTML();
@@ -44,7 +36,7 @@ title: Translating HTML Webpages
                 'outformat': "text/html",
                 'source-lang': encodeURIComponent($("#source-lang").val()),
                 'target-lang': encodeURIComponent($("#target-lang").val()),
-                'input': encodeURIComponent(htmlres)
+                'input': encodeURIComponent(page_content)
             }
         }).done(function(result){
     	    $("#response").text(result);
@@ -55,7 +47,7 @@ title: Translating HTML Webpages
 
 <div>
     <h2>Example API Call</h2>
-    <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+    <p>In this Tutorial we demonstrate the HTML roundtripping provided by E-Internationalization to translate a wegpage</p>
 
     <p>
     <strong>URL to webpage</strong><br/>
