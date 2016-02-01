@@ -17,6 +17,7 @@ tags:
 - name: "User"
 #  description: "Description of User"
 - name: "General Information"
+- name: "Postprocessing"
   description: |
     This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). Please note that all parameter values submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
 
