@@ -16,8 +16,9 @@ tags:
 #  description: "Description of e-Translation"
 - name: "User"
 #  description: "Description of User"
-- name: "General Information"
+
 - name: "Postprocessing"
+- name: "General Information"
   description: |
     This section defines the default parameter set for all FREME e-Services. The parameters have a long and a short form. If both are set, the long form overrides the short form. The API follows the [NIF API specifications](http://persistence.uni-leipzig.org/nlp2rdf/specification/api.html). Please note that all parameter values submitted via the URLs query string need to be URL encoded according to [RFC 3986](https://tools.ietf.org/html/rfc3986).
 
@@ -1201,7 +1202,7 @@ paths:
         - "spot,link,classify"
         - "all"
         - "link"
-        -
+
       responses:
         200:
           description: "Successful response"
@@ -1210,13 +1211,13 @@ paths:
         400:
           description: "Bad request - input validation failed"
 
-  /toolbox/filter/manage/{filter-name}:
+  /toolbox/filter/manage/{name}:
     post:
       tags:
-      - "filter"
+      - "Postprocessing"
       summary: "Create a postprocessing filter"
       description: |
-      Creates a new filter. The filter will be constructed from the body content, which has to be a valid SPARQL SELECT query as plain text. See the [Simplify FREME output using SPARQL filters](/knowledge-base/filtering.html) article for further information. Ensure, that a filter with the name `filter-name` does not already exist. Requires [authentication](knowledge-base/authentication.html).
+        Creates a new filter. The filter will be constructed from the body content, which has to be a valid SPARQL SELECTquery as plain text. See the [Simplify FREME output using SPARQL filters](/knowledge-base/filtering.html) article for further information. Ensure, that a filter with the name `filter-name` does not already exist. Requires [authentication](knowledge-base/authentication.html).
 
       produces:
       - "application/json"
@@ -1228,10 +1229,10 @@ paths:
         required: true
         type: "string"
         description: "A valid SPARQL SELECT query as plain text."
-      - name: "filter-name"
+      - name: "name"
         in: "path"
         required: true
-        description: "Name for filter. Must be unique"
+        description: "Name of filter. Must be unique."
         type: "string"
       - name: "visibility"
         in: "query"
@@ -1247,6 +1248,224 @@ paths:
         required: false
         type: "string"
         description: "Sets a description for this filter."
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    put:
+      tags:
+      - "Postprocessing"
+      summary: "Update an existing postprocessing filter"
+      description: |
+        Updates the filter with the name `filter-name`. Requires [authentication](knowledge-base/authentication.html). If you just want to transfer the ownership or change the visibility without updating the SPARQL filter query, send `EMPTY`, `NULL` or ` ` (a string containing only whitespace) as body.
+      produces:
+      - "application/json"
+      consumes:
+      - "text/plain"
+      parameters:
+      - name: "body"
+        in: "body"
+        required: false
+        type: "string"
+        description: "A valid SPARQL SELECT query as plain text or `EMPTY` or `NULL` oder `` ( a string containing only whitespace) if you dont want to update the query."
+      - name: "name"
+        in: "path"
+        required: true
+        description: "Name of filter to be updated."
+        type: "string"
+      - name: "visibility"
+        in: "query"
+        required: false
+        enum:
+        - "public"
+        - "private"
+        default: "public"
+        type: "string"
+        description: "Sets the visibility of this restricted resource, see [authentication article] (knowledge-base/authentication.html)."
+      - name: "description"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Updates the description for this filter."
+      - name: "newOwner"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Transfers ownership to another user. Must be username of an existing user."
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    delete:
+      tags:
+      - "Postprocessing"
+      summary: "Delete a postprocessing filter"
+      description: |
+        Deletes the filter with specified name. Requires [authentication](knowledge-base/authentication.html). If you just want to transfer the ownership or change the visibility without updating the SPARQL filter query, send `EMPTY`, `NULL` or ` ` (a string containing only whitespace) as body.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        required: true
+        description: "Name of filter to be updated."
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+    get:
+      tags:
+      - "Postprocessing"
+      summary: "Get a postprocessing filter"
+      description: |
+        Returns one specific filter with specified name.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        required: true
+        description: "Name of filter to be returned"
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /toolbox/filter/documents/{name}:
+    post:
+      tags:
+      - "Postprocessing"
+      summary: "Execute a filter against an RDF graph"
+      description: |
+        This endpoint allows to execute a certain filter against a RDF graph sent as post body or as value of the NIF `input` parameter. For more information and a list of available filters, see the [Simply FREME output using SPARQL filters](knowledge-base/filtering.html) article.
+
+      consumes:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "text/plain"
+      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
+      produces:
+      - "text/n3"
+      - "text/turtle"
+      - "application/ld+json"
+      - "application/n-triples"
+      - "application/rdf+xml"
+      - "application/x-xliff+xml"
+      - "text/html"
+      - "application/x-openoffice"
+      - "text/xml"
+
+      parameters:
+
+      - name: "input"
+        in: "query"
+        required: false
+        type: "string"
+        description: "The RDF graph which will be queried, in the specific RDF format. Overridden request body"
+      - name: "informat"
+        in: "query"
+        description: "Format of input string."
+        enum:
+        - "text"
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+        default: "turtle"
+        required: false
+        type: "string"
+
+      - name: "outformat"
+        in: "query"
+        description: "RDF serialization format of Output. Can be json-ld, turtle,\
+          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+          \ (Response Content Type). Short form is o."
+        required: false
+        type: "string"
+        default: "turtle"
+        enum:
+        - "json-ld"
+        - "turtle"
+        - "n3"
+        - "n-triples"
+        - "rdf-xml"
+        - "text/html"
+        - "text/xml"
+        - "application/x-xliff+xml"
+        - "application/x-openoffice"
+      - name: "body"
+        in: "body"
+        required: false
+        type: "string"
+        description: "The RDF graph which will be queried, in the specific RDF format. Overridden by input parameter"
+      - name: "name"
+        in: "path"
+        required: true
+        description: "Name of filter to execute against"
+        type: "string"
+      - name: "visibility"
+        in: "query"
+        required: false
+        enum:
+        - "public"
+        - "private"
+        default: "public"
+        type: "string"
+        description: "Sets the visibility of this restricted resource, see [authentication article] (knowledge-base/authentication.html)."
+      - name: "description"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Sets a description for this filter."
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+  /toolbox/filter/manage:
+    get:
+      tags:
+      - "Postprocessing"
+      summary: "Get all postprocessing filters"
+      description: |
+        Returns one specific filter with specified name.
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+        400:
+          description: "Bad request - input validation failed"
+
 
   /e-link/explore:
     post:
@@ -1457,7 +1676,7 @@ paths:
       summary: "Creates a new enrichment template."
       description: |
         Creates a new enrichment template. The template will be constructed from JSON data submitted as body.
-        
+
         **The JSON input has to contain the following fields:**
         - `query:` a SPARQL CONSTRUCT query. Only SPARQL CONSTRUCT queries are supported by e-Link
         - `endpoint:` the SPARQL endpoint which will be used to execute the template
@@ -1467,9 +1686,9 @@ paths:
         **Optional fields:**
         - `endpointType`: This parameter describes the type of the endpoint data. The value has to be either "sparql" (default) or "ldf".
         - `visibility`: visibility: This parameter controlls, how the template can be accessed by other users than the owner. This includes enrichment etc. via this template. See the Restricted Endpoints and Restricted Resources section of the <a href= "./../knowledge-base/authentication.html" target="_blank">authentication article</a> for further information. The value has to be either "public" (default) or "private".
-        
+
         **Example of input in JSON format:**
-        
+
         <pre lang="javascript"><code>
         {
             &quot;query&quot;: &quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;\n      PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;\n      PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\n      PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;\n      CONSTRUCT\n      {\n        ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .\n      }\n      WHERE\n      {\n          &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .\n          ?museum rdf:type &lt;http://schema.org/Museum&gt; .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10&quot;,
@@ -2013,7 +2232,6 @@ paths:
       - "application/ld+json"
       - "application/n-triples"
       - "text/plain"
-      - "application/x-xliff+xml"
       - "text/html"
       - "application/x-openoffice"
       - "text/xml"

@@ -168,8 +168,7 @@ paths:
           as a single Entity and does entity linking for that specific entity. Note
           that "all" is equivalent to "spot,link,classify". The order of the modes
           are irrelevant, i.e. "spot,link,classify" is equivalent to "spot,classify,link".
-        enum: [spot, 'spot,classify', 'spot,link', 'spot,link,classify', all, link,
-          null]
+        enum: [spot, 'spot,classify', 'spot,link', 'spot,link,classify', all, link]
         in: query
         name: mode
         required: false
@@ -455,8 +454,7 @@ paths:
   /e-translation/tilde:
     post:
       consumes: [text/n3, text/turtle, application/x-xliff+xml, application/ld+json,
-        application/n-triples, text/plain, application/x-xliff+xml, text/html, application/x-openoffice,
-        text/xml]
+        application/n-triples, text/plain, text/html, application/x-openoffice, text/xml]
       description: "Parameters can be submitted via URL or via form-data post body.\
         \ A list of available\nlanguage pairs is [here](https://services.tilde.com/translationsystems).\
         \ This is a\nNIF example that can be consumed by e-Translation:\n\n<pre lang=\"\
@@ -543,3 +541,4 @@ tags:
 - {name: e-Publishing}
 - {name: e-Translation}
 - {name: User}
+- {name: Postprocessing}
