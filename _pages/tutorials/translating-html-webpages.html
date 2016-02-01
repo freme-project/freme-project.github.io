@@ -15,23 +15,23 @@ title: Translating HTML Webpages
 <div>
 </div>
 
+<script src="../js/htmlEncode.js"></script>
 <script type="text/javascript">
 
 
 
 
     function sendAPIRequest() {
-    getHTML();
 	$.ajax({
 	    url: fremeApiUrl + "/e-translation/tilde",
             type: "POST",
-	    dataType: "text",
+	    dataType: "html",
             data: {
                 'informat': "text/html",
                 'outformat': "text/html",
                 'source-lang': encodeURIComponent($("#source-lang").val()),
                 'target-lang': encodeURIComponent($("#target-lang").val()),
-                'input': encodeURIComponent($("#webpage").val())
+                'input': encodeURIComponent(htmlEncode($("#webpage").val()))
             }
         }).done(function(result){
     	    $("#response").text(result);
