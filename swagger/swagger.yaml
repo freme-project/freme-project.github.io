@@ -1384,7 +1384,7 @@ paths:
         description: "The RDF graph which will be queried, in the specific RDF format. Overridden request body"
       - name: "informat"
         in: "query"
-        description: "Format of input string."
+        description: "Format of input string. Overrides Content-Type Header. Short form is i"
         enum:
         - "text"
         - "json-ld"
@@ -1402,8 +1402,7 @@ paths:
 
       - name: "outformat"
         in: "query"
-        description: "RDF serialization format of Output. Can be json-ld, turtle,\
-          \ n3, n-triples, rdf-xml. Defaults to \"turtle\". Overrides Accept Header\
+        description: "RDF serialization format of Output. Overrides Accept Header\
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
@@ -1418,6 +1417,9 @@ paths:
         - "text/xml"
         - "application/x-xliff+xml"
         - "application/x-openoffice"
+        - "csv"
+        - "application/json"
+        - "xml"
       - name: "body"
         in: "body"
         required: false
@@ -1428,20 +1430,7 @@ paths:
         required: true
         description: "Name of filter to execute against"
         type: "string"
-      - name: "visibility"
-        in: "query"
-        required: false
-        enum:
-        - "public"
-        - "private"
-        default: "public"
-        type: "string"
-        description: "Sets the visibility of this restricted resource, see [authentication article] (knowledge-base/authentication.html)."
-      - name: "description"
-        in: "query"
-        required: false
-        type: "string"
-        description: "Sets a description for this filter."
+
       responses:
         200:
           description: "Successful response"
