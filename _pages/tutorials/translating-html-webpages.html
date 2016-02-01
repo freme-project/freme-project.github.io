@@ -16,13 +16,8 @@ title: Translating HTML Webpages
 </div>
 
 <script type="text/javascript">
-    var page_content;
 
-    function getHTML() {
-        $.get($("#url").val(), function (data) {
-            page_content = data;
-        });
-    };
+
 
 
     function sendAPIRequest() {
@@ -36,7 +31,7 @@ title: Translating HTML Webpages
                 'outformat': "text/html",
                 'source-lang': encodeURIComponent($("#source-lang").val()),
                 'target-lang': encodeURIComponent($("#target-lang").val()),
-                'input': encodeURIComponent(page_content)
+                'input': encodeURIComponent($("#webpage").val())
             }
         }).done(function(result){
     	    $("#response").text(result);
@@ -52,7 +47,10 @@ title: Translating HTML Webpages
     <p>
     <strong>URL to webpage</strong><br/>
     Specify the URL to the webpage you want to translate here.<br/>
-    <input id="url" type="text" value="" /></p>
+    <textarea id="webpage" value="" >
+
+    </textarea>
+    </p>
     <br/>
 
     <p><strong>Query string parameter source-lang</strong><br/>
@@ -65,7 +63,7 @@ title: Translating HTML Webpages
     <input id="target-lang" type="text" value="de"></p>
     <br/>
 
-    <button onclick="getHTML();">Try it out!</button>
+    <button onclick="sendAPIRequest();">Try it out!</button>
 
     <h2>Response</h2>
     <pre id="response">
