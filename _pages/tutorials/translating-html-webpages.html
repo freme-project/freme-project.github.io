@@ -19,7 +19,7 @@ title: Translating HTML Webpages
     var page_content;
 
     function getHTML() {
-        $.get("somepage.php", function (data) {
+        $.get($("#url").val(), function (data) {
             page_content = data;
         });
     };
