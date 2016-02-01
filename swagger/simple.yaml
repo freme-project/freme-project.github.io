@@ -164,7 +164,7 @@ paths:
           or "Content-Type" is NIF, this service expects NIF data with entity mentions,
           i.e. anchorOf, beginIndex, endIndex etc. are given and it does only entity
           linking. When "link" is given as the parameter and the given "informat"
-          or "Content-Type" is Plain Text, this service interprets the entire input
+          or "Content-Type" is plain text, this service interprets the entire input
           as a single Entity and does entity linking for that specific entity. Note
           that "all" is equivalent to "spot,link,classify". The order of the modes
           are irrelevant, i.e. "spot,link,classify" is equivalent to "spot,classify,link".

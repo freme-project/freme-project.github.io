@@ -96,7 +96,7 @@ If it does not, replace the javascript in `_layouts/swagger-doc.html` with the j
 Uncomment the function `addApiKeyAuthorization` and replace the line
 
 ```
-var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
+var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
 ```
 
 with

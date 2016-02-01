@@ -1,0 +1,84 @@
+---
+dropdown: Tutorials
+pos: 3.7
+layout: default
+title: Translating HTML Webpages
+---
+
+
+
+<h1>Translating HTML Webpages with E-Internationalization</h1>
+<div>
+    <p>This tutorial will demonstrate how to use E-Internationalization and the Tilde MT Service to translate HTML webpages.</p>
+</div>
+
+<div>
+</div>
+
+<script type="text/javascript">
+    var htmlres="";
+    function getHTML() {
+        var getURL= $("#url").val();
+        console.log(getURL);
+        $.ajax({
+            url: getURL,
+            type: 'GET',
+            crossDomain: true,
+            dataType: 'html',
+            headers: {'Access-Control-Allow-Origin':'*'}
+        }).done(function(result){
+            htmlres=result;
+            $("#response").text(htmlEncode(result));
+            console.log(result)
+        });
+    };
+
+    function sendAPIRequest() {
+    getHTML();
+	$.ajax({
+	    url: fremeApiUrl + "/e-translation/tilde",
+            type: "POST",
+	    dataType: "text",
+            data: {
+                'informat': "text/html",
+                'outformat': "text/html",
+                'source-lang': encodeURIComponent($("#source-lang").val()),
+                'target-lang': encodeURIComponent($("#target-lang").val()),
+                'input': encodeURIComponent(htmlres)
+            }
+        }).done(function(result){
+    	    $("#response").text(result);
+	    });
+       };
+
+</script>
+
+<div>
+    <h2>Example API Call</h2>
+    <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+
+    <p>
+    <strong>URL to webpage</strong><br/>
+    Specify the URL to the webpage you want to translate here.<br/>
+    <input id="url" type="text" value="" /></p>
+    <br/>
+
+    <p><strong>Query string parameter source-lang</strong><br/>
+    Enter the language you want to translate from<br/>
+    <input id="source-lang" type="text" value="en" /></p>
+    <br/>
+
+    <p><strong>Query string parameter target-lang</strong><br/>
+    Enter the language you want to translate to<br/>
+    <input id="target-lang" type="text" value="de"></p>
+    <br/>
+
+    <button onclick="getHTML();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre id="response">
+
+    </pre>
+
+</div>
+
