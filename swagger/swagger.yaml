@@ -1357,11 +1357,12 @@ paths:
       - "text/turtle"
       - "application/ld+json"
       - "application/n-triples"
-      - "text/plain"
       - "application/rdf+xml"
-      - "text/xml"
 
       produces:
+      - "text/comma-separated-values"
+      - "application/json"
+      - "text/xml"
       - "text/n3"
       - "text/turtle"
       - "application/ld+json"
@@ -1380,13 +1381,11 @@ paths:
         in: "query"
         description: "Format of input string. Overrides Content-Type Header. Short form is i"
         enum:
-        - "text"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/xml"
         default: "turtle"
         required: false
         type: "string"
@@ -1397,16 +1396,16 @@ paths:
           \ (Response Content Type). Short form is o."
         required: false
         type: "string"
-        default: "turtle"
+        default: "csv"
         enum:
+        - "csv"
+        - "xml"
+        - "json"
         - "json-ld"
         - "turtle"
         - "n3"
         - "n-triples"
         - "rdf-xml"
-        - "text/xml"
-        - "csv"
-        - "application/json"
       - name: "body"
         in: "body"
         required: false
