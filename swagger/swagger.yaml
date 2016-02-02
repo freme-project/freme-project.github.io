@@ -1431,7 +1431,7 @@ paths:
       - "Postprocessing"
       summary: "Get all postprocessing filters"
       description: |
-        Returns one specific filter with specified name.
+        Returns all read accessible filters, see [authentication article](../knowledge-base/authentication.html) for further information.
       produces:
       - "application/json"
       responses:
