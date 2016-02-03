@@ -148,6 +148,17 @@ NOTE: The filter parameter can also be added to the surrounding request to the p
 curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "{{ site.apiurl | prepend: site.url }}/pipelining/chain?stats=false&filter=extract-entities-only"
 ```
 
+The two pipeline requests mentioned above are semantical equal and use `e-entity (FREME-Ner) --> e-link --> filter: extract-entities-only` and should return the following:
+
+```
+entity
+http://dbpedia.org/resource/Belgium
+http://dbpedia.org/resource/Beauty
+http://dbpedia.org/resource/Sathya_Sai_Baba
+http://dbpedia.org/resource/City
+http://dbpedia.org/resource/Antwerp
+```
+
 
 ## Managing filters
 
