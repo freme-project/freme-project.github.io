@@ -136,16 +136,16 @@ The following output would be the result without using a filter:
         itsrdf:taIdentRef     dbpedia:Champ_de_Mars .
 ```
 
-**NOTE:** The postprocessing works also embedded in **pipelines**. Just add the filter parameter to the last request:
+**NOTE:** The postprocessing works embedded in **pipelines**, too. Just add the filter parameter to the last request:
 
 ```
-curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"http://api-dev.freme-project.eu/current/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"http://api-dev.freme-project.eu/current/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\",     \"filter\": \"extract-entities-only\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "http://api-dev.freme-project.eu/current/pipelining/chain?stats=false"
+curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\",     \"filter\": \"extract-entities-only\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "{{ site.apiurl | prepend: site.url }}/pipelining/chain?stats=false"
 ```
 
 NOTE: The filter parameter can also be added to the surrounding request to the pipelining service:
 
 ```
-curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"http://api-dev.freme-project.eu/current/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"http://api-dev.freme-project.eu/current/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "http://api-dev.freme-project.eu/current/pipelining/chain?stats=false&filter=extract-entities-only"
+curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "{{ site.apiurl | prepend: site.url }}/pipelining/chain?stats=false&filter=extract-entities-only"
 ```
 
 
