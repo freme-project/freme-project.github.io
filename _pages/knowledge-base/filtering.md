@@ -204,7 +204,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
 
 ### Update a filter
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY|"EMPTY" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
 ```
 
 Examples:
@@ -219,7 +219,7 @@ curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/pla
 To change the owner and the visibility, you can do this:
 
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "EMPTY" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
 ```
 NOTE: The User `klaus` has to exist.
 NOTE: The two example requests can be merged, it was splitted just for explanation purposes.
