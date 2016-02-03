@@ -151,12 +151,39 @@ curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"P
 The two pipeline requests mentioned above are semantical equal and use `e-entity (FREME-Ner) --> e-link --> filter: extract-entities-only` and should return the following:
 
 ```
-entity
-http://dbpedia.org/resource/Belgium
-http://dbpedia.org/resource/Beauty
-http://dbpedia.org/resource/Sathya_Sai_Baba
-http://dbpedia.org/resource/City
-http://dbpedia.org/resource/Antwerp
+<?xml version="1.0"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="entity"/>
+  </head>
+  <results>
+    <result>
+      <binding name="entity">
+        <uri>http://dbpedia.org/resource/Belgium</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="entity">
+        <uri>http://dbpedia.org/resource/Beauty</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="entity">
+        <uri>http://dbpedia.org/resource/Sathya_Sai_Baba</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="entity">
+        <uri>http://dbpedia.org/resource/City</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="entity">
+        <uri>http://dbpedia.org/resource/Antwerp</uri>
+      </binding>
+    </result>
+  </results>
+</sparql>
 ```
 
 
