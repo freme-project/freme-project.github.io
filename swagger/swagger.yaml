@@ -1260,7 +1260,7 @@ paths:
       - "Postprocessing"
       summary: "Update an existing postprocessing filter"
       description: |
-        Updates the filter with the name `filter-name`. Requires [authentication](../knowledge-base/authentication.html). If you just want to transfer the ownership or change the visibility without updating the SPARQL filter query, just leave the body empty.
+        Updates the filter with the name `filter-name`. Requires [authentication](../knowledge-base/authentication.html). Only fields containing content are updated. So, if you just want to transfer the ownership or change the visibility without updating the SPARQL filter query, leave the body empty.
       produces:
       - "application/json"
       consumes:
