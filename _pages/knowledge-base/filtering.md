@@ -26,7 +26,7 @@ A filter with the name `FILTERNAME` can be used by adding the parameter `filter=
 When using filters, the possible outformat/accept-header values differ from standard usage.
 In the case of **SELECT** filters the following output formats are allowed (mime type versions for accept header in brackets):
 
-* **csv** (text/comma-separated-values)
+* **csv** (text/comma-separated-values): this is the default value
 * **json** (application/json)
 * **xml** (text/xml)
 * any RDF format accepted by FREME enrichment e-services e.g. turtle (text/turtle)
