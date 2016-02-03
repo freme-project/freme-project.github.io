@@ -148,7 +148,7 @@ NOTE: The filter parameter can also be added to the surrounding request to the p
 curl -X POST --header "Content-Type: application/json" -d "[ {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-entity/dbpedia-spotlight/documents\",   \"parameters\": {     \"language\": \"en\"   },   \"headers\": {     \"content-type\": \"text/plain\",     \"accept\": \"text/turtle\"   },   \"body\": \"This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\" }, {   \"method\": \"POST\",   \"endpoint\": \"{{ site.apiurl | prepend: site.url }}/e-link/documents/\",   \"parameters\": {     \"templateid\": \"3\"   },   \"headers\": {     \"content-type\": \"text/turtle\"   } } ]" "{{ site.apiurl | prepend: site.url }}/pipelining/chain?stats=false&filter=extract-entities-only&outformat=xml"
 ```
 
-The two pipeline requests mentioned above are semantical equal and use `e-entity (FREME-Ner) --> e-link --> filter: extract-entities-only` and should return the following:
+The two pipeline requests mentioned above are semantically equal and use `e-entity (FREME-Ner) --> e-link --> filter: extract-entities-only`. They should return the following:
 
 ```
 <?xml version="1.0"?>
