@@ -75,7 +75,7 @@ title: How to write a Tutorial
     <h2>cURL Examples</h2>
     <p>You should provide a cURL call for every example API call mentioned above. Ensure to replace any URL part of an internal (FREME) service (e.g. `ap-dev.freme-project.eu/current`) by the generic url pattern:</p>
    
-        {{site.apiurl | prepend: site.url}}
+        `{{site.apiurl | prepend: site.url}}`
     
     <p>which will be translated to: {{site.apiurl | prepend: site.url}}. </p>
 
