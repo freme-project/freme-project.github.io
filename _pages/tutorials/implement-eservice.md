@@ -50,62 +50,114 @@ The output of above example is
 
 You can use this boilerplate code to create an e-Service in the [source code of the broker](https://github.com/freme-project/broker). The full code example (including imports) can be downloaded [here](https://drive.google.com/file/d/0B8CeKhHCOSqUTWdNTFNGdjlGdnM/view?usp=sharing). Similar e-Services are implement in the broker in the package eu.freme.broker.eservices.
 
-```
-@RestController
-public class ExampleEService extends BaseRestController {
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #555555; font-weight: bold">@RestController</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ExampleEService</span> <span style="color: #008800; font-weight: bold">extends</span> BaseRestController <span style="color: #333333">{</span>
 
-	@Autowired
-	RDFConversionService rdfConversionService;
+	<span style="color: #555555; font-weight: bold">@Autowired</span>
+	RDFConversionService rdfConversionService<span style="color: #333333">;</span>
 
-	Logger logger = Logger.getLogger(ExampleEService.class);
+	Logger logger <span style="color: #333333">=</span> Logger<span style="color: #333333">.</span><span style="color: #0000CC">getLogger</span><span style="color: #333333">(</span>ExampleEService<span style="color: #333333">.</span><span style="color: #0000CC">class</span><span style="color: #333333">);</span>
 
-	@RequestMapping(value = "/example-eservice/capitalize", method = RequestMethod.POST)
-	public ResponseEntity<String> tildeTranslate(
-			@RequestHeader(value = "Accept", required = false) String acceptHeader,
-			@RequestHeader(value = "Content-Type", required = false) String contentTypeHeader,
-			@RequestBody(required = false) String postBody,
-			@RequestParam Map<String, String> parameterMap) {
+	<span style="color: #555555; font-weight: bold">@RequestMapping</span><span style="color: #333333">(</span>value <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;/example-eservice/capitalize&quot;</span><span style="color: #333333">,</span> method <span style="color: #333333">=</span> RequestMethod<span style="color: #333333">.</span><span style="color: #0000CC">POST</span><span style="color: #333333">)</span>
+	<span style="color: #008800; font-weight: bold">public</span> ResponseEntity<span style="color: #333333">&lt;</span>String<span style="color: #333333">&gt;</span> <span style="color: #0066BB; font-weight: bold">tildeTranslate</span><span style="color: #333333">(</span>
+			<span style="color: #555555; font-weight: bold">@RequestHeader</span><span style="color: #333333">(</span>value <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Accept&quot;</span><span style="color: #333333">,</span> required <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">)</span> String acceptHeader<span style="color: #333333">,</span>
+			<span style="color: #555555; font-weight: bold">@RequestHeader</span><span style="color: #333333">(</span>value <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Content-Type&quot;</span><span style="color: #333333">,</span> required <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">)</span> String contentTypeHeader<span style="color: #333333">,</span>
+			<span style="color: #555555; font-weight: bold">@RequestBody</span><span style="color: #333333">(</span>required <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">)</span> String postBody<span style="color: #333333">,</span>
+			<span style="color: #555555; font-weight: bold">@RequestParam</span> Map<span style="color: #333333">&lt;</span>String<span style="color: #333333">,</span> String<span style="color: #333333">&gt;</span> parameterMap<span style="color: #333333">)</span> <span style="color: #333333">{</span>
 
-		NIFParameterSet parameters = this.normalizeNif(postBody, acceptHeader,
-				contentTypeHeader, parameterMap, false);
+		NIFParameterSet parameters <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">normalizeNif</span><span style="color: #333333">(</span>postBody<span style="color: #333333">,</span> acceptHeader<span style="color: #333333">,</span>
+				contentTypeHeader<span style="color: #333333">,</span> parameterMap<span style="color: #333333">,</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">);</span>
 
-		// create rdf model
-		String plaintext = null;
-		Model inputModel = ModelFactory.createDefaultModel();
+		<span style="color: #888888">// create rdf model</span>
+		String plaintext <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+		Model inputModel <span style="color: #333333">=</span> ModelFactory<span style="color: #333333">.</span><span style="color: #0000CC">createDefaultModel</span><span style="color: #333333">();</span>
 
-		if (!parameters.getInformat().equals(
-				RDFConstants.RDFSerialization.PLAINTEXT)) {
-			// input is nif
-			try {
-				inputModel = this.unserializeNif(parameters.getInput(),
-						parameters.getInformat());
-			} catch (Exception e) {
-				logger.error("failed", e);
-				throw new BadRequestException("Error parsing NIF input");
-			}
-		} else {
-			// input is plaintext
-			plaintext = parameters.getInput();
-			rdfConversionService.plaintextToRDF(inputModel, plaintext, null,
-					parameters.getPrefix());
-		}
+		<span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(!</span>parameters<span style="color: #333333">.</span><span style="color: #0000CC">getInformat</span><span style="color: #333333">().</span><span style="color: #0000CC">equals</span><span style="color: #333333">(</span>
+				RDFConstants<span style="color: #333333">.</span><span style="color: #0000CC">RDFSerialization</span><span style="color: #333333">.</span><span style="color: #0000CC">PLAINTEXT</span><span style="color: #333333">))</span> <span style="color: #333333">{</span>
+			<span style="color: #888888">// input is nif</span>
+			<span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+				inputModel <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">unserializeNif</span><span style="color: #333333">(</span>parameters<span style="color: #333333">.</span><span style="color: #0000CC">getInput</span><span style="color: #333333">(),</span>
+						parameters<span style="color: #333333">.</span><span style="color: #0000CC">getInformat</span><span style="color: #333333">());</span>
+			<span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+				logger<span style="color: #333333">.</span><span style="color: #0000CC">error</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;failed&quot;</span><span style="color: #333333">,</span> e<span style="color: #333333">);</span>
+				<span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">BadRequestException</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Error parsing NIF input&quot;</span><span style="color: #333333">);</span>
+			<span style="color: #333333">}</span>
+		<span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #333333">{</span>
+			<span style="color: #888888">// input is plaintext</span>
+			plaintext <span style="color: #333333">=</span> parameters<span style="color: #333333">.</span><span style="color: #0000CC">getInput</span><span style="color: #333333">();</span>
+			rdfConversionService<span style="color: #333333">.</span><span style="color: #0000CC">plaintextToRDF</span><span style="color: #333333">(</span>inputModel<span style="color: #333333">,</span> plaintext<span style="color: #333333">,</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">,</span>
+					parameters<span style="color: #333333">.</span><span style="color: #0000CC">getPrefix</span><span style="color: #333333">());</span>
+		<span style="color: #333333">}</span>
 
-		try {
-			Property property = inputModel.getProperty("http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString");	
-			Statement stmt = inputModel.listStatements((Resource)null, property, (String)null).next();
-			plaintext = stmt.getLiteral().getString();
-			String enrichment = plaintext.toUpperCase();
-			Property enrichmentProperty = inputModel.createProperty("http://freme-project.eu/capitalize");		
-			stmt.getSubject().addLiteral(enrichmentProperty, enrichment);
-		} catch (Exception e) {
-			logger.error("exception was thrown", e);
-			throw new InternalServerErrorException();
-		}
+		<span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+			Property property <span style="color: #333333">=</span> inputModel<span style="color: #333333">.</span><span style="color: #0000CC">getProperty</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString&quot;</span><span style="color: #333333">);</span>	
+			Statement stmt <span style="color: #333333">=</span> inputModel<span style="color: #333333">.</span><span style="color: #0000CC">listStatements</span><span style="color: #333333">((</span>Resource<span style="color: #333333">)</span><span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">,</span> property<span style="color: #333333">,</span> <span style="color: #333333">(</span>String<span style="color: #333333">)</span><span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">).</span><span style="color: #0000CC">next</span><span style="color: #333333">();</span>
+			plaintext <span style="color: #333333">=</span> stmt<span style="color: #333333">.</span><span style="color: #0000CC">getLiteral</span><span style="color: #333333">().</span><span style="color: #0000CC">getString</span><span style="color: #333333">();</span>
+			String enrichment <span style="color: #333333">=</span> plaintext<span style="color: #333333">.</span><span style="color: #0000CC">toUpperCase</span><span style="color: #333333">();</span>
+			Property enrichmentProperty <span style="color: #333333">=</span> inputModel<span style="color: #333333">.</span><span style="color: #0000CC">createProperty</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;http://freme-project.eu/capitalize&quot;</span><span style="color: #333333">);</span>		
+			stmt<span style="color: #333333">.</span><span style="color: #0000CC">getSubject</span><span style="color: #333333">().</span><span style="color: #0000CC">addLiteral</span><span style="color: #333333">(</span>enrichmentProperty<span style="color: #333333">,</span> enrichment<span style="color: #333333">);</span>
+		<span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+			logger<span style="color: #333333">.</span><span style="color: #0000CC">error</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;exception was thrown&quot;</span><span style="color: #333333">,</span> e<span style="color: #333333">);</span>
+			<span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">InternalServerErrorException</span><span style="color: #333333">();</span>
+		<span style="color: #333333">}</span>
 
-		return createSuccessResponse(inputModel, parameters.getOutformat());
-	}
-}
-```  
+		<span style="color: #008800; font-weight: bold">return</span> <span style="color: #0066BB; font-weight: bold">createSuccessResponse</span><span style="color: #333333">(</span>inputModel<span style="color: #333333">,</span> parameters<span style="color: #333333">.</span><span style="color: #0000CC">getOutformat</span><span style="color: #333333">());</span>
+	<span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></td></tr></table></div>
 
 * Line 1 advises Spring MVC to create a REST endpoint out of this class
 * Line 9 defines the URL of the REST endpoint. All FREME enrichment services should be accessible via HTTP POST.
