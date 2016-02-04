@@ -67,8 +67,9 @@ title: How to write a Tutorial
 	var nodeList = document.getElementsByTagName("button");
 	for (var i = 0; i < nodeList.length; i++) {
 		if(nodeList[i].hasAttribute("curlsource")){
+			var source = nodeList[i].getAttribute("curlsource");
 			nodeList[i].addEventListener("click", function() {
-	    			copyToClipboard(document.getElementById("input"));
+	    			copyToClipboard(document.getElementById(source));
 			});
 		}
 	}
