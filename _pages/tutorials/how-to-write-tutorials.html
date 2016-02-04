@@ -26,7 +26,7 @@ title: How to write a Tutorial
     <p>
     <strong>Query string parameter input</strong><br/>
     Specify the text you want to translate here.<br/>
-    <input id="input" type="text" value="Show me the source of the light." /><button id="copyButton">Copy</button></p>
+    <input id="input" type="text" value="Show me the source of the light." /><button id="copyButton" curlSource="input">Copy</button></p>
     <br/>
     
     <p><strong>Query string parameter source-lang</strong><br/>
@@ -64,27 +64,35 @@ title: How to write a Tutorial
 
 <script type="text/javascript">
 	
-    function sendAPIRequest() {
-
+	var nodeList = document.getElementsByTagName("button");
+	for (var i = 0; i < nodeList.length; ++i) {
+		if(nodeList[i].hasAttribute("curlSource")){
+			nodeList[i].addEventListener("click", function() {
+	    			copyToClipboard(document.getElementById(nodeList[i].getAttribute("curlSource")));
+			}
+		}
+	}
+	
+	function sendAPIRequest() {
+	
 	$.ajax({
-	    url: fremeApiUrl + "/e-translation/tilde",
-            type: "POST",
-	    dataType: "text",
-            data: {
-                'informat': "text",
-                'outformat': "json-ld",
-                'source-lang': encodeURIComponent($("#source-lang").val()),
-                'target-lang': encodeURIComponent($("#target-lang").val()),
-                'input': encodeURIComponent($("#input").val())
-            }
-        }).done(function(result){
-    	    $("#response").text(result);
-	});
-       };
+		url: fremeApiUrl + "/e-translation/tilde",
+		type: "POST",
+		dataType: "text",
+		data: {
+		'informat': "text",
+		'outformat': "json-ld",
+		'source-lang': encodeURIComponent($("#source-lang").val()),
+		'target-lang': encodeURIComponent($("#target-lang").val()),
+		'input': encodeURIComponent($("#input").val())
+		}
+		}).done(function(result){
+		        $("#response").text(result);
+		});
+	};
        
-    document.getElementById("copyButton").addEventListener("click", function() {
-	    copyToClipboard(document.getElementById("input"));
-	});   
+       
+       
        
     function copyToClipboard(elem) {
 	  // create hidden text element, if it doesn't already exist
