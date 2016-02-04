@@ -68,7 +68,7 @@ title: How to write a Tutorial
 	for (var i = 0; i < nodeList.length; i++) {
 		var button = nodeList[i];
 		if(button.hasAttribute("curlsource")){
-			var source = document.getElementById(button.getAttribute("curlsource"));
+			var source = button.getAttribute("curlsource");
 			alert(button.getAttribute("curlsource"));
 			button.addEventListener("click", function() {
 	    			copyToClipboard(source);
@@ -97,8 +97,9 @@ title: How to write a Tutorial
        
        
        
-    function copyToClipboard(elem) {
-	  // create hidden text element, if it doesn't already exist
+    function copyToClipboard(id) {
+    	    var elem = document.getElementById(id);
+	    // create hidden text element, if it doesn't already exist
 	    var targetId = "_hiddenCopyText_";
 	    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
 	    var origSelectionStart, origSelectionEnd;
