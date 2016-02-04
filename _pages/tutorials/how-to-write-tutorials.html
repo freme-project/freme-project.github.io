@@ -17,6 +17,51 @@ title: How to write a Tutorial
     <p>The tutorials should feature some interactive API calls using jQuery. Therefore you should write the tutorial in HTML instead of markdown. You can copy <a href="http://github.com/freme-project/Documentation/blob/master/_pages/tutorials/how-to-write-tutorials.html" target="_blank">this page</a> as a template.</p>
 </div>
 
+
+
+<div>
+    <h2>Example API Call</h2>
+    <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+
+    <p>
+    <strong>Query string parameter input</strong><br/>
+    Specify the text you want to translate here.<br/>
+    <input id="input" type="text" value="Show me the source of the light." /><button id="copyButton">Copy</button></p>
+    <br/>
+    
+    <p><strong>Query string parameter source-lang</strong><br/>
+    Enter the language you want to translate from<br/>
+    <input id="source-lang" type="text" value="en" /></p>
+    <br/>
+    
+    <p><strong>Query string parameter target-lang</strong><br/>
+    Enter the language you want to translate to<br/>
+    <input id="target-lang" type="text" value="de"></p>
+    <br/>
+
+    <p><strong>Query string parameter informat</strong><br/>
+    Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"</p>
+    <br/>
+
+    <p><strong>Query string parameter outformat</strong><br/>
+    Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"</p>
+    <br/>
+
+    <button onclick="sendAPIRequest();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre style="height:300px;">
+    <code id="response">
+    </code>
+    </pre>
+    	
+    <h2>cURL Examples</h2>
+    <p>You should provide a cURL call for every example API call mentioned above. Ensure to replace the site URL and the api URL (e.g. api-dev.freme-project.eu/current) of any internal (FREME) endpoint by the generic url pattern: &#123;&#123;site.apiurl | prepend: site.url&#125;&#125; which will be translated to the currently valid values: {{site.apiurl | prepend: site.url}}. </p>
+
+</pre>
+
+</div>
+
 <script type="text/javascript">
 	
     function sendAPIRequest() {
@@ -94,46 +139,3 @@ title: How to write a Tutorial
 	
 
 </script>
-
-<div>
-    <h2>Example API Call</h2>
-    <p>For demonstration purposes we included an API call to /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
-
-    <p>
-    <strong>Query string parameter input</strong><br/>
-    Specify the text you want to translate here.<br/>
-    <input id="input" type="text" value="Show me the source of the light." /><button id="copyButton">Copy</button></p>
-    <br/>
-    
-    <p><strong>Query string parameter source-lang</strong><br/>
-    Enter the language you want to translate from<br/>
-    <input id="source-lang" type="text" value="en" /></p>
-    <br/>
-    
-    <p><strong>Query string parameter target-lang</strong><br/>
-    Enter the language you want to translate to<br/>
-    <input id="target-lang" type="text" value="de"></p>
-    <br/>
-
-    <p><strong>Query string parameter informat</strong><br/>
-    Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"</p>
-    <br/>
-
-    <p><strong>Query string parameter outformat</strong><br/>
-    Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"</p>
-    <br/>
-
-    <button onclick="sendAPIRequest();">Try it out!</button>
-
-    <h2>Response</h2>
-    <pre style="height:300px;">
-    <code id="response">
-    </code>
-    </pre>
-    	
-    <h2>cURL Examples</h2>
-    <p>You should provide a cURL call for every example API call mentioned above. Ensure to replace the site URL and the api URL (e.g. api-dev.freme-project.eu/current) of any internal (FREME) endpoint by the generic url pattern: &#123;&#123;site.apiurl | prepend: site.url&#125;&#125; which will be translated to the currently valid values: {{site.apiurl | prepend: site.url}}. </p>
-
-</pre>
-
-</div>
