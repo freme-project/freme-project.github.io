@@ -178,6 +178,6 @@ Useful links:
 
 FREME differentiates between two kinds of e-Services. e-Services hosted on FREME and external services.
 
-An external service is a service that is hosted on another server and that is accessible via a web interface. So FREME proxies a the requests it receives to this server. In this case FREME adds NIF compatibility and more input / output formats to the external service. This is the easiest way of integrating an e-Service into FREME. In this case you can directly implement the API call in line 46 of the example code.
+An external service is a service that is hosted on another server and that is accessible via a web interface. So FREME proxies the requests it receives to this server. In this case FREME adds NIF compatibility and more input / output formats to the external service. This is the easiest way of integrating an e-Service into FREME. In this case you can directly implement the API call in line 41-46 of the example code.
 
-An e-Service hosted on FREME is more complicated. In this case FREME does not simply redirect the call to an external service but it the code that produces the enrichment resides on FREME also. We suggest to implement this enrichment service as a separate project and as a Java library. It should be implemented as a spring bean for easy integration in FREME. Then the e-Service calls this Java library.
+An e-Service hosted on FREME is more complicated. In this case FREME does not simply redirect the call to an external service but the code that produces the enrichment resides on FREME also. We suggest to implement this enrichment service as a separate project and as a Java library. It should be implemented as a spring bean for easy integration in FREME. Then the e-Service calls this Java library.
