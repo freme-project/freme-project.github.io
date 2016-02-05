@@ -45,7 +45,7 @@ title: How to write a Tutorial
     function copyToClipboard(id) {
             //alert(id);
     	    var elem = document.getElementById(id);
-    	    alert(elem.textContent);
+    	    //alert(elem.textContent);
 	    // create hidden text element, if it doesn't already exist
 	    var targetId = "_hiddenCopyText_";
 	    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
@@ -106,7 +106,7 @@ title: How to write a Tutorial
     <p>
     <strong>Query string parameter input</strong><br/>
     Specify the text you want to translate here.<br/>
-    <input id="input" type="text" value="Show me the source of the light." /><button onclick="copyToClipboard('input')">Copy</button></p>
+    <input id="input" type="text" value="Show me the source of the light." /><!--<button onclick="copyToClipboard('input')">Copy</button>--></p>
     <br/>
     
     <p><strong>Query string parameter source-lang</strong><br/>
