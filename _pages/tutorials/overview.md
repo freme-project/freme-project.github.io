@@ -15,7 +15,7 @@ This section contains a series of mostly interactive tutorials on FREME. They ar
 [Named Entity Recognition against Custom Dataset](entity-recognition-against-custom-dataset.html)
 [Creating an EPUB using existing HTML content](html-to-epub.html)
 [Recognizing entities in XLIFF content](spot-entities-in-xliff.html)
-[Translate XLIFF 1.2 from English to French](translate-xliff-FR-EN.html)
+[Translate XLIFF 1.2 from English to German](translate-xliff-EN-DE.html)
 
 ## Developing FREME
 
