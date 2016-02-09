@@ -2,13 +2,13 @@
 dropdown: Tutorials
 pos: 3.9
 layout: default
-title: Translate XLIFF 1.2 from English to French
+title: Translate XLIFF 1.2 from English to German
 ---
 
-<h1>Translate XLIFF 1.2 from English to French</h1>
+<h1>Translate XLIFF 1.2 from English to German</h1>
 <div>
     <h2>Introduction</h2>
-    <p>XLIFF files are widely used in localization field. This tutorial shows how to retrieve the translation to French of a XLIFF 1.2 content where the source language is English. </p>
+    <p>XLIFF files are widely used in localization field. This tutorial shows how to retrieve the translation to German of a XLIFF 1.2 content where the source language is English. </p>
 </div>
 
 <div>
@@ -24,7 +24,7 @@ title: Translate XLIFF 1.2 from English to French
 		url: fremeApiUrl + "/e-translation/tilde?"
 		+ "informat=" +encodeURIComponent("application/x-xliff+xml")
 		+ "&outformat="+$("#outformat").val()
-		+ "&source-lang=en&target-lang=fr",
+		+ "&source-lang=en&target-lang=de",
 		type: "POST",
 	    dataType: "text",
 	    contentType: "application/x-xliff+xml",
@@ -47,7 +47,7 @@ title: Translate XLIFF 1.2 from English to French
     <textarea id="input-text" cols="130" rows="22">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;?xml-stylesheet type=&quot;text/xsl&quot;?&gt;
 &lt;xliff xmlns:dl=&quot;http://www.digitallinguistics.com&quot; xmlns=&quot;urn:oasis:names:tc:xliff:document:1.2&quot; xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; version=&quot;1.2&quot;&gt;
-	&lt;file original=&quot;PCWorldArticle.txt&quot; source-language=&quot;en&quot; target-language=&quot;fr&quot; datatype=&quot;plaintext&quot;&gt;
+	&lt;file original=&quot;PCWorldArticle.txt&quot; source-language=&quot;en&quot; target-language=&quot;de&quot; datatype=&quot;plaintext&quot;&gt;
 		&lt;body&gt;
 			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;0&quot; its:version=&quot;2.0&quot;&gt;
 				&lt;source&gt;Excuse me, I'm lost.&lt;/source&gt;
@@ -72,7 +72,7 @@ title: Translate XLIFF 1.2 from English to French
     <br/>
 	
 	<p><strong>Query string parameter target-language</strong><br/>
-    Specifies the target language for the translation. In this example we set this parameter to "fr".
+    Specifies the target language for the translation. In this example we set this parameter to "de" (german).
     <br/>
     
     <p><strong>Query string parameter informat</strong><br/>
@@ -93,7 +93,7 @@ title: Translate XLIFF 1.2 from English to French
 	<h2 id="curl-examples">cURL Examples</h2>
     <p>Below you can find an example of a cURL command. Replace <em>translation.xlf</em> with the path of your XLIFF file.</p>
 	<pre>
-<code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "{{site.apiurl | prepend: site.url}}/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=fr" -v
+<code>curl -X POST -d@translation.xlf  --header "Content-Type: application/x-xliff+xml" "{{site.apiurl | prepend: site.url}}/e-translation/tilde?outformat=turtle&amp;source-lang=en&amp;target-lang=de" -v
 </code>
 	</pre>
 
