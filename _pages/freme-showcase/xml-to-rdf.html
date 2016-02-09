@@ -28,6 +28,7 @@ pos: 2.4
             }
             ;
             var sendFreme = function () {
+            	var libPath = "xml-to-rdf/lib";
 		var xslSourcePath = "";
 		//var params = [{ "ns" : null, "name" : "tbd", "value" : "tbd"}]; 
                 var selectedLanguage = $("#language").find(":selected").val();
@@ -35,10 +36,10 @@ pos: 2.4
                 var doctype = $("#doctype").find(":selected").val();
 		 switch (doctype) {
                     case "1" :
-                        xslSourcePath = "lib/tei-processing/tei2temp-html.xsl";
+                        xslSourcePath = libPath+"/tei-processing/tei2temp-html.xsl";
                         break;
                     case "2" :
-                        xslSourcePath = "lib/docbook-processing/docbook2temp-html.xsl";
+                        xslSourcePath = libPath+"/docbook-processing/docbook2temp-html.xsl";
                 }
                 ;
                 var approach = $('#approach').find(":selected").val();
@@ -66,22 +67,22 @@ pos: 2.4
                                 console.log("stylesheetchoice: " + stylesheetchoice);
                                 switch (stylesheetchoice) {
                                     case "doctype:1approach:2" :
-                                        xslSourcePath = "lib/tei-processing/temp2tei-approach-2.xsl";
+                                        xslSourcePath = libPath+"/tei-processing/temp2tei-approach-2.xsl";
                                         break;
                                     case "doctype:1approach:3" :
-                                        xslSourcePath = "lib/tei-processing/temp2tei-approach-3.xsl";
+                                        xslSourcePath = libPath+"/tei-processing/temp2tei-approach-3.xsl";
                                         break;
                                     case "doctype:2approach:2" :
-                                        xslSourcePath = "lib/docbook-processing/temp2docbook-approach-2.xsl";
+                                        xslSourcePath = libPath+"/docbook-processing/temp2docbook-approach-2.xsl";
                                         break;
                                     case "doctype:2approach:3" :
-                                        xslSourcePath = "lib/docbook-processing/temp2docbook-approach-3.xsl";
+                                        xslSourcePath = libPath+"/docbook-processing/temp2docbook-approach-3.xsl";
                                         break;
                                     case "doctype:1approach:5" :
-                                        xslSourcePath = "lib/tei-processing/temp2tei-approach-2.xsl";
+                                        xslSourcePath = libPath+"/tei-processing/temp2tei-approach-2.xsl";
                                         break;
                                     case "doctype:2approach:5" :
-                                        xslSourcePath = "lib/docbook-processing/temp2docbook-approach-2.xsl";
+                                        xslSourcePath = libPath+"/docbook-processing/temp2docbook-approach-2.xsl";
                                 }
                                 ;
                                 console.log("approach 2,3,5 path" + xslSourcePath);
@@ -95,10 +96,10 @@ pos: 2.4
                                     $("#output2").empty();
                                     switch (stylesheetchoice) {
                                         case "doctype:1approach:5" :
-                                            xslSourcePath = "lib/tei-processing/temp2tei-approach-5.xsl";
+                                            xslSourcePath = libPath+"/tei-processing/temp2tei-approach-5.xsl";
                                             break;
                                         case "doctype:2approach:5" :
-                                            xslSourcePath = "lib/docbook-processing/temp2docbook-approach-5.xsl";
+                                            xslSourcePath = libPath+"/docbook-processing/temp2docbook-approach-5.xsl";
                                     }
                                     console.log("approach 5 path:" + xslSourcePath);
 				    var tempstring5 = xsltTransform(xslSourcePath, tempstring, []);
@@ -130,10 +131,10 @@ pos: 2.4
                                     $("#out").empty().append(tempstring2);
                                     switch (stylesheetchoice) {
                                         case "doctype:1approach:4" :
-                                            xslSourcePath = "lib/tei-processing/temp2tei-approach-4.xsl";
+                                            xslSourcePath = libPath+"/tei-processing/temp2tei-approach-4.xsl";
                                             break;
                                         case "doctype:2approach:4" :
-                                            xslSourcePath = "lib/docbook-processing/temp2docbook-approach-4.xsl";
+                                            xslSourcePath = libPath+"/docbook-processing/temp2docbook-approach-4.xsl";
                                     }
                                     ;
                                     console.log("xsl source for approach 4: " + xslSourcePath);
