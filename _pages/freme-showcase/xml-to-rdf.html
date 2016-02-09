@@ -7,11 +7,6 @@ pos: 2.4
 
     <script type="text/javascript" src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../js/Saxon-CE_1.1/Saxonce/Saxonce.nocache.js"></script>
-    <script type="text/javascript">
-                var fremeApiUrl = "http://api-dev.freme-project.eu/current";
-                //for dev version : http://api-dev.freme-project.eu/current
-                //for latest stable version: http://api.freme-project.eu/current
-    </script>
     <script>
             function xsltTransform(xslSourcePath, xmlString, params) {
                 console.log("xsl in path: " + xslSourcePath);
@@ -179,11 +174,11 @@ pos: 2.4
 	    }
 	</style>
 	
-	<h1>From XML to RDF Step by Step - Do it yourself</h1>
+	<h1>From XML to RDF Step by Step</h1>
 	<h2 id="background">Background</h2>
 	<p>This examples shows how to process XML content with FREME. For background to the XML and RDF processing options, see the related <a href="http://fsasaki.github.io/stuff/xmlprague2016/sasaki-et-al-xmlprague-2016.html">XML Prague 2016 paper</a>.</p>
 	<h2 id="more-infos">More information</h2>
-	<p>For more information visit the <a target="_blank" href="http://api-dev.freme-project.eu/doc/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
+	<p>For more information visit the <a target="_blank" href="/doc/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 	<h2 id="try-it-out">Try it out</h2>
 	<p>In the left form below enter a Docbook 5.0 (<span class="loadsample" onclick="var docbooksample = $('#docbooksample').text();
                 $('#content').empty().val(docbooksample.replace(/</g, '&lt;'))">load a sample</span>) document or TEI P5 document (<span class="loadsample" onclick="var teisample = $('#teisample').text();
