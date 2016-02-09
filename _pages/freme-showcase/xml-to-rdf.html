@@ -5,13 +5,14 @@ dropdown: FREME-Showroom
 pos: 2.4
 ---
 
-<script type="text/javascript" src="lib/Saxon-CE_1.1/Saxonce/Saxonce.nocache.js"></script>
-<script type="text/javascript">
-            var fremeApiUrl = "http://api-dev.freme-project.eu/current";
-            //for dev version : http://api-dev.freme-project.eu/current
-            //for latest stable version: http://api.freme-project.eu/current
-	</script>
-	<script>
+    <script type="text/javascript" src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/Saxon-CE_1.1/Saxonce/Saxonce.nocache.js"></script>
+    <script type="text/javascript">
+                var fremeApiUrl = "http://api-dev.freme-project.eu/current";
+                //for dev version : http://api-dev.freme-project.eu/current
+                //for latest stable version: http://api.freme-project.eu/current
+    </script>
+    <script>
             function xsltTransform(xslSourcePath, xmlString, params) {
                 console.log("xsl in path: " + xslSourcePath);
                 var proc = Saxon.newXSLT20Processor();
