@@ -9,3 +9,4 @@ _site
 .iml
 simple.yaml
 *~
+/target
