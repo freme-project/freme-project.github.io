@@ -153,7 +153,7 @@ public SimpleEntity findOneByIdentifierUnsecured(String identifier){
 
 ## REST controller
 
-If you have implemented the classes above, it is very easy to set up a REST controller to manipulate your entities in a restricted manner. That is, the user credentials encoded in the token send as HTTP header `X-Auth-Token` is used to decide if the current request is permitted.
+If you have implemented the classes above, it is very easy to set up a REST controller to manipulate your entities in a restricted manner. That is, the user credentials encoded in the token send as HTTP header `X-Auth-Token` are used to decide if the current request is permitted.
 
 FREMECommon provides the abstract class `OwnedResourceManagingController`, which enables the following endpoints:
 
@@ -210,7 +210,7 @@ public class SimpleEntityController extends OwnedResourceManagingController<Simp
     @Override
     protected void updateEntity(SimpleEntity simpleEntity, String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException {
         //// implement body/parameter validation here
-        newEntity.setSomeData(body);
+        simpleEntity.setSomeData(body);
     }
 }
 
