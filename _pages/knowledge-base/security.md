@@ -23,7 +23,7 @@ A full implementation of restricted database entities has to contain implementat
 
 Entities inheriting from OwnedResource contain the following fields:
 
- * `id`: an auto incrementing id
+ * `id`: an auto incremented id
  * `creationTime`: a timestamp holding the creation time of the entity object
  * `owner`: the user object which owns the entity object
  * `visibility`: defines the accessibility for FREME users other than the owner. Could be `PRIVATE` (no access) or `PUBLIC` (read access, this is the default).
@@ -138,8 +138,8 @@ import org.springframework.stereotype.Component;
 public class SimpleEntityDAO extends OwnedResourceDAO<SimpleEntity> {
 
 public String tableName() {
-       return SimpleEntity.class.getSimpleName(); //unless you have not set a specific table name in the model class via the @Table(name = "TABLE_NAME") annotation
-   }
+   return SimpleEntity.class.getSimpleName(); //unless you have not set a specific table name in the model class via the @Table(name = "TABLE_NAME") annotation
+}
 ```
  
 If you have the need for a specific identifier other than the auto incremented `id`, you have to overwrite the method `findOneByIdentifierUnsecured`. The following code uses the field `name` as entity identifier:
@@ -153,7 +153,69 @@ public SimpleEntity findOneByIdentifierUnsecured(String identifier){
 
 ## REST controller
 
-// TODO
+If you have implemented the classes above, it is very easy to set up a REST controller to manipulate your entities in a restricted manner. That is, the user credentials encoded in the token send as HTTP header `X-Auth-Token` is used to decide if the current request is permitted.
+
+FREMECommon provides the abstract class `OwnedResourceManagingController`, which enables the following endpoints:
+
+ * `POST /manage`: add an entity
+ * `GET /manage`: request all entities, which are accessible, serialized as JSON
+ * `GET /manage/{identifier}`: request a certain entity, serialized as JSON 
+ * `PUT /manage/{identifier}`: update a certain entity
+ * `DELETE /manage/{identifier}`: delete a certain entity
+
+To get this functionality, you have to create a class implementing at least these methods:
+
+ * `Entity createEntity(String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
+ * `void updateEntity(Entity entity, String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
+
+`createEntity` will be executed when calling `POST /manage`, `updateEntity` when calling `PUT /manage/{identifier}`.
+These methods do not have to handle the modification of `owner` or `visibility`, these fields are set/updated after these methods. To change these properties, the query parameters:
+
+ * `visibility` and
+ * `newOwner` (only via `PUT /manage/{identifier}`)
+ 
+are used. So it is possible to ensure the state of these properties while testing.
+
+Exceptions like `org.springframework.security.access.AccessDeniedException`, `eu.freme.common.exception.BadRequestException`, `org.json.JSONException` and `eu.freme.common.exception.FREMEHttpException` are caught in the methods they can occur in and forwarded as HTTP error responses.  
+
+The following code provides the HTTP endpoints (like described above):
+
+ * `POST /mysandbox/manage`
+ * `GET /mysandbox/manage`
+ * `GET /mysandbox/manage/{identifier}`
+ * `PUT /mysandbox/manage/{identifier}`
+ * `DELETE /mysandbox/manage/{identifier}`
+
+```
+
+import eu.freme.common.exception.BadRequestException;
+import eu.freme.common.persistence.model.SimpleEntity;
+import eu.freme.common.rest.OwnedResourceManagingController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/mysandbox")
+public class SimpleEntityController extends OwnedResourceManagingController<SimpleEntity> {
+    @Override
+    protected SimpleEntity createEntity(String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException {
+        //// implement body/parameter validation here
+        SimpleEntity newEntity = new SimpleEntity();
+        newEntity.setSomeData(body);        
+    }
+
+    @Override
+    protected void updateEntity(SimpleEntity simpleEntity, String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException {
+        //// implement body/parameter validation here
+        newEntity.setSomeData(body);
+    }
+}
+
+```
+
 
 ## Test the REST controller
 
