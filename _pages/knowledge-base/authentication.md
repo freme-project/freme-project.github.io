@@ -80,7 +80,7 @@ curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ s
 
 To use restricted resources via the [FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html) just put your token into the input field at the bottom of the page.
 
-### How to delete a user
+### OPTIONAL: How to delete a user
 
 To do so, you have to use an access token of the user you want to delete or from the admin.
 You can use the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/delete_user_username) or a curl call like the following:
