@@ -157,13 +157,13 @@ If you have implemented the classes above, it is very easy to set up a REST cont
 
 FREMECommon provides the abstract class `OwnedResourceManagingController`, which enables the following endpoints:
 
- * `POST /manage`: add an entity
+ * `POST /manage`: add an entity and return the created entity serialized as JSON
  * `GET /manage`: request all entities, which are accessible, serialized as JSON
  * `GET /manage/{identifier}`: request a certain entity, serialized as JSON 
- * `PUT /manage/{identifier}`: update a certain entity
+ * `PUT /manage/{identifier}`: update a certain entity and return the updated entity serialized as JSON
  * `DELETE /manage/{identifier}`: delete a certain entity
 
-To get this functionality, you have to create a class implementing at least these methods:
+To get this functionality, you have to create a class inheriting from `OwnedResourceManagingController<Entity>` and implement at least these methods:
 
  * `Entity createEntity(String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
  * `void updateEntity(Entity entity, String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
@@ -219,7 +219,34 @@ public class SimpleEntityController extends OwnedResourceManagingController<Simp
 
 ## Test the REST controller
 
-// TODO
+// TODO: fix/explain the following!
+
+The class `OwnedResourceManagingHelper` in the package `eu.freme.bservices.testhelper` contains functionality to ease testing of the CRUD methods.
+
+
+```
+public class SimpleEntityControllerTest {
+    private Logger logger = Logger.getLogger(SimpleEntityControllerTest.class);
+    private AuthenticatedTestHelper ath;
+    private OwnedResourceManagingHelper<SimpleEntity> ormh;
+    final static String serviceUrl = "/mysandbox";
+
+    public SparqlConverterControllerTest() throws  UnirestException {
+        ApplicationContext context = IntegrationTestSetup.getContext("simple-entity-controller-test-package.xml");
+        ath = context.getBean(AuthenticatedTestHelper.class);
+        ormh = new OwnedResourceManagingHelper<>(serviceUrl,SimpleEntity.class, ath, null);
+        ath.authenticateUsers();
+    }
+
+    @Test
+    public void testSimpleEntityManagement() throws UnirestException, IOException {
+        SimpleEntityRequest request = new SimpleEntityRequest("data1");
+        SimpleEntityRequest updateRequest = new SimpleEntityRequest("data2");
+        ormh.checkCRUDOperations(request, updateRequest);
+    }
+}
+
+```
 
 ## Authentication
 
