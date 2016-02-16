@@ -43,6 +43,8 @@ To perform authenticated endpoint calls you have to do the following:
   1. create an user
   2. retrieve an access token
   3. attach this token to the endpoint call
+  
+If you want to get the full FREME user management functionality have a look at the [FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User). 
 
 ### How to create a user
 
@@ -74,6 +76,17 @@ To use FREME e-Services as authenticated user just attach your token as `X-Auth-
 
 ```
 curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/e-link/templates?outformat=turtle&informat=json"
+```
+
+To use restricted resources via the [FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html) just put your token into the input field at the bottom of the page.
+
+### How to delete a user
+
+To do so, you have to use an access token of the user you want to delete or from the admin.
+You can use the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/delete_user_username) or a curl call like the following:
+
+```
+curl -X DELETE --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/user/YOUR_USERNAME"
 ```
 
 ## User roles
