@@ -7,7 +7,7 @@ pos: 4.11
 
 # Security aware programming
 
-This article should serve as guideline how to implement functionality with user restricted access, in particular how to set up database entities and its CRUD methods via an REST api. 
+This article should serve as guideline how to implement functionality with user restricted access, in particular how to set up secured database entities and functionality to execute CRUD methods via a secured REST api. 
 
 ## OwnedResource
 
