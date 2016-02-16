@@ -122,7 +122,7 @@ Children of `OwnedResourceDAO` provide the following functionality:
  * `delete(Entity entity)`
  * `updateOwner(Entity entity, User newOwner)`
  
-All these methods ensure the needed access rights, that is read access for `findOneByIdentifier` and read and write access for the other methods. An `AccessDeniedException` is thrown if the access is permitted.  
+All these methods ensure the needed access rights, that is read access for `findOneByIdentifier` and read and write access for the other methods. An `AccessDeniedException` is thrown if access is not permitted.  
 
 To enable default access restrictions just implement the abstract method `tableName()` according to your entity model class. By default, if you have not especially defined a table name via the `@Table` annotation, this should look like:
  
