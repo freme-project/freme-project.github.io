@@ -2,7 +2,7 @@
 layout: page
 title: Security aware programming
 dropdown: Knowledge Base
-pos: 4.10
+pos: 4.11
 ---
 
 # Security aware programming
@@ -75,7 +75,7 @@ public class SimpleEntity extends OwnedResource {
     // }
     
     
-    //// using manual deserialization
+    //// using manual (de)serialization
     // 
     // @JsonIgnore
     // public List<OtherClass> getDeserializedData(){
@@ -126,30 +126,30 @@ All these methods ensure the needed access rights, that is read access for `find
 
 To enable default access restrictions just implement the abstract method `tableName()` according to your entity model class. By default, if you have not especially defined a table name via the `@Table` annotation, this should look like:
  
- ```
- // Ensure to use this package, otherwise the repository interface will not be scanned by Spring!
- package eu.freme.common.persistence.dao;
+```
+// Ensure to use this package, otherwise the repository interface will not be scanned by Spring!
+package eu.freme.common.persistence.dao;
+
+import eu.freme.common.persistence.model.SimpleEntity;
+import eu.freme.common.persistence.repository.SimpleEntityRepository;
+import org.springframework.stereotype.Component;
+
+@Component
+public class SimpleEntityDAO extends OwnedResourceDAO<SimpleEntity> {
+
+public String tableName() {
+       return SimpleEntity.class.getSimpleName(); //unless you have not set a specific table name in the model class via the @Table(name = "TABLE_NAME") annotation
+   }
+```
  
- import eu.freme.common.persistence.model.SimpleEntity;
- import eu.freme.common.persistence.repository.SimpleEntityRepository;
- import org.springframework.stereotype.Component;
+If you have the need for a specific identifier other than the auto incremented `id`, you have to overwrite the method `findOneByIdentifierUnsecured`. The following code uses the field `name` as entity identifier:
  
- @Component
- public class SimpleEntityDAO extends OwnedResourceDAO<SimpleEntity> {
- 
- public String tableName() {
-         return SimpleEntity.class.getSimpleName(); //unless you have not set a specific table name in the model class via the @Table(name = "TABLE_NAME") annotation
-     }
- ```
- 
- If you have the need for a specific identifier other than the auto incremented `id`, you have to overwrite the method `findOneByIdentifierUnsecured`. The following code uses the field `name` as entity identifier:
- 
- ```
- @Override
- public SimpleEntity findOneByIdentifierUnsecured(String identifier){
-     return ((SimpleEntityRepository)repository).findOneByName(identifier);
- }
- ```
+```
+@Override
+public SimpleEntity findOneByIdentifierUnsecured(String identifier){
+   return ((SimpleEntityRepository)repository).findOneByName(identifier);
+}
+```
 
 ## REST controller
 
