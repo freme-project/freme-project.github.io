@@ -233,7 +233,7 @@ pos: 3.1
 
     <p><strong>Text for processing</strong><br/>
     Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
-    <textarea id="input-text-simple" cols="130" rows="10" ></textarea></p>
+    <textarea id="input-text-simple" cols="130" rows="10" >Milan Dojchinovski works for INFAI.</textarea></p>
     <br/>
 
     <p>
@@ -261,7 +261,7 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset-simple" type="text" placeholder="mydataset"></p>
+    <input id="target-dataset-simple" type="text" value="mydataset"></p>
     <br/>
 
     <button onclick="sendTextProcessingRequestSimple();">Process the text!</button>
