@@ -15,12 +15,11 @@ pos: 3.1
     <h3>Quick links</h3>
     <ol>
     	<li><a href="#pre-requisites">Pre-requisites</a></li>
-    	<li><a href="#step-1-prepare-your-dataset">Step 1: Prepare your dataset</a></li>
-    	<li><a href="#step-2-submit-your-dataset">Step 2: Submit your dataset</a></li>
-    	<li><a href="#step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</a></li>
-    	<li><a href="#step-4-simplify-the-results">Step 4: Simplify the results (in CSV)</a></li>
-    	<li><a href="#step-5-remove-your-dataset">Step 5: Remove your dataset</a></li>
-    	<li><a href="#curl-examples">cURL examples</a></li>
+    	<li><a href="#step-1-enrich">1. Enrich NIF content with predefined query templates</a></li>
+    	<li><a href="#step-2-explore">2. Exploring a resource against a SPARQL or LDF endpoint</a></li>
+    	<li><a href="#step-3-templates">3. Pre-defined templates</a></li>
+    	<li><a href="#step-4-template-manipulation">4. Manipulation with templates</a></li>
+    	<li><a href="#step-5-remove-your-dataset">5. FREME SPARQL and LDF endpoints </a></li>
     </ol>
     
 </div>
@@ -282,14 +281,8 @@ pos: 3.1
     <p></p>
     <button onclick="sendDatasetDeleteRequest()">Delete the Dataset </button>
     <h2 id="curl-examples">cURL Examples</h2>
-    <p>Below you can find some useful cURL command examples.</p>
     
-    <h3>Submit dataset</h3>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
-</pre></div>
-    <h3>Submit text for named entity recognition</h3>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d &quot;Diego Maradona is from Argentina.&quot; &quot;{{site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?dataset=dbpedia&amp;informat=text&amp;outformat=turtle&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;
-</pre></div><br/><br/><br/><br/>
+    <br/><br/><br/><br/>
 
 
 </div>
