@@ -50,5 +50,5 @@ FREME NER can provide entity recognition in texts written in different languages
 #### Speed up the processing
 Not always one need to perform entity spotting, linking and classification. In some cases a user might be interested only in spotting the entity mentions, while in some cases, spotting the entity mentions and linking them to a specified dataset. FREME NER provides the ```mode``` parameter which can be used to instruct FREME NER on the level of processin. E.g. by setting ```mode=spot,link```, FREME NER will spot and link entites. If the parameter is set to ```mode=spot,link,classify``` it will perform entity spotting, linking and classification. Following combinations are possible: 1) spot; 2) spot,classify; 3) spot,link; 4) spot,link,classify; 5) link; and 6) link. You can this feature via the client at our [API documentation page](http://api-dev.freme-project.eu/doc/api-doc/simple.html#!/e-Entity/execute_0).
 
-### Linking of single entities
+#### Linking of single entities
 In some cases, a user might want to disambiguage and retrieve a link for an entity from a specified dataset. Such feature is also possible with FREME NER. In order to perform linking of a single entity, a user should set ```mode=link``` and ```informat=text``` and sent as input the name of the entity. FREME NER will disambiguate and link the entity to the specified dataset.
