@@ -196,7 +196,7 @@ pos: 3.1
 
     <p><strong>Text for processing</strong><br/>
     Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
-    <textarea id="input-text" cols="130" rows="10" ></textarea></p>
+    <textarea id="input-text" cols="130" rows="10" >Milan Dojchinovski works for INFAI.</textarea></p>
     <br/>
 
     <p>
@@ -218,7 +218,7 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset" type="text" placeholder="mydataset"></p>
+    <input id="target-dataset" type="text" value="mydataset"></p>
     <br/>
 
     <button onclick="sendTextProcessingRequest();">Process the text!</button>
@@ -229,7 +229,7 @@ pos: 3.1
     </pre>
 
     <h2 id="step-4-simplify-the-results">Step 4: Simplify the results (in CSV)</h2>
-    <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
+    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
 
     <p><strong>Text for processing</strong><br/>
     Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
