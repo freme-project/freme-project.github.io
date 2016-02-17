@@ -1205,13 +1205,13 @@ paths:
       - name: "domain"
         in: "query"
         description:
-          Takes as input a domain ID, and it only returns entities from this domain. The domain IDs are from the TaaS domain classification system. More information about the domain parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).
+          Takes as input a domain ID, and it only returns entities from this domain. The domain IDs are from the [TaaS domain classification system](https://term.tilde.com/domains). For example, the sports domain is identified with the TaaS-2007 ID. Note that the IDs are case-sensitive. More information about the domain parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).
         required: false
         type: "string"
       - name: "types"
         in: "query"
         description:
-          Takes as input list of one or more entity types separated by a comma. The result is a list of extracted entities with these types. More information about the domain parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).
+          Takes as input list of one or more entity types separated by a comma. The types are URLs of ontology classes and they should be encoded. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).
         required: false
         type: "string"
 
