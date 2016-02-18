@@ -17,13 +17,12 @@ pos: 3.1
     	<li><a href="#pre-requisites">Pre-requisites</a></li>
     	<li><a href="#step-1-enrich">Enrich NIF content with predefined query templates</a></li>
     	<li><a href="#step-2-explore">Exploring a resource against a SPARQL or LDF endpoint</a></li>
-    	<li><a href="#step-3-templates">Pre-defined templates</a></li>
-    	<li><a href="#step-4-template-manipulation">Manipulation with templates</a>
+    	<li><a href="#step-3-template-manipulation">Manipulation with templates</a>
 	    <ol>
-                <li><a href="#step-4-1-template-manipulation">Get all templates</a></li>
-                <li><a href="#step-4-2-template-manipulation">Create template</a></li>
-                <li><a href="#step-4-3-template-manipulation">Update template</a></li>
-                <li><a href="#step-4-4-template-manipulation">Remove template</a></li>
+                <li><a href="#step-3-1-template-manipulation">Get all templates</a></li>
+                <li><a href="#step-3-2-template-manipulation">Create template</a></li>
+                <li><a href="#step-3-3-template-manipulation">Update template</a></li>
+                <li><a href="#step-3-4-template-manipulation">Remove template</a></li>
 	    </ol>
     	</li>
     	<li><a href="#step-5-remove-your-dataset">FREME SPARQL and LDF endpoints </a></li>
@@ -71,7 +70,7 @@ pos: 3.1
 	});
        };
        
-    function sendTextProcessingRequest() {
+    function sendDataForEnrichment() {
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
 	    +"informat=text"
@@ -120,6 +119,9 @@ pos: 3.1
 </script>
 
 <div>
+	
+<!--	Enrichment of content -->
+
     <h2 id="step-1-enrich">Step 1: Enrich NIF content with predefined query templates</h2>
     <p>First we need to prepare the content for enrichment.
     The dataset should be provided in RDF.</p>
@@ -137,56 +139,54 @@ pos: 3.1
     
     <p><strong>Template ID</strong><br/>
     The ID of the template which will be used to enrich the data.<br/>
-    <input id="template-name" type="text" value="1"></p>
+    <input id="template-id" type="text" value="1"></p>
     <br/>
 
     <button onclick="sendDataForEnrichment();">Submit the data!</button>
 
     <h3>Response</h3>
-    <pre id="dataset-creation-response">
+    <pre id="content-enrichment-response">
     	Here you will get information whether your dataset was successfully accepted and processed.
     </pre>
 
-    <h2 id="step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</h2>
-    <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
+<!--	Resource explore  -->
 
-    <p><strong>Text for processing</strong><br/>
-    Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
-    <textarea id="input-text" cols="130" rows="10" >Milan Dojchinovski works for INFAI.</textarea></p>
+    <h2 id="step-2-explore">Step 2: Exploring a resource against a SPARQL or LDF endpoint</h2>
+    <p>E-Link also provides an option to return information about a single resource.</p>
+
+    <p>
+    <strong>Resource URI</strong><br/>
+    Specify the URI of the resource. E.g. "resource=http://dbpedia.org/resource/Berlin".<br/>
+    <input id="resource-uri" type="text" value="http://dbpedia.org/resource/Berlin" /></p>
     <br/>
 
     <p>
-    <strong>Text language</strong><br/>
-    Specify the language of the input. E.g. "language=en".<br/>
-    <input id="" type="text" value="en" /></p>
-    <br/>
-
-    <p>
-    <strong>Input format</strong><br/>
-    Since we send plain text we will set the input format to text/plain by setting the Content-Type parameter to "Content-Type: text/plain" or by setting the "informat" parameter to "text" ("informat=text").<br/></p>
+    <strong>Endpoint URL</strong><br/>
+    A URL of the endpoint which should be used to retrieve info about the resource.
+    Note that the URL should be UTF-8 encoded<br/>
+    <input id="endpoint-url" type="text" value="http://dbpedia.org/sparql" /></p>
     <br/>
     
-    <p>
-    <strong>Outformat format</strong><br/>
-    Specify the RDF serialization format for the output. You can set the output format by setting the outformat parameter, e.g. "outformat=turtle", or by setting the "Accept" header, e.g. "Accept: text/turtle".<br/>
-    <input id="outformat-text" type="text" value="turtle" /></p>
-    <br/>
-    
-    <p><strong>Dataset name</strong><br/>
-    The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset" type="text" value="mydataset"></p>
+    <p><strong>Endpoint type</strong><br/>
+    The type of the endpoint. Accepted values: sparql or ldf<br/>
+    <input id="endpoint-type" type="text" value="sparql"></p>
     <br/>
 
-    <button onclick="sendTextProcessingRequest();">Process the text!</button>
+    <button onclick="sendExploreResource();">Process the text!</button>
 
     <h3>Response</h3>
-    <pre id="ner-results">
+    <pre id="explore-resource-results">
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
+    
+<!--	Manipulation with templates  -->
 
-    <h2 id="step-4-simplify-the-results">Step 4: Simplify the results (in CSV)</h2>
+    <h2 id="step-3-1-template-manipulation">Step 3: Manipulation with templates</h2>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
 
+    <h3 id="step-3-1-template-manipulation">Step 3: Manipulation with templates</h3>
+    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    
     <p><strong>Text for processing</strong><br/>
     Paste here the text that should be processed. The recognized entities will be linked with your dataset. This is sent as body of the request.<br/>
     <textarea id="input-text-simple" cols="130" rows="10" >Milan Dojchinovski works for INFAI.</textarea></p>
