@@ -238,6 +238,7 @@ HTML File
 </html>
 ```
 
+### Turtle format output
 curl HTTP Request
 
 ```
@@ -280,6 +281,23 @@ Enriched NIF file
         itsrdf:taConfidence   "0.9450589604243311"^^xsd:double ;
         itsrdf:taIdentRef     dbpedia:Ireland .
 
+```
+
+### Simplified output
+This example explains how to spot entities over a HTML document and obtain a simplified output by using [SPARQL filters](http://api.freme-project.eu/doc/0.5/knowledge-base/filtering.html).
+
+curl HTTP Request
+
+```
+curl -X POST -d @docTest.html "http://api.freme-project.eu/current/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all&outformat=csv&filter=extract-entities-only"  -H "Content-Type:text/html"
+```
+
+Entities
+
+```
+entity
+http://dbpedia.org/resource/Ireland
+http://dbpedia.org/resource/Dublin
 ```
 
 ### Entity recognition with round-tripping
@@ -375,6 +393,8 @@ HTML file
   </body>
 </html>
 ```
+
+### Turtle format output
 
 curl HTTP Request
 
@@ -511,6 +531,67 @@ iteral> ;
 
 <https://term.tilde.com/terms/Irlanda-it#CanonicalForm>
         ontolex:writtenRep  "Irlanda"@it .
+```
+
+### Simplified output
+This example explains how to detect terms in a HTML document and obtain a simplified output by using [SPARQL filters](http://api.freme-project.eu/doc/0.5/knowledge-base/filtering.html).
+
+
+curl HTTP Request
+
+```
+C:\Users\Martab\curl\nossl>curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=xml&source-lang=en&target-lang=it&mode=full&filter=terminology-terms-only"
+```
+
+Terms in XML format
+
+```
+<?xml version="1.0"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="language"/>
+    <variable name="anchor"/>
+    <variable name="confidence"/>
+    <variable name="new_label"/>
+    <variable name="new_uri"/>
+  </head>
+  <results>
+    <result>
+      <binding name="language">
+        <literal>en</literal>
+      </binding>
+      <binding name="anchor">
+        <literal>Ireland</literal>
+      </binding>
+      <binding name="confidence">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">1</literal>
+      </binding>
+      <binding name="new_label">
+        <literal>Ireland</literal>
+      </binding>
+      <binding name="new_uri">
+        <literal>http://aims.fao.org/aos/agrovoc/c_3948, https://term.tilde.com/terms/615455</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="language">
+        <literal>en</literal>
+      </binding>
+      <binding name="anchor">
+        <literal>capital</literal>
+      </binding>
+      <binding name="confidence">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">0</literal>
+      </binding>
+      <binding name="new_label">
+        <literal>capital</literal>
+      </binding>
+      <binding name="new_uri">
+        <literal>https://term.tilde.com/terms/1217415, http://aims.fao.org/aos/agrovoc/c_1271, https://term.tilde.com/terms/2745688</literal>
+      </binding>
+    </result>
+  </results>
+</sparql>
 ```
 
 ### Terms extraction with round-tripping
