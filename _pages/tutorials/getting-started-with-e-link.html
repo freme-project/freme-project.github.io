@@ -89,25 +89,6 @@ pos: 3.1
 	});
        };
        
-    function sendTextProcessingRequestSimple() {
-	$.ajax({
-	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
-	    +"informat=text"
-	    +"&outformat=csv"
-	    +"&language="+$("#text-language-simple").val()
-	    +"&filter="+$("#filter-name").val()
-	    +"&dataset="+$("#target-dataset-simple").val(),
-            type: "POST",
-	    dataType: "text",
-	    contentType: "text/plain",
-            data: $("#input-text-simple").val()
-        }).done(function(result){
-    	    $("#ner-results-simple").text(result);
-	}).fail(function(result) {
-    	    $("#ner-results").text(JSON.stringify(result));
-	});
-       };
-       
     function sendDatasetDeleteRequest() {
         var datasetToDelete= $("#delete-dataset-name").val();
         if (datasetToDelete!="") {
@@ -139,58 +120,27 @@ pos: 3.1
 </script>
 
 <div>
-    <h2 id="step-1-prepare-your-dataset">Step 1: Prepare your dataset</h2>
-    <p>First we need to prepare our custom dataset.
-    The dataset should be provided in RDF and contain a list of entity names.
-    Below is a small example of such dataset in the N-triples format where in each record, the subject (first element) is a URI identifier for the entity, the predicate (second element) is the type of the information we describe (preferred or alternative label for the entity), and the object (last element) is the actual name for the entity.</p>
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Milan Dojchinovski&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Milan<span style="color: #007020">_</span>Dojchinovski&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Milan&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Sebastian Hellmann&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Sebastian<span style="color: #007020">_</span>Hellmann&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Sebastian&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Felix Sasaki&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Felix<span style="color: #007020">_</span>Sasaki&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Felix&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Jan Nehring&quot; .
-&lt;http://www.freme-projects.eu/dataset/people/Jan<span style="color: #007020">_</span>Nehring&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;Jan&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/INFAI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;INFAI&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/DFKI&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;DFKI&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/Tilde&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Tilde&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/ISMB&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;ISMB&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/Wripl&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Wripl&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/Vistatec&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;Vistatec&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/AgroKnow&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;AgroKnow&quot; .
-&lt;http://www.freme-projects.eu/dataset/org/iMinds&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;iMinds&quot; .
-</pre></div>
-    <br/>
-    <br/>
+    <h2 id="step-1-enrich">Step 1: Enrich NIF content with predefined query templates</h2>
+    <p>First we need to prepare the content for enrichment.
+    The dataset should be provided in RDF.</p>
 
-    <p>The dataset above contains description for 12 entities.
-    For example, we have information that the entity Milan Dojchinovski is known as "Milan" and also as "Milan Dojchinovski".</p>
-    
-    <h2 id="step-2-submit-your-dataset">Step 2: Submit the custom dataset to the e-Entity service</h2>
-    <p>First we need to submit our dataset before we use it for entity linking. You can re-use the example dataset above.</p>
-
-    <p><strong>Dataset content</strong><br/>
-    Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
-    <textarea id="input-dataset" cols="130" rows="10" ></textarea></p>
+    <p><strong>Content for enrichment</strong><br/>
+    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="data-for-enrichment" cols="130" rows="10" ></textarea></p>
     <br/>
 
     <p>
-    <strong>Dataset serialization format</strong><br/>
+    <strong>Serialization format</strong><br/>
     Specify the RDF serialization format of the dataset.<br/>
     <input id="informat-dataset" type="text" value="n-triples" /></p>
     <br/>
     
-    <p><strong>Dataset name</strong><br/>
-    The name of the dataset. It will be used as its ID, therefore it must be unique.<br/>
-    <input id="dataset-name" type="text" value="mydataset"></p>
+    <p><strong>Template ID</strong><br/>
+    The ID of the template which will be used to enrich the data.<br/>
+    <input id="template-name" type="text" value="1"></p>
     <br/>
 
-    <p><strong>Dataset description</strong><br/>
-    Short description of the dataset.<br/>
-    <textarea id="dataset-description" cols="100" rows="2">This is a test dataset provided via the tutorial page.</textarea></p>
-    <br/>
-    
-    <button onclick="sendDatasetCreateRequest();">Submit the dataset!</button>
+    <button onclick="sendDataForEnrichment();">Submit the data!</button>
 
     <h3>Response</h3>
     <pre id="dataset-creation-response">
