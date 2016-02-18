@@ -129,7 +129,29 @@ pos: 3.1
 
     <p><strong>Content for enrichment</strong><br/>
     Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
-    <textarea id="data-for-enrichment" cols="130" rows="10" ></textarea></p>
+    <textarea id="data-for-enrichment" cols="130" rows="10" > @prefix dc:    <http://purl.org/dc/elements/1.1/> .
+ @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+ @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+ @prefix dcterms: <http://purl.org/dc/terms/> .
+ @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+ @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+ @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+ @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://127.0.0.1:9995/spotlight#char=0,15>
+ a                     nif:Context , nif:Sentence , nif:RFC5147String ;
+ nif:beginIndex        "0" ;
+ nif:endIndex          "15" ;
+ nif:isString          "This is Berlin." ;
+ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15> .
+
+<http://127.0.0.1:9995/spotlight#char=8,14>
+ a                     nif:Word , nif:RFC5147String ;
+ nif:anchorOf          "Berlin" ;
+ nif:beginIndex        "8" ;
+ nif:endIndex          "14" ;
+ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15> ;
+ itsrdf:taIdentRef     <http://dbpedia.org/resource/Berlin> .</textarea></p>
     <br/>
 
     <p>
