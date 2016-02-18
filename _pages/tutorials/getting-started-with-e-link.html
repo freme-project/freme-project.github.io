@@ -79,7 +79,7 @@ pos: 3.1
             type: "POST",
 	    dataType: "text",
 	    contentType: "text/turtle",
-            data: $("#input-text").val()
+            data: $("#data-for-enrichment").val()
         }).done(function(result){
     	    $("#enrichment-response").text(result);
 	}).fail(function(result) {
