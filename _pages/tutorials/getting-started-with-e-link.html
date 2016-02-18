@@ -61,7 +61,7 @@ pos: 3.1
             type: "POST",
 	    dataType: "text",
 	    contentType: 'text/plain',
-            data: $("#input-dataset").val(),
+            data: $("#data-for-enrichment").val(),
         success : function(result){
             submittedDatasets.push(datasetName);
             $("#delete-dataset-name").val(datasetName);
@@ -73,19 +73,17 @@ pos: 3.1
        
     function sendDataForEnrichment() {
 	$.ajax({
-	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
-	    +"informat=text"
-	    +"&outformat="+$("#outformat-text").val()
-	    +"&language="+$("#text-language").val()
-	    +"&dataset="+$("#target-dataset").val(),
+	    url: fremeApiUrl + "/e-link/documents?"
+	    +"informat="+$("#enrichment-informat").val()
+	    +"&templateid="+$("#enrichment-template-id").val(),
             type: "POST",
 	    dataType: "text",
-	    contentType: "text/plain",
+	    contentType: "text/turtle",
             data: $("#input-text").val()
         }).done(function(result){
-    	    $("#ner-results").text(result);
+    	    $("#enrichment-response").text(result);
 	}).fail(function(result) {
-    	    $("#ner-results").text(JSON.stringify(result));
+    	    $("#enrichment-response").text(JSON.stringify(result));
 	});
        };
        
@@ -157,18 +155,18 @@ pos: 3.1
     <p>
     <strong>Serialization format</strong><br/>
     Specify the RDF serialization format of the dataset.<br/>
-    <input id="informat-dataset" type="text" value="n-triples" /></p>
+    <input id="enrichment-informat" type="text" value="turtle" /></p>
     <br/>
     
     <p><strong>Template ID</strong><br/>
     The ID of the template which will be used to enrich the data.<br/>
-    <input id="template-id" type="text" value="1"></p>
+    <input id="enrichment-template-id" type="text" value="1"></p>
     <br/>
 
     <button onclick="sendDataForEnrichment();">Submit the data!</button>
 
     <h3>Response</h3>
-    <pre id="content-enrichment-response">
+    <pre id="enrichment-response">
     	Here you will get information whether your dataset was successfully accepted and processed.
     </pre>
 
