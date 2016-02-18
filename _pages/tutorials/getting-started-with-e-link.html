@@ -76,6 +76,7 @@ pos: 3.1
 	$.ajax({
 	    url: fremeApiUrl + "/e-link/documents?"
 	    +"informat="+$("#enrichment-informat").val()
+	    +"&outformat=turtle"
 	    +"&templateid="+$("#enrichment-template-id").val(),
             type: "POST",
 	    dataType: "text",
