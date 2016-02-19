@@ -29,6 +29,7 @@ pos: 3.1
 	    </ol>
     	</li>
     	<li><a href="#freme-endpoints">FREME SPARQL and LDF endpoints </a></li>
+    	<li><a href="#simplify-the-output">Simplify the output </a></li>
     </ol>
     
 </div>
@@ -42,37 +43,7 @@ pos: 3.1
 </div>
 
 <script type="text/javascript">
-    var datasetName;
-    var submittedDatasets=[];
 
-    function updateDatasetName(){
-        datasetName=$("#dataset-name").val();
-    }
-
-    $("#dataset-name").change(updateDatasetName);
-
-    function sendDatasetCreateRequest() {
-        updateDatasetName();
-	$.ajax({
-	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
-	    +"informat="+$("#informat-dataset").val()
-	    +"&name="+datasetName
-	    +"&description="+$("#dataset-description").val()
-	    +"&language=en"
-	    +"&outformat=json",
-            type: "POST",
-	    dataType: "text",
-	    contentType: 'text/plain',
-            data: $("#data-for-enrichment").val(),
-        success : function(result){
-            submittedDatasets.push(datasetName);
-            $("#delete-dataset-name").val(datasetName);
-            $("#dataset-creation-response").text(result)},
-        error: function(result){
-            $("#dataset-creation-response").text(JSON.stringify(result))}
-	});
-       };
-       
     // Enrich content
     function sendDataForEnrichment() {
     	console.log($("#data-for-enrichment").val())
@@ -188,34 +159,24 @@ pos: 3.1
 	});
     };
     
-    function sendDatasetDeleteRequest() {
-        var datasetToDelete= $("#delete-dataset-name").val();
-        if (datasetToDelete!="") {
-        var i=submittedDatasets.indexOf(datasetToDelete);
-        if (i>=0) {
-            if (i==0) {
-                submittedDatasets.splice(0,1);
-            } else {
-                submittedDatasets.splice(i, i);
-            }
-            if (submittedDatasets.length>0) {
-                $("#delete-dataset-name").val(submittedDatasets[submittedDatasets.length-1]);
-            }
-        } else {
-            $("#delete-dataset-name").val("");
-            }
-
-        $.ajax({
-            url: fremeApiUrl + "/e-entity/freme-ner/datasets/"+datasetToDelete,
-            type: "DELETE",
-            success: function(result){
-                $("#delete-results").text(JSON.stringify(result))},
-            error:function(result){
-                $("#delete-results").text(JSON.stringify(result))}
-        });
-        }
+    // Enrich and simplify content
+    function sendEnrichAndSimplify() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/documents?"
+	    +"informat="+$("#simplify-enrichment-informat").val()
+	    +"&outformat=turtle"
+            +"&filter="+$("#filter-name").val()
+	    +"&templateid="+$("#simplify-enrichment-template-id").val(),
+            type: "POST",
+	    dataType: "text",
+	    contentType: "text/turtle",
+            data: $("#simplify-data-for-enrichment").val()
+        }).done(function(result){
+    	    $("#simplify-response").text(result);
+	}).fail(function(result) {
+    	    $("#simplify-response").text(JSON.stringify(result));
+	});
     };
-       
 </script>
 
 <div>
@@ -428,6 +389,61 @@ pos: 3.1
     	
     </ul>
     
+    <h2 id="simplify-the-output">Simplify the output</h2>
+    <p>If you are not familiar with RDF/NIF format, you can retrieve the results from the enrichment in a simplified form (e.g. in CSV) by specifying filter.
+    In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+
+    <p>
+    <strong>Filter name</strong><br/>
+    Specify the name of the filter which will be used to simplify the results. E.g. "filter=extract-entities-only".<br/>
+    <input id="filter-name" type="text" value="extract-entities-only" /></p>
+    <br/>
+
+    <p><strong>Content for enrichment</strong><br/>
+    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="simplify-data-for-enrichment" cols="130" rows="10" > @prefix dc:    <http://purl.org/dc/elements/1.1/> .
+ @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+ @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+ @prefix dcterms: <http://purl.org/dc/terms/> .
+ @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+ @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+ @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+ @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://127.0.0.1:9995/spotlight#char=0,15>
+ a                     nif:Context , nif:Sentence , nif:RFC5147String ;
+ nif:beginIndex        "0" ;
+ nif:endIndex          "15" ;
+ nif:isString          "This is Berlin." ;
+ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15> .
+
+<http://127.0.0.1:9995/spotlight#char=8,14>
+ a                     nif:Word , nif:RFC5147String ;
+ nif:anchorOf          "Berlin" ;
+ nif:beginIndex        "8" ;
+ nif:endIndex          "14" ;
+ nif:referenceContext  <http://127.0.0.1:9995/spotlight#char=0,15> ;
+ itsrdf:taIdentRef     <http://dbpedia.org/resource/Berlin> .</textarea></p>
+    <br/>
+
+    <p>
+    <strong>Serialization format</strong><br/>
+    Specify the RDF serialization format of the dataset.<br/>
+    <input id="simplify-enrichment-informat" type="text" value="turtle" /></p>
+    <br/>
+    
+    <p><strong>Template ID</strong><br/>
+    The ID of the template which will be used to enrich the data.<br/>
+    <input id="simplify-enrichment-template-id" type="text" value="1"></p>
+    <br/>
+    
+    <button onclick="sendEnrichAndSimplify();">Enrich and Simplify</button>
+
+    <h3>Response</h3>
+    <pre id="simplify-results">
+    	Here you will get the results in simplified form.
+    </pre>
+
     <br/><br/><br/><br/>
 
 
