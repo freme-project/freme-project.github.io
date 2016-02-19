@@ -155,6 +155,37 @@ pos: 3.1
 	});
     };
        
+    // Update template
+    function sendUpdateTemplate() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/templates?"+$("#template-id-for-update").val()
+	    +"informat=json"
+	    +"&outformat=json",
+            type: "POST",
+	    dataType: "text",
+	    contentType: "application/json",
+	    accept: "application/json",
+            data: $("#template-data-update").val()
+        }).done(function(result){
+    	    $("#update-template-results").text(JSON.stringify(result, null, 2));
+	}).fail(function(result) {
+    	    $("#update-template-results").text(JSON.stringify(result));
+	});
+    };
+    
+    // Remove template
+    function sendRemoveTemplate() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/templates?"+$("#remove-template-id").val(),
+            type: "DELETE",
+	    dataType: "text"
+        }).done(function(result){
+    	    $("#delete-template-results").text(JSON.stringify(result, null, 2));
+	}).fail(function(result) {
+    	    $("#delete-template-results").text(JSON.stringify(result, null, 2));
+	});
+    };
+    
     function sendDatasetDeleteRequest() {
         var datasetToDelete= $("#delete-dataset-name").val();
         if (datasetToDelete!="") {
@@ -298,10 +329,10 @@ pos: 3.1
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
     
-    <h3 id="step-3-3-template-manipulation">Create template</h3>
+    <h3 id="step-3-3-template-manipulation">Create template (does not work)</h3>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
 
-    <p><strong>Content for enrichment</strong><br/>
+    <p><strong>Template definition</strong><br/>
     Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
     <textarea id="template-data" cols="130" rows="10" >{
     "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
@@ -320,12 +351,24 @@ pos: 3.1
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
     
-    <h3 id="step-3-4-template-manipulation">Update template</h3>
+    <h3 id="step-3-4-template-manipulation">Update template (does not work)</h3>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    
+    <p><strong>Template definition</strong><br/>
+    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="template-data-update" cols="130" rows="10" >{
+    "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
+    "endpoint": "http://dbpedia.org/sparql/",
+    "label": "template title",
+    "description": "template description",
+    "endpointType": "sparql",
+    "visibility": "public"
+}</textarea></p>
+    <br/>
     
     <p><strong>Template ID</strong><br/>
     The type of the endpoint. Accepted values: sparql or ldf<br/>
-    <input id="get-one-template-id" type="text" value="sparql"></p>
+    <input id="template-id-for-update" type="text" value="enter the template ID"></p>
     <br/>
 
     <button onclick="sendUpdateTemplate();">Run</button>
@@ -340,7 +383,7 @@ pos: 3.1
     
     <p><strong>Template ID</strong><br/>
     The type of the endpoint. Accepted values: sparql or ldf<br/>
-    <input id="remove-template-id" type="text" value="sparql"></p>
+    <input id="remove-template-id" type="text" value="the template ID"></p>
     <br/>
 
     <button onclick="sendRemoveTemplate();">Run</button>
