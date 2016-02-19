@@ -103,7 +103,7 @@ pos: 3.1
 	    dataType: "text",
 	    contentType: "text/plain"
         }).done(function(result){
-    	    $("#explore-resource-results").text(JSON.stringify(result));
+    	    $("#explore-resource-results").text(result);
 	}).fail(function(result) {
     	    $("#explore-resource-results").text(JSON.stringify(result));
 	});
@@ -118,7 +118,7 @@ pos: 3.1
 	    type: "GET",
 	    contentType: ""
         }).done(function(result){
-    	    $("#get-all-templates-results").text(result);
+    	    $("#get-all-templates-results").text(JSON.stringify(result));
 	}).fail(function(result) {
     	    $("#get-all-templates-results").text(JSON.stringify(result));
 	});
