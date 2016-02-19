@@ -71,6 +71,7 @@ pos: 3.1
 	});
        };
        
+    // Enrich content
     function sendDataForEnrichment() {
     	console.log($("#data-for-enrichment").val())
 	$.ajax({
@@ -105,6 +106,21 @@ pos: 3.1
     	    $("#explore-resource-results").text(result);
 	}).fail(function(result) {
     	    $("#explore-resource-results").text(JSON.stringify(result));
+	});
+       };
+       
+    // Get all templates
+    function sendGetAllTemplates() {
+    	console.log($("#data-for-enrichment").val())
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/templates?"
+	    +"&outformat=turtle",
+	    type: "GET",
+	    contentType: ""
+        }).done(function(result){
+    	    $("#get-all-templates-results").text(JSON.stringify(result));
+	}).fail(function(result) {
+    	    $("#get-all-templates-results").text(JSON.stringify(result));
 	});
        };
        
