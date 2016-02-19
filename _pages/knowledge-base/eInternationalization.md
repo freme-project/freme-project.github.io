@@ -284,7 +284,7 @@ Enriched NIF file
 ```
 
 ### Simplified output
-This example explains how to spot entities over a HTML document and obtain a simplified output by using [SPARQL filters](http://api.freme-project.eu/doc/0.5/knowledge-base/filtering.html).
+This example explains how to spot entities over a HTML document and obtain a simplified output by using [SPARQL filters](filtering.html).
 
 curl HTTP Request
 
@@ -534,7 +534,7 @@ iteral> ;
 ```
 
 ### Simplified output
-This example explains how to detect terms in a HTML document and obtain a simplified output by using [SPARQL filters](http://api.freme-project.eu/doc/0.5/knowledge-base/filtering.html).
+This example explains how to detect terms in a HTML document and obtain a simplified output by using [SPARQL filters](filtering.html).
 
 
 curl HTTP Request
