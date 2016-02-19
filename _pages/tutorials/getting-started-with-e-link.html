@@ -88,7 +88,7 @@ pos: 3.1
 	}).fail(function(result) {
     	    $("#enrichment-response").text(JSON.stringify(result));
 	});
-       };
+    };
       
     // Explore resource
     function sendExploreResource() {
@@ -134,6 +134,24 @@ pos: 3.1
     	    $("#get-one-template-results").text(JSON.stringify(result, null, 2));
 	}).fail(function(result) {
     	    $("#get-one-template-results").text(JSON.stringify(result, null, 2));
+	});
+    };
+    
+    // Create template
+    function sendCreateTemplate() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/templates?"
+	    +"informat=json"
+	    +"&outformat=json",
+            type: "POST",
+	    dataType: "text",
+	    contentType: "application/json",
+	    accept: "application/json",
+            data: $("#template-data").val()
+        }).done(function(result){
+    	    $("#create-template-results").text(JSON.stringify(result, null, 2));
+	}).fail(function(result) {
+    	    $("#create-template-results").text(JSON.stringify(result));
 	});
     };
        
@@ -282,12 +300,19 @@ pos: 3.1
     
     <h3 id="step-3-3-template-manipulation">Create template</h3>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
-    
-    <p><strong>Template ID</strong><br/>
-    The type of the endpoint. Accepted values: sparql or ldf<br/>
-    <input id="get-one-template-id" type="text" value="sparql"></p>
-    <br/>
 
+    <p><strong>Content for enrichment</strong><br/>
+    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <textarea id="template-data" cols="130" rows="10" >{
+    "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
+    "endpoint": "http://dbpedia.org/sparql/",
+    "label": "template title",
+    "description": "template description",
+    "endpointType": "sparql",
+    "visibility": "public"
+}</textarea></p>
+    <br/>
+    
     <button onclick="sendCreateTemplate();">Run</button>
     
     <h3>Response</h3>
