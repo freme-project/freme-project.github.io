@@ -180,9 +180,9 @@ pos: 3.1
             type: "DELETE",
 	    dataType: "text"
         }).done(function(result){
-    	    $("#delete-template-results").text(JSON.stringify(result, null, 2));
+    	    $("#remove-template-results").text(JSON.stringify(result, null, 2));
 	}).fail(function(result) {
-    	    $("#delete-template-results").text(JSON.stringify(result, null, 2));
+    	    $("#remove-template-results").text(JSON.stringify(result, null, 2));
 	});
     };
     
