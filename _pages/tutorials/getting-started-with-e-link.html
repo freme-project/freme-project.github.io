@@ -225,7 +225,18 @@ pos: 3.1
     <h2 id="what-is-a-template">What is a template?</h2>
     <p>By our definition, template is a SPARQL CONSTRUCT query which is executed for each string in your NIF document which has associated URL.
     Such SPARQL query is executed against a specified SPARQL (or LDF endpoint) and will usually retrieve some additional information about the string which is usually an entity, term or simply a word or phrase.
-    For example, a template could retrieve the top 5 closests museums to a city which is annotated in your NIF document and identified with e URI (e.g. DBpedia URI).</p>
+    For example, a template could retrieve the top 5 closests museums to a city which is annotated in your NIF document and identified with e URI (e.g. DBpedia URI).
+    Bellow is an example of a such template.</p>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{
+  <span style="color: #007700">&quot;id&quot;</span> : <span style="color: #0000DD; font-weight: bold">1</span>,
+  <span style="color: #007700">&quot;description&quot;</span> : <span style="background-color: #fff0f0">&quot;This template enriches with a list of museums (max 10) within a 50km radius around each location entity.&quot;</span>,
+  <span style="color: #007700">&quot;query&quot;</span> : <span style="background-color: #fff0f0">&quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt; PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt; PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; CONSTRUCT {  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; . } WHERE {  &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .  OPTIONAL { ?museum rdf:type dbo:Museum . }  ?museum geo:geometry ?museumgeo .  FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 50)) } LIMIT 10&quot;</span>,
+  <span style="color: #007700">&quot;label&quot;</span> : <span style="background-color: #fff0f0">&quot;Find nearest museums&quot;</span>,
+  <span style="color: #007700">&quot;endpoint&quot;</span> : <span style="background-color: #fff0f0">&quot;http://live.dbpedia.org/sparql/&quot;</span>,
+  <span style="color: #007700">&quot;endpointType&quot;</span> : <span style="background-color: #fff0f0">&quot;SPARQL&quot;</span>
+}
+</pre></div>
+
     <p>Each template consists of: ID that identifies the template, SPARQL query, human readable label, short description, URL to the endpoint, and information about the type of the endpoint, whether its SPARQL or LDF endpoint.</p>
     <p>In the following examples you can learn <a href="#step-1-enrich">how to enrich content with e template</a>, <a href="#step-3-template-manipulation">how to manipulate with templates</a> (<a href="#step-3-1-template-manipulation">retrieve</a>, <a href="#step-3-3-template-manipulation">create</a>, <a href="#step-3-4-template-manipulation">update</a> or <a href="#step-3-5-template-manipulation">remove</a> a template).
     You can also learn about the <a href="#freme-endpoints">SPARQL and LDF endpoints deployed by FREME</a>.</p>
