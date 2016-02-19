@@ -45,6 +45,25 @@ title: Recognizing entities in XLIFF content
     	    $("#response").text(JSON.stringify(result));
 	});
        };
+       
+    function sendAPIRequestSimple() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
+	    +"informat=" +encodeURIComponent("application/x-xliff+xml")
+	    +"&outformat="+$("#simple-outformat").val()
+	    +"&language="+$("#simple-language").val()
+	    +"&filter="+$("#filter-name").val()
+	    +"&dataset=dbpedia",
+            type: "POST",
+	    dataType: "text",
+	    contentType: "application/x-xliff+xml",
+            data: $("#simple-input-text").val()
+        }).done(function(result){
+    	    $("#simple-response").text(result);
+	}).fail(function(result) {
+    	    $("#simple-response").text(JSON.stringify(result));
+	});
+       };
 
 </script>
 
@@ -86,6 +105,52 @@ title: Recognizing entities in XLIFF content
     <h2>Response</h2>
     <pre style="height:300px;">
 		<code id="response"></code>
+	</pre>
+
+    <h2>Simplified Output</h2>
+	<p>Insert the XLIFF 1.2 file content in the text area. Then specify the language and press the <em>Try it out!</em> button. The named entity recognition will be performed by submitting the text to the FREME-NER service against the <em>dbpedia</em> dataset. </p>
+    <p><strong>XLIFF file content for processing</strong><br/>
+    Paste here the XLIFF file content that should be processed. This is sent as body of the request.<br/>
+    <textarea id="simple-input-text" cols="130" rows="13">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot;?&gt;
+&lt;xliff xmlns:dl=&quot;http://www.digitallinguistics.com&quot; xmlns=&quot;urn:oasis:names:tc:xliff:document:1.2&quot; xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; version=&quot;1.2&quot;&gt;
+	&lt;file original=&quot;PCWorldArticle.txt&quot; source-language=&quot;en&quot; target-language=&quot;it&quot; datatype=&quot;plaintext&quot;&gt;
+		&lt;body&gt;
+			&lt;trans-unit xmlns:its=&quot;http://www.w3.org/2005/11/its&quot; id=&quot;0&quot; its:version=&quot;2.0&quot;&gt;
+				&lt;source&gt;Berlin is the capital of Germany!&lt;/source&gt;
+			&lt;/trans-unit&gt;
+		&lt;/body&gt;
+	&lt;/file&gt;
+&lt;/xliff&gt;
+</textarea></p>
+    <br/>
+
+    <p><strong>Query string parameter language</strong><br/>
+    Enter the source language used in the XLIFF file<br/>
+    <input id="simple-language" type="text" value="en" /></p>
+    <br/>
+    
+    <p><strong>Query string parameter informat</strong><br/>
+    Specifies the format of the input data. In this example we submit a XLIFF 1.2 file so we set this parameter to "application/x-xliff+xml"</p>
+    <br/>
+
+    <p><strong>Query string parameter outformat</strong><br/>
+    Specifies the format of the data returned by FREME. You can choose between "turtle" and "json-ld" formats. <br/>
+	<input id="simple-outformat" type="text" value="turtle" /></p>
+    <br/>
+    
+    <p><strong>Filter name</strong><br/>
+    Specify the name of the filter which will be used to simplify the results. E.g. "filter=extract-entities-only".<br/>
+	<input id="filter-name" type="text" value="extract-entities-only" /></p>
+    <br/>
+    
+    
+
+    <button onclick="sendAPIRequestSimple();">Try it out!</button>
+
+    <h2>Response</h2>
+    <pre style="height:300px;">
+		<code id="simple-response"></code>
 	</pre>
 	
 	<h2 id="curl-examples">cURL Examples</h2>
