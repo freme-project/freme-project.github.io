@@ -12,6 +12,7 @@ pos: 3.1
     The templates contain "fields" marked between three at-signs @@@field-name@@@.
     If a user, while calling the enrichment endpoint specifies an "unknown" parameter (not from the list above), then the values of that "unknown" parameters will be used to replace with the corresponding "field" in the query template.</p>
     
+    
     <h3>Quick links</h3>
     <ol>
     	<li><a href="#pre-requisites">Pre-requisites</a></li>
@@ -225,6 +226,8 @@ pos: 3.1
     <p>By our definition, template is a SPARQL CONSTRUCT query which is executed for each string in your NIF document which has associated URL.
     Such SPARQL query is executed against a specified SPARQL (or LDF endpoint) and will usually retrieve some additional information about the string which is usually an entity, term or simply a word or phrase.
     For example, a template could retrieve the top 5 closests museums to a city which is annotated in your NIF document and identified with e URI (e.g. DBpedia URI).</p>
+    <p>Each template consists of: ID that identifies the template, SPARQL query, human readable label, short description, URL to the endpoint, and information about the type of the endpoint, whether its SPARQL or LDF endpoint.</p>
+    <p>In the following examples you can learn <a href="#step-1-enrich">how to enrich content with e template</a>, <a href="#step-3-template-manipulation">how to manipulate with templates</a> (<a href="#step-3-1-template-manipulation">retrieve</a>, <a href="#step-3-3-template-manipulation">create</a>, <a href="#step-3-4-template-manipulation">update</a> or <a href="#step-3-5-template-manipulation">remove</a> a template.)</p>
 	
 <!--	Enrichment of content -->
 
