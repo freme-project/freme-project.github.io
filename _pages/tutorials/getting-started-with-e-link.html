@@ -176,7 +176,7 @@ pos: 3.1
     // Remove template
     function sendRemoveTemplate() {
 	$.ajax({
-	    url: fremeApiUrl + "/e-link/templates?"+$("#remove-template-id").val(),
+	    url: fremeApiUrl + "/e-link/templates/"+$("#remove-template-id").val(),
             type: "DELETE",
 	    dataType: "text"
         }).done(function(result){
