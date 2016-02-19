@@ -103,7 +103,7 @@ pos: 3.1
 	    dataType: "text",
 	    contentType: "text/plain"
         }).done(function(result){
-    	    $("#explore-resource-results").text(JSON.stringify(JSON.parse(result), null, 2));
+    	    $("#explore-resource-results").text(JSON.parse(result));
 	}).fail(function(result) {
     	    $("#explore-resource-results").text(JSON.stringify(result));
 	});
