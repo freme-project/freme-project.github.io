@@ -242,7 +242,7 @@ pos: 3.1
 
     <p>
     <strong>Serialization format</strong><br/>
-    Specify the RDF serialization format of the dataset.<br/>
+    Specify the RDF serialization format of the input data.<br/>
     <input id="enrichment-informat" type="text" value="turtle" /></p>
     <br/>
     
@@ -251,11 +251,11 @@ pos: 3.1
     <input id="enrichment-template-id" type="text" value="1"></p>
     <br/>
 
-    <button onclick="sendDataForEnrichment();">Submit the data!</button>
+    <button onclick="sendDataForEnrichment();">Enrich</button>
 
     <h3>Response</h3>
     <pre id="enrichment-response">
-    	Here you will get information whether your dataset was successfully accepted and processed.
+    	Here will show your enriched content.
     </pre>
 
 <!--	Resource explore  -->
@@ -271,8 +271,7 @@ pos: 3.1
 
     <p>
     <strong>Endpoint URL</strong><br/>
-    A URL of the endpoint which should be used to retrieve info about the resource.
-    Note that the URL should be UTF-8 encoded<br/>
+    A URL of the endpoint which should be used to retrieve info about the resource.<br/>
     <input id="endpoint-url" type="text" value="http://dbpedia.org/sparql" size="35" /></p>
     <br/>
     
@@ -291,10 +290,10 @@ pos: 3.1
 <!--	Manipulation with templates  -->
 
     <h2 id="step-3-template-manipulation">Step 3: Manipulation with templates</h2>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>E-Link allows users to manipulate with the templates - retrieve, create, update, or remove a template.</p>
 
     <h3 id="step-3-1-template-manipulation">Retrieve all templates</h3>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>A client can retrieve all the templates by submitting GET request at /e-link/templates.</p>
     
     <button onclick="sendGetAllTemplates();">Run</button>
 
@@ -304,7 +303,7 @@ pos: 3.1
     </pre>
 
     <h3 id="step-3-2-template-manipulation">Get one template</h3>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>To retrieve a single tempate a user can submit a GET request at /e-link/templates/{template-id}.</p>
     
     <p><strong>Template ID</strong><br/>
     The ID of the template. Accepted values: sparql or ldf<br/>
@@ -319,10 +318,10 @@ pos: 3.1
     </pre>
     
     <h3 id="step-3-3-template-manipulation">Create template (does not work)</h3>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>E-link also allows users to create templates according to their needs.</p>
 
-    <p><strong>Template definition</strong><br/>
-    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    <p><strong>Template to create</strong><br/>
+    Paste here the content of the template.<br/>
     <textarea id="template-data" cols="130" rows="10" >{
     "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
     "endpoint": "http://dbpedia.org/sparql/",
@@ -337,14 +336,14 @@ pos: 3.1
     
     <h3>Response</h3>
     <pre id="create-template-results">
-    	Here you will get the results from the named entity recognition using your dataset.
+    	Here you will get the results from the creation of the template.
     </pre>
     
     <h3 id="step-3-4-template-manipulation">Update template (does not work)</h3>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>E-Link allows to update an existing template.</p>
     
     <p><strong>Template definition</strong><br/>
-    Paste here the content for enrichment. It should be valid RDF in the serialization format as specified bellow.<br/>
+    Past the new content of the template.<br/>
     <textarea id="template-data-update" cols="130" rows="10" >{
     "query": "PREFIX dbpedia: <http://dbpedia.org/resource/>\n      PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n      PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n      CONSTRUCT\n      {\n        ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> .\n      }\n      WHERE\n      {\n          <@@@entity_uri@@@> geo:geometry ?citygeo .\n          ?museum rdf:type <http://schema.org/Museum> .\n          ?museum geo:geometry ?museumgeo .\n          FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10))\n      }\n      LIMIT 10",
     "endpoint": "http://dbpedia.org/sparql/",
@@ -355,23 +354,23 @@ pos: 3.1
 }</textarea></p>
     <br/>
     
-    <p><strong>Template ID</strong><br/>
-    The type of the endpoint. Accepted values: sparql or ldf<br/>
-    <input id="template-id-for-update" type="text" value="enter the template ID"></p>
+    <p><strong>Template ID to update</strong><br/>
+    Provide the ID of the template you want to update<br/>
+    <input id="template-id-for-update" type="text" value="template ID"></p>
     <br/>
 
     <button onclick="sendUpdateTemplate();">Run</button>
     
     <h3>Response</h3>
     <pre id="update-template-results">
-    	Here you will get the results from the named entity recognition using your dataset.
+    	Here you will get the results from template update.
     </pre>
     
     <h3 id="step-3-5-template-manipulation">Remove a template (does not work)</h3>
-    <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
+    <p>A template can be also removed.</p>
     
-    <p><strong>Template ID</strong><br/>
-    The type of the endpoint. Accepted values: sparql or ldf<br/>
+    <p><strong>Template ID to remove</strong><br/>
+    ID of the template you want to remove.<br/>
     <input id="remove-template-id" type="text" value="the template ID"></p>
     <br/>
 
@@ -379,7 +378,7 @@ pos: 3.1
     
     <h3>Response</h3>
     <pre id="remove-template-results">
-    	Here you will get the results from the named entity recognition using your dataset.
+    	Here you will get the results from the removal of the template.
     </pre>
     
     <h2 id="freme-endpoints">FREME SPARQL and Linked Data Fragments endpoints</h2>
