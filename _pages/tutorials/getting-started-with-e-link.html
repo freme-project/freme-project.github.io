@@ -15,6 +15,7 @@ pos: 3.1
     <h3>Quick links</h3>
     <ol>
     	<li><a href="#pre-requisites">Pre-requisites</a></li>
+    	<li><a href="#what-is-a-template">What is a template?</a></li>
     	<li><a href="#step-1-enrich">Enrich NIF content with predefined query templates</a></li>
     	<li><a href="#step-2-explore">Exploring a resource against a SPARQL or LDF endpoint</a></li>
     	<li><a href="#step-3-template-manipulation">Manipulation with templates</a>
@@ -34,7 +35,7 @@ pos: 3.1
 <div>
     <h2 id="pre-requisites">Pre-requisites</h2>
     <ol>
-        <li>A pre-defined SPARQL template.</li>
+        <li>A pre-defined template(s).</li>
         <li>An RDF document for enrichment.</li>
     </ol>
 </div>
@@ -217,6 +218,13 @@ pos: 3.1
 </script>
 
 <div>
+
+<!--	What is a template -->
+
+    <h2 id="what-is-a-template">What is a template?</h2>
+    <p>By our definition, template is a SPARQL CONSTRUCT query which is executed for each string in your NIF document which has associated URL.
+    Such SPARQL query is executed against a specified SPARQL (or LDF endpoint) and will usually retrieve some additional information about the string which is usually an entity, term or simply a word or phrase.
+    For example, a template could retrieve the top 5 closests museums to a city which is annotated in your NIF document and identified with e URI (e.g. DBpedia URI).</p>
 	
 <!--	Enrichment of content -->
 
