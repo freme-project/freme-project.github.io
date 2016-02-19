@@ -50,7 +50,7 @@ title: Recognizing entities in XLIFF content
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/documents?"
 	    +"informat=" +encodeURIComponent("application/x-xliff+xml")
-	    +"&outformat="+$("#simple-outformat").val()
+	    +"&outformat=csv"
 	    +"&language="+$("#simple-language").val()
 	    +"&filter="+$("#filter-name").val()
 	    +"&dataset=dbpedia",
@@ -96,8 +96,8 @@ title: Recognizing entities in XLIFF content
     <br/>
 
     <p><strong>Query string parameter outformat</strong><br/>
-    Specifies the format of the data returned by FREME. You can choose between "turtle" and "json-ld" formats. <br/>
-	<input id="outformat" type="text" value="turtle" /></p>
+    Specifies the format of the data returned by FREME. Since we want the get the results in a simple CSV format, we will choose csv.<br/>
+	<input id="outformat" type="text" value="csv" /></p>
     <br/>
 
     <button onclick="sendAPIRequest();">Try it out!</button>
@@ -108,6 +108,7 @@ title: Recognizing entities in XLIFF content
 	</pre>
 
     <h2>Simplified Output</h2>
+    	<p>This is the same example as above, only, in this example the results will be returned in a simplified format, in CSV.</p>
 	<p>Insert the XLIFF 1.2 file content in the text area. Then specify the language and press the <em>Try it out!</em> button. The named entity recognition will be performed by submitting the text to the FREME-NER service against the <em>dbpedia</em> dataset. </p>
     <p><strong>XLIFF file content for processing</strong><br/>
     Paste here the XLIFF file content that should be processed. This is sent as body of the request.<br/>
