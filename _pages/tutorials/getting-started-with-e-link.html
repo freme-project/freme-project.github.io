@@ -65,7 +65,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#enrichment-response").text(result);
 	}).fail(function(result) {
-    	    $("#enrichment-response").text(JSON.stringify(result));
+    	    $("#enrichment-response").text(JSON.stringify(result, null, 2));
 	});
     };
       
@@ -83,7 +83,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#explore-resource-results").text(result);
 	}).fail(function(result) {
-    	    $("#explore-resource-results").text(JSON.stringify(result));
+    	    $("#explore-resource-results").text(JSON.stringify(result, null, 2));
 	});
        };
        
@@ -97,7 +97,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#get-all-templates-results").text(JSON.stringify(result, null, 2));
 	}).fail(function(result) {
-    	    $("#get-all-templates-results").text(JSON.stringify(result));
+    	    $("#get-all-templates-results").text(JSON.stringify(result, null, 2));
 	});
     };
     
@@ -130,7 +130,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#create-template-results").text(JSON.stringify(result, null, 2));
 	}).fail(function(result) {
-    	    $("#create-template-results").text(JSON.stringify(result));
+    	    $("#create-template-results").text(JSON.stringify(result, null, 2));
 	});
     };
        
@@ -148,7 +148,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#update-template-results").text(JSON.stringify(result, null, 2));
 	}).fail(function(result) {
-    	    $("#update-template-results").text(JSON.stringify(result));
+    	    $("#update-template-results").text(JSON.stringify(result, null, 2));
 	});
     };
     
@@ -180,7 +180,7 @@ pos: 3.1
         }).done(function(result){
     	    $("#simplify-results").text(result);
 	}).fail(function(result) {
-    	    $("#simplify-results").text(JSON.stringify(result));
+    	    $("#simplify-results").text(JSON.stringify(result, null, 2));
 	});
     };
 </script>
