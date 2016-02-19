@@ -92,7 +92,6 @@ pos: 3.1
       
     // Explore resource
     function sendExploreResource() {
-    	console.log($("#data-for-enrichment").val())
 	$.ajax({
 	    url: fremeApiUrl + "/e-link/explore?"
 	    +"resource="+$("#resource-uri").val()
@@ -111,10 +110,9 @@ pos: 3.1
        
     // Get all templates
     function sendGetAllTemplates() {
-    	console.log($("#data-for-enrichment").val())
 	$.ajax({
 	    url: fremeApiUrl + "/e-link/templates?"
-	    +"&outformat=json",
+	    +"outformat=json",
 	    type: "GET",
 	    contentType: ""
         }).done(function(result){
@@ -122,7 +120,22 @@ pos: 3.1
 	}).fail(function(result) {
     	    $("#get-all-templates-results").text(JSON.stringify(result));
 	});
-       };
+    };
+    
+    // Get one template
+    function sendGetOneTemplate() {
+	$.ajax({
+	    url: fremeApiUrl + "/e-link/templates/"
+	    +$("#get-one-template-id").val()
+	    +"?outformat=json",
+	    type: "GET",
+	    contentType: ""
+        }).done(function(result){
+    	    $("#get-one-template-results").text(JSON.stringify(result, null, 2));
+	}).fail(function(result) {
+    	    $("#get-one-template-results").text(JSON.stringify(result, null, 2));
+	});
+    };
        
     function sendDatasetDeleteRequest() {
         var datasetToDelete= $("#delete-dataset-name").val();
@@ -256,11 +269,16 @@ pos: 3.1
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
     
     <p><strong>Template ID</strong><br/>
-    The type of the endpoint. Accepted values: sparql or ldf<br/>
-    <input id="get-one-template-id" type="text" value="sparql"></p>
+    The ID of the template. Accepted values: sparql or ldf<br/>
+    <input id="get-one-template-id" type="text" value="1"></p>
     <br/>
 
     <button onclick="sendGetOneTemplate();">Run</button>
+
+    <h3>Response</h3>
+    <pre id="get-one-template-results">
+    	Here you will get the results from the named entity recognition using your dataset.
+    </pre>
     
     <h3 id="step-3-3-template-manipulation">Create template</h3>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
@@ -271,6 +289,11 @@ pos: 3.1
     <br/>
 
     <button onclick="sendCreateTemplate();">Run</button>
+    
+    <h3>Response</h3>
+    <pre id="create-template-results">
+    	Here you will get the results from the named entity recognition using your dataset.
+    </pre>
     
     <h3 id="step-3-4-template-manipulation">Update template</h3>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results in a simplified form (e.g. in CSV) by specifying filter. In the following example we are using the "extract-entities-only" filter which will output the results in CSV.</p>
@@ -283,7 +306,7 @@ pos: 3.1
     <button onclick="sendUpdateTemplate();">Run</button>
     
     <h3>Response</h3>
-    <pre id="get-one-template-results">
+    <pre id="update-template-results">
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
     
