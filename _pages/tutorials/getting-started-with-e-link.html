@@ -118,7 +118,7 @@ pos: 3.1
 	    type: "GET",
 	    contentType: ""
         }).done(function(result){
-    	    $("#get-all-templates-results").text(JSON.stringify(result));
+    	    $("#get-all-templates-results").text(result);
 	}).fail(function(result) {
     	    $("#get-all-templates-results").text(JSON.stringify(result));
 	});
