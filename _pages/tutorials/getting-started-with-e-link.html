@@ -172,9 +172,9 @@ pos: 3.1
 	    contentType: "text/turtle",
             data: $("#simplify-data-for-enrichment").val()
         }).done(function(result){
-    	    $("#simplify-response").text(result);
+    	    $("#simplify-results").text(result);
 	}).fail(function(result) {
-    	    $("#simplify-response").text(JSON.stringify(result));
+    	    $("#simplify-results").text(JSON.stringify(result));
 	});
     };
 </script>
