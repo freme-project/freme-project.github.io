@@ -147,6 +147,9 @@ pos: 3.1
 	    dataType: "text",
 	    contentType: "application/json",
 	    accept: "application/json",
+	    headers: {
+	        "X-Auth-Token":$("#update-template-token").val()
+	    },
             data: $("#template-data-update").val()
         }).done(function(result){
     	    $("#update-template-results").text(JSON.stringify(result, null, 2));
@@ -160,6 +163,9 @@ pos: 3.1
 	$.ajax({
 	    url: fremeApiUrl + "/e-link/templates/"+$("#remove-template-id").val(),
             type: "DELETE",
+	    headers: {
+	        "X-Auth-Token":$("#delete-template-token").val()
+	    },
 	    dataType: "text"
         }).done(function(result){
     	    $("#remove-template-results").text(JSON.stringify(result, null, 2));
@@ -321,7 +327,7 @@ pos: 3.1
     	Here you will get the results from the named entity recognition using your dataset.
     </pre>
     
-    <h3 id="step-3-3-template-manipulation">Create template (does not work)</h3>
+    <h3 id="step-3-3-template-manipulation">Create template</h3>
     <p>E-link also allows users to create templates according to their needs.</p>
 
     <p><strong>Template to create</strong><br/>
@@ -362,6 +368,11 @@ pos: 3.1
     "visibility": "public"
 }</textarea></p>
     <br/>
+
+    <p><strong>Token</strong><br/>
+    Paste your token. You can retrieve an access token by following <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>.<br/>
+    <input id="update-template-token" type="text" value="paste your token"></p>
+    <br/>
     
     <p><strong>Template ID to update</strong><br/>
     Provide the ID of the template you want to update<br/>
@@ -381,6 +392,11 @@ pos: 3.1
     <p><strong>Template ID to remove</strong><br/>
     ID of the template you want to remove.<br/>
     <input id="remove-template-id" type="text" value="the template ID"></p>
+    <br/>
+
+    <p><strong>Token</strong><br/>
+    Paste your token. You can retrieve an access token by following <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>.<br/>
+    <input id="delete-template-token" type="text" value="paste your token"></p>
     <br/>
 
     <button onclick="sendRemoveTemplate();">Run</button>
