@@ -126,6 +126,9 @@ pos: 3.1
 	    dataType: "text",
 	    contentType: "application/json",
 	    accept: "application/json",
+	    headers: {
+	        "X-Auth-Token":"d0cd090e-abee-4bcd-a856-6c68f77d9bbb"
+	    }
             data: $("#template-data").val()
         }).done(function(result){
     	    $("#create-template-results").text(JSON.stringify(result, null, 2));
