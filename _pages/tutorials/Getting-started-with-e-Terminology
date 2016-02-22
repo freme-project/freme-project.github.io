@@ -1,0 +1,43 @@
+---
+dropdown: Tutorials
+pos: 3.2
+layout: page
+title: Getting started with e-Terminology
+---
+
+<h1>Getting started with e-Terminology</h1>
+<div>
+    <h2>Introduction</h2>
+    <p>Use e-Terminology for term anotation within the text.</p>
+</div>
+<div>
+    <h2>Step 1 - annotate with e-Terminology</h2>
+    <h3></h3>
+    <p>Annotates terms within the source text</p>
+    <h4>Curl</h4>
+    <pre></pre>
+    <h4>Result</h4>
+    <p>
+        There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
+        <h3>Step 2: using e-Translation to translate</h3>
+    </p>                                    
+    <a name="step1response"></a>               
+</div>
+<div>
+    <h2>Step 2 - Understanding the output of e-Terminology</h2>
+    <h3>OntoLex(lemon)</h3>
+    <p>Lemon model contains senses, and references to concepts</p>
+    <h3>NIF annotations</h3>
+    <p>Annotations uses NIF markup</p>              
+    <h3>Result examples</h3>
+    <p>Here are examples</p>  
+</div>
+<div>
+    <h2>Step 3 - Advandced usage of e-Terminology</h2>
+    <h3>Specify domain</h3>
+    <p>Filter out annotated terms</p>
+    <h3>Specify collection</h3>
+    <p>Choose to anotate with certain collection</p>
+    <h3>Use your private collection</h3>
+    <p>You can youse your private and propriaty collection and still keep it secure and protected</p>
+</div>
