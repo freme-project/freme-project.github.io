@@ -127,7 +127,7 @@ pos: 3.1
 	    contentType: "application/json",
 	    accept: "application/json",
 	    headers: {
-	        "X-Auth-Token":"d0cd090e-abee-4bcd-a856-6c68f77d9bbb"
+	        "X-Auth-Token":$("#create-template-token").val()
 	    },
             data: $("#template-data").val()
         }).done(function(result){
@@ -334,6 +334,11 @@ pos: 3.1
     "endpointType": "sparql",
     "visibility": "public"
 }</textarea></p>
+    <br/>
+
+    <p><strong>Token</strong><br/>
+    You can retrieve token after <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">authenticatation</a>.<br/>
+    <input id="create-template-token" type="text" value="paste your token"></p>
     <br/>
     
     <button onclick="sendCreateTemplate();">Run</button>
