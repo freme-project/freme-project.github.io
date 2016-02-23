@@ -32,56 +32,57 @@ Language is the ability to acquire complex systems of communication.</code></pre
     <pre >curl -X POST -H "Accept: text/turtle" -H "Content-Type: text/plain" -d 'Language is the ability to acquire and use complex systems of communication. ' "http://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de"</pre>
     <h4>Result</h4>
     <p>Used textual syntax for RDF called Turtle. Result as Linked data (NIF + SKOS+ Ontolex Lemon)</p>
-    <pre style="height:200px;"><code>@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+    <pre style="height:200px;"><code>@prefix cc:    &lt;http://creativecommons.org/ns#&gt; .
+@prefix :      &lt;https://term.tilde.com/terms/&gt; .
+@prefix void:  &lt;http://rdfs.org/ns/void#&gt; .
 @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 @prefix its:   &lt;http://www.w3.org/2005/11/its&gt; .
 @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+@prefix skos:  &lt;http://www.w3.org/2004/02/skos/core#&gt; .
 @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-&lt;http://freme-project.eu/#char=16,23&gt;
-        a                     nif:RFC5147String ;
-        nif:anchorOf          &quot;ability&quot;@en ;
-        nif:annotationUnit    [ rdfs:label           &quot;ability&quot;@en ;
-                                itsrdf:taConfidence  0.8488
-                              ] ;
-        nif:beginIndex        &quot;16&quot;^^xsd:nonNegativeInteger ;
-        nif:endIndex          &quot;23&quot;^^xsd:nonNegativeInteger ;
-        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
-        itsrdf:term           &quot;yes&quot; ;
-        itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/639494&gt; , &lt;https://term.tilde.com/terms/523970&gt; , &lt;https://term.tilde.com/terms/583736&gt; , &lt;https://term.tilde.com/terms/391449&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_49830&gt; , &lt;https://term.tilde.com/terms/525457&gt; .
-&lt;http://freme-project.eu/#char=54,67&gt;
-        a                     nif:RFC5147String ;
-        nif:anchorOf          &quot;communication&quot;@en ;
-        nif:annotationUnit    [ rdfs:label           &quot;communications&quot;@en , &quot;communication&quot;@en ;
-                                itsrdf:taConfidence  1
-                              ] ;
-        nif:beginIndex        &quot;54&quot;^^xsd:nonNegativeInteger ;
-        nif:endIndex          &quot;67&quot;^^xsd:nonNegativeInteger ;
-        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
-        itsrdf:term           &quot;yes&quot; ;
-        itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/639381&gt; , &lt;https://term.tilde.com/terms/1143853&gt; , &lt;https://term.tilde.com/terms/602470&gt; , &lt;https://term.tilde.com/terms/1154711&gt; , &lt;https://term.tilde.com/terms/560499&gt; , &lt;https://term.tilde.com/terms/639354&gt; , &lt;https://term.tilde.com/terms/524924&gt; , &lt;https://term.tilde.com/terms/1430544&gt; , &lt;https://term.tilde.com/terms/2899318&gt; , &lt;https://term.tilde.com/terms/525140&gt; , &lt;https://term.tilde.com/terms/1161469&gt; , &lt;https://term.tilde.com/terms/652572&gt; , &lt;https://term.tilde.com/terms/1163426&gt; , &lt;https://term.tilde.com/terms/1151652&gt; , &lt;https://term.tilde.com/terms/1170124&gt; , &lt;https://term.tilde.com/terms/402815&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_37866&gt; , &lt;https://term.tilde.com/terms/2773453&gt; , &lt;https://term.tilde.com/terms/832754&gt; , &lt;https://term.tilde.com/terms/2737863&gt; , &lt;https://term.tilde.com/terms/1147755&gt; , &lt;https://term.tilde.com/terms/836615&gt; , &lt;https://term.tilde.com/terms/637573&gt; .
-&lt;http://freme-project.eu/#char=0,8&gt;
-        a                     nif:RFC5147String ;
-        nif:anchorOf          &quot;Language&quot;@en ;
-        nif:annotationUnit    [ rdfs:label           &quot;languages&quot;@en , &quot;language&quot;@en ;
-                                itsrdf:taConfidence  0.3508
-                              ] ;
-        nif:beginIndex        &quot;0&quot;^^xsd:nonNegativeInteger ;
-        nif:endIndex          &quot;8&quot;^^xsd:nonNegativeInteger ;
-        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
-        itsrdf:term           &quot;yes&quot; ;
-        itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/351619&gt; , &lt;https://term.tilde.com/terms/1154712&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_330836&gt; , &lt;https://term.tilde.com/terms/2894218&gt; , &lt;https://term.tilde.com/terms/1224149&gt; , &lt;https://term.tilde.com/terms/615531&gt; , &lt;https://term.tilde.com/terms/526364&gt; , &lt;https://term.tilde.com/terms/395395&gt; .
-&lt;http://freme-project.eu/#char=35,42&gt;
-        a                     nif:RFC5147String ;
-        nif:anchorOf          &quot;complex&quot;@en ;
-        nif:annotationUnit    [ rdfs:label           &quot;complexing&quot;@en , &quot;complex&quot;@en ;
-                                itsrdf:taConfidence  0.7095
-                              ] ;
-        nif:beginIndex        &quot;35&quot;^^xsd:nonNegativeInteger ;
-        nif:endIndex          &quot;42&quot;^^xsd:nonNegativeInteger ;
-        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
-        itsrdf:term           &quot;yes&quot; ;
-        itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/637565&gt; , &lt;https://term.tilde.com/terms/520757&gt; , &lt;https://term.tilde.com/terms/989213&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_28303&gt; , &lt;https://term.tilde.com/terms/980565&gt; .
+@prefix tbx:   &lt;http://tbx2rdf.lider-project.eu/tbx#&gt; .
+@prefix decomp: &lt;http://www.w3.org/ns/lemon/decomp#&gt; .
+@prefix dct:   &lt;http://purl.org/dc/terms/&gt; .
+@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt; .
+@prefix ldr:   &lt;http://purl.oclc.org/NET/ldr/ns#&gt; .
+@prefix odrl:  &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix dcat:  &lt;http://www.w3.org/ns/dcat#&gt; .
+@prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+&lt;https://term.tilde.com/terms/way+of+life-en&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/way+of+life-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/way+of+life-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/system-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;system&quot;@en .
+:TermComp-63377294-41ab-41fc-a06d-2f50f2989de4
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Aufl&Atilde;&para;sungsverm&Atilde;&para;gen&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-63377294-41ab-41fc-a06d-2f50f2989de4 .
+&lt;https://term.tilde.com/terms/Fertigkeit-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Fertigkeit&quot;@de .
+:TermComp-92dbbb04-9c9b-444e-839a-3a1d54eb8d46
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Verbindungen&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-92dbbb04-9c9b-444e-839a-3a1d54eb8d46 .
+:637573  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+:TermComp-c58256fb-6d2c-4fe5-bd16-02d5ace67da9
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Nachrichtenverkehr&quot;@en ;
+        tbx:grammaticalGender  tbx:masculine ;
+        decomp:identifies      :TermComp-c58256fb-6d2c-4fe5-bd16-02d5ace67da9 .
+:TermCompList-410bd5fa-a3eb-4f85-83c6-ec62e601c161
+        decomp:constituent  :TermComp-2b153529-d228-455c-973b-13d60986371d ;
+        decomp:identifies   :Komplex-de .
+:395395  a                skos:Concept ;
+        rdfs:comment      &quot;information and information processing&quot;@en , &quot;information technology and data processing&quot;@en , &quot;natural and applied sciences&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/3236&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3231&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; .
 &lt;http://freme-project.eu/#char=43,50&gt;
         a                     nif:RFC5147String ;
         nif:anchorOf          &quot;systems&quot;@en ;
@@ -92,13 +93,785 @@ Language is the ability to acquire complex systems of communication.</code></pre
         nif:endIndex          &quot;50&quot;^^xsd:nonNegativeInteger ;
         nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
         itsrdf:term           &quot;yes&quot; ;
-        itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/1136704&gt; , &lt;https://term.tilde.com/terms/519525&gt; , &lt;https://term.tilde.com/terms/1136787&gt; , &lt;https://term.tilde.com/terms/1159419&gt; , &lt;https://term.tilde.com/terms/1136773&gt; , &lt;https://term.tilde.com/terms/525260&gt; , &lt;https://term.tilde.com/terms/404196&gt; , &lt;https://term.tilde.com/terms/1136785&gt; , &lt;https://term.tilde.com/terms/497037&gt; , &lt;https://term.tilde.com/terms/498844&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_330985&gt; , &lt;https://term.tilde.com/terms/525977&gt; , &lt;https://term.tilde.com/terms/589161&gt; , &lt;https://term.tilde.com/terms/559926&gt; , &lt;https://term.tilde.com/terms/780143&gt; , &lt;https://term.tilde.com/terms/3448811&gt; , &lt;https://term.tilde.com/terms/1232174&gt; , &lt;https://term.tilde.com/terms/1136706&gt; , &lt;https://term.tilde.com/terms/1232173&gt; , &lt;https://term.tilde.com/terms/639431&gt; , &lt;https://term.tilde.com/terms/2800909&gt; .
+        itsrdf:termInfoRef    :1136704 , :519525 , :1136787 , :1159419 , :1136773 , :525260 , :404196 , :1136785 , :497037 , :498844 , &lt;http://aims.fao.org/aos/agrovoc/c_330985&gt; , :525977 , :589161 , :559926 , :780143 , :3448811 , :1232174 , :1136706 , :1232173 , :639431 , :2800909 .
+:TermComp-88a693c5-c421-469c-bc95-88dd3df37d64
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-88a693c5-c421-469c-bc95-88dd3df37d64 .
+:639354  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/Kraft-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kraft&quot;@de .
+&lt;https://term.tilde.com/terms/Sprache-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Sprache&quot;@de .
+&lt;https://term.tilde.com/terms/Kommunikationstechnologie-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kommunikationstechnologie&quot;@de .
+:communications-en  a          ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/communications-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/communications-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/ability-en#Sense&gt;
+        ontolex:reference  :583736 , :525457 .
+:TermComp-772af791-2a24-4812-8416-ee334276f2d0
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;F&Atilde;&curren;higkeit&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-772af791-2a24-4812-8416-ee334276f2d0 .
+:525260  a                skos:Concept ;
+        rdfs:comment      &quot;documentation&quot;@en , &quot;ECONOMICS&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; .
 &lt;http://freme-project.eu/#char=0,68&gt;
         a               nif:String , nif:RFC5147String , nif:Context ;
         nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
         nif:endIndex    &quot;68&quot;^^xsd:nonNegativeInteger ;
-        nif:isString    &quot;Language is the ability to acquire complex systems of communication.&quot;@en.</code></pre>
+        nif:isString    &quot;Language is the ability to acquire complex systems of communication.&quot;@en .
+:3448811  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1501&gt; .
+:Verbindungen-de  a            ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Verbindungen-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Verbindungen-de#Sense&gt; .
+:Fertigkeit-de  a              ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Fertigkeit-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Fertigkeit-de#Sense&gt; .
+:TermCompList-e8525481-da33-4118-83e8-429195ba47c3
+        decomp:constituent  :TermComp-92dbbb04-9c9b-444e-839a-3a1d54eb8d46 ;
+        decomp:identifies   :Verbindungen-de .
+:TermComp-43279fac-7413-4235-915e-b8e6b7210e6c
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Verm&Atilde;&para;gen&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-43279fac-7413-4235-915e-b8e6b7210e6c .
+:Sprache-de  a                 ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Sprache-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Sprache-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/F%C3%A4higkeit-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/F%C3%A4higkeit-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/F%C3%A4higkeit-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de#Sense&gt; .
+:TermCompList-d81a9bf3-6687-4727-972a-f02174d2709c
+        decomp:constituent  :TermComp-76ee613c-bfd7-42c9-ae8a-8bf5ada4e670 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Verm%C3%B6gen-de&gt; .
+:TermComp-eac027d6-b63d-45a5-a2b1-ee5d5a66cbd7
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;F&Atilde;&curren;higkeit&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-eac027d6-b63d-45a5-a2b1-ee5d5a66cbd7 .
+:1154711  a               skos:Concept ;
+        rdfs:comment      &quot;Lenoch code: SO&quot;@en , &quot;interkulturelle Kommunikation&quot;@en ;
+        tbx:definition    &quot;Verbindung, Zusammenhang; Verkehr, Umgang, Verst&Atilde;&curren;ndigung (zwischen den Menschen)&quot;@en , &quot;act of communicating; make sth. Known, convey sth.; exchange information, news, ideas, etc.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3611&gt; .
+:TermComp-76ee613c-bfd7-42c9-ae8a-8bf5ada4e670
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;F&Atilde;&curren;higkeit&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-76ee613c-bfd7-42c9-ae8a-8bf5ada4e670 .
+:2894218  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3611002&gt; .
+&lt;https://term.tilde.com/terms/skill-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;skill&quot;@en .
+:TermComp-6e8655ab-6a16-4f44-9bce-9d99394062d3
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Potenz&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-6e8655ab-6a16-4f44-9bce-9d99394062d3 .
+&lt;https://term.tilde.com/terms/resolving+power-en#Sense&gt;
+        ontolex:reference  :391449 .
+:Mitteilung-de  a              ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Mitteilung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Mitteilung-de#Sense&gt; .
+:525977  a                skos:Concept ;
+        rdfs:comment      &quot;ECONOMICS&quot;@en , &quot;documentation&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; .
+:TermComp-5818f8c8-c70e-4e0f-bdf2-d8e12b1d586f
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Verbindung&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-5818f8c8-c70e-4e0f-bdf2-d8e12b1d586f .
+:Verkehr-de  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Verkehr-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Verkehr-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/ties-en#Sense&gt;
+        ontolex:reference  :524924 .
+&lt;http://freme-project.eu/#char=35,42&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;complex&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;complexing&quot;@en , &quot;complex&quot;@en ;
+                                itsrdf:taConfidence  0.7095
+                              ] ;
+        nif:beginIndex        &quot;35&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;42&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :637565 , :520757 , :989213 , &lt;http://aims.fao.org/aos/agrovoc/c_28303&gt; , :980565 .
+:komplexieren-de  a            ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/komplexieren-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/komplexieren-de#Sense&gt; .
+:602470  a                skos:Concept ;
+        rdfs:comment      &quot;Community law&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/1011&gt; .
+:TermCompList-df2532d5-fb80-47dd-8e3d-5e116b76204b
+        decomp:constituent  :TermComp-43279fac-7413-4235-915e-b8e6b7210e6c ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; .
+:583736  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;mechanical engineering&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1504&gt; , &lt;https://term.tilde.com/domains/6821&gt; , &lt;https://term.tilde.com/domains/3606&gt; .
+&lt;https://term.tilde.com/terms/Informationspolitik-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Informationspolitik&quot;@de .
+:498844  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;mechanical engineering&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1504&gt; , &lt;https://term.tilde.com/domains/6821&gt; , &lt;https://term.tilde.com/domains/3606&gt; .
+&lt;https://term.tilde.com/terms/Kommunikationstechnologie-de#Sense&gt;
+        ontolex:reference  :1147755 .
+&lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de#Sense&gt;
+        ontolex:reference  :1136787 , :1136706 .
+:Kommunikationen-de  a         ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kommunikationen-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kommunikationen-de#Sense&gt; .
+:Ordnung-de  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Ordnung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Ordnung-de#Sense&gt; .
+:1170124  a               skos:Concept ;
+        rdfs:comment      &quot;Umweltmanagementsysteme&quot;@en , &quot;Lenoch code: EN&quot;@en ;
+        tbx:definition    &quot;Informationsaustausch &Atilde;&frac14;ber Umweltaktivit&Atilde;&curren;ten innerhalb der Organisation und mit Anspruchsgruppen und interessierten Kreisen.&quot;@en , &quot;A very important aspect of any system is the transfer of information. Communication is meant to ensure that information between internal and external organizations is properly transferred.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1100&gt; , &lt;https://term.tilde.com/domains/5206&gt; , &lt;https://term.tilde.com/domains/52&gt; .
+&lt;https://term.tilde.com/terms/Ordnung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Ordnung&quot;@de .
+:1136773  a               skos:Concept ;
+        rdfs:comment      &quot;technology and technical regulations&quot;@en , &quot;ISO 9000 3.10.1&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+&lt;https://term.tilde.com/terms/communications-en#Sense&gt;
+        ontolex:reference  :832754 , :652572 , :639354 , :637573 , :560499 , :2773453 , :1147755 .
+:ability-en  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/ability-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/ability-en#Sense&gt; .
+:Kraft-de  a                   ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kraft-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kraft-de#Sense&gt; .
+:652572  a                skos:Concept ;
+        rdfs:comment      &quot;environmental policy&quot;@en ;
+        tbx:definition    &quot;The concept, science, technique and process of transmitting, receiving or otherwise exchanging information and data.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1100&gt; , &lt;https://term.tilde.com/domains/5206&gt; .
+&lt;https://term.tilde.com/terms/F%C3%A4higkeit-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;F&Atilde;&curren;higkeit&quot;@de .
+:TermCompList-dd40f291-3f07-4f6f-b6dd-3072e0085dd7
+        decomp:constituent  :TermComp-5818f8c8-c70e-4e0f-bdf2-d8e12b1d586f ;
+        decomp:identifies   :Nachrichtenverkehr-de .
+:XReference-8b82c37c-2a12-4966-bbce-c324c94300dd
+        tbx:target  &lt;http://www.eurotermbank.com/Collection.aspx?collectionid=229&gt; ;
+        tbx:value   &quot;Automatikos termin&Aring;&sup3; &Aring;&frac34;odynas&quot; .
+:TermCompList-4acb4c02-e51f-4232-ba5e-75282cc03a57
+        decomp:constituent  :TermComp-5ab501fc-1a41-46a6-b8c6-1a0f9f345033 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; .
+:404196  a                skos:Concept ;
+        rdfs:comment      &quot;information and information processing&quot;@en , &quot;natural and applied sciences&quot;@en , &quot;information technology and data processing&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/3236&gt; , &lt;https://term.tilde.com/domains/3231&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/TaaS-2000&gt; .
+:TermCompList-a2acedd5-83e4-4fec-8829-38eef1275f30
+        decomp:constituent  :TermComp-66ffb4dd-f28a-4c26-888e-4c58ad7b83ff ;
+        decomp:identifies   :System-de .
+&lt;https://term.tilde.com/terms/Sprache-de#Sense&gt;
+        ontolex:reference  :615531 , :526364 , :395395 , :351619 , :2894218 , :1224149 , :1154712 .
+:TermComp-2b0d037b-2ea8-4a8f-b433-e0cd2be802ba
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-2b0d037b-2ea8-4a8f-b433-e0cd2be802ba .
+:989213  a                skos:Concept ;
+        rdfs:comment      &quot;CH - Chemistry (sn: chemistry as pure science; us: for applied chemistry, see: IC)  (Lenoch classification);  BAA - road building  (Lenoch classification);  TR5 - land transport - road traffic (sn: other than railways; rf: for vehicle industry, see: INT5 and INT6)  (Lenoch classification);  EN9 - air pollution  (Lenoch classification);  JUF - canon law  (Lenoch classification);  JU71 - social security law (nt: social security law in restricted sense)  (Lenoch classification);&quot;@en ;
+        tbx:example       &quot;For group A products the retinol is determined by spectrophotometry at 610 nm after development of a coloured complex according to the Carr-Price reaction.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/12&gt; , &lt;https://term.tilde.com/domains/TaaS-1509&gt; , &lt;https://term.tilde.com/domains/52&gt; , &lt;https://term.tilde.com/domains/unknown&gt; , &lt;https://term.tilde.com/domains/TaaS-1100&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/48&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-0200&gt; .
+&lt;https://term.tilde.com/terms/komplexieren-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;komplexieren&quot;@de .
+:TermCompList-ba02c452-c607-472b-b3e1-77a7a3fae5fd
+        decomp:constituent  :TermComp-679a8b24-a94c-4533-abc6-c9b412247a44 ;
+        decomp:identifies   :Kommunikationen-de .
+&lt;https://term.tilde.com/terms/capability-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;capability&quot;@en .
+&lt;https://term.tilde.com/terms/way+of+life-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;way of life&quot;@en .
+&lt;https://term.tilde.com/terms/resolving+power-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;resolving power&quot;@en .
+:TermComp-2b153529-d228-455c-973b-13d60986371d
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Komplex&quot;@en ;
+        tbx:grammaticalGender  tbx:masculine ;
+        decomp:identifies      :TermComp-2b153529-d228-455c-973b-13d60986371d .
+:2800909  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3611002&gt; .
+:TermComp-a14828bc-36a6-4860-a34e-e88b2a30e065
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-a14828bc-36a6-4860-a34e-e88b2a30e065 .
+&lt;https://term.tilde.com/terms/Kurzreferat-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kurzreferat&quot;@de .
+:TermCompList-ff06c268-ec17-481a-a89e-2e76089d28ba
+        decomp:constituent  :TermComp-89f7570c-8a13-4779-8cc7-1d3229fefca8 ;
+        decomp:identifies   :System-de .
+:TermCompList-38420f32-e773-4c16-8d4f-476bd882818b
+        decomp:constituent  :TermComp-5ad40061-833d-4b27-a308-f77517ebb817 ;
+        decomp:identifies   :System-de .
+:639494  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;http://freme-project.eu/#char=0,8&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;Language&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;languages&quot;@en , &quot;language&quot;@en ;
+                                itsrdf:taConfidence  0.3508
+                              ] ;
+        nif:beginIndex        &quot;0&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;8&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :351619 , :1154712 , &lt;http://aims.fao.org/aos/agrovoc/c_330836&gt; , :2894218 , :1224149 , :615531 , :526364 , :395395 .
+:639431  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/capability-en#Sense&gt;
+        ontolex:reference  :639494 .
+&lt;https://term.tilde.com/terms/Kurzreferat-de#Sense&gt;
+        ontolex:reference  :2899318 .
+:559926  a                skos:Concept ;
+        rdfs:comment      &quot;ENERGY&quot;@en , &quot;66 ENERGY; EL&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1200&gt; , &lt;https://term.tilde.com/domains/66&gt; .
+:639381  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/system-en#Sense&gt;
+        ontolex:reference  :3448811 , :1159419 , :780143 , :1232174 , :559926 , :498844 , :497037 , :1136704 , :1136787 , :589161 , :1136785 , :525977 , :404196 , :2800909 , :1232173 , :1136773 , :1136706 , :525260 , :639431 .
+:TermCompList-ffb16527-0863-40ed-8031-c6b281db7156
+        decomp:constituent  :TermComp-63377294-41ab-41fc-a06d-2f50f2989de4 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; .
+:1143853  a               skos:Concept ;
+        rdfs:comment      &quot;Messe&quot;@en , &quot;Lenoch code: COD&quot;@en ;
+        tbx:definition    &quot;Unter Kommunikation wird die &Atilde;�bermittlung von Informationen und Bedeutungsinhalten zum Zweck der Steuerung von Meinungen, Einstellungen, Erwartungen und Verhaltensweisen bestimmter Adressaten gem&Atilde;&curren;&Atilde;� spezifischer Zielsetzung verstanden.&quot;@en , &quot;The process of imparting information from an information source to an information destination as a basis for control and decision making (e. g. exchange of ideas, concepts, feelings, etc. between two or more persons).&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/20&gt; .
+:2737863  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1100&gt; , &lt;https://term.tilde.com/domains/52&gt; .
+:DescripGrp-c346be4c-157d-45ce-a47c-361996043a39
+        a                   tbx:Descrip ;
+        tbx:lemma           &quot;System&quot;@en ;
+        tbx:normalizedForm  &quot;System&quot;@en ;
+        tbx:normalizedMSD   &quot;NN&quot;@en ;
+        tbx:surfaceForm     &quot;System&quot;@en ;
+        tbx:surfaceMSD      &quot;NN&quot;@en .
+:Stichwortverzeichnis-System-de
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Stichwortverzeichnis-System-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Stichwortverzeichnis-System-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de#Sense&gt; .
+:TermComp-c5e8136f-a5c9-4d50-a289-88c1c8ff9ac5
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Verkehr&quot;@en ;
+        tbx:grammaticalGender  tbx:masculine ;
+        decomp:identifies      :TermComp-c5e8136f-a5c9-4d50-a289-88c1c8ff9ac5 .
+&lt;https://term.tilde.com/terms/Bekanntmachung-de#Sense&gt;
+        ontolex:reference  :836615 .
+:1159419  a               skos:Concept ;
+        rdfs:comment      &quot;Wirtschaft|Materialwirtschaft: Einkauf&quot;@en , &quot;Lenoch code: EC&quot;@en ;
+        tbx:definition    &quot;Menge von Elementen, zwischen denen Beziehungen bestehen. Diese Beziehungen k&Atilde;&para;nnen z. B. logischer, philosophischer, &Atilde;&curren;sthetischer oder physikalischer Art sein.&quot;@en , &quot;In business management, an organized collection of parts, or subsystems, that are united by regular interaction.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Nachrichten&Atilde;&frac14;bermittlung&quot;@de .
+:TermCompList-62a236e4-7ab9-4041-8c60-b9a06a8c3cbe
+        decomp:constituent  :TermComp-d3e352a8-7875-49b7-8d87-019e9042a06b ;
+        decomp:identifies   :Sprache-de .
+&lt;https://term.tilde.com/terms/Nachrichtenverkehr-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Nachrichtenverkehr&quot;@de .
+:TermComp-66ffb4dd-f28a-4c26-888e-4c58ad7b83ff
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-66ffb4dd-f28a-4c26-888e-4c58ad7b83ff .
+&lt;https://term.tilde.com/terms/resolving+power-en&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/resolving+power-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/resolving+power-en#Sense&gt; .
+:capability-en  a              ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/capability-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/capability-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/Informationspolitik-de#Sense&gt;
+        ontolex:reference  :2737863 .
+:351619  a                skos:Concept ;
+        rdfs:comment      &quot;LAW&quot;@en , &quot;POLITICS&quot;@en , &quot;SCIENCE&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0100&gt; , &lt;https://term.tilde.com/domains/36&gt; , &lt;https://term.tilde.com/domains/TaaS-0200&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/12&gt; , &lt;https://term.tilde.com/domains/unknown&gt; .
+:2899318  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/unknown&gt; , &lt;https://term.tilde.com/domains/TaaS-1000&gt; .
+:525457  a                skos:Concept ;
+        rdfs:comment      &quot;ECONOMICS&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;documentation&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/3221&gt; .
+&lt;https://term.tilde.com/terms/Mitteilung-de#Sense&gt;
+        ontolex:reference  :602470 .
+:TermCompList-9f3fc9c1-9583-49a0-b1d1-17df9104283e
+        decomp:constituent  :TermComp-c58256fb-6d2c-4fe5-bd16-02d5ace67da9 ;
+        decomp:identifies   :Nachrichtenverkehr-de .
+:615531  a                skos:Concept ;
+        rdfs:comment      &quot;information and information processing&quot;@en , &quot;humanities&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3611&gt; , &lt;https://term.tilde.com/domains/3231&gt; .
+&lt;https://term.tilde.com/terms/Mitteilungen+-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Mitteilungen &quot;@de .
+:525140  a                skos:Concept ;
+        rdfs:comment      &quot;documentation&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; .
+&lt;https://term.tilde.com/terms/Stichwortverzeichnis-System-de#Sense&gt;
+        ontolex:reference  :1136785 , :1136704 .
+&lt;https://term.tilde.com/terms/Stichwortverzeichnis-System-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Stichwortverzeichnis-System&quot;@de .
+&lt;https://term.tilde.com/terms/telecommunication-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;telecommunication&quot;@en .
+&lt;https://term.tilde.com/terms/Nachrichtenverkehr-de#Sense&gt;
+        ontolex:reference  :402815 .
+&lt;https://term.tilde.com/terms/Komplex-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Komplex&quot;@de .
+:589161  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;mechanical engineering&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1504&gt; , &lt;https://term.tilde.com/domains/6821&gt; , &lt;https://term.tilde.com/domains/3606&gt; .
+:1232173  a               skos:Concept ;
+        rdfs:comment      &quot;information technology and data processing&quot;@en ;
+        tbx:definition    &quot;Any application or process that you want to model. Examples of systems include a computer game, a process for assembling microchips, and a library information system.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/3236&gt; .
+&lt;https://term.tilde.com/terms/F%C3%A4higkeit-de#Sense&gt;
+        ontolex:reference  :639494 .
+:1154712  a               skos:Concept ;
+        rdfs:comment      &quot;Lenoch code: SO&quot;@en , &quot;interkulturelle Kommunikation&quot;@en ;
+        tbx:definition    &quot;System von Lauten, die durch Atemluft und Sprechwerkzeuge des Menschen hervorgebracht werden und zum Ausdruck von Gedanken, Gef&Atilde;&frac14;hlen, Willensregungen usw. dienen, wichtigstes Verst&Atilde;&curren;ndigungsmittel der Menschen untereinander&quot;@en , &quot;system of sounds, words, patterns, etc used by humans to communicate thoughts and feelings&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3611&gt; .
+:1224149  a               skos:Concept ;
+        rdfs:comment      &quot;information technology and data processing&quot;@en ;
+        tbx:definition    &quot;An artificial language that specifies instructions to be executed on a computer. The term covers a wide spectrum, from binary-coded machine language to high-level languages.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/3236&gt; .
+&lt;https://term.tilde.com/terms/communications-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;communications&quot;@en .
+&lt;https://term.tilde.com/terms/Verbindungen-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Verbindungen&quot;@de .
+&lt;https://term.tilde.com/terms/Kommunikationen-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kommunikationen&quot;@de .
+:Kurzvortrag-de  a             ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kurzvortrag-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kurzvortrag-de#Sense&gt; .
+:2773453  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1100&gt; , &lt;https://term.tilde.com/domains/52&gt; .
+:1136787  a               skos:Concept ;
+        rdfs:comment      &quot;technology and technical regulations&quot;@en , &quot;ISO 9000 3.2.3.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+&lt;https://term.tilde.com/terms/Verm%C3%B6gen-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Verm%C3%B6gen-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Verm%C3%B6gen-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/telecommunication-en#Sense&gt;
+        ontolex:reference  :402815 .
+&lt;https://term.tilde.com/terms/ties-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;ties&quot;@en .
+:TermCompList-8ca60690-48fc-466c-b73d-65c279d4f96d
+        decomp:constituent  :TermComp-a14828bc-36a6-4860-a34e-e88b2a30e065 ;
+        decomp:identifies   :System-de .
+:Bekanntmachung-de  a          ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Bekanntmachung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Bekanntmachung-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Kommunikation-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kommunikation&quot;@de .
+:TermCompList-4ecf9d06-8570-4c4a-8f06-f317a99a79c6
+        decomp:constituent  :TermComp-772af791-2a24-4812-8416-ee334276f2d0 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/F%C3%A4higkeit-de&gt; .
+&lt;https://term.tilde.com/terms/Kommunikation-de#Sense&gt;
+        ontolex:reference  :1430544 , :560499 , :1163426 , :1151652 , :652572 , :1161469 , :1143853 , :1154711 , :2773453 , :1170124 .
+:ties-en  a                    ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/ties-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/ties-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/Fertigkeit-de#Sense&gt;
+        ontolex:reference  :523970 .
+:System-de  a                  ontolex:LexicalEntry ;
+        tbx:description        :DescripGrp-c346be4c-157d-45ce-a47c-361996043a39 ;
+        tbx:example            &quot;Programmpakete auf ihrem&lt;hi&gt;System&lt;/hi&gt;zu vereinfachen. Dazu&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; , &quot;und auf dem&lt;hi&gt;System&lt;/hi&gt;einzuspielen und b)&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; , &quot;verwalten und das&lt;hi&gt;System&lt;/hi&gt;vollst&Atilde;&curren;ndig pflegen. Jedoch&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; , &quot;wieder aus dem&lt;hi&gt;System&lt;/hi&gt;zu entfernen. Ersteres&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; ;
+        tbx:msd                &quot;NN&quot;@en ;
+        tbx:reliabilityCode    1 ;
+        tbx:surface            &quot;System&quot;@en ;
+        tbx:xSource            &lt;http://taas.eurotermbank.com/extractor&gt; ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/System-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/System-de#Sense&gt; .
+:system-en  a                  ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        tbx:xSource            &lt;http://www.eurotermbank.com/Collection.aspx?collectionid=392&gt; , &lt;http://www.eurotermbank.com/Collection.aspx?collectionid=229&gt; ;
+        tbx:xreference         :XReference-8b82c37c-2a12-4966-bbce-c324c94300dd , :XReference-2a55e1cc-99f7-4c96-aa7c-7abb01612591 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/system-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/system-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/Kurzvortrag-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kurzvortrag&quot;@de .
+&lt;https://term.tilde.com/terms/System-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;System&quot;@de .
+&lt;https://term.tilde.com/terms/System-de#Sense&gt;
+        ontolex:reference  :2800909 , :559926 , :639431 , :497037 , :404196 , :525260 , :589161 , :780143 , :498844 , :525977 , :1232173 , :1232174 , :3448811 , :1159419 .
+:Nachrichtenverkehr-de
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Nachrichtenverkehr-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Nachrichtenverkehr-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/language-en#Sense&gt;
+        ontolex:reference  :615531 , :526364 , :395395 , :351619 , :2894218 , :1224149 , :1154712 .
+:832754  a                skos:Concept ;
+        rdfs:comment      &quot;international trade&quot;@en , &quot;European organisations&quot;@en , &quot;Community law&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/7611&gt; , &lt;https://term.tilde.com/domains/2021&gt; , &lt;https://term.tilde.com/domains/1011&gt; .
+:TermCompList-e7dbcbef-aff5-40dd-a767-6fb2b35e2770
+        decomp:constituent  :TermComp-2b0d037b-2ea8-4a8f-b433-e0cd2be802ba ;
+        decomp:identifies   :System-de .
+&lt;https://term.tilde.com/terms/Bekanntmachung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Bekanntmachung&quot;@de .
+&lt;https://term.tilde.com/terms/complex-en#Sense&gt;
+        ontolex:reference  :989213 , :980565 , :637565 , :520757 .
+:TermComp-5ab501fc-1a41-46a6-b8c6-1a0f9f345033
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Aufl&Atilde;&para;sung&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-5ab501fc-1a41-46a6-b8c6-1a0f9f345033 .
+&lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Qualit&Atilde;&curren;tsmanagementsystem&quot;@de .
+&lt;https://term.tilde.com/terms/Beziehungen-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Beziehungen&quot;@de .
+&lt;https://term.tilde.com/terms/Beziehungen-de#Sense&gt;
+        ontolex:reference  :524924 .
+:telecommunication-en
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/telecommunication-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/telecommunication-en#Sense&gt; .
+:TermComp-d3e352a8-7875-49b7-8d87-019e9042a06b
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Sprache&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        decomp:identifies      :TermComp-d3e352a8-7875-49b7-8d87-019e9042a06b .
+:497037  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;mechanical engineering&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1504&gt; , &lt;https://term.tilde.com/domains/6821&gt; , &lt;https://term.tilde.com/domains/3606&gt; .
+&lt;https://term.tilde.com/terms/Verm%C3%B6gen-de#Sense&gt;
+        ontolex:reference  :583736 .
+:1136706  a               skos:Concept ;
+        rdfs:comment      &quot;technology and technical regulations&quot;@en , &quot;ISO 9000 3.2.3.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+&lt;https://term.tilde.com/terms/Ordnung-de#Sense&gt;
+        ontolex:reference  :519525 .
+&lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Aufl&Atilde;&para;sungsverm&Atilde;&para;gen&quot;@de .
+&lt;https://term.tilde.com/terms/Kurzvortrag-de#Sense&gt;
+        ontolex:reference  :2899318 .
+:1147755  a               skos:Concept ;
+        rdfs:comment      &quot;Lenoch code: CO&quot;@en , &quot;E-Commerce&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/20&gt; .
+:Beziehungen-de  a             ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Beziehungen-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Beziehungen-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Verbindungen-de#Sense&gt;
+        ontolex:reference  :639354 .
+:de     a                 ontolex:Lexicon ;
+        ontolex:entry     :Mitteilung-de , :Kurzreferat-de , :komplexieren-de , &lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de&gt; , :Informationspolitik-de , :Stichwortverzeichnis-System-de , :Nachrichtenverkehr-de , :Bekanntmachung-de , :Beziehungen-de , &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de&gt; , :Kraft-de , &lt;https://term.tilde.com/terms/Mitteilungen+-de&gt; , :Sprache-de , &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; , :Kommunikationstechnologie-de , :Verbindungen-de , &lt;https://term.tilde.com/terms/Qualit%C3%A4tsmanagementsystem-de&gt; , :Komplex-de , :Ordnung-de , :System-de , :Kommunikationen-de , :Kommunikation-de , &lt;https://term.tilde.com/terms/der+Komplex-de&gt; , :Fertigkeit-de , &lt;https://term.tilde.com/terms/Verm%C3%B6gen-de&gt; , &lt;https://term.tilde.com/terms/F%C3%A4higkeit-de&gt; , :Kurzvortrag-de , :Verkehr-de ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .
+&lt;https://term.tilde.com/terms/Komplex-de#Sense&gt;
+        ontolex:reference  :637565 , :520757 .
+:complex-en  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/complex-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/complex-en#Sense&gt; .
+:526364  a                skos:Concept ;
+        rdfs:comment      &quot;BUSINESS AND COMPETITION&quot;@en , &quot;documentation&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/40&gt; .
+:523970  a                skos:Concept ;
+        rdfs:comment      &quot;documentation&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/3221&gt; .
+&lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de#Sense&gt;
+        ontolex:reference  :1136773 .
+&lt;http://freme-project.eu/#char=16,23&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;ability&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;ability&quot;@en ;
+                                itsrdf:taConfidence  0.8488
+                              ] ;
+        nif:beginIndex        &quot;16&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;23&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :639494 , :523970 , :583736 , :391449 , &lt;http://aims.fao.org/aos/agrovoc/c_49830&gt; , :525457 .
+:519525  a                skos:Concept ;
+        rdfs:comment      &quot;documentation&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; .
+&lt;https://term.tilde.com/terms/Mitteilungen+-de&gt;
+        a                      ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Mitteilungen+-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Mitteilungen+-de#Sense&gt; .
+:1430544  a                     skos:Concept ;
+        rdfs:comment            &quot;intelectual domain&quot;@en ;
+        tbx:classificationCode  &quot;042715;043603;043606;050303;050306;050606;050627;051803;051815;122403;183310;220303;220306;220309;220312;220315;220318;220606;220609;220612;220615;220621;220624;220627;220903;220906;221203;221206;221209;221212;221215;221218;221221;221224;221503;221506;221&quot;@en ;
+        tbx:subjectField        &lt;https://term.tilde.com/domains/TaaS-0200&gt; , &lt;https://term.tilde.com/domains/12&gt; .
+:TermCompList-6a489e23-fec7-4e0d-9902-6880aa7ba047
+        decomp:constituent  :TermComp-eac027d6-b63d-45a5-a2b1-ee5d5a66cbd7 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; .
+:Informationspolitik-de
+        a                      ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Informationspolitik-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Informationspolitik-de#Sense&gt; .
+:1151652  a               skos:Concept ;
+        rdfs:comment      &quot;Lenoch code: TS&quot;@en , &quot;Immobilienverwaltung|Hausverwaltung&quot;@en ;
+        tbx:definition    &quot;Autausch, Verst&Atilde;&curren;ndigung; &Atilde;�bermittlung und Vermittlung von Wissen; i.w.S. alle Prozesse der &Atilde;�bertragung von Nachrichten oder Informationen durch Zeichen aller Art unter Lebewesen (Menschen, Tiere, Pflanzen) und/oder techn. Einrichtungen (Maschinen) durch techn., biolog., psych., soziale u.a. Informationsvermittlungssysteme.&quot;@en , &quot;an act of communicating&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0201&gt; , &lt;https://term.tilde.com/domains/1211&gt; .
+&lt;https://term.tilde.com/terms/skill-en#Sense&gt;
+        ontolex:reference  :523970 .
+:1136785  a               skos:Concept ;
+        rdfs:comment      &quot;technology and technical regulations&quot;@en , &quot;ISO 9000 3.2.1.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+&lt;https://term.tilde.com/terms/Kommunikationen-de#Sense&gt;
+        ontolex:reference  :637573 .
+&lt;https://term.tilde.com/terms/der+Komplex-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;der Komplex&quot;@de .
+:TermComp-89f7570c-8a13-4779-8cc7-1d3229fefca8
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-89f7570c-8a13-4779-8cc7-1d3229fefca8 .
+:TermComp-5ad40061-833d-4b27-a308-f77517ebb817
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;System&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-5ad40061-833d-4b27-a308-f77517ebb817 .
+:skill-en  a                   ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/skill-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/skill-en#Sense&gt; .
+:520757  a                skos:Concept ;
+        rdfs:comment      &quot;ECONOMICS&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;documentation&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; .
+:Komplex-de  a                 ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Komplex-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Komplex-de#Sense&gt; .
+:Kommunikationstechnologie-de
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kommunikationstechnologie-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kommunikationstechnologie-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/der+Komplex-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/der+Komplex-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/der+Komplex-de#Sense&gt; .
+:980565  a                skos:Concept ;
+        rdfs:comment      &quot;CH - Chemistry (sn: chemistry as pure science; us: for applied chemistry, see: IC)  (Lenoch classification);  BZ5 - phytology  (Lenoch classification);  NO6 - measurable quantities  (Lenoch classification);  JUJ1 - Agricultural Law  (Lenoch classification);  JU71 - social security law (nt: social security law in restricted sense)  (Lenoch classification);  CEP - Treaties - Agreements - Conventions - Cooperation - Commonity Policy - Commercial Policy  (Lenoch classification);&quot;@en ;
+        tbx:example       &quot;Complexed with 0,5 ml of sodium fluoride, iron oxidizes hydrogen sulphide more slowly.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/TaaS-0200&gt; , &lt;https://term.tilde.com/domains/10&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/8&gt; , &lt;https://term.tilde.com/domains/12&gt; .
+&lt;https://term.tilde.com/terms/way+of+life-en#Sense&gt;
+        ontolex:reference  :519525 .
+:402815  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;information technology and data processing&quot;@en , &quot;information and information processing&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/3236&gt; , &lt;https://term.tilde.com/domains/3231&gt; , &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/TaaS-2000&gt; .
+:TermCompList-542517fc-3356-44eb-bf42-940f24057bdf
+        decomp:constituent  :TermComp-88a693c5-c421-469c-bc95-88dd3df37d64 ;
+        decomp:identifies   :System-de .
+&lt;https://term.tilde.com/terms/communication-en#Sense&gt;
+        ontolex:reference  :2899318 , :1154711 , :639381 , :525140 , :2737863 , :836615 , :1170124 , :602470 , :1430544 , :1161469 , :1163426 , :1151652 , :1143853 .
+:780143  a                skos:Concept ;
+        rdfs:comment      &quot;natural and applied sciences&quot;@en , &quot;mechanical engineering&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/TaaS-1504&gt; , &lt;https://term.tilde.com/domains/6821&gt; , &lt;https://term.tilde.com/domains/3606&gt; .
+:1163426  a               skos:Concept ;
+        rdfs:comment      &quot;Qualit&Atilde;&curren;tsmanagement&quot;@en , &quot;Lenoch code: TE&quot;@en ;
+        tbx:definition    &quot;Very important for technical approaches is the related process of communications.\&quot;...\&quot; It will alter magerial guidelines, and it will call for much tighter integration among human actions and machine and information flow. The clear communication of every real benefits in and from the new, strong quality programm is therefore basic to obtaining the genuine quality committment of individuals throughout the company. This total quality communications process may be summarized by seven underlying requirements: 1. A crystal-clear statement that can be understood by all of what is required in and from the total quality program 2. A definite review of how the program will be created and introduced 3. An assurance of the professional competency of those who will do the work 4. An opportunity for all key-members of the organization to become involved in the information-gathering portion of the project 5. An opportunity for the key organization people to participate directly in the work as it develops 6. The communication throughout the enterprise of the specifics of the resulting program activity 7. A very concrete statement of the economic and other benefits that are accruing to the organization from the evolution of total quality control.&quot;@en , &quot;1. The act or an instance of communicating; the imparting or exchange of information, ideas or feelings. 2. Something communicated such as a letter, a messeage, or telephone call.&quot;@en , &quot;1. allg.; Verbindung, Zusammenhang, Mitteilung:2. Publizistik: Austausch, Verst&Atilde;&curren;ndigung, der Proze&Atilde;� der &Atilde;�bermittlung und Vermittlung von Informationen durch Ausdruck und Wahrnehmung (Transaktion) von Zeichen aller Art, systematisch einzuordnen auf einer biophysischen Ebene (k&Atilde;&para;rperl. Ber&Atilde;&frac14;hrungen und Affekte wie Lachen und Weinen), einer motor. (K&Atilde;&para;rperhaltung, Mimik, Gestik), einer lautlosen (Ger&Atilde;&curren;usche und Sprache) und einer technischen Ebene (Medien). Bestimmte kommunikative F&Atilde;&curren;higkeiten, z.B. auf der biophysischen Zeichenebene, sind angeboren, andere werden erlernt. Sie sind nicht nur lebens- und sozialgeschichtlichen Ver&Atilde;&curren;nderungen unterworfen, sondern auch kulturell unterschiedlichen.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+&lt;https://term.tilde.com/terms/komplexieren-de#Sense&gt;
+        ontolex:reference  :980565 .
+:TermCompList-a0b3a00b-c942-4bdb-b645-236aa7953544
+        decomp:constituent  :TermComp-bf963377-cecb-4548-b208-9c3199d52489 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Verm%C3%B6gen-de&gt; .
+:836615  a                skos:Concept ;
+        rdfs:comment      &quot;international trade&quot;@en , &quot;European organisations&quot;@en , &quot;Community law&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/7611&gt; , &lt;https://term.tilde.com/domains/2021&gt; , &lt;https://term.tilde.com/domains/1011&gt; .
+&lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de#Sense&gt;
+        ontolex:reference  :391449 .
+&lt;https://term.tilde.com/terms/complex-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;complex&quot;@en .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#Sense&gt;
+        ontolex:reference  :832754 .
+:560499  a                  skos:Concept ;
+        rdfs:comment        &quot;ENERGY&quot;@en , &quot;66 ENERGY; EL&quot;@en ;
+        tbx:relatedConcept  &quot;andmeside&quot;@en ;
+        tbx:subjectField    &lt;https://term.tilde.com/domains/TaaS-1200&gt; , &lt;https://term.tilde.com/domains/66&gt; .
+:language-en  a                ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/language-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/language-en#Sense&gt; .
+:Kurzreferat-de  a             ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kurzreferat-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kurzreferat-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Mitteilungen+-de#Sense&gt;
+        ontolex:reference  :2737863 .
+:TermComp-bf963377-cecb-4548-b208-9c3199d52489
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Verm&Atilde;&para;gen&quot;@en ;
+        tbx:grammaticalGender  tbx:neuter ;
+        decomp:identifies      :TermComp-bf963377-cecb-4548-b208-9c3199d52489 .
+&lt;https://term.tilde.com/terms/Kraft-de#Sense&gt;
+        ontolex:reference  :525457 .
+:Kommunikation-de  a           ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kommunikation-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kommunikation-de#Sense&gt; .
+&lt;http://freme-project.eu/#char=54,67&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;communication&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;communications&quot;@en , &quot;communication&quot;@en ;
+                                itsrdf:taConfidence  1
+                              ] ;
+        nif:beginIndex        &quot;54&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;67&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :639381 , :1143853 , :602470 , :1154711 , :560499 , :639354 , :524924 , :1430544 , :2899318 , :525140 , :1161469 , :652572 , :1163426 , :1151652 , :1170124 , :402815 , &lt;http://aims.fao.org/aos/agrovoc/c_37866&gt; , :2773453 , :832754 , :2737863 , :1147755 , :836615 , :637573 .
+:TermCompList-2df06f5c-bffa-4e1f-a4fb-c3c42e7da8be
+        decomp:constituent  :TermComp-dd15e7e1-72c4-40ef-b917-3d18f60be076 ;
+        decomp:identifies   :System-de .
+&lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Mess&Atilde;&frac14;berwachungssystem&quot;@de .
+:524924  a                skos:Concept ;
+        rdfs:comment      &quot;ECONOMICS&quot;@en , &quot;BUSINESS AND COMPETITION&quot;@en , &quot;documentation&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0301&gt; , &lt;https://term.tilde.com/domains/16&gt; , &lt;https://term.tilde.com/domains/40&gt; , &lt;https://term.tilde.com/domains/3221&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/TaaS-2003&gt; .
+:1232174  a               skos:Concept ;
+        rdfs:comment      &quot;information technology and data processing&quot;@en ;
+        tbx:definition    &quot;A set of items or devices working together to accomplish a task.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/3236&gt; .
+&lt;https://term.tilde.com/terms/ability-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;ability&quot;@en .
+:       a                 dcat:Dataset , tbx:MartifHeader ;
+        &lt;http://purl.org/dc/elements/1.1/source&gt;
+                &quot;&quot; ;
+        dct:type          &quot;TBX&quot; ;
+        tbx:encodingDesc  &quot;&lt;p type=\&quot;XCSURI\&quot;&gt;http://www.ttt.org/oscarstandards/tbx/TBXXCS.xcs&lt;/p&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; ;
+        tbx:sourceDesc    &quot;&lt;sourceDesc&gt;&lt;p/&gt;&lt;/sourceDesc&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; .
+:1161469  a               skos:Concept ;
+        rdfs:comment      &quot;Online-Marketing&quot;@en , &quot;Lenoch code: EC&quot;@en ;
+        tbx:definition    &quot;The transmission of a message containing information, ideas, attitudes, beliefs, etc. from one person or group to another or to others, primarily through symbols. Thus in its most general form communication denotes a process in which an initiator emits or sends a message via some vehicle to some recipient and produces an effect. Most definitions also include the idea of interaction in which the recipient is simultaneously or successively an initiator.&quot;@en , &quot;Im weitesten Sinne umfasst Kommunikation alle Prozesse der Informations&Atilde;&frac14;bertragung. Im engeren Sinne ist Kommunikation eine spezifische Form der sozialen Interaktion zwischen zwei oder mehr Individuen bzw. zwischen Individuen und Institutionen (nach diesem Verst&Atilde;&curren;ndnis werden hier also weder Prozesse der Maschine-Maschine-Kommunikation bzw. der Mensch-Maschine-Kommunikation noch Prozesse der intrapersonalen Kommunikation zu den Kommunikationsprozessen gerechnet).&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/Verkehr-de#Sense&gt;
+        ontolex:reference  :639381 , :525140 .
+:TermComp-679a8b24-a94c-4533-abc6-c9b412247a44
+        a                      ontolex:LexicalEntry ;
+        rdfs:label             &quot;Kommunikationen&quot;@en ;
+        tbx:grammaticalGender  tbx:feminine ;
+        tbx:grammaticalNumber  tbx:plural ;
+        decomp:identifies      :TermComp-679a8b24-a94c-4533-abc6-c9b412247a44 .
+&lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;communication&quot;@en .
+&lt;https://term.tilde.com/terms/der+Komplex-de#Sense&gt;
+        ontolex:reference  :989213 .
+:TermComp-dd15e7e1-72c4-40ef-b917-3d18f60be076
+        a                  ontolex:LexicalEntry ;
+        rdfs:label         &quot;System&quot;@en ;
+        decomp:identifies  :TermComp-dd15e7e1-72c4-40ef-b917-3d18f60be076 .
+&lt;https://term.tilde.com/terms/language-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;language&quot;@en .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Verm%C3%B6gen-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Verm&Atilde;&para;gen&quot;@de .
+:1136704  a               skos:Concept ;
+        rdfs:comment      &quot;technology and technical regulations&quot;@en , &quot;ISO 9000 3.2.1.&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-1500&gt; , &lt;https://term.tilde.com/domains/6411&gt; .
+:391449  a                skos:Concept ;
+        rdfs:comment      &quot;information technology and data processing&quot;@en , &quot;information and information processing&quot;@en , &quot;natural and applied sciences&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-2000&gt; , &lt;https://term.tilde.com/domains/3236&gt; , &lt;https://term.tilde.com/domains/3606&gt; , &lt;https://term.tilde.com/domains/TaaS-1501&gt; , &lt;https://term.tilde.com/domains/TaaS-2100&gt; , &lt;https://term.tilde.com/domains/3231&gt; .
+:en     a                 ontolex:Lexicon ;
+        ontolex:entry     :skill-en , :system-en , :complex-en , :communication-en , :ties-en , :ability-en , &lt;https://term.tilde.com/terms/resolving+power-en&gt; , :telecommunication-en , :capability-en , &lt;https://term.tilde.com/terms/way+of+life-en&gt; , :communications-en , :language-en ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/eng&gt; .
+&lt;https://term.tilde.com/terms/Verkehr-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Verkehr&quot;@de .
+:XReference-2a55e1cc-99f7-4c96-aa7c-7abb01612591
+        tbx:target  &lt;http://www.eurotermbank.com/Collection.aspx?collectionid=392&gt; ;
+        tbx:value   &quot;Microsoft Public Terminology Collection&quot; .
+:TermCompList-e09b1080-0077-4653-9fb0-2123383ae7c4
+        decomp:constituent  :TermComp-c5e8136f-a5c9-4d50-a289-88c1c8ff9ac5 ;
+        decomp:identifies   :Verkehr-de .
+&lt;https://term.tilde.com/terms/Mitteilung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Mitteilung&quot;@de .
+:TermCompList-63ecc810-6376-4254-a45c-ae560ba371f1
+        decomp:constituent  :TermComp-6e8655ab-6a16-4f44-9bce-9d99394062d3 ;
+        decomp:identifies   &lt;https://term.tilde.com/terms/Aufl%C3%B6sungsverm%C3%B6gen-de&gt; .
+:communication-en  a           ontolex:LexicalEntry ;
+        tbx:reliabilityCode    3 , 1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/communication-en#Sense&gt; .
+:637565  a                skos:Concept ;
+        rdfs:comment      &quot;FINANCE&quot;@en , &quot;ECONOMICS&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0303&gt; , &lt;https://term.tilde.com/domains/TaaS-0300&gt; , &lt;https://term.tilde.com/domains/24&gt; , &lt;https://term.tilde.com/domains/16&gt; .
+&lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Mess%C3%BCberwachungssystem-de#Sense&gt; .</code></pre>
     <p>After processing the output, there are following terms found: <strong>Language, ability, complex, systems, communication</strong>. It is recomended to use and exploit any RDF graph libaries or related solution to process Linked data returned directly by e-service.</p>                                    
+
   </div>
 <div>
     <h2>Step 2 - Understanding the output of e-Terminology</h2>
@@ -145,9 +918,10 @@ Language is the ability to acquire complex systems of communication.</code></pre
         </ol>
     </p> 
     <p>Each term annotation contains URI to its original terminology entry or concept. By default ir returns HTML markup for the term. But it is possible to get also RDF in Turtle syntax by appenfing extension <code>.ttl</code>, so the full concept is downloadable also via <a href="https://term.tilde.com/terms/351619.ttl" target="_blank">https://term.tilde.com/terms/351619.ttl</a> </p>
-    <h3>Result examples</h3>
+    <br />
+     <h3>Result examples</h3>
     <h4>NIF - term annotation</h4>
-    <p>Example of NIF annotaion - term <strong>ability</strong> has been annotated, and added 6 term references: 5 term references to term.tilde.com terminology, one reference to AgroVoc database:</p>  
+    <p>Example of NIF annotation - term <strong>ability</strong> has been annotated, and added 6 term references: 5 term references to term.tilde.com terminology, one reference to AgroVoc database:</p>  
        <pre>
 <code>&lt;http://freme-project.eu/#char=16,23&gt;
         a                     nif:RFC5147String ;
@@ -161,13 +935,14 @@ Language is the ability to acquire complex systems of communication.</code></pre
         itsrdf:term           &quot;yes&quot; ;
         itsrdf:termInfoRef    &lt;https://term.tilde.com/terms/639494&gt; , &lt;https://term.tilde.com/terms/523970&gt; , &lt;https://term.tilde.com/terms/583736&gt; , 
 		&lt;https://term.tilde.com/terms/391449&gt; , &lt;http://aims.fao.org/aos/agrovoc/c_49830&gt; , &lt;https://term.tilde.com/terms/525457&gt; .</code>
-</pre>
+    </pre>
     <p>
         Original form of term annotation contains category <code>nif:anchorOf</code>. The markup says that the term is located from the index 16 to 23 of original text, and term frequncy score is 0.8488.
  </p>
     <p>
         Each URI can be discovered and retrieved from the URI, e.g <strong><i>https://term.tilde.com/terms/523970</i></strong> can be downloaded as Turtle via <a href="https://term.tilde.com/terms/523970.ttl" target="_blank">https://term.tilde.com/terms/523970.ttl</a>. But in most cases the e-Terminology result contains full information and that content is already added to the output.
     </p>
+    <br />
      <h4>SKOS Concept - term entry</h4>
     <p>Terminology entry has been expressed as <code>SKOS:Concept</code>. It can contain definitions and mappings to domain classification systems.</p>
     <pre><code>:523970  a                skos:Concept ;
@@ -177,55 +952,323 @@ Language is the ability to acquire complex systems of communication.</code></pre
     <p>This Concept contains some concept level comments and references <code>tbx:subjectfield</code> to domain classification systems. 
     References, containing https://term.tilde.com/domains/TaaS- are mappings to <a href="https://term.tilde.com/domains" target="_blank">TaaS domain classification system</a> (mandatory for each entry), 
     without "TaaS-" are mappings to IATE domains classification system (optionally).</p>
-    <h4>OntoLex Lemon structures for English</h4>
-    <p>Lexicon</p>
-    <pre><code></code></pre>
-    <h5>Lexicon</h5>
-    <p></p>
-    <pre><code>:en     a                 ontolex:Lexicon ;
+   <br/>
+     <h4>OntoLex Lemon structures for English</h4> 
+    <u>Lexicon</u>
+    <p>english Lexicon conatins reference to the Lexical entry of the term</p>
+    <pre><code>:en     a     ontolex:Lexicon ;
         ontolex:entry     :skill-en ;
         ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/eng&gt; .</code></pre>
-    <h5>Lexical entry</h5>
-    <p></p>
+    <u>Lexical entry</u>
+    <p>Lexical entry contains reference to cannonical form of term and reference to sense </p>
     <pre><code>:skill-en  a                   ontolex:LexicalEntry ;
         ontolex:canonicalForm  &lt;https://term.tilde.com/terms/523970/skill-en#CanonicalForm&gt; ;
         ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
         ontolex:sense          &lt;https://term.tilde.com/terms/523970/skill-en#Sense&gt; .</code></pre>
-    <h5>Lexical sense</h5>
-    <p></p>
-    <pre><code></code></pre>
-    <h5>Canonical form</h5>
-    <p></p>
-    <pre><code></code></pre>
-    <h4>OntoLex Lemon structures for German</h4>
-    <p>Lexicon</p>
-    <pre><code>:de     a                 ontolex:Lexicon ;
+    <u>Lexical sense</u>
+    <p>Lexical sense contains a reference <code>ontolex:reference</code> to its concept <code>SKOS:Concept</code>:</p>
+    <pre><code>&lt;https://term.tilde.com/terms/523970/skill-en#Sense&gt;
+        ontolex:reference  :523970 .</code></pre>
+    <u>Canonical form</u>
+    <p>English canonical term form is <strong>skill</strong></p>
+    <pre><code>&lt;https://term.tilde.com/terms/523970/skill-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;skill&quot;@en .</code></pre>
+    <br />
+    <h4>OntoLex Lemon structures for German</h4>  
+    <u>Lexicon</u>
+    <p>German lexicon contains a reference to Lexicalentry of german representation of term</p>
+    <pre><code>:de     a   ontolex:Lexicon ;
         ontolex:entry     :Fertigkeit-de ;
-        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .</code></pre>
-    <h5>Lexicon</h5>
-    <p></p>
-    <pre><code></code></pre>
-    <h5>Lexical entry</h5>
-    <p></p>
-    <pre><code></code></pre>
-    <h5>Lexical sense</h5>
-    <p></p>
-    <pre><code></code></pre>
-    <h5>Canonical form</h5>
-    <p></p>
-    <pre><code></code></pre>
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .</code></pre>   
+    <u>Lexical entry</u>
+    <p>Lexical entry has reference to the canonical form of german term and a reference to the sense of german representation:</p>
+    <pre><code>:Fertigkeit-de  a              ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/523970/Fertigkeit-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/523970/Fertigkeit-de#Sense&gt; .</code></pre>
+    <u>Lexical sense</u>
+    <p>Lexical sense of german term has a reference to the concept.</p>
+    <pre><code>&lt;https://term.tilde.com/terms/523970/Fertigkeit-de#Sense&gt;
+        ontolex:reference  :523970 .</code></pre>
+    <u>Canonical form</u>
+    <p>German canonical term form is <strong>Fertigkeit</strong></p>
+    <pre><code>             
+&lt;https://term.tilde.com/terms/523970/Fertigkeit-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Fertigkeit&quot;@de .</code></pre>
     <h3>SPARQL queries for e-terminology results</h3>
-    <p>Sugestion to process rezults with RDF graph or SParql qury engine.</p>
-    <p>Example of retrieving translations</p>
-    <pre><code></code></pre>
+    <p>A raw e-Terminology result processing with text or xml processors not easy, there fore we suggest to query results with RDF graph functionality or any SPARQL query engine.</p>
+    <p>SPARQL examples:</p>
+    <u>Query to get list of concepts and all written representations in german and english.</u>
+    <pre style="height:200px;"><code>PREFIX nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;
+PREFIX its: &lt;http://www.w3.org/2005/11/its/rdf#&gt;
+PREFIX ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+CONSTRUCT { 
+  ?concept a skos:Concept;
+  ontolex:writtenRep ?writtenRep_de; 
+  ontolex:writtenRep ?writtenRep_en}
+WHERE {
+  ?lexicon_de     a                 ontolex:Lexicon.
+  ?lexicon_de ontolex:entry ?entry_de.
+  ?entry_de ontolex:canonicalForm ?canonicalForm_de.
+  ?canonicalForm_de ontolex:writtenRep ?writtenRep_de.
+  ?entry_de ontolex:sense ?sense_de.
+  ?sense_de ontolex:reference ?concept.
+  ?lexicon_de
+  ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .
+  ?entry_en ontolex:sense ?sense_en.
+  ?entry_en ontolex:canonicalForm ?canonicalForm_en.
+  ?canonicalForm_en ontolex:writtenRep ?writtenRep_en.
+  ?sense_en ontolex:reference ?concept.
+}</code></pre>
+    <p>This query will return ID of term (concept), english term and german term what was mentioned in the source text.</p>
+
+    <u>Query to get all entries from the german lexicon</u>
+    <pre style="height:200px;"><code>PREFIX nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;
+PREFIX its: &lt;http://www.w3.org/2005/11/its/rdf#&gt;
+PREFIX ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt;
+
+CONSTRUCT { ?entry ontolex:writtenRep ?writtenRep. }
+WHERE {
+  ?lexicon     a                 ontolex:Lexicon.
+  ?lexicon ontolex:entry ?entry.
+  ?entry ontolex:canonicalForm ?canonicalForm.
+  ?canonicalForm ontolex:writtenRep ?writtenRep.
+  ?lexicon
+  ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .
+}</code></pre>
+    
+    <u>Query to get all for all annotations the underlying concepts and written representations in source and target languages.</u>
+    <pre style="height:200px;"><code>PREFIX nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;
+PREFIX its: &lt;http://www.w3.org/2005/11/its/rdf#&gt;
+PREFIX ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt;
+PREFIX tbx: &lt;http://tbx2rdf.lider-project.eu/tbx#&gt;
+CONSTRUCT {   ?annotationString ?concept ?writtenRep }
+WHERE {
+  ?annotationString a nif:RFC5147String.
+  ?annotationString its:termInfoRef ?concept.
+  ?concept tbx:definition ?definition.
+  ?concept a skos:Concept.
+  ?sense ontolex:reference ?concept.
+  ?entry ontolex:sense ?sense.
+  ?entry ontolex:canonicalForm ?canonicalForm.
+  ?canonicalForm ontolex:writtenRep ?writtenRep.
+}</code></pre>
+
+
+    <br/>
     <h4>Using SPARQL filters functionality of FREME</h4>
+    <p>Freme server already provides built-in SPARQL querying over returned result of RDF. For details see a knowlegde base article <a href="filtering.html">Simplify FREME output using SPARQL filters</a></p>
+    <p>First check available filters if any already provide needed data structure. If not, you have to create new filter by uplouding new SPARQL query.</p>
+    <p>When filter is set, it can be used on every e-Terminology request by adding it as query parameter <code>&filter={filter_name}</code></p>
 </div>
 <div>
-    <h2>Step 3 - Advanced usage of e-Terminology</h2>
+    <h2>Step 3 - Advanced usage of e-Terminology</h2>  
+     <p>Try out different settings of e-Terminology online in Simple API Documentation page or in Full Documentation page.</p>
+
     <h3>Specify domain</h3>
-    <p>Filter out annotated terms</p>
+    <p>Filters out annotated terms by selecting certain domain from TaaS domain classification system. Please set the ID of target domain listed here: <a href="https://term.tilde.com/domains">term.tilde.com/domains</a></p>
+    <p>All domains starts with "TaaS-". In the following example will be set domain <i>Agriculture and foodstuff</i> with id <code>TaaS-1000</code></p>    
+    <h4>HTML Request</h4>
+    <pre><code>POST /current/e-terminology/tilde?source-lang=en&target-lang=de&domain=TaaS-1000 HTTP/1.1
+Host: api.freme-project.eu
+Accept: text/turtle
+Content-Type: text/plain
+Language is the ability to acquire complex systems of communication.</code></pre>
+    <h4>Curl</h4>
+    <pre>curl -X POST -H "Accept: text/turtle" -H "Content-Type: text/plain" -d 'Language is the ability to acquire complex systems of communication.' "http://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de&domain=TaaS-1000"</pre>
+    <h4>Result</h4>
+    <pre style="height:200px;"><code>@prefix cc:    &lt;http://creativecommons.org/ns#&gt; .
+@prefix :      &lt;https://term.tilde.com/terms/&gt; .
+@prefix void:  &lt;http://rdfs.org/ns/void#&gt; .
+@prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix its:   &lt;http://www.w3.org/2005/11/its&gt; .
+@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+@prefix skos:  &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+@prefix tbx:   &lt;http://tbx2rdf.lider-project.eu/tbx#&gt; .
+@prefix decomp: &lt;http://www.w3.org/ns/lemon/decomp#&gt; .
+@prefix dct:   &lt;http://purl.org/dc/terms/&gt; .
+@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt; .
+@prefix ldr:   &lt;http://purl.oclc.org/NET/ldr/ns#&gt; .
+@prefix odrl:  &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix dcat:  &lt;http://www.w3.org/ns/dcat#&gt; .
+@prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+&lt;http://freme-project.eu/#char=54,67&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;communication&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;communication&quot;@en ;
+                                itsrdf:taConfidence  1
+                              ] ;
+        nif:beginIndex        &quot;54&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;67&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :2899318 .
+&lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;communication&quot;@en .
+:       a                 dcat:Dataset , tbx:MartifHeader ;
+        &lt;http://purl.org/dc/elements/1.1/source&gt;
+                &quot;&quot; ;
+        dct:type          &quot;TBX&quot; ;
+        tbx:encodingDesc  &quot;&lt;p type=\&quot;XCSURI\&quot;&gt;http://www.ttt.org/oscarstandards/tbx/TBXXCS.xcs&lt;/p&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; ;
+        tbx:sourceDesc    &quot;&lt;sourceDesc&gt;&lt;p/&gt;&lt;/sourceDesc&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; .
+:2899318  a               skos:Concept ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/unknown&gt; , &lt;https://term.tilde.com/domains/TaaS-1000&gt; .
+:communication-en  a           ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/communication-en#Sense&gt; .
+:Kurzreferat-de  a             ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kurzreferat-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kurzreferat-de#Sense&gt; .
+:de     a                 ontolex:Lexicon ;
+        ontolex:entry     :Kurzvortrag-de , :Kurzreferat-de ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .
+&lt;https://term.tilde.com/terms/communication-en#Sense&gt;
+        ontolex:reference  :2899318 .
+&lt;https://term.tilde.com/terms/Kurzvortrag-de#Sense&gt;
+        ontolex:reference  :2899318 .
+:Kurzvortrag-de  a             ontolex:LexicalEntry ;
+        tbx:reliabilityCode    1 ;
+        &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#termType&gt;
+                &lt;http://www.lexinfo.net/ontology/2.0/lexinfo#fullForm&gt; ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Kurzvortrag-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Kurzvortrag-de#Sense&gt; .
+&lt;https://term.tilde.com/terms/Kurzvortrag-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kurzvortrag&quot;@de .
+&lt;https://term.tilde.com/terms/Kurzreferat-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Kurzreferat&quot;@de .
+&lt;http://freme-project.eu/#char=0,68&gt;
+        a               nif:String , nif:RFC5147String , nif:Context ;
+        nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex    &quot;68&quot;^^xsd:nonNegativeInteger ;
+        nif:isString    &quot;Language is the ability to acquire complex systems of communication.&quot;@en .
+:en     a                 ontolex:Lexicon ;
+        ontolex:entry     :communication-en ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/eng&gt; .
+&lt;https://term.tilde.com/terms/Kurzreferat-de#Sense&gt;
+        ontolex:reference  :2899318 .</code></pre>
+    <p>After processing the output, there are only terms found: <strong>communication</strong> with german translations <i>Kurzreferat</i> and <i>Kurzvortrag</i></p>
+
+    
     <h3>Specify collection</h3>
-    <p>Choose to annotate with certain collection</p>
+    <p>Choose to annotate with certain collection. Please set the ID of your collection. The ID of collection is visible at <a href="https://term.tilde.com/">term.tilde.com</a> portal under the section <i>Terms</i>.</p>
+    <p>Next example will use collection <i>Official terminology of the European Union, English–Hungarian–French–German</i> with id <code>353</code>:</p>
+    <h4>HTML Request</h4>
+    <pre><code>POST /current/e-terminology/tilde?source-lang=en&target-lang=de&collection=353 HTTP/1.1
+Host: api-dev.freme-project.eu
+Accept: text/turtle
+Content-Type: text/plain
+
+Language is the ability to acquire complex systems of communication.
+        </code></pre>
+    <h4>Curl</h4>
+    <pre><code>curl -X POST -H "Accept: text/turtle" -H "Content-Type: text/plain"  -d 'Language is the ability to acquire complex systems of communication.' "http://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de&collection=353"
+        </code></pre>
+    <h4>Result</h4>    
+    <pre style="height:200px;">
+    <code>@prefix cc:    &lt;http://creativecommons.org/ns#&gt; .
+@prefix :      &lt;https://term.tilde.com/terms/&gt; .
+@prefix void:  &lt;http://rdfs.org/ns/void#&gt; .
+@prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix its:   &lt;http://www.w3.org/2005/11/its&gt; .
+@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+@prefix skos:  &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+@prefix tbx:   &lt;http://tbx2rdf.lider-project.eu/tbx#&gt; .
+@prefix decomp: &lt;http://www.w3.org/ns/lemon/decomp#&gt; .
+@prefix dct:   &lt;http://purl.org/dc/terms/&gt; .
+@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix ontolex: &lt;http://www.w3.org/ns/lemon/ontolex#&gt; .
+@prefix ldr:   &lt;http://purl.oclc.org/NET/ldr/ns#&gt; .
+@prefix odrl:  &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix dcat:  &lt;http://www.w3.org/ns/dcat#&gt; .
+@prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+&lt;https://term.tilde.com/terms/communication-en#Sense&gt;
+        ontolex:reference  :836615 .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de&gt;
+        a                      ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#Sense&gt; .
+:de     a                 ontolex:Lexicon ;
+        ontolex:entry     &lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de&gt; , :Bekanntmachung-de ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; .
+&lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;communication&quot;@en .
+&lt;https://term.tilde.com/terms/communications-en#Sense&gt;
+        ontolex:reference  :832754 .
+:communication-en  a           ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/communication-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/communication-en#Sense&gt; .
+&lt;http://freme-project.eu/#char=0,68&gt;
+        a               nif:String , nif:RFC5147String , nif:Context ;
+        nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex    &quot;68&quot;^^xsd:nonNegativeInteger ;
+        nif:isString    &quot;Language is the ability to acquire complex systems of communication.&quot;@en .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Nachrichten&Atilde;&frac14;bermittlung&quot;@de .
+:836615  a                skos:Concept ;
+        rdfs:comment      &quot;international trade&quot;@en , &quot;European organisations&quot;@en , &quot;Community law&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/7611&gt; , &lt;https://term.tilde.com/domains/2021&gt; , &lt;https://term.tilde.com/domains/1011&gt; .
+&lt;https://term.tilde.com/terms/Bekanntmachung-de#Sense&gt;
+        ontolex:reference  :836615 .
+&lt;https://term.tilde.com/terms/Bekanntmachung-de#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;Bekanntmachung&quot;@de .
+:Bekanntmachung-de  a          ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/Bekanntmachung-de#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/ger/deu&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/Bekanntmachung-de#Sense&gt; .
+:en     a                 ontolex:Lexicon ;
+        ontolex:entry     :communications-en , :communication-en ;
+        ontolex:language  &lt;http://www.lexvo.org/page/iso639-3/eng&gt; .
+:832754  a                skos:Concept ;
+        rdfs:comment      &quot;international trade&quot;@en , &quot;European organisations&quot;@en , &quot;Community law&quot;@en ;
+        tbx:subjectField  &lt;https://term.tilde.com/domains/TaaS-0304&gt; , &lt;https://term.tilde.com/domains/TaaS-0107&gt; , &lt;https://term.tilde.com/domains/7611&gt; , &lt;https://term.tilde.com/domains/2021&gt; , &lt;https://term.tilde.com/domains/1011&gt; .
+:communications-en  a          ontolex:LexicalEntry ;
+        ontolex:canonicalForm  &lt;https://term.tilde.com/terms/communications-en#CanonicalForm&gt; ;
+        ontolex:language       &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+        ontolex:sense          &lt;https://term.tilde.com/terms/communications-en#Sense&gt; .
+&lt;https://term.tilde.com/terms/communications-en#CanonicalForm&gt;
+        ontolex:writtenRep  &quot;communications&quot;@en .
+&lt;http://freme-project.eu/#char=54,67&gt;
+        a                     nif:RFC5147String ;
+        nif:anchorOf          &quot;communication&quot;@en ;
+        nif:annotationUnit    [ rdfs:label           &quot;communications&quot;@en , &quot;communication&quot;@en ;
+                                itsrdf:taConfidence  1
+                              ] ;
+        nif:beginIndex        &quot;54&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;67&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,68&gt; ;
+        itsrdf:term           &quot;yes&quot; ;
+        itsrdf:termInfoRef    :836615 , :832754 .
+:       a                 dcat:Dataset , tbx:MartifHeader ;
+        &lt;http://purl.org/dc/elements/1.1/source&gt;
+                &quot;&quot; ;
+        dct:type          &quot;TBX&quot; ;
+        tbx:encodingDesc  &quot;&lt;p type=\&quot;XCSURI\&quot;&gt;http://www.ttt.org/oscarstandards/tbx/TBXXCS.xcs&lt;/p&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; ;
+        tbx:sourceDesc    &quot;&lt;sourceDesc&gt;&lt;p/&gt;&lt;/sourceDesc&gt;&quot;^^&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral&gt; .
+&lt;https://term.tilde.com/terms/Nachrichten%C3%BCbermittlung-de#Sense&gt;
+        ontolex:reference  :832754 .</code>
+    </pre>
+    <p>After processing the output, there are only one term found: <strong>communication</strong> with german translation <i>Bekanntmachung</i></p>
+
+    
     <h3>Use your private collection</h3>
-    <p>You can youse your private and propriaty collection and still keep it secure and protected</p>
-</div>
+    <p>You can use your private and propriaty collection and still keep it secure and protected. In order to use your private collection, you have to set youer private key along with request using query parameter <code>&key={you_private_key}</code></p>
+    <p>Private key can be issued here:<a href="https://term.tilde.com/account/keys/create?system=Freme">create key for term.tilde.com</a>. Registered account is required, you can register in some steps. </p>
