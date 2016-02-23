@@ -141,7 +141,7 @@ pos: 3.1
     function sendUpdateTemplate() {
 	$.ajax({
 	    url: fremeApiUrl + "/e-link/templates/"+$("#template-id-for-update").val()
-	    +"informat=json"
+	    +"?informat=json"
 	    +"&outformat=json",
             type: "PUT",
 	    dataType: "text",
