@@ -15,7 +15,7 @@ Some FREME endpoints are only accessible as authenticated user. At the moment th
 
   * POST, PUT and DELETE `/e-link/templates/{templateID}` (template handling that needs write access)
   * POST, PUT and DELETE `/toolbox/filter/manage/{filterName}` (filter handling that needs write access)
-  * POST, PUT and DELETE `pipelining/templates/{pipelineID}` (pipeline handling that needs write access)
+  * POST, PUT and DELETE `/pipelining/templates/{pipelineID}` (pipeline handling that needs write access)
   * GET, DELETE `/user/{userName}` and GET `/user` (user handling, except POST `/user`)
 
 Furthermore, the following FREME endpoints are restricted in such a way, that you can use them only with public resources (e.g. public templates), if you are not authenticated:
