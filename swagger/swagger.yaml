@@ -2209,7 +2209,7 @@ paths:
           a nif:String , nif:RFC5147String , nif:Context ;
             nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
             nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
-            nif:isString    &quot;translate me&quot;@en ;
+            nif:isString    &quot;translate me&quot;@en .
         </code></pre>
       operationId: "tildeTranslate"
       consumes:
