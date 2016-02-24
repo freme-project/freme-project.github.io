@@ -16,9 +16,23 @@ title: Getting started with e-Terminology
      </p>
     <p>Supports of 26 languages via the Tilde Terminology service.
     </p> 
+
+    <h3>Quick links</h3>
+    <ol>
+        <li><a href="#step1">Step 1 - annotate with e-Terminology</a></li>
+        <li><a href="#step2">Step 2 - understanding the output of e-Terminology</a></li>
+        <li><a href="#step3">Step 3 - advanced usage of e-Terminology</a></li>
+        <li>           
+            <ol>
+                <li><a href="#step3_domain">Specify domain</a></li>
+                <li><a href="#step3_collection">Specify collection</a></li>
+                <li><a href="#step3_private">Use your private collection</a></li>
+            </ol>
+        </li>      
+    </ol>
 </div>
 <div>
-    <h2>Step 1 - annotate with e-Terminology</h2>
+    <h2 id="step1">Step 1 - annotate with e-Terminology</h2>
     <h3></h3>
     <p>Annotates terms within the source text</p>
     <h4>HTML Request</h4>
@@ -874,7 +888,7 @@ Language is the ability to acquire complex systems of communication.</code></pre
 
   </div>
 <div>
-    <h2>Step 2 - Understanding the output of e-Terminology</h2>
+    <h2 id="step2">Step 2 - Understanding the output of e-Terminology</h2>
     <p>The result of e-Terminology can be divided in 2 parts:
     <ol>
         <li>Term annotations with references to terminology entries at term.tilde.com platform. Annotations done, using NIF ontology including ITS 2.0 data categories.</li>
@@ -883,7 +897,7 @@ Language is the ability to acquire complex systems of communication.</code></pre
 
 </p>
 
-    <h3>OntoLex (Lemon)</h3>
+    <h3 >OntoLex (Lemon)</h3>
     <p>Classical Lemon model contains Lexicon for each language with Lexical entries, Lexical senses and Lexical forms. But terminology resources mostly are concept based and organised in collections, 
     therefore e-Terminology data model extends classical Lemon model with concepts, its definition and their mappings to collection and domain classification system.</p>   
     <figure>
@@ -1065,10 +1079,10 @@ WHERE {
     <p>When filter is set, it can be used on every e-Terminology request by adding it as query parameter <code>&filter={filter_name}</code></p>
 </div>
 <div>
-    <h2>Step 3 - Advanced usage of e-Terminology</h2>  
+    <h2 id="step3">Step 3 - advanced usage of e-Terminology</h2>  
      <p>Try out different settings of e-Terminology online in Simple API Documentation page or in Full Documentation page.</p>
 
-    <h3>Specify domain</h3>
+    <h3 id="step3_domain">Specify domain</h3>
     <p>Filters out annotated terms by selecting certain domain from TaaS domain classification system. Please set the ID of target domain listed here: <a href="https://term.tilde.com/domains">term.tilde.com/domains</a></p>
     <p>All domains starts with "TaaS-". In the following example will be set domain <i>Agriculture and foodstuff</i> with id <code>TaaS-1000</code></p>    
     <h4>HTML Request</h4>
@@ -1164,7 +1178,7 @@ Language is the ability to acquire complex systems of communication.</code></pre
     <p>After processing the output, there are only terms found: <strong>communication</strong> with german translations <i>Kurzreferat</i> and <i>Kurzvortrag</i></p>
 
     
-    <h3>Specify collection</h3>
+    <h3 id="step3_collection">Specify collection</h3>
     <p>Choose to annotate with certain collection. Please set the ID of your collection. The ID of collection is visible at <a href="https://term.tilde.com/">term.tilde.com</a> portal under the section <i>Terms</i>.</p>
     <p>Next example will use collection <i>Official terminology of the European Union, English–Hungarian–French–German</i> with id <code>353</code>:</p>
     <h4>HTML Request</h4>
@@ -1269,6 +1283,6 @@ Language is the ability to acquire complex systems of communication.
     <p>After processing the output, there are only one term found: <strong>communication</strong> with german translation <i>Bekanntmachung</i></p>
 
     
-    <h3>Use your private collection</h3>
+    <h3 id="step3_private">Use your private collection</h3>
     <p>You can use your private and propriaty collection and still keep it secure and protected. In order to use your private collection, you have to set youer private key along with request using query parameter <code>&key={you_private_key}</code></p>
     <p>Private key can be issued here:<a href="https://term.tilde.com/account/keys/create?system=Freme">create key for term.tilde.com</a>. Registered account is required, you can register in some steps. </p>
