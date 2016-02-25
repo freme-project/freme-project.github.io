@@ -8,7 +8,7 @@ title: Translate from English to Dutch including Terminology
 <h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
 <div>
 <h2>Introduction</h2>
-<p>Tutorial demontrates usage of e-Translation and using more features to improve translation quality.</p>
+<p>Tutorial demonstrates usage of e-Translation and using more features to improve translation quality.</p>
 <p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
 <h3>Quick links</h3>
 <ol>
@@ -43,7 +43,7 @@ title: Translate from English to Dutch including Terminology
 <p>The input data is the output of Step 1</p>
 <h4>cURL</h4>
 <div>
-    <pre style="height:200px;"><code>curl -X POST -d "response-of-step1.ttl" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
+    <pre><code>curl -X POST -d "response-of-step1.ttl" "{{site.apiurl | prepend: site.url}}/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
 <p>Where the file <code>response-of-step1.ttl</code> is the response of e-Terminology.</p>
 </div>
 <a name="step2response"></a>
@@ -217,7 +217,7 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 <p>Translation system can be selected by setting the source language and the target language for each request. It is possible that there is more translation systems for the same language pair, but in different domain. So it is possible to set optionaly also <code>domain</code> parameter:</p>
 <h4>HTML Request</h4>
 <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal HTTP/1.1
-            Host: api-dev.freme-project.eu
+            Host: api.freme-project.eu
             Accept: application/rdf+xml
             Content-Type: text/plain
             The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
@@ -248,9 +248,10 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 <p>to use private MT system, add your key to the query string parameter list:</p>
 <h4>HTML Request</h4>
 <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&key=u-iuo-2323-444-223-ABC HTTP/1.1
-Host: api-dev.freme-project.eu
+Host: api.freme-project.eu
 Accept: application/rdf+xml
 Content-Type: text/plain
+
 The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
 
 </div>
