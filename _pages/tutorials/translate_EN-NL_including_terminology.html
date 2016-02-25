@@ -1,20 +1,35 @@
----
-dropdown: Tutorials
-pos: 3.1
-layout: default
-title: Translate from English to Dutch including Terminology
----
+  ---
+            dropdown: Tutorials
+            pos: 3.1
+            layout: default
+            title: Translate from English to Dutch including Terminology
+            ---
 
             <h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
             <div>
                 <h2>Introduction</h2>
-                <p>Use e-Terminology before e-Translation to improve or adjust translation senses. e-Terminology identifies terms within the source text and helps machine translation use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
+                <p>Tutorial demontrates usage of e-Translation and using more features to improve translation quality.</p>
+                <p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
+                <h3>Quick links</h3>
+                <ol>
+                    <li><a href="#tehnical_instructions">Technical Instructions</a></li>
+                    <li><a href="#demo">Try out API Calls</a></li>
+                    <li><a href="#pipelines">Using Pipelines - alternative approach</a></li>
+                    <li><a href="#customising">Customising e-Translation</a>
+                        <ol>                            
+                            <li><a href="#settingsystems">Selecting translation system</a></li>
+                            <li><a href="#its">ITS 2.0 category support</a></li>
+                            <li><a href="#systems">List of systems</a></li>
+                            <li><a href="#private">Private systems</a></li>
+                        </ol>
+                    </li>
+                </ol>
             </div>
 
             <div>
-                <h2>Technical Instructions</h2>
+                <h2 id="tehnical_instructions">Technical Instructions</h2>
                 <h3>Step 1 - using e-Terminology </h3>
-                <p>Annotate terms within the source text</p>
+                <p>Annotate terms within the source text.</p>
                 <h4>cURL</h4>
                 <pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "{{site.apiurl | prepend: site.url}}/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
         </pre>
@@ -22,1059 +37,137 @@ title: Translate from English to Dutch including Terminology
                 <p>
                     There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
                 </p>
-                    <h3>Step 2: using e-Translation to translate</h3>
+                <h3>Step 2 - using e-Translation to translate</h3>
 
                 <p>Translate text taking in account annotated term in Step 1.</p>
-                <p>The input data is the output of Step 1 - response of e-Terminology</p>
+                <p>The input data is the output of Step 1</p>
                 <h4>cURL</h4>
                 <div>
-                    <pre style="height:200px;"><code>curl -X POST  -d "{
-  \"@graph\" : [ {
-    \"@id\" : \"_:b0\",
-    \"label\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"continent\"
-    },
-    \"itsrdf:ta;Confidence\" : 1
-  }, {
-    \"@id\" : \"_:b1\",
-    \"label\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"economics\"
-    },
-    \"taConfidence\" : \"0.3165\"
-  }, {
-    \"@id\" : \"_:b2\",
-    \"label\" : [ {
-      \"@language\" : \"en\",
-      \"@value\" : \"partnerships\"
-    }, {
-      \"@language\" : \"en\",
-      \"@value\" : \"partnership\"
-    } ],
-    \"taConfidence\" : \"0.8961\"
-  }, {
-    \"@id\" : \"_:b3\",
-    \"label\" : [ {
-      \"@language\" : \"en\",
-      \"@value\" : \"covering\"
-    }, {
-      \"@language\" : \"en\",
-      \"@value\" : \"cover\"
-    } ],
-    \"itsrdf:taConfidence\" : 0
-  }, {
-    \"@id\" : \"_:b4\",
-    \"label\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"briefing\"
-    },
-    \"taConfidence\" : \"0.5946\"
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=0,143\",
-    \"@type\" : [ \"nif:String\", \"nif:RFC5147String\", \"nif:Context\" ],
-    \"beginIndex\" : \"0\",
-    \"endIndex\" : \"143\",
-    \"isString\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.\"
-    }
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=10,15\",
-    \"@type\" : \"nif:RFC5147String\",
-    \"anchorOf\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"brief\"
-    },
-    \"annotationUnit\" : \"_:b4\",
-    \"beginIndex\" : \"10\",
-    \"endIndex\" : \"15\",
-    \"referenceContext\" : \"http://freme-project.eu/#char=0,143\",
-    \"term\" : \"yes\",
-    \"termInfoRef\" : \":2849927\"
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=115,120\",
-    \"@type\" : \"nif:RFC5147String\",
-    \"anchorOf\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"cover\"
-    },
-    \"annotationUnit\" : \"_:b3\",
-    \"beginIndex\" : \"115\",
-    \"endIndex\" : \"120\",
-    \"referenceContext\" : \"http://freme-project.eu/#char=0,143\",
-    \"term\" : \"yes\",
-    \"termInfoRef\" : [ \":2793550\", \":3053501\", \":3132840\", \":2954606\", \":652680\", \":2961915\", \":2739960\", \":2797686\" ]
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=133,142\",
-    \"@type\" : \"nif:RFC5147String\",
-    \"anchorOf\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"continent\"
-    },
-    \"annotationUnit\" : \"_:b0\",
-    \"beginIndex\" : \"133\",
-    \"endIndex\" : \"142\",
-    \"referenceContext\" : \"http://freme-project.eu/#char=0,143\",
-    \"term\" : \"yes\",
-    \"termInfoRef\" : [ \":656197\", \":2739917\" ]
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=36,44\",
-    \"@type\" : \"nif:RFC5147String\",
-    \"anchorOf\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"economic\"
-    },
-    \"annotationUnit\" : \"_:b1\",
-    \"beginIndex\" : \"36\",
-    \"endIndex\" : \"44\",
-    \"referenceContext\" : \"http://freme-project.eu/#char=0,143\",
-    \"term\" : \"yes\",
-    \"termInfoRef\" : [ \":652962\", \":617859\", \":2740304\" ]
-  }, {
-    \"@id\" : \"http://freme-project.eu/#char=59,70\",
-    \"@type\" : \"nif:RFC5147String\",
-    \"anchorOf\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"partnership\"
-    },
-    \"annotationUnit\" : \"_:b2\",
-    \"beginIndex\" : \"59\",
-    \"endIndex\" : \"70\",
-    \"referenceContext\" : \"http://freme-project.eu/#char=0,143\",
-    \"term\" : \"yes\",
-    \"termInfoRef\" : [ \":3052768\", \":2788507\", \":3057754\", \":2798212\", \":2746193\", \":2795107\", \":1227317\", \":618120\" ]
-  }, {
-    \"@id\" : \"./\",
-    \"@type\" : [ \"dcat:Dataset\", \"tbx:MartifHeader\" ],
-    \"source\" : \"\",
-    \"type\" : \"TBX\",
-    \"encodingDesc\" : \"<p type=\\"XCSURI\\">http://www.ttt.org/oscarstandards/tbx/TBXXCS.xcs</p>\"
-  }, {
-    \"@id\" : \":1227317\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1501\", \"../../domains/3236\" ],
-    \"comment\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"information technology and data processing\"
-    }
-  }, {
-    \"@id\" : \":2739917\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/52\" ]
-  }, {
-    \"@id\" : \":2739960\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/52\" ]
-  }, {
-    \"@id\" : \":2740304\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/52\" ]
-  }, {
-    \"@id\" : \":2746193\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-0303\", \"../../domains/4026\" ]
-  }, {
-    \"@id\" : \":2788507\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-0303\", \"../../domains/24\" ]
-  }, {
-    \"@id\" : \":2793550\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1500\", \"../../domains/68\" ]
-  }, {
-    \"@id\" : \":2795107\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-0303\", \"../../domains/24\" ]
-  }, {
-    \"@id\" : \":2797686\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1500\", \"../../domains/68\" ]
-  }, {
-    \"@id\" : \":2798212\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1500\", \"../../domains/TaaS-0303\", \"../../domains/68\", \"../../domains/24\" ]
-  }, {
-    \"@id\" : \":2849927\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/unknown\", \"../../domains/TaaS-1509\", \"../../domains/TaaS-0100\", \"../../domains/48\" ]
-  }, {
-    \"@id\" : \":2954606\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1500\", \"../../domains/68\" ]
-  }, {
-    \"@id\" : \":2961915\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/unknown\", \"../../domains/TaaS-0100\" ]
-  }, {
-    \"@id\" : \":3052768\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/unknown\", \"../../domains/TaaS-2001\", \"../../domains/TaaS-1500\", \"../../domains/TaaS-1001\", \"../../domains/TaaS-0106\", \"../../domains/6416002\", \"../../domains/5611002\", \"../../domains/3206\" ]
-  }, {
-    \"@id\" : \":3053501\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-2000\", \"../../domains/TaaS-1500\", \"../../domains/TaaS-0107\", \"../../domains/6411\", \"../../domains/2811\", \"../../domains/1016003\" ]
-  }, {
-    \"@id\" : \":3057754\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-0301\", \"../../domains/4006\" ]
-  }, {
-    \"@id\" : \":3132840\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-2000\", \"../../domains/TaaS-1500\", \"../../domains/6411005\", \"../../domains/2811\" ]
-  }, {
-    \"@id\" : \":617859\",
-    \"@type\" : \"skos:Concept\",
-    \"relatedConcept\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"econometrics; economy; macroeconomics; microeconomics\"
-    },
-    \"subjectField\" : [ \"../../domains/TaaS-2000\", \"../../domains/3611\", \"../../domains/3231\" ],
-    \"comment\" : [ {
-      \"@language\" : \"en\",
-      \"@value\" : \"information and information processing\"
-    }, {
-      \"@language\" : \"en\",
-      \"@value\" : \"humanities\"
-    } ]
-  }, {
-    \"@id\" : \":618120\",
-    \"@type\" : \"skos:Concept\",
-    \"relatedConcept\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"company member\"
-    },
-    \"subjectField\" : [ \"../../domains/TaaS-2000\", \"../../domains/TaaS-0301\", \"../../domains/4016\", \"../../domains/3231\" ],
-    \"comment\" : [ {
-      \"@language\" : \"en\",
-      \"@value\" : \"legal form of organisations\"
-    }, {
-      \"@language\" : \"en\",
-      \"@value\" : \"information and information processing\"
-    } ]
-  }, {
-    \"@id\" : \":652680\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/5206\" ],
-    \"comment\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"environmental policy\"
-    }
-  }, {
-    \"@id\" : \":652962\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/5206\" ],
-    \"comment\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"environmental policy\"
-    }
-  }, {
-    \"@id\" : \":656197\",
-    \"@type\" : \"skos:Concept\",
-    \"subjectField\" : [ \"../../domains/TaaS-1100\", \"../../domains/5206\" ],
-    \"comment\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"environmental policy\"
-    }
-  }, {
-    \"@id\" : \":afdekking+%5Bactie%5D-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":afdekking+%5Bactie%5D-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":afdekking+%5Bactie%5D-nl#Sense\"
-  }, {
-    \"@id\" : \":afdekking+%5Bactie%5D-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"afdekking [actie]\"
-    }
-  }, {
-    \"@id\" : \":afdekking+%5Bactie%5D-nl#Sense\",
-    \"reference\" : [ \":652680\", \":2739960\" ]
-  }, {
-    \"@id\" : \":afdekking-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":afdekking-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":afdekking-nl#Sense\"
-  }, {
-    \"@id\" : \":afdekking-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"afdekking\"
-    }
-  }, {
-    \"@id\" : \":afdekking-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":bedekking-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":bedekking-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":bedekking-nl#Sense\"
-  }, {
-    \"@id\" : \":bedekking-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"bedekking\"
-    }
-  }, {
-    \"@id\" : \":bedekking-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":bekleden-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":bekleden-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":bekleden-nl#Sense\"
-  }, {
-    \"@id\" : \":bekleden-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"bekleden\"
-    }
-  }, {
-    \"@id\" : \":bekleden-nl#Sense\",
-    \"reference\" : \":2793550\"
-  }, {
-    \"@id\" : \":bekleding-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":bekleding-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":bekleding-nl#Sense\"
-  }, {
-    \"@id\" : \":bekleding-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"bekleding\"
-    }
-  }, {
-    \"@id\" : \":bekleding-nl#Sense\",
-    \"reference\" : [ \":2797686\", \":2793550\" ]
-  }, {
-    \"@id\" : \":briefing-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":briefing-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":briefing-en#Sense\"
-  }, {
-    \"@id\" : \":briefing-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"briefing\"
-    }
-  }, {
-    \"@id\" : \":briefing-en#Sense\",
-    \"reference\" : \":2849927\"
-  }, {
-    \"@id\" : \":case-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":case-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":case-en#Sense\"
-  }, {
-    \"@id\" : \":case-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"case\"
-    }
-  }, {
-    \"@id\" : \":case-en#Sense\",
-    \"reference\" : \":3132840\"
-  }, {
-    \"@id\" : \":cladding-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":cladding-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":cladding-en#Sense\"
-  }, {
-    \"@id\" : \":cladding-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"cladding\"
-    }
-  }, {
-    \"@id\" : \":cladding-en#Sense\",
-    \"reference\" : \":2793550\"
-  }, {
-    \"@id\" : \":continent-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":continent-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":continent-en#Sense\"
-  }, {
-    \"@id\" : \":continent-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"continent\"
-    }
-  }, {
-    \"@id\" : \":continent-en#Sense\",
-    \"reference\" : [ \":656197\", \":2739917\" ]
-  }, {
-    \"@id\" : \":continent-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":continent-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":continent-nl#Sense\"
-  }, {
-    \"@id\" : \":continent-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"continent\"
-    }
-  }, {
-    \"@id\" : \":continent-nl#Sense\",
-    \"reference\" : [ \":656197\", \":2739917\" ]
-  }, {
-    \"@id\" : \":cover-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : [ 3, 1 ],
-    \"canonicalForm\" : \":cover-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":cover-en#Sense\"
-  }, {
-    \"@id\" : \":cover-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"cover\"
-    }
-  }, {
-    \"@id\" : \":cover-en#Sense\",
-    \"reference\" : [ \":3132840\", \":3053501\", \":2961915\", \":2954606\", \":2797686\" ]
-  }, {
-    \"@id\" : \":covering-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : [ 3, 1 ],
-    \"canonicalForm\" : \":covering-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":covering-en#Sense\"
-  }, {
-    \"@id\" : \":covering-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"covering\"
-    }
-  }, {
-    \"@id\" : \":covering-en#Sense\",
-    \"reference\" : [ \":652680\", \":2793550\", \":2739960\" ]
-  }, {
-    \"@id\" : \":dek-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":dek-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":dek-nl#Sense\"
-  }, {
-    \"@id\" : \":dek-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"dek\"
-    }
-  }, {
-    \"@id\" : \":dek-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":deksel-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":deksel-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":deksel-nl#Sense\"
-  }, {
-    \"@id\" : \":deksel-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"deksel\"
-    }
-  }, {
-    \"@id\" : \":deksel-nl#Sense\",
-    \"reference\" : \":2954606\"
-  }, {
-    \"@id\" : \":dekzeil-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":dekzeil-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":dekzeil-nl#Sense\"
-  }, {
-    \"@id\" : \":dekzeil-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"dekzeil\"
-    }
-  }, {
-    \"@id\" : \":dekzeil-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":economics-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":economics-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":economics-en#Sense\"
-  }, {
-    \"@id\" : \":economics-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"economics\"
-    }
-  }, {
-    \"@id\" : \":economics-en#Sense\",
-    \"reference\" : [ \":652962\", \":617859\", \":2740304\" ]
-  }, {
-    \"@id\" : \":economie-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":economie-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":economie-nl#Sense\"
-  }, {
-    \"@id\" : \":economie-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"economie\"
-    }
-  }, {
-    \"@id\" : \":economie-nl#Sense\",
-    \"reference\" : [ \":652962\", \":2740304\" ]
-  }, {
-    \"@id\" : \":economische+wetenschap-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"canonicalForm\" : \":economische+wetenschap-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":economische+wetenschap-nl#Sense\"
-  }, {
-    \"@id\" : \":economische+wetenschap-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"economische wetenschap\"
-    }
-  }, {
-    \"@id\" : \":economische+wetenschap-nl#Sense\",
-    \"reference\" : \":617859\"
-  }, {
-    \"@id\" : \":en\",
-    \"@type\" : \"ontolex:Lexicon\",
-    \"entry\" : [ \":grating-en\", \":cladding-en\", \":instructions-en\", \":wrapping-en\", \":briefing-en\", \":cover-en\", \":economics-en\", \":case-en\", \":partnerships-en\", \":packing-en\", \":partnership-en\", \":general+partnership-en\", \":continent-en\", \":covering-en\" ],
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\"
-  }, {
-    \"@id\" : \":foedraal-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":foedraal-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":foedraal-nl#Sense\"
-  }, {
-    \"@id\" : \":foedraal-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"foedraal\"
-    }
-  }, {
-    \"@id\" : \":foedraal-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":general+partnership-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":general+partnership-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":general+partnership-en#Sense\"
-  }, {
-    \"@id\" : \":general+partnership-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"general partnership\"
-    }
-  }, {
-    \"@id\" : \":general+partnership-en#Sense\",
-    \"reference\" : \":2788507\"
-  }, {
-    \"@id\" : \":grating-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":grating-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":grating-en#Sense\"
-  }, {
-    \"@id\" : \":grating-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"grating\"
-    }
-  }, {
-    \"@id\" : \":grating-en#Sense\",
-    \"reference\" : \":2954606\"
-  }, {
-    \"@id\" : \":hoes-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":hoes-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":hoes-nl#Sense\"
-  }, {
-    \"@id\" : \":hoes-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"hoes\"
-    }
-  }, {
-    \"@id\" : \":hoes-nl#Sense\",
-    \"reference\" : \":2739960\"
-  }, {
-    \"@id\" : \":instructions-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":instructions-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":instructions-en#Sense\"
-  }, {
-    \"@id\" : \":instructions-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"instructions\"
-    }
-  }, {
-    \"@id\" : \":instructions-en#Sense\",
-    \"reference\" : \":2849927\"
-  }, {
-    \"@id\" : \":kaft-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 2,
-    \"canonicalForm\" : \":kaft-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":kaft-nl#Sense\"
-  }, {
-    \"@id\" : \":kaft-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"kaft\"
-    }
-  }, {
-    \"@id\" : \":kaft-nl#Sense\",
-    \"reference\" : [ \":3132840\", \":3053501\" ]
-  }, {
-    \"@id\" : \":nl\",
-    \"@type\" : \"ontolex:Lexicon\",
-    \"entry\" : [ \":bedekking-nl\", \":continent-nl\", \":personenvennootschap-nl\", \":partnerverband-nl\", \":economie-nl\", \":kaft-nl\", \":deksel-nl\", \":dek-nl\", \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl\", \":partnerschap-nl\", \":omslag-nl\", \":afdekking+%5Bactie%5D-nl\", \":afdekking-nl\", \":voorschriften-nl\", \":bekleding-nl\", \":vennootschap+onder+firma-nl\", \":bekleden-nl\", \":economische+wetenschap-nl\", \":dekzeil-nl\", \":hoes-nl\", \":foedraal-nl\", \":verpakking-nl\" ],
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\"
-  }, {
-    \"@id\" : \":omslag-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 2,
-    \"canonicalForm\" : \":omslag-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":omslag-nl#Sense\"
-  }, {
-    \"@id\" : \":omslag-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"omslag\"
-    }
-  }, {
-    \"@id\" : \":omslag-nl#Sense\",
-    \"reference\" : \":3132840\"
-  }, {
-    \"@id\" : \":packing-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":packing-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":packing-en#Sense\"
-  }, {
-    \"@id\" : \":packing-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"packing\"
-    }
-  }, {
-    \"@id\" : \":packing-en#Sense\",
-    \"reference\" : \":2961915\"
-  }, {
-    \"@id\" : \":partnerschap-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":partnerschap-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":partnerschap-nl#Sense\"
-  }, {
-    \"@id\" : \":partnerschap-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"partnerschap\"
-    }
-  }, {
-    \"@id\" : \":partnerschap-nl#Sense\",
-    \"reference\" : [ \":3052768\", \":2798212\" ]
-  }, {
-    \"@id\" : \":partnership-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : [ 3, 1 ],
-    \"canonicalForm\" : \":partnership-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":partnership-en#Sense\"
-  }, {
-    \"@id\" : \":partnership-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"partnership\"
-    }
-  }, {
-    \"@id\" : \":partnership-en#Sense\",
-    \"reference\" : [ \":618120\", \":3057754\", \":3052768\", \":2798212\", \":2795107\", \":2788507\", \":1227317\" ]
-  }, {
-    \"@id\" : \":partnerships-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":partnerships-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":partnerships-en#Sense\"
-  }, {
-    \"@id\" : \":partnerships-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"partnerships\"
-    }
-  }, {
-    \"@id\" : \":partnerships-en#Sense\",
-    \"reference\" : \":2746193\"
-  }, {
-    \"@id\" : \":partnerverband-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"canonicalForm\" : \":partnerverband-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":partnerverband-nl#Sense\"
-  }, {
-    \"@id\" : \":partnerverband-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"partnerverband\"
-    }
-  }, {
-    \"@id\" : \":partnerverband-nl#Sense\",
-    \"reference\" : \":1227317\"
-  }, {
-    \"@id\" : \":personenvennootschap-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":personenvennootschap-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":personenvennootschap-nl#Sense\"
-  }, {
-    \"@id\" : \":personenvennootschap-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"personenvennootschap\"
-    }
-  }, {
-    \"@id\" : \":personenvennootschap-nl#Sense\",
-    \"reference\" : [ \":618120\", \":3057754\", \":2795107\" ]
-  }, {
-    \"@id\" : \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 3,
-    \"canonicalForm\" : \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl#Sense\"
-  }, {
-    \"@id\" : \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"personenvennootschappen/commanditaire vennootschappen\"
-    }
-  }, {
-    \"@id\" : \":personenvennootschappen%2Fcommanditaire+vennootschappen-nl#Sense\",
-    \"reference\" : \":2746193\"
-  }, {
-    \"@id\" : \":vennootschap+onder+firma-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":vennootschap+onder+firma-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":vennootschap+onder+firma-nl#Sense\"
-  }, {
-    \"@id\" : \":vennootschap+onder+firma-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"vennootschap onder firma\"
-    }
-  }, {
-    \"@id\" : \":vennootschap+onder+firma-nl#Sense\",
-    \"reference\" : \":2788507\"
-  }, {
-    \"@id\" : \":verpakking-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":verpakking-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":verpakking-nl#Sense\"
-  }, {
-    \"@id\" : \":verpakking-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"verpakking\"
-    }
-  }, {
-    \"@id\" : \":verpakking-nl#Sense\",
-    \"reference\" : \":2961915\"
-  }, {
-    \"@id\" : \":voorschriften-nl\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":voorschriften-nl#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/dut\",
-    \"sense\" : \":voorschriften-nl#Sense\"
-  }, {
-    \"@id\" : \":voorschriften-nl#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"nl\",
-      \"@value\" : \"voorschriften\"
-    }
-  }, {
-    \"@id\" : \":voorschriften-nl#Sense\",
-    \"reference\" : \":2849927\"
-  }, {
-    \"@id\" : \":wrapping-en\",
-    \"@type\" : \"ontolex:LexicalEntry\",
-    \"tbx:reliabilityCode\" : 1,
-    \"canonicalForm\" : \":wrapping-en#CanonicalForm\",
-    \"language\" : \"http://www.lexvo.org/page/iso639-3/eng\",
-    \"sense\" : \":wrapping-en#Sense\"
-  }, {
-    \"@id\" : \":wrapping-en#CanonicalForm\",
-    \"writtenRep\" : {
-      \"@language\" : \"en\",
-      \"@value\" : \"wrapping\"
-    }
-  }, {
-    \"@id\" : \":wrapping-en#Sense\",
-    \"reference\" : \":2961915\"
-  } ],
-  \"@context\" : {
-    \"writtenRep\" : \"http://www.w3.org/ns/lemon/ontolex#writtenRep\",
-    \"sense\" : {
-      \"@id\" : \"http://www.w3.org/ns/lemon/ontolex#sense\",
-      \"@type\" : \"@id\"
-    },
-    \"language\" : {
-      \"@id\" : \"http://www.w3.org/ns/lemon/ontolex#language\",
-      \"@type\" : \"@id\"
-    },
-    \"canonicalForm\" : {
-      \"@id\" : \"http://www.w3.org/ns/lemon/ontolex#canonicalForm\",
-      \"@type\" : \"@id\"
-    },
-    \"reliabilityCode\" : {
-      \"@id\" : \"http://tbx2rdf.lider-project.eu/tbx#reliabilityCode\",
-      \"@type\" : \"http://www.w3.org/2001/XMLSchema#integer\"
-    },
-    \"reference\" : {
-      \"@id\" : \"http://www.w3.org/ns/lemon/ontolex#reference\",
-      \"@type\" : \"@id\"
-    },
-    \"termInfoRef\" : {
-      \"@id\" : \"http://www.w3.org/2005/11/its/rdf#termInfoRef\",
-      \"@type\" : \"@id\"
-    },
-    \"term\" : \"http://www.w3.org/2005/11/its/rdf#term\",
-    \"referenceContext\" : {
-      \"@id\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext\",
-      \"@type\" : \"@id\"
-    },
-    \"endIndex\" : {
-      \"@id\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#endIndex\",
-      \"@type\" : \"http://www.w3.org/2001/XMLSchema#nonNegativeInteger\"
-    },
-    \"beginIndex\" : {
-      \"@id\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#beginIndex\",
-      \"@type\" : \"http://www.w3.org/2001/XMLSchema#nonNegativeInteger\"
-    },
-    \"annotationUnit\" : {
-      \"@id\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#annotationUnit\",
-      \"@type\" : \"@id\"
-    },
-    \"anchorOf\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf\",
-    \"subjectField\" : {
-      \"@id\" : \"http://tbx2rdf.lider-project.eu/tbx#subjectField\",
-      \"@type\" : \"@id\"
-    },
-    \"taConfidence\" : {
-      \"@id\" : \"http://www.w3.org/2005/11/its/rdf#taConfidence\",
-      \"@type\" : \"http://www.w3.org/2001/XMLSchema#decimal\"
-    },
-    \"label\" : \"http://www.w3.org/2000/01/rdf-schema#label\",
-    \"comment\" : \"http://www.w3.org/2000/01/rdf-schema#comment\",
-    \"entry\" : {
-      \"@id\" : \"http://www.w3.org/ns/lemon/ontolex#entry\",
-      \"@type\" : \"@id\"
-    },
-    \"sourceDesc\" : {
-      \"@id\" : \"http://tbx2rdf.lider-project.eu/tbx#sourceDesc\",
-      \"@type\" : \"http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral\"
-    },
-    \"encodingDesc\" : {
-      \"@id\" : \"http://tbx2rdf.lider-project.eu/tbx#encodingDesc\",
-      \"@type\" : \"http://www.w3.org/1999/02/22-rdf-syntax-ns##XMLLiteral\"
-    },
-    \"type\" : \"http://purl.org/dc/terms/type\",
-    \"source\" : \"http://purl.org/dc/elements/1.1/source\",
-    \"relatedConcept\" : \"http://tbx2rdf.lider-project.eu/tbx#relatedConcept\",
-    \"isString\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString\",
-    \"cc\" : \"http://creativecommons.org/ns#\",
-    \"@base\" : \"https://term.tilde.com/terms/\",
-    \"\" : \"https://term.tilde.com/terms/\",
-    \"void\" : \"http://rdfs.org/ns/void#\",
-    \"xsd\" : \"http://www.w3.org/2001/XMLSchema#\",
-    \"its\" : \"http://www.w3.org/2005/11/its\",
-    \"itsrdf\" : \"http://www.w3.org/2005/11/its/rdf#\",
-    \"skos\" : \"http://www.w3.org/2004/02/skos/core#\",
-    \"rdfs\" : \"http://www.w3.org/2000/01/rdf-schema#\",
-    \"nif\" : \"http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#\",
-    \"tbx\" : \"http://tbx2rdf.lider-project.eu/tbx#\",
-    \"decomp\" : \"http://www.w3.org/ns/lemon/decomp#\",
-    \"dct\" : \"http://purl.org/dc/terms/\",
-    \"rdf\" : \"http://www.w3.org/1999/02/22-rdf-syntax-ns#\",
-    \"ontolex\" : \"http://www.w3.org/ns/lemon/ontolex#\",
-    \"ldr\" : \"http://purl.oclc.org/NET/ldr/ns#\",
-    \"odrl\" : \"http://www.w3.org/ns/odrl/2/\",
-    \"dcat\" : \"http://www.w3.org/ns/dcat#\",
-    \"prov\" : \"http://www.w3.org/ns/prov#\"
-  }
-}" "http://api-dev.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
+                    <pre style="height:200px;"><code>curl -X POST -d "response-of-step1.ttl" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
+                <p>Where the file <code>response-of-step1.ttl</code> is the response of e-Terminology.</p>
                 </div>
-<a name="step2response"></a>
+                <a name="step2response"></a>
                 <h4>Result</h4>
                 <p>
                     Result of machine translation is:
                     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
-                    <br/>With MT confidence score <strong>0.66955627717300892</strong>
+                    <br />With MT confidence score <strong>0.66955627717300892</strong>
                 </p>
             </div>
 
             <script type="text/javascript">
                 function sendTranslationRequest(turtleData) {
-                $("#response2").text("loading...");
-                $.ajax({
-                url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang="+encodeURIComponent($("#source-lang").val())+"&target-lang="+encodeURIComponent($("#target-lang").val()),
-                type: "POST",
-                data: turtleData,
-                contentType:false,
-                dataType: 'text',
-                statusCode: {
-                400: function () {
-                $("#response2").text("Bad request");
-                },
-                406: function () {
-                $("#response2").text("Not acceptable");
-                },
-                500: function () {
-                $("#response2").text("Server error");
-                }
-                }
-                }).done(function (result) {
-                $("#response2").text(result);
-                });
+                    $("#response2").text("loading...");
+                    $.ajax({
+                        url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
+                        type: "POST",
+                        data: turtleData,
+                        contentType: false,
+                        dataType: 'text',
+                        statusCode: {
+                            400: function () {
+                                $("#response2").text("Bad request");
+                            },
+                            406: function () {
+                                $("#response2").text("Not acceptable");
+                            },
+                            500: function () {
+                                $("#response2").text("Server error");
+                            }
+                        }
+                    }).done(function (result) {
+                        $("#response2").text(result);
+                    });
                 };
-
                 function sendTerminologyRequest() {
-                $("#response1").text("loading...");
-                $("#response2").text("waiting...");
-                $.ajax({
-                url: fremeApiUrl + "/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
-                type: "POST",
-                contentType: false,
-                dataType: 'text',
-                data: $("#input").val(),
-                statusCode: {
-                400: function () {
-                $("#response1").text("Bad request");
-                },
-                406: function () {
-                $("#response1").text("Not acceptable");
-                },
-                500: function () {
-                $("#response1").text("Server error");
-                }
-                }
-
-                }).done(function (result) {
-                $("#response1").text(result);
-                sendTranslationRequest(result);
-                console.log(result);
-                });
+                    $("#response1").text("loading...");
+                    $("#response2").text("waiting...");
+                    $.ajax({
+                        url: fremeApiUrl + "/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
+                        type: "POST",
+                        contentType: false,
+                        dataType: 'text',
+                        data: $("#input").val(),
+                        statusCode: {
+                            400: function () {
+                                $("#response1").text("Bad request");
+                            },
+                            406: function () {
+                                $("#response1").text("Not acceptable");
+                            },
+                            500: function () {
+                                $("#response1").text("Server error");
+                            }
+                        }
+                    }).done(function (result) {
+                        $("#response1").text(result);
+                        sendTranslationRequest(result);
+                        console.log(result);
+                    });
                 };
             </script>
 
             <div>
-                <h2>Example API Calls</h2>
+                <h2 id="demo">Try out API Calls</h2>
                 <p>For demonstration purposes we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+                <h3>Request</h3>
+                <form>
+                    <p>
+                        <strong>Query string parameter input</strong><br />
+                        Specify the text you want to translate here.<br />
+                        <textarea class="form-control" rows="3" id="input">The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</textarea>
+                    </p>
+                    <br />
 
-                <p>
-                    <strong>Query string parameter input</strong><br />
-                    Specify the text you want to translate here.<br />
-                    <textarea class="form-control" rows="3" id="input">The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</textarea>
-                </p>
-                <br />
+                    <p>
+                        <strong>Query string parameter source-lang</strong><br />
+                        Enter the language you want to translate from<br />
+                        <input id="source-lang" type="text" value="en" />
+                    </p>
+                    <br />
 
-                <p>
-                    <strong>Query string parameter source-lang</strong><br />
-                    Enter the language you want to translate from<br />
-                    <input id="source-lang" type="text" value="en" />
-                </p>
-                <br />
+                    <p>
+                        <strong>Query string parameter source-lang</strong><br />
+                        Enter the language you want to translate to<br />
+                        <input id="target-lang" type="text" value="nl" />
+                    </p>
+                    <br />
 
-                <p>
-                    <strong>Query string parameter source-lang</strong><br />
-                    Enter the language you want to translate to<br />
-                    <input id="target-lang" type="text" value="nl" />
-                </p>
-                <br />
+                    <p>
+                        <strong>Query string parameter informat</strong><br />
+                        Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"
+                    </p>
+                    <br />
 
-                <p>
-                    <strong>Query string parameter informat</strong><br />
-                    Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"
-                </p>
-                <br />
+                    <p>
+                        <strong>Query string parameter outformat</strong><br />
+                        Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"
+                    </p>
+                    <br />
 
-                <p>
-                    <strong>Query string parameter outformat</strong><br />
-                    Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"
-                </p>
-                <br />
-
-                <button onclick="sendTerminologyRequest();">Try it out!</button>
-
-                <h2>Response of Step 1: e-Terminology </h2>
-                <pre style="height:300px;">
-                    <code id="response1"></code>
+                    <button onclick="sendTerminologyRequest();">Try it out!</button>
+                </form>
+               
+                <h3>Response</h3>
+                <h4>Response of Step 1: e-Terminology </h4>
+                <pre style="max-height:300px;">
+                <code id="response1">Here you will get the intermediate results from e-Terminology, that will be submitted to e-Translation.</code>
                 </pre>
 
-                <h2>Response of Step 2: e-Translation</h2>
-                <pre style="height:300px;">
-                <code id="response2"></code>
+                <h4>Response of Step 2: e-Translation</h4>
+                <pre style="max-height:300px;">
+                <code id="response2">Here you will get the results from e-Translation.</code>
                 </pre>
             </div>
 
             <div>
-                <h2>Using Pipelines - alternative approach</h2>
+                <h2 id="pipelines">Using Pipeline - alternative approach</h2>
                 <h3>Query e-services with  single API call</h3>
-                <>Instead of querying the FREME server in two steps, you can also use pipelines to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
-               
+                Instead of querying the FREME server in two steps, you can also use pipeline to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
+
                 <h4>cURL</h4>
                 <div>
-                    <pre style="height:200px;">
-                    <code>curl -X POST -H "Content-Type: application/json" -d "[
+                    <pre style="height:200px;"><code>curl -X POST -H "Content-Type: application/json" -d "[
     {
       \"method\": \"POST\",
       \"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-terminology/tilde\",
@@ -1102,18 +195,63 @@ title: Translate from English to Dutch including Terminology
     }
   ]
 " "{{site.apiurl | prepend: site.url}}/pipelining/chain"
-                        </code> 
-</pre>
+                        </code></pre>
                 </div>
 
                 <h4>Result</h4>
-                <p>Results from both services are in the output (same as in <a href="#step2response">Step 2: using e-Translation to translate</a>):</p>
+                <p>Results from both services are in the output (same as in <a href="#step2response">Step 2 - using e-Translation to translate</a>):</p>
                 <p>There following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
                 <p>
                     Result of machine translation is:
                     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
                     <br />With MT confidence score <strong>0.66955627717300892</strong>
                 </p>
+                <h3>Use of SPARQL filters</h3>
+                <p>Sometimes there is no need for complex RDF data structures. If so, then you can retrieve also a predefinied structure of data using SPARQL filtering possibilities of the FREME server. See more about thes feature here 
+                    <a href="../knowledge-base/filtering.html">this article</a>
+                </p>
+                <p>SPARQL filters can be used together with pipelines. Firstly must find existing filter or create new one, and then by adding the filter name as parameter to the pipeline configuration.</p></div>
+            <div>
+                <h2 id="customising">Customising e-Translation</h2>
+                <h3 id="settingsystems">Selecting translation system</h3>
+                <p>Translation system can be selected by setting the source language and the target language for each request. It is possible that there is more translation systems for the same language pair, but in different domain. So it is possible to set optionaly also <code>domain</code> parameter:</p>
+                <h4>HTML Request</h4>
+                <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal HTTP/1.1
+                            Host: api-dev.freme-project.eu
+                            Accept: application/rdf+xml
+                            Content-Type: text/plain
+                            The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
+                <h4>Curl example</h4>
+                <pre><code>curl -X POST -H "Accept: application/rdf+xml" -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "http://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal"</code></pre>
+                 <p>In case of non-existing domain and language pair the server will respond with HTTP status code <code>404 Not Found</code> </p>
+                 <h3 id="its">ITS 2.0 category support</h3>
+                <p>e-Translation supports ITS 2.0 data categories. See complete list of the supported categories and usage samples in the article <a href="../knowledge-base/eInternationalization.html">e-Internationalization</a></p>
+                <p>
+                    ITS 2.0 data categories provides possibility to include MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evalueator easier spot the ares with potentiotially weak translation.
+                </p>
+                <p>Terminology markup and additional terminology information give possibility to tune the results of e-Translation. ITS 2.0 terminology supporting categories allows to create a bridge between two independent e-Services - supports transfering information from e-Terminology to e-Translation. This is done by annotation source text with NIF objects -terms, and additionaly provideing terminology information in OntoLex Lemon. MT engine extracts term translation in target language from OntoLex data structures and chooses the best translation based on terminology provided.</p>
+                <p>Also category <code>translate</code> is widelly used and helps improve translation results by pointing out  the areas of the source document that is not intended for translation.</p>
+                <h3 id="systems">List of systems</h3>
+                <p>See this list of available public demo systems here: <a target="_blank" href="https://services.tilde.com/translationSystems">List of translation systems</a></p>
+                <p>There are following statuses of systems available</p>:
+                <ul>
+                    <li>Running - ready for translation;</li>
+                    <li>Waking up - will be ready for translation very soon</li>
+                    <li>Stand-by - systems in stand-by mode</li>
+                    <li>Failed - systems with error. Normally such section not visible.</li>
+                </ul>
+                <p>
+                    Available systems mean that they are ready for translation and standby systems means that need to awake. Systems will be awaked with the first request and needs some minutes to start up. It will go for sleep if inactive 60 minutes (no translations). Some systems are always in runing mode, if you find that this stand-by mode is problem, contact <a href="malto:langserv@tilde.com">Tilde</a> to resolve it.
+                </p>
+                <h3 id="private">Private systems</h3>
+                <p>It is possible to train translation system on private and propriaty data, and then use it through the FREME server, but still keep it secure and confidential. Private systems are not listed on public system list and will be accessible by providing a private key. That private key can be retrieved only by contacting <a href="malto:langserv@tilde.com">Tilde</a>.</p>
+                <p>to use private MT system, add your key to the query string parameter list:</p>
+                <h4>HTML Request</h4>
+                <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&key=u-iuo-2323-444-223-ABC HTTP/1.1
+Host: api-dev.freme-project.eu
+Accept: application/rdf+xml
+Content-Type: text/plain
+The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
+
             </div>
-
-
+            <p>In case of incorect key the server will return HTTP status code <code>401 Unauthorized</code>.</p>
