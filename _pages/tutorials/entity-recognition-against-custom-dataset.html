@@ -61,7 +61,7 @@ pos: 3.1
             $("#delete-dataset-name").val(datasetName);
             $("#dataset-creation-response").text(result)},
         error: function(result){
-            $("#dataset-creation-response").text(JSON.stringify(result))}
+            $("#dataset-creation-response").text(JSON.stringify(result, null, 2))}
 	});
        };
        
