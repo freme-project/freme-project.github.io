@@ -10,7 +10,7 @@ pos: 3.1
     <h2>Introduction</h2>
     <p>E-Link allows enrichment of content with data from proprietary Linked Data datasets and datasets from the LOD cloud.
     E-Link performs enrichment with help of a templating mechanism.
-    In this tutorial you will learn <a href="#what-is-a-template">what is a template</a>, 
+    In this tutorial you will learn <a href="#what-is-a-template">what a template is</a>, 
     <a href="#step-1-enrich">how to enrich a content</a>, and
     <a href="#step-3-template-manipulation">how to manipulate with templates</a>.
     This tutorial also provides information on the FREME deployed SPARQL and LDF endpoints. 
@@ -42,7 +42,7 @@ pos: 3.1
 <div>
     <h2 id="pre-requisites">Pre-requisites</h2>
     <ol>
-        <li><b>A pre-defined template(s).</b> You can use some of the <a href="#step-3-1-template-manipulation">existing templates</a> or <a href="#what-is-a-template">learn what is a template</a> and <a href="#step-3-3-template-manipulation">create</a> your own.</li>
+        <li><b>A pre-defined template(s).</b> You can use some of the <a href="#step-3-1-template-manipulation">existing templates</a> or <a href="#what-is-a-template">learn what a template is</a> and <a href="#step-3-3-template-manipulation">create</a> your own.</li>
         <li><b>An RDF document for enrichment.</b> If you don't have one, you can use the provided one, or you can perform named entity recognition and use that one.
         Here is an <a href="http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents/?informat=text&input=Berlin%20is%20the%20capital%20of%20Germany.&outformat=turtle&language=en&dataset=dbpedia">example</a>.</li>
     </ol>
@@ -202,7 +202,7 @@ pos: 3.1
     <p>By our definition, template is a SPARQL CONSTRUCT query which is executed for each string in your NIF document which has associated URL.
     Such SPARQL query is executed against a specified SPARQL (or LDF endpoint) and will usually retrieve some additional information about the string which is usually an entity, term or simply a word or phrase.
     For example, a template could retrieve the top 5 closests museums to a city which is annotated in your NIF document and identified with e URI (e.g. DBpedia URI).
-    Bellow is an example of a such template.</p>
+    Below is an example of a such template.</p>
     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{
   <span style="color: #007700">&quot;id&quot;</span> : <span style="color: #0000DD; font-weight: bold">1</span>,
   <span style="color: #007700">&quot;description&quot;</span> : <span style="background-color: #fff0f0">&quot;This template enriches with a list of museums (max 10) within a 50km radius around each location entity.&quot;</span>,
@@ -300,7 +300,7 @@ pos: 3.1
 <!--	Manipulation with templates  -->
 
     <h2 id="step-3-template-manipulation">Step 3: Manipulation with templates</h2>
-    <p>E-Link allows users to manipulate with the templates - retrieve, create, update, or template.</p>
+    <p>E-Link allows users to manipulate the templates - retrieve, create, update, or template.</p>
 
     <h3 id="step-3-1-template-manipulation">Retrieve all templates</h3>
     <p>A client can retrieve all the templates by submitting GET request at /e-link/templates.</p>
@@ -387,7 +387,7 @@ pos: 3.1
     </pre>
     
     <h3 id="step-3-5-template-manipulation">Remove a template</h3>
-    <p>A template can be also removed.</p>
+    <p>A template can also be removed.</p>
     
     <p><strong>Template ID to remove</strong><br/>
     ID of the template you want to remove.<br/>
@@ -409,7 +409,7 @@ pos: 3.1
     <h2 id="freme-endpoints">FREME SPARQL and Linked Data Fragments endpoints</h2>
     <p>Since e-Link is dependent on SPARQL and Linked Data Fragments endpoints FREME also hosts both of them.</p>
     <ul>
-    	<li><b>FREME LDF endpoint:</b> The main lainging page of the LDF endpoint can be found at <a href="http://rv2622.1blu.de:5000/" target="_blank">http://rv2622.1blu.de:5000/</a>.
+    	<li><b>FREME LDF endpoint:</b> The main landing page of the LDF endpoint can be found at <a href="http://rv2622.1blu.de:5000/" target="_blank">http://rv2622.1blu.de:5000/</a>.
     	Via this page a user can access and query the deployed datasets via the e-Link service.
     	E.g. the LDF endpoint of the ORCID datset is <a href="http://rv2622.1blu.de:5000/orcid" target="_blank">http://rv2622.1blu.de:5000/orcid</a> and <a href="http://rv2622.1blu.de:5000/cordis" target="_blank">http://rv2622.1blu.de:5000/cordis</a> for the CORDIS FP7 dataset.</li>
 
