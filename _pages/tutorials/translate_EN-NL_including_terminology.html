@@ -1,257 +1,257 @@
-  ---
-            dropdown: Tutorials
-            pos: 3.1
-            layout: default
-            title: Translate from English to Dutch including Terminology
-            ---
+---
+dropdown: Tutorials
+pos: 3.1
+layout: default
+title: Translate from English to Dutch including Terminology
+---
 
-            <h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
-            <div>
-                <h2>Introduction</h2>
-                <p>Tutorial demontrates usage of e-Translation and using more features to improve translation quality.</p>
-                <p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
-                <h3>Quick links</h3>
-                <ol>
-                    <li><a href="#tehnical_instructions">Technical Instructions</a></li>
-                    <li><a href="#demo">Try out API Calls</a></li>
-                    <li><a href="#pipelines">Using Pipelines - alternative approach</a></li>
-                    <li><a href="#customising">Customising e-Translation</a>
-                        <ol>                            
-                            <li><a href="#settingsystems">Selecting translation system</a></li>
-                            <li><a href="#its">ITS 2.0 category support</a></li>
-                            <li><a href="#systems">List of systems</a></li>
-                            <li><a href="#private">Private systems</a></li>
-                        </ol>
-                    </li>
-                </ol>
-            </div>
+<h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
+<div>
+<h2>Introduction</h2>
+<p>Tutorial demontrates usage of e-Translation and using more features to improve translation quality.</p>
+<p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
+<h3>Quick links</h3>
+<ol>
+    <li><a href="#tehnical_instructions">Technical Instructions</a></li>
+    <li><a href="#demo">Try out API Calls</a></li>
+    <li><a href="#pipelines">Using Pipelines - alternative approach</a></li>
+    <li><a href="#customising">Customising e-Translation</a>
+        <ol>                            
+            <li><a href="#settingsystems">Selecting translation system</a></li>
+            <li><a href="#its">ITS 2.0 category support</a></li>
+            <li><a href="#systems">List of systems</a></li>
+            <li><a href="#private">Private systems</a></li>
+        </ol>
+    </li>
+</ol>
+</div>
 
-            <div>
-                <h2 id="tehnical_instructions">Technical Instructions</h2>
-                <h3>Step 1 - using e-Terminology </h3>
-                <p>Annotate terms within the source text.</p>
-                <h4>cURL</h4>
-                <pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "{{site.apiurl | prepend: site.url}}/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
-        </pre>
-                <h4>Result</h4>
-                <p>
-                    There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
-                </p>
-                <h3>Step 2 - using e-Translation to translate</h3>
+<div>
+<h2 id="tehnical_instructions">Technical Instructions</h2>
+<h3>Step 1 - using e-Terminology </h3>
+<p>Annotate terms within the source text.</p>
+<h4>cURL</h4>
+<pre>curl -X POST -d "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent." "{{site.apiurl | prepend: site.url}}/e-terminology/tilde?informat=text&amp;outformat=json-ld&amp;source-lang=en&amp;target-lang=nl"
+</pre>
+<h4>Result</h4>
+<p>
+    There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
+</p>
+<h3>Step 2 - using e-Translation to translate</h3>
 
-                <p>Translate text taking in account annotated term in Step 1.</p>
-                <p>The input data is the output of Step 1</p>
-                <h4>cURL</h4>
-                <div>
-                    <pre style="height:200px;"><code>curl -X POST -d "response-of-step1.ttl" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
-                <p>Where the file <code>response-of-step1.ttl</code> is the response of e-Terminology.</p>
-                </div>
-                <a name="step2response"></a>
-                <h4>Result</h4>
-                <p>
-                    Result of machine translation is:
-                    <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
-                    <br />With MT confidence score <strong>0.66955627717300892</strong>
-                </p>
-            </div>
+<p>Translate text taking in account annotated term in Step 1.</p>
+<p>The input data is the output of Step 1</p>
+<h4>cURL</h4>
+<div>
+    <pre style="height:200px;"><code>curl -X POST -d "response-of-step1.ttl" "http://api.freme-project.eu/current/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
+<p>Where the file <code>response-of-step1.ttl</code> is the response of e-Terminology.</p>
+</div>
+<a name="step2response"></a>
+<h4>Result</h4>
+<p>
+    Result of machine translation is:
+    <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
+    <br />With MT confidence score <strong>0.66955627717300892</strong>
+</p>
+</div>
 
-            <script type="text/javascript">
-                function sendTranslationRequest(turtleData) {
-                    $("#response2").text("loading...");
-                    $.ajax({
-                        url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
-                        type: "POST",
-                        data: turtleData,
-                        contentType: false,
-                        dataType: 'text',
-                        statusCode: {
-                            400: function () {
-                                $("#response2").text("Bad request");
-                            },
-                            406: function () {
-                                $("#response2").text("Not acceptable");
-                            },
-                            500: function () {
-                                $("#response2").text("Server error");
-                            }
-                        }
-                    }).done(function (result) {
-                        $("#response2").text(result);
-                    });
-                };
-                function sendTerminologyRequest() {
-                    $("#response1").text("loading...");
-                    $("#response2").text("waiting...");
-                    $.ajax({
-                        url: fremeApiUrl + "/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
-                        type: "POST",
-                        contentType: false,
-                        dataType: 'text',
-                        data: $("#input").val(),
-                        statusCode: {
-                            400: function () {
-                                $("#response1").text("Bad request");
-                            },
-                            406: function () {
-                                $("#response1").text("Not acceptable");
-                            },
-                            500: function () {
-                                $("#response1").text("Server error");
-                            }
-                        }
-                    }).done(function (result) {
-                        $("#response1").text(result);
-                        sendTranslationRequest(result);
-                        console.log(result);
-                    });
-                };
-            </script>
+<script type="text/javascript">
+function sendTranslationRequest(turtleData) {
+    $("#response2").text("loading...");
+    $.ajax({
+        url: fremeApiUrl + "/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
+        type: "POST",
+        data: turtleData,
+        contentType: false,
+        dataType: 'text',
+        statusCode: {
+            400: function () {
+                $("#response2").text("Bad request");
+            },
+            406: function () {
+                $("#response2").text("Not acceptable");
+            },
+            500: function () {
+                $("#response2").text("Server error");
+            }
+        }
+    }).done(function (result) {
+        $("#response2").text(result);
+    });
+};
+function sendTerminologyRequest() {
+    $("#response1").text("loading...");
+    $("#response2").text("waiting...");
+    $.ajax({
+        url: fremeApiUrl + "/e-terminology/tilde?informat=text&outformat=json-ld&source-lang=" + encodeURIComponent($("#source-lang").val()) + "&target-lang=" + encodeURIComponent($("#target-lang").val()),
+        type: "POST",
+        contentType: false,
+        dataType: 'text',
+        data: $("#input").val(),
+        statusCode: {
+            400: function () {
+                $("#response1").text("Bad request");
+            },
+            406: function () {
+                $("#response1").text("Not acceptable");
+            },
+            500: function () {
+                $("#response1").text("Server error");
+            }
+        }
+    }).done(function (result) {
+        $("#response1").text(result);
+        sendTranslationRequest(result);
+        console.log(result);
+    });
+};
+</script>
 
-            <div>
-                <h2 id="demo">Try out API Calls</h2>
-                <p>For demonstration purposes we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
-                <h3>Request</h3>
-                <form>
-                    <p>
-                        <strong>Query string parameter input</strong><br />
-                        Specify the text you want to translate here.<br />
-                        <textarea class="form-control" rows="3" id="input">The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</textarea>
-                    </p>
-                    <br />
+<div>
+<h2 id="demo">Try out API Calls</h2>
+<p>For demonstration purposes we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+<h3>Request</h3>
+<form>
+    <p>
+        <strong>Query string parameter input</strong><br />
+        Specify the text you want to translate here.<br />
+        <textarea class="form-control" rows="3" id="input">The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</textarea>
+    </p>
+    <br />
 
-                    <p>
-                        <strong>Query string parameter source-lang</strong><br />
-                        Enter the language you want to translate from<br />
-                        <input id="source-lang" type="text" value="en" />
-                    </p>
-                    <br />
+    <p>
+        <strong>Query string parameter source-lang</strong><br />
+        Enter the language you want to translate from<br />
+        <input id="source-lang" type="text" value="en" />
+    </p>
+    <br />
 
-                    <p>
-                        <strong>Query string parameter source-lang</strong><br />
-                        Enter the language you want to translate to<br />
-                        <input id="target-lang" type="text" value="nl" />
-                    </p>
-                    <br />
+    <p>
+        <strong>Query string parameter source-lang</strong><br />
+        Enter the language you want to translate to<br />
+        <input id="target-lang" type="text" value="nl" />
+    </p>
+    <br />
 
-                    <p>
-                        <strong>Query string parameter informat</strong><br />
-                        Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"
-                    </p>
-                    <br />
+    <p>
+        <strong>Query string parameter informat</strong><br />
+        Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"
+    </p>
+    <br />
 
-                    <p>
-                        <strong>Query string parameter outformat</strong><br />
-                        Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"
-                    </p>
-                    <br />
+    <p>
+        <strong>Query string parameter outformat</strong><br />
+        Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"
+    </p>
+    <br />
 
-                    <button onclick="sendTerminologyRequest();">Try it out!</button>
-                </form>
+    <button onclick="sendTerminologyRequest();">Try it out!</button>
+</form>
                
-                <h3>Response</h3>
-                <h4>Response of Step 1: e-Terminology </h4>
-                <pre style="max-height:300px;">
-                <code id="response1">Here you will get the intermediate results from e-Terminology, that will be submitted to e-Translation.</code>
-                </pre>
+<h3>Response</h3>
+<h4>Response of Step 1: e-Terminology </h4>
+<pre style="max-height:300px;">
+<code id="response1">Here you will get the intermediate results from e-Terminology, that will be submitted to e-Translation.</code>
+</pre>
 
-                <h4>Response of Step 2: e-Translation</h4>
-                <pre style="max-height:300px;">
-                <code id="response2">Here you will get the results from e-Translation.</code>
-                </pre>
-            </div>
+<h4>Response of Step 2: e-Translation</h4>
+<pre style="max-height:300px;">
+<code id="response2">Here you will get the results from e-Translation.</code>
+</pre>
+</div>
 
-            <div>
-                <h2 id="pipelines">Using Pipeline - alternative approach</h2>
-                <h3>Query e-services with  single API call</h3>
-                Instead of querying the FREME server in two steps, you can also use pipeline to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
+<div>
+<h2 id="pipelines">Using Pipeline - alternative approach</h2>
+<h3>Query e-services with  single API call</h3>
+Instead of querying the FREME server in two steps, you can also use pipeline to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
 
-                <h4>cURL</h4>
-                <div>
-                    <pre style="height:200px;"><code>curl -X POST -H "Content-Type: application/json" -d "[
-    {
-      \"method\": \"POST\",
-      \"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-terminology/tilde\",
-      \"parameters\": {
-        \"source-lang\": \"en\",
-        \"target-lang\": \"nl\"
-      },
-      \"headers\": {
-        \"content-type\": \"text/plain\",
-        \"accept\": \"application/json+ld\"
-      },
-  \"body\": \"The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.\"
-    },
-    {
-      \"method\": \"POST\",
-      \"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-translation/tilde\",
-      \"parameters\": {
-        \"source-lang\": \"en\",
-        \"target-lang\": \"nl\"
-      },
-      \"headers\": {
-        \"content-type\": \"application/json+ld\",
-        \"accept\": \"application/json+ld\"
-      }
-    }
-  ]
+<h4>cURL</h4>
+<div>
+    <pre style="height:200px;"><code>curl -X POST -H "Content-Type: application/json" -d "[
+{
+\"method\": \"POST\",
+\"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-terminology/tilde\",
+\"parameters\": {
+\"source-lang\": \"en\",
+\"target-lang\": \"nl\"
+},
+\"headers\": {
+\"content-type\": \"text/plain\",
+\"accept\": \"application/json+ld\"
+},
+\"body\": \"The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.\"
+},
+{
+\"method\": \"POST\",
+\"endpoint\": \"{{site.apiurl | prepend: site.url}}/e-translation/tilde\",
+\"parameters\": {
+\"source-lang\": \"en\",
+\"target-lang\": \"nl\"
+},
+\"headers\": {
+\"content-type\": \"application/json+ld\",
+\"accept\": \"application/json+ld\"
+}
+}
+]
 " "{{site.apiurl | prepend: site.url}}/pipelining/chain"
-                        </code></pre>
-                </div>
+        </code></pre>
+</div>
 
-                <h4>Result</h4>
-                <p>Results from both services are in the output (same as in <a href="#step2response">Step 2 - using e-Translation to translate</a>):</p>
-                <p>There following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
-                <p>
-                    Result of machine translation is:
-                    <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
-                    <br />With MT confidence score <strong>0.66955627717300892</strong>
-                </p>
-                <h3>Use of SPARQL filters</h3>
-                <p>Sometimes there is no need for complex RDF data structures. If so, then you can retrieve also a predefinied structure of data using SPARQL filtering possibilities of the FREME server. See more about thes feature here 
-                    <a href="../knowledge-base/filtering.html">this article</a>
-                </p>
-                <p>SPARQL filters can be used together with pipelines. Firstly must find existing filter or create new one, and then by adding the filter name as parameter to the pipeline configuration.</p></div>
-            <div>
-                <h2 id="customising">Customising e-Translation</h2>
-                <h3 id="settingsystems">Selecting translation system</h3>
-                <p>Translation system can be selected by setting the source language and the target language for each request. It is possible that there is more translation systems for the same language pair, but in different domain. So it is possible to set optionaly also <code>domain</code> parameter:</p>
-                <h4>HTML Request</h4>
-                <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal HTTP/1.1
-                            Host: api-dev.freme-project.eu
-                            Accept: application/rdf+xml
-                            Content-Type: text/plain
-                            The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
-                <h4>Curl example</h4>
-                <pre><code>curl -X POST -H "Accept: application/rdf+xml" -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "http://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal"</code></pre>
-                 <p>In case of non-existing domain and language pair the server will respond with HTTP status code <code>404 Not Found</code> </p>
-                 <h3 id="its">ITS 2.0 category support</h3>
-                <p>e-Translation supports ITS 2.0 data categories. See complete list of the supported categories and usage samples in the article <a href="../knowledge-base/eInternationalization.html">e-Internationalization</a></p>
-                <p>
-                    ITS 2.0 data categories provides possibility to include MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evalueator easier spot the ares with potentiotially weak translation.
-                </p>
-                <p>Terminology markup and additional terminology information give possibility to tune the results of e-Translation. ITS 2.0 terminology supporting categories allows to create a bridge between two independent e-Services - supports transfering information from e-Terminology to e-Translation. This is done by annotation source text with NIF objects -terms, and additionaly provideing terminology information in OntoLex Lemon. MT engine extracts term translation in target language from OntoLex data structures and chooses the best translation based on terminology provided.</p>
-                <p>Also category <code>translate</code> is widelly used and helps improve translation results by pointing out  the areas of the source document that is not intended for translation.</p>
-                <h3 id="systems">List of systems</h3>
-                <p>See this list of available public demo systems here: <a target="_blank" href="https://services.tilde.com/translationSystems">List of translation systems</a></p>
-                <p>There are following statuses of systems available</p>:
-                <ul>
-                    <li>Running - ready for translation;</li>
-                    <li>Waking up - will be ready for translation very soon</li>
-                    <li>Stand-by - systems in stand-by mode</li>
-                    <li>Failed - systems with error. Normally such section not visible.</li>
-                </ul>
-                <p>
-                    Available systems mean that they are ready for translation and standby systems means that need to awake. Systems will be awaked with the first request and needs some minutes to start up. It will go for sleep if inactive 60 minutes (no translations). Some systems are always in runing mode, if you find that this stand-by mode is problem, contact <a href="malto:langserv@tilde.com">Tilde</a> to resolve it.
-                </p>
-                <h3 id="private">Private systems</h3>
-                <p>It is possible to train translation system on private and propriaty data, and then use it through the FREME server, but still keep it secure and confidential. Private systems are not listed on public system list and will be accessible by providing a private key. That private key can be retrieved only by contacting <a href="malto:langserv@tilde.com">Tilde</a>.</p>
-                <p>to use private MT system, add your key to the query string parameter list:</p>
-                <h4>HTML Request</h4>
-                <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&key=u-iuo-2323-444-223-ABC HTTP/1.1
+<h4>Result</h4>
+<p>Results from both services are in the output (same as in <a href="#step2response">Step 2 - using e-Translation to translate</a>):</p>
+<p>There following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
+<p>
+    Result of machine translation is:
+    <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
+    <br />With MT confidence score <strong>0.66955627717300892</strong>
+</p>
+<h3>Use of SPARQL filters</h3>
+<p>Sometimes there is no need for complex RDF data structures. If so, then you can retrieve also a predefinied structure of data using SPARQL filtering possibilities of the FREME server. See more about thes feature here 
+    <a href="../knowledge-base/filtering.html">this article</a>
+</p>
+<p>SPARQL filters can be used together with pipelines. Firstly must find existing filter or create new one, and then by adding the filter name as parameter to the pipeline configuration.</p></div>
+<div>
+<h2 id="customising">Customising e-Translation</h2>
+<h3 id="settingsystems">Selecting translation system</h3>
+<p>Translation system can be selected by setting the source language and the target language for each request. It is possible that there is more translation systems for the same language pair, but in different domain. So it is possible to set optionaly also <code>domain</code> parameter:</p>
+<h4>HTML Request</h4>
+<pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal HTTP/1.1
+            Host: api-dev.freme-project.eu
+            Accept: application/rdf+xml
+            Content-Type: text/plain
+            The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
+<h4>Curl example</h4>
+<pre><code>curl -X POST -H "Accept: application/rdf+xml" -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "http://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal"</code></pre>
+    <p>In case of non-existing domain and language pair the server will respond with HTTP status code <code>404 Not Found</code> </p>
+    <h3 id="its">ITS 2.0 category support</h3>
+<p>e-Translation supports ITS 2.0 data categories. See complete list of the supported categories and usage samples in the article <a href="../knowledge-base/eInternationalization.html">e-Internationalization</a></p>
+<p>
+    ITS 2.0 data categories provides possibility to include MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evalueator easier spot the ares with potentiotially weak translation.
+</p>
+<p>Terminology markup and additional terminology information give possibility to tune the results of e-Translation. ITS 2.0 terminology supporting categories allows to create a bridge between two independent e-Services - supports transfering information from e-Terminology to e-Translation. This is done by annotation source text with NIF objects -terms, and additionaly provideing terminology information in OntoLex Lemon. MT engine extracts term translation in target language from OntoLex data structures and chooses the best translation based on terminology provided.</p>
+<p>Also category <code>translate</code> is widelly used and helps improve translation results by pointing out  the areas of the source document that is not intended for translation.</p>
+<h3 id="systems">List of systems</h3>
+<p>See this list of available public demo systems here: <a target="_blank" href="https://services.tilde.com/translationSystems">List of translation systems</a></p>
+<p>There are following statuses of systems available</p>:
+<ul>
+    <li>Running - ready for translation;</li>
+    <li>Waking up - will be ready for translation very soon</li>
+    <li>Stand-by - systems in stand-by mode</li>
+    <li>Failed - systems with error. Normally such section not visible.</li>
+</ul>
+<p>
+    Available systems mean that they are ready for translation and standby systems means that need to awake. Systems will be awaked with the first request and needs some minutes to start up. It will go for sleep if inactive 60 minutes (no translations). Some systems are always in runing mode, if you find that this stand-by mode is problem, contact <a href="malto:langserv@tilde.com">Tilde</a> to resolve it.
+</p>
+<h3 id="private">Private systems</h3>
+<p>It is possible to train translation system on private and propriaty data, and then use it through the FREME server, but still keep it secure and confidential. Private systems are not listed on public system list and will be accessible by providing a private key. That private key can be retrieved only by contacting <a href="malto:langserv@tilde.com">Tilde</a>.</p>
+<p>to use private MT system, add your key to the query string parameter list:</p>
+<h4>HTML Request</h4>
+<pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&key=u-iuo-2323-444-223-ABC HTTP/1.1
 Host: api-dev.freme-project.eu
 Accept: application/rdf+xml
 Content-Type: text/plain
 The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
 
-            </div>
-            <p>In case of incorect key the server will return HTTP status code <code>401 Unauthorized</code>.</p>
+</div>
+<p>In case of incorect key the server will return HTTP status code <code>401 Unauthorized</code>.</p>
