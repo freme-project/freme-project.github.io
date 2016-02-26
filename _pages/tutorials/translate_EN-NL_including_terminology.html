@@ -8,8 +8,8 @@ title: Translate from English to Dutch including Terminology
 <h1>How to translate from English to Dutch with e-Translation and e-Terminology</h1>
 <div>
 <h2>Introduction</h2>
-<p>Tutorial demonstrates usage of e-Translation and using more features to improve translation quality.</p>
-<p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT using your own terminology from <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
+<p>The tutorial demonstrates usage of e-Translation and how to use more features to improve translation quality.</p>
+<p>Use e-Terminology before e-Translation to improve or adjust translated output. e-Terminology identifies terms within the source text and helps machine translation to use them. You can introduce your own terminology collection to force MT to use your terminology in the <a target="_blank" href="https://term.tilde.com/">term.tilde.com</a> portal.</p>
 <h3>Quick links</h3>
 <ol>
     <li><a href="#tehnical_instructions">Technical Instructions</a></li>
@@ -35,11 +35,11 @@ title: Translate from English to Dutch including Terminology
 </pre>
 <h4>Result</h4>
 <p>
-    There are following terms found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
+    The following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong>
 </p>
 <h3>Step 2 - using e-Translation to translate</h3>
 
-<p>Translate text taking in account annotated term in Step 1.</p>
+<p>Translate text taking into account the annotated term in Step 1.</p>
 <p>The input data is the output of Step 1</p>
 <h4>cURL</h4>
 <div>
@@ -49,7 +49,7 @@ title: Translate from English to Dutch including Terminology
 <a name="step2response"></a>
 <h4>Result</h4>
 <p>
-    Result of machine translation is:
+    The result of machine translation is:
     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
     <br />With MT confidence score <strong>0.66955627717300892</strong>
 </p>
@@ -109,7 +109,7 @@ function sendTerminologyRequest() {
 
 <div>
 <h2 id="demo">Try out API Calls</h2>
-<p>For demonstration purposes we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
+<p>For demonstration purposes, we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
 <h3>Request</h3>
 <form>
     <p>
@@ -121,27 +121,27 @@ function sendTerminologyRequest() {
 
     <p>
         <strong>Query string parameter source-lang</strong><br />
-        Enter the language you want to translate from<br />
+        Enter the language you want to translate from.<br />
         <input id="source-lang" type="text" value="en" />
     </p>
     <br />
 
     <p>
         <strong>Query string parameter source-lang</strong><br />
-        Enter the language you want to translate to<br />
+        Enter the language you want to translate to.<br />
         <input id="target-lang" type="text" value="nl" />
     </p>
     <br />
 
     <p>
-        <strong>Query string parameter informat</strong><br />
-        Specifies the format of the input data. In this example we submit plaintext so we set this parameter to "text"
+        <strong>Query string parameter informat.</strong><br />
+        Specifies the format of the input data. In this example, we submit plaintext, so we set this parameter to "text".
     </p>
     <br />
 
     <p>
         <strong>Query string parameter outformat</strong><br />
-        Specifies the format of the data returned by FREME. In this example we want to return JSON-LD data that can be easily processed by many programming languages so we specify "outformat=json-ld"
+        Specifies the format of the data returned by FREME. In this example, we want to return JSON-LD data that can be easily processed by many programming languages, so we specify <code>outformat=json-ld</code>
     </p>
     <br />
 
@@ -151,7 +151,7 @@ function sendTerminologyRequest() {
 <h3>Response</h3>
 <h4>Response of Step 1: e-Terminology </h4>
 <pre style="max-height:300px;">
-<code id="response1">Here you will get the intermediate results from e-Terminology, that will be submitted to e-Translation.</code>
+<code id="response1">Here you will get the intermediate results from e-Terminology, which will be submitted to e-Translation.</code>
 </pre>
 
 <h4>Response of Step 2: e-Translation</h4>
@@ -162,8 +162,8 @@ function sendTerminologyRequest() {
 
 <div>
 <h2 id="pipelines">Using Pipeline - alternative approach</h2>
-<h3>Query e-services with  single API call</h3>
-Instead of querying the FREME server in two steps, you can also use pipeline to force chaining the services on server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
+<h3>Query e-services with a single API call</h3>
+Instead of querying the FREME server in two steps, you can also use pipeline to force chaining of the services on the server side. Follow the <a href="{{ "Tutorials/pipeline-entity-link.html" | prepend: site.baseurl }}"> pipelining tutorial</a> for more information. </p>
 
 <h4>cURL</h4>
 <div>
@@ -199,18 +199,18 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 </div>
 
 <h4>Result</h4>
-<p>Results from both services are in the output (same as in <a href="#step2response">Step 2 - using e-Translation to translate</a>):</p>
-<p>There following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
+<p>The results from both services are in the output (same as in <a href="#step2response">Step 2 - using e-Translation to translate</a>):</p>
+<p>The following terms are found (term rank in brackets): <strong>continent [1],  partnership [0.8961], briefing [0.5946], economics [0.3165],  covering [0] </strong></p>
 <p>
-    Result of machine translation is:
+    The result of machine translation is:
     <strong>        De voorschriften in DE EU. De EU is een uniek partnerschap tussen politiek en economie in de Europese landen, die gezamenlijk 28 verpakking van het continent.</strong>
     <br />With MT confidence score <strong>0.66955627717300892</strong>
 </p>
 <h3>Use of SPARQL filters</h3>
-<p>Sometimes there is no need for complex RDF data structures. If so, then you can retrieve also a predefinied structure of data using SPARQL filtering possibilities of the FREME server. See more about thes feature here 
+<p>Sometimes there is no need for complex RDF data structures. If so, then you can also retrieve a predefined structure of data using the SPARQL filtering possibilities of the FREME server. See more about this feature here: 
     <a href="../knowledge-base/filtering.html">this article</a>
 </p>
-<p>SPARQL filters can be used together with pipelines. Firstly must find existing filter or create new one, and then by adding the filter name as parameter to the pipeline configuration.</p></div>
+<p>SPARQL filters can be used together with pipelines. Firstly, you must find the existing filter or create a new one and then add the filter name as a parameter to the pipeline configuration.</p></div>
 <div>
 <h2 id="customising">Customising e-Translation</h2>
 <h3 id="settingsystems">Selecting translation system</h3>
@@ -225,15 +225,15 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 <pre><code>curl -X POST -H "Accept: application/rdf+xml" -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "http://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal"</code></pre>
     <p>In case of non-existing domain and language pair the server will respond with HTTP status code <code>404 Not Found</code> </p>
     <h3 id="its">ITS 2.0 category support</h3>
-<p>e-Translation supports ITS 2.0 data categories. See complete list of the supported categories and usage samples in the article <a href="../knowledge-base/eInternationalization.html">e-Internationalization</a></p>
+<p>e-Translation supports ITS 2.0 data categories. See a complete list of the supported categories and usage samples in this article: <a href="../knowledge-base/eInternationalization.html">e-Internationalization</a>.</p>
 <p>
-    ITS 2.0 data categories provides possibility to include MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evalueator easier spot the ares with potentiotially weak translation.
+    ITS 2.0 data categories provide the possibility to include an MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evaluators to more easily spot the areas with potentially weak translation.
 </p>
-<p>Terminology markup and additional terminology information give possibility to tune the results of e-Translation. ITS 2.0 terminology supporting categories allows to create a bridge between two independent e-Services - supports transfering information from e-Terminology to e-Translation. This is done by annotation source text with NIF objects -terms, and additionaly provideing terminology information in OntoLex Lemon. MT engine extracts term translation in target language from OntoLex data structures and chooses the best translation based on terminology provided.</p>
-<p>Also category <code>translate</code> is widelly used and helps improve translation results by pointing out  the areas of the source document that is not intended for translation.</p>
+<p>Terminology markup and additional terminology information give the possibility to tune the results of e-Translation. ITS 2.0 terminology supporting categories allow to create a bridge between two independent e-Services - it supports transferring information from e-Terminology to e-Translation. This is done by annotating source text with NIF objects/terms and additionally providing terminology information in OntoLex Lemon. The MT engine extracts term translation in the target language from OntoLex data structures and chooses the best translation based on the terminology provided.</p>
+<p>Also, the <code>translate</code> category is widely used and helps improve translation results by pointing out the areas of the source document that are not intended for translation.</p>
 <h3 id="systems">List of systems</h3>
-<p>See this list of available public demo systems here: <a target="_blank" href="https://services.tilde.com/translationSystems">List of translation systems</a></p>
-<p>There are following statuses of systems available</p>:
+<p>See a list of available public demo systems here: <a target="_blank" href="https://services.tilde.com/translationSystems">List of translation systems</a></p>
+<p>The following system statuses are available:</p>
 <ul>
     <li>Running - ready for translation;</li>
     <li>Waking up - will be ready for translation very soon</li>
@@ -241,11 +241,11 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
     <li>Failed - systems with error. Normally such section not visible.</li>
 </ul>
 <p>
-    Available systems mean that they are ready for translation and standby systems means that need to awake. Systems will be awaked with the first request and needs some minutes to start up. It will go for sleep if inactive 60 minutes (no translations). Some systems are always in runing mode, if you find that this stand-by mode is problem, contact <a href="malto:langserv@tilde.com">Tilde</a> to resolve it.
+    Available systems mean that they are ready for translation, and standby systems mean that they need to wake up. Systems will be woken up with the first request and need a few minutes to start up. Systems will go to sleep if they are inactive for 60 minutes (no translations). Some systems are always in running mode, but if you find that this stand-by mode is problematic, then contact <a href="malto:langserv@tilde.com">Tilde</a> to resolve this.
 </p>
 <h3 id="private">Private systems</h3>
-<p>It is possible to train translation system on private and propriaty data, and then use it through the FREME server, but still keep it secure and confidential. Private systems are not listed on public system list and will be accessible by providing a private key. That private key can be retrieved only by contacting <a href="malto:langserv@tilde.com">Tilde</a>.</p>
-<p>to use private MT system, add your key to the query string parameter list:</p>
+<p>It is possible to train a translation system on private and proprietary data and then use it through the FREME server, while still keeping the data secure and confidential. Private systems are not listed on the public system list and will be accessible by providing a private key. That private key can be retrieved only by contacting <a href="malto:langserv@tilde.com">Tilde</a>.</p>
+<p>To use a private MT system, add your key to the query string parameter list:</p>
 <h4>HTML Request</h4>
 <pre><code>POST /current/e-translation/tilde?source-lang=en&target-lang=de&key=u-iuo-2323-444-223-ABC HTTP/1.1
 Host: api.freme-project.eu
@@ -255,4 +255,4 @@ Content-Type: text/plain
 The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.</code></pre>
 
 </div>
-<p>In case of incorect key the server will return HTTP status code <code>401 Unauthorized</code>.</p>
+<p>In the case of an incorrect key, the server will return the HTTP status code <code>401 Unauthorized</code>.</p>
