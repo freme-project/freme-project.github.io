@@ -14,7 +14,7 @@ FREME e-Services work with either plain text or NIF files. The e-Internationaliz
   * e-Terminology
   * e-Translation
 	
-Wit this new functionality a user can invoke one of the supported FREME e-Services, let's say e-Entity, and submit a HTML file. The control goes to the e-Internationalization first that converts the HTML file to NIF. Finally this NIF file is submitted to e-Entity service. The conversion to NIF is done internally and it's transparent to the user. 
+With this new functionality a user can invoke one of the supported FREME e-Services, let's say e-Entity, and submit an HTML file. The control goes to the e-Internationalization first that converts the HTML file to NIF. Finally this NIF file is submitted to e-Entity service. The conversion to NIF is done internally and it's transparent to the user. 
 
 The e-Internationalization service provides methods for converting following formats to NIF:
 
@@ -23,15 +23,15 @@ The e-Internationalization service provides methods for converting following for
   *	XLIFF 1.2 – MIME-type: application/x-xliff+xml
   *	ODT – MIME-type: application/x-openoffice
   
-If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the itsrdf domain (see [Supported ITS categories](#supported-its-categories) section).
+If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the [itsrdf] [1] domain (see [Supported ITS categories](#supported-its-categories) section).
 
-Beside the conversion to NIF, the e-Internationalization service also provides a method for converting the enriched NIF back to the original file format. We call this functionality `round-tripping` and at the moment it is only available with the HTML format. For example, the user can invoke the e-Entity service by submitting a HTML file and specifying "outformat=html". The HTML file is converted to NIF and then the latter is sent to the e-Entity service. Once the NIF has been enriched, it is converted back to the HTML format. The final HTML file contains enrichments retrieved by the e-Entity service. As for the simple conversion, the process is completely transparent to the user: he doesn't have to explicitly call the e-Internationalization service. Note that only entity and terminology enrichments can be included in the original file format. Although user is allowed to specify HTML output format even for e-Link and e-Translation services, he should be aware that the returned HTML file won't contain enrichments retrieved by those services.
+Beside the conversion to NIF, the e-Internationalization service also provides a method for converting the enriched NIF back to the original file format. We call this functionality `round-tripping` and at the moment it is only available with the HTML format. For example, the user can invoke the e-Entity service by submitting an HTML file and specifying "outformat=html". The HTML file is converted to NIF and then the latter is sent to the e-Entity service. Once the NIF has been enriched, it is converted back to the HTML format. The final HTML file contains enrichments retrieved by the e-Entity service. As for the simple conversion, the process is completely transparent to the user: s/he doesn't have to explicitly call the e-Internationalization service. Note that only entity and terminology enrichments can be included in the original file format. Although user is allowed to specify HTML output format even for e-Link and e-Translation services, s/he should be aware that the returned HTML file won't contain enrichments retrieved by those services.
 
 So with the introduction of the e-Internationalization service, new input and output formats are supported when invoking FREME e-Services. 
 
 New input formats are `text/html`, `text/xml`, `application/x-xliff+xml` and `application/x-openoffice`.
 
-New output format is `text/html`. Note that this output format can be only used when the starting document is a HTML file as well. This is a general rule when performing the round-tripping: input and output formats must be the same. 
+New output format is `text/html`. Note that this output format can be only used when the starting document is an HTML file as well. This is a general rule when performing the round-tripping: input and output formats must be the same. 
 
 ## Supported ITS categories
 
@@ -80,11 +80,11 @@ At the moment the round-tripping is only available for HTML documents. Users mus
 
 This section explains how the e-Internationalization service implements this functionality.
 
-When converting a HTML file to NIF a second NIF file is produced, containing a context that also includes markups. Let’s call such a file “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalization service which returns the original HTML document with the addition of enrichment annotations.
+In HTML to NIF conversion two temporary NIF files are created. The first is a NIF file containing just the plain text of the HTML. The second file contains a context that also includes markups. Let’s call the latter “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalization service which returns the original HTML document with the addition of enrichment annotations.
 
 ### Roundtripping example
 
-A HTML file is converted to NIF and enriched with the e-Entity service. Finally it is converted back to the original format. 
+an HTML file is converted to NIF and enriched with the e-Entity service. Finally it is converted back to the original format. 
 
 Original HTML file
 
@@ -208,7 +208,7 @@ Enriched NIF file
         itsrdf:taIdentRef <http://http://dbpedia.org/resource/Dublin> .
 ```
 
-Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant for new lines don’t affect the HTML file appearance in the browser.
+Original enriched HTML file. Note that some new lines get lost. Anyway it is not relevant because new lines don’t affect the HTML file appearance in the browser.
 
 ```
 <!DOCTYPE html>
@@ -1015,3 +1015,7 @@ Converted NIF file
         nif:referenceContext  <http://freme-project.eu/~okapi-23_OpenOfficeFilter_7511887858581642861.tmp/#char=0,372> ;
         dc:identifier         "14" .
 ```
+
+
+
+  [1]: It is commonly used technical prefix in RDF for namespace http://www.w3.org/2005/11/its/rdf describing ITS 2.0 / RDF Ontology.
