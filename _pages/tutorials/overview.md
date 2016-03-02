@@ -16,6 +16,7 @@ This section contains a series of mostly interactive tutorials on FREME. They ar
 [Creating an EPUB using existing HTML content](html-to-epub.html)
 [Recognizing entities in XLIFF content](spot-entities-in-xliff.html)
 [Translate XLIFF 1.2 from English to German](translate-xliff-EN-DE.html)
+[How to access FREME using various programming languages](use-various-programming-languages.html)
 
 ## Developing FREME
 
