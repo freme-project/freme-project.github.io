@@ -28,7 +28,7 @@ pos: 3.12
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H "Content-Type: text/plain" -H "Accept: text/turtle" -H "Cache-Control: no-cache" -d 'Welcome to the city of Prague.' "{{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents/?language=en&dataset=dbpedia"</code></pre>
+<pre><code>curl -X POST -H "Content-Type: text/plain" -H "Accept: text/turtle" -d 'Welcome to the city of Prague.' "{{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents/?language=en&dataset=dbpedia"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -54,8 +54,7 @@ pos: 3.12
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
     <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/plain&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Welcome to the city of Prague.&quot;</span>
 }
@@ -104,7 +103,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;accept&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/plain&#39;</span>
 ));
@@ -126,7 +124,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; -H &quot;Cache-Control: no-cache&quot; -d &#39;@prefix dbpedia-fr: &lt;http://fr.dbpedia.org/resource/&gt; .
+<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;@prefix dbpedia-fr: &lt;http://fr.dbpedia.org/resource/&gt; .
     @prefix dbc:   &lt;http://dbpedia.org/resource/Category:&gt; .
     @prefix dbpedia-es: &lt;http://es.dbpedia.org/resource/&gt; .
     @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -182,8 +180,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
     <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;@prefix dbpedia-fr: &lt;http://fr.dbpedia.org/resource/&gt; .\n@prefix dbc:   &lt;http://dbpedia.org/resource/Category:&gt; .\n@prefix dbpedia-es: &lt;http://es.dbpedia.org/resource/&gt; .\n@prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n@prefix dbpedia: &lt;http://dbpedia.org/resource/&gt; .\n@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n@prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n@prefix dbpedia-de: &lt;http://de.dbpedia.org/resource/&gt; .\n@prefix dbpedia-ru: &lt;http://ru.dbpedia.org/resource/&gt; .\n@prefix freme-onto: &lt;http://freme-project.eu/ns#&gt; .\n@prefix dbpedia-nl: &lt;http://nl.dbpedia.org/resource/&gt; .\n@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .\n@prefix dbpedia-it: &lt;http://it.dbpedia.org/resource/&gt; .\n\n&lt;http://freme-project.eu/#char=23,29&gt;\n        a                     nif:String , nif:Word , nif:RFC5147String , nif:Phrase ;\n        nif:anchorOf          \&quot;Prague\&quot;^^xsd:string ;\n        nif:beginIndex        \&quot;23\&quot;^^xsd:int ;\n        nif:endIndex          \&quot;29\&quot;^^xsd:int ;\n        nif:referenceContext  &lt;http://freme-project.eu/#char=0,30&gt; ;\n        itsrdf:taClassRef     &lt;http://dbpedia.org/ontology/Location&gt; , &lt;http://dbpedia.org/ontology/PopulatedPlace&gt; , &lt;http://nerd.eurecom.fr/ontology#Location&gt; , &lt;http://dbpedia.org/ontology/Place&gt; , &lt;http://dbpedia.org/ontology/City&gt; , &lt;http://dbpedia.org/ontology/Settlement&gt; ;\n        itsrdf:taConfidence   \&quot;0.9938091793011123\&quot;^^xsd:double ;\n        itsrdf:taIdentRef     dbpedia:Prague .\n\n&lt;http://freme-project.eu/#char=0,30&gt;\n        a               nif:String , nif:Context , nif:RFC5147String ;\n        nif:beginIndex  \&quot;0\&quot;^^xsd:int ;\n        nif:endIndex    \&quot;30\&quot;^^xsd:int ;\n        nif:isString    \&quot;Welcome to the city of Prague.\&quot;^^xsd:string .\n&quot;</span>
 }
@@ -260,7 +257,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;accept&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>
 ));
@@ -313,7 +309,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '[ {   "method": "POST",   "endpoint": "{{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents",   "parameters": {     "language": "en" ,  "dataset": "dbpedia"  },   "headers": {     "content-type": "text/plain",     "accept": "text/turtle"   },   "body": "Welcome to the city of Prague." }, {   "method": "POST",   "endpoint": "{{site.apiurl | prepend: site.url}}/e-link/documents/",   "parameters": {     "templateid": "3"   },   "headers": {     "content-type": "text/turtle"   } } ]' "{{site.apiurl | prepend: site.url}}/pipelining/chain"</code></pre>
+<pre><code>curl -X POST -H "Content-Type: application/json" -d '[ {   "method": "POST",   "endpoint": "{{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents",   "parameters": {     "language": "en" ,  "dataset": "dbpedia"  },   "headers": {     "content-type": "text/plain",     "accept": "text/turtle"   },   "body": "Welcome to the city of Prague." }, {   "method": "POST",   "endpoint": "{{site.apiurl | prepend: site.url}}/e-link/documents/",   "parameters": {     "templateid": "3"   },   "headers": {     "content-type": "text/turtle"   } } ]' "{{site.apiurl | prepend: site.url}}/pipelining/chain"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -338,8 +334,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;url&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;{{site.apiurl | prepend: site.url}}/pipelining/chain&quot;</span>,
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
-    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;processData&quot;</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;[ {   \&quot;method\&quot;: \&quot;POST\&quot;,   \&quot;endpoint\&quot;: \&quot;{{site.apiurl | prepend: site.url}}/e-entity/freme-ner/documents\&quot;,   \&quot;parameters\&quot;: {     \&quot;language\&quot;: \&quot;en\&quot; ,  \&quot;dataset\&quot;: \&quot;dbpedia\&quot;  },   \&quot;headers\&quot;: {     \&quot;content-type\&quot;: \&quot;text/plain\&quot;,     \&quot;accept\&quot;: \&quot;text/turtle\&quot;   },   \&quot;body\&quot;: \&quot;Welcome to the city of Prague.\&quot; }, {   \&quot;method\&quot;: \&quot;POST\&quot;,   \&quot;endpoint\&quot;: \&quot;{{site.apiurl | prepend: site.url}}/e-link/documents/\&quot;,   \&quot;parameters\&quot;: {     \&quot;templateid\&quot;: \&quot;3\&quot;   },   \&quot;headers\&quot;: {     \&quot;content-type\&quot;: \&quot;text/turtle\&quot;   } } ]&quot;</span>
@@ -378,7 +373,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setMethod</span>(HTTP_METH_POST);
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;application/json&#39;</span>
 ));
 
@@ -400,7 +394,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '[ {   "method": "POST",   "endpoint": "http://api.freme-project.eu/0.5/e-entity/freme-ner/documents",   "parameters": {     "language": "en" ,  "dataset": "dbpedia"  },   "headers": {     "content-type": "text/plain",     "accept": "text/turtle"   },   "body": "Welcome to the city of Prague." }, {   "method": "POST",   "endpoint": "http://api-dev.freme-project.eu/current/e-link/documents/",   "parameters": {     "templateid": "3"   },   "headers": {     "content-type": "text/turtle"   } } ]' "http://api-dev.freme-project.eu/current/pipelining/chain?filter=place-and-lat-long&output=csv"</code></pre>
+<pre><code>curl -X POST -H "Content-Type: application/json" -d '[ {   "method": "POST",   "endpoint": "http://api.freme-project.eu/0.5/e-entity/freme-ner/documents",   "parameters": {     "language": "en" ,  "dataset": "dbpedia"  },   "headers": {     "content-type": "text/plain",     "accept": "text/turtle"   },   "body": "Welcome to the city of Prague." }, {   "method": "POST",   "endpoint": "http://api-dev.freme-project.eu/current/e-link/documents/",   "parameters": {     "templateid": "3"   },   "headers": {     "content-type": "text/turtle"   } } ]' "http://api-dev.freme-project.eu/current/pipelining/chain?filter=place-and-lat-long&output=csv"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -425,8 +419,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;url&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;http://api-dev.freme-project.eu/current/pipelining/chain?filter=place-and-lat-long&amp;output=csv&quot;</span>,
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
-    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;processData&quot;</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;[ {   \&quot;method\&quot;: \&quot;POST\&quot;,   \&quot;endpoint\&quot;: \&quot;http://api.freme-project.eu/0.5/e-entity/freme-ner/documents\&quot;,   \&quot;parameters\&quot;: {     \&quot;language\&quot;: \&quot;en\&quot; ,  \&quot;dataset\&quot;: \&quot;dbpedia\&quot;  },   \&quot;headers\&quot;: {     \&quot;content-type\&quot;: \&quot;text/plain\&quot;,     \&quot;accept\&quot;: \&quot;text/turtle\&quot;   },   \&quot;body\&quot;: \&quot;Welcome to the city of Prague.\&quot; }, {   \&quot;method\&quot;: \&quot;POST\&quot;,   \&quot;endpoint\&quot;: \&quot;http://api-dev.freme-project.eu/current/e-link/documents/\&quot;,   \&quot;parameters\&quot;: {     \&quot;templateid\&quot;: \&quot;3\&quot;   },   \&quot;headers\&quot;: {     \&quot;content-type\&quot;: \&quot;text/turtle\&quot;   } } ]&quot;</span>
@@ -475,7 +468,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;application/json&#39;</span>
 ));
 
@@ -497,7 +489,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H "Content-Type: text/plain" -H "Cache-Control: no-cache" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "{{site.apiurl | prepend: site.url}}/e-translation/tilde?source-lang=en&target-lang=nl&filter=original-and-translation"</code></pre>
+<pre><code>curl -X POST -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "{{site.apiurl | prepend: site.url}}/e-translation/tilde?source-lang=en&target-lang=nl&filter=original-and-translation"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -521,8 +513,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;url&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;{{site.apiurl | prepend: site.url}}/e-translation/tilde?source-lang=en&amp;target-lang=nl&amp;filter=original-and-translation&quot;</span>,
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
-    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/plain&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/plain&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.&quot;</span>
 }
@@ -572,7 +563,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/plain&#39;</span>
 ));
 
@@ -594,7 +584,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '[     {       "method": "POST",       "endpoint": "{{site.apiurl | prepend: site.url}}/e-terminology/tilde",       "parameters": {         "source-lang": "en",         "target-lang": "nl"       },       "headers": {         "content-type": "text/plain",         "accept": "application/json+ld"       },   "body": "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent."     },     {       "method": "POST",       "endpoint": "{{site.apiurl | prepend: site.url}}/e-translation/tilde",       "parameters": {         "source-lang": "en",         "target-lang": "nl"       },       "headers": {         "content-type": "application/json+ld",         "accept": "text/turtle"       }     }   ]' "{{site.apiurl | prepend: site.url}}/pipelining/chain?filter=original-and-translation&output=csv"</code></pre>
+<pre><code>curl -X POST -H "Content-Type: application/json" -d '[     {       "method": "POST",       "endpoint": "{{site.apiurl | prepend: site.url}}/e-terminology/tilde",       "parameters": {         "source-lang": "en",         "target-lang": "nl"       },       "headers": {         "content-type": "text/plain",         "accept": "application/json+ld"       },   "body": "The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent."     },     {       "method": "POST",       "endpoint": "{{site.apiurl | prepend: site.url}}/e-translation/tilde",       "parameters": {         "source-lang": "en",         "target-lang": "nl"       },       "headers": {         "content-type": "application/json+ld",         "accept": "text/turtle"       }     }   ]' "{{site.apiurl | prepend: site.url}}/pipelining/chain?filter=original-and-translation&output=csv"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -619,8 +609,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;url&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;{{site.apiurl | prepend: site.url}}/pipelining/chain?filter=original-and-translation&amp;output=csv&quot;</span>,
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
-    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;application/json&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;processData&quot;</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">false</span>,
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;[     {       \&quot;method\&quot;: \&quot;POST\&quot;,       \&quot;endpoint\&quot;: \&quot;{{site.apiurl | prepend: site.url}}/e-terminology/tilde\&quot;,       \&quot;parameters\&quot;: {         \&quot;source-lang\&quot;: \&quot;en\&quot;,         \&quot;target-lang\&quot;: \&quot;nl\&quot;       },       \&quot;headers\&quot;: {         \&quot;content-type\&quot;: \&quot;text/plain\&quot;,         \&quot;accept\&quot;: \&quot;application/json+ld\&quot;       },   \&quot;body\&quot;: \&quot;The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.\&quot;     },     {       \&quot;method\&quot;: \&quot;POST\&quot;,       \&quot;endpoint\&quot;: \&quot;{{site.apiurl | prepend: site.url}}/e-translation/tilde\&quot;,       \&quot;parameters\&quot;: {         \&quot;source-lang\&quot;: \&quot;en\&quot;,         \&quot;target-lang\&quot;: \&quot;nl\&quot;       },       \&quot;headers\&quot;: {         \&quot;content-type\&quot;: \&quot;application/json+ld\&quot;,         \&quot;accept\&quot;: \&quot;text/turtle\&quot;       }     }   ]&quot;</span>
@@ -669,7 +658,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;application/json&#39;</span>
 ));
 
@@ -691,7 +679,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/html&quot; -H &quot;Accept: text/turtle&quot; -H &quot;Cache-Control: no-cache&quot; -d &#39;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt; &lt;h1&gt;Example&lt;/h1&gt;    &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&#39; &quot;{{site.apiurl | prepend: site.url}}/e-terminology/tilde?source-lang=en&amp;target-lang=nl&quot;</code></pre>
+<pre><code>curl -X POST -H &quot;Content-Type: text/html&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt; &lt;h1&gt;Example&lt;/h1&gt;    &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&#39; &quot;{{site.apiurl | prepend: site.url}}/e-terminology/tilde?source-lang=en&amp;target-lang=nl&quot;</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -717,8 +705,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
     <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/html&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt; &lt;h1&gt;Example&lt;/h1&gt;    &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&quot;</span>
 }
@@ -767,7 +754,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;accept&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/html&#39;</span>
 ));
@@ -790,7 +776,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/html&quot; -H &quot;Accept: text/html&quot; -H &quot;Cache-Control: no-cache&quot; -d &#39;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt;     &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&#39; &quot;{{site.apiurl | prepend: site.url}}/e-terminology/tilde?source-lang=en&amp;target-lang=nl&quot;</code></pre>
+<pre><code>curl -X POST -H &quot;Content-Type: text/html&quot; -H &quot;Accept: text/html&quot; &quot; -d &#39;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt;     &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&#39; &quot;{{site.apiurl | prepend: site.url}}/e-terminology/tilde?source-lang=en&amp;target-lang=nl&quot;</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -816,8 +802,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
     <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/html&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/html&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/html&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;&lt;!DOCTYPE html&gt; &lt;html lang=&#39;en&#39; &gt;   &lt;head&gt;     &lt;meta charset=&#39;utf-8&#39; &gt; &lt;title&gt;Example&lt;/title&gt;   &lt;/head&gt;         &lt;body&gt;     &lt;p&gt;Welcome to the city of Prague.&lt;/p&gt;   &lt;/body&gt; &lt;/html&gt;&quot;</span>
 }
@@ -866,7 +851,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;accept&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/html&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/html&#39;</span>
 ));
@@ -889,7 +873,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; -H &quot;Cache-Control: no-cache&quot; -d &#39;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
     @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
     @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
     @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
@@ -937,8 +921,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
   <span style="background-color: #fff0f0">&quot;method&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
   <span style="background-color: #fff0f0">&quot;headers&quot;</span><span style="color: #333333">:</span> {
     <span style="background-color: #fff0f0">&quot;content-type&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>,
-    <span style="background-color: #fff0f0">&quot;cache-control&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;no-cache&quot;</span>
+    <span style="background-color: #fff0f0">&quot;accept&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;text/turtle&quot;</span>
   },
   <span style="background-color: #fff0f0">&quot;data&quot;</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n@prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n@prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n\n&lt;http://dkt.dfki.de/documents/#char=11,17&gt;\n        a                     nif:RFC5147String , nif:String ;\n        nif:anchorOf          \&quot;Prague\&quot;^^xsd:string ;\n        nif:beginIndex        \&quot;11\&quot;^^xsd:nonNegativeInteger ;\n        nif:endIndex          \&quot;17\&quot;^^xsd:nonNegativeInteger ;\n        nif:entity            &lt;http://dkt.dfki.de/ontologies/nif#location&gt; ;\n        nif:geoPoint          \&quot;50.083333333333336_14.416666666666666\&quot;^^xsd:string ;\n        nif:referenceContext  &lt;http://dkt.dfki.de/documents/#char=0,26&gt; ;\n        itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Prague&gt; .\n\n&lt;http://dkt.dfki.de/documents/#char=0,26&gt;\n        a                    nif:RFC5147String , nif:String , nif:Context ;\n        nif:beginIndex       \&quot;0\&quot;^^xsd:nonNegativeInteger ;\n        nif:centralGeoPoint  \&quot;50.083333333333336_14.416666666666666\&quot;^^xsd:string ;\n        nif:endIndex         \&quot;26\&quot;^^xsd:nonNegativeInteger ;\n        nif:geoStandardDevs  \&quot;0.0_0.0\&quot;^^xsd:string ;\n        nif:isString         \&quot;Welcome to Prague in 2016.\&quot;^^xsd:string .&quot;</span>
 }
@@ -1007,7 +990,6 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 ));
 
 <span style="color: #996633">$request</span><span style="color: #333333">-&gt;</span><span style="color: #0000CC">setHeaders</span>(<span style="color: #008800; font-weight: bold">array</span>(
-  <span style="background-color: #fff0f0">&#39;cache-control&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;no-cache&#39;</span>,
   <span style="background-color: #fff0f0">&#39;accept&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>,
   <span style="background-color: #fff0f0">&#39;content-type&#39;</span> <span style="color: #333333">=&gt;</span> <span style="background-color: #fff0f0">&#39;text/turtle&#39;</span>
 ));
