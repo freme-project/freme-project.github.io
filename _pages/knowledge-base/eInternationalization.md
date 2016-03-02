@@ -23,7 +23,7 @@ The e-Internationalization service provides methods for converting following for
   *	XLIFF 1.2 – MIME-type: application/x-xliff+xml
   *	ODT – MIME-type: application/x-openoffice
   
-If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the [itsrdf] [1] domain (see [Supported ITS categories](#supported-its-categories) section).
+If the original document contains ITS 2.0 properties, they are translated to proper NIF properties from the <span title="asda">itsrdf</span> domain (see [Supported ITS categories](#supported-its-categories) section).
 
 Beside the conversion to NIF, the e-Internationalization service also provides a method for converting the enriched NIF back to the original file format. We call this functionality `round-tripping` and at the moment it is only available with the HTML format. For example, the user can invoke the e-Entity service by submitting an HTML file and specifying "outformat=html". The HTML file is converted to NIF and then the latter is sent to the e-Entity service. Once the NIF has been enriched, it is converted back to the HTML format. The final HTML file contains enrichments retrieved by the e-Entity service. As for the simple conversion, the process is completely transparent to the user: s/he doesn't have to explicitly call the e-Internationalization service. Note that only entity and terminology enrichments can be included in the original file format. Although user is allowed to specify HTML output format even for e-Link and e-Translation services, s/he should be aware that the returned HTML file won't contain enrichments retrieved by those services.
 
@@ -1018,4 +1018,3 @@ Converted NIF file
 
 
 
-  [1]: https://www.w3.org/TR/its20/ `itsrdf` is a commonly used technical prefix in RDF for namespace http://www.w3.org/2005/11/its/rdf describing ITS 2.0 / RDF Ontology.
