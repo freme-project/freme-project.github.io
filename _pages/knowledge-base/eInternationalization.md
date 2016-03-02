@@ -1018,4 +1018,4 @@ Converted NIF file
 
 
 
-  [1]: It is commonly used technical prefix in RDF for namespace http://www.w3.org/2005/11/its/rdf describing ITS 2.0 / RDF Ontology.
+  [1]: https://www.w3.org/TR/its20/ `itsrdf` is a commonly used technical prefix in RDF for namespace http://www.w3.org/2005/11/its/rdf describing ITS 2.0 / RDF Ontology.
