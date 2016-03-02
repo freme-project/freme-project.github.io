@@ -18,7 +18,7 @@ This section contains a series of articles with documentation about various aspe
 ## Knowledge base for FREME users
                                           
 [Authentication](authentication.html)
-[e-Internationalization Service](eInternationalization.html)
+[e-Internationalisation Service](eInternationalisation.html)
 
 ## Knowledge base for FREME developers
 
