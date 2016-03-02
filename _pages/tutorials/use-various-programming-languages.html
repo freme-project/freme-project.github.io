@@ -7,17 +7,28 @@ pos: 3.12
 
 <h1>How to access FREME using various programming languages</h1>
 
-<div>This tutorial shows how to use FREME features in cURL, Javascript / jQuery or PHP V1</div>
+<div>This tutorial shows how to use FREME features in cURL, Javascript / jQuery or PHP V1.</div>
 
-<h2>Example 1: Example API Call</h2>
+<h2>Content</h2>
+<ul>
+    <li><a href="example-1">Example 1: Example API Call</a></li>
+    <li><a href="example-2">Example 2: CHAINING OF E-SERVICES CLIENT SIDE</a></li>
+    <li><a href="example-3">Example 3: CHAINING OF E-SERVICES VIA PIPELINES</a></li>
+    <li><a href="example-4">Example 4: SIMPLIFIED OUTPUT</a></li>
+    <li><a href="example-5">Example 5: TRANSLATION WITHOUT E-TERMINOLOGY</a></li>
+    <li><a href="example-6">Example 6: E-TRANSLATION IMPROVED BY E-TERMINOLOGY</a></li>
+    <li><a href="example-7">Example 7: HTML INPUT PROCESSED WITH E-TERMINOLOGY</a></li>
+    <li><a href="example-8">Example 8: HTML INPUT PROCESSED WITH E-TERMINOLOGY AND HTML OUTPUT</a></li>
+    <li><a href="example-9">Example 9: DISTRIBUTED CHAINING OF SERVICES</a></li>
+</ul>
+
+<h2 id="example-1">Example 1: Example API Call</h2>
 
 <div>This example shows how to call FREME NER.</div>
 
 <h3>Example in cURL</h3>
 
-<pre><code>
-    curl -X POST -H "Content-Type: text/plain" -H "Accept: text/turtle" -H "Cache-Control: no-cache" -d 'Welcome to the city of Prague.' "http://api.freme-project.eu/0.5/e-entity/freme-ner/documents/?language=en&dataset=dbpedia"
-</code></pre>
+<pre><code>curl -X POST -H "Content-Type: text/plain" -H "Accept: text/turtle" -H "Cache-Control: no-cache" -d 'Welcome to the city of Prague.' "http://api.freme-project.eu/0.5/e-entity/freme-ner/documents/?language=en&dataset=dbpedia"</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
