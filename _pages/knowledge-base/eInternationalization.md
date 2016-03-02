@@ -659,7 +659,7 @@ The translation is not reported in the original HTML. The user is still allowed 
 
 ## ITS properties and NIF files
 
-This section shows how each supported format is converted to NIF, including the translation of ITS to itsrdf properties.
+This section shows how each supported format is converted to NIF, including the translation of ITS to <span style="color:blue" title="itsrdf is a commonly used technical prefix in RDF for namespace http://www.w3.org/2005/11/its/rdf describing ITS 2.0 / RDF Ontology.">itsrdf</span> properties.
 Note that all markups are discarded (excepting for ITS annotations) and only plain text is extracted.
 
 ### HTML
