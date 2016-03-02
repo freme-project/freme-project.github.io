@@ -5,7 +5,7 @@ dropdown: Knowledge Base
 pos: 4.9
 ---
 # Rate Limiting
-Using the Rate-Limiting Filter one can limit the amount of requests as well as the size of all requests made by one user.
+Using the Rate-Limiting filter a server administrator can limit the amount of requests as well as the size of all requests made by one user.
 Unauthenticated users are mapped to their IP-Address, Authenticated users to their username.
 
 ## Parameters in application.properties
