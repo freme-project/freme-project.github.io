@@ -3,7 +3,7 @@ info:
   version: "0.2"
   title: "FREME API Documentation"
 
-host: "api.freme-project.eu"
+host: "api-dev.freme-project.eu"
 basePath: "/current"
 tags:
 - name: "e-Entity"
