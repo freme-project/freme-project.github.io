@@ -22,7 +22,7 @@
 				{% if somepage.title %}
 					{% if in_a_list == 'True' %}
 						{% if {{somepage.dropdown}} == {{currentdropdown}} %}
-							{% if somepage.isexternurl == 'True' %}
+							{% if {{ somepage.isexternurl }} == 'True' %}
 							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 							{% else %}
 							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
