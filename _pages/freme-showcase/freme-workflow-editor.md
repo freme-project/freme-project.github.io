@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: page
 title: FREME Workflow Editor
 isexternurl: True
 externurl: http://api-dev.freme-project.eu/freme-workflow-editor
