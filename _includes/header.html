@@ -33,8 +33,11 @@
 							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-
-								<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
+								{% if somepage.isexternurl == 'True' %}
+									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
+								{% else %}
+									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
+								{% endif %}
 							{% assign in_a_list = 'True' %}
 							{% assign currentdropdown = {{somepage.dropdown}} %}
 							{% continue %}

@@ -18,7 +18,7 @@ definitions:
       totalSpace: {format: int64, type: integer}
       usableSpace: {format: int64, type: integer}
     type: object
-host: api-dev.freme-project.eu
+host: api.freme-project.eu
 info: {description: 'This section only covers the most important endpoints of FREME:
     the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
     via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
@@ -173,6 +173,17 @@ paths:
         name: mode
         required: false
         type: string
+      - {description: 'Takes as input a domain ID, and it only returns entities from
+          this domain. The domain IDs are from the [TaaS domain classification system](https://term.tilde.com/domains).
+          For example, the sports domain is identified with the TaaS-2007 ID. Note
+          that the IDs are case-sensitive. More information about the domain parameter
+          in [FREME NER documentation](../knowledge-base/freme-ner.html).', in: query,
+        name: domain, required: false, type: string}
+      - {description: 'Takes as input list of one or more entity types separated by
+          a comma. The types are URLs of ontology classes and they should be encoded.
+          The result is a list of extracted entities with these types. More information
+          about the types parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).',
+        in: query, name: types, required: false, type: string}
       produces: [text/n3, text/turtle, application/ld+json, application/n-triples,
         application/rdf+xml, application/x-xliff+xml, text/html, application/x-openoffice,
         text/xml]
@@ -458,14 +469,14 @@ paths:
       description: "Parameters can be submitted via URL or via form-data post body.\
         \ A list of available\nlanguage pairs is [here](https://services.tilde.com/translationsystems).\
         \ This is a\nNIF example that can be consumed by e-Translation:\n\n<pre lang=\"\
-        sparql\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema# &gt;\
-        \ .\n@prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#\
-        \ &gt; .\n@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf# &gt; .\n\
-        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema# &gt; .\n@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#\
-        \ &gt; .\n&lt;http://freme-project.eu/ &gt;\n  a nif:String , nif:RFC5147String\
+        sparql\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;\
+        \ .\n@prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;\
+        \ .\n@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n@prefix\
+        \ xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\
+        \ .\n&lt;http://freme-project.eu/&gt;\n  a nif:String , nif:RFC5147String\
         \ , nif:Context ;\n    nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger\
         \ ;\n    nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;\n    nif:isString\
-        \    &quot;translate me&quot;@en ;\n</code></pre>\n"
+        \    &quot;translate me&quot;@en .\n</code></pre>\n"
       operationId: tildeTranslate
       parameters:
       - {description: 'The string to be translated. Can be either plaintext or NIF
