@@ -23,7 +23,7 @@
 					{% if in_a_list == 'True' %}
 						{% if {{somepage.dropdown}} == {{currentdropdown}} %}
 							{% if somepage.isexternurl %}
-							<li><a target="_blank" href="{{ somepage.externurl }}">{{ somepage.title }}</a></li>
+							<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 							{% else %}
 							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
 							{% endif %}
@@ -38,7 +38,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl }}">{{ somepage.title }}</a></li>
+									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 									{% else %}
 									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
 									{% endif %}
@@ -58,7 +58,7 @@
 						{% if somepage.dropdown == 'None' %}
 
 									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl }}">{{ somepage.title }}</a></li>
+									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 									{% else %}
 									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
 									{% endif %}
@@ -68,7 +68,7 @@
 								<ul class="dropdown-menu">
 
 									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl }}">{{ somepage.title }}</a></li>
+									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 									{% else %}
 									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
 									{% endif %}
