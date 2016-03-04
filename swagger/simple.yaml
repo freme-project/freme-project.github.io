@@ -18,7 +18,7 @@ definitions:
       totalSpace: {format: int64, type: integer}
       usableSpace: {format: int64, type: integer}
     type: object
-host: api.freme-project.eu
+host: api-dev.freme-project.eu
 info: {description: 'This section only covers the most important endpoints of FREME:
     the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
     via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
