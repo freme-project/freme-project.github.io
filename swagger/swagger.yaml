@@ -284,62 +284,35 @@ paths:
         <pre><code>
 
         {
-
           "label": "Spotlight-Link",
-
           "description": "Recognises entities using Spotlight en enriches with
         geo information.",
-
           "serializedRequests": [
-
             {
-
               "method": "POST",
-
               "endpoint":
         "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
-
               "parameters": {
-
                 "language": "en"
-
               },
-
               "headers": {
-
                 "content-type": "text/plain",
-
                 "accept": "text/turtle"
-
               }
-
             },
-
             {
-
               "method": "POST",
-
               "endpoint":
         "http://api.freme-project.eu/current/e-link/documents/",
-
               "parameters": {
-
                 "templateid": "3"
-
               },
-
               "headers": {
-
                 "content-type": "text/turtle",
-
                 "accept": "text/turtle"
-
               }
-
             }
-
           ]
-
         }
 
         </pre></code>
