@@ -733,6 +733,8 @@ paths:
         } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
+
+
         The query returns a list of triples where the subject is the entity URI, and the object is the label of the entity.
         This query returns 500 entities of type Country from DBpedia with their URI and label.
 
