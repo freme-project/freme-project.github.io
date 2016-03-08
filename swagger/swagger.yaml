@@ -285,8 +285,7 @@ paths:
 
         {
           "label": "Spotlight-Link",
-          "description": "Recognises entities using Spotlight en enriches with
-        geo information.",
+          "description": "Recognises entities using Spotlight en enriches with geo information.",
           "serializedRequests": [
             {
               "method": "POST",
@@ -548,6 +547,7 @@ paths:
 
 
           #Examples
+
           **e-Entity, e-Link**
 
           <pre lang=\"json\"><code>
@@ -578,7 +578,10 @@ paths:
           ]
           </code></pre>
 
+
+
           **e-Entity, e-Link, e-Translate**
+
           <pre lang=\"json\"><code>
           [
           {
@@ -618,6 +621,8 @@ paths:
           }
           ]
           </code></pre>
+
+
 
           **e-Entity, e-Link, e-Terminology**
 
