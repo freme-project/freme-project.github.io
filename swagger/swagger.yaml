@@ -535,6 +535,7 @@ paths:
 
 
           The body must be a JSON String with the following format:
+
           * `method` - the method of the request. Possible values are GET or POST.
           * `endpoint` - the endpoint of the service.
           * `parameters` - a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.
