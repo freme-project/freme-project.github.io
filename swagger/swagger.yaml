@@ -713,7 +713,7 @@ paths:
 
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
-        <pre lang=\"turtle\"> <code>
+        <pre lang="turtle"> <code>
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .
@@ -725,7 +725,7 @@ paths:
 
         **Example for sparql parameter**
 
-        <pre lang=\"sparql\"><code>
+        <pre lang="sparql"><code>
         SELECT ?res ?label
         WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label .
           ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
@@ -962,7 +962,7 @@ paths:
 
         This example shows a NIF document that can be processed by the service:
 
-        <pre lang=\"turtle\"><code>
+        <pre lang="turtle"><code>
         @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
         @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
         @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -1350,10 +1350,7 @@ paths:
 
         **Example**
 
-
-
         - resource: `http://dbpedia.org/resource/Berlin`
-
         - endpoint: `http://dbpedia.org/sparql`
       produces:
         - text/turtle
