@@ -1352,6 +1352,7 @@ paths:
         **Example**
 
         - resource: `http://dbpedia.org/resource/Berlin`
+
         - endpoint: `http://dbpedia.org/sparql`
       produces:
         - text/turtle
@@ -1394,7 +1395,7 @@ paths:
       summary: Fetch data about named entities from various ontologies
       description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template. \n
               \n
-              <pre lang=\"sparql\"><code>
+              <pre lang=\"turtle\"><code>
             @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n
             @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n
             @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n
