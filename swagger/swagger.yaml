@@ -710,25 +710,26 @@ paths:
       summary: Submitting dataset for use in the e-Entity service
       description: >
         Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
         <pre lang=\"turtle\"> <code>
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .
+        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .
         </code></pre>
 
 
         **Example for sparql parameter**
 
         <pre lang=\"sparql\"><code>
-        SELECT ?res ?label \n
-        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
-        ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
-        &lt;http://dbpedia.org/ontology/Country &gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
+        SELECT ?res ?label
+        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label .
+          ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
+          &lt;http://dbpedia.org/ontology/Country &gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) )
         } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
@@ -954,21 +955,15 @@ paths:
       summary: Entity recognition and linking using Freme-NER engine.
       description: >
         Enriches Text content with entities gathered from various datasets
-
         by the DBPedia-Spotlight Engine. The service accepts plaintext or text
-        sent
-
-        as NIF document. The text of the nif:isString property (attached to the
-
-        nif:Context document) will be used for processing. This example shows a
-
-        NIF document that can be processed by the service:
+        sent as NIF document. The text of the nif:isString property (attached to the
+        nif:Context document) will be used for processing.
 
 
+        This example shows a NIF document that can be processed by the service:
 
-        <pre lang="sparql"><code>
-        @prefix
-        nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+        <pre lang=\"turtle\"><code>
+        @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
         @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
         @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
         &lt;http://example.org/document/1#char=0,21&gt;
