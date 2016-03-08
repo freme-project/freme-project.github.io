@@ -708,19 +708,20 @@ paths:
       tags:
         - e-Entity
       summary: Submitting dataset for use in the e-Entity service
-      description: "Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
-
-
+      description: "Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set). \n
+        \n
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
-        <pre lang=\"turtle\"> <code>
+        <pre lang=\"turtle\"><code>
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
         &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
         &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
         &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
-        </code> </pre>
+        </code></pre>
+
+
 
         **Example for sparql parameter**
 
