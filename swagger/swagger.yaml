@@ -708,28 +708,27 @@ paths:
       tags:
         - e-Entity
       summary: Submitting dataset for use in the e-Entity service
-      description: >
-        Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+      description: "Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set).
+
 
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
-        <pre lang="turtle"> <code>
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .
-        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .
-        </code></pre>
-
+        <pre lang=\"turtle\"> <code>
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
+        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
+        </code> </pre>
 
         **Example for sparql parameter**
 
-        <pre lang="sparql"><code>
-        SELECT ?res ?label
-        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label .
-          ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
-          &lt;http://dbpedia.org/ontology/Country &gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) )
+        <pre lang=\"sparql\"><code>
+        SELECT ?res ?label \n
+        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
+          ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
+          &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
         } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
@@ -739,6 +738,7 @@ paths:
 
         **Note 1:**
 
+
         The properties `http://www.w3.org/2004/02/skos/core#:altLabel` and `http://www.w3.org/2004/02/skos/core#:prefLabel` here are indexed
         (by default, `skos:altLabel`, `skos:prefLabel`, `rdfs:label` are indexed, please see docs). This is configurable. So even if it's `anyPrefix:someOtherPredicate`,
         we can support it through the `properties` parameter in FREME NER while dataset creation. For example add `properties=www.example.com/me` to your query to index the property `www.example.com/me`.
@@ -746,11 +746,12 @@ paths:
 
         **Note 2:**
 
+
         SKOS datasets (see above, can even be non-skos labels as long as the user specifies
         them, but it's recommended to stick to skos/rdfs) are a minimum, they give us labels to build gazetteers from. But if the dataset providers
         have raw RDF with various other kinds of information (like location, geo-coordinates, sameAs, closeMatch etc.) they can include them too.
         So basically, send them all in. That will only help the entity linker in performing better disambiguation by taking into account
-        inter-resource links.
+        inter-resource links."
       operationId: createDataset
       consumes:
         - text/n3
@@ -1391,7 +1392,50 @@ paths:
       tags:
         - e-Link
       summary: Fetch data about named entities from various ontologies
-      description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template. \n \n <pre lang=\"sparql\"><code> @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#&gt; .\n @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#&gt; .\n @prefix oslc:  &lt;http://open-services.net/ns/core#&gt; .\n @prefix dsp:   &lt;http://dublincore.org/dc-dsp#&gt; .\n @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .\n @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#&gt; .\n @prefix schema: &lt;http://schema.org/&gt; .\n @prefix olia:  &lt;http://purl.org/olia/olia.owl#&gt; .\n @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n @prefix p:     &lt;http://127.0.0.1:9995/spotlight#&gt; .\n @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#&gt; .\n @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n @prefix owl:   &lt;http://www.w3.org/2002/07/owl#&gt; .\n @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#&gt; .\n @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n @prefix spin:  &lt;http://spinrdf.org/spin#&gt; .\n @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#&gt; .\n @prefix ruts:  &lt;http://rdfunit.aksw.org/data/testsuite#&gt; .\n\n&lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\n a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n nif:beginIndex        &quot;0&quot; ;\n nif:endIndex          &quot;15&quot; ;\n nif:isString          &quot;This is Berlin.&quot; ;\n nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; .\n\n&lt;http://127.0.0.1:9995/spotlight#char=8,14&gt;\n a                     nif:Word , nif:RFC5147String ;\n nif:anchorOf          &quot;Berlin&quot; ;\n nif:beginIndex        &quot;8&quot; ;\n nif:endIndex          &quot;14&quot; ;\n nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; ;\n itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .\n\n\n\n</code></pre>\n"
+      description: "This service accepts a NIF document (with annotated entities) and performs enrichment with pre-defined templates. The templates contain \"fields\" marked between three at-signs @@@field-name@@@. If a user, while calling the enrichment endpoint specifies an \"unknown\" parameter (not from the list above), then the values of that \"unknown\" parameters will be used to replace with the corresponding \"field\" in the query template. \n
+              \n
+              <pre lang=\"sparql\"><code>
+            @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .\n
+            @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .\n
+            @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n
+            @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n
+            @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#&gt; .\n
+            @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#&gt; .\n
+            @prefix oslc:  &lt;http://open-services.net/ns/core#&gt; .\n
+            @prefix dsp:   &lt;http://dublincore.org/dc-dsp#&gt; .\n
+            @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .\n
+            @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#&gt; .\n
+            @prefix schema: &lt;http://schema.org/&gt; .\n
+            @prefix olia:  &lt;http://purl.org/olia/olia.owl#&gt; .\n
+            @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n
+            @prefix p:     &lt;http://127.0.0.1:9995/spotlight#&gt; .\n
+            @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#&gt; .\n
+            @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n
+            @prefix owl:   &lt;http://www.w3.org/2002/07/owl#&gt; .\n
+            @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#&gt; .\n
+            @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n
+            @prefix spin:  &lt;http://spinrdf.org/spin#&gt; .\n
+            @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#&gt; .\n
+            @prefix ruts:  &lt;http://rdfunit.aksw.org/data/testsuite#&gt; .\n
+
+            &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt;\n
+                    a                     nif:Context , nif:Sentence , nif:RFC5147String ;\n
+                    nif:beginIndex        &quot;0&quot; ;\n
+                    nif:endIndex          &quot;15&quot; ;\n
+                    nif:isString          &quot;This is Berlin.&quot; ;\n
+                    nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; .\n
+
+            &lt;http://127.0.0.1:9995/spotlight#char=8,14&gt;\n
+                    a                     nif:Word , nif:RFC5147String ;\n
+                    nif:anchorOf          &quot;Berlin&quot; ;\n
+                    nif:beginIndex        &quot;8&quot; ;\n
+                    nif:endIndex          &quot;14&quot; ;\n
+                    nif:referenceContext  &lt;http://127.0.0.1:9995/spotlight#char=0,15&gt; ;\n
+                    itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .\n
+
+
+
+              </code></pre>\n"
       operationId: enrich
       consumes:
         - text/n3
