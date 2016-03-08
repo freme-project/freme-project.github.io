@@ -290,8 +290,7 @@ paths:
           "serializedRequests": [
             {
               "method": "POST",
-              "endpoint":
-        "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
+              "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
               "parameters": {
                 "language": "en"
               },
@@ -302,8 +301,7 @@ paths:
             },
             {
               "method": "POST",
-              "endpoint":
-        "http://api.freme-project.eu/current/e-link/documents/",
+              "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
               "parameters": {
                 "templateid": "3"
               },
@@ -530,8 +528,140 @@ paths:
       tags:
         - pipelining
       summary: Pipelining multiple requests
-      description: "At the moment only supports POST Method.\n\nAlways consumes application/json and produces the MIME Type specified in the last request.\n\nThe body must be a JSON String with the following format:\n\n* `method` - the method of the request. Possible values are GET or POST.\\\n* `endpoint` - the endpoint of the service.\n* `parameters` - a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.\n* `headers` - a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.\n* `body` - The contents to send to the service. This also depends on the service of course.\n\n**Remark**\n\nOnly the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.\n\n\n\n#Examples\n**e-Entity, e-Link**\n\n<pre lang=\\\"json\\\"><code>\n[\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,\n  &quot;parameters&quot;: {\n    &quot;language&quot;: &quot;en&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/plain&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  },\n  &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;\n},\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,\n  &quot;parameters&quot;: {\n    &quot;templateid&quot;: &quot;3&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/turtle&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  }\n}\n]\n</code></pre>\n\n**e-Entity, e-Link, e-Translate**\n<pre lang=\\\"json\\\"><code>\n[\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,\n  &quot;parameters&quot;: {\n    &quot;language&quot;: &quot;en&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/plain&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  },\n  &quot;body&quot;: &quot;The Belfry in Ghent is one of the oldest buildings in Belgium.&quot;\n},\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,\n  &quot;parameters&quot;: {\n    &quot;templateid&quot;: &quot;3&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/turtle&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  }\n},\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,\n  &quot;parameters&quot;: {\n    &quot;source-lang&quot;: &quot;en&quot;,\n    &quot;target-lang&quot;: &quot;fr&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/turtle&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  }\n}\n]\n</code></pre>\n\n**e-Entity, e-Link, e-Terminology**\n\n<pre lang=\\\"json\\\"><code>\n[\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,\n  &quot;parameters&quot;: {\n    &quot;dataset&quot;: &quot;dbpedia&quot;,\n    &quot;language&quot;: &quot;en&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/plain&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  },\n  &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe's smallest capital cities. But when Iceland's total population only hovers around 300,000, it makes sense that the capital is known as the big city?? and offers all the cultural perks of a much larger place.\\n\\n From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;\n},\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,\n  &quot;parameters&quot;: {\n    &quot;templateid&quot;: &quot;3&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/turtle&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  }\n},\n{\n  &quot;method&quot;: &quot;POST&quot;,\n  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-terminology/tilde&quot;,\n  &quot;parameters&quot;: {\n    &quot;source-lang&quot;: &quot;en&quot;,\n    &quot;target-lang&quot;: &quot;nl&quot;\n  },\n  &quot;headers&quot;: {\n    &quot;content-type&quot;: &quot;text/turtle&quot;,\n    &quot;accept&quot;: &quot;text/turtle&quot;\n  }\n}\n]\n</code></pre>\n"
-      consumes: 
+      description: >
+          At the moment only supports POST Method.
+
+          Always consumes application/json and produces the MIME Type specified in the last request.
+
+          The body must be a JSON String with the following format:
+
+          * `method` - the method of the request. Possible values are GET or POST.\
+          * `endpoint` - the endpoint of the service.
+          * `parameters` - a map of request parameters. Possible values depend on the service. Typical parameters are informat, outformat, input, etc.
+          * `headers` - a map of request headers. Possible values depend on the service. Typical headers are content-type and accept.
+          * `body` - The contents to send to the service. This also depends on the service of course.
+
+          **Remark**
+
+          Only the first request can have content, i.e. a body or a parameter input. This is because the output of the first request serves as input for the second, and so on. If there is content in a subsequent request, it will be ignored.
+
+
+
+          #Examples
+          **e-Entity, e-Link**
+
+          <pre lang=\"json\"><code>
+          [
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+            &quot;parameters&quot;: {
+              &quot;language&quot;: &quot;en&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/plain&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            },
+            &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
+          },
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+            &quot;parameters&quot;: {
+              &quot;templateid&quot;: &quot;3&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/turtle&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            }
+          }
+          ]
+          </code></pre>
+
+          **e-Entity, e-Link, e-Translate**
+          <pre lang=\"json\"><code>
+          [
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+            &quot;parameters&quot;: {
+              &quot;language&quot;: &quot;en&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/plain&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            },
+            &quot;body&quot;: &quot;The Belfry in Ghent is one of the oldest buildings in Belgium.&quot;
+          },
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+            &quot;parameters&quot;: {
+              &quot;templateid&quot;: &quot;3&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/turtle&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            }
+          },
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,
+            &quot;parameters&quot;: {
+              &quot;source-lang&quot;: &quot;en&quot;,
+              &quot;target-lang&quot;: &quot;fr&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/turtle&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            }
+          }
+          ]
+          </code></pre>
+
+          **e-Entity, e-Link, e-Terminology**
+
+          <pre lang=\"json\"><code>
+          [
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,
+            &quot;parameters&quot;: {
+              &quot;dataset&quot;: &quot;dbpedia&quot;,
+              &quot;language&quot;: &quot;en&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/plain&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            },
+            &quot;body&quot;: &quot;With just 200,000 residents, Reykjav&#237;k ranks as one of Europe's smallest capital cities. But when Iceland's total population only hovers around 300,000, it makes sense that the capital is known as the big city?? and offers all the cultural perks of a much larger place.\n\n From live music almost every night to cosy cafes, colourful houses and friendly cats roaming the street, Reykjav&#237;k has all the charms of a small town in a fun capital city,?? said Kaelene Spence, &quot;
+          },
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+            &quot;parameters&quot;: {
+              &quot;templateid&quot;: &quot;3&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/turtle&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            }
+          },
+          {
+            &quot;method&quot;: &quot;POST&quot;,
+            &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-terminology/tilde&quot;,
+            &quot;parameters&quot;: {
+              &quot;source-lang&quot;: &quot;en&quot;,
+              &quot;target-lang&quot;: &quot;nl&quot;
+            },
+            &quot;headers&quot;: {
+              &quot;content-type&quot;: &quot;text/turtle&quot;,
+              &quot;accept&quot;: &quot;text/turtle&quot;
+            }
+          }
+          ]
+          </code></pre>
+      consumes:
         - application/json
       parameters:
         - name: body
