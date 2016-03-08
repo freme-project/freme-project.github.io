@@ -1836,16 +1836,25 @@ paths:
         This is a NIF example that can be consumed by e-Translation:
 
         <pre lang="sparql"><code>
-        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; . \n
-        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; . \n
-        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; . \n
-        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; . \n
-        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; . \n
-        &lt;http://freme-project.eu/&gt; \n
-            a nif:String , nif:RFC5147String , nif:Context ; \n
-            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ; \n
-            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ; \n
-            nif:isString    &quot;translate me&quot;@en . \n
+        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+
+        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+
+        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+
+        &lt;http://freme-project.eu/&gt;
+
+            a nif:String , nif:RFC5147String , nif:Context ;
+
+            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+
+            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+
+            nif:isString    &quot;translate me&quot;@en .
         </code></pre>
       operationId: tildeTranslate
       consumes:
