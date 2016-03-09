@@ -1885,10 +1885,13 @@ paths:
       description: >
         Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
 
+
+
         **Example Call**
-          <pre lang="bash"><code>
-            curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
-          </code></pre>
+
+        <pre lang="bash"><code>
+          curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
+        </code></pre>
 
 
 
@@ -1911,58 +1914,59 @@ paths:
 
 
         **Sample Metadata Json**
-          <pre lang="javascript"><code>
-            {
-             &quot;titles&quot;:[
-                &quot;Alice in Utopia&quot;,
-                &quot;Alice in Europe&quot;
-             ],
-             &quot;creators&quot;:[
-                {
-                    &quot;firstName&quot;: &quot;Joske&quot;,
-                    &quot;lastName&quot;: &quot;Vermeulen&quot;,
-                    &quot;roles&quot;:[&quot;author&quot;]
-                },
-                {
-                    &quot;firstName&quot;: &quot;Nick&quot;,
-                    &quot;lastName&quot;: &quot;Borth&quot;,
-                    &quot;roles&quot;:[&quot;author&quot;]
-                }
-             ],
-             &quot;contributors&quot;:[
-                {
-                    &quot;firstName&quot;: &quot;Frans&quot;,
-                    &quot;lastName&quot;: &quot;Vervaacke&quot;,
-                    &quot;roles&quot;:[&quot;illustrator&quot;]
-                },
-                {
-                    &quot;firstName&quot;: &quot;John&quot;,
-                    &quot;lastName&quot;: &quot;Riplosh&quot;,
-                    &quot;roles&quot;:[&quot;illustrator&quot;]
-                }
-             ],
-             &quot;subjects&quot;:[
-                &quot;alice&quot;,
-                &quot;rabbit&quot;
-             ],
-             &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
-             &quot;language&quot;:&quot;en&quot;,
-             &quot;descriptions&quot;:[&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;],
-             &quot;identifier&quot;:{
-                &quot;value&quot;:&quot;urn:1235-568-2235&quot;
-             },
-             &quot;tableOfContents&quot;:[
-                {
-                   &quot;title&quot;:&quot;Chapter 1&quot;,
-                   &quot;resource&quot;:&quot;01.xhtml&quot;
-                },
-                {
-                   &quot;title&quot;:&quot;Chapter 2&quot;,
-                   &quot;resource&quot;:&quot;02.xhtml&quot;
-                }
-             ]
-            }
-          </code></pre>
+
+        <pre lang="javascript"><code>
+          {
+           &quot;titles&quot;:[
+              &quot;Alice in Utopia&quot;,
+              &quot;Alice in Europe&quot;
+           ],
+           &quot;creators&quot;:[
+              {
+                  &quot;firstName&quot;: &quot;Joske&quot;,
+                  &quot;lastName&quot;: &quot;Vermeulen&quot;,
+                  &quot;roles&quot;:[&quot;author&quot;]
+              },
+              {
+                  &quot;firstName&quot;: &quot;Nick&quot;,
+                  &quot;lastName&quot;: &quot;Borth&quot;,
+                  &quot;roles&quot;:[&quot;author&quot;]
+              }
+           ],
+           &quot;contributors&quot;:[
+              {
+                  &quot;firstName&quot;: &quot;Frans&quot;,
+                  &quot;lastName&quot;: &quot;Vervaacke&quot;,
+                  &quot;roles&quot;:[&quot;illustrator&quot;]
+              },
+              {
+                  &quot;firstName&quot;: &quot;John&quot;,
+                  &quot;lastName&quot;: &quot;Riplosh&quot;,
+                  &quot;roles&quot;:[&quot;illustrator&quot;]
+              }
+           ],
+           &quot;subjects&quot;:[
+              &quot;alice&quot;,
+              &quot;rabbit&quot;
+           ],
+           &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
+           &quot;language&quot;:&quot;en&quot;,
+           &quot;descriptions&quot;:[&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;],
+           &quot;identifier&quot;:{
+              &quot;value&quot;:&quot;urn:1235-568-2235&quot;
+           },
+           &quot;tableOfContents&quot;:[
+              {
+                 &quot;title&quot;:&quot;Chapter 1&quot;,
+                 &quot;resource&quot;:&quot;01.xhtml&quot;
+              },
+              {
+                 &quot;title&quot;:&quot;Chapter 2&quot;,
+                 &quot;resource&quot;:&quot;02.xhtml&quot;
+              }
+           ]
+          }
+        </code></pre>
 
 
 
