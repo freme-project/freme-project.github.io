@@ -2006,7 +2006,24 @@ paths:
       tags:
         - e-Terminology
       summary: Annotate text with terminology information using Tilde Terminology service.
-      description: "Annotate text with terminology information using Tilde Terminology\nservice. This example shows NIF that can be consumed by the service:\n\n<pre lang=\\\"sparql\\\"><code>\n@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .\n@prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .\n@prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .\n&lt;http://freme-project.eu/&gt;\n  a nif:String , nif:RFC5147String , nif:Context ;\n    nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;\n    nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;\n    nif:isString    &quot;Welcome to Europe&quot;@en.\n</code></pre>\n"
+      description: >
+        Annotate text with terminology information using Tilde Terminology
+        service.
+
+
+        This example shows NIF that can be consumed by the service:
+        <pre lang="sparql"><code>
+          @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+          @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+          @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+          @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+          @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+          &lt;http://freme-project.eu/&gt;
+              a nif:String , nif:RFC5147String , nif:Context ;
+              nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+              nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+              nif:isString    &quot;Welcome to Europe&quot;@en.
+        </code></pre>
       operationId: e-terminology
       consumes:
         - text/n3
@@ -2133,24 +2150,17 @@ paths:
 
 
         This is a NIF example that can be consumed by e-Translation:
-
         <pre lang="sparql"><code>
-
-        @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-
-        @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-
-        @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
-
-        @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-
-        @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-
-        &lt;http://freme-project.eu/&gt;
-            a nif:String , nif:RFC5147String , nif:Context ;
-            nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
-            nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
-            nif:isString    &quot;translate me&quot;@en .
+          @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+          @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+          @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+          @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+          @prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+          &lt;http://freme-project.eu/&gt;
+              a nif:String , nif:RFC5147String , nif:Context ;
+              nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+              nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
+              nif:isString    &quot;translate me&quot;@en .
         </code></pre>
       operationId: tildeTranslate
       consumes:
