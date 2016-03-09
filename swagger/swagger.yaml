@@ -824,17 +824,18 @@ paths:
       tags:
         - e-Entity
       summary: Submitting dataset for use in the e-Entity service
-      description: "Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set). \n
+      description: >
+        Create dataset in SKOS format which includes prefLabel, altLabel or label properties (unless the param properties is explicitly set). \n
         \n
         **Example [SKOS](http://www.w3.org/TR/skos-reference/) Dataset**
 
         <pre lang=\"turtle\"><code>
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
-        &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;101 Communications&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, Inc&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101 Communications, LLC&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00000326&gt; &lt;http://www.w3.org/2004/02/skos/core#altLabel&gt; &quot;101communications&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00001273&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2Cs Communications&quot; .\n
+          &lt;http://www.lib.ncsu.edu/ld/onld/00000842&gt; &lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt; &quot;2x4 (Design studio)&quot; .\n
         </code></pre>
 
 
@@ -842,11 +843,11 @@ paths:
         **Example for sparql parameter**
 
         <pre lang=\"sparql\"><code>
-        SELECT ?res ?label \n
-        WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
-        \t ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
-        \t &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
-        } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
+          SELECT ?res ?label \n
+          WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
+            ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
+            &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
+          } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
 
@@ -870,7 +871,7 @@ paths:
         them, but it's recommended to stick to skos/rdfs) are a minimum, they give us labels to build gazetteers from. But if the dataset providers
         have raw RDF with various other kinds of information (like location, geo-coordinates, sameAs, closeMatch etc.) they can include them too.
         So basically, send them all in. That will only help the entity linker in performing better disambiguation by taking into account
-        inter-resource links."
+        inter-resource links.
       operationId: createDataset
       consumes:
         - text/n3
