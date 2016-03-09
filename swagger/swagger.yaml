@@ -275,67 +275,53 @@ paths:
         represents an object with a label, a description, and a list of request
         objects.
 
-
-
         #Example
 
-
-
         <pre><code>
-
-        {
-          "label": "Spotlight-Link",
-          "description": "Recognises entities using Spotlight en enriches with geo information.",
-          "serializedRequests": [
-            {
-              "method": "POST",
-              "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
-              "parameters": {
-                "language": "en"
+          {
+            "label": "Spotlight-Link",
+            "description": "Recognises entities using Spotlight en enriches with geo information.",
+            "serializedRequests": [
+              {
+                "method": "POST",
+                "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
+                "parameters": {
+                  "language": "en"
+                },
+                "headers": {
+                  "content-type": "text/plain",
+                  "accept": "text/turtle"
+                }
               },
-              "headers": {
-                "content-type": "text/plain",
-                "accept": "text/turtle"
+              {
+                "method": "POST",
+                "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
+                "parameters": {
+                  "templateid": "3"
+                },
+                "headers": {
+                  "content-type": "text/turtle",
+                  "accept": "text/turtle"
+                }
               }
-            },
-            {
-              "method": "POST",
-              "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
-              "parameters": {
-                "templateid": "3"
-              },
-              "headers": {
-                "content-type": "text/turtle",
-                "accept": "text/turtle"
-              }
-            }
-          ]
-        }
-
+            ]
+          }
         </pre></code>
 
 
 
         If the request was successful, the service will return the JSON object
         with the following parameters:
-
-
-
-        - `id`: the generated id if the template. This is also the timestamp of
-        creation, in milliseconds.
-
-        - `owner`: the owner, in this case the creator, of the pipeline
-        template.
-
-        - `label`: The name of the pipeline template.
-
-        - `description`: a description of the pipeline template.
-
-        - `persist`: if false, the template will not automatically be deleted; if
-        false it will live only for one week. To be implemented.
-
-        - `serializedRequests`: the chained requests as described in
-        /pipelining/chain.
+          - `id`: the generated id if the template. This is also the timestamp of
+          creation, in milliseconds.
+          - `owner`: the owner, in this case the creator, of the pipeline
+          template.
+          - `label`: The name of the pipeline template.
+          - `description`: a description of the pipeline template.
+          - `persist`: if false, the template will not automatically be deleted; if
+          false it will live only for one week. To be implemented.
+          - `serializedRequests`: the chained requests as described in
+          /pipelining/chain.
       consumes:
         - application/json
       produces:
@@ -2012,6 +1998,7 @@ paths:
 
 
         This example shows NIF that can be consumed by the service:
+
         <pre lang="turtle"><code>
           @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
           @prefix nif: &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
