@@ -1882,7 +1882,94 @@ paths:
       tags:
         - e-Publishing
       summary: Create eBooks in the EPUB3 format
-      description: "Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.\n\n**Example Call**\n<pre lang=\"bash\\\"><code>\ncurl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html\n</code></pre>\n\n**The Metadata JSON supports the following options:**\n\n* `epubVersion (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is not specified an EPUB 3 file is created.\n* `titles (required)`  - a list of Strings where each String represents one title (at least one title is expected)\n* `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields 'firstName' (String), 'lastName' (String) and 'roles' (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).\n* `contributors (optional)` - a list of JSON objects where each object represents one contributor. The structure of the object is the same is with 'creators'.\n* `subjects (optional)` - a list of Strings where each String represents one subject\n* `types (optional)` - a list of Strings where each String represents one type\n* `relations (optional)` - a list of Strings where each String represents one relation\n* `coverImage (optional)` - the location of the cover image inside the zip file\n* `language (optional)` - the language of the content (e.g., 'en'). If this parameter is not specified, the language is set to English.\n* `sources (optional)` - a list of Strings where each String represents one source of the content\n* `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB\n* `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB\n* `identifier (required)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.\n* `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.\n\n\n\n**Sample Metadata Json**\n<pre lang=\\\"javascript\\\"><code>\n{\n &quot;titles&quot;:[\n    &quot;Alice in Utopia&quot;,\n    &quot;Alice in Europe&quot;\n ],\n &quot;creators&quot;:[\n    {\n        &quot;firstName&quot;: &quot;Joske&quot;,\n        &quot;lastName&quot;: &quot;Vermeulen&quot;,\n        &quot;roles&quot;:[&quot;author&quot;]\n    },\n    {\n        &quot;firstName&quot;: &quot;Nick&quot;,\n        &quot;lastName&quot;: &quot;Borth&quot;,\n        &quot;roles&quot;:[&quot;author&quot;]\n    }\n ],\n &quot;contributors&quot;:[\n    {\n        &quot;firstName&quot;: &quot;Frans&quot;,\n        &quot;lastName&quot;: &quot;Vervaacke&quot;,\n        &quot;roles&quot;:[&quot;illustrator&quot;]\n    },\n    {\n        &quot;firstName&quot;: &quot;John&quot;,\n        &quot;lastName&quot;: &quot;Riplosh&quot;,\n        &quot;roles&quot;:[&quot;illustrator&quot;]\n    }\n ],\n &quot;subjects&quot;:[\n    &quot;alice&quot;,\n    &quot;rabbit&quot;\n ],\n &quot;coverImage&quot;:&quot;cover.jpeg&quot;,\n &quot;language&quot;:&quot;en&quot;,\n &quot;descriptions&quot;:[&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;],\n &quot;identifier&quot;:{\n    &quot;value&quot;:&quot;urn:1235-568-2235&quot;\n },\n &quot;tableOfContents&quot;:[\n    {\n       &quot;title&quot;:&quot;Chapter 1&quot;,\n       &quot;resource&quot;:&quot;01.xhtml&quot;\n    },\n    {\n       &quot;title&quot;:&quot;Chapter 2&quot;,\n       &quot;resource&quot;:&quot;02.xhtml&quot;\n    }\n ]\n}\n</code></pre>\n\n **Sample .zips**\n\n* [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)\n* [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)\n"
+      description: >
+        Creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
+
+        **Example Call**
+          <pre lang="bash"><code>
+            curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://api-dev.freme-project.eu/current/e-publishing/html
+          </code></pre>
+
+
+
+        **The Metadata JSON supports the following options:**
+          * `epubVersion (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is not specified an EPUB 3 file is created.
+          * `titles (required)`  - a list of Strings where each String represents one title (at least one title is expected)
+          * `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields 'firstName' (String), 'lastName' (String) and 'roles' (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).
+          * `contributors (optional)` - a list of JSON objects where each object represents one contributor. The structure of the object is the same is with 'creators'.
+          * `subjects (optional)` - a list of Strings where each String represents one subject
+          * `types (optional)` - a list of Strings where each String represents one type
+          * `relations (optional)` - a list of Strings where each String represents one relation
+          * `coverImage (optional)` - the location of the cover image inside the zip file
+          * `language (optional)` - the language of the content (e.g., 'en'). If this parameter is not specified, the language is set to English.
+          * `sources (optional)` - a list of Strings where each String represents one source of the content
+          * `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB
+          * `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB
+          * `identifier (required)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
+          * `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
+
+
+
+        **Sample Metadata Json**
+          <pre lang="javascript"><code>
+            {
+             &quot;titles&quot;:[
+                &quot;Alice in Utopia&quot;,
+                &quot;Alice in Europe&quot;
+             ],
+             &quot;creators&quot;:[
+                {
+                    &quot;firstName&quot;: &quot;Joske&quot;,
+                    &quot;lastName&quot;: &quot;Vermeulen&quot;,
+                    &quot;roles&quot;:[&quot;author&quot;]
+                },
+                {
+                    &quot;firstName&quot;: &quot;Nick&quot;,
+                    &quot;lastName&quot;: &quot;Borth&quot;,
+                    &quot;roles&quot;:[&quot;author&quot;]
+                }
+             ],
+             &quot;contributors&quot;:[
+                {
+                    &quot;firstName&quot;: &quot;Frans&quot;,
+                    &quot;lastName&quot;: &quot;Vervaacke&quot;,
+                    &quot;roles&quot;:[&quot;illustrator&quot;]
+                },
+                {
+                    &quot;firstName&quot;: &quot;John&quot;,
+                    &quot;lastName&quot;: &quot;Riplosh&quot;,
+                    &quot;roles&quot;:[&quot;illustrator&quot;]
+                }
+             ],
+             &quot;subjects&quot;:[
+                &quot;alice&quot;,
+                &quot;rabbit&quot;
+             ],
+             &quot;coverImage&quot;:&quot;cover.jpeg&quot;,
+             &quot;language&quot;:&quot;en&quot;,
+             &quot;descriptions&quot;:[&quot;This is the story about Alice in wonderland, involving a rabbit etc.&quot;],
+             &quot;identifier&quot;:{
+                &quot;value&quot;:&quot;urn:1235-568-2235&quot;
+             },
+             &quot;tableOfContents&quot;:[
+                {
+                   &quot;title&quot;:&quot;Chapter 1&quot;,
+                   &quot;resource&quot;:&quot;01.xhtml&quot;
+                },
+                {
+                   &quot;title&quot;:&quot;Chapter 2&quot;,
+                   &quot;resource&quot;:&quot;02.xhtml&quot;
+                }
+             ]
+            }
+          </code></pre>
+
+
+
+      **Sample .zips**
+        * [Alice in wonderland](https://drive.google.com/open?id=0B-qMtkPK-unYbVROT1J2TTRycDg&authuser=0)
+        * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
+
       operationId: htmlToEPub
       consumes:
         - multipart/form-data
