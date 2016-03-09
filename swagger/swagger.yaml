@@ -1680,21 +1680,21 @@ paths:
 
         <pre lang="javascript"><code>
           {
-            &quot;query&quot;: &quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;
-                PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt;
-                PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-                PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
-                CONSTRUCT
-                {
-                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; .
-                }
-                WHERE
-                {
-                    &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo .
-                    ?museum rdf:type &lt;http://schema.org/Museum&gt; .
-                    ?museum geo:geometry ?museumgeo .
-                    FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10))
-                }
+            &quot;query&quot;: &quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt; \n
+                PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt; \n
+                PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; \n
+                PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; \n
+                CONSTRUCT \n
+                { \n
+                  ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; . \n
+                } \n
+                WHERE \n
+                { \n
+                    &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo . \n
+                    ?museum rdf:type &lt;http://schema.org/Museum&gt; . \n
+                    ?museum geo:geometry ?museumgeo . \n
+                    FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10)) \n
+                } \n
                 LIMIT 10&quot;,
               &quot;endpoint&quot;: &quot;http://dbpedia.org/sparql/&quot;,
               &quot;label&quot;: &quot;template title&quot;,
