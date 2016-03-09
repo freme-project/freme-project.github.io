@@ -1896,19 +1896,19 @@ paths:
 
 
         **The Metadata JSON supports the following options:**
-          * `epubVersion (optional)` - use '2' for EPUB 2 and '3' for EPUB 3. If this parameter is not specified an EPUB 3 file is created.
+          * `epubVersion (optional)` - use `2` for EPUB 2 and `2` for EPUB 3. If this parameter is not specified an EPUB 3 file is created.
           * `titles (required)`  - a list of Strings where each String represents one title (at least one title is expected)
-          * `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields 'firstName' (String), 'lastName' (String) and 'roles' (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).
+          * `creators (optional)` - a list of JSON objects where each object represents one creator. The JSON object has the fields `firstName` (String), `lastName` (String) and `roles` (list of Strings) where each role is a marc relator (http://www.loc.gov/marc/relators/).
           * `contributors (optional)` - a list of JSON objects where each object represents one contributor. The structure of the object is the same is with 'creators'.
           * `subjects (optional)` - a list of Strings where each String represents one subject
           * `types (optional)` - a list of Strings where each String represents one type
           * `relations (optional)` - a list of Strings where each String represents one relation
           * `coverImage (optional)` - the location of the cover image inside the zip file
-          * `language (optional)` - the language of the content (e.g., 'en'). If this parameter is not specified, the language is set to English.
+          * `language (optional)` - the language of the content (e.g., `en`). If this parameter is not specified, the language is set to English.
           * `sources (optional)` - a list of Strings where each String represents one source of the content
           * `descriptions (optional)` - a list of Strings where each String represents one description of the EPUB
           * `rights (optional)` - a list of Strings where each String represents one right applicable to the EPUB
-          * `identifier (required)` - the identifier is represented by 'value', 'scheme' is represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
+          * `identifier (required)` - the identifier is represented by `value`, `scheme` represents the used scheme corresponding with the value. The latter is only used by EPUB 2 and is optional.
           * `tableOfContents (optional)` - it is an ordered list of the chapters/sections in the EPUB. For each you provide the title and the corresponding HTML file (= resource). If no tableOfContents is provided, the service will do a best effort at creating one. However, when no (x)html file is found in the root of the zip, the service will return an invalid EPUB.
 
 
