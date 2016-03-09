@@ -844,8 +844,8 @@ paths:
         <pre lang=\"sparql\"><code>
         SELECT ?res ?label \n
         WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label . \n
-          ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
-          &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
+        \t ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
+        \t &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) ) \n
         } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
         </code></pre>
 
@@ -1222,12 +1222,11 @@ paths:
       summary: Create a postprocessing filter
       description: >
         Creates a new filter. The filter will be constructed from the body
-        content, which has to be a valid SPARQL SELECTquery as plain text. See
+        content, which has to be a valid SPARQL SELECT query as plain text. See
         the [Simplify FREME output using SPARQL
         filters](../knowledge-base/filtering.html) article for further
-        information. Ensure, that a filter with the name `filter-name` does not
-        already exist. Requires
-        [authentication](../knowledge-base/authentication.html).
+        information. Ensure, that a filter with given `name` does not
+        already exist. Requires [authentication](../knowledge-base/authentication.html).
       produces:
         - application/json
       consumes:
