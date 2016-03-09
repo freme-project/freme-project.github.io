@@ -200,8 +200,7 @@ paths:
         - User
       summary: Authenticate as an existing user
       description: >
-        Create an access token for given user that was previously created by POST
-        /user.
+        Create an access token for given user that was previously created by `POST /user`.
 
 
 
