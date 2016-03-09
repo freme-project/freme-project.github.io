@@ -2024,6 +2024,7 @@ paths:
               nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
               nif:isString    &quot;Welcome to Europe&quot;@en.
         </code></pre>
+
       operationId: e-terminology
       consumes:
         - text/n3
@@ -2162,6 +2163,7 @@ paths:
               nif:endIndex    &quot;11&quot;^^xsd:nonNegativeInteger ;
               nif:isString    &quot;translate me&quot;@en .
         </code></pre>
+
       operationId: tildeTranslate
       consumes:
         - text/n3
