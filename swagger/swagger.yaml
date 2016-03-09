@@ -203,29 +203,25 @@ paths:
         Create an access token for given user that was previously created by POST
         /user.
 
+
+
         An access token is a 36 characters long string. You can attach the access
         token to every FREME API call using the header field X-Auth-Token, or in
         this API-Documentation, with the input field at the very bottom.
+
+
 
         See the<a href="./../knowledge-base/authentication.html" target="_blank">
         Authentication article</a> for detailed information.
 
 
 
-
-
-
-
         **Example Response**
 
         <pre lang="json"><code>
-
-        {
-
-            &quot;token&quot;: &quot;f81ccf99-1d01-4e79-9a0b-8dfe84d8303c&quot;
-
-        }
-
+          {
+              &quot;token&quot;: &quot;f81ccf99-1d01-4e79-9a0b-8dfe84d8303c&quot;
+          }
         </code></pre>
       consumes:
         - text/plain
