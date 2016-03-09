@@ -135,41 +135,25 @@ paths:
       summary: Get information about all users
       description: >
         Get information about a user. You need to be authenticated as that user
-        or as an administrator user to access this API call.
-
-        The information about the user will be printed in JSON format.
+        or as an administrator user to access this API call. The information about
+        the user will be printed in JSON format.
 
 
 
         **Example JSON Response**
 
-
-
         <pre lang="json"><code>
-
-        {
-
-            &quot;name&quot;: &quot;henry&quot;,
-
-            &quot;role&quot;: &quot;ROLE_USER&quot;,
-
-            &quot;tokens&quot;: [
-
-                {
-
-                    &quot;token&quot;:
-        &quot;a2baa132-da71-4cb9-b87a-e460bc67b167&quot;,
-
-                    &quot;creationDate&quot;: 1438699940000,
-
-                    &quot;lastUsedDate&quot;: 1438699954000
-
-                }
-
-            ]
-
-        }
-
+          {
+              &quot;name&quot;: &quot;henry&quot;,
+              &quot;role&quot;: &quot;ROLE_USER&quot;,
+              &quot;tokens&quot;: [
+                  {
+                      &quot;token&quot;: &quot;a2baa132-da71-4cb9-b87a-e460bc67b167&quot;,
+                      &quot;creationDate&quot;: 1438699940000,
+                      &quot;lastUsedDate&quot;: 1438699954000
+                  }
+              ]
+          }
         </code></pre>
       produces:
         - application/json
@@ -528,6 +512,8 @@ paths:
 
 
           **Remark**
+
+
 
           Only the first request can have content, i.e. a body or a parameter input.
           This is because the output of the first request serves as input for the second,
