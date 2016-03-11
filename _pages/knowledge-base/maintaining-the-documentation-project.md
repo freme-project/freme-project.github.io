@@ -38,7 +38,7 @@ Install jekyll
 sudo apt-get install jekyll
 ```
 
-If it doesn't work the first time go for:
+If the paket Jekyll cannot be installed try installing the ruby-dev package and then try to install jekyll again:
 
 ```
 sudo apt-get install ruby-dev
