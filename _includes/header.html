@@ -1,3 +1,4 @@
+
 <div class = "navbar navbar-default navbar-static-top">
 	<div class = "container">
 	
@@ -13,9 +14,42 @@
 		</div>
 			
 			<div class = "collapse navbar-collapse navHeaderCollapse">
-			
-				<ul class = "nav navbar-nav navbar-left">
-			{% assign currentdropdown = 'None' %}
+
+
+				<ul class="nav navbar-nav">
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">A long sub menu <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Action</a></li>
+											<li><a href="#">Something else here</a></li>
+											<li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
+											<li><a href="#">One more link</a></li>
+											<li><a href="#">Menu item 1</a></li>
+											<li><a href="#">Menu item 2</a></li>
+											<li><a href="#">Menu item 3</a></li>
+											<li><a href="#">Menu item 4</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Another link</a></li>
+									<li><a href="#">One more link</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+			<!--{% assign currentdropdown = 'None' %}
 			{% assign in_a_list = 'False' %}
 			{% assign sorted_pages = (site.pages | sort: 'pos') %}
 			{% for somepage in sorted_pages %}
@@ -36,7 +70,7 @@
 
 							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu multi-level">
 									{% if somepage.isexternurl %}
 									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 									{% else %}
@@ -65,8 +99,9 @@
 						{% else %}
 							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-
+								<ul class="dropdown-menu multi-level">
+									<li class = "dropdown-submenu">
+									</li>
 									{% if somepage.isexternurl %}
 									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
 									{% else %}
@@ -80,8 +115,9 @@
 					{% assign currentdropdown = {{somepage.dropdown}} %}
 				{% endif %}
 			{% endfor %}
+			-->
 			</ul>
-			
+
 		</div>
 		
 	</div>
