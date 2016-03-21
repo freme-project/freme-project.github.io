@@ -19,7 +19,7 @@
 		<script javascript>
 			var pages_url = "{{ site.url }}";
 			var pages_baseurl = "{{site.baseurl}}";
-			pages_baseurl+= pages_baseurl.endsWith("/") ? "" : "/";
+			//pages_baseurl+= pages_baseurl.endsWith("/") ? "" : "/";
 			var pages_pageurl="{{page.url}}";
 			var pages = [
 			{% for p in site.pages %}
