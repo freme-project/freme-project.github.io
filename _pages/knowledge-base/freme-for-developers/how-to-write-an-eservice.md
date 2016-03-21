@@ -98,6 +98,7 @@ The annotation @RestController tells Spring to look for rest endpoints in this c
 Then two spring beans are autowired. FREME internally relies heavily on Spring and Dependency Injection. An explanation of dependency injection is out of scope of this tutorial. Extensive documentation on the topic can be found in the [documentation of the Spring framework](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html).
 
 Next we setup a REST endpoint and parse the NIF input:
+
 ```
 	@RequestMapping(value = "/e-capitalization", method = RequestMethod.POST)
 	public ResponseEntity<String> example(HttpServletRequest request) {
