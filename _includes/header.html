@@ -12,113 +12,72 @@
 			<a href="{{"/home.html" | prepend: site.baseurl}}"><img src={{ "/img/Logo_FREME_icona_vert.png" | prepend: site.baseurl }} alt="FREME Logo" class = "navbar-logo"></a>
 			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
 		</div>
-			
-			<div class = "collapse navbar-collapse navHeaderCollapse">
-
-
-				<ul class="nav navbar-nav">
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">A long sub menu <span class="caret"></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li class="disabled"><a class="disabled" href="#">Disabled item</a></li>
-											<li><a href="#">One more link</a></li>
-											<li><a href="#">Menu item 1</a></li>
-											<li><a href="#">Menu item 2</a></li>
-											<li><a href="#">Menu item 3</a></li>
-											<li><a href="#">Menu item 4</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Another link</a></li>
-									<li><a href="#">One more link</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-
-			<!--{% assign currentdropdown = 'None' %}
-			{% assign in_a_list = 'False' %}
-			{% assign sorted_pages = (site.pages | sort: 'pos') %}
-			{% for somepage in sorted_pages %}
-				{% if somepage.title %}
-					{% if in_a_list == 'True' %}
-						{% if {{somepage.dropdown}} == {{currentdropdown}} %}
-							{% if somepage.isexternurl %}
-							<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
-							{% else %}
-							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-							{% endif %}
-						{% else %}
-								</ul>
-							</li>
-						{% if somepage.dropdown == 'None' %}
-							<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl }}">{{ somepage.title }}</a></li>
-						{% else %}
-
-							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-								<ul class="dropdown-menu multi-level">
-									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
-									{% else %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-									{% endif %}
-
-							{% assign in_a_list = 'True' %}
-							{% assign currentdropdown = {{somepage.dropdown}} %}
-							{% continue %}
-						
-							
-						{% endif %}
-							
-							{% assign in_a_list = 'False' %}
-							{% continue %}
-						{% endif %}
-					
-					{% else %}
-						{% if somepage.dropdown == 'None' %}
-
-									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
-									{% else %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-									{% endif %}
-						{% else %}
-							<li class="dropdown {% if {{somepage.dropdown}} == {{page.dropdown}} %} active {% endif %}">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{somepage.dropdown}} <span class="caret"></span></a>
-								<ul class="dropdown-menu multi-level">
-									<li class = "dropdown-submenu">
-									</li>
-									{% if somepage.isexternurl %}
-									<li><a target="_blank" href="{{ somepage.externurl | prepend: site.url }}">{{ somepage.title }}</a></li>
-									{% else %}
-									<li {% if {{somepage.url}} == {{page.url}} %} class="active" {% endif %} ><a href="{{somepage.url | prepend: site.baseurl}}">{{ somepage.title }}</a></li>
-									{% endif %}
-							{% assign in_a_list = 'True' %}
-							{% assign currentdropdown = {{somepage.dropdown}} %}
-							{% continue %}
-						{% endif %}
-					{% endif %}
-					{% assign currentdropdown = {{somepage.dropdown}} %}
-				{% endif %}
-			{% endfor %}
-			-->
+		<div class = "collapse navbar-collapse navHeaderCollapse">
+			<ul class="nav navbar-nav" id="__navbar__">
 			</ul>
-
 		</div>
-		
+		<script javascript>
+			var pages_url = "{{ site.url }}";
+			var pages_baseurl = "{{site.baseurl}}/";
+			var pages_pageurl="{{page.url}}";
+			var pages = [
+			{% for p in site.pages %}
+			{
+				url : {% if {{p.url}} %}"{{p.url}}"{% else %}undefined{% endif %},
+				externurl :  {% if {{p.externurl}} %}"{{p.externurl}}"{% else %}undefined{% endif %},
+				pos :  {% if {{p.pos}} %}"{{p.pos}}"{% else %}undefined{% endif %},
+				dropdownNames : {% if {{p.dropdown}} %}"{{p.dropdown}}"{% else %}undefined{% endif %},
+				title :   {% if {{p.title}} %}"{{p.title}}"{% else %}undefined{% endif %}
+			},
+			{% endfor %}
+			{}];
+			pages=pages.filter(function(x){return x.pos!=undefined});
+			pages.sort(function(p1,p2){
+				var pos1=parseInt(p1.pos.split(".")[0]);
+				var pos2=parseInt(p2.pos.split(".")[0]);
+				if (pos1-pos2!=0){
+					return pos1-pos2;
+				}
+				pos1=parseInt(p1.pos.split(".")[1]);
+				pos2=parseInt(p2.pos.split(".")[1]);
+				return pos1-pos2;
+			});
+			console.log(pages);
+			dropdown_obj={};
+			for (var i=0; i<pages.length; i++) {
+				if (pages[i].url==pages_pageurl) {
+					pages[i].active=true;
+				}
+				pages[i].dropdownNames=pages[i].dropdownNames.split(",");
+				var dropdown = pages[i].url.split("/").filter(function(x){return x!=""}).slice(0,-1);
+				var link = "<li "+
+						(pages[i].externurl!=undefined ?
+							"><a target=\"_blank\" href=\""+pages_url+pages[i].externurl+"\">"+pages[i].title+"</a></li>" :
+								(pages[i].active ? "class=\"active\"" : "")+"><a href=\""+pages_baseurl+pages[i].url+"\">"+pages[i].title+"</a></li>");
+				if (dropdown.length==0) {
+					$("#__navbar__").append(link);
+				} else {
+					var selector = "__navbar__";
+					for (var k =0; k<dropdown.length; k++) {
+						var current = (dropdown.slice(0,k+1).join("."));
+						if (dropdown_obj[current]==undefined) {
+							dropdown_obj[current] = {};
+							$("#"+selector).append(
+									"<li> " +
+										"<a href='#'>" + pages[i].dropdownNames[k] +
+											"<span class='caret'></span>" +
+										"</a>" +
+									"<ul class='dropdown-menu' id='" + selector + dropdown[k].trim() + "'></ul></li>");
+						}
+
+						selector+=dropdown[k].trim();
+						if (pages[i].active) {
+							$("#"+selector).parent().addClass("active");
+						}
+					}
+					$("#"+selector).append(link);
+				}
+			}
+		</script>
 	</div>
 </div>
