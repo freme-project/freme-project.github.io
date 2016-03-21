@@ -1,8 +1,8 @@
 ---
 layout: page
 title: FREME NER technology stack
-dropdown: Knowledge Base
-pos: 4.1
+dropdown: Knowledge Base, FREME for API Users
+pos: 4.4
 ---
 
 

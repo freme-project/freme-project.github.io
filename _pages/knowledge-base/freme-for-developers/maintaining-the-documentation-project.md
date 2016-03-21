@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Maintaining the Documentation Project
-dropdown: Knowledge Base
-pos: 4.7
+dropdown: Knowledge Base, FREME for Developers
+pos: 4.8
 ---
 
 # Maintaining the Documentation Project

@@ -11,17 +11,26 @@ This section contains a series of articles with documentation about various aspe
                   
 ## Knowledge base for FREME system administrators
                                              
-[Starting FREME](starting-freme.html)
-[Configuration Options](configuration-options.html)
-[Rate Limiting](rate-limiting.html)
+[Starting FREME](freme-for-sysadmins/starting-freme.html)
+[Configuration Options](freme-for-sysadmins/configuration-options.html)
+[Creating and Running a FREME Package](freme-for-sysadmins/creating-and-running-a-freme-package.html)
+[Rate Limiting](freme-for-sysadmins/rate-limiting.html)
 
 ## Knowledge base for FREME users
                                           
-[Authentication](authentication.html)
-[e-Internationalisation Service](eInternationalisation.html)
+[Authentication](freme-for-api-users/authentication.html)
+[e-Internationalisation Service](freme-for-api-users/eInternationalisation.html)
+[Filtering](freme-for-api-users/filtering.html)
+[FREME NER](freme-for-api-users/freme-ner.html)
 
 ## Knowledge base for FREME developers
 
-[Compile FREME from Source](compile-freme-from-source.html) 
-[FREME on Github](freme-on-github.html)
-[How to add Documentation](how-to-add-documentation.html)
+[Overview of the FREME architecture](freme-for-developers/overview-of-the-freme-architecture.html)
+[Creating a Basic Service](freme-for-developers/creating-a-basic-service.html)
+[Setup FREME in the IDE](freme-for-developers/setup-freme-in-the-ide.html)
+[How to write an e-Service](freme-for-developers/how-to-write-an-eservice.html)
+[Compile FREME from Source](freme-for-developers/compile-freme-from-source.html)
+[Implementing restricted access to database resources](freme-for-developers/implementing-restricted-access-to-database-resources.html)
+[FREME on Github](freme-for-developers/freme-on-github.html)
+[How to add Documentation](freme-for-developers/how-to-add-documentation.html)
+[Maintaining the Documentation Project](freme-for-developers/maintaining-the-documentation-project.html)

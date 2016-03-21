@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Simplify FREME output using SPARQL filters
-dropdown: Knowledge Base
-pos: 4.8
+dropdown: Knowledge Base, FREME for API Users
+pos: 4.3
 ---
 
 # Simplify FREME output using SPARQL filters

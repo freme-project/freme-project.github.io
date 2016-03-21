@@ -2,7 +2,7 @@
 layout: page
 title: Authentication
 dropdown: Knowledge Base, FREME for API Users
-pos: 4.6
+pos: 4.1
 ---
 
 # Authentication

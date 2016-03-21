@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Rate Limiting
-dropdown: Knowledge Base
-pos: 4.9
+dropdown: Knowledge Base, FREME for System Administrators
+pos: 4.15
 ---
 # Rate Limiting
 Using the Rate-Limiting filter a server administrator can limit the amount of requests as well as the size of all requests made by one user.

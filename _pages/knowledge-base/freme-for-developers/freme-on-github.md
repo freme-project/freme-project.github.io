@@ -1,8 +1,8 @@
 ---
 layout: page
 title: FREME on Github
-dropdown: Knowledge Base
-pos: 4.4
+dropdown: Knowledge Base, FREME for Developers
+pos: 4.7
 ---
 
 **Freme on Github**
