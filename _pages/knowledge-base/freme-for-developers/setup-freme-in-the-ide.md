@@ -5,9 +5,11 @@ dropdown: Knowledge Base, FREME for Developers
 pos: 4.12
 ---
 
+# Setting up FREME in the IDE
+
 This guide helps software developers that want to do programming work using FREME to setup integrated development environments (IDE) such as Eclipse or Netbeans.
 
-# Setup FREMECommon, b-Services or e-Services
+## Setup FREMECommon, b-Services or e-Services
 
 First you clone the Git repositories from GitHub, e.g.
 
@@ -21,7 +23,7 @@ After downloading the source codes you should setup a Maven project within your 
 
 FREMECommon, b-Services and e-Services are not standalone applications. Therefore it is not possible to run them as a Java application. These projects are usually run as unit tests. In order to run them as a standalone application, please create a FREME package that includes this module and run the FREME package as a standalone application.
 
-# Setup a package as standalone application
+## Setup a package as standalone application
 
 FREME packages do not contain any source code. Therefore usually they are assemblied via maven and run from outside the IDE. But you might want to start them from within the IDE in order to run your b-Service or e-Service as a normal Java application instead of as a unit test only.
 

@@ -5,6 +5,8 @@ dropdown: Knowledge Base, FREME for Developers
 pos: 4.6
 ---
 
+# Creating a Basic Service
+
 This article explains how to create a FREME basic service. It will create a filter that is executed before every API request. The filter writes a message to the logger for every API request. You can find the whole source code in the logging-filter project in the [freme-example GitHub repository](https://github.com/freme-project/freme-examples).
 
 # Table of Contents

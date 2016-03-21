@@ -5,6 +5,8 @@ dropdown: Knowledge Base, FREME for Developers
 pos: 4.10
 ---
 
+# Implementing Restricted Access for Database Resources
+
 This article should serve as guideline how to implement functionality with user restricted access, in particular how to set up secured database entities and functionality to execute CRUD methods via a secured REST api.
 
 ## OwnedResource

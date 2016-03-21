@@ -5,6 +5,8 @@ dropdown: Knowledge Base, FREME for Developers
 pos: 4.9
 ---
 
+# How to write an e-Service
+
 This tutorial explains how to implement a new e-Service in FREME. A FREME e-Service is an enrichment service for Natural Language Processing exposed via a REST API and that follows the NIF API specifications. You can find the full source code of the tutorial in the e-capitalization project in the [freme-examples](https://github.com/freme-project/freme-examples) GitHub repository.
 
 # Table of Contents

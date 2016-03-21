@@ -5,7 +5,9 @@ dropdown: Knowledge Base, FREME for Developers
 pos: 4.11
 ---
 
-# Design goals
+# Overview of the FREME Architecture
+
+## Design goals
 
 The FREME architecture provides a framework to create natural language processing (NLP) applications that
 
@@ -20,7 +22,7 @@ The framework was designed to fulfill these goals:
 * Easy integration of new services through re-use of components
 * Interoperability of the services through NIF
 
-# Elements of the architecture
+## Elements of the architecture
 
 This image shows the three layer architecture of FREME:
 
@@ -32,7 +34,7 @@ This image shows the three layer architecture of FREME:
 * Provide helper functions to read and write NIF
 * Provide helper functions to start a web server and REST endpoints
 
-## Optional basic services
+### Optional basic services
 
 In the bottom layer next to FREMECommon are the optional basic services. These basic services provide functionality that are useful for such applications. They can be optionally included in any application that uses FREME. Example of basic services are
 
@@ -40,7 +42,7 @@ In the bottom layer next to FREMECommon are the optional basic services. These b
 * CORS service that enables Cross Origin Resource Sharing on the API endpoints.
 * Rate Limiter that allows to control the amount of API calls each user can perform.
 
-## e-Services
+### e-Services
 
 The next layer consists of e-Services. These e-Services expose certain NLP service via a REST API. They have a modular design also and can be included in any application using FREME. Examples of e-Services are
 
@@ -51,6 +53,6 @@ The difference between e-Services and basic services is that e-Services provide 
 
 During the course of the FREME project a set of e-Services has been created. Other projects using the FREME architecture can also contribute e-Services as well. These e-Services can be combined at will in applications that build on FREME.
 
-## FREME packages
+### FREME packages
 
 FREME packages form the top layer of the architecture. When above text spoke about applications building on the FREME framework it actually means FREME packages. A FREME package is a set of basic services and e-Services. It consists of configuration files only that define the set of services and provide configuration for the e-Services. The package also provides a workflow to start the package and deploy it on a web server.
