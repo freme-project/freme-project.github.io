@@ -17,7 +17,7 @@ FREME provides a framework to provide access control to any kind of database ent
 * Only the owner can read, update or delete `PRIVATE` entities.
 * Anonymous users (API requests that do not contain an authentication token) cannot create resources.
 
-**NOTE**: See also the [knowledge-base authentication article](http://api-dev.freme-project.eu/doc/knowledge-base/authentication.html) to have an overview about FREME authentication. The restricted resources mentioned
+**NOTE**: See also the [knowledge-base authentication article](../freme-for-api-users/authentication.html) to have an overview about FREME authentication. The restricted resources mentioned
 there implement (partly) the OwnedResource architecture.
 
 FREMECommon provides the entity superclass `OwnedResource` which can be used to ease the implementation of [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) based entities hold by a certain FREME user.
@@ -241,7 +241,7 @@ OwnedResourceManagingHelper includes the following methods:
  * `checkCRUDOperations`: check CRUD (CREATE, READ, UPDATE and DELETE) operations of the controller
  * `createEntity`: sends a request to the controller to create an entity
  * `getEntity`: sends a request to the controller to fetch a certain entity
- * `getAllEntities`: sends a request to the controller to fetch all read accessible entities, for further information, see [knowledge-base authentication article](http://api-dev.freme-project.eu/doc/knowledge-base/authentication.html)
+ * `getAllEntities`: sends a request to the controller to fetch all read accessible entities, for further information, see [knowledge-base authentication article](../freme-for-api-users/authentication.html)
  * `updateEntity`: sends a request to the controller to update a certain entity
  * `deleteEntity`: sends a request to the controller to delete a certain entity
 

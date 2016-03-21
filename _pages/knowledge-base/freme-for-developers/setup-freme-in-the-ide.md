@@ -13,9 +13,9 @@ This guide helps software developers that want to do programming work using FREM
 
 First you clone the Git repositories from GitHub, e.g.
 
-* FREMECommon: https://github.com/freme-project/FREMECommon.git
-* Basic Services: https://github.com/freme-project/basic-services.git
-* E-Services: https://github.com/freme-project/e-services.git
+* [FREMECommon](https://github.com/freme-project/FREMECommon.git)
+* [Basic Services](https://github.com/freme-project/basic-services.git)
+* [E-Services](https://github.com/freme-project/e-services.git)
 
 Of course implementations can also reside in other version control systems or other Git repositories.
 
