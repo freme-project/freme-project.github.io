@@ -8,7 +8,7 @@ pos: 4.7
 **Freme on Github**
 ------------------
 
-This article explains the different FREME repositories and which issues should be discussed on which repository.
+This article explains the different FREME repositories on GitHub. FREME maintains an organisation on GitHub. The main page of this organisation is [https://github.com/freme-project](https://github.com/freme-project).
 
 [technical-discussion](https://github.com/freme-project/technical-discussion)
 --------------------
@@ -18,37 +18,23 @@ This Repository is our meta repository for technical discussion and documentatio
  * Specification of general features
  * Wiki for documentation and knowledge base
 
+[FREME packages](https://github.com/freme-project/freme-packages)
+--------------------
+This repository holds runnable packages of FREME.
+
 [Broker](https://github.com/freme-project/Broker)
 -----------
 
-This repository holds the source codes for Broker. Its issue system is used for
-
- * Implementation tasks in Broker code
- * Broker bug tracking
-
-[ConversionServices](https://github.com/freme-project/ConversionServices)
---------------------
-
-This repository holds the source codes for ConversionServices. Its issue system is used for
-
- * Implementation tasks in ConversionServices code
- * ConversionServices bug tracking
-
-[sandbox](https://github.com/freme-project/sandbox)
-----------
-This repository holds the source codes for the Javascript sandbox of FREME. This is a javascript demonstrator of FREME.
-
-[services](https://github.com/freme-project/services)
-----------
-This repository holds the life version of the Javascript sandbox. Right now it contains only dummy codes. It is a javascript demonstrator of FREME.
+This repository is deprecated. It has moved to the [freme-packages](https://github.com/freme-project/freme-packages) repository. It is used only to keep old issues.
 
 [e-Entity](https://github.com/freme-project/e-Entity)
 ---------
-Holds codes and implementation task issues for e-Entity service.
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) It is used only to keep old issues.
 	
 [e-Link](https://github.com/freme-project/e-Link)
 ---------
-Holds codes and implementation task issues for e-Link service.
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) It is used only to keep old issues.
+
 
 [e-Publishing](https://github.com/freme-project/e-Publishing)
 ------------
@@ -60,7 +46,7 @@ Holds codes and implementation task issues for e-Internationalization.
 
 [freme-ner](https://github.com/freme-project/freme-ner)
 ----------
-Holds codes and implementation task issues for FREME Named Entity Recognizer
+Holds codes and implementation task issues for FREME Named Entity Recognizer.
 
 [pipelines](https://github.com/freme-project/pipelines)
 -----------
