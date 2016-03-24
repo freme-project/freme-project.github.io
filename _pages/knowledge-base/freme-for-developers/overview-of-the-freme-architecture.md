@@ -27,7 +27,7 @@ The framework was designed to fulfill these goals:
 This image shows the three layer architecture of FREME:
 
 <figure>
-  <img src="../../img/freme-architecture.PNG" width=795/>
+  <img src="../../img/freme-architecture.PNG" width="795"/>
 </figure>
 
 **Basic services** form the bottom layer. There is FREMECommon which provides common codes that form the basis of all FREME applications. Examples for their functionality are

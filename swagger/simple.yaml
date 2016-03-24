@@ -104,13 +104,13 @@ paths:
         \ as NIF document. The text of the nif:isString property (attached to the\
         \ nif:Context document) will be used for processing.\n\nThis example shows\
         \ a NIF document that can be processed by the service:\n<pre lang=\"turtle\"\
-        ><code>\n  @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt;\
-        \ .\n  @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .\n  @prefix\
-        \ xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .\n  &lt;http://example.org/document/1#char=0,21&gt;\n\
-        \    a nif:String , nif:Context, nif:RFC5147String ;\n    nif:isString &quot;Welcome\
-        \ to Berlin&quot;^^xsd:string;\n    nif:beginIndex &quot;0&quot;^^xsd:nonNegativeInteger;\n\
-        \    nif:endIndex &quot;21&quot;^^xsd:nonNegativeInteger;\n    nif:sourceUrl\n\
-        \  &lt;http://differentday.blogspot.com/2007_01_01_archive.html&gt;.\n</code></pre>\n"
+        ><code>\n  @prefix nif:<http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>\
+        \ .\n  @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n  @prefix xsd:\
+        \ <http://www.w3.org/2001/XMLSchema#> .\n\n  <http://example.org/#char=0,42>\n\
+        \          a               nif:String , nif:Context , nif:RFC5147String ;\n\
+        \          nif:beginIndex  \"0\"^^xsd:int ;\n          nif:endIndex    \"\
+        42\"^^xsd:int ;\n          nif:isString    \"Welcome to Berlin, the capital\
+        \ of Germany!\"^^xsd:string .\n</code></pre>\n"
       operationId: executeFremeNel
       parameters:
       - {description: The text to enrich. Can be either plaintext or NIF (see parameter
