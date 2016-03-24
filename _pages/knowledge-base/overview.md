@@ -25,11 +25,11 @@ This section contains a series of articles with documentation about various aspe
 
 ## Knowledge base for FREME developers
 
+[Getting started with FREME development](freme-for-developers/developers-getting-started.html)
 [Overview of the FREME architecture](freme-for-developers/overview-of-the-freme-architecture.html)
 [Creating a Basic Service](freme-for-developers/creating-a-basic-service.html)
 [Setup FREME in the IDE](freme-for-developers/setup-freme-in-the-ide.html)
 [How to write an e-Service](freme-for-developers/how-to-write-an-eservice.html)
-[Compile FREME from Source](freme-for-developers/compile-freme-from-source.html)
 [Implementing restricted access to database resources](freme-for-developers/implementing-restricted-access-to-database-resources.html)
 [FREME on Github](freme-for-developers/freme-on-github.html)
 [How to add Documentation](freme-for-developers/how-to-add-documentation.html)
