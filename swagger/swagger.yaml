@@ -1046,15 +1046,16 @@ paths:
         This example shows a NIF document that can be processed by the service:
 
         <pre lang="turtle"><code>
-          @prefix nif:<http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-          @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
-          @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+          @prefix nif:&lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+          @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+          @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
-          <http://example.org/#char=0,42>
+          &lt;http://example.org/#char=0,42&gt;
                   a               nif:String , nif:Context , nif:RFC5147String ;
-                  nif:beginIndex  "0"^^xsd:int ;
-                  nif:endIndex    "42"^^xsd:int ;
-                  nif:isString    "Welcome to Berlin, the capital of Germany!"^^xsd:string .
+                  nif:beginIndex  &quot;0&quot;^^xsd:int ;
+                  nif:endIndex    &quot;42&quot;^^xsd:int ;
+                  nif:isString    &quot;Welcome to Berlin, the capital of Germany!&quot;^^xsd:string .
+
         </code></pre>
       operationId: executeFremeNel
       consumes:
