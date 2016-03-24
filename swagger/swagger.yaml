@@ -1170,6 +1170,11 @@ paths:
           description: 'Takes as input list of one or more entity types separated by a comma. The types are URLs of ontology classes and they should be encoded. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).'
           required: false
           type: string
+        - name: numLinks
+          in: query
+          description: 'Using the numLinks parameter one can specify the maximum number of links to be assigned to an entity. By default only one link is returned. The maximum possible number for this parameter is 5.'
+          required: false
+          type: string
       responses:
         '200':
           description: Successful response
