@@ -89,7 +89,7 @@ ratelimiter.enabled=true
 ratelimiter.yaml=ratelimiter.yaml
 ratelimiter.clear.timer=3600000
 </pre>
-<p><code>ratelimiter.enabled</code> decides whether rate-limiting is enabled <code>ratelimiter.yaml</code> should contain path to the <code>ratelimiter.yaml</code> in YAML Syntax which contains specific rate limits as shown in the example below.</p>
+<p><code>ratelimiter.enabled</code> decides whether rate-limiting is enabled. <code>ratelimiter.yaml</code> should contain path to the <code>ratelimiter.yaml</code> in YAML Syntax which contains specific rate limits as shown in the example below.</p>
 
 <h3>Example configuration</h3>
 
@@ -126,7 +126,7 @@ henry:
   <li> <code>ratelimits.&lt;username-or-ip&gt;.default</code> </li>
   <li> <code>ratelimits.&lt;role-of-caller&gt;.&lt;requested-endpoint&gt;</code> </li>
   <li> <code>ratelimits.&lt;role-of-caller&gt;.default </code> </li>
-  <li> Throw internal server error <code>"No identifier found for "+&lt;username-or-ip&gt;+"with role"+ &lt;role-of-caller&gt;+ "for resource" + &lt;requested-endpoint&gt;</code> </li>
+  <li> Throw internal server error <code>"No identifier found for "+&lt;username-or-ip&gt;+" with role "+ &lt;role-of-caller&gt;+ " for resource " + &lt;requested-endpoint&gt;</code> </li>
 </ol>
 <p>To ensure safe behaviour, the usernames <code>ROLE_ANONYMOUS</code>, <code>ROLE_USER</code>, and <code>ROLE_ADMIN</code> are not permitted anymore in the UserController.</p>
 
@@ -149,7 +149,7 @@ henry:
   </tr>
   <tr>
     <td>Source code location</td>
-    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/pipelines">pipielines source code</a></td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/pipelines">pipelines source code</a></td>
   </tr>
   <tr>
     <td>Packages that contain proxy service</td>
@@ -157,7 +157,7 @@ henry:
   </tr>
 </table>
 
-<h2><strong>Internationalization filter</strong></h2>
+<h2><strong>Internationalisation filter</strong></h2>
 
 <p>This filter extends FREME services with additional data formats. An in-depth article on the conveniences of this service can be found <a href="../freme-for-api-users/eInternationalisation.html">here</a>.</p>
 <h3>Quick overview</h3>
@@ -173,7 +173,7 @@ henry:
   </tr>
   <tr>
     <td>Source code location</td>
-    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/internationalization-filter">internationalization-filter source code</a></td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/internationalization-filter">internationalisation-filter source code</a></td>
   </tr>
   <tr>
     <td>Packages that contain proxy service</td>
