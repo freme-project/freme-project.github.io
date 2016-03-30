@@ -7,11 +7,11 @@ pos: 4.16
 
 <h1>Basic services</h1>
 
-This page lists all basic services that have been developed during the course of the FREME project.
+<p>This page lists all basic services that have been developed during the course of the FREME project.</p>
 
 <h2>Proxy filter</h2>
 
-The proxy filter receives HTTP requests and proxies these requests to a remote location. It copies the request, including headers, query string parameters and request body. It performs marginal changes in the request, e.g. it exchanges the "HOST" header. It proxies GET, POST, PUT, DELETE and OPTIONS requests. Multiple proxies can be configured using this filter.
+<p>The proxy filter receives HTTP requests and proxies these requests to a remote location. It copies the request, including headers, query string parameters and request body. It performs marginal changes in the request, e.g. it exchanges the "HOST" header. It proxies GET, POST, PUT, DELETE and OPTIONS requests. Multiple proxies can be configured using this filter.</p>
 
 <h3>Quick overview</h3>
 
@@ -36,14 +36,18 @@ The proxy filter receives HTTP requests and proxies these requests to a remote l
 
 <h3>Configuration options</h3>
 
-The proxy filter is configured using application properties, e.g. in the configuration file application.properties. The configuration has this form:
+<p>The proxy filter is configured using application properties, e.g. in the configuration file application.properties. The configuration has this form:</p>
 
+<pre>
 proxy.proxy-id.servlet_url: /e-entity/freme-ner/documents
 proxy.proxy-id.target_url: http://example.org/freme-ner
+</pre>
 
-Each proxy configuration consists of two lines. The first line configures the API endpoint on the proxy server that the server listens on. The second line configures the destination URL to which requests are being proxied. Each configuration option consists of three segments: proxy, proxy-id and servlet_url / target_url. The first segment is always the same for the proxy configurations. The second segment denotes the ID of this proxy. When configuring multiple proxies then different proxies can be distinguished by their ID.
+<p>Each proxy configuration consists of two lines. The first line configures the API endpoint on the proxy server that the server listens on. The second line configures the destination URL to which requests are being proxied. Each configuration option consists of three segments: proxy, proxy-id and servlet_url / target_url. The first segment is always the same for the proxy configurations. The second segment denotes the ID of this proxy. When configuring multiple proxies then different proxies can be distinguished by their ID.</p>
 
 <h3>Example configuration</h3>
 
+<pre>
 proxy.freme-ner-documents.servlet_url: /e-entity/freme-ner/documents
 proxy.freme-ner-documents.target_url: http://rv2622.1blu.de:7001/e-entity/freme-ner/documents
+</pre>
