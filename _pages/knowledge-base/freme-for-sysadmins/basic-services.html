@@ -9,7 +9,7 @@ pos: 4.16
 
 <p>This page lists all basic services that have been developed during the course of the FREME project.</p>
 
-<h2>Proxy filter</h2>
+<h2><strong>Proxy filter</strong></h2>
 
 <p>The proxy filter receives HTTP requests and proxies these requests to a remote location. It copies the request, including headers, query string parameters and request body. It performs marginal changes in the request, e.g. it exchanges the "HOST" header. It proxies GET, POST, PUT, DELETE and OPTIONS requests. Multiple proxies can be configured using this filter.</p>
 
@@ -52,4 +52,167 @@ This example confiugration configures FREME to proxy all requests to /e-entity/f
 <pre>
 proxy.freme-ner-documents.servlet_url: /e-entity/freme-ner/documents
 proxy.freme-ner-documents.target_url: http://rv2625.1blu.de:7001/e-entity/freme-ner/documents
+</pre>
+
+
+<h2><strong>Rate-Limiting Filter</strong></h2>
+
+<p>This Filter Limits the number and size of requests an API user can make.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filter.ratelimiter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/rate-limiter.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/rate-limiter">rate-limiter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+<p>The Rate Limiting Filter is configured using both <code>application.properties</code> and a seperate <code>ratelimiter.yaml</code> file</p>
+
+<h4>application.properties</h4>
+<pre>
+ratelimiter.enabled=true
+ratelimiter.yaml=ratelimiter.yaml
+ratelimiter.clear.timer=3600000
+</pre>
+<p><code>ratelimiter.enabled</code> decides whether rate-limiting is enabled <code>ratelimiter.yaml</code> should contain path to the <code>ratelimiter.yaml</code> in YAML Syntax which contains specific rate limits as shown in the example below.</p>
+
+<h3>Example configuration</h3>
+
+<h4>ratelimiter.yaml</h4>
+<pre><code>time-frame: 600   # time period in seconds
+rate-limits:
+ROLE_ANONYMOUS:
+default:
+- 50
+- 10000 # anomyous user has 50 requests or 1000 kb in the time period
+/e-entity/freme-ner/datasets:
+- 10
+- 1000000 # override for anonymous user to allow 50 requests or 1 000 000 characters in the time period
+ROLE_USER:
+default:
+- 100
+- 100000 # anomyous user has 50 requests or 1000 kb in the time period
+/e-entity/freme-ner/datasets:
+- 50
+- 2000000 # override for authenticated users to allow 50 requests or 2 000 000 characters in the time period
+ROLE_ADMIN:
+default:
+- 0
+- 0 # admin user has no rate limits configured
+henry:
+/e-translation/tilde:
+- 50
+- 100000 # user henry has a special override on tilde
+</code></pre>
+
+<p>Every request will attempt to match one of these properties in the following order:</p>
+<ol>
+  <li> <code>ratelimits.&lt;username-or-ip&gt;.&lt;requested-endpoint&gt;</code> </li>
+  <li> <code>ratelimits.&lt;username-or-ip&gt;.default</code> </li>
+  <li> <code>ratelimits.&lt;role-of-caller&gt;.&lt;requested-endpoint&gt;</code> </li>
+  <li> <code>ratelimits.&lt;role-of-caller&gt;.default </code> </li>
+  <li> Throw internal server error <code>"No identifier found for "+&lt;username-or-ip&gt;+"with role"+ &lt;role-of-caller&gt;+ "for resource" + &lt;requested-endpoint&gt;</code> </li>
+</ol>
+<p>To ensure safe behaviour, the usernames <code>ROLE_ANONYMOUS</code>, <code>ROLE_USER</code>, and <code>ROLE_ADMIN</code> are not permitted anymore in the UserController.</p>
+
+<p>This means that the user with the username <code>henry</code> can make 50 requests or requests totalling less than 100 000 characters in 600 seconds to <code>/e-translation/tilde</code> service. Since <code>henry</code> is an authenticated user (and thus has the <code>ROLE_USER</code>), he can also make 50 requests totalling less than 2 000 000 characters to <code>/e-entity/freme-ner/datasets</code>.
+  An anonymous user (who will be mapped to his IP-Address) can only make 10 requests to <code>/e-entity/freme-ner/datasets</code> totalling 1 000 000 characters in 600 seconds because he has the <code>ROLE_ANONYMOUS</code>.
+  An admin user can make unlimited requests to any e-service, which can be seen that his number of requests and also his size are set to 0.</p>
+
+<h2><strong>Pipelines</strong></h2>
+<p>This service allows for chaining multiple endpoints together. In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a> and an example tutorial can be found <a href="../../tutorials/pipeline-entity-link.html">here</a>.</p>
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.controllers.pipelines</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/pipelines.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/pipelines">pipielines source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2><strong>Internationalization filter</strong></h2>
+
+<p>This filter extends FREME services with additional data formats. An in-depth article on the conveniences of this service can be found <a href="../freme-for-api-users/eInternationalisation.html">here</a>.</p>
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filter.internationalization-filter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/internationalization-filter.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/internationalization-filter">internationalization-filter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2><strong>Logging-Filter</strong></h2>
+<p>This filter is responsible for logging requests and responses internally.</p>
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filter.logging</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/logging.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/logging">logging-filter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+<p>The logging-filter can be configured using the <code>application.properties</code> file.</p>
+<p><code>loggingfilter.maxsize</code> determines the maximum length of requests/responses to be logged. Any requests longer will be truncated.</p>
+<p><code>loggingfilter.whitelist</code> should be an array of content-types/informats that should be logged. They are to be seperated by a comma. If this parameter is not provided it defaults to null, which in turn will get the list of allowed content-types and informats from the internal list of <a href="https://github.com/freme-project/FREMECommon/blob/master/src/main/java/eu/freme/common/conversion/rdf/RDFSerializationFormats.java">RDF Serialization Formats</a>.</p>
+
+<h3>Example configuration</h3>
+
+<p>This example configuration truncates all requests and responses longer than 1800 character and logs only requests in the turtle format</p>
+<pre>loggingfilter.maxsize=1800
+loggingfilter.whitelist=turtle,text/turtle,application/x-turtle
 </pre>
