@@ -11,7 +11,7 @@ This article will guide you through the process of creating a FREME package, cre
 
 ## Prerequisites
 
-This guide is platform independent and works on Linux, Windows and Mac environments. You need to have the following software installed:
+This guide is platform independent and works on Linux, Windows and Mac environments. This is intendet for Linux environment and the terminal commands may differ on other operating systems. You need to have the following software installed:
 
 * Java (version 8 or higher)
 * Maven (version 3.0.5 or higher)
@@ -67,7 +67,7 @@ FREME uses Maven as build system. The pom.xml file of a FREME package specifies 
 		<dependency>
 			<groupId>eu.freme.bservices</groupId>
 			<artifactId>user-controller</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>eu.freme.e-services</groupId>
@@ -77,7 +77,7 @@ FREME uses Maven as build system. The pom.xml file of a FREME package specifies 
 		<dependency>
 			<groupId>eu.freme.bservices</groupId>
 			<artifactId>package-maker</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -121,7 +121,7 @@ This section will guide the reader through creating a binary distribution out of
 
 ### Create binary distribution
 
-In a terminal (can be Linux, Windows or Mac) navigate to the folder of the FREME package and type
+In a terminal navigate to the folder of the FREME package and type
 
 ```
 mvn package
@@ -138,8 +138,19 @@ chmod +x bin/*.sh
 
 *From the command line*
 
-In the terminal navigate to the folder of the binary distribution.
+In the terminal navigate to the folder of the binary distribution and start the server:
 
 ```
-bin/start_server.sh
+cd target/freme-package
+bin/start_local.sh
+```
+
+The server is ready when you see the message "FREMEStarter: Started FREMEStarter in ... seconds"
+
+### Doing the first API call
+
+From another terminal, use cURL to perform your first API call:
+
+```
+curl -X POST "http://localhost:8080/e-translation/tilde?source-lang=en&target-lang=de&informat=text&input=Hello+World"
 ```
