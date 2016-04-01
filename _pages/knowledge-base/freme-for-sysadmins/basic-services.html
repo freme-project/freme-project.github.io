@@ -5,9 +5,9 @@ dropdown: Knowledge Base, FREME for System Administrators
 pos: 4.16
 ---
 
-<h1>Basic services references</h1>
+<h1>List of all basic services</h1>
 
-<p>This page lists all basic services that have been developed during the course of the FREME project and the most important information about them.</p>
+<p>This page lists all basic services that have been developed during the course of the FREME project.</p>
 
 <ul>
   <li><a href="#proxy-filter">Proxy Filter</a></li> 
@@ -325,4 +325,29 @@ CORS filter  does not use any configuration options.
 
 <h2 id="postprocessing-filter">Postprocessing Filter</h2>
 
-tbd
+The postprocessing filter enables the feature to simplify the output of FREME using SPARQL queries. See <a href="freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for more information about this feature.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filters.postprocessing</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/postprocessing.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/postprocessing">CORS filter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+          
+<h3>Configuration options</h3>
+
+See <a href="freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for a list of configuration options for the post processing filter.
