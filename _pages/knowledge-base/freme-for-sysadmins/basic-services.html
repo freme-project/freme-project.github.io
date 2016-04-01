@@ -221,16 +221,12 @@ loggingfilter.whitelist=turtle,text/turtle,application/x-turtle
 
 <p>The Test Helper basic service assists user in setting up unit tests and integration tests. So it is usually not part of a FREME package but rather a dependency of basic services and e-Services. The articles <a href="../freme-for-developers/creating-a-basic-service.html">Creating a basic service</a> and <a href="../freme-for-developers/how-to-write-an-eservice.html">How to write an e-Service</a> provide examples on how to use the test-helper.
 
-<h3>Configuration options</h3>
-
-The test helper does not use any configuration options.
-
 <h3>Quick overview</h3>
 
 <table border="1">
   <tr>
     <td>Maven artifact</td>
-    <td>eu.freme.bservices.test-helper/td>
+    <td>eu.freme.bservices.test-helper</td>
   </tr>
   <tr>
     <td>Spring configuration file</td>
@@ -245,8 +241,39 @@ The test helper does not use any configuration options.
     <td>Test Helper is not part of any package.</td>
   </tr>
 </table>
+          
+<h3>Configuration options</h3>
+
+The test helper does not use any configuration options.
 
 <h2>Package Maker</h2>
+
+The package-maker service provide some tools like server start and stop scripts for FREME. It should be part of any FREME package.
+          
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.package-maker</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>The package-maker basic service does not contain a spring-configuration file.</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/package-maker">package-maker source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+          
+<h3>Configuration options</h3>
+
+Package maker does not use any configuration options.
 
 <h2>CORS Filter</h2>
 
