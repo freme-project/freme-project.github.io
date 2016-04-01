@@ -11,10 +11,10 @@ This section contains a series of articles with documentation about various aspe
                   
 ## Knowledge base for FREME system administrators
                                              
-[Starting FREME](freme-for-sysadmins/starting-freme.html)
 [Configuration Options](freme-for-sysadmins/configuration-options.html)
 [Creating and Running a FREME Package](freme-for-sysadmins/creating-and-running-a-freme-package.html)
 [Rate Limiting](freme-for-sysadmins/rate-limiting.html)
+[Basic services reference](freme-for-sysadmins/basic-services.html)
 
 ## Knowledge base for FREME users
                                           
