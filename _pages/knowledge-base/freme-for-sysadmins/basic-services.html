@@ -5,11 +5,21 @@ dropdown: Knowledge Base, FREME for System Administrators
 pos: 4.16
 ---
 
-<h1>List of all basic services</h1>
+<h1>Basic services references</h1>
 
-<p>This page lists all basic services that have been developed during the course of the FREME project.</p>
+<p>This page lists all basic services that have been developed during the course of the FREME project and the most important information about them.</p>
 
-<h2><strong>Proxy filter</strong></h2>
+<ul>
+  <li><a href="#proxy-filter">Proxy Filter</a></li> 
+  <li><a href="#rate-limiter">Rate Limiter</a></li> 
+  <li><a href="#pipelines">Pipelines</a></li> 
+  <li><a href="#test-helper">Test Helper</a></li> 
+  <li><a href="#package-maker">Package Maker</a></li> 
+  <li><a href="#cors-filter">CORS Filter</a></li> 
+  <li><a href="#postprocessing-filter">Postprocessing Filter</a></li> 
+</ul>
+
+<h2 id="proxy-filter"><strong>Proxy filter</strong></h2>
 
 <p>The proxy filter receives HTTP requests and proxies these requests to a remote location. It copies the request, including headers, query string parameters and request body. It performs marginal changes in the request, e.g. it exchanges the "HOST" header. It proxies GET, POST, PUT, DELETE and OPTIONS requests. Multiple proxies can be configured using this filter.</p>
 
@@ -55,7 +65,7 @@ proxy.freme-ner-documents.target_url: http://rv2625.1blu.de:7001/e-entity/freme-
 </pre>
 
 
-<h2><strong>Rate-Limiting Filter</strong></h2>
+<h2 id="rate-limiter"><strong>Rate-Limiting Filter</strong></h2>
 
 <p>This Filter Limits the number and size of requests an API user can make.</p>
 
@@ -134,7 +144,7 @@ henry:
   An anonymous user (who will be mapped to his IP-Address) can only make 10 requests to <code>/e-entity/freme-ner/datasets</code> totalling 1 000 000 characters in 600 seconds because he has the <code>ROLE_ANONYMOUS</code>.
   An admin user can make unlimited requests to any e-service, which can be seen that his number of requests and also his size are set to 0.</p>
 
-<h2><strong>Pipelines</strong></h2>
+<h2 id="pipelines"><strong>Pipelines</strong></h2>
 <p>This service allows for chaining multiple endpoints together. In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a> and an example tutorial can be found <a href="../../tutorials/pipeline-entity-link.html">here</a>.</p>
 <h3>Quick overview</h3>
 
@@ -217,7 +227,7 @@ henry:
 loggingfilter.whitelist=turtle,text/turtle,application/x-turtle
 </pre>
 
-<h2>Test Helper</h2>
+<h2 id="test-helper">Test Helper</h2>
 
 <p>The Test Helper basic service assists user in setting up unit tests and integration tests. So it is usually not part of a FREME package but rather a dependency of basic services and e-Services. The articles <a href="../freme-for-developers/creating-a-basic-service.html">Creating a basic service</a> and <a href="../freme-for-developers/how-to-write-an-eservice.html">How to write an e-Service</a> provide examples on how to use the test-helper.
 
@@ -246,7 +256,7 @@ loggingfilter.whitelist=turtle,text/turtle,application/x-turtle
 
 The test helper does not use any configuration options.
 
-<h2>Package Maker</h2>
+<h2 id="package-maker">Package Maker</h2>
 
 The package-maker service provide some tools like server start and stop scripts for FREME. It should be part of any FREME package.
           
@@ -275,7 +285,7 @@ The package-maker service provide some tools like server start and stop scripts 
 
 Package maker does not use any configuration options.
 
-<h2>CORS Filter</h2>
+<h2 id="cors-filter">CORS Filter</h2>
 
 The CORS filter adds the necessary headers for Cross Origin Resource Sharing to all responses of API requests. In the current implementation it sends these headers:
 
@@ -313,6 +323,6 @@ In a future version we plan to allow configuration of these values so one can sp
 
 CORS filter  does not use any configuration options.
 
-<h2>Postprocessing Filter</h2>
+<h2 id="postprocessing-filter">Postprocessing Filter</h2>
 
 tbd
