@@ -1,6 +1,6 @@
 ---
 layout: page
-title: List of all basic services
+title: Basic services reference
 dropdown: Knowledge Base, FREME for System Administrators
 pos: 4.16
 ---
@@ -277,4 +277,42 @@ Package maker does not use any configuration options.
 
 <h2>CORS Filter</h2>
 
+The CORS filter adds the necessary headers for Cross Origin Resource Sharing to all responses of API requests. In the current implementation it sends these headers:
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: x-requested-with, content-type
+```                                                         
+
+In a future version we plan to allow configuration of these values so one can specify a list of hosts for the header Access-Control-Allow-Origin in the FREME configuration file.
+                  
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filters.cors-filter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/cors-filter.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/cors-filter">CORS filter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain proxy service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+          
+<h3>Configuration options</h3>
+
+CORS filter  does not use any configuration options.
+
 <h2>Postprocessing Filter</h2>
+
+tbd
