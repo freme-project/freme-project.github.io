@@ -17,7 +17,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 * `terminology-terms-only`
 * `sourcelang-targetlang`
 
-**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.apiurl | prepend: site.url }}/toolbox/filter/manage`, see [this section](#get-all-filters).
+**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.apiurl | prepend: site.url }}/toolbox/convert/manage`, see [this section](#get-all-filters).
 
 ## Using filters
 
@@ -189,30 +189,30 @@ The two pipeline requests mentioned above are semantically equal and use `e-enti
 
 ## Managing filters
 
-Filters can be managed via the REST API endpoint `/toolbox/filter/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiurl | prepend: site.url }}/doc/knowledge-base/authentication.html) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiurl | prepend: site.url }}/doc/knowledge-base/authentication.html) for further information. 
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
 ### Add a filter
 ```
-curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/{filterName}"
 ```
 
 Example:
 
 ```
-curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X POST --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extract-entities-only"
 ```
 
 ### Get a filter
 ```
-curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/{filterName}"
 ```
 
 Example:
 
 ```
-curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extract-entities-only"
 ```
 
 ### Get all filters
@@ -220,18 +220,18 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract
 This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
 
 ```
-curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
+curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage"
 ```
 
 Example:
 
 ```
-curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage"
+curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage"
 ```
 
 ### Update a filter
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d NEW_SPARQL_QUERY "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/{filterName}[&newOwner=NEW_OWNER_NAME][&visibility=NEW_VISIBILITY]"
 ```
 
 Examples:
@@ -240,26 +240,26 @@ Examples:
 This changes the filter:
 
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" -d "PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}" "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extract-entities-only"
 ```
 
 To change the owner and the visibility, you can do this:
 
 ```
-curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only?newOwner=klaus&visibility=private"
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" --header "Content-Type: text/plain" "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extract-entities-only?newOwner=klaus&visibility=private"
 ```
 NOTE: The User `klaus` has to exist.
 NOTE: The two example requests can be merged, it was splitted just for explanation purposes.
 
 ### Delete a filter
 ```
-curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/{filterName}"
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/{filterName}"
 ```
 
 Example:
 
 ```
-curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/filter/manage/extract-entities-only"
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extract-entities-only"
 ```
 
 
