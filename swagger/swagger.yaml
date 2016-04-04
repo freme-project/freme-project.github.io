@@ -1183,7 +1183,7 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
-  '/toolbox/convert/manage/{name}':
+  '/toolbox/convert/manage':
     post:
       tags:
         - Postprocessing
@@ -1232,6 +1232,7 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
+  '/toolbox/convert/manage/{name}':
     put:
       tags:
         - Postprocessing
