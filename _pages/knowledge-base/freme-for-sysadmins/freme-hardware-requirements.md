@@ -6,7 +6,9 @@ pos: 4.17
 ---
 # FREME hardware requirements
 
-The following pages explain the hardware requirements of FREME NER. They are intended to assist system administrators who want to setup a FREME installation on their own servers.
+The following pages explain the hardware requirements of FREME NER. They are intended to assist system administrators who want to setup a FREME installation on their own server.
+
+This guide distinguishes between FREME broker and FREME NER because FREME NER is by far the most resource intensive part of FREME. It is possible to either run both systems on the same server or to setup the broker on one server and FREME NER on another server.
 
 ## FREME broker
 
