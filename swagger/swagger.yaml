@@ -1183,7 +1183,7 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
-  '/toolbox/filter/manage/{name}':
+  '/toolbox/convert/manage/{name}':
     post:
       tags:
         - Postprocessing
@@ -1207,7 +1207,7 @@ paths:
             type: string
           description: A valid SPARQL SELECT query as plain text.
         - name: name
-          in: path
+          in: query
           required: true
           description: Name of filter. Must be unique.
           type: string
@@ -1330,7 +1330,7 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
-  '/toolbox/filter/documents/{name}':
+  '/toolbox/convert/documents/{name}':
     post:
       tags:
         - Postprocessing
@@ -1406,7 +1406,7 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
-  /toolbox/filter/manage:
+  /toolbox/convert/manage:
     get:
       tags:
         - Postprocessing
