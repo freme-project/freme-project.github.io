@@ -173,22 +173,22 @@ If you have implemented the classes above, it is very easy to set up a REST cont
 
 FREMECommon provides the abstract class `OwnedResourceManagingController`, which enables the following endpoints:
 
- * `POST /manage`: add an entity and return the created entity serialized as JSON
- * `GET /manage`: request all entities, which are accessible, serialized as JSON
- * `GET /manage/{identifier}`: request a certain entity, serialized as JSON
- * `PUT /manage/{identifier}`: update a certain entity and return the updated entity serialized as JSON
- * `DELETE /manage/{identifier}`: delete a certain entity
+ * `POST /`: add an entity and return the created entity serialized as JSON
+ * `GET /`: request all entities, which are accessible, serialized as JSON
+ * `GET /{identifier}`: request a certain entity, serialized as JSON
+ * `PUT /{identifier}`: update a certain entity and return the updated entity serialized as JSON
+ * `DELETE /{identifier}`: delete a certain entity
 
 To get this functionality, you have to create a class inheriting from `OwnedResourceManagingController<Entity>` and implement at least these methods:
 
  * `Entity createEntity(String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
  * `void updateEntity(Entity entity, String body, Map<String, String> parameters, Map<String, String> headers) throws BadRequestException`
 
-`createEntity` will be executed when calling `POST /manage`, `updateEntity` when calling `PUT /manage/{identifier}`.
+`createEntity` will be executed when calling `POST /`, `updateEntity` when calling `PUT /{identifier}`.
 These methods do not have to handle the modification of `owner` or `visibility`, these fields are set/updated after these methods. To change these properties, the query parameters:
 
  * `visibility` and
- * `newOwner` (only via `PUT /manage/{identifier}`)
+ * `newOwner` (only via `PUT /{identifier}`)
 
 are used. So it is possible to ensure the state of these properties while testing.
 
@@ -196,11 +196,11 @@ Exceptions like `org.springframework.security.access.AccessDeniedException`, `eu
 
 The following code provides the HTTP endpoints (like described above):
 
- * `POST /mysandbox/manage`
- * `GET /mysandbox/manage`
- * `GET /mysandbox/manage/{identifier}`
- * `PUT /mysandbox/manage/{identifier}`
- * `DELETE /mysandbox/manage/{identifier}`
+ * `POST /mysandbox`
+ * `GET /mysandbox`
+ * `GET /mysandbox/{identifier}`
+ * `PUT /mysandbox/{identifier}`
+ * `DELETE /mysandbox/{identifier}`
 
 ```
 
