@@ -1183,6 +1183,71 @@ paths:
             type: string
         '400':
           description: Bad request - input validation failed
+  /toolbox/convert/manage:
+    get:
+      tags:
+        - Postprocessing
+      summary: Get all postprocessing filters
+      description: >
+        Returns all read accessible filters, see [authentication
+        article](../knowledge-base/authentication.html) for further information.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+        '400':
+          description: Bad request - input validation failed
+    post:
+      tags:
+        - Postprocessing
+      summary: Create a postprocessing filter
+      description: >
+        Creates a new filter. The filter will be constructed from the body
+        content, which has to be a valid SPARQL SELECT query as plain text. See
+        the [Simplify FREME output using SPARQL
+        filters](../knowledge-base/filtering.html) article for further
+        information. Ensure, that a filter with given `name` does not
+        already exist. Requires [authentication](../knowledge-base/authentication.html).
+      produces:
+        - application/json
+      consumes:
+        - text/plain
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+          description: A valid SPARQL SELECT query as plain text.
+        - name: name
+          in: query
+          required: true
+          description: Name of filter. Must be unique.
+          type: string
+        - name: visibility
+          in: query
+          required: false
+          enum:
+            - public
+            - private
+          default: public
+          type: string
+          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/authentication.html).'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: Sets a description for this filter.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+        '400':
+          description: Bad request - input validation failed
   '/toolbox/convert/manage/{name}':
     put:
       tags:
@@ -1351,71 +1416,6 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
-  /toolbox/convert/manage:
-    get:
-      tags:
-        - Postprocessing
-      summary: Get all postprocessing filters
-      description: >
-        Returns all read accessible filters, see [authentication
-        article](../knowledge-base/authentication.html) for further information.
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
-    post:
-      tags:
-        - Postprocessing
-      summary: Create a postprocessing filter
-      description: >
-        Creates a new filter. The filter will be constructed from the body
-        content, which has to be a valid SPARQL SELECT query as plain text. See
-        the [Simplify FREME output using SPARQL
-        filters](../knowledge-base/filtering.html) article for further
-        information. Ensure, that a filter with given `name` does not
-        already exist. Requires [authentication](../knowledge-base/authentication.html).
-      produces:
-        - application/json
-      consumes:
-        - text/plain
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: string
-          description: A valid SPARQL SELECT query as plain text.
-        - name: name
-          in: query
-          required: true
-          description: Name of filter. Must be unique.
-          type: string
-        - name: visibility
-          in: query
-          required: false
-          enum:
-            - public
-            - private
-          default: public
-          type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/authentication.html).'
-        - name: description
-          in: query
-          required: false
-          type: string
-          description: Sets a description for this filter.
       responses:
         '200':
           description: Successful response
