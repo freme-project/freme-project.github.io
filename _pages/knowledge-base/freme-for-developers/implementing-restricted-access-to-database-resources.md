@@ -12,6 +12,7 @@ This article should serve as guideline how to implement functionality with user 
 ## OwnedResource
 
 FREME provides a framework to provide access control to any kind of database entity. A database entity using the FREME access control is an `OwnedResource`. Using this framework you can implement easily the following security rules:
+
 * A database field `visibility` which can be set to `PRIVATE` or `PUBLIC` controls the access control. Further, every OwnedResource has a database field `owner` which points to the user that has created the entity.
 * Everyone has read access to `PUBLIC` entities but only the owner has write (update / delete) access.
 * Only the owner can read, update or delete `PRIVATE` entities.
