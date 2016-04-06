@@ -1189,8 +1189,7 @@ paths:
         - Postprocessing
       summary: Get all postprocessing filters
       description: >
-        Returns all read accessible filters, see [authentication
-        article](../knowledge-base/authentication.html) for further information.
+        Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
       produces:
         - application/json
       responses:
@@ -1207,8 +1206,7 @@ paths:
       description: >
         Creates a new filter. The filter will be constructed from the body
         content, which has to be a valid SPARQL SELECT query as plain text. See
-        the [Simplify FREME output using SPARQL
-        filters](../knowledge-base/filtering.html) article for further
+        the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article for further
         information. Ensure, that a filter with given `name` does not
         already exist. Requires [authentication](../knowledge-base/authentication.html).
       produces:
@@ -1254,8 +1252,10 @@ paths:
         - Postprocessing
       summary: Update an existing postprocessing filter
       description: >
-        Updates the filter with the name `filter-name`. Requires
-        [authentication](../knowledge-base/authentication.html). Only fields
+        Updates the filter with the name `filter-name`. For more information
+        on this feature, see the
+        [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html)
+        article. Requires [authentication](../knowledge-base/authentication.html). Only fields
         containing content are updated. So, if you just want to transfer the
         ownership or change the visibility without updating the SPARQL filter
         query, leave the body empty.
@@ -1306,7 +1306,8 @@ paths:
         - Postprocessing
       summary: Delete a postprocessing filter
       description: >
-        Deletes the filter with specified name. Requires
+        Deletes the filter with specified name. For more information on this feature,
+        see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article. Requires
         [authentication](../knowledge-base/authentication.html). If you just want
         to transfer the ownership or change the visibility without updating the
         SPARQL filter query, send `EMPTY`, `NULL` or ` ` (a string containing
@@ -1356,7 +1357,7 @@ paths:
         This endpoint allows to execute a certain filter against a RDF graph sent
         as post body or as value of the NIF `input` parameter. For more
         information and a list of available filters, see the [Simply FREME output
-        using SPARQL filters](knowledge-base/filtering.html) article.
+        using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
       consumes:
         - text/n3
         - text/turtle
