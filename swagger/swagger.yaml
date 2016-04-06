@@ -1308,10 +1308,7 @@ paths:
       description: >
         Deletes the filter with specified name. For more information on this feature,
         see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article. Requires
-        [authentication](../knowledge-base/authentication.html). If you just want
-        to transfer the ownership or change the visibility without updating the
-        SPARQL filter query, send `EMPTY`, `NULL` or ` ` (a string containing
-        only whitespace) as body.
+        [authentication](../knowledge-base/authentication.html).
       produces:
         - application/json
       parameters:
@@ -1331,8 +1328,12 @@ paths:
       tags:
         - Postprocessing
       summary: Get a postprocessing filter
-      description: |
+      description: >
         Returns one specific filter with specified name.
+        For more information on this feature, see the
+        [Simplify FREME output using SPARQL filters]
+        (../knowledge-base/freme-for-api-users/filtering.html)
+        article.
       produces:
         - application/json
       parameters:
