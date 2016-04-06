@@ -189,7 +189,7 @@ The two pipeline requests mentioned above are semantically equal and use `e-enti
 
 ## Managing filters
 
-Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiurl | prepend: site.url }}/doc/knowledge-base/authentication.html) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiurl | prepend: site.url }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information. 
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
@@ -217,7 +217,7 @@ curl -X GET "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/extrac
 
 ### Get all filters
 
-This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/authentication.html) for further information.
+This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.url }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 ```
 curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage"

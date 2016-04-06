@@ -208,7 +208,7 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 </p>
 <h3>Use of SPARQL filters</h3>
 <p>Sometimes there is no need for complex RDF data structures. If so, then you can also retrieve a predefined structure of data using the SPARQL filtering possibilities of the FREME server. See more about this feature here: 
-    <a href="../knowledge-base/filtering.html">this article</a>
+    <a href="../knowledge-base/freme-for-api-users/filtering.html">this article</a>
 </p>
 <p>SPARQL filters can be used together with pipelines. Firstly, you must find the existing filter or create a new one and then add the filter name as a parameter to the pipeline configuration.</p></div>
 <div>
@@ -225,7 +225,7 @@ Instead of querying the FREME server in two steps, you can also use pipeline to 
 <pre><code>curl -X POST -H "Accept: application/rdf+xml" -H "Content-Type: text/plain" -d 'The EU in brief. The EU is a unique economic and political partnership between 28 European countries that together cover much of the continent.' "http://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&domain=legal"</code></pre>
     <p>In case of non-existing domain and language pair the server will respond with HTTP status code <code>404 Not Found</code> </p>
     <h3 id="its">ITS 2.0 category support</h3>
-<p>e-Translation supports ITS 2.0 data categories. See a complete list of the supported categories and usage samples in this article: <a href="../knowledge-base/eInternationalisation.html">e-Internationalization</a>.</p>
+<p>e-Translation supports ITS 2.0 data categories. See a complete list of the supported categories and usage samples in this article: <a href="../knowledge-base/freme-for-api-users/eInternationalisation.html">e-Internationalization</a>.</p>
 <p>
     ITS 2.0 data categories provide the possibility to include an MT confidence score to the output of e-Translation. This allows the post editors or other automatic or manual evaluators to more easily spot the areas with potentially weak translation.
 </p>
