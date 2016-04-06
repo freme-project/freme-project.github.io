@@ -90,7 +90,7 @@ paths:
       summary: Create a new user
       description: >
         Creates a new user. See the<a
-        href="./../knowledge-base/authentication.html" target="_blank">
+        href="./../knowledge-base/freme-for-api-users/authentication.html" target="_blank">
         Authentication article</a> for detailed information.
       produces:
         - application/json
@@ -210,7 +210,7 @@ paths:
 
 
 
-        See the<a href="./../knowledge-base/authentication.html" target="_blank">
+        See the<a href="./../knowledge-base/freme-for-api-users/authentication.html" target="_blank">
         Authentication article</a> for detailed information.
 
 
@@ -1163,12 +1163,12 @@ paths:
             - link
         - name: domain
           in: query
-          description: 'Takes as input a domain ID, and it only returns entities from this domain. The domain IDs are from the [TaaS domain classification system](https://term.tilde.com/domains). For example, the sports domain is identified with the TaaS-2007 ID. Note that the IDs are case-sensitive. More information about the domain parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).'
+          description: 'Takes as input a domain ID, and it only returns entities from this domain. The domain IDs are from the [TaaS domain classification system](https://term.tilde.com/domains). For example, the sports domain is identified with the TaaS-2007 ID. Note that the IDs are case-sensitive. More information about the domain parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
           required: false
           type: string
         - name: types
           in: query
-          description: 'Takes as input list of one or more entity types separated by a comma. The types are URLs of ontology classes and they should be encoded. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-ner.html).'
+          description: 'Takes as input list of one or more entity types separated by a comma. The types are URLs of ontology classes and they should be encoded. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
           required: false
           type: string
         - name: numLinks
@@ -1208,7 +1208,7 @@ paths:
         content, which has to be a valid SPARQL SELECT query as plain text. See
         the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article for further
         information. Ensure, that a filter with given `name` does not
-        already exist. Requires [authentication](../knowledge-base/authentication.html).
+        already exist. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html).
       produces:
         - application/json
       consumes:
@@ -1233,7 +1233,7 @@ paths:
             - private
           default: public
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
         - name: description
           in: query
           required: false
@@ -1255,7 +1255,7 @@ paths:
         Updates the filter with the name `filter-name`. For more information
         on this feature, see the
         [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html)
-        article. Requires [authentication](../knowledge-base/authentication.html). Only fields
+        article. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html). Only fields
         containing content are updated. So, if you just want to transfer the
         ownership or change the visibility without updating the SPARQL filter
         query, leave the body empty.
@@ -1283,7 +1283,7 @@ paths:
             - private
           default: public
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
         - name: description
           in: query
           required: false
@@ -1308,7 +1308,7 @@ paths:
       description: >
         Deletes the filter with specified name. For more information on this feature,
         see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article. Requires
-        [authentication](../knowledge-base/authentication.html).
+        [authentication](../knowledge-base/freme-for-api-users/authentication.html).
       produces:
         - application/json
       parameters:
@@ -1331,8 +1331,7 @@ paths:
       description: >
         Returns one specific filter with specified name.
         For more information on this feature, see the
-        [Simplify FREME output using SPARQL filters]
-        (../knowledge-base/freme-for-api-users/filtering.html)
+        [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html)
         article.
       produces:
         - application/json
@@ -1638,7 +1637,7 @@ paths:
           - `visibility`: This parameter controlls, how the template can be accessed by other users
             than the owner. This includes enrichment etc. via this template. See the Restricted
             Endpoints and Restricted Resources section of the
-            <a href= \"./../knowledge-base/authentication.html\" target=\"_blank\">authentication article</a>
+            <a href= \"./../knowledge-base/freme-for-api-users/authentication.html\" target=\"_blank\">authentication article</a>
             for further information. The value has to be either `public` (default) or `private`.
 
 
