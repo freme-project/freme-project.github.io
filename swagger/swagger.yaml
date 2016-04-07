@@ -1425,6 +1425,7 @@ paths:
         '400':
           description: Bad request - input validation failed
   /toolbox/nif-converter:
+    post:
       tags:
        - Toolbox
       summary: Convert a document to NIF
