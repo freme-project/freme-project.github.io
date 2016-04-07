@@ -10,7 +10,7 @@ tags:
   - name: e-Publishing
   - name: e-Translation
   - name: User
-  - name: Postprocessing
+  - name: Toolbox
   - name: General Information
     description: >
       This section defines the default parameter set for all FREME e-Services.
@@ -1186,7 +1186,7 @@ paths:
   /toolbox/convert/manage:
     get:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Get all postprocessing filters
       description: >
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
@@ -1201,7 +1201,7 @@ paths:
           description: Bad request - input validation failed
     post:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Create a postprocessing filter
       description: >
         Creates a new filter. The filter will be constructed from the body
@@ -1249,7 +1249,7 @@ paths:
   '/toolbox/convert/manage/{name}':
     put:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Update an existing postprocessing filter
       description: >
         Updates the filter with the name `filter-name`. For more information
@@ -1303,7 +1303,7 @@ paths:
           description: Bad request - input validation failed
     delete:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Delete a postprocessing filter
       description: >
         Deletes the filter with specified name. For more information on this feature,
@@ -1326,7 +1326,7 @@ paths:
           description: Bad request - input validation failed
     get:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Get a postprocessing filter
       description: >
         Returns one specific filter with specified name.
@@ -1351,7 +1351,7 @@ paths:
   '/toolbox/convert/documents/{name}':
     post:
       tags:
-        - Postprocessing
+       - Toolbox
       summary: Execute a filter against an RDF graph
       description: >
         This endpoint allows to execute a certain filter against a RDF graph sent
@@ -1417,6 +1417,46 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+        '400':
+          description: Bad request - input validation failed
+  /toolbox/nif-converter:
+      tags:
+       - Toolbox
+      summary: Convert a document to NIF
+      description: >
+        This endpoint allows to convert plain text, a document in any format supported by
+        [e-Internalisation](../knowledge-base/freme-for-api-users/eInternationalisation.html)
+        or in the RDF formats supported by FREME into a NIF document with the
+        RDF serialisation format specified by the `accept` header.
+      consumes:
+        - text/plain
+        - application/x-xliff+xml
+        - text/html
+        - text/xml
+        - application/x-openoffice
+        - text/n3
+        - text/turtle
+        - application/ld+json
+        - application/n-triples
+        - application/rdf+xml
+      produces:
+        - text/n3
+        - text/turtle
+        - application/ld+json
+        - application/n-triples
+        - application/rdf+xml
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+          description: 'The document you want to convert into NIF.'
       responses:
         '200':
           description: Successful response
