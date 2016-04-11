@@ -16,6 +16,7 @@ This section contains a series of articles with documentation about various aspe
 [Rate Limiting](freme-for-sysadmins/rate-limiting.html)
 [Basic services reference](freme-for-sysadmins/basic-services.html)
 [FREME hardware requirements](freme-for-sysadmins/freme-hardware-requirements.html)
+[Running FREME on a webserver](freme-for-sysadmins/install-freme-on-server.html)
 
 ## Knowledge base for FREME users
                                           
