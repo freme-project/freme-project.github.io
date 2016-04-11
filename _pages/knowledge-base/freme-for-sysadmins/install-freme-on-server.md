@@ -1,3 +1,9 @@
+---
+layout: page
+title: Running FREME on a webserver
+dropdown: Knowledge Base, FREME for System Administrators
+pos: 4.17
+---
 # Running FREME on a webserver
 
 This guide explains how to install FREME on a web server.
