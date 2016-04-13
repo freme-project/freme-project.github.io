@@ -10,7 +10,7 @@ This guide explains how to install FREME on a web server.
 
 ## Pre requisites
 
-* A webserver that meets the [FREME hardware requirements](freme-hardware-requirements.html) and has a Linux operating system installed. FREME works on other operating systems also but this guide targets Linux servers.
+* A server that meets the [FREME hardware requirements](freme-hardware-requirements.html) and has a Linux operating system installed. FREME works on other operating systems also but this guide targets Linux servers.
 * Java 8 or higher installed on the web server
 * A FREME package. See [Creating and running a FREME package](creating-and-running-a-freme-package.html) for more information.
 * Depending on the services you use you might need to have a MySQL webserver installed. FREME can also be configured to run with other databases, so MySQL is not obligatory. See [configuration options](http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-sysadmins/configuration-options.html) for more information on how to configure the database.
@@ -33,3 +33,11 @@ service freme restart
 service freme stop
 ```
 
+## Tips
+
+We had the issue that the connection to the MySQL database gets lost when FREME is idle for some hours. This problem can be overcome by adding these parameters to application.properties:
+
+```
+spring.datasource.testOnBorrow=true
+spring.datasource.validationQuery=SELECT 1
+```
