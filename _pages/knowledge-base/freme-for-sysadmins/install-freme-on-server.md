@@ -35,9 +35,25 @@ service freme stop
 
 ## Tips
 
+### Prevent loosing connection to MySQL database
+
 We had the issue that the connection to the MySQL database gets lost when FREME is idle for some hours. This problem can be overcome by adding these parameters to application.properties:
 
 ```
 spring.datasource.testOnBorrow=true
 spring.datasource.validationQuery=SELECT 1
+```
+
+### FREME hangs during startup
+
+On ubuntu servers we observed the problem that sometimes FREME freezes during startup. The last log message before the freeze is "Mapping servlet: 'dispatcherServlet' to [/]" or "create new admin user". This can be a problem with the secure random number generator. You can overcome this problem by starting FREME with this command line option:
+
+```
+-Djava.security.egd=file:/dev/./urandom
+```
+
+E.g. through creating a configuration file "start-properties" with this content:
+
+```
+START_ARGS="-Djava.security.egd=file:/dev/./urandom"
 ```
