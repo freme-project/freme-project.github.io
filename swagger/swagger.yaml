@@ -379,7 +379,7 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
         - name: owner
           in: query
           required: false
@@ -1007,7 +1007,7 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
         - name: owner
           in: query
           required: false
@@ -1249,7 +1249,7 @@ paths:
             - private
           default: public
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
         - name: description
           in: query
           required: false
@@ -1303,7 +1303,7 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
         - name: owner
           in: query
           required: false
@@ -1871,7 +1871,7 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article] (../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
         - name: owner
           in: query
           required: false
