@@ -904,6 +904,15 @@ paths:
           in: query
           type: string
           x-force-textarea: true
+        - name: visibility
+          in: query
+          required: false
+          default: public
+          enum:
+            - public
+            - private
+          type: string
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
       responses:
         '201':
           description: Created - the dataset was successfuly created
@@ -949,7 +958,7 @@ paths:
         existing data. This can be used to upload a large dataset in multiple
         chunks.
 
-        for an example SKOS Dataset.
+        See `POST /e-entity/freme-ner/datasets` for an example SKOS Dataset.
       operationId: updateDataset
       consumes:
         - text/n3
