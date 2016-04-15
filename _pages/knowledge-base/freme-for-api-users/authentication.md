@@ -16,6 +16,7 @@ Some FREME endpoints are only accessible as authenticated user. At the moment th
   * POST, PUT and DELETE `/e-link/templates/{templateID}` (template handling that needs write access)
   * POST, PUT and DELETE `/toolbox/convert/manage/{filterName}` (filter handling that needs write access)
   * POST, PUT and DELETE `/pipelining/templates/{pipelineID}` (pipeline handling that needs write access)
+  * POST, PUT and DELETE `/e-entity/freme-ner/datasets/{datasetName}` (dataset handling that needs write access)
   * GET, DELETE `/user/{userName}` and GET `/user` (user handling, except POST `/user`)
 
 Furthermore, the following FREME endpoints are restricted in such a way, that you can use them only with public resources (e.g. public templates), if you are not authenticated:
@@ -23,12 +24,14 @@ Furthermore, the following FREME endpoints are restricted in such a way, that yo
   * POST `/e-link/documents`
   * POST `/toolbox/convert/documents/{filterName}`
   * POST `/pipelining/chain/{pipelineID}`
+  * POST `/e-entity/freme-ner/documents`
 
-The result of the resource managament endpoints
+The result of the resource management endpoints
 
   * GET `/e-link/templates`  
   * GET `/toolbox/convert/manage`
   * GET `/pipelining/templates`
+  * GET `/e-entity/freme-ner/datasets`
 
 differs according to the authenticated user: only the resources the user has read access to are returned.
 
