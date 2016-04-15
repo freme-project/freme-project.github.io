@@ -15,6 +15,7 @@ This section contains a series of articles with documentation about various aspe
 [Creating and Running a FREME Package](freme-for-sysadmins/creating-and-running-a-freme-package.html)
 [Rate Limiting](freme-for-sysadmins/rate-limiting.html)
 [Basic services reference](freme-for-sysadmins/basic-services.html)
+[E services reference](freme-for-sysadmins/e-services.html)
 [FREME hardware requirements](freme-for-sysadmins/freme-hardware-requirements.html)
 [Running FREME on a webserver](freme-for-sysadmins/install-freme-on-server.html)
 
