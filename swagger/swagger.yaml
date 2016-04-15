@@ -301,6 +301,10 @@ paths:
           false it will live only for one week. To be implemented.
           - `serializedRequests`: the chained requests as described in
           /pipelining/chain.
+
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       consumes:
         - application/json
       produces:
@@ -350,7 +354,11 @@ paths:
       tags:
         - pipelining
       summary: Update an existing pipelining template
-      description: Update an existing pipelining template with new information
+      description: >
+        Update an existing pipelining template with new information.
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       consumes:
         - application/json
       produces:
@@ -422,7 +430,11 @@ paths:
       tags:
         - pipelining
       summary: Delete a pipelining template
-      description: Deletes the pipelining template with the specified id
+      description: >
+        Deletes the pipelining template with the specified id.
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       produces:
         - application/json
       parameters:
@@ -837,6 +849,10 @@ paths:
         have raw RDF with various other kinds of information (like location, geo-coordinates, sameAs, closeMatch etc.) they can include them too.
         So basically, send them all in. That will only help the entity linker in performing better disambiguation by taking into account
         inter-resource links.
+
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: createDataset
       consumes:
         - text/n3
@@ -888,7 +904,7 @@ paths:
           type: string
         - name: language
           in: query
-          description: 'language of the labels in the dataset. If the parameter is not specified, all labels without language tag will be used while performing linking.'
+          description: 'The default language of the labels in the dataset.'
           required: false
           type: string
           enum:
@@ -953,12 +969,18 @@ paths:
         - e-Entity
       summary: Updating dataset for use in the e-Entity service
       description: >
-        Update a dataset with new data for use in the e-Entity service. The new
+        Update a dataset with new data for use in the e-Entity service and/or
+        its metadata (`owner`, `visibility`, `description`). The new
         data will be added to the existing dataset instead of overwriting the
         existing data. This can be used to upload a large dataset in multiple
         chunks.
 
-        See `POST /e-entity/freme-ner/datasets` for an example SKOS Dataset.
+        See [POST /e-entity/freme-ner/datasets](#!/e-Entity/createDataset) for an example SKOS Dataset.
+
+
+        This endpoint requires authenticated access, see
+        [authentication article](../knowledge-base/freme-for-api-users/authentication.html)
+        for further information.
       operationId: updateDataset
       consumes:
         - text/n3
@@ -975,7 +997,7 @@ paths:
       parameters:
         - name: informat
           in: query
-          description: 'RDF serialization format of the dataset. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.'
+          description: RDF serialization format of the dataset. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.
           required: false
           type: string
           default: turtle
@@ -987,18 +1009,18 @@ paths:
             - rdf-xml
         - in: body
           name: body
-          description: 'The dataset. The format of the body can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.'
+          description: The new dataset data. The format of the body can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.
           required: false
           schema:
             type: string
         - name: name
           in: path
-          description: 'The name of the dataset to update. It can be considered as ID for the dataset. It should include only numbers, letters and should NOT include white spaces.'
+          description: The name of the dataset to update. It can be considered as ID for the dataset.
           required: true
           type: string
         - name: language
           in: query
-          description: 'language of the labels in the dataset. If the parameter is not specified, all labels without language tag will be used while performing linking. At the moment only following languages are supported - FREME NER (en/de/fr/es/it), DBpedia Spotlight (en).'
+          description: The default language of the labels in the newly added dataset data.
           required: false
           type: string
           enum:
@@ -1009,6 +1031,11 @@ paths:
             - fr
             - es
             - ru
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: Sets the description of the dataset.
         - name: visibility
           in: query
           required: false
@@ -1016,7 +1043,7 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+          description: Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
         - name: owner
           in: query
           required: false
@@ -1037,7 +1064,13 @@ paths:
       tags:
         - e-Entity
       summary: Removing a specific dataset
-      description: Remove a dataset in the FREME-NER engine specified by its name
+      description: >
+        Remove a dataset in the FREME-NER engine specified by its name.
+
+
+        This endpoint requires authenticated access, see
+        [authentication article](../knowledge-base/freme-for-api-users/authentication.html)
+        for further information.
       operationId: removeDataset
       parameters:
         - name: name
@@ -1768,6 +1801,9 @@ paths:
         <pre lang="bash"><code>
           curl -v -d @example.ttl -X POST -H "Content-Type: text/turtle" "http://localhost:8080/e-link/documents?templateid=116&my_limit=5"
         </code></pre>
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: createTemplate
       consumes:
         - application/json
@@ -1838,8 +1874,12 @@ paths:
     put:
       tags:
         - e-Link
-      summary: 'Update an enrichment template with specified ID. '
-      description: Update an enrichment template with specified ID.
+      summary: Update the enrichment template with specified ID.
+      description: >
+        Update the enrichment template with specified ID.
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: updateTemplateById
       consumes:
         - application/json
@@ -1896,8 +1936,13 @@ paths:
     delete:
       tags:
         - e-Link
-      summary: Removes a template with specified ID.
-      description: Removes a template with specified ID.
+      summary: Removes the template with specified ID.
+      description: >
+        Removes the template with specified ID.
+
+
+
+        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: removeTemplateById
       parameters:
         - name: templateid
