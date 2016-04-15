@@ -10,17 +10,20 @@ pos: 4.16
 <p>This page lists all e-services that have been developed during the course of the FREME project.</p>
 
 <ul>
-  <li><a href="#dbpedia-spotlight-ner">DBpedia Spotlight NER</a></li>
-  <li><a href="#freme-ner">FREME NER</a></li>
+  <li><a href="#dbpedia-spotlight-e-entity">DBpedia Spotlight e-Entity</a></li>
+  <li><a href="#freme-e-entity">FREME e-Entity</a></li>
   <li><a href="#e-link">e-Link</a></li>
+  <li><a href="#e-link-explore">e-Link Explore</a></li>
   <li><a href="#tilde-e-terminology">Tilde e-Terminology</a></li>
   <li><a href="#tilde-e-translation">Tilde e-Translation</a></li>
   <li><a href="#e-publishing">e-Publishing</a></li>
 </ul>
 
-<h2 id="dbpedia-spotlight-ner"><strong>DBpedia Spotlight NER</strong></h2>
+<h2 id="dbpedia-spotlight-e-entity"><strong>DBpedia Spotlight e-Entity</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The DBpedia Spotlight e-Entity service enriches Text content with entities gathered from
+  various datasets by the DBPedia-Spotlight Engine. In-depth information can be found
+  in our <a href="../../api-doc/full.html">API Documentation</a></p>
 
 <h3>Quick overview</h3>
 
@@ -43,9 +46,11 @@ pos: 4.16
   </tr>
 </table>
 
-<h2 id="freme-ner"><strong>FREME NER</strong></h2>
+<h2 id="freme-e-entity"><strong>FREME e-Entity</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The FREME e-Entity service enriches text content with entities gathered from various datasets
+  by the DBPedia-Spotlight Engine. In-depth information can be found in our
+  <a href="../../api-doc/full.html">API Documentation</a>.</p>
 
 <h3>Quick overview</h3>
 
@@ -70,7 +75,7 @@ pos: 4.16
 
 <h3>Configuration options</h3>
 
-<p>Freme ner is configured using application properties, e.g. in the configuration file application.properties. The configuration has this form:</p>
+<p>Freme e-entity is configured using application properties, e.g. in the configuration file application.properties. The configuration has this form:</p>
 
 <pre>
 freme.ner.sparqlEndpoint=
@@ -108,7 +113,35 @@ freme.ner.domainsFile=src/main/resources/domains.csv
 
 <h2 id="e-link"><strong>e-Link</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The e-Link service accepts a NIF document containing annotated entities and performs enrichment
+  with pre-defined templates. In-depth information can be found in our
+  <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.e-link</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/e-link.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/e-link">dbpedia spotlight source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain e-link</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2 id="e-link-explore"><strong>e-Link Explore</strong></h2>
+
+<p>The e-Link Explore e-service enables a client to retrieve description of a resource from a given endpoint.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
 
 <h3>Quick overview</h3>
 
@@ -133,7 +166,8 @@ freme.ner.domainsFile=src/main/resources/domains.csv
 
 <h2 id="tilde-e-terminology"><strong>Tilde e-Terminology</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The Tilde e-Terminology service annotates text with terminology information using the Tilde Terminology service.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
 
 <h3>Quick overview</h3>
 
@@ -176,7 +210,8 @@ freme.broker.tildeETerminologyUrl=https://services.tilde.com/Terminology/
 
 <h2 id="tilde-e-translation"><strong>Tilde e-Translation</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The Tilde e-Translation service translates text from and to various languages using the Tilde Terminology service.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
 
 <h3>Quick overview</h3>
 
@@ -219,7 +254,9 @@ freme.broker.tildeETranslationUrl=https://services.tilde.com/translation/?source
 
 <h2 id="e-publishing"><strong>e-Publishing</strong></h2>
 
-<p>ADD DESCRIPTION</p>
+<p>The e-Publishing service creates an eBook in the EPUB3 format from a zip file containing HTML Files
+  and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
 
 <h3>Quick overview</h3>
 

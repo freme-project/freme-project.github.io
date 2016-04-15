@@ -2230,6 +2230,10 @@ paths:
         - e-Translation
       summary: "Perform machine translation using Tilde's API"
       description: >
+        Tilde e-Translation translates text from and to various languages using the Tilde Terminology service.
+
+
+
         Parameters can be submitted via URL or via form-data post body. A list of
         available language pairs is [here](https://services.tilde.com/translationsystems).
 

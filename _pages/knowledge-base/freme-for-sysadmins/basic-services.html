@@ -289,12 +289,12 @@ Package maker does not use any configuration options.
 
 The CORS filter adds the necessary headers for Cross Origin Resource Sharing to all responses of API requests. In the current implementation it sends these headers:
 
-```
+<pre>
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE
 Access-Control-Max-Age: 3600
 Access-Control-Allow-Headers: x-requested-with, content-type
-```                                                         
+</pre>
 
 In a future version we plan to allow configuration of these values so one can specify a list of hosts for the header Access-Control-Allow-Origin in the FREME configuration file.
                   
