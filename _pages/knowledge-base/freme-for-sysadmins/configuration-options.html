@@ -7,9 +7,12 @@ pos: 4.13
 
 <h1>FREME Configuration Options</h1>
 <p>FREME is configured via the file application.properties. In the standalone distribution this file is located in <code>config/application.properties</code>, in the source code it is located <code>insrc/main/resources/application.properties</code>. It is a standard spring property file. You can find additional information on this format in the official <a target="_blank" href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html"> spring documentation </a>. Here is an example configuration: </p>
-<pre><code>server.port=8080
-multipart.maxFileSize: 2048MB multipart.maxRequestSize: 2048MB
-workspace.location=workspace</code></pre>
+<pre><code>
+	server.port=8080
+	multipart.maxFileSize: 2048MB
+	multipart.maxRequestSize: 2048MB
+	workspace.location=workspace
+</code></pre>
 
 <p> Each non-empty line contains a configuration option. The first line assigns the value 8080 to configuration option <code>server.port</code>. </p>
 
