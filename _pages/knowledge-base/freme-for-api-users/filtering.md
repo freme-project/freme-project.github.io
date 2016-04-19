@@ -23,6 +23,11 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 * `extract-entities-only`: extract all objects of triples with "itsrdf:taIdentRef" property
 * `terminology-terms-only`
 * `sourcelang-targetlang`
+* `original-and-translation`
+* `entities-detailed-info`
+* `place-and-lat-long`
+* `museums-nearby`
+* `freme-workflow-editor-terminology`
 
 **NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.apiurl | prepend: site.url }}/toolbox/convert/manage`, see [this section](#get-all-filters).
 
