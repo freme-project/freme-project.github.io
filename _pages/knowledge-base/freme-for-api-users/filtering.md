@@ -11,7 +11,7 @@ The FREME e-services provide postprocessing functionality. All retrievable RDF c
 
 A filter has to be a valid SPARQL query. At the moment, only SELECT queries are permitted.
 
-Contents
+## Contents
 
 * [Available filters](#available-filters)
 * [Using filters](#using-filters)
