@@ -11,7 +11,7 @@ pos: 4.15
 
 <h2>Prepare the database</h2>
 
-<p>The database connection is defined in the `application.properties` file, see <a href="configuration-options.html">FREME configuration options</a>.</p>
+<p>The database connection is defined in the <pre>application.properties</pre> file, see <a href="configuration-options.html">FREME configuration options</a>.</p>
 
 <p>To add the default FREME entries to the tables, execute the following MySQL scripts at your FREME database.</p>
 
@@ -19,5 +19,25 @@ pos: 4.15
   <li><a href="../../resources/database/init-template.sql">Templates</a>: add all <a href="../../api-doc/list-templates.html">FREME Templates</a></li>
   <li><a href="../../resources/database/init-sparqlconverter.sql">Sparql Converters (Filters)</a>: add all <a href="../freme-for-api-users/filtering.html">FREME sparql filters</a></li>
 </ul>
+
+<p>Hibernate provides the possibility to autoload content into the database when it is created. To autoload the FREME entities mentioned above, do the following:</p>
+
+<ol>
+  <li>Put the <a href="../../resources/database/init-template.sql">templates script</a>, the <a href="../../resources/database/init-sparqlconverter.sql">sparql converters script</a> and <a href="../../resources/database/init-admin.sql">this init-admin script</a> into your FREME config folder. The init-admin script is necessary to meet the foreign key requirements of the other tables. Note that this overwrites <pre>admin.username</pre> and <pre>admin.password</pre> in your <pre>application.properties</pre> file.</li>
+  <li>Change <pre>CHANGE_THIS_PASSWORD</pre> in the admin-script to a valid admin password.</li>
+  <li>Add the following entries to your `application.properties` file:
+  <pre>
+spring.jpa.properties.hibernate.hbm2ddl.import_files=init-admin.sql, init-sparqlconverter.sql, init-template.sql
+spring.jpa.properties.hibernate.hbm2ddl.import_files_sql_extractor=org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+spring.jpa.hibernate.ddl-auto=create
+</pre>
+  </li>
+  <li>Start FREME</li>
+  <li>Remove the added entries from your <pre>application.properties</pre> file to prevent hibernate from re-creating the databases (and dropping its previous content) when you restart it.</li>
+</ol>
+
+
+
+
 
 
