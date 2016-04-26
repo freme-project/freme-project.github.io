@@ -10,7 +10,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-LOCK TABLES `template` WRITE;
 /*!40000 ALTER TABLE `template` DISABLE KEYS */;
 INSERT INTO `template` (`visibility`, `owner_name`, `description`, `endpoint`, `label`, `query`, `endpoint_type`, `creation_time`)
 VALUES 
@@ -23,7 +22,6 @@ VALUES
 (1,'admin','This template is using a Linked Data Frament endpoint to fetch DBpedia categories for a DBpedia resource.','http://rv2622.1blu.de:5000/dbpedia-categories','DBpedia Categories via LDF','CONSTRUCT {  <@@@entity_uri@@@> <http://purl.org/dc/terms/subject> ?category .  ?category <http://www.w3.org/2000/01/rdf-schema#label> ?label } WHERE { <@@@entity_uri@@@> <http://purl.org/dc/terms/subject> ?category . ?category <http://www.w3.org/2000/01/rdf-schema#label> ?label }',1,0),
 (1,'admin','Retrieve all bakeries 10km close to a place.','http://linkedgeodata.org/vsnorql','Linked Geo Data','  PREFIX owl: <http://www.w3.org/2002/07/owl# >	PREFIX ogc: <http://www.opengis.net/ont/geosparql# >	PREFIX geom: <http://geovocab.org/geometry# >	PREFIX lgdo: <http://linkedgeodata.org/ontology/ >	CONSTRUCT {	?s <http://xmlns.com/foaf/0.1/based_near > <@@@entity_uri@@@ > .	} WHERE {	?s	a lgdo:Bakery ;	geom:geometry [ ogc:asWKT ?sg ] .	?a	owl:sameAs <@@@entity_uri@@@ > ;	geom:geometry [ ogc:asWKT ?ag ] .	FILTER(bif:st_intersects(?sg, ?ag, 10))	} LIMIT 10 ',0,0);
 /*!40000 ALTER TABLE `template` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
