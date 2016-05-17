@@ -8,16 +8,13 @@ pos: 4.4
 
 # FREME NER 
 
+FREME NER is a named entity recognition tool. It performs entity spotting - spot entity mentions in free texts, entity classification - assigning types from a given knowledge base, entity linking - linking entity mentions with their instances in a given dataset. FREME NER aims at providing support for large variety of languages. Currently, it can perform named entity recognition over texts written in English, German, Dutch, Spanish, Italian, French and Russian.
+
 ## Table of Contents
 
-* [Overview](#overview)
 * [Technology Stack](#technology-stack)
 * [Core features](#core-features)
 * [Tips](#tips)
-
-## Overview
-
-FREME NER is a named entity recognition tool. It performs entity spotting - spot entity mentions in free texts, entity classification - assigning types from a given knowledge base, entity linking - linking entity mentions with their instances in a given dataset. FREME NER aims at providing support for large variety of languages. Currently, it can perform named entity recognition over texts written in English, German, Dutch, Spanish, Italian, French and Russian.
 
 ## Technology Stack
 
