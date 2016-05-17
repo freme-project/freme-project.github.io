@@ -28,7 +28,10 @@ pos: 3.1
 <div>
     <h2 id="pre-requisites">Pre-requisites</h2>
     <ol>
-        <li>A custom dataset provided in RDF containing entities and labels for the entities.</li>
+        <li><ol>
+            <li>A custom dataset provided in RDF containing entities and labels for the entities.</li>
+            <li>The authentication token of an existing FREME user, see the <a href="../knowledge-base/freme-for-api-users/authentication.md"> authentication article</a>. This tutorial page uses an existing dummy user, so you do not have to handle this by yourself.</li>
+        </ol></li>
         <li>A document/text which will be used for processing.</li>
     </ol>
 </div>
@@ -53,7 +56,7 @@ pos: 3.1
 	    +"&language=en"
 	    +"&outformat=json",
         headers: {
-            "x-auth-token": "74c0359f-b312-48c4-befa-0f3bb6b3090c"
+            "x-auth-token": $("#token").val()
         },
         type: "POST",
 	    dataType: "text",
@@ -126,7 +129,7 @@ pos: 3.1
             url: fremeApiUrl + "/e-entity/freme-ner/datasets/"+datasetToDelete,
             type: "DELETE",
             headers: {
-                "x-auth-token": "74c0359f-b312-48c4-befa-0f3bb6b3090c"
+                "x-auth-token": $("#delete-token").val()
             },
             success: function(result){
                 $("#delete-results").text(JSON.stringify(result))},
@@ -167,7 +170,7 @@ pos: 3.1
     For example, we have information that the entity Milan Dojchinovski is known as "Milan" and also as "Milan Dojchinovski".</p>
     
     <h2 id="step-2-submit-your-dataset">Step 2: Submit the custom dataset to the e-Entity service</h2>
-    <p>First we need to submit our dataset before we use it for entity linking. You can re-use the example dataset above.</p>
+    <p>First we need to submit our dataset before we use it for entity linking. You can re-use the example dataset above. </p>
 
     <p><strong>Dataset content</strong><br/>
     Paste here the dataset content. It should be valid RDF in the serialization format as specified bellow.<br/>
@@ -183,6 +186,11 @@ pos: 3.1
     <p><strong>Dataset name</strong><br/>
     The name of the dataset. It will be used as its ID, therefore it must be unique.<br/>
     <input id="dataset-name" type="text" value="mydataset"></p>
+    <br/>
+
+    <p><strong>Authorization token</strong><br/>
+        The dataset has to be owned by anyone, see the <a href="../knowledge-base/freme-for-api-users/authentication.md">authentication article</a> for further information. In this tutorial we use a predefined dummy user, so you do not have to care about this. <br/>
+        <input id="token" type="text" value="74c0359f-b312-48c4-befa-0f3bb6b3090c" disabled></p>
     <br/>
 
     <p><strong>Dataset description</strong><br/>
@@ -278,9 +286,11 @@ pos: 3.1
     </pre>
     
     <h2 id="step-5-remove-your-dataset">Step 5: Remove your dataset</h2>
-    
+
     <p> Name of dataset which you want to delete:<br><br></p>
     <input id="delete-dataset-name" type="text" value="">
+    <p><p> Access token of the owner of the dataset you want to delete:<br><br></p>
+    <input id="delete-token" type="text" value="74c0359f-b312-48c4-befa-0f3bb6b3090c" disabled>
     <p></p>
     <pre id="delete-results">
     	Here you will get the response from your delete request.
