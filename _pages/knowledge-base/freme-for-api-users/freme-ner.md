@@ -1,16 +1,25 @@
 ---
 layout: page
-title: FREME NER technology stack
+title: FREME NER
 dropdown: Knowledge Base, FREME for API Users
 pos: 4.4
 ---
 
 
-# FREME NER Overview
+# FREME NER 
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Technology Stack](#technology-stack)
+* [Core features](#core-features)
+* [Tips](#tips)
+
+## Overview
 
 FREME NER is a named entity recognition tool. It performs entity spotting - spot entity mentions in free texts, entity classification - assigning types from a given knowledge base, entity linking - linking entity mentions with their instances in a given dataset. FREME NER aims at providing support for large variety of languages. Currently, it can perform named entity recognition over texts written in English, German, Dutch, Spanish, Italian, French and Russian.
 
-## Technology stack
+## Technology Stack
 
 The FREME NER builds on top of mature technologies and appropriately extends them. Following figure illustrates the technology stack. 
 
