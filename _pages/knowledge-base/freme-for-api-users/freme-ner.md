@@ -127,7 +127,15 @@ A minimal FREME NER `pom.xml` has to contain the following:
   				<enabled>false</enabled>
   			</snapshots>
   		</repository>
-  </repositories>
+  		<repository>
+  			<id>freme-nexus</id>
+  			<name>freme-nexus</name>
+  			<url>http://rv1443.1blu.de/nexus/content/repositories/snapshots/</url>
+  			<releases>
+  				<enabled>false</enabled>
+  			</releases>
+  		</repository>
+  	</repositories>
 
 </project>
 ```
