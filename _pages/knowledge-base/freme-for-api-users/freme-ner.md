@@ -12,8 +12,14 @@ FREME NER is a named entity recognition tool. It performs entity spotting - spot
 
 ## Table of Contents
 
-* [Technology Stack](#technology-stack)
+* [Technology stack](#technology-stack)
 * [Core features](#core-features)
+* [How to install](#how-to-install)
+    * [Prerequisites](#prerequisites)
+    * [Get the FREME NER package](#get-the-freme-ner-package)
+    * [FREME NER configuration options](#freme-ner-configuration-options)
+    * [Optional: Configure the package](#configure-the-package)
+* [FREME NER on GitHub](#freme-ner-on-github)
 * [Tips](#tips)
 
 ## Technology Stack
@@ -37,7 +43,7 @@ Entity classification is supported via 1) external knowledge bases with entity t
 FREME NER performs linking of the spotted entity mentions with their representation in a specified knowledge base. Currently, FREME NER integrates several datasets for entity linking including DBpedia, VIAF, CORDIS FP7, ORCID, ONLD, Geopolitical Ontology, and the Global airports dataset. A user using the ```dataset``` parameter can specify the dataset to be used for entity linking.
 The current entity linking approach is relying on a most-frequent-sense method, where the entity is linked with the most common entity for the list of candidate entities. The current implementation is using Apache Solr for the candidate generation.
 
-## Core Features
+## Core features
 
 #### Domain specific NER
 FREME NER exlusively provides domain specific adoption. A user using the ```domain``` parameter can specify the domain of interest and only entities from that domain will be returned. FREME NER is using TaaS as domain classification system and it supports following domains: TaaS-2007 Sports, TaaS-1510 Tourism, TaaS-0303 Finance and accounting, TaaS-0200 Law, TaaS-0305 Marketing and public relations, TaaS-2303 Literature, TaaS-0100 Politics and Administration, TaaS-0300 Economics, TaaS-1000 Agriculture and foodstuff, TaaS-1005 Foodstuff, TaaS-2000 Social sciences, TaaS-2001 Education, TaaS-2002 History, TaaS-2005 Culture and religion, TaaS-2006 Linguistics, TaaS-2300 Arts, TaaS-2302 Music, TaaS-2304 Dance, TaaS-1500 Industries and technology, TaaS-1502 Chemical industry, TaaS-1509 Transportation and aeronautics, and TaaS-2200 Medicine and pharmacy.
@@ -50,6 +56,122 @@ While in some cases a user is interested in recognition of all the entities, in 
 
 #### Multilingual support
 FREME NER can provide entity recognition in texts written in different languages. Currently, FREME NER suppors following set of languages: English, German, Dutch, Spanish, French, Italian and Russian.
+
+## How to install
+
+### Prerequisites
+* FREME NER runs as a FREME Package, so it requires [these prerequisites](../freme-for-sysadmins/creating-and-running-a-freme-package.html#prerequisites). 
+* It needs access to a running [Solr Server](http://lucene.apache.org/solr/). To set up a Solr Server at your machine, do the following:
+    * [install the Solr Server](http://lucene.apache.org/solr/quickstart.html)
+    * use [this schema](http://rv2622.1blu.de/solrdev/#/elinker/files?file=schema.xml)
+* Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
+    ```
+    echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list
+    wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -
+    apt-get update
+    apt-get install -y virtuoso-opensource=7.2
+    ```
+    * After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
+* A domain entity mapping file as CSV: [Here](https://github.com/freme-project/freme-ner/blob/master/src/main/resources/domains.csv) you can get the one currently used by FREME.
+* Trained NER model files for the languages you want to support
+    
+### Get the FREME NER package
+Clone this `https://github.com/freme-project/freme-packages.git` to your machine and and build the package by executing `mvn package` in the folder `freme-ner-dev`, as described [here](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-binary-distribution).     
+    
+### FREME NER Configuration options
+FREME NER has to be configured via an `application.properties` file, see [the FREME Configuration Options](../freme-for-sysadmins/configuration-options.html) for more information about the format, its location and all optional parameters.
+
+To run FREME NER the following parameters have to be defined according to your setting created during [Prerequisites](#prerequisites):
+
+* `freme.ner.sparqlEndpoint`: The URL of your SPARQL endpoint, e.g. `http://localhost:8890/sparql`
+* `freme.ner.solrURI`: The URL of the Solr endpoint, e.g. `http://localhost/solrdev/`
+* `freme.ner.languages`: The languages you want to load a NER model for. This has to be a comma-separated list of language codes, e.g. `en,de,nl,fr,it,es,ru`
+* `freme.ner.modelsLocation`: The location of the NER models for the languages you want to load, e.g. `/home/freme-ner/ner-models/` 
+* `freme.ner.domainsFile`: The location of the `domains.csv`, e.g. `config/domains.csv`
+    
+If you have done all the steps above, you can [start FREME NER on a webserver](../freme-for-sysadmins/install-freme-on-server.html).
+    
+    
+### OPTIONAL: Configure the package
+To set up a further customised FREME NER you have to create a FREME package by your own as described in [this article](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-the-package). 
+
+In a short, you have to create a `pom.xml`, a `package.xml` and a `application.properties` (like you have already created one in the [previous paragraph](#freme-ner-configuration-options)) file.
+
+A minimal FREME NER `pom.xml` has to contain the following:
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>eu.freme.packages</groupId>
+    <artifactId>package-parent</artifactId>
+    <version>0.2</version>
+  </parent>
+
+  <artifactId>your-freme-ner</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  
+	<dependencies>
+		<dependency>
+    			<artifactId>FremeNER</artifactId>
+    			<groupId>eu.freme</groupId>
+    			<version>0.6</version>
+    </dependency>
+	</dependencies>
+
+  <repositories>
+  		<repository>
+  			<id>freme-release</id>
+  			<name>freme-nexus</name>
+  			<url>http://rv1443.1blu.de/nexus/content/repositories/releases/</url>
+  			<snapshots>
+  				<enabled>false</enabled>
+  			</snapshots>
+  		</repository>
+  </repositories>
+
+</project>
+```
+
+This `pom.xml` includes the FremeNer e-service dependency and the FREME releases repository.
+
+
+
+Here is the content of a minimal FREME NER `package.xml`:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <import resource="classpath:spring-configurations/freme-ner.xml" />
+  <import resource="classpath:spring-configurations/freme-common.xml" />
+	<import resource="classpath:spring-configurations/user-controller.xml" />
+</beans>
+```
+
+`freme-ner.xml` adds the FremeNER e-service. 
+`freme-common.xml` contains common FREME code needed by every FREME package. 
+Because FREME NER datasets are access protected, `user-controller.xml` is necessary to afford simple [user authentication](../freme-for-api-users/authentication.html).   
+
+
+
+Of course you can add any FREME service you need, have a look at 
+[the FREME basic-services list](../freme-for-sysadmins/basic-services.html) or [the FREME e-services list](../freme-for-sysadmins/e-services.html). 
+In any case, just add the maven dependency to your pom.xml and import the related spring configuration file via your 
+`package.xml` by adding `<import resource="classpath:spring-configurations/SPRING-CONFIGURATION-FILENAME" />`.
+
+Now you can [create a binary distribution](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-binary-distribution) 
+and [start FREME NER on a webserver](../freme-for-sysadmins/install-freme-on-server.html).
+
+## FREME NER on GitHub
+If you want to have a look at the source code of FREME NER, check out its underlying e-service at 
+[GitHub](https://github.com/freme-project/freme-ner). [FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) 
+are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). 
+Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic. 
 
 ## Tips
 
