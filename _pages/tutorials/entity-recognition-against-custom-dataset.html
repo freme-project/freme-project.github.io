@@ -52,10 +52,13 @@ pos: 3.1
 	    +"&description="+$("#dataset-description").val()
 	    +"&language=en"
 	    +"&outformat=json",
-            type: "POST",
+        headers: {
+            "x-auth-token": "74c0359f-b312-48c4-befa-0f3bb6b3090c"
+        },
+        type: "POST",
 	    dataType: "text",
 	    contentType: 'text/plain',
-            data: $("#input-dataset").val(),
+        data: $("#input-dataset").val(),
         success : function(result){
             submittedDatasets.push(datasetName);
             $("#delete-dataset-name").val(datasetName);
@@ -122,6 +125,9 @@ pos: 3.1
         $.ajax({
             url: fremeApiUrl + "/e-entity/freme-ner/datasets/"+datasetToDelete,
             type: "DELETE",
+            headers: {
+                "x-auth-token": "74c0359f-b312-48c4-befa-0f3bb6b3090c"
+            },
             success: function(result){
                 $("#delete-results").text(JSON.stringify(result))},
             error:function(result){
