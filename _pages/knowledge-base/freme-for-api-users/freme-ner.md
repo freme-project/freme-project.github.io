@@ -149,13 +149,11 @@ Here is the content of a minimal FREME NER `package.xml`:
 
   <import resource="classpath:spring-configurations/freme-ner.xml" />
   <import resource="classpath:spring-configurations/freme-common.xml" />
-	<import resource="classpath:spring-configurations/user-controller.xml" />
 </beans>
 ```
 
 `freme-ner.xml` adds the FremeNER e-service. 
-`freme-common.xml` contains common FREME code needed by every FREME package. 
-Because FREME NER datasets are access protected, `user-controller.xml` is necessary to afford simple [user authentication](../freme-for-api-users/authentication.html).   
+`freme-common.xml` contains common FREME code needed by every FREME package.
 
 
 
