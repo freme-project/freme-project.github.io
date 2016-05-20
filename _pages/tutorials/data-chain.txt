@@ -1,0 +1,30 @@
+@prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
+    @prefix dbc:   <http://dbpedia.org/resource/Category:> .
+    @prefix dbpedia-es: <http://es.dbpedia.org/resource/> .
+    @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+    @prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .
+    @prefix dbpedia: <http://dbpedia.org/resource/> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+    @prefix dbpedia-de: <http://de.dbpedia.org/resource/> .
+    @prefix dbpedia-ru: <http://ru.dbpedia.org/resource/> .
+    @prefix freme-onto: <http://freme-project.eu/ns#> .
+    @prefix dbpedia-nl: <http://nl.dbpedia.org/resource/> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix dbpedia-it: <http://it.dbpedia.org/resource/> .
+
+    <http://freme-project.eu/#char=23,29>
+    a                     nif:String , nif:Word , nif:RFC5147String , nif:Phrase ;
+    nif:anchorOf          "Prague"^^xsd:string ;
+    nif:beginIndex        "23"^^xsd:int ;
+    nif:endIndex          "29"^^xsd:int ;
+    nif:referenceContext  <http://freme-project.eu/#char=0,30> ;
+    itsrdf:taClassRef     <http://dbpedia.org/ontology/Location> , <http://dbpedia.org/ontology/PopulatedPlace> , <http://nerd.eurecom.fr/ontology#Location> , <http://dbpedia.org/ontology/Place> , <http://dbpedia.org/ontology/City> , <http://dbpedia.org/ontology/Settlement> ;
+    itsrdf:taConfidence   "0.9938091793011123"^^xsd:double ;
+    itsrdf:taIdentRef     dbpedia:Prague .
+
+    <http://freme-project.eu/#char=0,30>
+    a               nif:String , nif:Context , nif:RFC5147String ;
+    nif:beginIndex  "0"^^xsd:int ;
+    nif:endIndex    "30"^^xsd:int ;
+    nif:isString    "Welcome to the city of Prague."^^xsd:string .
