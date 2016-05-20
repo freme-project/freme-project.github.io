@@ -4,12 +4,12 @@
 
 	<groupId>eu.freme</groupId>
 	<artifactId>documentation</artifactId>
-	<version>0.7-SNAPSHOT</version>
+	<version>0.7</version>
 
 	<scm>
 		<connection>scm:git:git@github.com:freme-project/Documentation.git</connection>
 		<url>scm:git:git@github.com/freme-project:Documentation.git</url>
 		<developerConnection>scm:git:git@github.com:freme-project/Documentation.git</developerConnection>
-	  	<tag>HEAD</tag>
+	  	<tag>documentation-0.7</tag>
   	</scm>
 </project>
