@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '0.2'
   title: FREME API Documentation
-host: api-dev.freme-project.eu
+host: api.freme-project.eu
 basePath: /current
 tags:
   - name: e-Entity
