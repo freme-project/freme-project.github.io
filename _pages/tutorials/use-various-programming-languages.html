@@ -845,29 +845,9 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-    @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-    @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
-    @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-    @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+Please download <a href="distributed-chain.txt">distributed-chain.txt</a> before executing the CURL request.
 
-    &lt;http://dkt.dfki.de/documents/#char=11,17&gt;
-    a                     nif:RFC5147String , nif:String ;
-    nif:anchorOf          &quot;Prague&quot;^^xsd:string ;
-    nif:beginIndex        &quot;11&quot;^^xsd:nonNegativeInteger ;
-    nif:endIndex          &quot;17&quot;^^xsd:nonNegativeInteger ;
-    nif:entity            &lt;http://dkt.dfki.de/ontologies/nif#location&gt; ;
-    nif:geoPoint          &quot;50.083333333333336_14.416666666666666&quot;^^xsd:string ;
-    nif:referenceContext  &lt;http://dkt.dfki.de/documents/#char=0,26&gt; ;
-    itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Prague&gt; .
-
-    &lt;http://dkt.dfki.de/documents/#char=0,26&gt;
-    a                    nif:RFC5147String , nif:String , nif:Context ;
-    nif:beginIndex       &quot;0&quot;^^xsd:nonNegativeInteger ;
-    nif:centralGeoPoint  &quot;50.083333333333336_14.416666666666666&quot;^^xsd:string ;
-    nif:endIndex         &quot;26&quot;^^xsd:nonNegativeInteger ;
-    nif:geoStandardDevs  &quot;0.0_0.0&quot;^^xsd:string ;
-    nif:isString         &quot;Welcome to Prague in 2016.&quot;^^xsd:string .&#39; &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=2&quot;</code></pre>
+<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d @distributed-chain.txt &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=2&quot;</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
