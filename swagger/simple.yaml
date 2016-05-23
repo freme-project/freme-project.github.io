@@ -23,7 +23,7 @@ info: {description: 'This section only covers the most important endpoints of FR
     the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services
     via common HTTP requests.<br><br> A full documentation of all e-Service endpoints,
     including all parameters, is provided <a href="full.html">here</a>. For usage
-    examples, see the <a href="../tutorials/overview.html">tutorial section</a>.',
+    examples, see the <a href="../overview.html">tutorial section</a>.',
   title: FREME API Documentation, version: '0.2'}
 paths:
   /e-entity/dbpedia-spotlight/documents:
