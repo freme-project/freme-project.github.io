@@ -66,7 +66,7 @@ FREME NER can provide entity recognition in texts written in different languages
     * use [this schema](http://rv2622.1blu.de/solrdev/#/elinker/files?file=schema.xml)
 * Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
   
-    ```bash
+    ```
     echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list
     wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -
     apt-get update
@@ -101,7 +101,7 @@ In a short, you have to create a `pom.xml`, a `package.xml` and a `application.p
 
 A minimal FREME NER `pom.xml` has to contain the following:
 
-```xml
+```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>your-freme-ner</artifactId>
@@ -147,7 +147,7 @@ This `pom.xml` includes the FremeNer e-service dependency and the FREME reposito
 
 Here is the content of a minimal FREME NER `package.xml`:
 
-<code language="xml"> 
+```
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -160,7 +160,7 @@ Here is the content of a minimal FREME NER `package.xml`:
   <import resource="classpath:spring-configurations/freme-ner.xml" />
   <import resource="classpath:spring-configurations/freme-common.xml" />
 </beans>
-</code>
+```
 
 `freme-ner.xml` adds the FremeNER e-service. 
 `freme-common.xml` contains common FREME code needed by every FREME package.
