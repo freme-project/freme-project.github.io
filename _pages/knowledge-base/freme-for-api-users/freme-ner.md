@@ -147,7 +147,7 @@ This `pom.xml` includes the FremeNer e-service dependency and the FREME reposito
 
 Here is the content of a minimal FREME NER `package.xml`:
 
-```xml
+<code language="xml"> 
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -160,7 +160,7 @@ Here is the content of a minimal FREME NER `package.xml`:
   <import resource="classpath:spring-configurations/freme-ner.xml" />
   <import resource="classpath:spring-configurations/freme-common.xml" />
 </beans>
-```
+</code>
 
 `freme-ner.xml` adds the FremeNER e-service. 
 `freme-common.xml` contains common FREME code needed by every FREME package.
@@ -172,8 +172,7 @@ Of course you can add any FREME service you need, have a look at [the FREME basi
 Now you can [create a binary distribution](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-binary-distribution) and [start FREME NER on a webserver](../freme-for-sysadmins/install-freme-on-server.html).
 
 ## FREME NER on GitHub
-If you want to have a look at the source code of FREME NER, check out its underlying e-service at [GitHub](https://github.com/freme-project/freme-ner). [FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). 
-Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic. 
+If you want to have a look at the source code of FREME NER, check out its underlying e-service at [GitHub](https://github.com/freme-project/freme-ner). [FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic. 
 
 ## Tips
 
