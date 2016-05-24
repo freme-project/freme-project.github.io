@@ -124,37 +124,9 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;@prefix dbpedia-fr: &lt;http://fr.dbpedia.org/resource/&gt; .
-    @prefix dbc:   &lt;http://dbpedia.org/resource/Category:&gt; .
-    @prefix dbpedia-es: &lt;http://es.dbpedia.org/resource/&gt; .
-    @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-    @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
-    @prefix dbpedia: &lt;http://dbpedia.org/resource/&gt; .
-    @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-    @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-    @prefix dbpedia-de: &lt;http://de.dbpedia.org/resource/&gt; .
-    @prefix dbpedia-ru: &lt;http://ru.dbpedia.org/resource/&gt; .
-    @prefix freme-onto: &lt;http://freme-project.eu/ns#&gt; .
-    @prefix dbpedia-nl: &lt;http://nl.dbpedia.org/resource/&gt; .
-    @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
-    @prefix dbpedia-it: &lt;http://it.dbpedia.org/resource/&gt; .
+Please download <a href="data-chain.txt">data-chain.txt</a> before executing the CURL request.
 
-    &lt;http://freme-project.eu/#char=23,29&gt;
-    a                     nif:String , nif:Word , nif:RFC5147String , nif:Phrase ;
-    nif:anchorOf          &quot;Prague&quot;^^xsd:string ;
-    nif:beginIndex        &quot;23&quot;^^xsd:int ;
-    nif:endIndex          &quot;29&quot;^^xsd:int ;
-    nif:referenceContext  &lt;http://freme-project.eu/#char=0,30&gt; ;
-    itsrdf:taClassRef     &lt;http://dbpedia.org/ontology/Location&gt; , &lt;http://dbpedia.org/ontology/PopulatedPlace&gt; , &lt;http://nerd.eurecom.fr/ontology#Location&gt; , &lt;http://dbpedia.org/ontology/Place&gt; , &lt;http://dbpedia.org/ontology/City&gt; , &lt;http://dbpedia.org/ontology/Settlement&gt; ;
-    itsrdf:taConfidence   &quot;0.9938091793011123&quot;^^xsd:double ;
-    itsrdf:taIdentRef     dbpedia:Prague .
-
-    &lt;http://freme-project.eu/#char=0,30&gt;
-    a               nif:String , nif:Context , nif:RFC5147String ;
-    nif:beginIndex  &quot;0&quot;^^xsd:int ;
-    nif:endIndex    &quot;30&quot;^^xsd:int ;
-    nif:isString    &quot;Welcome to the city of Prague.&quot;^^xsd:string .
-    &#39; &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=3&quot;</code></pre>
+<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; -d @data-chain.txt &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=3&quot;</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 
@@ -580,7 +552,7 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h2 id="example-6">Example 6: e-Translation improved by e-Terminology</h2>
 
-<div>This example is based on the tutorial <a href="{{site.url}}/doc/tutorials/translate_EN-NL_including_terminology.html">How to translate from English to Dutch with e-Translation and e-Terminology</a>.</div>
+<div>This example is based on the tutorial <a href="translate_EN-NL_including_terminology.html">How to translate from English to Dutch with e-Translation and e-Terminology</a>.</div>
 
 <h3>Example in cURL</h3>
 
@@ -873,29 +845,9 @@ $.ajax(settings).done(<span style="color: #008800; font-weight: bold">function</
 
 <h3>Example in cURL</h3>
 
-<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; &quot; -d &#39;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-    @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-    @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
-    @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-    @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+Please download <a href="distributed-chain.txt">distributed-chain.txt</a> before executing the CURL request.
 
-    &lt;http://dkt.dfki.de/documents/#char=11,17&gt;
-    a                     nif:RFC5147String , nif:String ;
-    nif:anchorOf          &quot;Prague&quot;^^xsd:string ;
-    nif:beginIndex        &quot;11&quot;^^xsd:nonNegativeInteger ;
-    nif:endIndex          &quot;17&quot;^^xsd:nonNegativeInteger ;
-    nif:entity            &lt;http://dkt.dfki.de/ontologies/nif#location&gt; ;
-    nif:geoPoint          &quot;50.083333333333336_14.416666666666666&quot;^^xsd:string ;
-    nif:referenceContext  &lt;http://dkt.dfki.de/documents/#char=0,26&gt; ;
-    itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Prague&gt; .
-
-    &lt;http://dkt.dfki.de/documents/#char=0,26&gt;
-    a                    nif:RFC5147String , nif:String , nif:Context ;
-    nif:beginIndex       &quot;0&quot;^^xsd:nonNegativeInteger ;
-    nif:centralGeoPoint  &quot;50.083333333333336_14.416666666666666&quot;^^xsd:string ;
-    nif:endIndex         &quot;26&quot;^^xsd:nonNegativeInteger ;
-    nif:geoStandardDevs  &quot;0.0_0.0&quot;^^xsd:string ;
-    nif:isString         &quot;Welcome to Prague in 2016.&quot;^^xsd:string .&#39; &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=2&quot;</code></pre>
+<pre><code>curl -X POST -H &quot;Content-Type: text/turtle&quot; -H &quot;Accept: text/turtle&quot; -d @distributed-chain.txt &quot;{{site.apiurl | prepend: site.url}}/e-link/documents/?templateid=2&quot;</code></pre>
 
 <h3>Example in Javascript / jQuery</h3>
 

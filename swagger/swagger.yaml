@@ -298,7 +298,7 @@ paths:
           - `label`: The name of the pipeline template.
           - `description`: a description of the pipeline template.
           - `persist`: if false, the template will not automatically be deleted; if
-          false it will live only for one week. To be implemented.
+          false it will live only for one week.
           - `serializedRequests`: the chained requests as described in
           /pipelining/chain.
 

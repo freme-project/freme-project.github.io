@@ -47,7 +47,7 @@ def main():
 #					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
 	full["tags"]=[x for x in full["tags"] if x["name"]!="General Information"]
 
-	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services via common HTTP requests.<br><br> A full documentation of all e-Service endpoints, including all parameters, is provided <a href=\"full.html\">here</a>. For usage examples, see the <a href=\"../Tutorials/overview.html\">tutorial section</a>."
+	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services via common HTTP requests.<br><br> A full documentation of all e-Service endpoints, including all parameters, is provided <a href=\"full.html\">here</a>. For usage examples, see the <a href=\"../tutorials/overview.html\">tutorial section</a>."
 
 	
 	with open(os.path.dirname(__file__)+"/simple.yaml",'w') as f:
