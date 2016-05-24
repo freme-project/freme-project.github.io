@@ -700,7 +700,6 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - application/x-openoffice
         - text/xml
       parameters:
         - name: input
@@ -740,7 +739,6 @@ paths:
             - text/html
             - text/xml
             - application/x-xliff+xml
-            - application/x-openoffice
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1135,7 +1133,6 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - application/x-openoffice
         - text/xml
       parameters:
         - name: input
@@ -1174,7 +1171,6 @@ paths:
             - text/html
             - text/xml
             - application/x-xliff+xml
-            - application/x-openoffice
           default: turtle
         - name: prefix
           in: query
@@ -2130,7 +2126,6 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - application/x-openoffice
         - text/xml
       parameters:
         - name: input
@@ -2170,7 +2165,6 @@ paths:
             - text/html
             - text/xml
             - application/x-xliff+xml
-            - application/x-openoffice
           default: turtle
         - name: prefix
           in: query
@@ -2273,7 +2267,6 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - application/x-openoffice
         - text/xml
       parameters:
         - name: input
@@ -2313,7 +2306,6 @@ paths:
             - text/html
             - text/xml
             - application/x-xliff+xml
-            - application/x-openoffice
           default: turtle
         - name: prefix
           in: query
