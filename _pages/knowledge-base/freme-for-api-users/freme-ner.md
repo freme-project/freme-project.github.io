@@ -65,13 +65,13 @@ FREME NER can provide entity recognition in texts written in different languages
     * [install the Solr Server](http://lucene.apache.org/solr/quickstart.html)
     * use [this schema](http://rv2622.1blu.de/solrdev/#/elinker/files?file=schema.xml)
 * Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
-  
-    `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
-    `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
-    `apt-get update`
-    `apt-get install -y virtuoso-opensource=7.2`
+    1. `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
+    2. `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
+    3. `apt-get update`
+    4. `apt-get install -y virtuoso-opensource=7.2`
     
-    * After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
+    After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
+    
 * A domain entity mapping file as CSV: [Here](https://github.com/freme-project/freme-ner/blob/master/src/main/resources/domains.csv) you can get the one currently used by FREME.
 * Trained NER model files for the languages you want to support
     
