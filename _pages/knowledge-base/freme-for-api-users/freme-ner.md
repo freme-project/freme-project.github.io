@@ -98,6 +98,7 @@ To set up a further customised FREME NER you have to create a FREME package by y
 In a short, you have to create a `pom.xml`, a `package.xml` and a `application.properties` (like you have already created one in the [previous paragraph](#freme-ner-configuration-options)) file.
 
 A minimal FREME NER `pom.xml` has to contain the following:
+
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -145,6 +146,7 @@ This `pom.xml` includes the FremeNer e-service dependency and the FREME releases
 
 
 Here is the content of a minimal FREME NER `package.xml`:
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 
