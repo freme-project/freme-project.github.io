@@ -102,15 +102,13 @@ A minimal FREME NER `pom.xml` has to contain the following:
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <artifactId>your-freme-ner</artifactId>
+  <version>0.1-SNAPSHOT</version>
   <parent>
     <groupId>eu.freme.packages</groupId>
     <artifactId>package-parent</artifactId>
     <version>0.2</version>
   </parent>
-
-  <artifactId>your-freme-ner</artifactId>
-  <version>0.1-SNAPSHOT</version>
-  
 	<dependencies>
 		<dependency>
     			<artifactId>FremeNER</artifactId>
@@ -118,7 +116,6 @@ A minimal FREME NER `pom.xml` has to contain the following:
     			<version>0.6</version>
     </dependency>
 	</dependencies>
-
   <repositories>
   		<repository>
   			<id>freme-release</id>
@@ -137,7 +134,6 @@ A minimal FREME NER `pom.xml` has to contain the following:
   			</releases>
   		</repository>
   	</repositories>
-
 </project>
 ```
 
