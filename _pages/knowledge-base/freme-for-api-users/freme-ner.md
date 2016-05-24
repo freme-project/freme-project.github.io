@@ -95,7 +95,7 @@ If you have done all the steps above, you can [start FREME NER on a webserver](.
 ### OPTIONAL: Configure the package
 To set up a further customised FREME NER you have to create a FREME package by your own as described in [this article](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-the-package). 
 
-In a short, you have to create a `pom.xml`, a `package.xml` and a `application.properties` (like you have already created one in the [previous paragraph](#freme-ner-configuration-options)) file.
+In a short, you have to create a `pom.xml`, a `package.xml` and a `application.properties` (like the one you have already created in the [previous paragraph](#freme-ner-configuration-options)) file.
 
 A minimal FREME NER `pom.xml` has to contain the following:
 
