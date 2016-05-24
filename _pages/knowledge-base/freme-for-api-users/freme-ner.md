@@ -109,6 +109,7 @@ A minimal FREME NER `pom.xml` has to contain the following:
     <artifactId>package-parent</artifactId>
     <version>0.2</version>
   </parent>
+  
 	<dependencies>
 		<dependency>
     			<artifactId>FremeNER</artifactId>
@@ -116,6 +117,7 @@ A minimal FREME NER `pom.xml` has to contain the following:
     			<version>0.6</version>
     </dependency>
 	</dependencies>
+	
   <repositories>
   		<repository>
   			<id>freme-release</id>
@@ -137,7 +139,7 @@ A minimal FREME NER `pom.xml` has to contain the following:
 </project>
 ```
 
-This `pom.xml` includes the FremeNer e-service dependency and the FREME releases repository.
+This `pom.xml` includes the FremeNer e-service dependency and the FREME repositories.
 
 
 
