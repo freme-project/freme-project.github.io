@@ -1204,7 +1204,7 @@ paths:
         - name: dataset
           in: query
           description: A mandatory parameter which indicates the dataset used for entity linking which includes a list of entites and associated labels.
-          required: true
+          required: false
           type: string
         - name: mode
           in: query
