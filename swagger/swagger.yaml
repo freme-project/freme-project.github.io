@@ -1137,7 +1137,6 @@ paths:
         - application/x-xliff+xml
         - text/html
         - application/x-openoffice
-        - text/xml
       produces:
         - text/n3
         - text/turtle
@@ -1146,7 +1145,6 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - text/xml
       parameters:
         - name: input
           in: query
@@ -1165,7 +1163,6 @@ paths:
             - n-triples
             - rdf-xml
             - text/html
-            - text/xml
             - application/x-xliff+xml
             - application/x-openoffice
             - text
@@ -1182,7 +1179,6 @@ paths:
             - n-triples
             - rdf-xml
             - text/html
-            - text/xml
             - application/x-xliff+xml
           default: turtle
         - name: prefix
