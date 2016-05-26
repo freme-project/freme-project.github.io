@@ -41,7 +41,6 @@ tags:
             * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will
       convert the XLIFF to NIF and then send it to the underlying service.
             * application/x-openoffice
-            * text/xml
       * outformat (short form: o):
         * output format
         * possible values
