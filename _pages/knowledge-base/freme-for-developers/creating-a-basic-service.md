@@ -77,6 +77,10 @@ The code above exemplary registers the mime type `multipart/form-data` and in ad
 Furthermore, the `serializationFormatMapper` is intended to do the normalization of these values:
 
 ```
+// autowire the SerializationFormatMapper
+@Autowired
+SerializationFormatMapper serializationFormatMapper;
+
 // defining a HTTP endpoint with Spring MVC
 @RequestMapping(value = "/exampleEndpoint", method = RequestMethod.POST)
 public ResponseEntity<String> doSomething(
