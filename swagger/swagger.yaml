@@ -76,7 +76,6 @@ tags:
           * application/x-xliff+xml
           * text/html
           * application/x-openoffice
-          * text/xml
         * When parameter informat is set then the Content-Type header is not used
       by FREME api
 schemes:
