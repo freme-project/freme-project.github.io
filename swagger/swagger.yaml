@@ -315,17 +315,25 @@ paths:
           description: 'Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`'
           required: false
           type: string
-        - name: visibility
-          in: query
-          description: 'Optional parameter: values can `PRIVATE` or `PUBLIC`. A template with visibility `PUBLIC` is visible and usable by anyone. A template with visibility `PRIVATE` is only visible and usable by the owner. Defaults to `PUBLIC`'
-          required: false
-          type: string
         - name: body
           in: body
           description: The pipeline template as JSON
           required: true
           schema:
             type: string
+        - name: visibility
+          in: query
+          required: false
+          enum:
+            - public
+            - private
+          type: string
+          description: 'Sets the visibility of the new pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: 'Sets the description of the new pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
       responses:
         '200':
           description: Successful response
@@ -365,7 +373,7 @@ paths:
         - application/json
       parameters:
         - name: id
-          description: ID of the template you with to update
+          description: ID of the template you want to update
           in: path
           required: true
           type: string
@@ -376,7 +384,7 @@ paths:
           type: string
         - name: body
           in: body
-          description: 'The pipeline template as JSON, as described in `POST /pipelining/templates/`'
+          description: 'The pipeline template as JSON, as described in `POST /pipelining/templates/`. Leave this empty, if you just want to update the metadata.'
           required: false
           schema:
             type: string
@@ -387,7 +395,12 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of the pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: 'Sets the description of the pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
         - name: owner
           in: query
           required: false
@@ -1323,7 +1336,7 @@ paths:
           required: false
           schema:
             type: string
-          description: A valid SPARQL SELECT query as plain text.
+          description: A valid SPARQL SELECT query as plain text. Leave this empty, if you just want to update the metadata.
         - name: name
           in: path
           required: true
@@ -1691,15 +1704,6 @@ paths:
       operationId: getAllTemplates
       produces:
         - application/json
-      parameters:
-        - name: outformat
-          in: query
-          description: RDF serialization format of Output. Only supports JSON
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
       responses:
         '200':
           description: Successful response
@@ -1806,28 +1810,25 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: informat
-          in: query
-          description: 'Format of input string. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
         - in: body
           name: body
-          description: 'The new template. The format of the body can be text/turtle, application/ld+json. Defaults to text/turtle. The parameter *informat* overrides the Content-Type.'
+          description: 'The new template will be constructed of this JSON.'
           required: false
           schema:
             type: string
+        - name: visibility
+          in: query
+          required: false
+          enum:
+            - public
+            - private
+          type: string
+          description: 'Sets the visibility of the new template, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: 'Sets the description of the new template. If this parameter is present, it overwrites the content of the JSON description parameter.'
       responses:
         '200':
           description: Successful response
@@ -1847,14 +1848,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
         - name: templateid
           in: path
           description: The ID of the requested template.
@@ -1882,25 +1875,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: informat
-          in: query
-          description: 'Format of the template. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          default: application/json
-          enum:
-            - application/json
         - in: body
           name: body
-          description: 'The new template. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to text/turtle. The parameter *informat* overrides the Content-Type.'
+          description: 'The template will updated with all fields present in this JSON. Leave this empty, if you just want to update the metadata.'
           required: false
           schema:
             type: string
@@ -1916,7 +1893,12 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+          description: 'Sets the visibility of the template, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: 'Sets the description of the template. If this parameter is present, it overwrites the content of the JSON description parameter.'
         - name: owner
           in: query
           required: false
