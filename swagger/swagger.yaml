@@ -1656,7 +1656,6 @@ paths:
           required: false
           type: string
           enum:
-            - text
             - json-ld
             - turtle
             - n3
@@ -1669,7 +1668,6 @@ paths:
           required: false
           type: string
           enum:
-            - text
             - json-ld
             - turtle
             - n3
