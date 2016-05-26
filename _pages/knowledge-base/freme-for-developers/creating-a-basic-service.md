@@ -54,6 +54,55 @@ ExampleLoggingFilter is implemented as a standard filter in the Spring MVC frame
 
 Every Spring MVC filter overrides the method doFilter. It is executed upon every HTTP request, before the request is processed by the controller. It contains only a short source code that converts the request to an HttpServletRequest and logs the URI to the logger. Then it calls chain.doFilter() which is required by the Spring MVC framework so the request is passed to the next filter in the filter chain.
 
+### Using custom serialization formats in controllers and filters
+
+If you want to implement an HTTP API endpoint which has to accept any HTTP mime types or informat and outformat values different from the [serialization formats defined in FREMECommon](https://github.com/freme-project/FREMECommon/blob/master/src/main/java/eu/freme/common/conversion/SerializationFormatMapper.java#L26-L49)(plaintext, json, rdf types), you have to register them in the SerializationFormatMapper. Otherwise the internalization filter will complain about an unknown input or output format. This can be done easily like the following example illustrates:
+
+```
+// autowire the SerializationFormatMapper
+@Autowired
+SerializationFormatMapper serializationFormatMapper;
+
+// do the registration by adding the format to the SerializationFormatMapper in your PostConstruct function
+@PostConstruct
+public void init(){
+     // This is the mandatory registration
+     serializationFormatMapper.put("multipart/form-data", "multipart/form-data");
+     // optional: mapping of a hand-defined type to the correct MimeType. If it is not an existing mimeType, this works just for the parameter "input"
+     serializationFormatMapper.put("zip", "multipart/form-data");
+ }
+```
+
+The code above exemplary registers the mime type `multipart/form-data` and in addition the short form `zip` which should be available as value for the `informat` or `outformat` parameter.
+Furthermore, the `serializationFormatMapper` is intended to do the normalization of these values:
+
+```
+// defining a HTTP endpoint with Spring MVC
+@RequestMapping(value = "/exampleEndpoint", method = RequestMethod.POST)
+public ResponseEntity<String> doSomething(
+            @RequestHeader(value = "Accept", required = false) String acceptHeader,
+            @RequestHeader(value = "Content-Type", required = false) String contentTypeHeader,
+            @RequestParam(value = informat, required = false) String informat,
+            @RequestParam(value = outformat, required = false) String outformat,
+            @RequestBody (required = false) String postBody)
+{
+    //// normalize and merge the format values
+    informat = serializationFormatMapper.get(informat);
+    if(informat == null){
+       informat = serializationFormatMapper.get(contentTypeHeader);
+    }
+    outformat = serializationFormatMapper.get(outformat);
+    if(outformat == null){
+      outformat = serializationFormatMapper.get(acceptHeader);
+    }
+    ////
+
+    //// use informat & outformat
+    // ...
+    ////
+}
+```
+
 ## Spring XML configuration
 
 The Spring XML configuration is provided by the file [example-logger.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/src/main/resources/spring-configurations/example-logger.xml). As all Spring configurations it resides in the resource folder "spring-configurations". It instructs the Spring application context to perform a component scan on the package `eu.freme.bservices.example.loggingfilter`. Through this configuration Spring will find the Bean defined by ExampleLoggingFilter.java and initialize the filter.
