@@ -470,15 +470,22 @@ paths:
       summary: Pipelining with a template
       description: Use an existing pipelining template to perform your pipelining task
       consumes:
+        - text/plain
         - text/turtle
-        - application/json
         - application/ld+json
         - application/n-triples
         - application/rdf+xml
         - text/n3
-        - text/plain
+        - text/xml
+        - text/html
+        - application/x-xliff+xml
+        - application/x-openoffice
       produces:
-        - application/json
+        - text/turtle
+        - application/ld+json
+        - application/n-triples
+        - application/rdf+xml
+        - text/n3
       parameters:
         - name: id
           in: path
