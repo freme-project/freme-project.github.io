@@ -63,7 +63,7 @@ FREME NER can provide entity recognition in texts written in different languages
 * FREME NER runs as a FREME Package, so it requires [these prerequisites](../freme-for-sysadmins/creating-and-running-a-freme-package.html#prerequisites). 
 * It needs access to a running [Solr Server](http://lucene.apache.org/solr/). To set up a Solr Server at your machine, do the following:
     * [install the Solr Server](http://lucene.apache.org/solr/quickstart.html)
-    * use [this schema](http://rv2622.1blu.de/solrdev/#/elinker/files?file=schema.xml)
+    * use [this schema](../../resources/freme-ner/solr-schema.xml)
 * Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
     1. `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
     2. `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
