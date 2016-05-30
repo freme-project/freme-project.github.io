@@ -1131,7 +1131,7 @@ paths:
                   nif:isString    &quot;Welcome to Berlin, the capital of Germany!&quot;^^xsd:string .
 
         </code></pre>
-      operationId: executeFremeNel
+      operationId: executeFremeNer
       consumes:
         - text/n3
         - text/turtle
@@ -1142,6 +1142,7 @@ paths:
         - application/x-xliff+xml
         - text/html
         - application/x-openoffice
+        - text/xml
       produces:
         - text/n3
         - text/turtle
@@ -1171,6 +1172,7 @@ paths:
             - application/x-xliff+xml
             - application/x-openoffice
             - text
+            - xml
           default: turtle
         - name: outformat
           in: query
