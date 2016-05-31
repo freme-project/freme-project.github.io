@@ -725,38 +725,6 @@ paths:
           description: The text to enrich.
           required: false
           type: string
-        - name: informat
-          in: query
-          description: Format of input string.
-          enum:
-            - text
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
-            - application/x-openoffice
-          default: turtle
-          required: false
-          type: string
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          default: turtle
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1157,37 +1125,6 @@ paths:
           description: The text to enrich. Can be either plaintext or NIF (see parameter informat). Short form is i.
           required: false
           type: string
-        - name: informat
-          in: query
-          description: 'Format of input string. Can be json-ld, turtle, n3, n-triples, rdf-xmlor text. Overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - application/x-xliff+xml
-            - application/x-openoffice
-            - text
-            - xml
-          default: turtle
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - application/x-xliff+xml
-          default: turtle
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1195,7 +1132,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'The text to enrich. Will be overwritten by parameter input, if set. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/plain". The parameter *informat* overrides the Content-Type.'
+          description: 'The text to enrich. Will be overwritten by parameter input, if set. The format of the body can be text/plain, text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/plain".'
           required: false
           schema:
             type: string
@@ -1217,6 +1154,7 @@ paths:
           in: query
           description: A mandatory parameter which indicates the dataset used for entity linking which includes a list of entites and associated labels.
           required: false
+          default: dbpedia
           type: string
         - name: mode
           in: query
@@ -1447,40 +1385,13 @@ paths:
           in: query
           required: false
           type: string
-          description: 'The RDF graph which will be queried, in the specific RDF format. Overridden request body'
-        - name: informat
-          in: query
-          description: Format of input string. Overrides Content-Type Header. Short form is i
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-          default: turtle
-          required: false
-          type: string
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          default: csv
-          enum:
-            - csv
-            - xml
-            - json
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
+          description: 'The RDF graph which will be queried, in the specific RDF format. Overrides request body'
         - name: body
           in: body
           required: false
           schema:
             type: string
-          description: 'The RDF graph which will be queried, in the specific RDF format. Overridden by input parameter'
+          description: 'The RDF graph which will be queried, in the specific RDF format. Will be overridden by input parameter.'
         - name: name
           in: path
           required: true
@@ -1653,33 +1564,9 @@ paths:
         - application/n-triples
         - application/rdf+xml
       parameters:
-        - name: informat
-          in: query
-          description: 'Format of input string. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-          default: turtle
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-          default: turtle
         - in: body
           name: body
-          description: 'The text to enrich with data. The format of the body can be text/turtle, application/ld+json. The parameter input overrides body.'
+          description: 'The text to enrich with data. The format of the body can be text/turtle, application/ld+json, text/n3, application/n-triples, application/rdf+xml. The parameter input overrides the body.'
           required: false
           schema:
             type: string
@@ -2099,8 +1986,8 @@ paths:
         - application/rdf+xml
         - application/x-xliff+xml
         - text/html
-        - application/x-openoffice
         - text/xml
+        - application/x-openoffice
       produces:
         - text/n3
         - text/turtle
@@ -2113,42 +2000,9 @@ paths:
       parameters:
         - name: input
           in: query
-          description: The text to annotate. Can be either plaintext or NIF (see parameter informat). Short form is i.
+          description: The text to annotate. Can be either plaintext or NIF. Short form is i.
           required: false
           type: string
-        - name: informat
-          in: query
-          description: 'Format of input string. Can be json-ld, turtle, n3, n-triples, rdf-xml or text. Overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          enum:
-            - text
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
-            - application/x-openoffice
-          default: turtle
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "turtle". Overrides Accept Header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          enum:
-            - text
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
-          default: turtle
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -2233,15 +2087,15 @@ paths:
 
       operationId: tildeTranslate
       consumes:
+        - text/plain
         - text/n3
         - text/turtle
         - application/x-xliff+xml
         - application/ld+json
         - application/n-triples
-        - text/plain
         - text/html
-        - application/x-openoffice
         - text/xml
+        - application/x-openoffice
       produces:
         - text/n3
         - text/turtle
@@ -2254,42 +2108,10 @@ paths:
       parameters:
         - name: input
           in: query
-          description: 'The string to be translated. Can be either plaintext or NIF (see parameter informat). Short form is i. If set, it will be prefered over the body content.'
+          description: 'The string to be translated. Can be either plaintext or NIF. Short form is i. If set, it will be prefered over the body content.'
           required: false
           type: string
           x-force-textarea: true
-        - name: informat
-          in: query
-          description: 'Format of input string. Can be json-ld, turtle, n3, n-triples, rdf-xmlor text. Defaults to "turtle". This parameter overrides Content-Type header. Short form is f.'
-          required: false
-          type: string
-          enum:
-            - text
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
-            - application/x-openoffice
-          default: turtle
-        - name: outformat
-          in: query
-          description: 'RDF serialization format of Output. Can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "turtle". This parameter overrides Accept header (Response Content Type). Short form is o.'
-          required: false
-          type: string
-          enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-            - text/html
-            - text/xml
-            - application/x-xliff+xml
-          default: turtle
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
