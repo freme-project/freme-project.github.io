@@ -239,7 +239,7 @@ Original enriched HTML file. Note that some new lines get lost. Anyway it is not
 ```
 
 ## Entity recognition over HTML
-This example shows how to invoke the e-Entity service over a HMTL file.
+This example shows how to invoke the e-Entity service over a HTML file.
 
 HTML File
 
@@ -395,7 +395,7 @@ Link enrichments are not reported in the original HTML. The user is still allowe
 
 ## Terms extraction in HTML
 
-This example shows how to invoke the e-Terminology service over a HMTL file.
+This example shows how to invoke the e-Terminology service over a HTML file.
 
 HTML file 
 
@@ -628,7 +628,7 @@ Enriched HTML file
 
 ## Translation of HTML
 
-This example shows how to invoke the e-Translation service over a HMTL file.
+This example shows how to invoke the e-Translation service over a HTML file.
 
 HTML file
 
