@@ -64,7 +64,7 @@ http://dbpedia.org/resource/Eiffel_(programming_language)
 **NOTE**: The first row of the output above contains the table header.
 
 
-The following output would be the result without using a filter:
+The following output would be the result without using a filter (also remove 'outformat=csv' which is not supported when the filter is not used):
 
 ```
 @prefix dbpedia-fr: <http://fr.dbpedia.org/resource/> .
