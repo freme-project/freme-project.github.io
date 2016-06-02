@@ -322,7 +322,7 @@ http://dbpedia.org/resource/Dublin
 curl HTTP Request
 
 ```
-curl -X POST -d @docTest.html "http://api.freme-project.eu/current/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all&outformat=turtle"  -H "Content-Type:text/html"
+curl -X POST -d @docTest.html "http://api.freme-project.eu/current/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all&outformat=text/html"  -H "Content-Type:text/html"
 ```
 
 Enriched HTML file
