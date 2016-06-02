@@ -557,7 +557,7 @@ This example explains how to detect terms in a HTML document and obtain a simpli
 curl HTTP Request
 
 ```
-C:\Users\Martab\curl\nossl>curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=xml&source-lang=en&target-lang=it&mode=full&filter=terminology-terms-only"
+curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=xml&source-lang=en&target-lang=it&mode=full&filter=terminology-terms-only"
 ```
 
 Terms in XML format
