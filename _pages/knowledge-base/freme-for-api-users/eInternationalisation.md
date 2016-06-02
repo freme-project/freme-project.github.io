@@ -334,7 +334,7 @@ Enriched HTML file
 
 ## Enrichment of HTML with e-Link
 
-This example shows how to invoke the e-Link service over a HMTL file.
+This example shows how to invoke the e-Link service over a HTML file.
 
 HTML file containing an entity
 
