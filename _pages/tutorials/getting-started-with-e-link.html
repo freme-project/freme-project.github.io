@@ -44,7 +44,7 @@ pos: 3.1
     <ol>
         <li><b>A pre-defined template(s).</b> You can use some of the <a href="#step-3-1-template-manipulation">existing templates</a> or <a href="#what-is-a-template">learn what a template is</a> and <a href="#step-3-3-template-manipulation">create</a> your own.</li>
         <li><b>An RDF document for enrichment.</b> If you don't have one, you can use the provided one, or you can perform named entity recognition and use that one.
-        Here is an <a href="http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents/?informat=text&input=Berlin%20is%20the%20capital%20of%20Germany.&outformat=turtle&language=en&dataset=dbpedia">example</a>.</li>
+        Here is an <a href="{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents/?informat=text&input=Berlin%20is%20the%20capital%20of%20Germany.&outformat=turtle&language=en&dataset=dbpedia">example</a>.</li>
     </ol>
 </div>
 
@@ -343,7 +343,7 @@ pos: 3.1
     <br/>
 
     <p><strong>Token</strong><br/>
-    Paste your token. You can retrieve an access token by following <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a> , or read more about the FREME <a href="http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
+    Paste your token. You can retrieve an access token by following <a href="{{ site.url }}/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a> , or read more about the FREME <a href="{{ site.url }}/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
     <input id="create-template-token" type="text" value="paste your token"></p>
     <br/>
     
@@ -370,7 +370,7 @@ pos: 3.1
     <br/>
 
     <p><strong>Token</strong><br/>
-    Paste your token. You can retrieve an access token by following <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>, or read more about the FREME <a href="http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
+    Paste your token. You can retrieve an access token by following <a href="{{ site.url }}/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>, or read more about the FREME <a href="{{ site.url }}/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
     <input id="update-template-token" type="text" value="paste your token"></p>
     <br/>
     
@@ -395,7 +395,7 @@ pos: 3.1
     <br/>
 
     <p><strong>Token</strong><br/>
-    Paste your token. You can retrieve an access token by following <a href="http://api-dev.freme-project.eu/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>, or read more about the FREME <a href="http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
+    Paste your token. You can retrieve an access token by following <a href="{{ site.url }}/doc/api-doc/full.html#!/User/post_authenticate" target="_blank">this instructions</a>, or read more about the FREME <a href="{{ site.url }}/doc/knowledge-base/freme-for-api-users/authentication.html">authentication mechanism</a>.<br/>
     <input id="delete-template-token" type="text" value="paste your token"></p>
     <br/>
 
@@ -420,7 +420,7 @@ pos: 3.1
     
     <h2 id="simplify-the-output">Simplify the output</h2>
     <p>If you are not familiar with RDF/NIF format, you can retrieve the results from the enrichment in a simplified form (e.g. in CSV) by specifying filter.
-    In the following example we are using the "extract-entities-only" filter which will output the results in CSV. For more on simplifying output using filters you can read in <a href="http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-api-users/filtering.html">this article</a>.</p>
+    In the following example we are using the "extract-entities-only" filter which will output the results in CSV. For more on simplifying output using filters you can read in <a href="{{ site.url }}/doc/knowledge-base/freme-for-api-users/filtering.html">this article</a>.</p>
 
     <p>
     <strong>Filter name</strong><br/>
