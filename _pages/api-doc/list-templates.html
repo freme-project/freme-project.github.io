@@ -41,7 +41,7 @@ title: FREME Enrichment Templates
 		} LIMIT 10 </code></pre> Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-1.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-1.ttl "href="http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=1">http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=1" -H "Content-Type: text/turtle"
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-1.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=1" -H "Content-Type: text/turtle"
 	</code></pre><p></p>
 
 	</div>
@@ -62,7 +62,7 @@ title: FREME Enrichment Templates
 	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-2.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-2.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=2" -H "Content-Type: text/turtle" </code></pre><p></p>
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-2.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=2" -H "Content-Type: text/turtle" </code></pre><p></p>
 	</div>
 	<h1 id="template-id-3-geoknow">Template id: 3 - GeoKnow</h1>
 	<div>
@@ -81,7 +81,7 @@ title: FREME Enrichment Templates
 	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-3.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-3.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=3" -H "Content-Type: text/turtle" </code></pre><p></p>
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-3.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=3" -H "Content-Type: text/turtle" </code></pre><p></p>
 	</div>
 	<h1 id="template-id-5-europeana">Template id: 5 - Europeana</h1>
 	<div>
@@ -102,7 +102,7 @@ title: FREME Enrichment Templates
 	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-5.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-5.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=5" -H "Content-Type: text/turtle" </code></pre>
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-5.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=5" -H "Content-Type: text/turtle" </code></pre>
 	</div>
 	<h1 id="template-id-6-dbpedia-live">Template id: 6 -  DBpedia live</h1>
 	<div>
@@ -120,7 +120,7 @@ title: FREME Enrichment Templates
 	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-6.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-6.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=6&amp;event_type=SocietalEvent" -H "Content-Type: text/turtle" </code></pre><p></p>
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-6.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=6&amp;event_type=SocietalEvent" -H "Content-Type: text/turtle" </code></pre><p></p>
 	</div>
 	<h1 id="template-id-7-linked-geo-data">Template id: 7 -  Linked Geo Data</h1>
 	<div>
@@ -146,7 +146,7 @@ title: FREME Enrichment Templates
 	Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/blob/master/src/main/resources/data/test-for-template-7.ttl">here</a>.
 	<h4><strong>Test Query:</strong></h4><p></p>
 	<p></p>
-	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-7.ttl "http://api-dev.freme-project.eu/current/e-link/documents/?outformat=turtle&amp;templateid=7" -H "Content-Type: text/turtle" </code></pre>
+	<pre ><code class="undefined"> curl -v -X POST -d @test-for-template-7.ttl "{{ site.apiurl | prepend: site.url }}/e-link/documents/?outformat=turtle&amp;templateid=7" -H "Content-Type: text/turtle" </code></pre>
 	Note: there is an issue with the SPARQL endpoint.<p></p>
 	</div>
 	<h1 id="template-id-4447-dbpedia-categories-via-ldf">Template id: 4447 -  DBPedia Categories via LDF</h1>
@@ -162,7 +162,7 @@ title: FREME Enrichment Templates
 		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
 		<h4><strong>Test Query:</strong></h4><p></p>
 		<p></p>
-		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4447&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
+		<pre ><code>curl -v -X POST &quot;{{ site.apiurl | prepend: site.url }}/e-link/documents?templateid=4447&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;
 		</code></pre>
 		<p></p>
 	</div>
@@ -189,7 +189,7 @@ title: FREME Enrichment Templates
 		} LIMIT 10 </code></pre><p></p>
 
 		Example data for enrichment can be downloaded from <a href="https://github.com/freme-project/e-Link/files/27880/nif-to-enrich.txt">here</a>.
-		<pre ><code>curl -v -X POST &quot;http://api-dev.freme-project.eu/current/e-link/documents?templateid=4448&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;</code></pre>
+		<pre ><code>curl -v -X POST &quot;{{ site.apiurl | prepend: site.url }}/e-link/documents?templateid=4448&amp;informat=turtle&amp;outformat=turtle&quot; -d @nif-to-enrich.txt -H &quot;Content-Type:&quot;</code></pre>
 		Note: there is issue with the SPARQL endpoint.<p></p>
 	</div>
 </div>
