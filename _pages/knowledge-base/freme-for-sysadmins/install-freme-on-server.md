@@ -13,7 +13,7 @@ This guide explains how to install FREME on a web server.
 * A server that meets the [FREME hardware requirements](freme-hardware-requirements.html) and has a Linux operating system installed. FREME works on other operating systems also but this guide targets Linux servers.
 * Java 8 or higher installed on the web server
 * A FREME package. See [Creating and running a FREME package](creating-and-running-a-freme-package.html) for more information.
-* Depending on the services you use you might need to have a MySQL webserver installed. FREME can also be configured to run with other databases, so MySQL is not obligatory. See [configuration options](../../freme-for-sysadmins/configuration-options.html) for more information on how to configure the database.
+* Depending on the services you use you might need to have a MySQL webserver installed. FREME can also be configured to run with other databases, so MySQL is not obligatory. See [configuration options](../freme-for-sysadmins/configuration-options.html) for more information on how to configure the database.
 
 ## Installation procedure
 
