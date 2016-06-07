@@ -7,7 +7,7 @@ pos: 4.14
 
 # Creating and Running a FREME Package
 
-This article will guide you through the process of creating a FREME package, creating a binary distribution and running that package.
+This article will guide you through the process of creating a FREME package, creating a binary distribution and running that package. All the source code of this guide resides on GitHub. Check out the [freme-examples](https://github.com/freme-project/freme-examples) repository and have a look at the module **broker-simple**.
 
 ## Prerequisites
 
@@ -35,56 +35,56 @@ Usually there are some more configuration files, e.g.
 FREME uses Maven as build system. The pom.xml file of a FREME package specifies the maven artifacts that should be pulled in as dependencies. This is the code for a FREME packages pom.xml file:
 
 ```
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>eu.freme.packages</groupId>
-    <artifactId>package-parent</artifactId>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>package-parent</artifactId>
+        <groupId>eu.freme.packages</groupId>
+        <version>0.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>broker-simple</artifactId>
     <version>0.1-SNAPSHOT</version>
-  </parent>
 
-  <artifactId>broker-dev</artifactId>
-	<repositories>
-		<repository>
-			<id>freme-release</id>
-			<name>freme-nexus</name>
-			<url>http://rv1443.1blu.de/nexus/content/repositories/releases/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>freme-nexus</id>
-			<name>freme-nexus</name>
-			<url>http://rv1443.1blu.de/nexus/content/repositories/snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>freme-release</id>
+            <name>freme-nexus</name>
+            <url>http://rv1443.1blu.de/nexus/content/repositories/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>freme-nexus</id>
+            <name>freme-nexus</name>
+            <url>http://rv1443.1blu.de/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
-	<dependencies>
-		<dependency>
-			<groupId>eu.freme.bservices</groupId>
-			<artifactId>user-controller</artifactId>
-			<version>0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.freme.e-services</groupId>
-			<artifactId>tilde-services</artifactId>
-			<version>0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.freme.bservices</groupId>
-			<artifactId>package-maker</artifactId>
-			<version>0.2-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>eu.freme.bservices.controllers</groupId>
+            <artifactId>users</artifactId>
+            <version>0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.freme.e-services</groupId>
+            <artifactId>tilde-services</artifactId>
+            <version>0.3</version>
+        </dependency>
+    </dependencies>
 
 </project>
 ```
 
-It derives from eu.freme.packages.package-parent. Further it defines the FREME maven repositories so it knows where to download the Maven artifacts. Further it defines a set of dependencies on FREME b-Services and e-Services. When you create your own FREME package you only have to modify the dependencies. It is important to specify the dependency to `eu.freme.bservices.package-maker` for the step "Create binary distribution" of this tutorial.
+It derives from eu.freme.packages.package-parent. This includes the dependency to `eu.freme.bservices.package-maker` which is important for the step "Create binary distribution" of this tutorial. Further it defines the FREME maven repositories so it knows where to download the Maven artifacts. Further it defines a set of dependencies on FREME b-Services and e-Services. When you create your own FREME package you only have to modify the dependencies.
 
 ### package.xml
 
@@ -94,15 +94,15 @@ The package.xml specifies which b-Services and e-Services should start when the 
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="classpath:spring-configurations/freme-common.xml" />
-	<import resource="classpath:spring-configurations/user-controller.xml" />
-	<import resource="classpath:spring-configurations/tilde-translation.xml" />
+    <import resource="classpath:spring-configurations/freme-common.xml" />
+    <import resource="classpath:spring-configurations/users.xml" />
+    <import resource="classpath:spring-configurations/tilde-translation.xml" />
 </beans>
 ```
 
@@ -127,10 +127,11 @@ In a terminal navigate to the folder of the FREME package and type
 mvn package
 ```
 
-This will create the binary distribution. It will reside in `target/freme-distribution-assembly/freme-distribution/`. You can copy this folder to any location or server.
+This will create the binary distribution. It will reside in `target/freme-package/`. You can copy this folder to any location or server.
 In order to run it you should make the scripts in the `bin` folder executable:
 
 ```
+cd target/freme-package
 chmod +x bin/*.sh
 ```
 
@@ -141,7 +142,6 @@ chmod +x bin/*.sh
 In the terminal navigate to the folder of the binary distribution and start the server:
 
 ```
-cd target/freme-package
 bin/start_local.sh
 ```
 
