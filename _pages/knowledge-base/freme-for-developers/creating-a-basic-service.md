@@ -113,7 +113,7 @@ The Spring XML configuration is provided by the file [example-logger.xml](https:
 
 # Testing the filter
 
-Now we have an implementation of the filter that is ready for inclusion into any FREME package. This section of the article shows how to write a simple FREME package to start the filter. The files described here are not necessarily part of a FREME basic service. They are contained in the example only for demonstration purposes.
+Now we have an implementation of the filter that is ready for inclusion into any FREME package. This section of the article shows how to write a simple FREME package to start the filter. Please have a look at [Creating and Running a FREME Package](../../freme-for-sysadmins/creating-and-running-a-freme-package.html) if you want to dig deeper into this. The files described here are not necessarily part of a FREME basic service. They are contained in the example only for demonstration purposes.
 
 [package.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/src/main/resources/package.xml) defines a very simple FREME package. First like all FREME packages it loads `freme-common.xml`. Then it loads `test-helper.xml`. Further the package imports `example-logger.xml` to initialize the logging filter created in this guide.
 
