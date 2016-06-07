@@ -98,7 +98,7 @@ curl -X DELETE --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{
 
 ## User roles
 
-In FREME users can have two roles: ROLE_USER and ROLE_ADMIN. All users registered via the API have ROLE_USER. Admin users can promote normal users to be administrators. An admin user can be configured using the admin.create, admin.username, admin.password configuration options (see [FREME configuration options](http://api-dev.freme-project.eu/doc/knowledge-base/freme-for-sysadmins/configuration-options.html)).
+In FREME users can have two roles: ROLE_USER and ROLE_ADMIN. All users registered via the API have ROLE_USER. Admin users can promote normal users to be administrators. An admin user can be configured using the admin.create, admin.username, admin.password configuration options (see [FREME configuration options]({{site.url}}/doc/knowledge-base/freme-for-sysadmins/configuration-options.html)).
 
 In general ROLE_USER implies read access to all public resources and to all private resources the user owns. ROLE_USER implies write access to all resources the user owns.
 
