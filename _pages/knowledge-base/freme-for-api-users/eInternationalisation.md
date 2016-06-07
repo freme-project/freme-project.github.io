@@ -416,7 +416,7 @@ HTML file
 curl HTTP Request
 
 ```
-curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=turtle&source-lang=en&target-lang=it&mode=full"
+curl -X POST -d @docTest.html --header "Content-Type: text/html"  "{{ site.apiurl | prepend: site.url }}/e-terminology/tilde?outformat=turtle&source-lang=en&target-lang=it&mode=full"
 ```
 
 Enriched NIF file
@@ -557,7 +557,7 @@ This example explains how to detect terms in a HTML document and obtain a simpli
 curl HTTP Request
 
 ```
-curl -X POST -d @docTest.html --header "Content-Type: text/html"  "http://api-dev.freme-project.eu/current/e-terminology/tilde?outformat=xml&source-lang=en&target-lang=it&mode=full&filter=terminology-terms-only"
+curl -X POST -d @docTest.html --header "Content-Type: text/html"  "{{ site.apiurl | prepend: site.url }}/e-terminology/tilde?outformat=xml&source-lang=en&target-lang=it&mode=full&filter=terminology-terms-only"
 ```
 
 Terms in XML format
@@ -616,7 +616,7 @@ Terms in XML format
 curl HTTP Request
 
 ```
-curl -X POST -d @docTest.html --header "Content-Type: text/html" --header "Accept: text/html" "http://api-dev.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=it&mode=full"
+curl -X POST -d @docTest.html --header "Content-Type: text/html" --header "Accept: text/html" "{{ site.apiurl | prepend: site.url }}/e-terminology/tilde?source-lang=en&target-lang=it&mode=full"
 ```
 
 Enriched HTML file
@@ -647,7 +647,7 @@ HTML file
 curl HTTP Request
 
 ```
-curl -X POST -d @docTest-Translation.html --header "Content-Type: text/html" --header "Accept: text/n3" "http://api-dev.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=it"
+curl -X POST -d @docTest-Translation.html --header "Content-Type: text/html" --header "Accept: text/n3" "{{ site.apiurl | prepend: site.url }}/e-translation/tilde?source-lang=en&target-lang=it"
 ```
 
 Converted NIF
