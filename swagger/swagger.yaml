@@ -6,11 +6,29 @@ host: api-dev.freme-project.eu
 basePath: /current
 tags:
   - name: e-Entity
+    description: >
+      Detect named entities in text. The service performs named entity recognition, classification and linking. The service also supports the upload of custom datasets for linking.
   - name: e-Link
+    description: >
+      Enrich data with contents from the Linked Open Data cloud.
   - name: e-Publishing
+    description: >
+      The e-Publishing service creates an eBook in the EPUB3 format from a zip file containing HTML Files and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
   - name: e-Translation
+    description: >
+      The Tilde e-Translation service translates text from and to various languages using the Tilde Terminology service.
+  - name: e-Terminology
+    description: >
+      The Tilde e-Terminology service annotates text with terminology information using the Tilde Terminology service.
   - name: User
+    description: >
+      User management APIs to create, read, update, delete users and create authentication tokens. More information in the [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
   - name: Toolbox
+    description: >
+      Configure postprocessing filters that can be used to [simplify output](../knowledge-base/freme-for-api-users/filtering.html). Further use the [converter endpoint] to convert various document formats into NIF.
+  - name: Pipelining
+    description: >
+      Configure workflows and share the workflows with other users using FREMEs pipelining API.
   - name: General Information
     description: >
       This section defines the default parameter set for all FREME e-Services.
@@ -245,7 +263,7 @@ paths:
   /pipelining/templates/:
     post:
       tags:
-        - pipelining
+        - Pipelining
       summary: Create a new pipelining template
       description: >
         Here you can submit a new pipelining template as a JSON String. It
@@ -345,7 +363,7 @@ paths:
           description: Internal Server Error - something went wrong unexpectedly
     get:
       tags:
-        - pipelining
+        - Pipelining
       summary: Get all pipelining templates
       description: Returns all visible pipelining templates
       produces:
@@ -358,7 +376,7 @@ paths:
   '/pipelining/templates/{id}':
     put:
       tags:
-        - pipelining
+        - Pipelining
       summary: Update an existing pipelining template
       description: >
         Update an existing pipelining template with new information.
@@ -419,7 +437,7 @@ paths:
           description: Internal Server Error - something went wrong unexpectedly
     get:
       tags:
-        - pipelining
+        - Pipelining
       summary: Get a specific pipelining template
       description: Returns the pipeline with the given id found on the server the request is sent to.
       produces:
@@ -439,7 +457,7 @@ paths:
           description: Not found - the template does not exist
     delete:
       tags:
-        - pipelining
+        - Pipelining
       summary: Delete a pipelining template
       description: >
         Deletes the pipelining template with the specified id.
@@ -466,7 +484,7 @@ paths:
   '/pipelining/chain/{id}':
     post:
       tags:
-        - pipelining
+        - Pipelining
       summary: Pipelining with a template
       description: Use an existing pipelining template to perform your pipelining task
       consumes:
@@ -523,7 +541,7 @@ paths:
   /pipelining/chain:
     post:
       tags:
-        - pipelining
+        - Pipelining
       summary: Pipelining multiple requests
       description: >
           At the moment only supports POST Method. Always consumes application/json and produces the MIME Type specified in the last request.
