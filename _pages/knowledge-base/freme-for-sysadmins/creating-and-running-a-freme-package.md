@@ -84,7 +84,7 @@ FREME uses Maven as build system. The pom.xml file of a FREME package specifies 
 </project>
 ```
 
-It derives from eu.freme.packages.package-parent. This includes the dependency to `eu.freme.bservices.package-maker` which is important for the step "Create binary distribution" of this tutorial. Further it defines the FREME maven repositories so it knows where to download the Maven artifacts. Further it defines a set of dependencies on FREME b-Services and e-Services. When you create your own FREME package you only have to modify the dependencies.
+It derives from eu.freme.packages.package-parent. This includes the dependency `eu.freme.bservices.package-maker` which is important for the step "Create binary distribution" of this tutorial. Further it defines the FREME maven repositories so it knows where to download the Maven artifacts. Further it defines a set of dependencies on FREME b-Services and e-Services. When you create your own FREME package you only have to modify the dependencies.
 
 ### package.xml
 
