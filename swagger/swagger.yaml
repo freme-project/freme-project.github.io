@@ -1840,7 +1840,7 @@ paths:
         **Example Call**
 
         <pre lang="bash"><code>
-          curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; {{ site.apiurl | prepend: site.url }}/e-publishing/html
+          curl --form &quot;htmlZip=@alice.zip&quot; --form metadata=&#39;json-string&#39; http://{{host}}{{basePath}}/e-publishing/html
         </code></pre>
 
 
