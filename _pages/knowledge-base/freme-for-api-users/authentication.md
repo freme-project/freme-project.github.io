@@ -80,9 +80,11 @@ The response will contain your access token. It will look similar to this:
 ### How to attach an access token to an API call
 
 To use FREME e-Services as authenticated user just attach your token as `X-Auth-Token` to the request header:
+Please download the <a href="example.json">example.json</a>  file before executing the curl request.
 
 ```
-curl -X POST --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/e-link/templates?outformat=turtle&informat=json"
+ curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "X-Auth-Token: 6e50c053-df19-4976-80fc-2b43b6d79716" -d @example.json "{{ site.apiurl | prepend: site.url }}/e-link/templates/"
+
 ```
 
 To use restricted resources via the [FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html) just put your token into the input field at the bottom of the page.
