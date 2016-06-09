@@ -1649,29 +1649,14 @@ paths:
         **Example of input in JSON format:**
 
         <pre lang="javascript"><code>
-          {
-            &quot;query&quot;: &quot;PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt; \n
-                      PREFIX dbpedia-owl: &lt;http://dbpedia.org/ontology/&gt; \n
-                      PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; \n
-                      PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; \n
-                      CONSTRUCT \n
-                      { \n
-                        ?museum &lt;http://xmlns.com/foaf/0.1/based_near&gt; &lt;@@@entity_uri@@@&gt; . \n
-                      } \n
-                      WHERE \n
-                      { \n
-                          &lt;@@@entity_uri@@@&gt; geo:geometry ?citygeo . \n
-                          ?museum rdf:type &lt;http://schema.org/Museum&gt; . \n
-                          ?museum geo:geometry ?museumgeo . \n
-                          FILTER (&lt;bif:st_intersects&gt;(?museumgeo, ?citygeo, 10)) \n
-                      } \n
-                      LIMIT 10&quot;,
-            &quot;endpoint&quot;: &quot;http://dbpedia.org/sparql/&quot;,
-            &quot;label&quot;: &quot;template title&quot;,
-            &quot;description&quot;: &quot;template description&quot;,
-            &quot;endpointType&quot;: &quot;sparql&quot;,
-            &quot;visibility&quot;: &quot;public&quot;
-          }
+        {
+          &quot;query&quot;: &quot;PREFIX dbpedia: <http://dbpedia.org/resource/> \n PREFIX dbpedia-owl: <http://dbpedia.org/ontology/> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n CONSTRUCT \n { \n ?museum <http://xmlns.com/foaf/0.1/based_near> <@@@entity_uri@@@> . \n } \n WHERE \n { \n <@@@entity_uri@@@> geo:geometry ?citygeo . \n ?museum rdf:type <http://schema.org/Museum> . \n ?museum geo:geometry ?museumgeo . \n FILTER (<bif:st_intersects>(?museumgeo, ?citygeo, 10)) \n } \n LIMIT 10&quot;,
+          &quot;endpoint&quot;: &quot;http://dbpedia.org/sparql/&quot;,
+          &quot;label&quot;: &quot;template title&quot;,
+          &quot;description&quot;: &quot;template description&quot;,
+          &quot;endpointType&quot;: &quot;sparql&quot;,
+          &quot;visibility&quot;: &quot;public&quot;
+        }
         </code></pre>
 
 
