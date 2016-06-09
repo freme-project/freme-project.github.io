@@ -38,7 +38,7 @@ This e-Service is called e-Capitalization. It enriches text with a capitalized v
 An example CURL request to the e-Service is
 
 ```
-curl -X POST "http://localhost:8080/e-capitalize?input=hello+world&informat=text"
+curl -X POST "http://localhost:8080/e-capitalization?input=hello+world&informat=text"
 ```
 
 The output of above example is
