@@ -16,26 +16,27 @@ SwaggerUi.Views.ResourceView = Backbone.View.extend({
   render: function(){
     var methods = {};
 
-
     $(this.el).html(Handlebars.templates.resource(this.model));
 
-    // Render each operation
-    for (var i = 0; i < this.model.operationsArray.length; i++) {
-      var operation = this.model.operationsArray[i];
-      var counter = 0;
-      var id = operation.nickname;
+    // if operationsArray is not defined, this resource is for general description purposes only
+    if(typeof this.model.operationsArray !== 'undefined'){
+      // Render each operation
+      for (var i = 0; i < this.model.operationsArray.length; i++) {
+        var operation = this.model.operationsArray[i];
+        var counter = 0;
+        var id = operation.nickname;
 
-      while (typeof methods[id] !== 'undefined') {
-        id = id + '_' + counter;
-        counter += 1;
+        while (typeof methods[id] !== 'undefined') {
+          id = id + '_' + counter;
+          counter += 1;
+        }
+
+        methods[id] = operation;
+
+        operation.nickname = id;
+        operation.parentId = this.model.id;
+        this.addOperation(operation);
       }
-
-      methods[id] = operation;
-
-      operation.nickname = id;
-      operation.parentId = this.model.id;
-      operation.definitions = this.model.definitions; // make Json Schema available for JSonEditor in this operation
-      this.addOperation(operation);
     }
 
     $('.toggleEndpointList', this.el).click(this.callDocs.bind(this, 'toggleEndpointListForResource'));
