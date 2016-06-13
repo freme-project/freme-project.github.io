@@ -25,7 +25,7 @@ tags:
       User management APIs to create, read, update, delete users and create authentication tokens. More information in the [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
   - name: Toolbox
     description: >
-      Configure postprocessing filters that can be used to [simplify output](../knowledge-base/freme-for-api-users/filtering.html). Further use the [nif-converter endpoint](#!/Toolbox/post_toolbox_nif_converter) to convert various document formats into NIF.
+      Configure postprocessing filters that can be used to [simplify output](../knowledge-base/freme-for-api-users/filtering.html). Further use the nif-converter endpoint to convert various document formats into NIF.
   - name: Pipelining
     description: >
       Configure workflows and share the workflows with other users using FREMEs pipelining API.
