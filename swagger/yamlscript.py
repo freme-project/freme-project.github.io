@@ -36,7 +36,7 @@ def main():
 	"/e-link/explore": ["post"]
 	}
 	
-	for path in full["paths"].keys():
+	for path in list(full["paths"].keys()):
 		if path not in included_paths:
 			del full["paths"][path]
 		else:

@@ -1,9 +1,9 @@
 module Jekyll
   class PagesDirGenerator < Generator
 
+  `python swagger/yamlscript.py`
 
     def generate(site)
-      `python swagger/yamlscript.py`
       pages_dir = site.config['pages'] || './_pages'
       all_raw_paths = Dir["#{pages_dir}/**/*"]      
       all_raw_paths.each do |f|
