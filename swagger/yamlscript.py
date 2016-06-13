@@ -39,7 +39,7 @@ def main():
 	"/e-link/explore": ["post"]
 	}
 
-	included_tag_names = set([])
+#	included_tag_names = set([])
 
 	for path in list(full["paths"].keys()):
 		if path not in included_paths:
@@ -48,13 +48,15 @@ def main():
 			for method in included_paths[path]:
 				if method not in full["paths"][path].keys():
 					del full["paths"][path][method]
-				else:
-					included_tag_names.update(full["paths"][path][method]["tags"])
+#				else:
+#					included_tag_names.update(full["paths"][path][method]["tags"])
 #				else:
 #					full["paths"][path][method]['tags']=["Enrichment Endpoints"]
 
 	#print(included_tag_names)
-	full["tags"]=[x for x in full["tags"] if (x["name"]!="General Information" and x["name"] in included_tag_names)]
+	#full["tags"]=[x for x in full["tags"] if (x["name"]!="General Information" and x["name"] in included_tag_names)]
+
+	full["tags"]=[]
 
 	full['info']['description']="This section only covers the most important endpoints of FREME: the enrichment endpoints.<br><br> The endpoints can be used to access FREME e-Services via common HTTP requests.<br><br> A full documentation of all e-Service endpoints, including all parameters, is provided <a href=\"full.html\">here</a>. For usage examples, see the <a href=\"../tutorials/overview.html\">tutorial section</a>."
 
