@@ -20038,7 +20038,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
     if ('validatorUrl' in opts.swaggerOptions) {
       // Validator URL specified explicitly
       this.model.validatorUrl = opts.swaggerOptions.validatorUrl;
-    } else if (this.model.url.indexOf('localhost') > 0) {
+    } else if (this.model.url.indexOf('localhost') > 0 || this.model.url.indexOf('127.0.0.1') > 0) {
       // Localhost override
       this.model.validatorUrl = null;
     } else {
@@ -20050,9 +20050,19 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
         this.model.validatorUrl = 'http://online.swagger.io/validator';
       }
     }
+
+    // JSonEditor requires type='object' to be present on defined types, we add it if it's missing
+    // is there any valid case were it should not be added ?
+    var def;
+    for(def in this.model.definitions){
+      if (!this.model.definitions[def].type){
+        this.model.definitions[def].type = 'object';
+      }
+    }
+
   },
 
-  render: function(){
+  render: function () {
     if (this.model.securityDefinitions) {
       for (var name in this.model.securityDefinitions) {
         var auth = this.model.securityDefinitions[name];
@@ -20070,8 +20080,14 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
       }
     }
 
-    // Render the outer container for resources
     $(this.el).html(Handlebars.templates.main(this.model));
+    this.info = this.$('.info')[0];
+
+    if (this.info) {
+      this.info.addEventListener('click', this.onLinkClick, true);
+    }
+
+    this.model.securityDefinitions = this.model.securityDefinitions || {};
 
     // add model resources to unused tags (as resources)
     var prospectiveResources = this.model.swaggerObject.tags.filter(hasntTheseNames, this.model.apisArray).concat(this.model.apisArray);
@@ -20101,6 +20117,11 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
   addResource: function(resource, auths){
     // Render a resource and add it to resources li
     resource.id = resource.id.replace(/\s/g, '_');
+
+    // Make all definitions available at the root of the resource so that they can
+    // be loaded by the JSonEditor
+    resource.definitions = this.model.definitions;
+
     var resourceView = new SwaggerUi.Views.ResourceView({
       model: resource,
       router: this.router,
@@ -20115,6 +20136,15 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
   clear: function(){
     $(this.el).html('');
+  },
+
+  onLinkClick: function (e) {
+    var el = e.target;
+
+    if (el.tagName === 'A' && el.href && !el.target) {
+      e.preventDefault();
+      window.open(el.href, '_blank');
+    }
   },
 
   toggleDescription: function() {
@@ -22278,6 +22308,7 @@ SwaggerUi.Views.ResourceView = Backbone.View.extend({
 
         operation.nickname = id;
         operation.parentId = this.model.id;
+        operation.definitions = this.model.definitions; // make Json Schema available for JSonEditor in this operation
         this.addOperation(operation);
       }
     }
