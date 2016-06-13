@@ -1,7 +1,7 @@
 module Jekyll
   class PagesDirGenerator < Generator
 
-  `python swagger/yamlscript.py`
+    `python swagger/yamlscript.py`
 
     def generate(site)
       pages_dir = site.config['pages'] || './_pages'
