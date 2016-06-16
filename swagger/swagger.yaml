@@ -121,13 +121,13 @@ paths:
           description: Password for new user. It needs to be at least 8 characters long.
           required: true
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
+      # responses:
+      #   '200':
+      #     description: Successful response
+      #     schema:
+      #       type: string
+      #   '400':
+      #     description: Bad Request - input validation failed
     get:
       tags:
         - User
@@ -137,13 +137,7 @@ paths:
         authenticated as administrator to have access to this API call.
       produces:
         - application/json
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
+
   '/user/{username}':
     get:
       tags:
@@ -179,13 +173,7 @@ paths:
           type: string
           required: true
           description: Username of user to get information about
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
+
     delete:
       tags:
         - User
@@ -201,15 +189,7 @@ paths:
           description: The username of the user to delete
           required: true
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '204':
-          description: No content - Succesful removal
-        '400':
-          description: Bad request - input validation failed
+
   /authenticate:
     post:
       tags:
@@ -253,13 +233,7 @@ paths:
           description: Password of user to attempt to authenticate as
           required: true
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
+
   /pipelining/templates/:
     post:
       tags:
@@ -350,17 +324,7 @@ paths:
           required: false
           type: string
           description: 'Sets the description of the new pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
-        '401':
-          description: Unauthorized - user needs to be logged in for this action
-        '500':
-          description: Internal Server Error - something went wrong unexpectedly
+
     get:
       tags:
         - Pipelining
@@ -368,11 +332,7 @@ paths:
       description: Returns all visible pipelining templates
       produces:
         - application/json
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
+
   '/pipelining/templates/{id}':
     put:
       tags:
@@ -422,19 +382,7 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
-        '403':
-          description: Forbidden - user has no permission to udpate this template
-        '404':
-          description: Not found - the template does not exist
-        '500':
-          description: Internal Server Error - something went wrong unexpectedly
+
     get:
       tags:
         - Pipelining
@@ -448,13 +396,7 @@ paths:
           required: true
           description: ID of template to return
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '404':
-          description: Not found - the template does not exist
+
     delete:
       tags:
         - Pipelining
@@ -472,15 +414,7 @@ paths:
           required: true
           type: string
           description: ID of template that will be deleted
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '403':
-          description: Forbidden - user has no permission to delete this template
-        '404':
-          description: Not found - the template does not exist
+
   '/pipelining/chain/{id}':
     post:
       tags:
@@ -525,19 +459,7 @@ paths:
           default: 'false'
           in: query
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad Request - input validation failed
-        '401':
-          description: Unauthorized - user needs to be logged in for this action
-        '404':
-          description: Not found
-        '500':
-          description: Internal Server Error - something went wrong unexpectedly
+
   /pipelining/chain:
     post:
       tags:
@@ -703,13 +625,7 @@ paths:
           default: 'false'
           in: query
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-entity/dbpedia-spotlight/documents:
     post:
       tags:
@@ -774,13 +690,7 @@ paths:
           required: false
           type: string
           default: '0.3'
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-entity/freme-ner/datasets:
     get:
       tags:
@@ -788,15 +698,7 @@ paths:
       summary: Get info about all available datasets
       description: Get info about all available datasets
       operationId: getAllDatasets
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '500':
-          description: Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request
-        '502':
-          description: Bad Gateway - recieved an invalid response from the FREME NER server
+
     post:
       tags:
         - e-Entity
@@ -931,17 +833,7 @@ paths:
             - private
           type: string
           description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
-      responses:
-        '201':
-          description: Created - the dataset was successfuly created
-          schema:
-            type: string
-        '400':
-          description: Bad request - required parameter is not specified or invalid format specified or requested
-        '500':
-          description: Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request
-        '502':
-          description: Bad Gateway - recieved an invalid response from the FREME NER server
+
   '/e-entity/freme-ner/datasets/{name}':
     get:
       tags:
@@ -955,17 +847,7 @@ paths:
           description: The name of the requested dataset.
           required: true
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - required parameter is not specified or invalid format specified or requested
-        '500':
-          description: Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request
-        '502':
-          description: Bad Gateway - recieved an invalid response from the FREME NER server
+
     put:
       tags:
         - e-Entity
@@ -1051,17 +933,7 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - required parameter is not specified or invalid format specified or requested
-        '500':
-          description: Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request
-        '502':
-          description: Bad Gateway - recieved an invalid response from the FREME NER server
+
     delete:
       tags:
         - e-Entity
@@ -1080,17 +952,7 @@ paths:
           description: The name of the dataset to remove
           required: true
           type: string
-      responses:
-        '200':
-          description: Succesful removal
-          schema:
-            type: string
-        '400':
-          description: Bad request - required parameter is not specified or invalid format specified or requested
-        '500':
-          description: Internal Server Error - encountered an unexpected condition which prevented it from fulfilling the request
-        '502':
-          description: Bad Gateway - recieved an invalid response from the FREME NER server
+
   /e-entity/freme-ner/documents:
     post:
       tags:
@@ -1202,13 +1064,7 @@ paths:
           description: 'Using the numLinks parameter one can specify the maximum number of links to be assigned to an entity. By default only one link is returned. The maximum possible number for this parameter is 5.'
           required: false
           type: integer
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /toolbox/convert/manage:
     get:
       tags:
@@ -1218,13 +1074,7 @@ paths:
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
       produces:
         - application/json
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     post:
       tags:
        - Toolbox
@@ -1265,13 +1115,7 @@ paths:
           required: false
           type: string
           description: Sets a description for this filter.
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   '/toolbox/convert/manage/{name}':
     put:
       tags:
@@ -1319,13 +1163,7 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     delete:
       tags:
        - Toolbox
@@ -1342,13 +1180,7 @@ paths:
           required: true
           description: Name of filter to be updated.
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     get:
       tags:
        - Toolbox
@@ -1366,13 +1198,7 @@ paths:
           required: true
           description: Name of filter to be returned
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   '/toolbox/convert/documents/{name}':
     post:
       tags:
@@ -1415,13 +1241,7 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+ 
   /toolbox/nif-converter:
     post:
       tags:
@@ -1456,13 +1276,7 @@ paths:
           schema:
             type: string
           description: 'The document you want to convert into NIF.'
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-link/explore:
     post:
       tags:
@@ -1507,13 +1321,7 @@ paths:
           enum:
             - sparql
             - ldf
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-link/documents/:
     post:
       tags:
@@ -1594,13 +1402,7 @@ paths:
           required: true
           type: integer
           format: int32
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-link/templates/:
     get:
       tags:
@@ -1610,13 +1412,7 @@ paths:
       operationId: getAllTemplates
       produces:
         - application/json
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     post:
       tags:
         - e-Link
@@ -1720,15 +1516,7 @@ paths:
           required: false
           type: string
           description: 'Sets the description of the new template. If this parameter is present, it overwrites the content of the JSON description parameter.'
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
-        '404':
-          description: Not Found
+
   '/e-link/templates/{templateid}':
     get:
       tags:
@@ -1744,13 +1532,7 @@ paths:
           description: The ID of the requested template.
           required: true
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     put:
       tags:
         - e-Link
@@ -1795,13 +1577,7 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
     delete:
       tags:
         - e-Link
@@ -1819,17 +1595,7 @@ paths:
           description: The id of the template to delete.
           required: true
           type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: string
-        '204':
-          description: Successful removal response - No Content
-        '400':
-          description: Bad request - input validation failed
-        '404':
-          description: A template with such id was not found.
+
   /e-publishing/html:
     post:
       tags:
@@ -1944,16 +1710,7 @@ paths:
           description: Metadata JSON as specified above
           type: string
           x-force-textarea: true
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: array
-            items:
-              type: string
-              format: byte
-        '400':
-          description: Bad request - input validation failed
+
   /e-terminology/tilde:
     post:
       tags:
@@ -2051,13 +1808,7 @@ paths:
           required: false
           type: string
           in: query
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
   /e-translation/tilde:
     post:
       tags:
@@ -2151,13 +1902,7 @@ paths:
           required: false
           description: 'select translation system by ID [an alternative to source, target language and domain selection]. ID of public translation system can be retrieved at https://services.tilde.com/translationsystems or private system ID can be found at portal http://tilde.com/mt with authentication [optional, if omitted then source and target languages and also domain parameters are used]'
           type: string
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: string
-        '400':
-          description: Bad request - input validation failed
+
 definitions:
   File:
     type: object
