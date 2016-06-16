@@ -1204,6 +1204,7 @@ paths:
           required: true
           description: Name of filter to be returned
           type: string
+          default: 'extract-entities-only'
 
   '/toolbox/convert/documents/{name}':
     post:
