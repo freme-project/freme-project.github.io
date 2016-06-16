@@ -395,6 +395,7 @@ paths:
           in: path
           required: true
           description: ID of template to return
+          default: '37'
           type: string
 
     delete:
