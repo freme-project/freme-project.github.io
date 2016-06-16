@@ -631,7 +631,13 @@ paths:
       tags:
         - e-Entity
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
-      description: " Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.\n"
+      description: >
+      Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.\n
+      
+      <pre lang="bash"><code>
+      curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" "http://api-dev.freme-project.eu/current/e-entity/dbpedia-spotlight/documents?input=Welcome%20to%20Berlin%2C%20the%20capital%20of%20Germany.&numLinks=1&language=en&confidence=0.3"
+      </code></pre> 
+      
       operationId: executeSpotlightNel
       consumes:
         - text/n3
