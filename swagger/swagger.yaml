@@ -660,6 +660,7 @@ paths:
           description: The text to enrich.
           required: false
           type: string
+          default: 'Welcome to Berlin, the capital of Germany.'
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
