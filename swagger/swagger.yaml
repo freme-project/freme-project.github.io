@@ -445,10 +445,12 @@ paths:
           description: Id of the pipeline-template to be used
           required: true
           type: string
+          default: '37'
         - name: body
           in: body
           description: 'Input for pipeline chain, can be NIF or plain text'
           required: true
+          default: 'Berlin is the capital of Germany.'
           schema:
             type: string
         - name: stats
