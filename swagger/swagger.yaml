@@ -116,11 +116,13 @@ paths:
           description: Username of user to be created. It can only consist of characters from a-z and A-Z.
           required: true
           type: string
+          default: 'tutorialTestUser'
         - name: password
           in: query
           description: Password for new user. It needs to be at least 8 characters long.
           required: true
           type: string
+          default: '12345678'
       # responses:
       #   '200':
       #     description: Successful response
