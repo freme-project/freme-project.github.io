@@ -175,7 +175,7 @@ paths:
           type: string
           required: true
           description: Username of user to get information about
-
+          default: 'tutorialTestUser'
     delete:
       tags:
         - User
@@ -191,6 +191,7 @@ paths:
           description: The username of the user to delete
           required: true
           type: string
+          default: 'tutorialTestUser'
 
   /authenticate:
     post:
@@ -230,11 +231,13 @@ paths:
           description: Username of user to attempt to authenticate as
           required: true
           type: string
+          default: 'tutorialTestUser'
         - name: X-Auth-Password
           in: header
           description: Password of user to attempt to authenticate as
           required: true
           type: string
+          default: '12345678'
 
   /pipelining/templates/:
     post:
