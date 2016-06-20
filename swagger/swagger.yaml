@@ -1283,7 +1283,7 @@ paths:
           schema:
             type: string
           description: 'The document you want to convert into NIF.'
-
+          default: 'Welcome to Berlin, the capital of Germany.'
   /e-link/explore:
     post:
       tags:
