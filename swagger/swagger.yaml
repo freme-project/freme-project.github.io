@@ -54,10 +54,8 @@ tags:
             * application/n-triples, short form: n-triples
             * application/rdf+xml, short form: rdf-xml
             * text/n3, short form: n3
-            * text/html: Submit HTML as input. This will convert the HTML to NIF
-      and then send it to the underlying service.
-            * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will
-      convert the XLIFF to NIF and then send it to the underlying service.
+            * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
+            * application/x-xliff+xml: Submit XLIFF 1.2 as input. This will convert the XLIFF to NIF and then send it to the underlying service.
             * application/x-openoffice
       * outformat (short form: o):
         * output format
@@ -67,12 +65,9 @@ tags:
             * application/n-triples, short form: n-triples
             * application/rdf+xml, short form: rdf-xml
             * text/n3, short form: n3
-            * text/html: Submit HTML as input. This will convert the HTML to NIF
-      and then send it to the underlying service.
+            * text/html: Submit HTML as input. This will convert the HTML to NIF and then send it to the underlying service.
       * prefix (short form: p)
-        * Controls the url of rdf resources generated from plaintext. Has default
-      value "http://freme-project.eu/"
-      The following header values are used by all FREME e-Services
+        * Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/" The following header values are used by all FREME e-Services
       * Accept
         * possible values
           * text/n3
@@ -81,8 +76,7 @@ tags:
           * application/n-triples
           * application/rdf+xml
           * text/html
-        * When parameter outformat is set then the Accept header is not used by
-      FREME API.
+        * When parameter outformat is set then the Accept header is not used by FREME API.
       * Content-Type
         * possible values
           * text (plaintext)
@@ -94,8 +88,7 @@ tags:
           * application/x-xliff+xml
           * text/html
           * application/x-openoffice
-        * When parameter informat is set then the Content-Type header is not used
-      by FREME api
+        * When parameter informat is set then the Content-Type header is not used by FREME api
 schemes:
   - http
 paths:
