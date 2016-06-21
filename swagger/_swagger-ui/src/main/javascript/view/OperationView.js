@@ -440,6 +440,16 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
       opts.responseContentType = $('div select[name=responseContentType]', $(this.el)).val();
       opts.requestContentType = $('div select[name=parameterContentType]', $(this.el)).val();
+      
+      // overwrite content-type and accept header with header parameter values
+      // disable JSHint warning
+      /*jshint -W069 */
+      if(map['Accept']){ opts.responseContentType = map['Accept'];}
+      else if(map['accept']){ opts.responseContentType = map['accept'];}
+      if(map['Content-Type']){ opts.requestContentType = map['Content-Type'];}
+      else if(map['content-type']){ opts.requestContentType = map['content-type'];}
+      /*jshint +W069 */
+      
       $('.response_throbber', $(this.el)).show();
       if (isFileUpload) {
         $('.request_url', $(this.el)).html('<pre></pre>');

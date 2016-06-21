@@ -101,8 +101,6 @@ paths:
         Creates a new user. See the<a
         href="./../knowledge-base/freme-for-api-users/authentication.html" target="_blank">
         Authentication article</a> for detailed information.
-      produces:
-        - application/json
       parameters:
         - name: username
           in: query
@@ -130,8 +128,6 @@ paths:
       description: >
         Get information about all users in the system. You need to be
         authenticated as administrator to have access to this API call.
-      produces:
-        - application/json
 
   '/user/{username}':
     get:
@@ -160,8 +156,6 @@ paths:
               ]
           }
         </code></pre>
-      produces:
-        - application/json
       parameters:
         - name: username
           in: path
@@ -214,10 +208,6 @@ paths:
               &quot;token&quot;: &quot;f81ccf99-1d01-4e79-9a0b-8dfe84d8303c&quot;
           }
         </code></pre>
-      consumes:
-        - text/plain
-      produces:
-        - application/json
       parameters:
         - name: X-Auth-Username
           in: header
@@ -293,10 +283,6 @@ paths:
 
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - name: persist
           in: query
@@ -328,8 +314,6 @@ paths:
         - Pipelining
       summary: Get all pipelining templates
       description: Returns all visible pipelining templates
-      produces:
-        - application/json
 
   '/pipelining/templates/{id}':
     put:
@@ -341,10 +325,6 @@ paths:
 
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - name: id
           description: ID of the template you want to update
@@ -386,8 +366,6 @@ paths:
         - Pipelining
       summary: Get a specific pipelining template
       description: Returns the pipeline with the given id found on the server the request is sent to.
-      produces:
-        - application/json
       parameters:
         - name: id
           in: path
@@ -405,8 +383,6 @@ paths:
 
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
-      produces:
-        - application/json
       parameters:
         - name: id
           in: path
@@ -420,37 +396,43 @@ paths:
         - Pipelining
       summary: Pipelining with a template
       description: Use an existing pipelining template to perform your pipelining task
-      consumes:
-        - text/plain
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - text/n3
-        - text/xml
-        - text/html
-        - application/x-xliff+xml
-        - application/x-openoffice
-      produces:
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - text/n3
       parameters:
+        - name: Content-Type
+          in: header
+          type: string
+          enum:
+            - text/plain
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+            - text/n3
+            - text/xml
+            - text/html
+            - application/x-xliff+xml
+            - application/x-openoffice
+        - name: Accept
+          in: header
+          type: string
+          default: text/turtle
+          enum:
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - name: id
           in: path
           description: Id of the pipeline-template to be used
           required: true
-          type: string
-          default: '37'
+          type: integer
+          default: 42
         - name: body
           in: body
-          description: 'Input for pipeline chain, can be NIF or plain text'
+          description: 'Input for pipeline chain, the format depends on the first request of the pipeline.'
           required: true
-          default: 'Berlin is the capital of Germany.'
           schema:
             type: string
+            default: 'Berlin is the capital of Germany.'
         - name: stats
           required: false
           description: 'If true, adds timing statistics to the response: total duration of the pipeline and duration of each service called in the pipeline (in milliseconds).'
@@ -608,8 +590,6 @@ paths:
               }
             ]
           </code></pre>
-      consumes:
-        - application/json
       parameters:
         - name: body
           in: body
@@ -633,29 +613,37 @@ paths:
         - e-Entity
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
       description: "Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.\n"
-      
-      operationId: executeSpotlightNel
-      consumes:
-        - text/plain
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - text/n3
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - application/x-openoffice
-        - text/xml
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - text/xml
+
+      operationId: executeSpotlightNer
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/plain
+          type: string
+          enum:
+            - text/plain
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - text/n3
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - application/x-openoffice
+            - text/xml
+        - name: Accept
+          in: header
+          default: text/turtle
+          type: string
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - text/xml
         - name: input
           in: query
           description: The text to enrich.
@@ -670,9 +658,9 @@ paths:
           name: body
           description: The text to enrich.
           required: false
-          default: 'Welcome to Berlin, the capital of Germany.'
           schema:
             type: string
+            default: 'Welcome to Berlin, the capital of Germany.'
         - name: numLinks
           in: query
           description: The number of links from a knowledge base returned for each entity. Note that for some entities it might returned less links than requested. This might be due to the low number of links available. The maximum number of links that can be returned is 5.
@@ -761,29 +749,19 @@ paths:
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: createDataset
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-      produces:
-        - application/json
       parameters:
-        - name: informat
-          in: query
-          description: 'RDF serialization format of the dataset. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.'
-          required: false
+        - name: Content-Type
+          in: header
+          description: 'RDF serialization format of the dataset. Can be json-ld, turtle, n3, n-triples, rdf-xml.'
           type: string
-          default: turtle
           enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
-        - in: body
-          name: body
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+        - name: body
+          in: body
           description: 'The dataset. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.'
           required: false
           schema:
@@ -870,31 +848,26 @@ paths:
         [authentication article](../knowledge-base/freme-for-api-users/authentication.html)
         for further information.
       operationId: updateDataset
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
       parameters:
-        - name: informat
-          in: query
+        - name: Content-Type
+          in: header
           description: RDF serialization format of the dataset. Can be json-ld, turtle, n3, n-triples, rdf-xml. Overrides Content-Type header. Short form is f.
-          required: false
           type: string
-          default: turtle
           enum:
-            - json-ld
-            - turtle
-            - n3
-            - n-triples
-            - rdf-xml
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+        - name: Accept
+          in: header
+          type: string
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - in: body
           name: body
           description: The new dataset data. The format of the body can be json-ld, turtle, n3, n-triples, rdf-xml. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.
@@ -984,29 +957,36 @@ paths:
 
         </code></pre>
       operationId: executeFremeNer
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - text/plain
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - application/x-openoffice
-        - text/xml
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
       parameters:
+        - name: Content-Type
+          in: header
+          type: string
+          enum:
+            - text/turtle
+            - text/n3
+            - application/ld+json
+            - application/n-triples
+            - text/plain
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - application/x-openoffice
+            - text/xml
+        - name: Accept
+          in: header
+          type: string
+          default: text/turtle
+          enum:
+            - text/turtle
+            - text/n3
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
         - name: input
           in: query
-          description: The text to enrich. Can be either plaintext or NIF (see parameter informat). Short form is i.
+          description: The text to enrich. Can be either plaintext or NIF (see parameter Content-Type). Short form is i.
           required: false
           type: string
         - name: prefix
@@ -1076,8 +1056,6 @@ paths:
       summary: Get all postprocessing filters
       description: >
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
-      produces:
-        - application/json
 
     post:
       tags:
@@ -1089,10 +1067,6 @@ paths:
         the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article for further
         information. Ensure, that a filter with given `name` does not
         already exist. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html).
-      produces:
-        - application/json
-      consumes:
-        - text/plain
       parameters:
         - name: body
           in: body
@@ -1133,10 +1107,6 @@ paths:
         containing content are updated. So, if you just want to transfer the
         ownership or change the visibility without updating the SPARQL filter
         query, leave the body empty.
-      produces:
-        - application/json
-      consumes:
-        - text/plain
       parameters:
         - name: body
           in: body
@@ -1176,8 +1146,6 @@ paths:
         Deletes the filter with specified name. For more information on this feature,
         see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article. Requires
         [authentication](../knowledge-base/freme-for-api-users/authentication.html).
-      produces:
-        - application/json
       parameters:
         - name: name
           in: path
@@ -1194,8 +1162,6 @@ paths:
         For more information on this feature, see the
         [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html)
         article.
-      produces:
-        - application/json
       parameters:
         - name: name
           in: path
@@ -1214,22 +1180,30 @@ paths:
         as post body or as value of the NIF `input` parameter. For more
         information and a list of available filters, see the [Simply FREME output
         using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-      produces:
-        - text/comma-separated-values
-        - application/json
-        - text/xml
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/plain
+          type: string
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+        - name: Accept
+          in: header
+          type: string
+          default: text/comma-separated-values
+          enum:
+            - text/comma-separated-values
+            - application/json
+            - text/xml
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - name: input
           in: query
           required: false
@@ -1246,7 +1220,7 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
- 
+
   /toolbox/nif-converter:
     post:
       tags:
@@ -1257,31 +1231,39 @@ paths:
         [e-Internalisation](../knowledge-base/freme-for-api-users/eInternationalisation.html)
         or in the RDF formats supported by FREME into a NIF document with the
         RDF serialisation format specified by the `accept` header.
-      consumes:
-        - text/plain
-        - application/x-xliff+xml
-        - text/html
-        - text/xml
-        - application/x-openoffice
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/plain
+          type: string
+          enum:
+            - text/plain
+            - application/x-xliff+xml
+            - text/html
+            - text/xml
+            - application/x-openoffice
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+        - name: Accept
+          in: header
+          type: string
+          default: text/turtle
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - name: body
           in: body
           required: true
           schema:
             type: string
+            default: 'Welcome to Berlin, the capital of Germany.'
           description: 'The document you want to convert into NIF.'
-          default: 'Welcome to Berlin, the capital of Germany.'
   /e-link/explore:
     post:
       tags:
@@ -1299,14 +1281,19 @@ paths:
         - resource: `http://dbpedia.org/resource/Berlin`
 
         - endpoint: `http://dbpedia.org/sparql`
-      produces:
-        - text/turtle
-        - text/n3
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
       operationId: explore
       parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: text/turtle
+          enum:
+            - text/turtle
+            - text/n3
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - name: resource
           description: A URI of the resource which should be described. Note that the URI should be UTF-8 encoded.
           in: query
@@ -1382,19 +1369,29 @@ paths:
                     itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .
         </code></pre>
       operationId: enrich
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/turtle
+          required: true
+          type: string
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: text/turtle
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
         - in: body
           name: body
           description: 'The text to enrich with data. The format of the body can be text/turtle, application/ld+json, text/n3, application/n-triples, application/rdf+xml. The parameter input overrides the body.'
@@ -1415,8 +1412,6 @@ paths:
       summary: Returns a list of all templates in specified format.
       description: 'For a thorough list of templates, refer to <a href="list-templates.html"> our complete list of templates</a>'
       operationId: getAllTemplates
-      produces:
-        - application/json
 
     post:
       tags:
@@ -1497,10 +1492,6 @@ paths:
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: createTemplate
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - in: body
           name: body
@@ -1529,8 +1520,6 @@ paths:
       summary: Returns one specific template with specified ID in a specified format.
       description: Returns one specific template with specified ID in a specified format.
       operationId: getTemplateById
-      produces:
-        - application/json
       parameters:
         - name: templateid
           in: path
@@ -1548,10 +1537,6 @@ paths:
 
         This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
       operationId: updateTemplateById
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - in: body
           name: body
@@ -1699,10 +1684,6 @@ paths:
           * [A shared culture](https://drive.google.com/open?id=0B-qMtkPK-unYdWlHTWMyS2VaV28&authuser=0)
 
       operationId: htmlToEPub
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/epub+zip
       parameters:
         - in: formData
           name: htmlZip
@@ -1742,27 +1723,37 @@ paths:
         </code></pre>
 
       operationId: e-terminology
-      consumes:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - text/plain
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - text/xml
-        - application/x-openoffice
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - text/xml
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/plain
+          required: true
+          type: string
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - text/plain
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - text/xml
+            - application/x-openoffice
+        - name: Accept
+          in: header
+          type: string
+          default: text/turtle
+          required: true
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - text/xml
         - name: input
           in: query
           description: The text to annotate. Can be either plaintext or NIF. Short form is i.
@@ -1845,26 +1836,36 @@ paths:
         </code></pre>
 
       operationId: tildeTranslate
-      consumes:
-        - text/plain
-        - text/n3
-        - text/turtle
-        - application/x-xliff+xml
-        - application/ld+json
-        - application/n-triples
-        - text/html
-        - text/xml
-        - application/x-openoffice
-      produces:
-        - text/n3
-        - text/turtle
-        - application/ld+json
-        - application/n-triples
-        - application/rdf+xml
-        - application/x-xliff+xml
-        - text/html
-        - text/xml
       parameters:
+        - name: Content-Type
+          in: header
+          default: text/plain
+          type: string
+          required: true
+          enum:
+            - text/plain
+            - text/n3
+            - text/turtle
+            - application/x-xliff+xml
+            - application/ld+json
+            - application/n-triples
+            - text/html
+            - text/xml
+            - application/x-openoffice
+        - name: Accept
+          in: header
+          type: string
+          default: text/turtle
+          required: true
+          enum:
+            - text/n3
+            - text/turtle
+            - application/ld+json
+            - application/n-triples
+            - application/rdf+xml
+            - application/x-xliff+xml
+            - text/html
+            - text/xml
         - name: input
           in: query
           description: 'The string to be translated. Can be either plaintext or NIF. Short form is i. If set, it will be prefered over the body content.'
