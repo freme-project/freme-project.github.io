@@ -1332,7 +1332,7 @@ paths:
       parameters:
         - name: Content-Type
           in: header
-          default: text/plain
+          default: text/n3
           type: string
           enum:
             - text/n3
