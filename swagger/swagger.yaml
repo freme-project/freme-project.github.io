@@ -107,13 +107,11 @@ paths:
           description: Username of user to be created. It can only consist of characters from a-z and A-Z.
           required: true
           type: string
-          default: 'tutorialTestUser'
         - name: password
           in: query
           description: Password for new user. It needs to be at least 8 characters long.
           required: true
           type: string
-          default: '12345678'
       responses:
         '200':
           description: Successful response
@@ -174,7 +172,6 @@ paths:
           type: string
           required: true
           description: Username of user to get information about
-          default: 'tutorialTestUser'
           
       responses:
         '200':
@@ -197,7 +194,6 @@ paths:
           description: The username of the user to delete
           required: true
           type: string
-          default: 'tutorialTestUser'
           
       responses:
         '200':
@@ -239,13 +235,11 @@ paths:
           description: Username of user to attempt to authenticate as
           required: true
           type: string
-          default: 'tutorialTestUser'
         - name: X-Auth-Password
           in: header
           description: Password of user to attempt to authenticate as
           required: true
           type: string
-          default: '12345678'
       
       responses:
         '200':
@@ -1209,7 +1203,6 @@ paths:
           required: true
           description: Name of filter. Must be unique.
           type: string
-          default: 'tutorialTestFilter'
         - name: visibility
           in: query
           required: false
@@ -1296,7 +1289,6 @@ paths:
           required: true
           description: Name of filter to be updated.
           type: string
-          default: 'tutorialTestFilter'
           
       responses:
         '200':
