@@ -114,6 +114,12 @@ paths:
           required: true
           type: string
           default: '12345678'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+      
       # responses:
       #   '200':
       #     description: Successful response
@@ -128,6 +134,12 @@ paths:
       description: >
         Get information about all users in the system. You need to be
         authenticated as administrator to have access to this API call.
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/user/{username}':
     get:
@@ -163,6 +175,13 @@ paths:
           required: true
           description: Username of user to get information about
           default: 'tutorialTestUser'
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+    
     delete:
       tags:
         - User
@@ -179,6 +198,12 @@ paths:
           required: true
           type: string
           default: 'tutorialTestUser'
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /authenticate:
     post:
@@ -221,6 +246,12 @@ paths:
           required: true
           type: string
           default: '12345678'
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /pipelining/templates/:
     post:
@@ -308,12 +339,26 @@ paths:
           required: false
           type: string
           description: 'Sets the description of the new pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
+    
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+
 
     get:
       tags:
         - Pipelining
       summary: Get all pipelining templates
       description: Returns all visible pipelining templates
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/pipelining/templates/{id}':
     put:
@@ -360,6 +405,14 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
+
+
 
     get:
       tags:
@@ -373,6 +426,12 @@ paths:
           description: ID of template to return
           default: '37'
           type: string
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
 
     delete:
       tags:
@@ -389,6 +448,12 @@ paths:
           required: true
           type: string
           description: ID of template that will be deleted
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/pipelining/chain/{id}':
     post:
@@ -442,6 +507,12 @@ paths:
           default: 'false'
           in: query
           type: string
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /pipelining/chain:
     post:
@@ -606,6 +677,12 @@ paths:
           default: 'false'
           in: query
           type: string
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
 
   /e-entity/dbpedia-spotlight/documents:
     post:
@@ -681,6 +758,12 @@ paths:
           required: false
           type: string
           default: '0.3'
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-entity/freme-ner/datasets:
     get:
@@ -689,6 +772,11 @@ paths:
       summary: Get info about all available datasets
       description: Get info about all available datasets
       operationId: getAllDatasets
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     post:
       tags:
@@ -814,6 +902,12 @@ paths:
             - private
           type: string
           description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/e-entity/freme-ner/datasets/{name}':
     get:
@@ -829,6 +923,12 @@ paths:
           description: The name of the requested dataset.
           required: true
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     put:
       tags:
@@ -910,6 +1010,12 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
 
     delete:
       tags:
@@ -929,6 +1035,12 @@ paths:
           description: The name of the dataset to remove
           required: true
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-entity/freme-ner/documents:
     post:
@@ -1048,6 +1160,12 @@ paths:
           description: 'Using the numLinks parameter one can specify the maximum number of links to be assigned to an entity. By default only one link is returned. The maximum possible number for this parameter is 5.'
           required: false
           type: integer
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
 
   /toolbox/convert/manage:
     get:
@@ -1056,6 +1174,13 @@ paths:
       summary: Get all postprocessing filters
       description: >
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string  
+
 
     post:
       tags:
@@ -1093,6 +1218,12 @@ paths:
           required: false
           type: string
           description: Sets a description for this filter.
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/toolbox/convert/manage/{name}':
     put:
@@ -1137,6 +1268,12 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string    
 
     delete:
       tags:
@@ -1152,6 +1289,12 @@ paths:
           required: true
           description: Name of filter to be updated.
           type: string
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     get:
       tags:
@@ -1169,6 +1312,12 @@ paths:
           description: Name of filter to be returned
           type: string
           default: 'extract-entities-only'
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/toolbox/convert/documents/{name}':
     post:
@@ -1220,6 +1369,12 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /toolbox/nif-converter:
     post:
@@ -1264,6 +1419,13 @@ paths:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
           description: 'The document you want to convert into NIF.'
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+            
   /e-link/explore:
     post:
       tags:
@@ -1313,6 +1475,12 @@ paths:
           enum:
             - sparql
             - ldf
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-link/documents/:
     post:
@@ -1404,6 +1572,12 @@ paths:
           required: true
           type: integer
           format: int32
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-link/templates/:
     get:
@@ -1412,6 +1586,12 @@ paths:
       summary: Returns a list of all templates in specified format.
       description: 'For a thorough list of templates, refer to <a href="list-templates.html"> our complete list of templates</a>'
       operationId: getAllTemplates
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     post:
       tags:
@@ -1512,6 +1692,11 @@ paths:
           required: false
           type: string
           description: 'Sets the description of the new template. If this parameter is present, it overwrites the content of the JSON description parameter.'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   '/e-link/templates/{templateid}':
     get:
@@ -1526,6 +1711,12 @@ paths:
           description: The ID of the requested template.
           required: true
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     put:
       tags:
@@ -1567,6 +1758,7 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
+      
 
     delete:
       tags:
