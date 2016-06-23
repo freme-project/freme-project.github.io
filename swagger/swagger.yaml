@@ -381,6 +381,7 @@ paths:
           description: 'Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`'
           required: false
           type: string
+          default: 'false'
         - name: body
           in: body
           description: 'The pipeline template as JSON, as described in `POST /pipelining/templates/`. Leave this empty, if you just want to update the metadata.'
@@ -726,6 +727,7 @@ paths:
           description: The text to enrich.
           required: false
           type: string
+          default: 'Welcome to Berlin, the capital of Germany.'
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1073,6 +1075,7 @@ paths:
         - name: Content-Type
           in: header
           type: string
+          default: 'text/plain'
           enum:
             - text/turtle
             - text/n3
@@ -1101,6 +1104,7 @@ paths:
           description: The text to enrich. Can be either plaintext or NIF (see parameter Content-Type). Short form is i.
           required: false
           type: string
+          default: 'Welcome to Berlin, the capital of Germany.'
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1199,11 +1203,13 @@ paths:
           schema:
             type: string
           description: A valid SPARQL SELECT query as plain text.
+          default: 'PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}' 
         - name: name
           in: query
           required: true
           description: Name of filter. Must be unique.
           type: string
+          default: 'tutorialTestFilter'
         - name: visibility
           in: query
           required: false
@@ -1218,6 +1224,7 @@ paths:
           required: false
           type: string
           description: Sets a description for this filter.
+          default: 'extracts entities only.'
       
       responses:
         '200':
@@ -1289,6 +1296,7 @@ paths:
           required: true
           description: Name of filter to be updated.
           type: string
+          default: 'tutorialTestFilter'
           
       responses:
         '200':
@@ -1461,11 +1469,13 @@ paths:
           in: query
           required: true
           type: string
+          default: 'http://dbpedia.org/resource/Berlin'
         - name: endpoint
           description: A URL of the endpoint which should be used to retrieve info about the resource. Note that the URL should be UTF-8 encoded
           in: query
           required: true
           type: string
+          default: 'http://dbpedia.org/sparql'
         - name: endpoint-type
           description: The type of the endpoint
           in: query
@@ -1572,6 +1582,7 @@ paths:
           required: true
           type: integer
           format: int32
+          default: '1'
       
       responses:
         '200':
@@ -1711,6 +1722,7 @@ paths:
           description: The ID of the requested template.
           required: true
           type: string
+          default: '1'
       
       responses:
         '200':
@@ -1988,11 +2000,13 @@ paths:
           description: 'Source language, e.g. "de","en". Language of submitted text. A list of supported language codes is [here](https://term.tilde.com/resources).'
           required: true
           type: string
+          default: 'en'
         - name: target-lang
           in: query
           description: 'Target language, e.g. "de", "en". Language for targeted terms. A list of supported language codes is [here](https://term.tilde.com/resources).'
           required: true
           type: string
+          default: 'es'
         - name: collection
           in: query
           required: false
@@ -2102,16 +2116,19 @@ paths:
           required: false
           schema:
             type: string
+          default: 'Welcome to Berlin, the capital of Germany.'
         - name: source-lang
           in: query
           description: 'Source language, e.g. "en". A list of available language pairs is [here](https://services.tilde.com/translationsystems).'
           required: true
           type: string
+          default: 'en'
         - name: target-lang
           in: query
           description: 'Target language, e.g. "de". A list of available language pairs is [here](https://services.tilde.com/translationsystems).'
           required: true
           type: string
+          default: 'de'
         - name: key
           description: 'A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems'
           required: false
