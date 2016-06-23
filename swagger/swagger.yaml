@@ -1759,6 +1759,11 @@ paths:
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
       
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
     delete:
       tags:
@@ -1777,6 +1782,12 @@ paths:
           description: The id of the template to delete.
           required: true
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-publishing/html:
     post:
@@ -1892,6 +1903,12 @@ paths:
           description: Metadata JSON as specified above
           type: string
           x-force-textarea: true
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-terminology/tilde:
     post:
@@ -2000,6 +2017,12 @@ paths:
           required: false
           type: string
           in: query
+          
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /e-translation/tilde:
     post:
@@ -2104,6 +2127,12 @@ paths:
           required: false
           description: 'select translation system by ID [an alternative to source, target language and domain selection]. ID of public translation system can be retrieved at https://services.tilde.com/translationsystems or private system ID can be found at portal http://tilde.com/mt with authentication [optional, if omitted then source and target languages and also domain parameters are used]'
           type: string
+      
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
 definitions:
   File:
