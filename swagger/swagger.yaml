@@ -1484,6 +1484,7 @@ paths:
           required: true
           description: Name of filter to execute against
           type: string
+          default: 'extract-entities-only'
       
       responses:
         '200':
