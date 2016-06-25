@@ -419,7 +419,7 @@ paths:
           in: path
           required: true
           description: ID of template to return
-          default: '37'
+          default: '42'
           type: string
           
       responses:
@@ -471,6 +471,7 @@ paths:
             - text/html
             - application/x-xliff+xml
             - application/x-openoffice
+          default: 'text/plain'
         - name: Accept
           in: header
           type: string
@@ -844,6 +845,7 @@ paths:
             - application/ld+json
             - application/n-triples
             - application/rdf+xml
+          default: 'text/n3'
         - name: body
           in: body
           description: 'The dataset. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.'
@@ -884,6 +886,7 @@ paths:
             - es
             - nl
             - ru
+          default: 'en'
         - name: properties
           description: 'Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`.'
           in: query
@@ -1329,6 +1332,118 @@ paths:
         as post body or as value of the NIF `input` parameter. For more
         information and a list of available filters, see the [Simply FREME output
         using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
+        
+        This example shows a NIF document that can be processed by the service:
+        
+        <pre lang="turtle"><code>
+          @prefix dsp:   &lt;http://dublincore.org/dc-dsp#&gt; .
+          @prefix schema: &lt;http://schema.org/&gt; .
+          @prefix olia:  &lt;http://purl.org/olia/olia.owl#&gt; .
+          @prefix rutg:  &lt;http://rdfunit.aksw.org/data/generators#&gt; .
+          @prefix owl:   &lt;http://www.w3.org/2002/07/owl#&gt; .
+          @prefix rlog:  &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/rlog#&gt; .
+          @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+          @prefix itsrdf: &lt;http://www.w3.org/2005/11/its/rdf#&gt; .
+          @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+          @prefix rutp:  &lt;http://rdfunit.aksw.org/data/patterns#&gt; .
+          @prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+          @prefix oslc:  &lt;http://open-services.net/ns/core#&gt; .
+          @prefix p:     &lt;http://127.0.0.1:9995/spotlight#&gt; .
+          @prefix rut:   &lt;http://rdfunit.aksw.org/ns/core#&gt; .
+          @prefix rutr:  &lt;http://rdfunit.aksw.org/data/results#&gt; .
+          @prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+          @prefix rutt:  &lt;http://rdfunit.aksw.org/data/tests#&gt; .
+          @prefix spin:  &lt;http://spinrdf.org/spin#&gt; .
+          @prefix ruts:  &lt;http://rdfunit.aksw.org/data/testsuite#&gt; .
+          @prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+          @prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+          @prefix dc:    &lt;http://purl.org/dc/elements/1.1/&gt; .
+          
+          &lt;http://freme-project.eu/#char=0,6&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;Berlin&quot; ;
+                  nif:beginIndex        &quot;0&quot; ;
+                  nif:endIndex          &quot;6&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=7,9&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Berlin&gt; .
+          
+          &lt;http://freme-project.eu/#char=14,21&gt;
+                  a                     nif:Word , nif:RFC5147String ;
+                  nif:anchorOf          &quot;capital&quot; ;
+                  nif:beginIndex        &quot;14&quot; ;
+                  nif:endIndex          &quot;21&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=22,24&gt; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=10,13&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Capital_city&gt; .
+          
+          &lt;http://freme-project.eu/#char=22,24&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;of&quot; ;
+                  nif:beginIndex        &quot;22&quot; ;
+                  nif:endIndex          &quot;24&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=25,32&gt; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=14,21&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; .
+          
+          &lt;http://freme-project.eu/#char=0,33&gt;
+                  a                     nif:Sentence , nif:Context , nif:RFC5147String ;
+                  nif:anchorOf          &quot;Berlin is the capital of Germany.&quot; ;
+                  nif:beginIndex        &quot;0&quot; ;
+                  nif:endIndex          &quot;33&quot; ;
+                  nif:firstWord         &lt;http://freme-project.eu/#char=0,6&gt; ;
+                  nif:isString          &quot;Berlin is the capital of Germany.&quot; ;
+                  nif:lastWord          &lt;http://freme-project.eu/#char=32,33&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:word              &lt;http://freme-project.eu/#char=25,32&gt; , &lt;http://freme-project.eu/#char=14,21&gt; , &lt;http://freme-project.eu/#char=22,24&gt; , &lt;http://freme-project.eu/#char=10,13&gt; , &lt;http://freme-project.eu/#char=7,9&gt; .
+          
+          &lt;http://freme-project.eu/#char=25,32&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;Germany&quot; ;
+                  nif:beginIndex        &quot;25&quot; ;
+                  nif:endIndex          &quot;32&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=32,33&gt; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=22,24&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Germany&gt; .
+          
+          &lt;http://freme-project.eu/#char=10,13&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;the&quot; ;
+                  nif:beginIndex        &quot;10&quot; ;
+                  nif:endIndex          &quot;13&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=14,21&gt; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=7,9&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; .
+          
+          &lt;http://freme-project.eu/#char=7,9&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;is&quot; ;
+                  nif:beginIndex        &quot;7&quot; ;
+                  nif:endIndex          &quot;9&quot; ;
+                  nif:nextWord          &lt;http://freme-project.eu/#char=10,13&gt; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=0,6&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; .
+          
+          &lt;http://freme-project.eu/#char=32,33&gt;
+                  a                     nif:RFC5147String , nif:Word ;
+                  nif:anchorOf          &quot;.&quot; ;
+                  nif:beginIndex        &quot;32&quot; ;
+                  nif:endIndex          &quot;33&quot; ;
+                  nif:previousWord      &lt;http://freme-project.eu/#char=25,32&gt; ;
+                  nif:referenceContext  &lt;http://freme-project.eu/#char=0,33&gt; ;
+                  nif:sentence          &lt;http://freme-project.eu/#char=0,33&gt; .
+          
+        
+        </code></pre>
+
       parameters:
         - name: Content-Type
           in: header
@@ -1419,6 +1534,7 @@ paths:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
           description: 'The document you want to convert into NIF.'
+          default: 'Welcome to Berlin, the capital of Germany.'
       
       responses:
         '200':
@@ -2064,7 +2180,7 @@ paths:
       parameters:
         - name: Content-Type
           in: header
-          default: text/plain
+          default: text/n3
           type: string
           required: true
           enum:
@@ -2108,7 +2224,6 @@ paths:
           required: false
           schema:
             type: string
-          default: 'Welcome to Berlin, the capital of Germany.'
         - name: source-lang
           in: query
           description: 'Source language, e.g. "en". A list of available language pairs is [here](https://services.tilde.com/translationsystems).'
