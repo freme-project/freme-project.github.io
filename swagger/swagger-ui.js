@@ -20638,10 +20638,18 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       // overwrite content-type and accept header with header parameter values
       // disable JSHint warning
       /*jshint -W069 */
-      if(map['Accept']){ opts.responseContentType = map['Accept'];}
-      else if(map['accept']){ opts.responseContentType = map['accept'];}
-      if(map['Content-Type']){ opts.requestContentType = map['Content-Type'];}
-      else if(map['content-type']){ opts.requestContentType = map['content-type'];}
+      if(map['Accept']){ 
+        opts.responseContentType = map['Accept'];
+      } else if(map['accept']){ 
+        opts.responseContentType = map['accept'];
+      }
+      if(map['Content-Type']){ 
+        opts.requestContentType = map['Content-Type'];
+        map.parameterContentType = opts.requestContentType;
+      } else if(map['content-type']){ 
+        opts.requestContentType = map['content-type'];
+        map.parameterContentType = opts.requestContentType;
+      }
       /*jshint +W069 */
       
       $('.response_throbber', $(this.el)).show();
