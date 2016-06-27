@@ -95,6 +95,7 @@ You can use the [FREME api documentation page]({{site.baseurl | prepend: site.ur
 ```
 curl -X DELETE --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/user/YOUR_USERNAME"
 ```
+It is not yet possible to delete a user who still owns resources such as datasets or templates. This will be implemented.
 
 ## User roles
 
