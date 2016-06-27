@@ -789,10 +789,17 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     $('.response_throbber', $(this.el)).hide();
 
 
-    // adds curl output
+    //// adds curl output ////
+    // add space before a prefixing '@' to avoid curl trying to load a file
+    if ((typeof this.map.body === 'string' || this.map.body instanceof String) && this.map.body.charAt(0) === '@'){
+      this.map.body = ' '+this.map.body;
+    }
+
+    console.info(this.map.body);
     var curlCommand = this.model.asCurl(this.map, {responseContentType: contentType});
     curlCommand = curlCommand.replace('!', '&#33;');
     $( 'div.curl', $(this.el)).html('<pre>' + _.escape(curlCommand) + '</pre>');
+    //////////////////////////
 
     // only highlight the response if response is less than threshold, default state is highlight response
     var opts = this.options.swaggerOptions;

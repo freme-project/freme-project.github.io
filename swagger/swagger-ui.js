@@ -20984,6 +20984,13 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
 
     // adds curl output
+
+    if ((typeof this.map.body === 'string' || this.map.body instanceof String) && this.map.body.charAt(0) === '@'){
+      console.info('HERE');
+      this.map.body = ' '+this.map.body;
+    }
+
+    console.info(this.map.body);
     var curlCommand = this.model.asCurl(this.map, {responseContentType: contentType});
     curlCommand = curlCommand.replace('!', '&#33;');
     $( 'div.curl', $(this.el)).html('<pre>' + _.escape(curlCommand) + '</pre>');
