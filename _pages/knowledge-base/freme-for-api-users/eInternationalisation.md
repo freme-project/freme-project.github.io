@@ -75,8 +75,8 @@ Not available.
 
 ## Round-tripping: how does it work?
 
-The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. 
-At the moment the round-tripping is only available for HTML documents. Users must specify `text/html` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
+The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. It is restricted to write named entity annotations and named entity links into the output document.
+At the moment the round-tripping is only available for english HTML documents. Users must specify `text/html` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
 
 This section explains how the e-Internationalisation service implements this functionality.
 
