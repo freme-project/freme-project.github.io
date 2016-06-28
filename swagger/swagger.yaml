@@ -1153,10 +1153,9 @@ paths:
           type: string
         - name: types
           in: query
-          description: 'Takes as input a list of one or more entity types separated by a comma. The types are URLs of ontology classes. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
+          description: 'Takes as input a list of one or more entity types separated by a comma. The types are URLs of ontology classes like `http://dbpedia.org/ontology/Location`. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
           required: false
           type: string
-          default: 'http://dbpedia.org/ontology/Location'
         - name: numLinks
           in: query
           description: 'Using the numLinks parameter one can specify the maximum number of links to be assigned to an entity. By default only one link is returned. The maximum possible number for this parameter is 5.'
