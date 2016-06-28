@@ -1786,7 +1786,7 @@ paths:
         However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):
 
         <pre lang="bash"><code>
-          curl -v -d @example.ttl -X POST -H "Content-Type: text/turtle" "http://localhost:8080/e-link/documents?templateid=116&my_limit=5"
+          curl -v -d @example.ttl -X POST -H "Content-Type: text/turtle" "http://api.freme-project.eu/current/e-link/documents?templateid=116&my_limit=2"
         </code></pre>
 
 
