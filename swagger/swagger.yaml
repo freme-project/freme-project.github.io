@@ -867,7 +867,7 @@ paths:
           description: 'This parameter should be used in combination with the "endpoint" parameter. The value of the sparql parameter is a SPARQL query which selects subset of a dataset for import in FREME NER.'
           required: false
           type: string
-          x-force-textarea: true
+          format: text
         - name: endpoint
           in: query
           description: 'a SPARQL endpoint against which the SPARQL query specified with the "sparql" parameter should be executed. The endpoint parameter makes sense to use only in combination with the "sparql" parameter. An example is "http://dbpedia.org/sparql" '
@@ -891,7 +891,7 @@ paths:
           description: 'Add properties you want to index (see Note 1). If you want to add more than one property, separate them by comma, e.g. `properties=http://www.example.com/prop1,http://www.example.com/prop2`.'
           in: query
           type: string
-          x-force-textarea: true
+          format: text
         - name: visibility
           in: query
           required: false
@@ -2023,7 +2023,7 @@ paths:
           required: true
           description: Metadata JSON as specified above
           type: string
-          x-force-textarea: true
+          format: text
       
       responses:
         '200':
@@ -2213,7 +2213,7 @@ paths:
           description: 'The string to be translated. Can be either plaintext or NIF. Short form is i. If set, it will be prefered over the body content.'
           required: false
           type: string
-          x-force-textarea: true
+          format: text
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'

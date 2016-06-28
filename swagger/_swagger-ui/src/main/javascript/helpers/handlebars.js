@@ -41,7 +41,11 @@ Handlebars.registerHelper('renderTextParam', function(param) {
         result = '<textarea class=\'body-textarea' + (param.required ? ' required' : '') + '\' name=\'' + param.name + '\'' + idAtt + dataVendorExtensions;
         result += ' placeholder=\'Provide multiple values in new lines' + (param.required ? ' (at least one required).' : '.') + '\'>';
         result += defaultValue + '</textarea>';
-    } else {
+    } if(param.format && param.format === 'text'){
+        result = '<textarea class=\'body-textarea' + (param.required ? ' required' : '') + '\' name=\'' + param.name + '\'' + idAtt + dataVendorExtensions;
+        result += ' placeholder=\'' + (param.required ? '(required)' : '') + '\'>';
+        result += defaultValue + '</textarea>';
+    }else {
         var parameterClass = 'parameter';
         if(param.required) {
           parameterClass += ' required';

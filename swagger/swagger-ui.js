@@ -358,7 +358,11 @@ Handlebars.registerHelper('renderTextParam', function(param) {
         result = '<textarea class=\'body-textarea' + (param.required ? ' required' : '') + '\' name=\'' + param.name + '\'' + idAtt + dataVendorExtensions;
         result += ' placeholder=\'Provide multiple values in new lines' + (param.required ? ' (at least one required).' : '.') + '\'>';
         result += defaultValue + '</textarea>';
-    } else {
+    } if(param.format && param.format === 'text'){
+        result = '<textarea class=\'body-textarea' + (param.required ? ' required' : '') + '\' name=\'' + param.name + '\'' + idAtt + dataVendorExtensions;
+        result += ' placeholder=\'' + (param.required ? '(required)' : '') + '\'>';
+        result += defaultValue + '</textarea>';
+    }else {
         var parameterClass = 'parameter';
         if(param.required) {
           parameterClass += ' required';
@@ -18977,6 +18981,10 @@ module.exports = function(arr, fn, initial){
  /*global JSONEditor*/
 'use strict';
 
+ // Std level is 3, when set to 0, handlebars will log all compilation results
+ Handlebars.logger.level = 0;
+ console.info('set handlebar template logging to: '+ Handlebars.logger.level);
+ 
 window.SwaggerUi = Backbone.Router.extend({
 
   dom_id: 'swagger_ui',
@@ -20983,10 +20991,9 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     $('.response_throbber', $(this.el)).hide();
 
 
-    // adds curl output
-
+    //// adds curl output ////
+    // add space before a prefixing '@' to avoid curl trying to load a file
     if ((typeof this.map.body === 'string' || this.map.body instanceof String) && this.map.body.charAt(0) === '@'){
-      console.info('HERE');
       this.map.body = ' '+this.map.body;
     }
 
@@ -20994,6 +21001,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     var curlCommand = this.model.asCurl(this.map, {responseContentType: contentType});
     curlCommand = curlCommand.replace('!', '&#33;');
     $( 'div.curl', $(this.el)).html('<pre>' + _.escape(curlCommand) + '</pre>');
+    //////////////////////////
 
     // only highlight the response if response is less than threshold, default state is highlight response
     var opts = this.options.swaggerOptions;

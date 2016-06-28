@@ -1,6 +1,10 @@
  /*global JSONEditor*/
 'use strict';
 
+ // Std level is 3, when set to 0, handlebars will log all compilation results
+ Handlebars.logger.level = 0;
+ console.info('set handlebar template logging to: '+ Handlebars.logger.level);
+ 
 window.SwaggerUi = Backbone.Router.extend({
 
   dom_id: 'swagger_ui',
