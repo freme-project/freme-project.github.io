@@ -66,23 +66,6 @@ For the sake of completeness, below are the lists of supported ITS 2.0 categorie
 * Text Analysis
 * Provenance
 * Localization Quality Issue
-<p>The proxy filter is configured using application properties, e.g. in the configuration file application.properties. The configuration has this form:</p>
-
-<pre>
-proxy.proxy-id.servlet_url: /e-entity/freme-ner/documents
-proxy.proxy-id.target_url: http://example.org/freme-ner
-</pre>
-
-<p>Each proxy configuration consists of two lines. The first line configures the API endpoint on the proxy server that the server listens on. The second line configures the destination URL to which requests are being proxied. Each configuration option consists of three segments: proxy, proxy-id and servlet_url / target_url. The first segment is always the same for the proxy configurations. The second segment denotes the ID of this proxy. When configuring multiple proxies then different proxies can be distinguished by their ID.</p>
-
-<h3>Example configuration</h3>
-
-This example confiugration configures FREME to proxy all requests to /e-entity/freme-ner/documents to a remote FREME NER location.
-
-<pre>
-proxy.freme-ner-documents.servlet_url: /e-entity/freme-ner/documents
-proxy.freme-ner-documents.target_url: http://rv2625.1blu.de:7001/e-entity/freme-ner/documents
-</pre>
 * Localization Quality Rating
 * Allowed Characters
 * Storage Size
