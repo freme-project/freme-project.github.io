@@ -61,7 +61,11 @@ spring.jpa.hibernate.ddl-auto=update</code></pre>
 		<h5>spring.jpa.hibernate.ddl-auto</h5>
 		<p>You can configure FREME to generate database schemas for you using this configuration value. Possible values are none (do not auto-generate anything), update (update table schema when it is not up to date) and create-drop (drop existing schema and create a new schema upon every start). Default value is none. For production scenarios we recommend update. You can find more information on automatic schema generation in the offical Spring documentation. </p>
 	</li>
-		 
+	<li>
+		<h5>freme.einternationalization.endpoint-blacklist</h5>
+		<p>This parameter can be used to exclude the internalisation filter for certain endpoints. It accepts a comma seperated list of regular expressions which will be matched with the endpoint subpath.</p>
+		<pre><code>freme.einternationalization.endpoint-blacklist = /toolbox/convert/.*,/e-entity/freme-ner/documents.*</code></pre>
+	</li>	 
 		 		
 		
 </ul>
