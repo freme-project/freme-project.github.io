@@ -802,9 +802,9 @@ paths:
         <pre lang=\"sparql\"><code>
           SELECT ?res ?label
           WHERE { ?res &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; ?label .
-            ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; \n
+            ?res &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; 
             &lt;http://dbpedia.org/ontology/Country&gt; FILTER ( strstarts(str(?res), &quot;http://dbpedia.org/&quot;) )
-          } ORDER BY ?res LIMIT 500 OFFSET 500&#39;
+          } ORDER BY ?res LIMIT 500 OFFSET 500
         </code></pre>
 
 
