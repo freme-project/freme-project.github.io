@@ -13,7 +13,7 @@ multipart.maxRequestSize: 2048MB
 workspace.location=workspace</code></pre>
 
 <p> Each non-empty line contains a configuration option. The first line assigns the value 8080 to configuration option <code>server.port</code>. </p>
-<p> If you are interested in loading the default FREME entities like templates or sparqle-converters into your FREME application, have a look at the <a href="/initialising-freme.html">Initialising FREME article</a>.</p>
+<p> If you are interested in loading the default FREME entities like templates or sparqle-converters into your FREME application, have a look at the <a href="../freme-for-sysadmins/initialising-freme.html">Initialising FREME article</a>.</p>
 
 <h2><strong>List of available configuration options </strong></h2>
 <ul>
@@ -63,8 +63,9 @@ spring.jpa.hibernate.ddl-auto=update</code></pre>
 	</li>
 	<li>
 		<h5>freme.einternationalization.endpoint-blacklist</h5>
-		<p>This parameter can be used to exclude the internalisation filter for certain endpoints. It accepts a comma seperated list of regular expressions which will be matched with the endpoint subpath.</p>
-		<pre><code>freme.einternationalization.endpoint-blacklist = /toolbox/convert/.*,/e-entity/freme-ner/documents.*</code></pre>
+		<p>This parameter can be used to exclude the <a href="../freme-for-api-users/eInternationalisation.html">internalisation</a> filter for certain endpoints. It accepts a comma seperated list of regular expressions which will be matched with the endpoint subpath.</p>
+		<p>Use this, for instance, if you want to disable internalisation functionality for endpoints which are proxied to another FREME instance which already uses the internalisation filter.</p>
+		<pre><code>freme.einternationalization.endpoint-blacklist = /e-entity/freme-ner/documents.*</code></pre>
 	</li>	 
 		 		
 		
