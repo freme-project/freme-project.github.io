@@ -11,33 +11,35 @@ pos: 4.7
 This article explains the different FREME repositories on GitHub. FREME maintains an organisation on GitHub. The main page of this organisation is [https://github.com/freme-project](https://github.com/freme-project).
 
 [technical-discussion](https://github.com/freme-project/technical-discussion)
---------------------
+---------------------
 This Repository is our meta repository for technical discussion and documentation. It does not contain any source codes. We use it for
 
  * General technical discussion
  * Specification of general features
  * Wiki for documentation and knowledge base
 
-[FREME parent](https://github.com/freme-project/freme-parent)
-----------
-
-[FREME common](https://github.com/freme-project/FREMECommon)
-----------
-
 [e-Services](https://github.com/freme-project/e-services)
-----------
-
-[Basic-Services](https://github.com/freme-project/basic-services)
-----------
-
-
-[FREME packages](https://github.com/freme-project/freme-packages)
---------------------
-This repository holds runnable packages of FREME.
+------------
 
 [FREME NER](https://github.com/freme-project/freme-ner)
-----------
+-----------
 Holds codes and implementation task issues for FREME Named Entity Recognizer.
+
+[Basic-Services](https://github.com/freme-project/basic-services)
+----------------
+
+[FREME common](https://github.com/freme-project/FREMECommon)
+--------------
+Holds codes commonly used across multiple FREME repositories.
+
+[FREME parent](https://github.com/freme-project/freme-parent)
+--------------
+
+[FREME packages](https://github.com/freme-project/freme-packages)
+----------------
+This repository holds runnable packages of FREME.
+
+
 
 Depricated Repositories
 -----------------------
