@@ -18,36 +18,46 @@ This Repository is our meta repository for technical discussion and documentatio
  * Specification of general features
  * Wiki for documentation and knowledge base
 
+[freme-parent](https://github.com/freme-project/freme-parent)
+----------
+
+[FREMECommon](https://github.com/freme-project/FREMECommon)
+----------
+
+[e-services](https://github.com/freme-project/e-services)
+----------
+
+[basic-services](https://github.com/freme-project/basic-services)
+----------
+
+
 [FREME packages](https://github.com/freme-project/freme-packages)
 --------------------
 This repository holds runnable packages of FREME.
-
-[Broker](https://github.com/freme-project/Broker)
------------
-
-This repository is deprecated. It has moved to the [freme-packages](https://github.com/freme-project/freme-packages) repository. It is used only to keep old issues.
-
-[e-Entity](https://github.com/freme-project/e-Entity)
----------
-This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) It is used only to keep old issues.
-	
-[e-Link](https://github.com/freme-project/e-Link)
----------
-This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) It is used only to keep old issues.
-
-
-[e-Publishing](https://github.com/freme-project/e-Publishing)
-------------
-Holds codes and implementation task issues for e-Publishing service.
-
-[e-Internationalization](https://github.com/freme-project/e-Internationalization)
-------------------------
-Holds codes and implementation task issues for e-Internationalization.
 
 [freme-ner](https://github.com/freme-project/freme-ner)
 ----------
 Holds codes and implementation task issues for FREME Named Entity Recognizer.
 
+Depricated Repositories
+-----------------------
+
+### [Broker](https://github.com/freme-project/Broker)
+This repository is deprecated. It has moved to the [freme-packages](https://github.com/freme-project/freme-packages) repository. It is used only to keep old issues.
+
+### [e-Entity](https://github.com/freme-project/e-Entity)
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) repository. It is used only to keep old issues.
+	
+### [e-Link](https://github.com/freme-project/e-Link)
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/e-services) repository. It is used only to keep old issues.
+
+
+### [e-Publishing](https://github.com/freme-project/e-Publishing)
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/basic-services) repository. It is used only to keep old issues.
+
+### [e-Internationalization](https://github.com/freme-project/e-Internationalization)
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/basic-services) repository, see `/internalization`. It is used only to keep old issues.
+
 [pipelines](https://github.com/freme-project/pipelines)
 -----------
-Holds codes and implementation task issues for the pipelining service.
+This repository is deprecated. It has moved to [e-services](https://github.com/freme-project/basic-services) repository, see `/controllers/pipelines`. It is used only to keep old issues.
