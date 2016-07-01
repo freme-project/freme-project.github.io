@@ -18,16 +18,16 @@ This Repository is our meta repository for technical discussion and documentatio
  * Specification of general features
  * Wiki for documentation and knowledge base
 
-[freme-parent](https://github.com/freme-project/freme-parent)
+[FREME parent](https://github.com/freme-project/freme-parent)
 ----------
 
-[FREMECommon](https://github.com/freme-project/FREMECommon)
+[FREME common](https://github.com/freme-project/FREMECommon)
 ----------
 
-[e-services](https://github.com/freme-project/e-services)
+[e-Services](https://github.com/freme-project/e-services)
 ----------
 
-[basic-services](https://github.com/freme-project/basic-services)
+[Basic-Services](https://github.com/freme-project/basic-services)
 ----------
 
 
@@ -35,7 +35,7 @@ This Repository is our meta repository for technical discussion and documentatio
 --------------------
 This repository holds runnable packages of FREME.
 
-[freme-ner](https://github.com/freme-project/freme-ner)
+[FREME NER](https://github.com/freme-project/freme-ner)
 ----------
 Holds codes and implementation task issues for FREME Named Entity Recognizer.
 
