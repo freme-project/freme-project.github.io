@@ -135,11 +135,16 @@ window.Docs = {
 		var resource = Docs.escapeResourceName(resource);
 		if (resource == '') {
 			$('.resource ul.endpoints').slideDown();
+			$('.resource div.resource_description').slideDown();
 			return;
 		}
 
+		console.info("expandEndpointListForResource");
 		$('li#resource_' + resource).addClass('active');
 
+		var descElem = $('li#resource_' + resource + ' div.resource_description');
+		console.info(descElem);
+		descElem.slideDown();
 		var elem = $('li#resource_' + resource + ' ul.endpoints');
 		elem.slideDown();
 	},
@@ -149,13 +154,18 @@ window.Docs = {
 		var resource = Docs.escapeResourceName(resource);
 		if (resource == '') {
 			$('.resource ul.endpoints').slideUp();
+			$('.resource div.resource_description').slideUp();
 			return;
 		}
 
+		console.info("collapseEndpointListForResource");
 		$('li#resource_' + resource).removeClass('active');
 
 		var elem = $('li#resource_' + resource + ' ul.endpoints');
 		elem.slideUp();
+		var descElem = $('li#resource_' + resource + ' div.resource_description');
+		console.info(descElem);
+		descElem.slideUp();
 	},
 
 	expandOperationsForResource: function(resource) {
