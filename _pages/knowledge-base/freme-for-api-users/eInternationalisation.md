@@ -31,9 +31,9 @@ Beside the conversion to NIF, the e-Internationalisation service also provides a
 
 So with the introduction of the e-Internationalisation service, new input and output formats are supported when invoking FREME e-Services. 
 
-New input formats are `text/html`, `text/xml`, `application/x-xliff+xml` and `application/x-openoffice`.
+New input and output formats are `text/html`, `text/xml`, `application/x-xliff+xml` and `application/x-openoffice`.
 
-New output format is `text/html`. Note that this output format can be only used when the starting document is an HTML file as well. This is a general rule when performing the round-tripping: input and output formats must be the same. 
+New output formats are `text/html` and `text/xml`. Note that this output format can be only used when the starting document is an HTML or XML file as well. This is a general rule when performing the round-tripping: input and output formats must be the same. 
 
 ## Supported ITS categories
 
@@ -78,11 +78,11 @@ Not available.
 ## Round-tripping: how does it work?
 
 The round-tripping functionality lets users to enrich files having specific formats with entities and terms retrieved by FREME e-services. It is restricted to write named entity annotations and named entity links into the output document.
-At the moment the round-tripping is only available for english HTML documents. Users must specify `text/html` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
+At the moment the round-tripping is only available for english HTML and XML documents. Users must specify `text/html` or `text/xml` as both input and output formats. Note that requested input and output formats must be the same when performing round-tripping.
 
 This section explains how the e-Internationalisation service implements this functionality.
 
-In HTML to NIF conversion two temporary NIF files are created. The first is a NIF file containing just the plain text of the HTML. The second file contains a context that also includes markups. Let’s call the latter “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalisation service which returns the original HTML document with the addition of enrichment annotations.
+In HTML/XML to NIF conversion two temporary NIF files are created. The first is a NIF file containing just the plain text of the HTML/XML. The second file contains a context that also includes markups. Let’s call the latter “skeleton”. The skeleton file is locally saved while the first NIF file (without markups) is submitted to enriching FREME e-services. Then the enriched NIF file and the skeleton file are submitted to the e-Internationalisation service which returns the original HTML/XML document with the addition of enrichment annotations.
 
 ### Roundtripping example
 
