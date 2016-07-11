@@ -214,6 +214,7 @@ pos: 3.1
 </pre></div>
 
     <p>Each template consists of: ID that identifies the template, SPARQL query, human readable label, short description, URL to the endpoint, and information about the type of the endpoint, whether its SPARQL or LDF endpoint.</p>
+    <p>The SPARQL query should have the field <pre>@@@entity_uri@@@</pre> which identifies an entity. When performing enrichment, the template is executed for each entity (identified with <pre>taIdentRef</pre>) in the document. It means, each <pre>@@@entity_uri@@@</pre> is replaced with the <pre>taIdentRef</pre> link from the submitted document for enrichment. So <pre>@@@entity_uri@@@</pre> is a reserved field name. However you can always introduce your fields e.g. <pre>... } LIMIT @@@my_limit@@@</pre> and then use this field by submitting <pre>my_limit</pre> parameter in the request.</p>
     <p>In the following examples you can learn <a href="#step-1-enrich">how to enrich content with e template</a>, <a href="#step-3-template-manipulation">how to manipulate with templates</a> (<a href="#step-3-1-template-manipulation">retrieve</a>, <a href="#step-3-3-template-manipulation">create</a>, <a href="#step-3-4-template-manipulation">update</a> or <a href="#step-3-5-template-manipulation">remove</a> a template).
     You can also learn about the <a href="#freme-endpoints">SPARQL and LDF endpoints deployed by FREME</a>.</p>
 	

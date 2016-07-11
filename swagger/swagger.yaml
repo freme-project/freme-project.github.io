@@ -1781,7 +1781,7 @@ paths:
 
 
 
-        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` us a reserved field name.
+        In fact, each template should have the field `@@@entity_uri@@@` which identifies an entity. When performing enrichment, the template is executed for each entity (identified with taIdentRef) in the document. It means, each `@@@entity_uri@@@` is replaced with the taIdentRef link from the submitted document for enrichment. So `@@@entity_uri@@@` is a reserved field name.
 
         However you can always introduce your fields e.g. `... } LIMIT @@@my_limit@@@` and then use this fields by submitting `my_limit` parameter in the request. Example (see `my_limit` parameter):
 
