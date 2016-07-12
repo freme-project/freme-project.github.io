@@ -38,10 +38,6 @@ code {
     border: 0px transparent;
 }
 
-.swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li > a.toggleEndpointList {
-    display:none;
-}
-
 .swagger-section > .swagger-ui-wrap > div.container > ul#resources >li.resource > div.heading > ul.options > li > a.collapseResource{
     display:none;
 }
