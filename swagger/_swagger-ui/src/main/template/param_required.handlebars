@@ -4,21 +4,13 @@
 		{{#if isFile}}
 			<input type="file" name='{{name}}' id='{{valueId}}'/>
 		{{else}}
-			{{#if default}}
-				<div class="editor_holder"></div>
-				<textarea class='body-textarea required' placeholder='(required)' name='{{name}}' id="{{valueId}}">{{default}}</textarea>
-        <br />
-        <div class="parameter-content-type" />
-			{{else}}
-				<textarea class='body-textarea required' placeholder='(required)' name='{{name}}' id='{{valueId}}'></textarea>
-				<div class="editor_holder"></div>
-				<br />
-				<div class="parameter-content-type" />
-			{{/if}}
+            <div class="editor_holder"></div>
+			<textarea class='body-textarea required' placeholder='(required)' name='{{name}}' id="{{valueId}}">{{schema.default}}</textarea>
+            <br />
 		{{/if}}
 	{{else}}
 		{{#if isFile}}
-			<input class='parameter' class='required' type='file' name='{{name}}' id='{{valueId}}'/>
+
 		{{else}}
 			{{#renderTextParam this}}
 			{{/renderTextParam}}
