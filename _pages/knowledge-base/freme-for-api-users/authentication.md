@@ -69,7 +69,7 @@ An access token can be retrieved via the [FREME api documentation page]({{site.b
 curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "{{ site.apiurl | prepend: site.url }}/authenticate"
 ```
 
-The response will contain your access token. It will look similar to this:
+The response will contain your access token. The access token is valid forever and will never expire. Currently there is no way to delete an access token via the API, they can only be deleted directly from the database. An access token looks similar to this:
 
 ```
   {
