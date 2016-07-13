@@ -1175,14 +1175,11 @@ paths:
       summary: Get all postprocessing filters
       description: >
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
-      
       responses:
         '200':
           description: Successful response
           schema:
-            type: string  
-
-
+            type: string
     post:
       tags:
        - Toolbox
@@ -1199,8 +1196,8 @@ paths:
           required: true
           schema:
             type: string
+            default: 'PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}'
           description: A valid SPARQL SELECT query as plain text.
-          default: 'PREFIX itsrdf: <http://www.w3.org/2005/11/its/rdf#> SELECT ?charsequence ?entity WHERE {?charsequence itsrdf:taIdentRef ?entity}' 
         - name: name
           in: query
           required: true
@@ -1221,7 +1218,7 @@ paths:
           type: string
           description: Sets a description for this filter.
           default: 'extracts entities only.'
-      
+
       responses:
         '200':
           description: Successful response
@@ -1271,12 +1268,12 @@ paths:
           required: false
           type: string
           description: Transfers ownership to another user. Must be the username of an existing user.
-          
+
       responses:
         '200':
           description: Successful response
           schema:
-            type: string    
+            type: string
 
     delete:
       tags:
@@ -1292,7 +1289,7 @@ paths:
           required: true
           description: Name of filter to be updated.
           type: string
-          
+
       responses:
         '200':
           description: Successful response
@@ -1485,7 +1482,198 @@ paths:
           description: Name of filter to execute against
           type: string
           default: 'extract-entities-only'
-      
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+  /toolbox/xslt-converter/manage:
+    get:
+      tags:
+       - Toolbox
+      summary: Get all XSLT converter
+      description: >
+        Return all XSLT converter. For more information on this feature, see the [CREATE THIS] article.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+    post:
+      tags:
+       - Toolbox
+      summary: Create a XSLT converter
+      description: >
+        Creates a new XSLT converter. The converter will be constructed from the body
+        content, which has to be a valid XSLT stylesheet as plain text. See
+        the [CREATE THIS] article for further
+        information. Ensure, that a converter with given `name` does not
+        already exist. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html).
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+          description: A valid XSLT stylesheet as plain text.
+        - name: name
+          in: query
+          required: true
+          description: Name of the converter. Must be unique.
+          type: string
+        - name: visibility
+          in: query
+          required: false
+          enum:
+            - public
+            - private
+          default: public
+          type: string
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: Sets a description for this filter.
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+  '/toolbox/xslt-converter/manage/{name}':
+    put:
+      tags:
+       - Toolbox
+      summary: Update an existing XSLT converter
+      description: >
+        Updates the converter with. For more information
+        on this feature, see the
+        [CREATE THIS]
+        article. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html). Only fields
+        containing content are updated. So, if you just want to transfer the
+        ownership or change the visibility without updating the XSLT stylesheet, leave the body empty.
+      parameters:
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: string
+          description: A valid XSLT stylesheet as plain text. Leave this empty, if you just want to update the metadata.
+        - name: name
+          in: path
+          required: true
+          description: Name of the convter to be updated.
+          type: string
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: Updates the description for this converter.
+        - name: visibility
+          in: query
+          required: false
+          enum:
+            - public
+            - private
+          type: string
+          description: 'Sets the visibility of this restricted resource, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).'
+        - name: owner
+          in: query
+          required: false
+          type: string
+          description: Transfers ownership to another user. Must be the username of an existing user.
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+    delete:
+      tags:
+       - Toolbox
+      summary: Delete a XSLT converter
+      description: >
+        Deletes the XSLT converter with specified name. For more information on this feature,
+        see the [CREATE THIS] article. Requires
+        [authentication](../knowledge-base/freme-for-api-users/authentication.html).
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Name of the converter to be updated.
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+    get:
+      tags:
+       - Toolbox
+      summary: Get a XSLT converter
+      description: >
+        Returns one specific converter with specified name.
+        For more information on this feature, see the
+        [CREATE THIS]
+        article.
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Name of filter to be returned
+          type: string
+          default: identity-transformation
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
+
+  '/toolbox/xslt-converter/documents/{name}':
+    post:
+      tags:
+       - Toolbox
+      summary: Transform a xml or html document with a XSLT converter
+      description: >
+        This endpoint allows to transform a XML or HTML document sent
+        as post body with a certain XSLT converter. For more
+        information and a list of available XSLT converter, see the [CREATE THIS] article.
+
+      parameters:
+        - name: Content-Type
+          in: header
+          default: text/xml
+          type: string
+          enum:
+            - text/xml
+            - text/html
+        - name: Accept
+          in: header
+          type: string
+          default: text/xml
+          enum:
+            - text/xml
+            - text/html
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: string
+          description: 'The document which will be transformed, in the specified format.'
+        - name: name
+          in: path
+          required: true
+          description: Name of filter to execute against
+          type: string
+          default: 'tei2temp-html'
+
       responses:
         '200':
           description: Successful response
@@ -1535,14 +1723,13 @@ paths:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
           description: 'The document you want to convert into NIF.'
-          default: 'Welcome to Berlin, the capital of Germany.'
-      
+
       responses:
         '200':
           description: Successful response
           schema:
             type: string
-            
+
   /e-link/explore:
     post:
       tags:
@@ -1594,7 +1781,7 @@ paths:
           enum:
             - sparql
             - ldf
-      
+
       responses:
         '200':
           description: Successful response
@@ -1691,7 +1878,7 @@ paths:
           required: true
           type: integer
           format: int32
-          default: '1'
+          default: 1
       
       responses:
         '200':
