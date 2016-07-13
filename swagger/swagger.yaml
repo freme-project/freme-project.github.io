@@ -1517,12 +1517,22 @@ paths:
           required: true
           schema:
             type: string
+            default: >
+              <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+                  xmlns:its="http://www.w3.org/2005/11/its" xmlns:h="http://www.w3.org/1999/xhtml">
+                  <xsl:template match="@*|node()">
+                      <xsl:copy>
+                          <xsl:apply-templates select="@*|node()"/>
+                      </xsl:copy>
+                  </xsl:template>
+              </xsl:stylesheet>
           description: A valid XSLT stylesheet as plain text.
         - name: name
           in: query
           required: true
           description: Name of the converter. Must be unique.
           type: string
+          default: identity-transformation
         - name: visibility
           in: query
           required: false
@@ -1642,8 +1652,7 @@ paths:
        - Toolbox
       summary: Transform a xml or html document with a XSLT converter
       description: >
-        This endpoint allows to transform a XML or HTML document sent
-        as post body with a certain XSLT converter. For more
+        This endpoint allows to transform a XML or HTML document with a certain XSLT converter. For more
         information and a list of available XSLT converter, see the [CREATE THIS] article.
 
       parameters:
@@ -1666,6 +1675,27 @@ paths:
           required: false
           schema:
             type: string
+            default: >
+              <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:exist="http://exist.sourceforge.net/NS/exist" version="5.0">
+              	<teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+              		<fileDesc>
+              			<titleStmt>
+              				<title>From XML to RDF step by step: Approaches for Leveraging XML Workflows with Linked Data</title>
+              			</titleStmt>
+              			<publicationStmt>
+              				<p>Published for XML Prague</p>
+              			</publicationStmt>
+              			<sourceDesc>
+              				<p>Made by the FREME project and collaborators</p>
+              			</sourceDesc>
+              		</fileDesc>
+              	</teiHeader>
+              	<text>
+              		<body>
+              			<p>We very much welcome you in the city of Prague, a home of XML!</p>
+              		</body>
+              	</text>
+              </TEI>
           description: 'The document which will be transformed, in the specified format.'
         - name: name
           in: path
