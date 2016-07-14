@@ -717,12 +717,6 @@ paths:
             - application/x-xliff+xml
             - text/html
             - text/xml
-        - name: input
-          in: query
-          description: The text to enrich.
-          required: false
-          type: string
-          default: 'Welcome to Berlin, the capital of Germany.'
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1096,12 +1090,6 @@ paths:
             - application/rdf+xml
             - application/x-xliff+xml
             - text/html
-        - name: input
-          in: query
-          description: The text to enrich. Can be either plaintext or NIF (see parameter Content-Type). Short form is i.
-          required: false
-          type: string
-          default: 'Welcome to Berlin, the capital of Germany.'
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -1465,11 +1453,6 @@ paths:
             - application/ld+json
             - application/n-triples
             - application/rdf+xml
-        - name: input
-          in: query
-          required: false
-          type: string
-          description: 'The RDF graph which will be queried, in the specific RDF format. Overrides request body'
         - name: body
           in: body
           required: false
@@ -2305,11 +2288,6 @@ paths:
             - application/x-xliff+xml
             - text/html
             - text/xml
-        - name: input
-          in: query
-          description: The text to annotate. Can be either plaintext or NIF. Short form is i.
-          required: false
-          type: string
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
@@ -2425,12 +2403,6 @@ paths:
             - application/x-xliff+xml
             - text/html
             - text/xml
-        - name: input
-          in: query
-          description: 'The string to be translated. Can be either plaintext or NIF. Short form is i. If set, it will be prefered over the body content.'
-          required: false
-          type: string
-          format: text
         - name: prefix
           in: query
           description: 'Controls the url of rdf resources generated from plaintext. Has default value "http://freme-project.eu/". Short form is p.'
