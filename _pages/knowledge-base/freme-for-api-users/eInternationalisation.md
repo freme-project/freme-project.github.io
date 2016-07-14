@@ -888,8 +888,9 @@ Converted NIF file
 ### ODT
 
 Original file
+```
 ![Image of ODT file]({{site.baseurl | prepend: site.url}}/img/odtFile.png)
-
+```
 
 Converted NIF file
 
