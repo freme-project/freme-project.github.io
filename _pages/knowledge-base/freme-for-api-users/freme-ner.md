@@ -57,6 +57,13 @@ While in some cases a user is interested in recognition of all the entities, in 
 #### Multilingual support
 FREME NER can provide entity recognition in texts written in different languages. Currently, FREME NER suppors following set of languages: English, German, Dutch, Spanish, French, Italian and Russian.
 
+## Dependencies
+The following figure illustrates the dependencies of FREME-NER.
+<figure>
+  <img src="https://docs.google.com/drawings/d/1NxgQ7ltGT4ClxSPnq8O8y74jeY9RXJDw2SEprMtRGlk" /> 
+</figure>
+
+
 ## How to install
 
 ### Prerequisites
