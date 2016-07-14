@@ -849,7 +849,7 @@ paths:
         - name: name
           in: query
           description: 'proposed dataset name. It can be considered as ID for the dataset. It should include only numbers, letters and should NOT include white spaces.'
-          required: false
+          required: true
           type: string
         - name: description
           in: query
