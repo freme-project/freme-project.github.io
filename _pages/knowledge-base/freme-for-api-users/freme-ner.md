@@ -60,7 +60,7 @@ FREME NER can provide entity recognition in texts written in different languages
 ## Dependencies
 The following figure illustrates the dependencies of FREME-NER.
 
-![Image of dependencies]({{site.baseurl | prepend: site.url}}/img/freme-ner-dependency-small.png)
+![Image of dependencies]({{site.baseurl | prepend: site.url}}/img/freme-ner-dependcy-small.png)
 
 
 ## How to install
