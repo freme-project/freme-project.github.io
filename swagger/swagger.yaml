@@ -1455,7 +1455,7 @@ paths:
             - application/rdf+xml
         - name: body
           in: body
-          required: false
+          required: true
           schema:
             type: string
           description: 'The RDF graph which will be queried, in the specific RDF format. Will be overridden by input parameter.'
@@ -1655,7 +1655,7 @@ paths:
             - text/html
         - name: body
           in: body
-          required: false
+          required: true
           schema:
             type: string
             default: >
