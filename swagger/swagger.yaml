@@ -1066,7 +1066,7 @@ paths:
         - name: Content-Type
           in: header
           type: string
-          default: 'text/plain'
+          default: 'text/n3'
           enum:
             - text/turtle
             - text/n3
@@ -1118,7 +1118,7 @@ paths:
         - name: dataset
           in: query
           description: A mandatory parameter which indicates the dataset used for entity linking which includes a list of entites and associated labels.
-          required: false
+          required: true
           default: dbpedia
           type: string
         - name: mode
