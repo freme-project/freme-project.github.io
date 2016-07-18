@@ -37,13 +37,13 @@ git clone https://github.com/freme-project/freme-ner
 git clone https://github.com/freme-project/freme-packages
 ```
 
-### Update 3rd party licenses files
+### 3. Update 3rd party licenses files
 
 Update [the relevant sheet of this table](https://docs.google.com/spreadsheets/d/1j2XPwjRLTjyxFm0ceFf_Ts1tmigZEc-YatAWEaciz8k/edit#gid=397366127) with the [Maven Apache License Util](https://github.com/ArneBinder/MavenApacheLicenseUtil), then manually enhance the added rows. Finally generate the needed files. The exact workflow is discribed [here](https://github.com/ArneBinder/MavenApacheLicenseUtil).
 
 It is recommended, but not necessary, to perform this step upon each release.
 
-### 3. Release freme-parent
+### 4. Release freme-parent
 
 Every release requires an update of freme-parent. freme-parent defines the version numbers for all FREME artifacts (see above). So you open the pom.xml file and update all version numbers that you plan to release inside of the <dependencyManagement> tag. As already stated in step 1 you release all artifacts that have SNAPSHOT versions. You should be very careful in this step, because a mistake here can mess up the release and be discovered hours later. After updating the versions you open a shell, cd to the directory where the pom.xml of freme-parent is located and release freme-parent by performing these steps:
 
@@ -55,7 +55,7 @@ mvn release:prepare
 mvn release:perform 
 ```
 
-### 4. Perform other releases
+### 5. Perform other releases
 
 There are two different release procedures, one for single module projects, another one for multi module project. Release the repositories in this order:
 
