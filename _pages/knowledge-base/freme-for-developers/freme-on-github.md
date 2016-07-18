@@ -20,7 +20,7 @@ This Repository is our meta repository for technical discussion and documentatio
 
 [e-Services](https://github.com/freme-project/e-services)
 ------------
-This repository holds the code for the [FREME e-Services](knowledge-base/freme-for-sysadmins/e-services.html).
+This repository holds the code for the [FREME e-Services](../freme-for-sysadmins/e-services.html).
 
 [FREME NER](https://github.com/freme-project/freme-ner)
 -----------
@@ -28,7 +28,7 @@ Holds codes and implementation task issues for FREME Named Entity Recognizer.
 
 [Basic-Services](https://github.com/freme-project/basic-services)
 ----------------
-This repository holds the code for the [FREME Basic-Services](knowledge-base/freme-for-sysadmins/basic-services.html).
+This repository holds the code for the [FREME Basic-Services](../freme-for-sysadmins/basic-services.html).
 
 [FREME common](https://github.com/freme-project/FREMECommon)
 --------------

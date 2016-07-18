@@ -62,11 +62,27 @@ spring.jpa.hibernate.ddl-auto=update</code></pre>
 		<p>You can configure FREME to generate database schemas for you using this configuration value. Possible values are none (do not auto-generate anything), update (update table schema when it is not up to date) and create-drop (drop existing schema and create a new schema upon every start). Default value is none. For production scenarios we recommend update. You can find more information on automatic schema generation in the offical Spring documentation. </p>
 	</li>
 	<li>
+		<h5>Proxy Filter</h5>
+		<p>The proxy filter can be configured like this:</p>
+		<pre><code>proxy.proxy-id.servlet_url: /e-entity/freme-ner/documents
+proxy.proxy-id.target_url: http://example.org/freme-ner</code></pre>
+		<p>Have a look at the <a href="../freme-for-sysadmins/basic-services.html#proxy-filter">Proxy Filter reference</a> for further information.</p>
+	</li>
+	<li>
 		<h5>freme.einternationalization.endpoint-blacklist</h5>
 		<p>This parameter can be used to exclude the <a href="../freme-for-api-users/eInternationalisation.html">internalisation</a> filter for certain endpoints. It accepts a comma seperated list of regular expressions which will be matched with the endpoint subpath.</p>
 		<p>Use this, for instance, if you want to disable internalisation functionality for endpoints which are proxied to another FREME instance that already uses the internalisation filter.</p>
 		<pre><code>freme.einternationalization.endpoint-blacklist = /e-entity/freme-ner/documents.*</code></pre>
-	</li>	 
+	</li>
+	<li>
+		<h5>Rate-Limiter Filter</h5>
+		<p>You can enable and configure the <a href="../freme-for-sysadmins/basic-services.html#rate-limiter">ratelimiter</a> with a set of parameters:</p>
+		<pre><code>ratelimiter.enabled=true
+ratelimiter.yaml=ratelimiter.yaml
+ratelimiter.clear.timer=3600000</code></pre>
+		<p>Have a look at the <a href="../freme-for-sysadmins/basic-services.html#rate-limiter">RatelImiting reference</a> for further information.</p>
+		<p>Note: Ensure that your FREME package loads the rate-limiter.xml if you are intended to use this feature.</p>
+	</li>
 		 		
 		
 </ul>
