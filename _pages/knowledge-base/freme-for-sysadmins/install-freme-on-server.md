@@ -23,10 +23,10 @@ This guide explains how to install and run FREME.
   * ```/opt/freme/bin/start_server.sh```
   Check logfiles to see if everything works fine: ```tail -f /opt/freme/logs/broker.log```  
   You can use the current shell for other purposes while the process keeps running even if the shell is closed.
-  Strop FREME with this file: ```/opt/freme/bin/stop_server.sh```
   *  ```/opt/freme/bin/start_local.sh``` 
   This is useful for local development since the logging output is printed to 
   the console. When you close the shell, the process stops. 
+*  Stop FREME with this file: ```/opt/freme/bin/stop_server.sh```
 
 
 ### Creating a start / stop script
