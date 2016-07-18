@@ -18,7 +18,7 @@ This section contains a series of articles with documentation about various aspe
 [Basic services reference](freme-for-sysadmins/basic-services.html)
 [E services reference](freme-for-sysadmins/e-services.html)
 [FREME hardware requirements](freme-for-sysadmins/freme-hardware-requirements.html)
-[Running FREME on a webserver](freme-for-sysadmins/install-freme-on-server.html)
+[Running FREME on a webserver](freme-for-sysadmins/start-and-run-freme.html)
 
 ## Knowledge base for FREME users
                                           
