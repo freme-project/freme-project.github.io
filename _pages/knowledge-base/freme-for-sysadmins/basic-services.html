@@ -16,7 +16,14 @@ pos: 4.16
   <li><a href="#test-helper">Test Helper</a></li> 
   <li><a href="#package-maker">Package Maker</a></li> 
   <li><a href="#cors-filter">CORS Filter</a></li> 
-  <li><a href="#postprocessing-filter">Postprocessing Filter</a></li> 
+  <li><a href="#postprocessing-filter">Postprocessing Filter</a></li>
+  <li><a href="#internalisation-filter">Internalisation Filter</a></li>
+  <li><a href="#logging-filter">Logging Filter</a></li>
+  <li><a href="#internalization">Internalisation</a></li>
+  <li><a href="#nif-converter">NIF Converter</a></li>
+  <li><a href="#sparql-converters">SPARQL Converters</a></li>
+  <li><a href="#users-controller">Users Controller</a></li>
+  <li><a href="#xslt-converter">XSLT Converter</a></li>
 </ul>
 
 <h2 id="proxy-filter"><strong>Proxy filter</strong></h2>
@@ -350,4 +357,207 @@ The postprocessing filter enables the feature to simplify the output of FREME us
           
 <h3>Configuration options</h3>
 
-See <a href="freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for a list of configuration options for the post processing filter.
+See <a href="../freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for a list of configuration options for the post processing filter.
+
+<h2 id="internalisation-filter">Internalisation Filter</h2>
+
+The Internalisation Filter enables processing of different input formats like XML, HTML, XLIFF or ODT for several FREME e-services and <a href="../freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">roundtripping</a> functionality for XML and HTML. See the <a href="freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for more information about this feature.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filters.internationalization-filter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/filters/internationalization-filter/src/main/resources/spring-configurations/internationalization-filter.xml">spring-configurations/internalization-filter.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/internationalization-filter">internalization-filter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The Internalisation Filter does not use any configuration options.
+
+<h2 id="logging-filter">Logging Filter</h2>
+
+The Logging Filter simplifies logging output. It truncates long requests, for instance.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.filters.logging</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/filters/logging/src/main/resources/spring-configurations/logging.xml">spring-configurations/logging.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/filters/logging">logging source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The Logging Filter does not use any configuration options.
+
+<h2 id="internalization">e-Internalisation</h2>
+
+e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is used by <a href="#internalisation-filter">Internalisation Filter</a> and <a href="#nif-converter">NIF Converter</a>. See the <a href="freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for further information.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.package-maker</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/internationalization/src/main/resources/spring-configurations/internationalization.xml">spring-configurations/internalization.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/internationalization">internalization source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+e-Internalisation does not use any configuration options.
+
+<h2 id="nif-converter">NIF Converter</h2>
+
+The NIF Converter enables an api endpoint <pre><code>/toolbox/nif-converter</code></pre> which let you convert documents in several formats like PLAIN TEXT, XML, HTML, ODT or XLIFF into NIF. It uses <a href="#internalization">e-Internalisation</a>.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.controllers.nif-converter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/controllers/nifconverter/src/main/resources/spring-configurations/nif-converter.xml">spring-configurations/nif-converter.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/nifconverter">nif-converter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The NIF Converter does not use any configuration options.
+
+<h2 id="sparql-converters">SPARQL Converters</h2>
+
+SPARQL Converters enables endpoints to manage postprocessing sparql converter at <pre><code>/toolbox/convert/manage</code></pre> and the sparql conversion endpoint <pre><code>/toolbox/convert</code></pre>. This endpoint is used by the <a href="#postprocessing-filter">Postprocessing Filter</a>. See the article <a href="../freme-for-api-users/filtering.html">Simplify FREME output using SPARQL filters</a> for more information about this feature.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.controllers.sparql-converters</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/controllers/sparql-converters/src/main/resources/spring-configurations/sparql-converters.xml">spring-configurations/sparql-converters.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/sparql-converters">sparql-converters source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+SPARQL Converters does not use any configuration options.
+
+<h2 id="users-controller">Users Controller</h2>
+
+The Users Controller enables simple user management via the endpoints located at <pre><code>/user</code></pre>. This is necessary if you use any <a href="../freme-for-api-users/authentication.html#restricted-resources">Restricted Resource</a> in your package. See <a href="../freme-for-api-users/authentication.html">the Authentication article</a> for further information.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.controllers.users</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/controllers/users/src/main/resources/spring-configurations/users.xml">spring-configurations/users.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/users">users source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The Users Controller does not use any configuration options.
+
+<h2 id="xslt-converter">XSLT Converter</h2>
+
+The XSLT Converter enables endpoints to manage xslt-converter at <pre><code>/toolbox/xslt-converter/manage</code></pre> and the XSLT conversion endpoint <pre><code>/toolbox/xslt-converter/documents/{converterName}</code></pre>. See the article <a href="../freme-for-api-users/xslt-converter.html">XSLT Conversion</a> for more information about this feature.
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.bservices.controllers.xslt-converter</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td><a href="https://github.com/freme-project/basic-services/blob/master/controllers/xslt-converter/src/main/resources/spring-configurations/xslt-converter.xml">spring-configurations/xslt-converter.xml</a></td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/basic-services/tree/master/controllers/xslt-converter">xslt-converter source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain this service</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The XSLT Converter does not use any configuration options.
