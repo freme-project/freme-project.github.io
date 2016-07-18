@@ -20,6 +20,7 @@ This Repository is our meta repository for technical discussion and documentatio
 
 [e-Services](https://github.com/freme-project/e-services)
 ------------
+This repository holds the code for the [FREME e-Services](knowledge-base/freme-for-sysadmins/e-services.html).
 
 [FREME NER](https://github.com/freme-project/freme-ner)
 -----------
@@ -27,6 +28,7 @@ Holds codes and implementation task issues for FREME Named Entity Recognizer.
 
 [Basic-Services](https://github.com/freme-project/basic-services)
 ----------------
+This repository holds the code for the [FREME Basic-Services](knowledge-base/freme-for-sysadmins/basic-services.html).
 
 [FREME common](https://github.com/freme-project/FREMECommon)
 --------------
@@ -34,6 +36,12 @@ Holds codes commonly used across multiple FREME repositories.
 
 [FREME parent](https://github.com/freme-project/freme-parent)
 --------------
+This repository holds the code of FREME parent. It contains just a pom.xml which defines some general defaults for all FREME projects
+ * Spring Boot and Jena versions
+ * Java compiler version
+ * Versions of FREMECommon, FREME Basic-Services and FREME e-Services
+ * FREME repository locations
+ * FREME distribution management
 
 [FREME packages](https://github.com/freme-project/freme-packages)
 ----------------
