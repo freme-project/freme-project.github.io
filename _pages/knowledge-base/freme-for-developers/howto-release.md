@@ -170,7 +170,7 @@ Deploying the broker is very similar to deploying FREME NER. You use the package
 * The release of a single artifacts consists of the two maven goals `mvn release:prepare` and `mvn release:perform`. Sometimes `mvn release:perform` fails and the bugfix requires a change in the source codes or the pom.xml. In this case you need to undo the changes of `mvn release:prepare`. Open the pom.xml and rewind the version number. Then [delete the git release tag](https://confluence.atlassian.com/bitbucket/how-do-i-remove-or-delete-a-tag-from-a-git-repo-282175551.html). Then you can commit your bugfix to the Git repository and start the release process again with  `mvn release:prepare`.
 * Sometimes you have released an artifact and then you find out that there is a bugfix that needs to be released. In this case you need to undo the release. Therefore you need to undo the changes in the pom.xml file, [delete the release tag](https://confluence.atlassian.com/bitbucket/how-do-i-remove-or-delete-a-tag-from-a-git-repo-282175551.html) and delete the artifact from the maven repository.
 
-# Release of the documentation
+## Release of the documentation
 
 The API documentation resides in https://github.com/freme-project/Documentation. To release it you need to perform the following steps. Replace x by the version number of the Documentation.
 * Download sources:  `git clone https://github.com/freme-project/Documentation`
