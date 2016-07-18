@@ -76,6 +76,6 @@ After these steps the created `swagger/_swagger-ui/dist` folder contains `swagge
 
 Note: The second step has to be done only once.
 
-To ease developing you can use the script [`local-deploy.sh`](https://github.com/freme-project/Documentation/blob/master/local-deploy.sh) in teh root of the documentation project. This script recompiles `swagger-ui.js`, copies it into the `swagger` folder, uses jekyll to rebuild the whole project and copies the result into the `TARGET` folder (modify this in the script!). This folder can be loaded with a local webserver, for instance, to immediately check the result.
+To ease developing you can use the script [`local-deploy.sh`](https://github.com/freme-project/Documentation/blob/master/local-deploy.sh) in the root of the documentation project. This script recompiles `swagger-ui.js`, copies it into the `swagger` folder, uses jekyll to rebuild the whole project and copies the result into the `TARGET` folder (modify this in the script!). This folder can be loaded with a local webserver, for instance, to immediately check the result.
 
 
