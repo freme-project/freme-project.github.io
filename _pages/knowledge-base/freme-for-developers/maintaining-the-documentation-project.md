@@ -63,47 +63,19 @@ And go to `localhost:4000/<baseurl>/start.html` where baseurl is as of now `doc`
 If you edit files in `_config.yml` then `jekyll serve` will not update these changes automatically. Close the `serve` process and restart it to see the changes.
 
 
-## Migrating Swagger-UI versions
+## Building Swagger UI
 
-Change into the `swagger-ui` branch of the [documentation project](https://github.com/freme-project/Documentation/tree/swagger-ui).
+If you want to change anything related to the layout of the api documentation you might want to rebuild the `swagger-ui.js`. The FREME api documentation is based on [this version](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) of the official [Swagger UI](https://github.com/swagger-api/swagger-ui). If you are interested in the actual changes done for the FREME api documentation, clone [the used base version of swagger-ui](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) and diff it with the `swagger/_swagger-ui` folder of the FREME documentation repository. This folder holds all source code needed to recompile `swagger-ui.js`.
 
-Replace all files with the new Swagger-UI files except for:
+To rebuild `swagger-ui.js` follow these steps:
+1. go into the swagger-ui folder: `cd swagger/_swagger-ui`
+2. load all needed packages: `npm install`
+3. compile `swagger-ui.js`: `npm run build`
 
-* `src/main/template/resource.handlebars`
-* `src/main/javascript/MainView`
-* `src/main/javascript/ResourceView`
+After these steps the created `swagger/_swagger-ui/dist` folder contains `swagger-ui.js` and `swagger-ui.min.js`. Replace the ones in the `swagger` folder with these.
 
-**Build the new dist directory**
-Build the new `dist` directory for Swagger UI from the `swagger-ui` branch by changing into the directory containing `gulpfile.js` and running:
+Note: The second step has to be done only once.
 
-```
-npm install
-gulp
-```
+To ease developing you can use the script [`local-deploy.sh`](https://github.com/freme-project/Documentation/blob/master/local-deploy.sh) in teh root of the documentation project. This script recompiles `swagger-ui.js`, copies it into the `swagger` folder, uses jekyll to rebuild the whole project and copies the result into the `TARGET` folder (modify this in the script!). This folder can be loaded with a local webserver, for instance, to immediately check the result.
 
-You should now see a new directory `dist`. If this did not work, make sure you have `npm` and `gulp` properly installed.
-
-**Merge new dist folder into existing Documentation master**
-
-Replace every file in the `swagger` directory in the `master` branch with the new files from the `dist` directory created previously except:
-
-* `/swagger/swagger.yaml`
-* `/swagger/lib/jquery-1.9.1.min.js`
-
-See if this works out of the box by running `jekyll serve` as describe above. If it does, then you are done.
-
-If it does not, replace the javascript in `_layouts/swagger-doc.html` with the javascript in `swagger/index.html`.
-Uncomment the function `addApiKeyAuthorization` and replace the line
-
-```
-var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-```
-
-with
-
-```
-var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("X-Auth-Token", key, "header");
-```
-to enable the use of X-Auth-Tokens in the documentation.
-If there are unresolved dependencies, add them in `_layouts/swagger-doc.html` with the correct relative path.
 
