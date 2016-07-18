@@ -36,7 +36,8 @@ Holds codes commonly used across multiple FREME repositories.
 
 [FREME parent](https://github.com/freme-project/freme-parent)
 --------------
-This repository holds the code of FREME parent. It contains just a pom.xml which defines some general defaults for all FREME projects
+This repository holds the code of FREME parent. It contains just a pom.xml which defines some general defaults for all FREME projects:
+
  * Spring Boot and Jena versions
  * Java compiler version
  * Versions of FREMECommon, FREME Basic-Services and FREME e-Services
