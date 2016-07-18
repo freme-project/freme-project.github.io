@@ -1,4 +1,11 @@
-# How to do a FREME Release
+---
+layout: page
+title: How to do a FREME release
+dropdown: Knowledge Base, FREME for Developers
+pos: 4.10
+---
+
+# How to do a FREME release
 
 This guide explains how to perform a FREME release. First it explains how to do release the FREME Java codes, from pre-requisites, over the release itself to the deployment on the server. In the last chapter it explains how to perform a release of the Documentation.
 
