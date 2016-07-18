@@ -22,6 +22,7 @@ This guide explains how to install and run FREME.
 * Start FREME by running one of the following scripts:
   * ```/opt/freme/bin/start_server.sh```
   Check logfiles to see if everything works fine: ```tail -f /opt/freme/logs/broker.log```  
+  Properties defined in the start-properties file inside the config folder are loaded.
   You can use the current shell for other purposes while the process keeps running even if the shell is closed.
   *  ```/opt/freme/bin/start_local.sh``` 
   This is useful for local development since the logging output is printed to 
