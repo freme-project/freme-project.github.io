@@ -332,7 +332,7 @@ CORS filter  does not use any configuration options.
 
 <h2 id="postprocessing-filter">Postprocessing Filter</h2>
 
-The postprocessing filter enables the feature to simplify the output of FREME using SPARQL queries. See <a href="freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for more information about this feature.
+The postprocessing filter enables the feature to simplify the output of FREME using SPARQL queries. See <a href="../freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for more information about this feature.
 
 <h3>Quick overview</h3>
 
@@ -357,11 +357,11 @@ The postprocessing filter enables the feature to simplify the output of FREME us
           
 <h3>Configuration options</h3>
 
-See <a href="../freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for a list of configuration options for the post processing filter.
+The Postprocessing Filter does not use any configuration options.
 
 <h2 id="internalisation-filter">Internalisation Filter</h2>
 
-The Internalisation Filter enables processing of different input formats like XML, HTML, XLIFF or ODT for several FREME e-services and <a href="../freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">roundtripping</a> functionality for XML and HTML. See the <a href="freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for more information about this feature.
+The Internalisation Filter enables processing of different input formats like XML, HTML, XLIFF or ODT for several FREME e-services and <a href="../freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">roundtripping</a> functionality for XML and HTML. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for more information about this feature.
 
 <h3>Quick overview</h3>
 
@@ -386,7 +386,10 @@ The Internalisation Filter enables processing of different input formats like XM
 
 <h3>Configuration options</h3>
 
-The Internalisation Filter does not use any configuration options.
+<p>The Internalisation Filter can be disabled for certain endpoints by adding them to a blacklist.</p>
+<p>The parameter accepts a comma separated list of regular expressions which will be matched with the endpoint subpath.</p>
+<p>The following configuration disables the filter for all `/e-entity/freme-ner/documents` endpoints:</p>
+<pre><code>freme.einternationalization.endpoint-blacklist = /e-entity/freme-ner/documents.*</code></pre>
 
 <h2 id="logging-filter">Logging Filter</h2>
 
@@ -419,7 +422,7 @@ The Logging Filter does not use any configuration options.
 
 <h2 id="internalization">e-Internalisation</h2>
 
-e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is used by <a href="#internalisation-filter">Internalisation Filter</a> and <a href="#nif-converter">NIF Converter</a>. See the <a href="freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for further information.
+e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is used by <a href="#internalisation-filter">Internalisation Filter</a> and <a href="#nif-converter">NIF Converter</a>. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for further information.
 
 <h3>Quick overview</h3>
 
