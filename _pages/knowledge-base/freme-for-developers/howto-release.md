@@ -22,7 +22,9 @@ This guide explains how to prepare the release, how to download the source codes
 
 The dependencies version numbers of all FREME artifacts are centrally defined in the [freme-parent artifact](https://github.com/freme-project/freme-parent). Every pom.xml file in FREME inherits from this artifact. So freme artifacts do not define any dependency version directly in the `<dependencies>` section of the pom.xml but use the version defined in freme-parent. 
 
-### 1. Find out which artifacts have changed. You need to check [FREMECommon](https://github.com/freme-project/FREMECommon), [basic services](https://github.com/freme-project/basic-services), [e-Services](https://github.com/freme-project/e-services) and [freme-packages](https://github.com/freme-project/freme-packages) repository. In any case you have to release [freme-parent](https://github.com/freme-project/freme-parent). You need to release only artifacts that have changed since the last release. To identify these artifacts you can check the version numbers in freme-parent. All artifacts with SNAPSHOT versions in freme-parent's `dependencyManagement` tag need to be released. If a version number was set accidently to SNAPSHOT but it has not been released this is no problem. In this case you will release a version without changes. On the other hand, you can be sure that a release version in freme-parent has not been updated since the last release and therefore does not need to be released. It is advised to create a list at first which artifacts need to be released, ordered by repositories.
+### 1. Find out which artifacts have changed. 
+
+You need to check [FREMECommon](https://github.com/freme-project/FREMECommon), [basic services](https://github.com/freme-project/basic-services), [e-Services](https://github.com/freme-project/e-services) and [freme-packages](https://github.com/freme-project/freme-packages) repository. In any case you have to release [freme-parent](https://github.com/freme-project/freme-parent). You need to release only artifacts that have changed since the last release. To identify these artifacts you can check the version numbers in freme-parent. All artifacts with SNAPSHOT versions in freme-parent's `dependencyManagement` tag need to be released. If a version number was set accidently to SNAPSHOT but it has not been released this is no problem. In this case you will release a version without changes. On the other hand, you can be sure that a release version in freme-parent has not been updated since the last release and therefore does not need to be released. It is advised to create a list at first which artifacts need to be released, ordered by repositories.
 
 ### 2. Download all source codes
 
@@ -84,9 +86,9 @@ mvn release:perform
 
 Releasing a multi module artifact involves some manual work. The goal is to release only the artifacts that have changed since the last release.
 
-1. Open each artifacts pom.xml that you want to release and update the parent artifacts version to the latest release version. Then remove the "-SNAPSHOT" suffix from the artifacts version. Now the version of this artifact is the same that is specified in freme-parent earlier in the release process. In freme-packages repository you do not need to update the artifacts version because it is defined by the parent version.
-2. Run `mvn -DskipTests=true install` to find out if all dependencies can be resolved.
-3. Run this shell script to commit the source codes to Jenkins. This will trigger Jenkins to run all unit tests, build all artifacts and upload the release artifacts to the maven repository. Replace "x.y" with the version number of the release.
+* Open each artifacts pom.xml that you want to release and update the parent artifacts version to the latest release version. Then remove the "-SNAPSHOT" suffix from the artifacts version. Now the version of this artifact is the same that is specified in freme-parent earlier in the release process. In freme-packages repository you do not need to update the artifacts version because it is defined by the parent version.
+* Run `mvn -DskipTests=true install` to find out if all dependencies can be resolved.
+* Run this shell script to commit the source codes to Jenkins. This will trigger Jenkins to run all unit tests, build all artifacts and upload the release artifacts to the maven repository. Replace "x.y" with the version number of the release.
 
 ```
 git status (you need to make sure that you commit only pom.xml files into the repository)
@@ -95,14 +97,14 @@ git commit -m "release freme x.y"
 git push origin master
 ```
 
-4. Wait until Jenkins has finished. When Jenkins has finished without problems then create the release tag:
+* Wait until Jenkins has finished. When Jenkins has finished without problems then create the release tag:
 
 ```
 git tag -a "e-services-x.y"     # replace the tag name with the name of the artifact and the version number
 git push origin e-services-x.y
 ```
 
-5. In every pom.xml that you have released, update the parent artifact to the latest snapshot (e.g. from freme-parent:0.8 to freme-parent:0.9-SNAPSHOT). Update the artifact version to a new snapshot version, so when you just released version 0.8, then you update the version to 0.9-SNAPSHOT. You do not need to update the artifact version in a freme-package because it is already defined by the parent version. Then commit these changes to the repository:
+* In every pom.xml that you have released, update the parent artifact to the latest snapshot (e.g. from freme-parent:0.8 to freme-parent:0.9-SNAPSHOT). Update the artifact version to a new snapshot version, so when you just released version 0.8, then you update the version to 0.9-SNAPSHOT. You do not need to update the artifact version in a freme-package because it is already defined by the parent version. Then commit these changes to the repository:
 
 ```
 git add .
@@ -116,9 +118,11 @@ This section explains how to create the freme-packages for the broker and freme-
 
 ### Deploy FREME NER               
 
-1. Make a backup of the MySQL database. I usually do this using MySQL workbench. Make sure to backup both structure and data.
+#### 1. Backup MySQL database.
 
-2. Download the release tag of the FREME package and create the package:
+I usually do this using MySQL workbench. Make sure to backup both structure and data.
+
+#### 2. Download the release tag of the FREME package and create the package:
 
 ```
 git clone https://github.com/freme-project/freme-packages
@@ -129,9 +133,11 @@ mvn package
 cd target
 ```
 
-3. Now the FREME package is located in the folder `freme-distribution`. Usually you need to open the configuration file in `config/application.properties` and enter the database credentials. Usually you can copy & paste them from the installation that is currently running. You should also ensure that the port that freme-ner uses is the same as in the current running version. You can find the existing configuration on the freme-worker server in `/opt/freme-ner-live/config/application.properties`.
+#### 3. Update configuration
+
+Now the FREME package is located in the folder `freme-distribution`. Usually you need to open the configuration file in `config/application.properties` and enter the database credentials. Usually you can copy & paste them from the installation that is currently running. You should also ensure that the port that freme-ner uses is the same as in the current running version. You can find the existing configuration on the freme-worker server in `/opt/freme-ner-live/config/application.properties`.
  
-4. Transfer FREME to the server and run it.
+#### 4. Transfer FREME to the server and run it.
 
 ```
 scp -r freme-package u235827@rv2622.1blu.de:
