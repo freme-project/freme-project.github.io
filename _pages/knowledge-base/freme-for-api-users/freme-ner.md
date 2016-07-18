@@ -95,7 +95,7 @@ To run FREME NER the following parameters have to be defined according to your s
 * `freme.ner.modelsLocation`: The location of the NER models for the languages you want to load, e.g. `/home/freme-ner/ner-models/` 
 * `freme.ner.domainsFile`: The location of the `domains.csv`, e.g. `config/domains.csv`
     
-If you have done all the steps above, you can [start FREME NER on a webserver](../freme-for-sysadmins/install-freme-on-server.html).
+If you have done all the steps above, you can [start FREME NER on a webserver](../freme-for-sysadmins/start-and-run-freme.html).
     
     
 ### OPTIONAL: Configure the package
