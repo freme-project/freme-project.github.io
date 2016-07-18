@@ -1,6 +1,8 @@
 ---
-title: "Getting Started for System Administrators"
-output: html_document
+layout: page
+title: Getting Started for System Administrators
+dropdown: Knowledge Base, FREME for System Administrators
+pos: 4.19
 ---
 
 To get an overview of the architecture of FREME, have a look at [the freme architecture article](../freme-for-developers/overview-of-the-freme-architecture.html). A short description how FREME is set up and started can be found [here](../freme-for-sysadmins/start-and-run-freme.html).
