@@ -38,7 +38,7 @@ Holds codes commonly used across multiple FREME repositories.
 --------------
 This repository holds the code of FREME parent. It contains just a pom.xml which defines some general defaults for all FREME projects:
 
- * Spring Boot and Jena versions
+ * [Spring Boot](http://projects.spring.io/spring-boot/) and [Jena](https://jena.apache.org/tutorials/sparql.html) versions
  * Java compiler version
  * Versions of FREMECommon, FREME Basic-Services and FREME e-Services
  * FREME repository locations
