@@ -64,7 +64,7 @@ proxy.proxy-id.target_url: http://example.org/freme-ner
 
 <h3>Example configuration</h3>
 
-This example configuration configures FREME to proxy all requests to /e-entity/freme-ner/documents to a remote FREME NER location.
+<p>This example configuration configures FREME to proxy all requests to /e-entity/freme-ner/documents to a remote FREME NER location.</p>
 
 <pre>
 proxy.freme-ner-documents.servlet_url: /e-entity/freme-ner/documents
@@ -261,11 +261,11 @@ loggingfilter.whitelist=turtle,text/turtle,application/x-turtle
           
 <h3>Configuration options</h3>
 
-The test helper does not use any configuration options.
+<p>The test helper does not use any configuration options.</p>
 
 <h2 id="package-maker">Package Maker</h2>
 
-The package-maker service provide some tools like server start and stop scripts for FREME. It should be part of any FREME package.
+<p>The package-maker service provide some tools like server start and stop scripts for FREME. It should be part of any FREME package.</p>
           
 <h3>Quick overview</h3>
 
@@ -290,11 +290,11 @@ The package-maker service provide some tools like server start and stop scripts 
           
 <h3>Configuration options</h3>
 
-Package maker does not use any configuration options.
+<p>Package maker does not use any configuration options.</p>
 
 <h2 id="cors-filter">CORS Filter</h2>
 
-The CORS filter adds the necessary headers for Cross Origin Resource Sharing to all responses of API requests. In the current implementation it sends these headers:
+<p>The CORS filter adds the necessary headers for Cross Origin Resource Sharing to all responses of API requests. In the current implementation it sends these headers:</p>
 
 <pre>
 Access-Control-Allow-Origin: *
@@ -303,8 +303,8 @@ Access-Control-Max-Age: 3600
 Access-Control-Allow-Headers: x-requested-with, content-type
 </pre>
 
-In a future version we plan to allow configuration of these values so one can specify a list of hosts for the header Access-Control-Allow-Origin in the FREME configuration file.
-                  
+<p>In a future version we plan to allow configuration of these values so one can specify a list of hosts for the header Access-Control-Allow-Origin in the FREME configuration file.</p>
+
 <h3>Quick overview</h3>
 
 <table border="1">
@@ -328,11 +328,11 @@ In a future version we plan to allow configuration of these values so one can sp
           
 <h3>Configuration options</h3>
 
-CORS filter  does not use any configuration options.
+<p>CORS filter  does not use any configuration options.</p>
 
 <h2 id="postprocessing-filter">Postprocessing Filter</h2>
 
-The postprocessing filter enables the feature to simplify the output of FREME using SPARQL queries. See <a href="../freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for more information about this feature.
+<p>The postprocessing filter enables the feature to simplify the output of FREME using SPARQL queries. See <a href="../freme-for-api-users/filtering.html">Simplify output of FREME using SPARQL filters</a> for more information about this feature.</p>
 
 <h3>Quick overview</h3>
 
@@ -357,11 +357,11 @@ The postprocessing filter enables the feature to simplify the output of FREME us
           
 <h3>Configuration options</h3>
 
-The Postprocessing Filter does not use any configuration options.
+<p>The Postprocessing Filter does not use any configuration options.</p>
 
 <h2 id="internalisation-filter">Internalisation Filter</h2>
 
-The Internalisation Filter enables processing of different input formats like XML, HTML, XLIFF or ODT for several FREME e-services and <a href="../freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">roundtripping</a> functionality for XML and HTML. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for more information about this feature.
+<p>The Internalisation Filter enables processing of different input formats like XML, HTML, XLIFF or ODT for several FREME e-services and <a href="../freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">roundtripping</a> functionality for XML and HTML. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for more information about this feature.</p>
 
 <h3>Quick overview</h3>
 
@@ -393,7 +393,7 @@ The Internalisation Filter enables processing of different input formats like XM
 
 <h2 id="logging-filter">Logging Filter</h2>
 
-The Logging Filter simplifies logging output. It truncates long requests, for instance.
+<p>The Logging Filter simplifies logging output. It truncates long requests, for instance.</p>
 
 <h3>Quick overview</h3>
 
@@ -418,11 +418,11 @@ The Logging Filter simplifies logging output. It truncates long requests, for in
 
 <h3>Configuration options</h3>
 
-The Logging Filter does not use any configuration options.
+<p>The Logging Filter does not use any configuration options.</p>
 
 <h2 id="internalization">e-Internalisation</h2>
 
-e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is used by <a href="#internalisation-filter">Internalisation Filter</a> and <a href="#nif-converter">NIF Converter</a>. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for further information.
+<p>e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is used by <a href="#internalisation-filter">Internalisation Filter</a> and <a href="#nif-converter">NIF Converter</a>. See the <a href="../freme-for-api-users/eInternationalisation.html">e-Internationalisation article</a> for further information.</p>
 
 <h3>Quick overview</h3>
 
@@ -447,11 +447,13 @@ e-Internalisation implements XML, HTML, ODT and XLIFF to NIF conversion. It is u
 
 <h3>Configuration options</h3>
 
-e-Internalisation does not use any configuration options.
+<p>e-Internalisation does not use any configuration options.</p>
 
 <h2 id="nif-converter">NIF Converter</h2>
 
-The NIF Converter enables an api endpoint <pre><code>/toolbox/nif-converter</code></pre> which let you convert documents in several formats like PLAIN TEXT, XML, HTML, ODT or XLIFF into NIF. It uses <a href="#internalization">e-Internalisation</a>.
+<p>The NIF Converter enables an api endpoint</p>
+<pre><code>/toolbox/nif-converter</code></pre>
+<p>which let you convert documents in several formats like PLAIN TEXT, XML, HTML, ODT or XLIFF into NIF. It uses <a href="#internalization">e-Internalisation</a>.</p>
 
 <h3>Quick overview</h3>
 
@@ -476,11 +478,15 @@ The NIF Converter enables an api endpoint <pre><code>/toolbox/nif-converter</cod
 
 <h3>Configuration options</h3>
 
-The NIF Converter does not use any configuration options.
+<p>The NIF Converter does not use any configuration options.</p>
 
 <h2 id="sparql-converters">SPARQL Converters</h2>
 
-SPARQL Converters enables endpoints to manage postprocessing sparql converter at <pre><code>/toolbox/convert/manage</code></pre> and the sparql conversion endpoint <pre><code>/toolbox/convert</code></pre>. This endpoint is used by the <a href="#postprocessing-filter">Postprocessing Filter</a>. See the article <a href="../freme-for-api-users/filtering.html">Simplify FREME output using SPARQL filters</a> for more information about this feature.
+<p>SPARQL Converters enables endpoints to manage postprocessing sparql converter at</p>
+<pre><code>/toolbox/convert/manage</code></pre>
+<p>and the sparql conversion endpoint </p>
+<pre><code>/toolbox/convert</code></pre>
+<p>This endpoint is used by the <a href="#postprocessing-filter">Postprocessing Filter</a>. See the article <a href="../freme-for-api-users/filtering.html">Simplify FREME output using SPARQL filters</a> for more information about this feature.</p>
 
 <h3>Quick overview</h3>
 
@@ -505,11 +511,13 @@ SPARQL Converters enables endpoints to manage postprocessing sparql converter at
 
 <h3>Configuration options</h3>
 
-SPARQL Converters does not use any configuration options.
+<p>SPARQL Converters does not use any configuration options.</p>
 
 <h2 id="users-controller">Users Controller</h2>
 
-The Users Controller enables simple user management via the endpoints located at <pre><code>/user</code></pre>. This is necessary if you use any <a href="../freme-for-api-users/authentication.html#restricted-resources">Restricted Resource</a> in your package. See <a href="../freme-for-api-users/authentication.html">the Authentication article</a> for further information.
+<p>The Users Controller enables simple user management via the endpoints located at </p>
+<pre><code>/user</code></pre>
+<p>This is necessary if you use any <a href="../freme-for-api-users/authentication.html#restricted-resources">Restricted Resource</a> in your package. See <a href="../freme-for-api-users/authentication.html">the Authentication article</a> for further information.</p>
 
 <h3>Quick overview</h3>
 
@@ -534,11 +542,15 @@ The Users Controller enables simple user management via the endpoints located at
 
 <h3>Configuration options</h3>
 
-The Users Controller does not use any configuration options.
+<p>The Users Controller does not use any configuration options.</p>
 
 <h2 id="xslt-converter">XSLT Converter</h2>
 
-The XSLT Converter enables endpoints to manage xslt-converter at <pre><code>/toolbox/xslt-converter/manage</code></pre> and the XSLT conversion endpoint <pre><code>/toolbox/xslt-converter/documents/{converterName}</code></pre>. See the article <a href="../freme-for-api-users/xslt-converter.html">XSLT Conversion</a> for more information about this feature.
+<p>The XSLT Converter enables endpoints to manage xslt-converter at </p>
+<pre><code>/toolbox/xslt-converter/manage</code></pre>
+<p>and the XSLT conversion endpoint </p>
+<pre><code>/toolbox/xslt-converter/documents/{converterName}</code></pre>
+<p>See the article <a href="../freme-for-api-users/xslt-converter.html">XSLT Conversion</a> for more information about this feature. </p>
 
 <h3>Quick overview</h3>
 
@@ -563,4 +575,4 @@ The XSLT Converter enables endpoints to manage xslt-converter at <pre><code>/too
 
 <h3>Configuration options</h3>
 
-The XSLT Converter does not use any configuration options.
+<p>The XSLT Converter does not use any configuration options.</p>
