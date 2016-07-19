@@ -203,6 +203,16 @@ pos: 3.1
     	Here you will get information whether your dataset was successfully accepted and processed.
     </pre>
 
+    <h3 id="upload-large-dataset">How to upload a large dataset</h3>
+    <p>In a real world use case very large datasets are necessary. To make the upload of large datasets feasible you should consider the following hints:</p>
+    <ul>
+        <li>Chunk the dataset to avoid unusual long lasting HTTP requests and to reduce frustration caused by canceled connections.</li>
+        <li>Start with an HTTP POST request to create a new dataset and upload the first chunk. Afterwards add the remaining chunks with HTTP PUT requests. This will add the data to the previously created dataset. See the <a href="{{site.baseurl | prepend: site.url}}/api-doc/full.html#!/e-Entity/createDataset">interactive api documentation</a> how to perform the two types of request. </li>
+        <li>Use n-triples as serialization format for your dataset, if possible. This makes it easy to chunk the dataset because n-triples hold one triple a line.</li>
+        <li>If possible, execute the requests to upload the data from the same server that runs FREME-NER to speed up processing.</li>
+    </ul>
+    <p>Have a look at the <a href="https://github.com/munnellg/freme_datasets">Freme Dataset Tool</a>, it can support you with dataset creation and uploading.</p>
+
     <h2 id="step-3-perform-ner-with-your-dataset">Step 3: Perform Named Entity Recognition with your dataset</h2>
     <p>After we have submitted our custom proprietary dataset to the e-Entity service, we can proceed with performing entity spotting and linking against our dataset.</p>
 
