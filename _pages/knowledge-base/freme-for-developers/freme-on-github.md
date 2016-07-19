@@ -24,7 +24,7 @@ This repository holds the code for the [FREME e-Services](../freme-for-sysadmins
 
 [FREME NER](https://github.com/freme-project/freme-ner)
 -----------
-Holds codes and implementation task issues for FREME Named Entity Recognizer.
+Holds codes and implementation task issues for [FREME Named Entity Recognizer](../freme-for-api-users/freme-ner.html).
 
 [Basic-Services](https://github.com/freme-project/basic-services)
 ----------------
@@ -48,7 +48,9 @@ This repository holds the code of FREME parent. It contains just a pom.xml which
 ----------------
 This repository holds runnable packages of FREME.
 
-
+[Documentation](https://github.com/freme-project/Documentation)
+------------
+This repository holds the code for the [FREME documentation](..).
 
 Depricated Repositories
 -----------------------
