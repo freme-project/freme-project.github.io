@@ -27,4 +27,4 @@ The broker-dev package is similar to the freme-full package, except that it does
 
 ## freme-ner-dev
 
-The freme-ner-dev package just contains the [internalization](../freme-for-api-users/eInternationalisation.html) filter and [FREME-NER](../freme-for-api-users/freme-ner.html) to outsource this resource-intensive application. This package is deployed in the official FREME setting. 
+The freme-ner-dev package just contains [FREME-NER](../freme-for-api-users/freme-ner.html) to outsource this resource-intensive application. This package is deployed in the official FREME setting. 
