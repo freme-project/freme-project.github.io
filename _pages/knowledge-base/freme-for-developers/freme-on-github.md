@@ -50,7 +50,7 @@ This repository holds runnable packages of FREME, see [FREME packages](../freme-
 
 [Documentation](https://github.com/freme-project/Documentation)
 ------------
-This repository holds the code for the [FREME documentation](../..). Have a look at the article [How to write a tutorial]({{site.baseurl | prepend: site.url}}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
+This repository holds the code for the [FREME documentation](../..). Have a look at [How to write a tutorial]({{site.baseurl | prepend: site.url}}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
 
 [FREME Examples](https://github.com/freme-project/freme-examples)
 ------------
