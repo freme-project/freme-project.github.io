@@ -55,6 +55,7 @@ This repository holds the code for the [FREME documentation](../..). Have a look
 [FREME Examples](https://github.com/freme-project/freme-examples)
 ------------
 This repository contains code which explains parts of the [FREME architecture](../freme-for-developers/overview-of-the-freme-architecture.html):
+
  * [diary](https://github.com/freme-project/freme-examples/tree/master/diary) shows the usage of database resources with access restrictions, see the article [Implementing Restricted Access for Database Resources](../freme-for-developers/implementing-restricted-access-to-database-resources.html) and the [authentication article](../freme-for-api-users/authentication.html) for further information.
  * [logging-filter](https://github.com/freme-project/freme-examples/tree/master/logging-filter) explains the creation of a simple [basic-service](../freme-for-sysadmins/basic-services.html), see [Creating a Basic Service](../freme-for-developers/creating-a-basic-service.html).
  * [e-capitalization](https://github.com/freme-project/freme-examples/tree/master/e-capitalization) explains the creation of a simple [e-service](../freme-for-sysadmins/e-services.html), see [How to write an e-Service](../freme-for-developers/how-to-write-an-eservice.html) and [Create a new e-Service](/tutorials/implement-eservice.html).
