@@ -50,7 +50,7 @@ This repository holds runnable packages of FREME.
 
 [Documentation](https://github.com/freme-project/Documentation)
 ------------
-This repository holds the code for the [FREME documentation](..).
+This repository holds the code for the [FREME documentation](../..).
 
 Depricated Repositories
 -----------------------
