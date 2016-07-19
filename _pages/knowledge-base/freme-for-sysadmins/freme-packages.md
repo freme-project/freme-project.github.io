@@ -7,10 +7,7 @@ pos: 4.14
 
 # FREME Packages
 
-A FREME package represents an executable collection of [e-Services](../freme-for-sysadmins/e-services.html) and [Basic-Services](../freme-for-sysadmins/basic-services.html). This article lists the packages predefined by FREME. You can simply get them by cloning the [freme-packages repository](https://github.com/freme-project/freme-packages):
-```
-git clone https://github.com/freme-project/freme-packages
-```
+A FREME package represents an executable collection of [e-Services](../freme-for-sysadmins/e-services.html) and [Basic-Services](../freme-for-sysadmins/basic-services.html). This article lists the packages predefined by FREME. You can simply get them by cloning the [freme-packages repository](https://github.com/freme-project/freme-packages): `git clone https://github.com/freme-project/freme-packages`.
 
 If you are interested in setting up your own FREME package, see [Creating and Running a FREME Package](../freme-for-sysadmins/creating-and-running-a-freme-package.html), which also describes how to start a FREME package.
 
