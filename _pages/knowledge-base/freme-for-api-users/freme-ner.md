@@ -86,7 +86,7 @@ Clone this `https://github.com/freme-project/freme-packages.git` to your machine
     
 ### FREME NER Configuration options
 
-The configuration options of FREME NER are located in the [e-Services article](freme-for-sysadmins/e-services.html#freme-e-entity).    
+The configuration options of FREME NER are located in the [e-Services article](../freme-for-sysadmins/e-services.html#freme-e-entity).    
 If you have done all the steps above, you can [start FREME NER](../freme-for-sysadmins/start-and-run-freme.html).
     
     
