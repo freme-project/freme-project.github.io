@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Running FREME on a webserver
+title: Starting and running FREME
 dropdown: Knowledge Base, FREME for System Administrators
 pos: 4.17
 ---
