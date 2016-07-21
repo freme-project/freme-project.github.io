@@ -11,7 +11,7 @@ To get an overview of the architecture of FREME, have a look at [the freme archi
 
 ## Create and run the FREME package
 
-The first thing to you need to do to get started is to create the FREME package that you want to use and get it to run. The [FREME package article](../freme-for-sysadmins/freme-packages.html) provides more information about freme-packages. The article [creating and running a FREME package](../freme-for-sysadmins/creating-and-running-a-freme-package.html) describes all necessary steps to do this and lists the software that needs to be preinstalled on your machine.
+The first thing you need to do to get started is to create the FREME package that you want to use and get it to run. The article [creating and running a FREME package](../freme-for-sysadmins/creating-and-running-a-freme-package.html) describes all necessary steps to do this and lists the software that needs to be preinstalled on your machine. To get more information about the freme-packages, have a look at the [FREME package article](../freme-for-sysadmins/freme-packages.html).
 
 ## Prepare the Database
 
