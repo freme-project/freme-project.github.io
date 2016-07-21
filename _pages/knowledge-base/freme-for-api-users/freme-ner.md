@@ -85,16 +85,8 @@ The following figure illustrates the dependencies of FREME-NER.
 Clone this `https://github.com/freme-project/freme-packages.git` to your machine and and build the package by executing `mvn package` in the folder `freme-ner-dev`, as described [here](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-binary-distribution).     
     
 ### FREME NER Configuration options
-FREME NER has to be configured via an `application.properties` file, see [the FREME Configuration Options](../freme-for-sysadmins/configuration-options.html) for more information about the format, its location and all optional parameters.
 
-To run FREME NER the following parameters have to be defined according to your setting created during [Prerequisites](#prerequisites):
-
-* `freme.ner.sparqlEndpoint`: The URL of your SPARQL endpoint, e.g. `http://localhost:8890/sparql`
-* `freme.ner.solrURI`: The URL of the Solr endpoint, e.g. `http://localhost/solrdev/`
-* `freme.ner.languages`: The languages you want to load a NER model for. This has to be a comma-separated list of language codes, e.g. `en,de,nl,fr,it,es,ru`
-* `freme.ner.modelsLocation`: The location of the NER models for the languages you want to load, e.g. `/home/freme-ner/ner-models/` 
-* `freme.ner.domainsFile`: The location of the `domains.csv`, e.g. `config/domains.csv`
-    
+The configuration options of FREME NER are located in the [e-Services article](freme-for-sysadmins/e-services.html#freme-e-entity).    
 If you have done all the steps above, you can [start FREME NER](../freme-for-sysadmins/start-and-run-freme.html).
     
     
