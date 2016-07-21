@@ -1,8 +1,11 @@
 ---
-title: "Getting started for API Users"
+layout: page
+title: Getting started for API Users
 dropdown: Knowledge Base, FREME for API Users
 pos: 4.5
 ---
+
+# Getting started for API Users
 
 This article shall give the API-user an idea how to use the FREME API.
 
