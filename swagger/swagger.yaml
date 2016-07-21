@@ -1066,7 +1066,7 @@ paths:
         - name: Content-Type
           in: header
           type: string
-          default: 'text/n3'
+          default: 'text/turtle'
           enum:
             - text/turtle
             - text/n3
@@ -2260,7 +2260,7 @@ paths:
       parameters:
         - name: Content-Type
           in: header
-          default: text/plain
+          default: text/turtle
           required: true
           type: string
           enum:
@@ -2376,7 +2376,7 @@ paths:
       parameters:
         - name: Content-Type
           in: header
-          default: text/n3
+          default: text/turtle
           type: string
           required: true
           enum:
