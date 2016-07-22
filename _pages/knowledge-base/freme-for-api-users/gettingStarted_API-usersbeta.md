@@ -98,7 +98,7 @@ button.code-folding-btn:focus {
 <td align="left"><strong>e-internationalization</strong></td>
 <td align="center"></td>
 <td align="center"></td>
-<td align="left", rowspan="5">Makes it possible to uplaod files with different format than NIF. A full description of all formats can be found in the <a href="../freme-for-api-users/eInternationalisation.html">e-internationalization article</a>.</td>
+<td align="left" rowspan="5">Makes it possible to uplaod files with different format than NIF. A full description of all formats can be found in the <a href="../freme-for-api-users/eInternationalisation.html">e-internationalization article</a>.</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -167,7 +167,7 @@ button.code-folding-btn:focus {
 <td align="left"><strong>e-internationalization</strong></td>
 <td align="center"></td>
 <td align="center"></td>
-<td align="left", rowspan="5">For the e-internationalization formats the output type must be the same as the input type.</td>
+<td align="left" rowspan="5">For the e-internationalization formats the output type must be the same as the input type.</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -215,7 +215,7 @@ button.code-folding-btn:focus {
 <td align="left"></td>
 <td align="center">any <em>RDF</em> format</td>
 <td align="center"></td>
-<td align="left",rowspan="2">Must be accepted by FREMEenrichments services.</td>
+<td align="left" rowspan="2">Must be accepted by FREMEenrichments services.</td>
 </tr>
 </tbody>
 </table>
