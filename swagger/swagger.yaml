@@ -699,7 +699,7 @@ paths:
       parameters:
         - name: Content-Type
           in: header
-          default: text/plain
+          default: text/turtle
           type: string
           enum:
             - text/plain
@@ -736,7 +736,14 @@ paths:
           required: false
           schema:
             type: string
-            default: 'Welcome to Berlin, the capital of Germany.'
+            default: '@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+                      @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+
+                      <http://freme-project.eu/#char=0,42>
+                              a               nif:RFC5147String , nif:Context , nif:String ;
+                              nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
+                              nif:endIndex    "42"^^xsd:nonNegativeInteger ;
+                              nif:isString    "Welcome to Berlin, the capital of Germany." .'
         - name: numLinks
           in: query
           description: The number of links from a knowledge base returned for each entity. Note that for some entities it might returned less links than requested. This might be due to the low number of links available. The maximum number of links that can be returned is 5.
