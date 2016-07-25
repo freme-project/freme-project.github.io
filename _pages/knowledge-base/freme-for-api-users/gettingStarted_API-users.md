@@ -23,6 +23,7 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 ```
 
 This example call to e-entity/dbpedia-spotlight/documents which spots entities in the data you send via the input parameter. The call specifies two headers, **Content-Type** and **Accept**. The Content-Type header exists for both the request and the response, it refers to the dataformat of the data that was send to or back from the service. The Accept-header specifies which dataformat you want to accept for the response. 
+These headers are not mandatory, but it is highly recommended to set them. The tools, e.g. Postman, or browsers may set them implicitly if they are not specified which can result in unexpected behaviour.
 
 <html>
 <div class="container-fluid main-container">
