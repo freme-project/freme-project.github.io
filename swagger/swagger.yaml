@@ -1187,6 +1187,8 @@ paths:
       tags:
        - Toolbox/Postprocessing-Filter
       summary: Create a postprocessing filter
+      consumes:
+        - text/plain
       description: >
         Creates a new filter. The filter will be constructed from the body
         content, which has to be a valid SPARQL SELECT query as plain text. See
@@ -1233,6 +1235,8 @@ paths:
       tags:
        - Toolbox/Postprocessing-Filter
       summary: Update an existing postprocessing filter
+      consumes:
+        - text/plain
       description: >
         Updates the filter with the name `filter-name`. For more information
         on this feature, see the
@@ -1509,6 +1513,8 @@ paths:
         the [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article for further
         information. Ensure, that a converter with given `name` does not
         already exist. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html).
+      consumes:
+        - text/xml
       parameters:
         - name: body
           in: body
@@ -1564,6 +1570,8 @@ paths:
         Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html). Only fields
         containing content are updated. So, if you just want to transfer the
         ownership or change the visibility without updating the XSLT stylesheet, leave the body empty.
+      consumes:
+        - text/xml
       parameters:
         - name: body
           in: body
