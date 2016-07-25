@@ -235,6 +235,10 @@ $(document).ready(function () {
 </script>
 </html>
 
+## FREME Postman collection
+
+[Postman](https://www.getpostman.com/) is a handy tool to execute and archive your commonly used HTTP requests. Import [this Postman collection](../../resources/postman/FREME.postman_collection.json) into your local Postman to have a set of working requests which covers the most of FREME functionality out of the box. To get this collection working just define the [Postman variable](https://www.getpostman.com/docs/environments) `baseUrl` and set it to `{{ site.apiurl | prepend: site.url }}`, for instance. Furthermore, if you intend to create or modify [restricted resources](../freme-for-api-users/authentication.html#restricted-resources) like [FREME templates]({{site.baseurl | prepend: site.url}}/api-doc/list-templates.html), [filters](../freme-for-api-users/filtering.html), etc. you have to define and set the variable `token` to the one you get when you have [authenticated](../freme-for-api-users/authentication.html#how-to-authenticate) successfully. 
+
 ## Natural Language Interchange Format (NIF)
 
 The Natural Language Processing interchange format (NIF) is the default output format of all FREME e-Services. This is an RDF based data format that can be serialized in different formats such as turtle, rdf-xml and others. When you create a pipeline then internally the pipeline should speak NIF to make sure that all pipeline steps are compatible to each other. You can either parse the output of FREME directly using a suitable
