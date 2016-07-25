@@ -5,6 +5,33 @@ dropdown: Knowledge Base, FREME for API Users
 pos: 4.3
 ---
 
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    var out = "<ul>";
+
+    for(i = 0; i < arr.length; i++) {
+        out += "<li>" +
+        "<a href=\"{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/"+arr[i].name+"\">"+arr[i].name+"</a>: " + (arr[i].description==null?"(missing description)":arr[i].description) +
+        "</li>";
+    }
+    out += "</ul>";
+    document.getElementById("filter-list").innerHTML = out;
+}
+</script>
+
 # Simplify FREME output using SPARQL filters
 
 The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of the FREME e-services.
