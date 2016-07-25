@@ -23,9 +23,17 @@ tags:
   - name: User
     description: >
       User management APIs to create, read, update, delete users and create authentication tokens. More information in the [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
-  - name: Toolbox
+  - name: Toolbox/Postprocessing-Filter
     description: >
-      Configure postprocessing filters that can be used to [simplify output](../knowledge-base/freme-for-api-users/filtering.html). Further use the nif-converter endpoint to convert various document formats into NIF.
+      The postprocessing filters can be used to [simplify output](../knowledge-base/freme-for-api-users/filtering.html).
+  - name: Toolbox/XSLT-Converter
+    description: >
+      Use XSLT-converter to transform xml and html files with xslt stylesheets.
+
+  - name: Toolbox/NIF-Converter
+    description: >
+      Use the nif-converter endpoint to convert various document formats into NIF.
+
   - name: Pipelining
     description: >
       Configure workflows and share the workflows with other users using FREMEs pipelining API.
@@ -1159,7 +1167,7 @@ paths:
   /toolbox/convert/manage:
     get:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Get all postprocessing filters
       description: >
         Return all postprocessing filters. For more information on this feature, see the [Simplify FREME output using SPARQL filters](../knowledge-base/freme-for-api-users/filtering.html) article.
@@ -1170,7 +1178,7 @@ paths:
             type: string
     post:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Create a postprocessing filter
       description: >
         Creates a new filter. The filter will be constructed from the body
@@ -1216,7 +1224,7 @@ paths:
   '/toolbox/convert/manage/{name}':
     put:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Update an existing postprocessing filter
       description: >
         Updates the filter with the name `filter-name`. For more information
@@ -1265,7 +1273,7 @@ paths:
 
     delete:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Delete a postprocessing filter
       description: >
         Deletes the filter with specified name. For more information on this feature,
@@ -1286,7 +1294,7 @@ paths:
 
     get:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Get a postprocessing filter
       description: >
         Returns one specific filter with specified name.
@@ -1310,7 +1318,7 @@ paths:
   '/toolbox/convert/documents/{name}':
     post:
       tags:
-       - Toolbox
+       - Toolbox/Postprocessing-Filter
       summary: Execute a filter against an RDF graph
       description: >
         This endpoint allows to execute a certain filter against a RDF graph sent
@@ -1475,7 +1483,7 @@ paths:
   /toolbox/xslt-converter/manage:
     get:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Get all XSLT converter
       description: >
         Return all XSLT converter. For more information on this feature, see the [CREATE THIS] article.
@@ -1486,7 +1494,7 @@ paths:
             type: string
     post:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Create a XSLT converter
       description: >
         Creates a new XSLT converter. The converter will be constructed from the body
@@ -1540,7 +1548,7 @@ paths:
   '/toolbox/xslt-converter/manage/{name}':
     put:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Update an existing XSLT converter
       description: >
         Updates the converter with. For more information
@@ -1588,7 +1596,7 @@ paths:
 
     delete:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Delete a XSLT converter
       description: >
         Deletes the XSLT converter with specified name. For more information on this feature,
@@ -1608,7 +1616,7 @@ paths:
 
     get:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Get a XSLT converter
       description: >
         Returns one specific converter with specified name.
@@ -1632,7 +1640,7 @@ paths:
   '/toolbox/xslt-converter/documents/{name}':
     post:
       tags:
-       - Toolbox
+       - Toolbox/XSLT-Converter
       summary: Transform a xml or html document with a XSLT converter
       description: >
         This endpoint allows to transform a XML or HTML document with a certain XSLT converter. For more
@@ -1696,7 +1704,7 @@ paths:
   /toolbox/nif-converter:
     post:
       tags:
-       - Toolbox
+       - Toolbox/NIF-Converter
       summary: Convert a document to NIF
       description: >
         This endpoint allows to convert plain text, a document in any format supported by
