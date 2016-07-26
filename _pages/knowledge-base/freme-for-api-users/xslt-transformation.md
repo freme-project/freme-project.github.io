@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Input transformation with XSLT
+title: XSLT transformation via FREME
 dropdown: Knowledge Base, FREME for API Users
 pos: 4.7
 ---
@@ -32,7 +32,7 @@ function myFunction(response) {
 }
 </script>
 
-# Input transformation with XSLT
+# XSLT transformation via FREME
 
 FREME let you use a wide area of XML and HTML content for its e-Services. This is possible by previously transforming the input with [XSLT stylesheets](https://www.w3.org/Style/XSL/WhatIsXSL.html) into acceptable FREME input. The workflow can be forged into a **FREME pipeline** to achieve reusability.
 
@@ -84,7 +84,61 @@ The request above simply transforms any valid html document into valid xml. The 
 
 **NOTE:** The endpoint defaults to `text/xml` for both, the type of the input and output. If you submit HTML content, you have to set the header `Content-Type: text/html`. To get HTML back, set the header `Accept: text/html`.
 
+**NOTE:** Using CURL makes it necessary to set the Content-Type header also for `text/xml`.
+
 You can play around with existing converters at the [interactive FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html#resource_Toolbox/XSLT-Converter).
+
+### Submitting stylesheet parameters
+
+Using a stylesheet that defines global parameters makes it possible to set them while calling the converter. To do so, just submit the parameter-value-pairs with the request.
+
+Have a look at the stylesheet of the converter [xslt-with-param]({{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/manage/xslt-with-param):
+
+```
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:param name="myparam">set internally</xsl:param>
+    <xsl:template match="/">
+        <xsl:value-of select="$myparam"/>
+    </xsl:template>
+</xsl:stylesheet>
+```
+
+The stylesheet simply outputs the content of the parameter `myparam` and discards the input. So when you call:
+
+```
+curl -X POST --header 'Content-Type: text/xml' -d '<?xml version="1.0"?>
+<note>
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Dont forget me this weekend!</body>
+</note>' '{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/xslt-with-param'
+```
+
+you get this:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>set internally
+```
+
+But adding the parameter `myparam` to the request:
+
+```
+curl -X POST --header 'Content-Type: text/xml' -d '<?xml version="1.0"?>
+<note>
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Dont forget me this weekend!</body>
+</note>' '{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/xslt-with-param?myparam=content'
+```
+
+gives this result:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>content
+```
+
 
 ## Manage XSLT converter
 
