@@ -99,31 +99,27 @@ button.code-folding-btn:focus {
 <td align="left"><strong>e-internationalization</strong></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left" rowspan="5">Makes it possible to uplaod files with different format than NIF. A full description of all formats can be found in the <a href="../freme-for-api-users/eInternationalisation.html">e-internationalization article</a>.</td>
+<td align="left" rowspan="5">Makes it possible to upload files with different format than NIF. A full description of all formats can be found in the <a href="../freme-for-api-users/eInternationalisation.html">e-internationalization article</a>.</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">xliff 1.2</td>
 <td align="left">application/x-xliff+xml</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">ODT</td>
 <td align="left">application/x-openoffice</td>
-<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">xml</td>
 <td align="left">text/xml</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">html</td>
 <td align="left">text/html</td>
-<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -174,25 +170,21 @@ button.code-folding-btn:focus {
 <td align="left"></td>
 <td align="left">xliff 1.2</td>
 <td align="left">application/x-xliff+xml</td>
-<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">ODT</td>
 <td align="left">application/x-openoffice</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">xml</td>
 <td align="left">text/xml</td>
-<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">html</td>
 <td align="left">text/html</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>SPARQL-converter outputs</strong></td>
