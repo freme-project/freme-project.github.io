@@ -24,14 +24,20 @@ pos: 4.15
 <p>Hibernate provides the possibility to autoload content into the database when the database schema is created. To autoload the FREME entities mentioned above, do the following:</p>
 
 <ol>
-  <li>Put the <a href="../../resources/database/init-template.sql">templates script</a>, the <a href="../../resources/database/init-sparqlconverter.sql">sparql converters script</a>, the <a href="../../resources/database/init-xsltconverter.sql">xslt converters script</a> and <a href="../../resources/database/init-admin.sql">this init-admin script</a> into your FREME config folder inside target/freme-package. The init-admin script is necessary to meet the foreign key requirements of the other tables. Note that this overwrites `admin.username` and `admin.password` in your `application.properties` file. If you start FREME from within your IDE make sure that the three added files are on the classpath.</li>
+  <li>Put the <a href="../../resources/database/init-template.sql">templates script</a>, the <a href="../../resources/database/init-sparqlconverter.sql">sparql converters script</a>, the <a href="../../resources/database/init-xsltconverter.h2.sql">xslt converters script for H2 database</a> (or <a href="../../resources/database/init-xsltconverter.mysql.sql">xslt converters script for MySQL database </a>) and <a href="../../resources/database/init-admin.sql">this init-admin script</a> into your FREME config folder inside target/freme-package. The init-admin script is necessary to meet the foreign key requirements of the other tables. Note that this overwrites `admin.username` and `admin.password` in your `application.properties` file. If you start FREME from within your IDE make sure that the three added files are on the classpath.</li>
   <li>Change `CHANGE_THIS_PASSWORD` in the admin-script to a secure admin password.</li>
-  <li>Add the following entries to your `application.properties` file:
+  <li>Add the following entries to your `application.properties` file if you use the H2 (default) database backend:
   <pre>
-spring.jpa.properties.hibernate.hbm2ddl.import_files=init-admin.sql, init-sparqlconverter.sql, init-xsltconverter.sql, init-template.sql
+spring.jpa.properties.hibernate.hbm2ddl.import_files=init-admin.sql, init-sparqlconverter.sql, init-xsltconverter.h2.sql, init-template.sql
 spring.jpa.properties.hibernate.hbm2ddl.import_files_sql_extractor=org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
 spring.jpa.hibernate.ddl-auto=create
-</pre>
+  </pre>
+    or this, if you use MySQL as database backend:
+   <pre>
+spring.jpa.properties.hibernate.hbm2ddl.import_files=init-admin.sql, init-sparqlconverter.sql, init-xsltconverter.mysql.sql, init-template.sql
+spring.jpa.properties.hibernate.hbm2ddl.import_files_sql_extractor=org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+spring.jpa.hibernate.ddl-auto=create
+  </pre>
   </li>
   <li>Start FREME</li>
   <li>Remove the added entries from your `application.properties` file to prevent hibernate from re-creating the databases (and dropping its previous content) when you restart it.</li>
