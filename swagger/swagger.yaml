@@ -695,6 +695,7 @@ paths:
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
       description: >
         Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.
+        
         This example shows a NIF document that can be processed by the service:
 
         <pre lang="turtle"><code>
