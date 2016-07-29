@@ -314,8 +314,7 @@ paths:
           /pipelining/chain.
 
 
-
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       parameters:
         - name: persist
           in: query
@@ -371,7 +370,7 @@ paths:
         Update an existing pipelining template with new information.
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       parameters:
         - name: id
           description: ID of the template you want to update
@@ -444,7 +443,7 @@ paths:
         Deletes the pipelining template with the specified id.
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       parameters:
         - name: id
           in: path
@@ -846,7 +845,7 @@ paths:
 
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       operationId: createDataset
       parameters:
         - name: Content-Type
@@ -957,9 +956,8 @@ paths:
         See [POST /e-entity/freme-ner/datasets](#!/e-Entity/createDataset) for an example SKOS Dataset.
 
 
-        This endpoint requires authenticated access, see
-        [authentication article](../knowledge-base/freme-for-api-users/authentication.html)
-        for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
+
       operationId: updateDataset
       parameters:
         - name: Content-Type
@@ -1038,9 +1036,7 @@ paths:
         Remove a dataset in the FREME-NER engine specified by its name.
 
 
-        This endpoint requires authenticated access, see
-        [authentication article](../knowledge-base/freme-for-api-users/authentication.html)
-        for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       operationId: removeDataset
       parameters:
         - name: name
@@ -2018,7 +2014,7 @@ paths:
         </code></pre>
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       operationId: createTemplate
       parameters:
         - in: body
@@ -2075,7 +2071,7 @@ paths:
         Update the enrichment template with specified ID.
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       operationId: updateTemplateById
       parameters:
         - in: body
@@ -2123,7 +2119,7 @@ paths:
 
 
 
-        This endpoint requires authenticated access, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html) for further information.
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       operationId: removeTemplateById
       parameters:
         - name: templateid
