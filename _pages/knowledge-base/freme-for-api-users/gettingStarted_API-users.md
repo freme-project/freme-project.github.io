@@ -25,7 +25,6 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 This example call to e-entity/dbpedia-spotlight/documents which spots entities in the data you send via the input parameter. The call specifies two headers, **Content-Type** and **Accept**. The Content-Type header exists for both the request and the response, it refers to the dataformat of the data that was send to or back from the service. The Accept-header specifies which dataformat you want to accept for the response. 
 These headers are not mandatory, but it is highly recommended to set them. The tools, e.g. Postman, or browsers may set them implicitly if they are not specified which can result in unexpected behaviour.
 
-<html>
 <div class="container-fluid main-container">
 
 <style type="text/css">
@@ -73,7 +72,7 @@ button.code-folding-btn:focus {
 <tbody>
 </tr>
 <tr class="even">
-<td align="left" rowspan="2"><strong>NIF</strong></td>
+<td align="left" rowspan="5"><strong>NIF</strong></td>
 <td align="left">turtle</td>
 <td align="left">text/turtle</td>
 <td align="left">default</td>
@@ -83,7 +82,25 @@ button.code-folding-btn:focus {
 <td align="left">text/rdf-xml</td>
 <td align="left"></td>
 </tr>
+</tr>
 <tr class="even">
+<td align="left">json</td>
+<td align="left">application/ld+json</td>
+<td align="left"></td>
+</tr>
+</tr>
+<tr class="odd">
+<td align="left">N-Triples</td>
+<td align="left">application/n-triples</td>
+<td align="left"></td>
+</tr>
+</tr>
+<tr class="even">
+<td align="left">N3</td>
+<td align="left">text/n3</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left"><strong>Plaintext</strong></td>
 <td align="left">plain</td>
 <td align="left">text/plain</td>
@@ -146,9 +163,26 @@ button.code-folding-btn:focus {
 <td align="left">text/turtle</td>
 <td align="left">default</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rdf-xml</td>
 <td align="left">text/rdf-xml</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">json</td>
+<td align="left">application/ld+json</td>
+<td align="left"></td>
+</tr>
+</tr>
+<tr class="even">
+<td align="left">N-Triples</td>
+<td align="left">application/n-triples</td>
+<td align="left"></td>
+</tr>
+</tr>
+<tr class="odd">
+<td align="left">N3</td>
+<td align="left">text/n3</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -215,7 +249,7 @@ $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
 </script>
-</html>
+
 
 ## FREME Postman collection
 
