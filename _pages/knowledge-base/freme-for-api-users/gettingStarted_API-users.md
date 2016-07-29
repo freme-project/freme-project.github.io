@@ -158,7 +158,7 @@ button.code-folding-btn:focus {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left" rowspan="2"><strong>NIF</strong></td>
+<td align="left" rowspan="5"><strong>NIF</strong></td>
 <td align="left">turtle</td>
 <td align="left">text/turtle</td>
 <td align="left">default</td>
