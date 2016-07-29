@@ -693,8 +693,20 @@ paths:
       tags:
         - e-Entity
       summary: 'Entity recognition and linking using DBPedia Spotlight engine. '
-      description: "Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.\n"
+      description: >
+        Enriches Text content with entities gathered from various datasets by the DBPedia-Spotlight Engine.\n
+        This example shows a NIF document that can be processed by the service:
 
+        <pre lang="turtle"><code>
+        @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+        @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+
+        &lt;http://freme-project.eu/#char=0,42&gt;
+                a               nif:RFC5147String , nif:Context , nif:String ;
+                nif:beginIndex  &quot;0&quot;^^xsd:nonNegativeInteger ;
+                nif:endIndex    &quot;42&quot;^^xsd:nonNegativeInteger ;
+                nif:isString    &quot;Welcome to Berlin, the capital of Germany.&quot; .
+        </code></pre>
       operationId: executeSpotlightNer
       parameters:
         - name: Content-Type
@@ -736,14 +748,6 @@ paths:
           required: false
           schema:
             type: string
-            default: '@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-                      @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-
-                      <http://freme-project.eu/#char=0,42>
-                              a               nif:RFC5147String , nif:Context , nif:String ;
-                              nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-                              nif:endIndex    "42"^^xsd:nonNegativeInteger ;
-                              nif:isString    "Welcome to Berlin, the capital of Germany." .'
         - name: numLinks
           in: query
           description: The number of links from a knowledge base returned for each entity. Note that for some entities it might returned less links than requested. This might be due to the low number of links available. The maximum number of links that can be returned is 5.
