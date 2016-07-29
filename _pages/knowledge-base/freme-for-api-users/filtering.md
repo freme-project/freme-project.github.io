@@ -5,6 +5,33 @@ dropdown: Knowledge Base, FREME for API Users
 pos: 4.3
 ---
 
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    var out = "<ul>";
+
+    for(i = 0; i < arr.length; i++) {
+        out += "<li>" +
+        "<a href=\"{{ site.apiurl | prepend: site.url }}/toolbox/convert/manage/"+arr[i].name+"\">"+arr[i].name+"</a>: " + (arr[i].description==null?"(missing description)":arr[i].description) +
+        "</li>";
+    }
+    out += "</ul>";
+    document.getElementById("filter-list").innerHTML = out;
+}
+</script>
+
 # Simplify FREME output using SPARQL filters
 
 The FREME e-services provide postprocessing functionality. All retrievable RDF content, like NER output, can be filtered e.g. to get only a list of entities instead of full NIF. This is achieved by executing SPARQL queries against the output of the FREME e-services.
@@ -20,16 +47,7 @@ A filter has to be a valid SPARQL query. At the moment, only SELECT queries are 
 
 ## Available filters
 
-* `extract-entities-only`: extract all objects of triples with "itsrdf:taIdentRef" property
-* `terminology-terms-only`
-* `sourcelang-targetlang`
-* `original-and-translation`
-* `entities-detailed-info`
-* `place-and-lat-long`
-* `museums-nearby`
-* `freme-workflow-editor-terminology`
-
-**NOTE:** The list above will be updated from time to time. To see an up to date list of all publicly available SPARQL filters use the API endpoint `GET {{ site.apiurl | prepend: site.url }}/toolbox/convert/manage`, see [this section](#get-all-filters).
+<div id="filter-list"></div>
 
 ## Using filters
 

@@ -65,26 +65,20 @@ button.code-folding-btn:focus {
 <thead>
 <tr class="header">
 <th align="left"></th>
-<th align="left">Input Format</th>
+<th align="left">Format</th>
 <th align="left">Content-Type header</th>
 <th align="left">remarks</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left"><strong>NIF</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">standard</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
+<td align="left" rowspan="2"><strong>NIF</strong></td>
 <td align="left">turtle</td>
 <td align="left">text/turtle</td>
-<td align="left"></td>
+<td align="left">default</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">rdf-xml</td>
 <td align="left">text/rdf-xml</td>
 <td align="left"></td>
@@ -95,38 +89,38 @@ button.code-folding-btn:focus {
 <td align="left">text/plain</td>
 <td align="left">standard</td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>e-internationalization</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left" rowspan="5">Makes it possible to uplaod files with different format than NIF. A full description of all formats can be found in the <a href="../freme-for-api-users/eInternationalisation.html">e-internationalization article</a>.</td>
-</tr>
 <tr class="even">
-<td align="left"></td>
+<td align="left" rowspan="4"><a href="../freme-for-api-users/eInternationalisation.html"><strong>e-internationalization</strong></a></td>
 <td align="left">xliff 1.2</td>
 <td align="left">application/x-xliff+xml</td>
-<td align="left"></td>
+ <td align="left" rowspan="4">Makes it possible to upload files with different format than NIF. </td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">ODT</td>
 <td align="left">application/x-openoffice</td>
-<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
 <td align="left">xml</td>
 <td align="left">text/xml</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">html</td>
 <td align="left">text/html</td>
-<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left" rowspan="3"><a href="../freme-for-api-users/xslt-transformation.html"><strong>XSLT Converter</strong></a></td>
+<td align="left">xml</td>
+<td align="left">text/xml</td>
+ <td align="left" rowspan="3">Use XSLT-converter to transform xml and html files with xslt stylesheets.</td>
+</tr>
+<tr class="odd">
+<td align="left">html</td>
+<td align="left">text/html</td>
 </tr>
 </tbody>
 </table>
+
+
 </div>
 <div id="output-types" class="section level1">
 <h2>Output Types</h2>
@@ -140,83 +134,71 @@ button.code-folding-btn:focus {
 <thead>
 <tr class="header">
 <th align="left"></th>
-<th align="left">Input Format</th>
+<th align="left">Format</th>
 <th align="left">Accept header</th>
 <th align="left">remarks</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>NIF</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">standard</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
+<td align="left" rowspan="2"><strong>NIF</strong></td>
 <td align="left">turtle</td>
 <td align="left">text/turtle</td>
-<td align="left"></td>
+<td align="left">default</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">rdf-xml</td>
 <td align="left">text/rdf-xml</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>e-internationalization</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left" rowspan="5">For the e-internationalization formats the output type must be the same as the input type.</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
+<td align="left" rowspan="4"><a href="../freme-for-api-users/eInternationalisation.html"><strong>e-internationalization</strong></a></td>
 <td align="left">xliff 1.2</td>
 <td align="left">application/x-xliff+xml</td>
-<td align="left"></td>
+<td align="left" rowspan="4">For the e-internationalization formats the output type must be the same as the input type.</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
 <td align="left">ODT</td>
 <td align="left">application/x-openoffice</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">xml</td>
 <td align="left">text/xml</td>
-<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
 <td align="left">html</td>
 <td align="left">text/html</td>
-<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>SPARQL-converter outputs</strong></td>
+<td align="left" rowspan="4" ><strong><a href="../freme-for-api-users/filtering.html">SPARQL-converter</a> outputs</strong></td>
 <td align="left">csv</td>
 <td align="left">text/comma-seperated-values</td>
-<td align="left">default SPARQL format</td>
+<td align="left">default</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
 <td align="left">json</td>
 <td align="left">application/json</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
 <td align="left">xml</td>
 <td align="left">text/xml</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left"><em>RDF</em> formats</td>
 <td align="left"></td>
-<td align="left">any <em>RDF</em> format</td>
-<td align="left"></td>
-<td align="left" rowspan="2">Must be accepted by FREMEenrichments services.</td>
+<td align="left" >Must be accepted by FREME enrichment services.</td>
+</tr>
+  <tr class="even">
+<td align="left" rowspan="3"><a href="../freme-for-api-users/xslt-transformation.html"><strong>XSLT Converter</strong></a></td>
+<td align="left">xml</td>
+<td align="left">text/xml</td>
+ <td align="left" rowspan="3">Use XSLT-converter to transform xml and html files with xslt stylesheets.</td>
+</tr>
+<tr class="odd">
+<td align="left">html</td>
+<td align="left">text/html</td>
 </tr>
 </tbody>
 </table>
@@ -234,6 +216,12 @@ $(document).ready(function () {
 });
 </script>
 </html>
+
+## FREME Postman collection
+
+[Postman](https://www.getpostman.com/) is a handy and free tool to execute and archive your commonly used HTTP requests. We publish a collection of pre-build FREME API calls that can be executed against the FREME Demo APIs or against your own local FREME installations. These collections can also be used to generate API calls in programming languages such as Java, PHP, jQuery and others.
+
+How to use the collection: Import [this Postman collection]({{site.baseurl | prepend: site.url}}/resources/postman/FREME.postman_collection.json) into your local Postman to have a set of working requests which covers the most of FREME functionality out of the box. To get this collection working just define the [Postman variable](https://www.getpostman.com/docs/environments) `baseUrl` and set it to `api.freme-project.eu/current`, for instance. Furthermore, if you intend to create or modify [restricted resources](../freme-for-api-users/authentication.html#restricted-resources) like [FREME templates]({{site.baseurl | prepend: site.url}}/api-doc/list-templates.html), [filters](../freme-for-api-users/filtering.html), etc. you have to define and set the variable `token` to the one you get when you have [authenticated](../freme-for-api-users/authentication.html#how-to-authenticate) successfully. 
 
 ## Natural Language Interchange Format (NIF)
 

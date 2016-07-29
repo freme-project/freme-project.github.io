@@ -12,5 +12,6 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-pages: ./_pages	
+pages: ./_pages
+keep_files: ['resources']
 

@@ -1191,6 +1191,8 @@ paths:
       tags:
        - Toolbox/Postprocessing-Filter
       summary: Create a postprocessing filter
+      consumes:
+        - text/plain
       description: >
         Creates a new filter. The filter will be constructed from the body
         content, which has to be a valid SPARQL SELECT query as plain text. See
@@ -1237,6 +1239,8 @@ paths:
       tags:
        - Toolbox/Postprocessing-Filter
       summary: Update an existing postprocessing filter
+      consumes:
+        - text/plain
       description: >
         Updates the filter with the name `filter-name`. For more information
         on this feature, see the
@@ -1497,7 +1501,7 @@ paths:
        - Toolbox/XSLT-Converter
       summary: Get all XSLT converter
       description: >
-        Return all XSLT converter. For more information on this feature, see the [CREATE THIS] article.
+        Return all XSLT converter. For more information on this feature, see the [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article.
       responses:
         '200':
           description: Successful response
@@ -1510,9 +1514,11 @@ paths:
       description: >
         Creates a new XSLT converter. The converter will be constructed from the body
         content, which has to be a valid XSLT stylesheet as plain text. See
-        the [CREATE THIS] article for further
+        the [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article for further
         information. Ensure, that a converter with given `name` does not
         already exist. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html).
+      consumes:
+        - text/xml
       parameters:
         - name: body
           in: body
@@ -1564,10 +1570,12 @@ paths:
       description: >
         Updates the converter with. For more information
         on this feature, see the
-        [CREATE THIS]
-        article. Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html). Only fields
+        [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article.
+        Requires [authentication](../knowledge-base/freme-for-api-users/authentication.html). Only fields
         containing content are updated. So, if you just want to transfer the
         ownership or change the visibility without updating the XSLT stylesheet, leave the body empty.
+      consumes:
+        - text/xml
       parameters:
         - name: body
           in: body
@@ -1611,7 +1619,7 @@ paths:
       summary: Delete a XSLT converter
       description: >
         Deletes the XSLT converter with specified name. For more information on this feature,
-        see the [CREATE THIS] article. Requires
+        see the [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article. Requires
         [authentication](../knowledge-base/freme-for-api-users/authentication.html).
       parameters:
         - name: name
@@ -1632,8 +1640,7 @@ paths:
       description: >
         Returns one specific converter with specified name.
         For more information on this feature, see the
-        [CREATE THIS]
-        article.
+        [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article.
       parameters:
         - name: name
           in: path
@@ -1655,7 +1662,8 @@ paths:
       summary: Transform a xml or html document with a XSLT converter
       description: >
         This endpoint allows to transform a XML or HTML document with a certain XSLT converter. For more
-        information and a list of available XSLT converter, see the [CREATE THIS] article.
+        information and a list of available XSLT converter, see the
+        [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article.
 
       parameters:
         - name: Content-Type
