@@ -440,22 +440,18 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
       opts.responseContentType = $('div select[name=responseContentType]', $(this.el)).val();
       opts.requestContentType = $('div select[name=parameterContentType]', $(this.el)).val();
-      
+
+      //console.info(opts);
+      //console.info(map);
+
       // overwrite content-type and accept header with header parameter values
       // disable JSHint warning
       /*jshint -W069 */
-      if(map['Accept']){ 
-        opts.responseContentType = map['Accept'];
-      } else if(map['accept']){ 
-        opts.responseContentType = map['accept'];
-      }
-      if(map['Content-Type']){ 
-        opts.requestContentType = map['Content-Type'];
-        map.parameterContentType = opts.requestContentType;
-      } else if(map['content-type']){ 
-        opts.requestContentType = map['content-type'];
-        map.parameterContentType = opts.requestContentType;
-      }
+      opts.responseContentType = map['Accept'] || map['accept'] || opts.responseContentType;
+      map.responseContentType = opts.responseContentType;
+
+      opts.requestContentType = map['Content-Type'] || map['content-type'] || opts.requestContentType;
+      map.parameterContentType = opts.requestContentType;
       /*jshint +W069 */
       
       $('.response_throbber', $(this.el)).show();
@@ -795,9 +791,8 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       this.map.body = ' '+this.map.body;
     }
 
-    console.info(this.map.body);
-    var curlCommand = this.model.asCurl(this.map, {responseContentType: contentType});
-    curlCommand = curlCommand.replace('!', '&#33;');
+    var curlCommand = this.model.asCurl(this.map, {responseContentType: this.map.responseContentType});
+    //curlCommand = curlCommand.replace('!', '&#33;');
     $( 'div.curl', $(this.el)).html('<pre>' + _.escape(curlCommand) + '</pre>');
     //////////////////////////
 

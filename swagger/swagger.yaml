@@ -1661,7 +1661,12 @@ paths:
         This endpoint allows to transform a XML or HTML document with a certain XSLT converter. For more
         information and a list of available XSLT converter, see the
         [Input transformation with XSLT](../knowledge-base/freme-for-api-users/xslt-transformation.html) article.
-
+      consumes:
+        - text/xml
+        - text/html
+      produces:
+        - text/xml
+        - text/html
       parameters:
         - name: Content-Type
           in: header
