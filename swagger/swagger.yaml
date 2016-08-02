@@ -208,6 +208,32 @@ paths:
           description: Successful response
           schema:
             type: string
+    put:
+      tags:
+        - User
+      summary: Updates the password of an user
+      description: >
+        Update the password of an user.
+
+        You need to be authenticated as that user or as an admin user to access
+        this API call.
+      parameters:
+        - name: username
+          in: path
+          description: The username of the user to update the password
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          description: The new password.
+          type: string
+
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: string
 
   /authenticate:
     post:
@@ -513,7 +539,7 @@ paths:
         - name: useI18n
           in: query
           required: false
-          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Use e-Internalization otherwise, if possible.
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Otherwise, use e-Internalization, if possible.
           enum:
             - true
             - false
