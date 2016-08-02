@@ -90,13 +90,22 @@ To use FREME e-Services as authenticated user just attach your token as `X-Auth-
 
 To use restricted resources via the [FREME api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html) just put your token into the input field at the bottom of the page.
 
-### OPTIONAL: How to delete a user
+### OPTIONAL: How to change the password of a user
 
 To do so, you have to use an access token of the user you want to delete or from the admin.
+You can use the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/put_user_username) or a curl call like the following:
+
+```
+curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/user/YOUR_USERNAME?password=NEW_PASSWORD"
+```
+
+### OPTIONAL: How to delete a user
+
+You have to use an access token of the user you want to delete or from the admin.
 You can use the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/delete_user_username) or a curl call like the following:
 
 ```
-curl -X DELETE --header "X-Auth-Token: f81ccf99-1d01-4e79-9a0b-8dfe84d8303c" "{{ site.apiurl | prepend: site.url }}/user/YOUR_USERNAME"
+curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiurl | prepend: site.url }}/user/YOUR_USERNAME"
 ```
 It is not yet possible to delete a user who still owns resources such as datasets or templates. This will be implemented.
 
