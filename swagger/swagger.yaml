@@ -510,6 +510,13 @@ paths:
           default: 'false'
           in: query
           type: string
+        - name: useI18n
+          in: query
+          required: false
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Use e-Internalization otherwise, if possible.
+          enum:
+            - true
+            - false
           
       responses:
         '200':
@@ -680,6 +687,13 @@ paths:
           default: 'false'
           in: query
           type: string
+        - name: useI18n
+          in: query
+          required: false
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Use e-Internalization otherwise, if possible.
+          enum:
+            - true
+            - false
           
       responses:
         '200':
