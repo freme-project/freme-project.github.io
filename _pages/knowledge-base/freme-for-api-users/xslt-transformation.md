@@ -40,6 +40,7 @@ FREME let you use a wide area of XML and HTML content for its e-Services. This i
 
 * [Available XSLT converter](#available-xslt-converter)
 * [Using XSLT converter](#using-xslt-converter)
+* [XSLT converter in a pipeline](#xslt-converter-in-a-pipeline)
 * [Manage XSLT converter](#manage-xslt-converter)
 
 ## Available XSLT converter
@@ -139,6 +140,99 @@ gives this result:
 <?xml version="1.0" encoding="UTF-8"?>content
 ```
 
+
+## XSLT converter in a pipeline
+
+You can save your workflow in a [FREME pipeline]({{ site.url }}/doc/tutorials/pipeline-entity-link.html). The following pipeline converts xliff to html, does named entity recognition with html roundtripping and converts back to xliff: 
+
+```
+[
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/xliff20-to-html",
+      "headers": {
+        "content-type": "text/xml",  
+        "accept": "text/xml"
+      }
+    },
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all",
+      "headers": {
+        "content-type": "text/html",
+        "accept": "text/html"
+      }
+    },
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/html-to-xliff20",
+      "headers": {
+        "content-type": "text/xml",
+        "accept": "text/xml"
+      }
+    }
+  ]
+```
+
+To use the pipeline, put your input (which has to be json encoded) in the body element of the first request and send it to the FREME pipeline endpoint `{{ site.apiurl | prepend: site.url }}pipelining/chain`.
+ 
+For instance, execute the following:
+
+```
+curl -X POST -H "Content-Type: application/json" -d '[
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/xliff20-to-html",
+      "headers": {
+        "content-type": "text/xml",  
+        "accept": "text/xml"
+      },
+      "body": "<xliff version=\"2.0\" xmlns=\"urn:oasis:names:tc:xliff:document:2.0\" srcLang=\"en\" trgLang=\"fr\">\n <file id=\"f1\">\n  <unit id=\"u1\">\n   <segment>\n   <source>We very much welcome you in the city of Prague, a home of XML!<\/source>\n   <\/segment>\n  <\/unit>\n <\/file>\n<\/xliff>"
+    },
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all",
+      "headers": {
+        "content-type": "text/html",
+        "accept": "text/html"
+      }
+    },
+    {
+      "method": "POST",
+      "endpoint": "{{ site.apiurl | prepend: site.url }}/toolbox/xslt-converter/documents/html-to-xliff20",
+      "headers": {
+        "content-type": "text/xml",
+        "accept": "text/xml"
+      }
+    }
+  ]' "{{ site.apiurl | prepend: site.url }}/pipelining/chain?useI18n=false"
+```
+
+**Note:** The parameter `useI18n=false` is necessary here to suppress [e-Internalization roundtripping]({{ site.url }}/doc/knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work) which otherwise would be activated in this case by default. If roundtripping conditions hold, e.g. the input format is the same as the output format and both are accepted [e-Internalization output formats]({{ site.url }}/doc/knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation), the input gets converted to NIF (turtle) before it enters the pipeline and the pipeline result gets converted back to the output/input format. Furthermore, all pipeline internal input and output formats are set to NIF (turtle). This would collide with the XSLT converters, which require and produce xml or html input/output.
+
+The request above returns enriched xliff:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0"
+       version="2.0"
+       srcLang="en"
+       trgLang="fr">
+    <file id="f1">
+       <unit id="u1">
+          <segment>
+             <source xmlns:itsm="urn:oasis:names:tc:xliff:itsm:2.1">We very much welcome you in the city of <mrk id="d5e18"
+            type="itsm:generic"
+            itsm:taIdentRef="http://dbpedia.org/resource/Prague">Prague</mrk>, a home of <mrk id="d5e21"
+            type="itsm:generic"
+            itsm:taIdentRef="http://dbpedia.org/resource/XML">XML</mrk>!</source>
+          </segment>
+       </unit>
+    </file>
+</xliff>
+```
+
+You can easily save and reuse your pipeline via the [interactive api documentation]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/Pipelining/post_pipelining_templates).
 
 ## Manage XSLT converter
 
