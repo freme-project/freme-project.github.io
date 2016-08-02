@@ -31,7 +31,12 @@ workspace.location=workspace</code></pre>
 	</li>
 	<li>
 		<h5>admin.create, admin.username, admin.password</h5>
-		<p>You can create an admin user from the &#96;application.properties file using the following configuration. admin.username=admin admin.password=password admin.create=true When FREME starts it will check if the user exists in the database and if it has admin rights and create / promote the user to be an admin. The default value for admin.create is false so by default no admin user will be created. </p>
+		<p>You can create an admin user from the application.properties file using the following configuration.</p>
+		<pre><code>admin.username=admin
+admin.password=password
+admin.create=true</code></pre>
+		<p>When FREME starts it will check if the user exists in the database and if it has admin rights and create / promote the user to be an admin. The default value for admin.create is false so by default no admin user will be created. </p>
+		<p>If a user with the name admin.username already exists, the password will be overwritten with admin.password.</p>
 	</li>
 	<li>
 		<h5>mysql database settings </h5>
