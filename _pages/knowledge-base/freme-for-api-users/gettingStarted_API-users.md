@@ -186,7 +186,7 @@ button.code-folding-btn:focus {
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left" rowspan="4"><a href="../freme-for-api-users/eInternationalisation.html"><strong>e-internationalization</strong></a></td>
+<td align="left" rowspan="4" id="output-types-einternalisation"><a href="../freme-for-api-users/eInternationalisation.html"><strong>e-internationalization</strong></a></td>
 <td align="left">xliff 1.2</td>
 <td align="left">application/x-xliff+xml</td>
 <td align="left" rowspan="4">For the e-internationalization formats the output type must be the same as the input type.</td>
