@@ -92,7 +92,7 @@ To use restricted resources via the [FREME api documentation]({{site.baseurl | p
 
 ### OPTIONAL: How to change the password of a user
 
-To do so, you have to use an access token of the user you want to delete or from the admin.
+To do so, you have to use an access token of the User you want to update or from the admin.
 You can use the [FREME api documentation page]({{site.baseurl | prepend: site.url}}/api-doc/full.html#!/User/put_user_username) or a curl call like the following:
 
 ```
