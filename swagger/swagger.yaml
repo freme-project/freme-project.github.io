@@ -539,11 +539,14 @@ paths:
         - name: useI18n
           in: query
           required: false
-          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Otherwise, use e-Internalization, if possible.
+          default: undefined
           enum:
+            - undefined
             - true
             - false
-          
+          type: string
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any othe value, e-Internalization will be used, if possible.
+
       responses:
         '200':
           description: Successful response
@@ -716,11 +719,14 @@ paths:
         - name: useI18n
           in: query
           required: false
-          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. Use e-Internalization otherwise, if possible.
+          default: undefined
           enum:
+            - undefined
             - true
             - false
-          
+          type: string
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any othe value, e-Internalization will be used, if possible.
+
       responses:
         '200':
           description: Successful response
