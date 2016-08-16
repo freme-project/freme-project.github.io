@@ -1,8 +1,0 @@
- {
-  "query": "PREFIX dbpedia:  \n PREFIX dbpedia-owl:  \n PREFIX rdf:  \n PREFIX geo:  \n CONSTRUCT \n { \n ?museum  <@@@entity_uri@@@> . \n } \n WHERE \n { \n <@@@entity_uri@@@> geo:geometry ?citygeo . \n ?museum rdf:type  . \n ?museum geo:geometry ?museumgeo . \n FILTER ((?museumgeo, ?citygeo, 10)) \n } \n LIMIT 10",
-  "endpoint": "http://dbpedia.org/sparql/",
-  "label": "template title",
-  "description": "template description",
-  "endpointType": "sparql",
-  "visibility": "public"
-} 
