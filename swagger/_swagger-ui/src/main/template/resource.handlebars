@@ -1,0 +1,32 @@
+<div class='heading'>
+    <h2>
+        <a href='#!/{{id}}' class="toggleEndpointList" data-id="{{id}}">{{name}}</a>
+    </h2>
+<ul class='options'>
+    <li>
+        <a href='#!/{{id}}' id='endpointListTogger_{{id}}' class="toggleEndpointList" data-id="{{id}}" data-sw-translate>Show/Hide</a>
+    </li>
+    {{#if operationsArray}}
+        <li>
+            <a href='#' class="collapseResource" data-id="{{id}}" data-sw-translate>
+                List Operations
+            </a>
+        </li>
+        <li>
+            <a href='#' class="expandResource" data-id="{{id}}" data-sw-translate>
+                Expand Operations
+            </a>
+        </li>
+        {{#if url}}
+            <li>
+                <a href='{{url}}' data-sw-translate>Raw</a>
+            </li>
+        {{/if}}
+    </ul>
+    {{/if}}
+</div>
+<div class="resource_description markdown" id='{{id}}_description'>{{{description}}}</div>
+
+<ul class='endpoints' id='{{id}}_endpoint_list' style='display:none'>
+
+</ul>

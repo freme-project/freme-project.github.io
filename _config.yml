@@ -1,0 +1,32 @@
+# Site settings
+title: FREME Documentation
+email: jonathan_paul.sauder@dfki.de
+description: This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.
+## The variable basePath is necessary for dev deployment and set by jenkins deploy script. So do not modify it here!
+## basePath
+
+# The following parameters are assembled to: <apiProtocol>://<apiHost><apiBasePath>
+# for all FREME api requests mentioned in the documentation including the interactive swagger api-doc.
+apiProtocol: https
+apiHost: api.freme-project.eu
+apiBasePath: /current
+
+#url: "http://api-dev.freme-project.eu" # the base hostname & protocol for your site
+#github_username:  josauder
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+keep_files: ['resources']
+
+# exclude travis vendor folder
+exclude: [vendor]
+
+gems:
+  - github-pages
+
+repository: freme-project/freme-project.github.io
+
+

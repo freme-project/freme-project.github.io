@@ -1,0 +1,13 @@
+-.project
+-.settings 
+.idea
+.sass-cache/
+node_modules
+dist
+_site
+*.iml
+.iml
+simple.yaml
+*~
+/target
+Gemfile.lock

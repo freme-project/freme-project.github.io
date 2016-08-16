@@ -1,0 +1,243 @@
+---
+layout: page
+title: e services reference
+dropdown: Knowledge Base, FREME for System Administrators
+pos: 4.16
+---
+
+<h1>List of all e-services</h1>
+
+<p>This page lists all e-services that have been developed during the course of the FREME project.</p>
+
+<ul>
+  <li><a href="#dbpedia-spotlight-e-entity">DBpedia Spotlight e-Entity</a></li>
+  <li><a href="#freme-e-entity">FREME NER</a></li>
+  <li><a href="#e-link">e-Link</a></li>
+  <li><a href="#e-link-explore">e-Link Explore</a></li>
+  <li><a href="#tilde-e-terminology">Tilde e-Terminology</a></li>
+  <li><a href="#tilde-e-translation">Tilde e-Translation</a></li>
+  <li><a href="#e-publishing">e-Publishing</a></li>
+</ul>
+
+<h2 id="dbpedia-spotlight-e-entity"><strong>DBpedia Spotlight e-Entity</strong></h2>
+
+<p>The DBpedia Spotlight e-Entity service enriches Text content with entities gathered from
+  various datasets by the DBPedia-Spotlight Engine. In-depth information can be found
+  in our <a href="../../api-doc/full.html">API Documentation</a></p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.dbpedia-spotlight</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/dbpedia-spotlight.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/dbpedia-spotlight">dbpedia spotlight source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain dbpedia spotlight</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2 id="freme-e-entity"><strong>FREME NER</strong></h2>
+
+<p>The FREME NER service enriches text content with entities gathered from various datasets
+  by the DBPedia-Spotlight Engine. In-depth information can be found in our
+  <a href="../../api-doc/full.html">API Documentation</a> and this <a href="../freme-for-api-users/freme-ner.html">knowledge base article</a>. </p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.freme-ner</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/freme-ner.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-ner">freme ner source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain freme ner</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev">freme-ner-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+<p>Freme e-entity is configured using application properties, e.g. in the configuration file application.properties, see <a href="configuration-options.html">FREME Configuration Options</a> for more information. This is an example configuration:</p>
+
+<pre>
+freme.ner.sparqlEndpoint=http://localhost:8890/sparql
+freme.ner.solrURI=http://localhost/solr/
+freme.ner.languages=en,fr
+freme.ner.modelsLocation=C:/path/to/the/model/files/folder
+freme.ner.domainsFile=config/domains.csv
+
+# database settings (example for mysql database)
+spring.datasource.url=jdbc:mysql://localhost:3306/freme
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+</pre>
+
+<p>The parameters are:</p>
+
+<ul>
+<li> freme.ner.sparqlEndpoint: The URL of your SPARQL endpoint, e.g. `http://localhost:8890/sparql`
+<li> freme.ner.solrURI: The URL of the Solr endpoint, e.g. `http://localhost/solrdev/`
+<li> freme.ner.languages: The languages you want to load a NER model for. This has to be a comma-separated list of language codes, e.g. `en,de,nl,fr,it,es,ru`
+<li> freme.ner.modelsLocation: The location of the NER models for the languages you want to load, e.g. `/home/freme-ner/ner-models/` 
+<li> freme.ner.domainsFile: The location of the `domains.csv`, e.g. `config/domains.csv`
+<li> The database configuration uses the standard FREME database settings, see <a href="configuration-options.html">configuration options</a>.
+</ul>
+
+<h2 id="e-link"><strong>e-Link</strong></h2>
+
+<p>The e-Link service accepts a NIF document containing annotated entities and performs enrichment
+  with pre-defined templates. In-depth information can be found in our
+  <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.e-link</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/e-link.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/e-link">dbpedia spotlight source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain e-link</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2 id="e-link-explore"><strong>e-Link Explore</strong></h2>
+
+<p>The e-Link Explore e-service enables a client to retrieve description of a resource from a given endpoint.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.e-link</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/e-link.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/e-link">dbpedia spotlight source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain e-link</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h2 id="tilde-e-terminology"><strong>Tilde e-Terminology</strong></h2>
+
+<p>The Tilde e-Terminology service annotates text with terminology information using the Tilde Terminology service.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.tilde-services</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/tilde-terminology.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/tilde-services/src/main/java/eu/freme/eservices/tilde/terminology">tilde terminology source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain tilde terminology</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The Tilde e-Terminology service does not offer any configuration options.
+
+<h2 id="tilde-e-translation"><strong>Tilde e-Translation</strong></h2>
+
+<p>The Tilde e-Translation service translates text from and to various languages using the Tilde Terminology service.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.tilde-services</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/tilde-translation.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/tilde-services/src/main/java/eu/freme/eservices/tilde/translation">tilde translation source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain tilde translation</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>
+
+<h3>Configuration options</h3>
+
+The Tilde e-Translation service does not offer any configuration options.
+
+<h2 id="e-publishing"><strong>e-Publishing</strong></h2>
+
+<p>The e-Publishing service creates an eBook in the EPUB3 format from a zip file containing HTML Files
+  and more (images etc.) and a json file containing all necessary metadata for the creation of the eBook.
+  In-depth information can be found in our <a href="../../api-doc/full.html">API Documentation</a>.</p>
+
+<h3>Quick overview</h3>
+
+<table border="1">
+  <tr>
+    <td>Maven artifact</td>
+    <td>eu.freme.e-services.publishing</td>
+  </tr>
+  <tr>
+    <td>Spring configuration file</td>
+    <td>spring-configurations/e-publishing.xml</td>
+  </tr>
+  <tr>
+    <td>Source code location</td>
+    <td><a target="_blank" href="https://github.com/freme-project/e-services/tree/master/publishing">e-publishing source code</a></td>
+  </tr>
+  <tr>
+    <td>Packages that contain e-publishing</td>
+    <td><a target="_blank" href="https://github.com/freme-project/freme-packages/tree/master/broker-dev">broker-dev</a></td>
+  </tr>
+</table>

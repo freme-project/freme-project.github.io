@@ -1,0 +1,24 @@
+<td class='code required'><label for='{{valueId}}'>{{name}}</label></td>
+<td>
+	{{#if isBody}}
+		{{#if isFile}}
+			<input type="file" name='{{name}}' id='{{valueId}}'/>
+		{{else}}
+            <div class="editor_holder"></div>
+			<textarea class='body-textarea required' placeholder='(required)' name='{{name}}' id="{{valueId}}">{{schema.default}}</textarea>
+            <br />
+		{{/if}}
+	{{else}}
+		{{#if isFile}}
+
+		{{else}}
+			{{#renderTextParam this}}
+			{{/renderTextParam}}
+		{{/if}}
+	{{/if}}
+</td>
+<td>
+	<strong><span class="markdown">{{{description}}}</span></strong>
+</td>
+<td>{{{paramType}}}</td>
+<td><span class="model-signature"></span></td>
