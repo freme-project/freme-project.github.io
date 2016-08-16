@@ -17,5 +17,5 @@ npm run build
 cp dist/swagger-ui.js ..
 cp dist/swagger-ui.min.js ..
 cd ../..
-#jekyll serve
+jekyll build #or use: jekyll serve
 
