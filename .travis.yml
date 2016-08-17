@@ -1,6 +1,6 @@
 language: ruby
 # to use the following, add: gem "html-proofer" to Gemfile
-script: bundle exec jekyll build && htmlproofer ./_site --disable-external
+script: bundle exec jekyll build && htmlproofer ./_site --disable-external --href_ignore /api-doc/full.html*
 #script: bundle exec jekyll build
 
 rvm:
