@@ -1794,26 +1794,26 @@ paths:
         This endpoint allows to convert plain text, a document in any format supported by
         [e-Internalisation](../knowledge-base/freme-for-api-users/eInternationalisation.html)
         or in the RDF formats supported by FREME into a NIF document with the
-        RDF serialisation format specified by the `accept` header. Further it can convert all data
+        RDF serialisation format specified by the `Accept` header. Further it can convert all data
         formats supported by Apache Tika to NIF, you can find a list of formats here:
         [https://tika.apache.org/1.13/formats.html](https://tika.apache.org/1.13/formats.html).
         To convert plaintext to NIF, one RDF format to another, or to use e-Internationalization, you specify
         the input format in the Content-Type header, output format in the Accept header and send the data to convert
         in the document body. To use Apache Tika, you specify a multipart request and send the file in the document
         body. The format of the input file will be determined by the filename. Further you need to set query string
-        parameter informat=TIKAFile. The output format is specified by the Accept header.
+        parameter informat=TIKAFile. The output format is specified by the `Accept` header.
 
         **Example cURL to convert plaintext to Turtle**
 
         <pre lang="bash"><code>
-        curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Welcome to Berlin, the capital of Germany.' 'https://freme-project.github.io/toolbox/nif-converter'
+        curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" -d "Welcome to Berlin, the capital of Germany." "http://api.freme-project.eu/current/toolbox/nif-converter"
         </pre></code>
 
 
         **Example cURL to convert HTML to RDF-XML, using e-Internationalization**
         <a href="someText.html">Here</a> you can download the html-file.
         <pre lang="bash"><code>
-         curl -X POST -F "inputFile=@someText.html" "http://api.freme-project.eu/current/toolbox/nif-converter?informat=TIKAFile" -H "Accept: text/turtle"
+        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '@someText.html' "http://api.freme-project.eu/current/toolbox/nif-converter"
         </pre></code>
 
         **Example cURL to convert PDF to Turtle**
