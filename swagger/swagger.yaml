@@ -1130,6 +1130,8 @@ paths:
                   nif:isString    &quot;Welcome to Berlin, the capital of Germany!&quot;^^xsd:string .
 
         </code></pre>
+
+
       operationId: executeFremeNer
       parameters:
         - name: Content-Type
@@ -1211,6 +1213,14 @@ paths:
         - name: types
           in: query
           description: 'Takes as input a list of one or more entity types separated by a comma. The types are URLs of ontology classes like `http://dbpedia.org/ontology/Location`. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
+          required: false
+          type: string
+        - name: linkingMethod
+          in: query
+          description: 'Linking Method (linkingMethod) is a configurable parameter that can be used to choose preferred entity linking method. Depending on dataset and the content you want to process, one linking might provide better results than other. While one approach could aim at higher recall, the other might target higher precision.
+                        So far, you can choose between following linking approaches:
+                        Most Frequent Sense (MFS): this approach is used by default. It will link the mention with the most frequent sense entity in the knowledge bases. Left blank if you want to use it.
+                        SurfaceFormSimilarity1: this approach aims at higher precision. It performs linking by combining the most frequent sense approach and the string similarity distance between the entity mention and the label associated with the link in the knowledge base. You can use this approach by specifying the value of the linkingMethod parameter to SurfaceFormSimilarity1.'
           required: false
           type: string
         - name: numLinks
