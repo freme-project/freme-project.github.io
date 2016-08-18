@@ -881,7 +881,8 @@ paths:
 
         The properties `http://www.w3.org/2004/02/skos/core#:altLabel` and `http://www.w3.org/2004/02/skos/core#:prefLabel` here are indexed
         (by default, `skos:altLabel`, `skos:prefLabel`, `rdfs:label` are indexed, please see docs). This is configurable. So even if it's `anyPrefix:someOtherPredicate`,
-        we can support it through the `properties` parameter in FREME NER while dataset creation. For example add `properties=www.example.com/me` to your query to index the property `www.example.com/me`.
+        we can support it through the `properties` parameter in FREME NER while dataset creation. For example add `properties=www.example.com/me` to your query to index the property `www.example.com/me`. This will only index the property `www.example.com/me` but not the two default ones.
+        If you want to provide several properties in the properties parameter, seperate them by comma.
 
 
         **Note 2:**
