@@ -51,8 +51,11 @@ tags:
       need to be URL encoded according to [RFC
       3986](https://tools.ietf.org/html/rfc3986).
 
-
-
+      * intype
+          * determines how the input is accessed or retrieved
+          * possible values
+            * direct (default): The input is either read from the body of the request or from the input parameter
+            * url: The input is retrieved from the url specified in the 'input' or 'i' parameter
       * input (short form: i):
           * input of the e-Service in plaintext or nif
           * no default
