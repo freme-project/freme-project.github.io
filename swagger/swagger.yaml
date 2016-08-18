@@ -1802,13 +1802,13 @@ paths:
         in the document body. To use Apache Tika, you specify a multipart request and send the file in the document
         body. The format of the input file will be determined by the filename. Further you need to set query string
         parameter informat=TIKAFile. The output format is specified by the Accept header.
-
+        
+        
+        
         **Example cURL to convert plaintext to Turtle**
-
         <pre lang="bash"><code>
         curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Welcome to Berlin, the capital of Germany.' 'https://freme-project.github.io/toolbox/nif-converter'
         </pre></code>
-
 
         **Example cURL to convert HTML to RDF-XML, using e-Internationalization**
         <a href="someText.html">Here</a> you can download the html-file.
