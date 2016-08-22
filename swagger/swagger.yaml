@@ -1843,7 +1843,7 @@ paths:
             - TIKAFile
 
         - name: inputFile
-          default: @{{site.basePath | prepend: site.github.url }}/resources/api-doc/source_pdf.pdf
+          default: {{site.basePath | prepend: site.github.url }}/resources/api-doc/source_pdf.pdf
           type: string
           in: query
 
