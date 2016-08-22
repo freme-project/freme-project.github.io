@@ -1811,15 +1811,13 @@ paths:
 
 
         **Example cURL to convert HTML to RDF-XML, using e-Internationalization**
-        <a href="someText.html">Here</a> you can download the html-file.
         <pre lang="bash"><code>
-        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '@someText.html' "http://api.freme-project.eu/current/toolbox/nif-converter"
+        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '<p>Berlin is the capital of Germany</p>' "http://api.freme-project.eu/current/toolbox/nif-converter"
         </pre></code>
 
         **Example cURL to convert PDF to Turtle**
-        <a href="source_pdf.pdf">Here</a> you can download the pdf-file.
         <pre lang="bash"><code>
-        curl -X POST -F "inputFile=@source_pdf.pdf" "http://api.freme-project.eu/current/toolbox/nif-converter?informat=TIKAFile" -H "Accept: text/turtle"
+        curl -X POST -F "inputFile=@YOUR_PDF_FILE.pdf" "http://api.freme-project.eu/current/toolbox/nif-converter?informat=TIKAFile" -H "Accept: text/turtle"
         </pre></code>
 
       parameters:
