@@ -1820,6 +1820,19 @@ paths:
         curl -X POST -F "inputFile=@YOUR_PDF_FILE.pdf" "http://api.freme-project.eu/current/toolbox/nif-converter?informat=TIKAFile" -H "Accept: text/turtle"
         </pre></code>
 
+      consumes:
+        - multipart/data
+        - text/plain
+        - application/x-xliff+xml
+        - text/html
+        - text/xml
+        - application/x-openoffice
+        - text/n3
+        - text/turtle
+        - application/ld+json
+        - application/n-triples
+        - application/rdf+xml
+
       parameters:
         - name: Content-Type
           in: header
@@ -1842,10 +1855,9 @@ paths:
           enum:
             - TIKAFile
 
-        - name: inputFile
-          default: {{site.basePath | prepend: site.github.url }}/resources/api-doc/source_pdf.pdf
-          type: string
-          in: query
+        - in: formData
+          type: file
+          name: inputFile
 
         - name: Accept
           in: header
