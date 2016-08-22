@@ -1836,6 +1836,12 @@ paths:
             - application/ld+json
             - application/n-triples
             - application/rdf+xml
+        - name: informat
+          in: query
+          type: string
+          enum:
+            - TIKAFile
+
         - name: Accept
           in: header
           type: string
