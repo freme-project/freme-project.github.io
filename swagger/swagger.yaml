@@ -1839,6 +1839,7 @@ paths:
           default: text/plain
           type: string
           enum:
+            - multipart/data
             - text/plain
             - application/x-xliff+xml
             - text/html
@@ -1858,6 +1859,7 @@ paths:
         - in: formData
           type: file
           name: inputFile
+          required: false
 
         - name: Accept
           in: header
