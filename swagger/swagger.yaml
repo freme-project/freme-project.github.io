@@ -1222,9 +1222,9 @@ paths:
             So far, you can choose between following linking approaches:
               * **Most Frequent Sense** (MFS): this approach is used by default. It will link the mention with the most frequent sense entity in the knowledge bases. Left blank if you want to use it.
               * **SurfaceFormSimilarity1**: this approach aims at higher precision. It performs linking by combining the most frequent sense approach and the string similarity distance between the entity mention and the label associated with the link in the knowledge base. You can use this approach by specifying the value of the linkingMethod parameter to SurfaceFormSimilarity1.'
-          default: 'MFS'
+          default: ''
           enum:
-            - MFS
+            - ''
             - SurfaceFormSimilarity1
           required: false
           type: string
