@@ -1839,7 +1839,6 @@ paths:
           default: text/plain
           type: string
           enum:
-            - multipart/data
             - text/plain
             - application/x-xliff+xml
             - text/html
@@ -1853,12 +1852,14 @@ paths:
         - name: informat
           in: query
           type: string
+          description: 'If set to TIKAFile, Content-Type must be empty and a file must be selected in the inputFile parameter.'
           enum:
             - TIKAFile
 
         - in: formData
           type: file
           name: inputFile
+          description: 'The document you want to convert into NIF when you use Apache TIKA.'
           required: false
 
         - name: Accept
@@ -1873,7 +1874,7 @@ paths:
             - application/rdf+xml
         - name: body
           in: body
-          required: true
+          required: false
           schema:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
