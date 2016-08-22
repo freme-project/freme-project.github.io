@@ -1812,7 +1812,7 @@ paths:
 
         **Example cURL to convert HTML to RDF-XML, using e-Internationalization**
         <pre lang="bash"><code>
-        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '&lt;p&gt;Berlin is the capital of Germany&lt;p&gt;' "http://api.freme-project.eu/current/toolbox/nif-converter"
+        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '&lt;p&gt;Berlin is the capital of Germany&lt;/p&gt;' "http://api.freme-project.eu/current/toolbox/nif-converter"
         </pre></code>
 
         **Example cURL to convert PDF to Turtle**
