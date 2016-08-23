@@ -56,7 +56,6 @@ tags:
           * possible values
             * direct (default): The input is either read from the body of the request or from the input parameter
             * url: The input is retrieved from the url specified in the 'input' or 'i' parameter
-
       * input (short form: i):
           * input of the e-Service in plaintext or nif
           * no default
@@ -1132,6 +1131,8 @@ paths:
                   nif:isString    &quot;Welcome to Berlin, the capital of Germany!&quot;^^xsd:string .
 
         </code></pre>
+
+
       operationId: executeFremeNer
       parameters:
         - name: Content-Type
@@ -1213,6 +1214,19 @@ paths:
         - name: types
           in: query
           description: 'Takes as input a list of one or more entity types separated by a comma. The types are URLs of ontology classes like `http://dbpedia.org/ontology/Location`. The result is a list of extracted entities with these types. More information about the types parameter in [FREME NER documentation](../knowledge-base/freme-for-api-users/freme-ner.html).'
+          required: false
+          type: string
+        - name: linkingMethod
+          in: query
+          description: |
+            **Linking Method** (linkingMethod) is a configurable parameter that can be used to choose preferred entity linking method. Depending on dataset and the content you want to process, one linking might provide better results than other. While one approach could aim at higher recall, the other might target higher precision.
+            So far, you can choose between following linking approaches:
+              * **Most Frequent Sense** (MFS): this approach is used by default. It will link the mention with the most frequent sense entity in the knowledge bases. Left blank if you want to use it.
+              * **SurfaceFormSimilarity1**: this approach aims at higher precision. It performs linking by combining the most frequent sense approach and the string similarity distance between the entity mention and the label associated with the link in the knowledge base. You can use this approach by specifying the value of the linkingMethod parameter to SurfaceFormSimilarity1.'
+          default: ''
+          enum:
+            - ''
+            - SurfaceFormSimilarity1
           required: false
           type: string
         - name: numLinks
@@ -1786,7 +1800,47 @@ paths:
         This endpoint allows to convert plain text, a document in any format supported by
         [e-Internalisation](../knowledge-base/freme-for-api-users/eInternationalisation.html)
         or in the RDF formats supported by FREME into a NIF document with the
-        RDF serialisation format specified by the `accept` header.
+        RDF serialisation format specified by the `Accept` header. Further it can convert all data
+        formats supported by Apache Tika to NIF, you can find a list of formats here:
+        [https://tika.apache.org/1.13/formats.html](https://tika.apache.org/1.13/formats.html).
+        To convert plaintext to NIF, one RDF format to another, or to use e-Internationalization, you specify
+        the input format in the Content-Type header, output format in the Accept header and send the data to convert
+        in the document body. To use Apache Tika, you specify a multipart request and send the file in the document
+        body. The format of the input file will be determined by the filename. Further you need to set query string
+        parameter informat=TIKAFile. The output format is specified by the `Accept` header.
+
+
+
+        **Example cURL to convert plaintext to Turtle**
+
+        <pre lang="bash"><code>
+        curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" -d "Welcome to Berlin, the capital of Germany." "http://api.freme-project.eu/current/toolbox/nif-converter"
+        </pre></code>
+
+
+        **Example cURL to convert HTML to RDF-XML, using e-Internationalization**
+        <pre lang="bash"><code>
+        curl -X POST --header "Content-Type: text/html" --header "Accept: text/n3" -d '&lt;p&gt;Berlin is the capital of Germany&lt;/p&gt;' "http://api.freme-project.eu/current/toolbox/nif-converter"
+        </pre></code>
+
+        **Example cURL to convert PDF to Turtle**
+        <pre lang="bash"><code>
+        curl -X POST -F "inputFile=@YOUR_PDF_FILE.pdf" "http://api.freme-project.eu/current/toolbox/nif-converter?informat=TIKAFile" -H "Accept: text/turtle"
+        </pre></code>
+
+      consumes:
+        - multipart/data
+        - text/plain
+        - application/x-xliff+xml
+        - text/html
+        - text/xml
+        - application/x-openoffice
+        - text/n3
+        - text/turtle
+        - application/ld+json
+        - application/n-triples
+        - application/rdf+xml
+
       parameters:
         - name: Content-Type
           in: header
@@ -1803,6 +1857,19 @@ paths:
             - application/ld+json
             - application/n-triples
             - application/rdf+xml
+        - name: informat
+          in: query
+          type: string
+          description: 'If set to TIKAFile, Content-Type must be empty and a file must be selected in the inputFile parameter.'
+          enum:
+            - TIKAFile
+
+        - in: formData
+          type: file
+          name: inputFile
+          description: 'The document you want to convert into NIF when you use Apache TIKA.'
+          required: false
+
         - name: Accept
           in: header
           type: string
@@ -1815,7 +1882,7 @@ paths:
             - application/rdf+xml
         - name: body
           in: body
-          required: true
+          required: false
           schema:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
