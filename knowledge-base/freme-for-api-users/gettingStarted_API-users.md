@@ -56,17 +56,17 @@ button.code-folding-btn:focus {
 <h2>Input Types</h2>
 <table style="width:112%;" align="left">
 <colgroup>
-<col width="38%"></col>
-<col width="26%"></col>
-<col width="36%"></col>
-<col width="11%"></col>
+    <col width="38%"></col>
+    <col width="26%"></col>
+    <col width="36%"></col>
+    <col width="11%"></col>
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left">Format</th>
-<th align="left">Content-Type header</th>
-<th align="left">remarks</th>
+    <th align="left"></th>
+    <th align="left">Format</th>
+    <th align="left">Content-Type header</th>
+    <th align="left">remarks</th>
 </tr>
 </thead>
 <tbody>
