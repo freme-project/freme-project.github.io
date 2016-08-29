@@ -48,7 +48,7 @@ FREME let you use a wide area of XML and HTML content for its e-Services. This i
 
 ## Using XSLT converter
 
-Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/CONVERTER-NAME`:
+Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/manage/CONVERTER-NAME`:
 
 ```
 curl -X POST --header 'Content-Type: text/html' -d '<!doctype html>
@@ -236,7 +236,7 @@ You can easily save and reuse your pipeline via the [interactive api documentati
 
 ## Manage XSLT converter
 
-XSLT converters can be managed via the REST API endpoint `/toolbox/xslt-converter/manage/{converterName}`. All XSLT converter management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Toolbox/XSLT-Converter). XSLT converters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information.
+XSLT converters can be managed via the REST API endpoint `/toolbox/xslt-converter/manage/{converterName}`. All XSLT converter management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Toolbox/XSLT-Converter). XSLT converters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
