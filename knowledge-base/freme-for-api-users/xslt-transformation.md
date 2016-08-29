@@ -48,7 +48,7 @@ FREME let you use a wide area of XML and HTML content for its e-Services. This i
 
 ## Using XSLT converter
 
-Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/manage/CONVERTER-NAME`:
+Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/documents/CONVERTER-NAME`:
 
 ```
 curl -X POST --header 'Content-Type: text/html' -d '<!doctype html>
