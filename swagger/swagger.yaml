@@ -2394,10 +2394,10 @@ paths:
         This example shows NIF that can be consumed by the service:
 
         <pre lang="turtle"><code>
-          @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-          @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+          @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+          @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
 
-          <http://freme-project.eu/#char=0,18>
+          &lt;http://freme-project.eu/#char=0,18&gt;
                   a               nif:RFC5147String , nif:Context , nif:String ;
                   nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
                   nif:endIndex    "18"^^xsd:nonNegativeInteger ;
@@ -2508,10 +2508,10 @@ paths:
         This is a NIF example that can be consumed by e-Translation:
 
         <pre lang="turtle"><code>
-          @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-          @prefix nif:   <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+          @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+          @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
 
-          <http://freme-project.eu/#char=0,12>
+          &lt;http://freme-project.eu/#char=0,12&gt;
                   a               nif:RFC5147String , nif:Context , nif:String ;
                   nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
                   nif:endIndex    "12"^^xsd:nonNegativeInteger ;
