@@ -69,7 +69,7 @@ If you edit files in `_config.yml` then `jekyll serve` will not update these cha
 
 ### Travis integration
 
-The FREME documentation is configured to verify the Jekyll build process and do some html checks, e.g. link checking, with [html-proofer](https://github.com/gjtorikian/html-proofer) by using [Travis CI](https://travis-ci.org/). Have a look at the [Travis configuration file](https://github.com/freme-project/freme-project.github.io/blob/master/.travis.yml). It defines the `site` parameter to execute the following after every git push to any branch:
+The FREME documentation is configured to verify the Jekyll build process and do some html checks, e.g. link checking, with [html-proofer](https://github.com/gjtorikian/html-proofer) by using [Travis CI](https://travis-ci.org/). Have a look at the [Travis configuration file](https://github.com/freme-project/freme-project.github.io/blob/master/.travis.yml). It defines the `script` parameter to execute the following after every git push to any branch:
 
 ```
 bundle exec jekyll build && htmlproofer ./_site --url-ignore "/api-doc/full.html#.*/,/api-doc/simple.html#.*/"
