@@ -70,9 +70,9 @@ The example project consists of 5 files:
 
 The [pom.xml](https://github.com/freme-project/freme-examples/blob/master/e-capitalization/pom.xml) file performs the Maven setup of the code.
 
-* It inherits from `eu.freme-e-services.e-service-parent`. All FREME e-Services inherit from this artifact. This sets up some common settings, e.g. the dependency on FREMECommon.
+* It inherits from [eu.freme.freme-parent](https://github.com/freme-project/freme-parent/blob/master/pom.xml). All FREME modules inherit from this artifact. This sets up some common settings, e.g. the versions of the included FREME modules.
 * It defines dependency on the test-helper artifact. Here you can include dependencies on other FREME b-Services or e-Services also.
-* Then it adds the FREME repository so Maven can find all the artifacts e-services-parent and test-helper.
+* Then it adds the FREME repository so Maven can find all the artifacts freme-parent and test-helper.
 
 # ECapitalizationService.java explained
 

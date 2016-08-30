@@ -23,7 +23,7 @@ Every basic service consists at least of a pom.xml to provide the maven configur
 
 ## pom.xml explained
 
-[pom.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/pom.xml) is an [Apache Maven](https://maven.apache.org/) configuration file that mainly pulls in the required dependencies. Like every basic service it inherits from the artifact eu.freme.bservices.basic-services-parent. This simplifies the Maven setup of basic services a lot because all common configuration can be done in the parent artifact. Further it defines a dependency on the test-helper artifact because this will be needed later on in this tutorial.
+[pom.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/pom.xml) is an [Apache Maven](https://maven.apache.org/) configuration file that mainly pulls in the required dependencies. Like every FREME module it inherits from the artifact [eu.freme.freme-parent](https://github.com/freme-project/freme-parent/blob/master/pom.xml). This simplifies the Maven setup a lot because all common configuration like version management can be done in the parent artifact. Further it defines a dependency on the test-helper artifact because this will be needed later on in this tutorial.
 
 ## Source code explained
 
@@ -68,7 +68,7 @@ SerializationFormatMapper serializationFormatMapper;
 public void init(){
      // This is the mandatory registration
      serializationFormatMapper.put("multipart/form-data", "multipart/form-data");
-     // optional: mapping of a hand-defined type to the correct MimeType. If it is not an existing mimeType, this works just for the parameter "input"
+     // optional: mapping of a hand-defined type to the correct MimeType. If it is not an existing mimeType, this works just for content sent via the parameter "input", but fails when sending body content.
      serializationFormatMapper.put("zip", "multipart/form-data");
  }
 ```
