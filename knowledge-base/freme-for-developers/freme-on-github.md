@@ -48,7 +48,7 @@ This repository holds the code of FREME parent. It contains just a pom.xml which
 ----------------
 This repository holds runnable packages of FREME, see [FREME packages](../freme-for-sysadmins/freme-packages.html).
 
-[Documentation](https://github.com/freme-project/Documentation)
+[freme-project.github.io](https://github.com/freme-project/freme-project.github.io)
 ------------
 This repository holds the code for the [FREME documentation](../..). Have a look at [How to write a tutorial]({{site.basePath | prepend: site.github.url }}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
 
