@@ -219,7 +219,7 @@ The two pipeline requests mentioned above are semantically equal and use `e-enti
 
 ## Manage filters
 
-Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information. 
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
