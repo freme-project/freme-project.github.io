@@ -9,7 +9,7 @@ description: This site contains the documentation of the FREME project. The API 
 ## The following parameters are assembled to: <apiProtocol>://<apiHost><apiBasePath>
 ## for all FREME api requests mentioned in the documentation including the interactive swagger api-doc.
 ## Set the protocol to `http` for the manually built dev version and to `https` for the live version built by GithubPages.
-apiProtocol: http
+apiProtocol: https
 apiHost: api-dev.freme-project.eu
 apiBasePath: /current
 
