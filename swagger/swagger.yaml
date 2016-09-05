@@ -1193,7 +1193,7 @@ paths:
           default: en
         - name: dataset
           in: query
-          description: A mandatory parameter which indicates the dataset used for entity linking which includes a list of entites and associated labels.
+          description: A mandatory parameter which indicates the dataset used for entity linking which includes a list of entites and associated labels. To use multiple datasets for linking specify a comma separated list. The `numLinks` parameter applies for each dataset, so when `numLinks=2` then it will try to generate two links for each dataset.
           required: true
           default: dbpedia
           type: string
