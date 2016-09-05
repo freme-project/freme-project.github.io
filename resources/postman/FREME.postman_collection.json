@@ -618,7 +618,7 @@
 				{
 					"name": "add pipeline",
 					"request": {
-						"url": "http://{{baseUrl}}/pipelining/templates",
+						"url": "http://{{baseUrl}}/pipelining/templates?label=FREME-NER - Link&description=Recognises entities using FREME-NER then enriches with geo information.&persist=true",
 						"method": "POST",
 						"header": [
 							{
@@ -634,7 +634,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n    \"description\": \"Recognises entities using FREME-NER then enriches with geo information.\",\r\n    \"visibility\": \"PUBLIC\",\r\n    \"label\": \"FREME-NER - Link\",\r\n    \"serializedRequests\": [\r\n      {\r\n        \"method\": \"POST\",\r\n        \"endpoint\": \"http://api-dev.freme-project.eu/current/e-entity/freme-ner/documents\",\r\n        \"parameters\": {\r\n          \"language\": \"en\",\r\n          \"dataset\": \"dbpedia\"\r\n        },\r\n        \"headers\": {\r\n          \"content-type\": \"text/plain\",\r\n          \"accept\": \"text/turtle\"\r\n        },\r\n        \"body\": null\r\n      },\r\n      {\r\n        \"method\": \"POST\",\r\n        \"endpoint\": \"http://localhost:8084/e-link/documents/\",\r\n        \"parameters\": {\r\n          \"templateid\": \"1\",\r\n          \"filter\": \"extract-entities-only\"\r\n        },\r\n        \"headers\": {\r\n          \"content-type\": \"text/turtle\"\r\n        },\r\n        \"body\": null\r\n      }\r\n    ],\r\n    \"persist\": true\r\n  }"
+							"raw": "[\n  {\n    \"method\": \"POST\",\n    \"endpoint\": \"http:\/\/api-dev.freme-project.eu\/current\/e-entity\/freme-ner\/documents\",\n    \"parameters\": {\n      \"language\": \"en\",\n      \"dataset\": \"dbpedia\"\n    },\n    \"headers\": {\n      \"accept\": \"text\/turtle\"\n    },\n    \"body\": null\n  },\n  {\n    \"method\": \"POST\",\n    \"endpoint\": \"http:\/\/api-dev.freme-project.eu\/current\/e-link\/documents\/\",\n    \"parameters\": {\n      \"templateid\": \"1\",\n      \"filter\": \"extract-entities-only\"\n    }\n  }\n]"
 						},
 						"description": ""
 					},
@@ -643,7 +643,7 @@
 				{
 					"name": "update pipeline",
 					"request": {
-						"url": "http://{{baseUrl}}/pipelining/templates/38",
+						"url": "http://{{baseUrl}}/pipelining/templates/9999",
 						"method": "PUT",
 						"header": [
 							{
@@ -659,7 +659,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"label\": \"FREME-NER - Link\",\r\n  \"description\": \"Recognises entities using FREME-NER then enriches with geo information.\",\r\n  \"serializedRequests\": [\r\n    {\r\n      \"method\": \"POST\",\r\n      \"endpoint\": \"http://{{baseUrl}}/e-entity/freme-ner/documents\",\r\n      \"parameters\": {\r\n        \"language\": \"en\",\r\n\t\t\"dataset\": \"dbpedia\"\r\n      },\r\n      \"headers\": {\r\n        \"content-type\": \"text/plain\",\r\n        \"accept\": \"text/turtle\"\r\n      }\r\n    },\r\n    {\r\n      \"method\": \"POST\",\r\n      \"endpoint\": \"http://{{baseUrl}}/e-link/documents/\",\r\n      \"parameters\": {\r\n        \"templateid\": \"3\",\r\n\t\t\"filter\": \"extract-entities-only\"\r\n      },\r\n      \"headers\": {\r\n        \"content-type\": \"text/turtle\",\r\n        \"accept\": \"text/comma-seperated-value\"\r\n      }\r\n    }\r\n  ]\r\n}"
+							"raw": "[\n    {\n      \"method\": \"POST\",\n      \"endpoint\": \"http:\/\/api-dev.freme-project.eu\/current\/e-entity\/freme-ner\/documents\",\n      \"parameters\": {\n        \"language\": \"en\",\n    \t\"dataset\": \"dbpedia\"\n      },\n      \"headers\": {\n        \"content-type\": \"text\/plain\",\n        \"accept\": \"text\/turtle\"\n      }\n    },\n    {\n      \"method\": \"POST\",\n      \"endpoint\": \"http:\/\/api-dev.freme-project.eu\/current\/e-link\/documents\/\",\n      \"parameters\": {\n        \"templateid\": \"3\",\n    \t\"filter\": \"extract-entities-only\"\n      },\n      \"headers\": {\n        \"content-type\": \"text\/turtle\",\n        \"accept\": \"text\/comma-seperated-value\"\n      }\n    }\n]"
 						},
 						"description": ""
 					},
