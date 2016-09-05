@@ -294,72 +294,73 @@ paths:
         - Pipelining
       summary: Create a new pipelining template
       description: >
-        Here you can submit a new pipelining template as a JSON String. It
-        represents an object with a label, a description, and a list of request
-        objects.
+        Here you can create a new pipelining template by submitting a JSON array of pipeline requests like described in `POST /pipelining/chain`.
 
-        #Example
+        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
+
+        #Example body content
 
         <pre><code>
-          {
-            "label": "Spotlight-Link",
-            "description": "Recognises entities using Spotlight en enriches with geo information.",
-            "serializedRequests": [
-              {
-                "method": "POST",
-                "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
-                "parameters": {
-                  "language": "en"
-                },
-                "headers": {
-                  "content-type": "text/plain",
-                  "accept": "text/turtle"
-                }
+          [
+            {
+              "method": "POST",
+              "endpoint": "http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents",
+              "parameters": {
+                "language": "en"
               },
-              {
-                "method": "POST",
-                "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
-                "parameters": {
-                  "templateid": "3"
-                },
-                "headers": {
-                  "content-type": "text/turtle",
-                  "accept": "text/turtle"
-                }
+              "headers": {
+                "content-type": "text/plain",
+                "accept": "text/turtle"
               }
-            ]
-          }
+            },
+            {
+              "method": "POST",
+              "endpoint": "http://api.freme-project.eu/current/e-link/documents/",
+              "parameters": {
+                "templateid": "3"
+              },
+              "headers": {
+                "content-type": "text/turtle",
+                "accept": "text/turtle"
+              }
+            }
+          ]
+
         </pre></code>
 
 
 
         If the request was successful, the service will return the JSON object
         with the following parameters:
-          - `id`: the generated id of the template. This is also the timestamp of
-          creation, in milliseconds.
+          - `id`: the generated id of the template.
+          - `creationTime`: the timestamp of creation, in milliseconds.
+          - `description`: a description of the pipeline template.
           - `owner`: the owner, in this case the creator, of the pipeline
           template.
+          - `visibility`: the visibility of the new pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
           - `label`: The name of the pipeline template.
-          - `description`: a description of the pipeline template.
-          - `persist`: if false, the template will not automatically be deleted; if
-          false it will live only for one week.
-          - `serializedRequests`: the chained requests as described in
-          /pipelining/chain.
+          - `requests`: the chained requests as described in `POST
+          /pipelining/chain`.
+          - `persist`: if `true`, the template will not automatically be deleted; if
+          `false` it will live only for one week.
 
-
-        This api method requires user authentication. More information about this topic can be found in the [knowledge base article](../knowledge-base/freme-for-api-users/authentication.html) about authentication. You can attach an API token to this request from this API tester using the "access token" input field on the bottom of this page.
       parameters:
+        - name: label
+          in: query
+          description: A mandatory parameter which represents the name of the pipeline.
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: 'The pipeline requests as JSON, as described in `POST /pipelining/chain/`.'
+          required: true
+          schema:
+            type: string
         - name: persist
           in: query
           description: 'Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`'
           required: false
           type: string
-        - name: body
-          in: body
-          description: The pipeline template as JSON
-          required: true
-          schema:
-            type: string
         - name: visibility
           in: query
           required: false
@@ -367,12 +368,12 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of the new pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+          description: Sets the visibility of the new pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html).
         - name: description
           in: query
           required: false
           type: string
-          description: 'Sets the description of the new pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
+          description: Sets the description of the new pipeline.
     
       responses:
         '200':
@@ -410,18 +411,22 @@ paths:
           in: path
           required: true
           type: string
-        - name: persist
-          in: query
-          description: 'Optional parameter: values can be `true` or `false`. Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`). Defaults to `false`'
-          required: false
-          type: string
-          default: 'false'
         - name: body
           in: body
-          description: 'The pipeline template as JSON, as described in `POST /pipelining/templates/`. Leave this empty, if you just want to update the metadata.'
+          description: 'The new pipeline requests as JSON, as described in `POST /pipelining/chain/`. Leave this empty, if you just want to update the metadata.'
           required: false
           schema:
             type: string
+        - name: label
+          in: query
+          description: Sets the name of the pipeline.
+          required: false
+          type: string
+        - name: persist
+          in: query
+          description: 'Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`).'
+          required: false
+          type: string
         - name: visibility
           in: query
           required: false
@@ -429,12 +434,12 @@ paths:
             - public
             - private
           type: string
-          description: 'Sets the visibility of the pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.'
+          description: Sets the visibility of the pipeline, see [authentication article](../knowledge-base/freme-for-api-users/authentication.html). If this parameter is present, it overwrites the content of the JSON visibility parameter.
         - name: description
           in: query
           required: false
           type: string
-          description: 'Sets the description of the pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.'
+          description: Sets the description of the pipeline. If this parameter is present, it overwrites the content of the JSON description parameter.
         - name: owner
           in: query
           required: false
