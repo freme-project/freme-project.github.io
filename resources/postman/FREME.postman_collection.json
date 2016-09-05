@@ -930,11 +930,61 @@
 								"key": "Content-Type",
 								"value": "text/html",
 								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "<html>\n    <head>\n        <title>@@@</title>\n        <script type=\"application/xml\" id=\"orgdoc\">\n            &lt;xliff xmlns=\"urn:oasis:names:tc:xliff:document:2.0\"\n                version=\"2.0\"\n                srcLang=\"en\"\n                trgLang=\"fr\">\n                &lt;file id=\"f1\">\n                    &lt;unit id=\"u1\">\n                        &lt;segment>\n                            &lt;anchor xmlns=\"http://www.w3.org/1999/xhtml\" id=\"n1\"/>\n                        &lt;/segment>\n                    &lt;/unit>\n                &lt;/file>\n            &lt;/xliff>\n        </script>\n    </head>\n    <body>\n        <div id=\"xyz1xyz\">\n            <p id=\"n1\">We very much welcome you in the city of <span\n                    data-its-ta-class-refs=\"http://dbpedia.org/ontology/City http://dbpedia.org/ontology/Location http://dbpedia.org/ontology/PopulatedPlace http://nerd.eurecom.fr/ontology#Location http://dbpedia.org/ontology/Place http://dbpedia.org/ontology/Settlement\"\n                    its-ta-class-ref=\"http://dbpedia.org/ontology/City\"\n                    its-ta-confidence=\"0.9990764748481397\"\n                    its-ta-ident-ref=\"http://dbpedia.org/resource/Prague\">Prague</span>, home of\n                XML!</p>\n        </div>\n    </body>\n</html>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "xliff20-to-html",
+					"request": {
+						"url": "http://{{baseUrl}}/toolbox/xslt-converter/documents/xliff20-to-html",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "text/html",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<xliff version=\"2.0\" xmlns=\"urn:oasis:names:tc:xliff:document:2.0\" srcLang=\"en\" trgLang=\"fr\">\n <file id=\"f1\">\n  <unit id=\"u1\">\n   <segment>\n   <source>We very much welcome you in the city of Prague, a home of XML!</source>\n   </segment>\n  </unit>\n </file>\n</xliff>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "xslt-with-param",
+					"request": {
+						"url": "http://{{baseUrl}}/toolbox/xslt-converter/documents/xslt-with-param?myparam=TEST",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\"?>\r\n<note>\r\n    <to>Tove</to>\r\n    <from>Jani</from>\r\n    <heading>Reminder</heading>\r\n    <body>Dont forget me this weekend!</body>\r\n</note>"
 						},
 						"description": ""
 					},
