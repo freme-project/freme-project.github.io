@@ -411,17 +411,17 @@ paths:
           in: path
           required: true
           type: string
+        - name: label
+          in: query
+          description: Sets the name of the pipeline.
+          required: false
+          type: string
         - name: body
           in: body
           description: 'The new pipeline requests as JSON, as described in `POST /pipelining/chain/`. Leave this empty, if you just want to update the metadata.'
           required: false
           schema:
             type: string
-        - name: label
-          in: query
-          description: Sets the name of the pipeline.
-          required: false
-          type: string
         - name: persist
           in: query
           description: 'Indicates whether to persist the pipeline for ever (`true`) or just for one week (`false`).'
