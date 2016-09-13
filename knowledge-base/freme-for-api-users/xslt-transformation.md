@@ -2,7 +2,7 @@
 layout: page
 title: XSLT transformation via FREME
 dropdown: Knowledge Base, FREME for API Users
-pos: 4.7
+pos: 4.6
 ---
 
 <script>
