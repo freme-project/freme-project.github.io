@@ -52,7 +52,7 @@ FREME services can be used in various ways and combinations. To achieve reusabil
 
 ## Manage pipelines
 
-FREME pipelines can be stored easily in the FREME internal database. They can be managed via the REST API endpoint `/pipelining/templates/{pipelineId}`. All pipeline management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Pipelining). Pipelines are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
+FREME pipelines can be stored in the FREME internal database to make them usable with the endpoint `/pipelining/chain/{pipelineId}` as described above. They can be managed via the REST API endpoint `/pipelining/templates/{pipelineId}`. All pipeline management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Pipelining). Pipelines are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
