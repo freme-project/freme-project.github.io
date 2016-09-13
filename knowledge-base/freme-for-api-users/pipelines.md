@@ -24,7 +24,7 @@ function myFunction(response) {
 
     for(i = 0; i < arr.length; i++) {
         out += "<li>" +
-        "<a href=\"{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/manage/"+arr[i].label+"\">"+arr[i].name+"</a>: " + (arr[i].description==null?"(missing description)":arr[i].description) +
+        "<a href=\"{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/manage/"+arr[i].id+"\">"+arr[i].label+"</a>: " + (arr[i].description==null?"(missing description)":arr[i].description) +
         "</li>";
     }
     out += "</ul>";
@@ -34,7 +34,7 @@ function myFunction(response) {
 
 # FREME Pipelines
 
-FREME services can be used in various ways and combinations. To achieve reusability of common workflows the FREME piplines service provides the possibility to forge any sequence of FREME requests into a **FREME pipeline**.
+FREME services can be used in various ways and combinations. To achieve reusability of common workflows the FREME pipelines service provides the possibility to forge any sequence of FREME requests into a **FREME pipeline**.
 
 ## Contents
 
