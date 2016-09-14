@@ -34,7 +34,7 @@ function myFunction(response) {
 
 # FREME Pipelines
 
-FREME services can be used in various ways and combinations. To achieve reusability of common workflows the FREME pipelines service provides the possibility to forge any sequence of FREME requests into a **FREME pipeline**.
+FREME services can be used in various ways and combinations. To achieve reusability of common workflows the FREME pipeline service provides the possibility to forge any sequence of FREME requests into a **FREME pipeline**.
 
 ## Contents
 
@@ -165,7 +165,7 @@ NOTE: The User `klaus` has to exist.
 
 NOTE: The two example requests can be merged, it was splitted just for explanation purposes.
 
-### Delete a XSLT converter
+### Delete a pipeline
 ```
 curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/pipelining/templates/{pipelineId}"
 ```
