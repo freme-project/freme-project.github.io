@@ -152,38 +152,6 @@ title: Using the e-Entity & e-Link Pipeline
 
   <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -X POST --header <span style="color: #0000FF">&quot;Content-Type: application/json&quot;</span> --header <span style="color: #0000FF">&quot;Accept: application/json&quot;</span> -d <span style="color: #0000FF">&quot;[{\&quot;method\&quot;: \&quot;POST\&quot;,\&quot;endpoint\&quot;: \&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/dbpedia-spotlight/documents\&quot;,\&quot;parameters\&quot;: {\&quot;language\&quot;: \&quot;en\&quot;},\&quot;headers\&quot;: {\&quot;content-type\&quot;: \&quot;text/plain\&quot;,\&quot;accept\&quot;: \&quot;text/turtle\&quot;},\&quot;body\&quot;: \&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\&quot;},{\&quot;method\&quot;: \&quot;POST\&quot;,\&quot;endpoint\&quot;: \&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-link/documents/\&quot;,\&quot;parameters\&quot;: {\&quot;templateid\&quot;: \&quot;3\&quot;},\&quot;headers\&quot;: {\&quot;content-type\&quot;: \&quot;text/turtle\&quot;,\&quot;accept\&quot;: \&quot;text/turtle\&quot;}}]&quot;</span> <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/pipelining/chain&quot;</span>
 </pre></div>
-  <br/>
-  <p><b>Note:</b> If the first request of your pipeline or the pipeline service itself is called with one of the <a href="../knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation">e-Internalization output formats (roundtripping formats)</a> as input format and the output format of the last request or the whole pipeline is the same, roundtripping functionality will be enabled, like described in the <a href="../knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work">e-Internalization article</a>. Furthermore, all pipeline internal input and output formats will be changed to TURTLE. If this behaviour is not intended, especially if you want to use <a href="../knowledge-base/freme-for-api-users/xslt-transformation.html">XSLT converters</a> to process any html or xml input, you can suppress the roundtripping functionality of the pipeline endpoint by adding the query parameter <b>useI18n=false</b> to the pipeline request. Try the following cUrl, which would not work without the parameter because the first xslt converter needs xml as input instead of NIF:</p>
-
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -X POST -H <span style="background-color: #fff0f0">&quot;Content-Type: application/json&quot;</span> -d <span style="background-color: #fff0f0">&#39;[</span>
-<span style="background-color: #fff0f0">    {</span>
-<span style="background-color: #fff0f0">      &quot;method&quot;: &quot;POST&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;endpoint&quot;: &quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/toolbox/xslt-converter/documents/xliff20-to-html&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;headers&quot;: {</span>
-<span style="background-color: #fff0f0">        &quot;content-type&quot;: &quot;text/xml&quot;,  </span>
-<span style="background-color: #fff0f0">        &quot;accept&quot;: &quot;text/xml&quot;</span>
-<span style="background-color: #fff0f0">      },</span>
-<span style="background-color: #fff0f0">      &quot;body&quot;: &quot;&lt;xliff version=\&quot;2.0\&quot; xmlns=\&quot;urn:oasis:names:tc:xliff:document:2.0\&quot; srcLang=\&quot;en\&quot; trgLang=\&quot;fr\&quot;&gt;\n &lt;file id=\&quot;f1\&quot;&gt;\n  &lt;unit id=\&quot;u1\&quot;&gt;\n   &lt;segment&gt;\n   &lt;source&gt;We very much welcome you in the city of Prague, a home of XML!&lt;\/source&gt;\n   &lt;\/segment&gt;\n  &lt;\/unit&gt;\n &lt;\/file&gt;\n&lt;\/xliff&gt;&quot;</span>
-<span style="background-color: #fff0f0">    },</span>
-<span style="background-color: #fff0f0">    {</span>
-<span style="background-color: #fff0f0">      &quot;method&quot;: &quot;POST&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;endpoint&quot;: &quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents?language=en&amp;dataset=dbpedia&amp;mode=all&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;headers&quot;: {</span>
-<span style="background-color: #fff0f0">        &quot;content-type&quot;: &quot;text/html&quot;,</span>
-<span style="background-color: #fff0f0">        &quot;accept&quot;: &quot;text/html&quot;</span>
-<span style="background-color: #fff0f0">      }</span>
-<span style="background-color: #fff0f0">    },</span>
-<span style="background-color: #fff0f0">    {</span>
-<span style="background-color: #fff0f0">      &quot;method&quot;: &quot;POST&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;endpoint&quot;: &quot;http://api-dev.freme-project.eu/current/toolbox/xslt-converter/documents/html-to-xliff20&quot;,</span>
-<span style="background-color: #fff0f0">      &quot;headers&quot;: {</span>
-<span style="background-color: #fff0f0">        &quot;content-type&quot;: &quot;text/xml&quot;,</span>
-<span style="background-color: #fff0f0">        &quot;accept&quot;: &quot;text/xml&quot;</span>
-<span style="background-color: #fff0f0">      }</span>
-<span style="background-color: #fff0f0">    }</span>
-<span style="background-color: #fff0f0">  ]&#39;</span> <span style="background-color: #fff0f0">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/pipelining/chain?useI18n=false&quot;</span>
-</pre></div>
-
 </div>
 
 <div>
