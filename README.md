@@ -2,7 +2,7 @@
 
 This repository holds the code for the [FREME documentation](http://api.freme-project.eu/doc/current/). 
 It is part of the [FREME Project](http://www.freme-project.eu/) which also resides on [GitHub](https://github.com/freme-project).
-Have a look at [How to write a tutorial]({{site.basePath }}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
+Have a look at [How to write a tutorial]({{site.basePath | prepend: site.github.url}}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
 
 ## License
 
