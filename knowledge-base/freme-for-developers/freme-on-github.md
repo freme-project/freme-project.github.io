@@ -8,7 +8,7 @@ pos: 4.7
 **Freme on Github**
 ------------------
 
-This article explains the different FREME repositories on GitHub. FREME maintains an organisation on GitHub. The main page of this organisation is [https://github.com/freme-project](https://github.com/freme-project). Furthermore, have a look at the [Overview of the FREME Architecture](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/overview-of-the-freme-architecture.html).
+This article explains the different FREME repositories on GitHub. FREME maintains an organisation on GitHub. The main page of this organisation is [https://github.com/freme-project](https://github.com/freme-project). Furthermore, have a look at the [Overview of the Freme Architecture]({{ site.basePath }}/knowledge-base/freme-for-developers/overview-of-the-freme-architecture.html).
 
 [technical-discussion](https://github.com/freme-project/technical-discussion)
 ---------------------
