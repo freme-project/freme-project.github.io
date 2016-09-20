@@ -56,10 +56,10 @@ button.code-folding-btn:focus {
 <h2>Input Types</h2>
 <table style="width:112%;" align="left">
 <colgroup>
-    <col width="38%"></col>
-    <col width="26%"></col>
-    <col width="36%"></col>
-    <col width="11%"></col>
+    <col width="38%"/>
+    <col width="26%"/>
+    <col width="36%"/>
+    <col width="11%"/>
 </colgroup>
 <thead>
 <tr class="header">
@@ -70,7 +70,6 @@ button.code-folding-btn:focus {
 </tr>
 </thead>
 <tbody>
-</tr>
 <tr class="even">
 <td align="left" rowspan="5"><strong>NIF</strong></td>
 <td align="left">turtle</td>
@@ -82,18 +81,15 @@ button.code-folding-btn:focus {
 <td align="left">text/rdf-xml</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="even">
 <td align="left">json</td>
 <td align="left">application/ld+json</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="odd">
 <td align="left">N-Triples</td>
 <td align="left">application/n-triples</td>
 <td align="left"></td>
-</tr>
 </tr>
 <tr class="even">
 <td align="left">N3</td>
@@ -143,10 +139,10 @@ button.code-folding-btn:focus {
 <h2>Output Types</h2>
 <table style="width:178%;">
 <colgroup>
-<col width="38%"></col>
-<col width="33%"></col>
-<col width="40%"></col>
-<col width="65%"></col>
+<col width="38%"/>
+<col width="33%"/>
+<col width="40%"/>
+<col width="65%"/>
 </colgroup>
 <thead>
 <tr class="header">
@@ -173,12 +169,10 @@ button.code-folding-btn:focus {
 <td align="left">application/ld+json</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="even">
 <td align="left">N-Triples</td>
 <td align="left">application/n-triples</td>
 <td align="left"></td>
-</tr>
 </tr>
 <tr class="odd">
 <td align="left">N3</td>
