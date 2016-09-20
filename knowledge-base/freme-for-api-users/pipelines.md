@@ -235,7 +235,7 @@ curl -X POST -d 'Berlin is a nice city.' "{{ site.apiBasePath | prepend: site.ap
 
 ## Manage pipelines
 
-FREME pipelines can be stored in the FREME internal database to make them usable with the endpoint `/pipelining/chain/{pipelineId}` as described above. They can be managed via the REST API endpoint `/pipelining/templates/{pipelineId}`. All pipeline management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Pipelining). Pipelines are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
+FREME pipelines can be stored in the FREME internal database to make them usable with the endpoint `/pipelining/chain/{pipelineId}` as described above. They can be managed via the REST API endpoint `/pipelining/templates/{pipelineId}`. All pipeline management requests can be executed easily via the [interactive API documentation]({{site.basePath  }}/api-doc/full.html#/Pipelining). Pipelines are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
@@ -291,7 +291,7 @@ curl -X GET "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prep
 
 ### Get all pipelines
 
-This request returns all pipelines to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
+This request returns all pipelines to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 ```
 curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/pipelining/templates"

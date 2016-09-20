@@ -7,12 +7,12 @@ pos: 4.8
 
 # Maintaining the Documentation Project
 
-The [FREME documentation]({{site.basePath | prepend: site.github.url }}/) uses the static site generator [Jekyll](https://jekyllrb.com/). It contains an [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html) generated with [Swagger UI](http://swagger.io/swagger-ui/). Furthermore, the documentation is configured for easy deployment via [GitHub Pages](https://pages.github.com/).
+The [FREME documentation]({{site.basePath  }}/) uses the static site generator [Jekyll](https://jekyllrb.com/). It contains an [interactive API documentation]({{site.basePath  }}/api-doc/full.html) generated with [Swagger UI](http://swagger.io/swagger-ui/). Furthermore, the documentation is configured for easy deployment via [GitHub Pages](https://pages.github.com/).
 
 ## Editing configuration
 
 You can configure parameters in the file [_config.yml](https://github.com/freme-project/freme-project.github.io/blob/master/_config.yml).
-The FREME api requests in examples, in the interactive swagger api documentation and the requests which are used to generate dynamic lists of database entities, e.g. of [sparql filters]({{site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/filtering.html#available-filters), are assembled from the following parameters: 
+The FREME api requests in examples, in the interactive swagger api documentation and the requests which are used to generate dynamic lists of database entities, e.g. of [sparql filters]({{site.basePath  }}/knowledge-base/freme-for-api-users/filtering.html#available-filters), are assembled from the following parameters: 
 
 * `apiProtocol`: The protocol for the FREME api requests, e.g. `http` or `https`
 * `apiHost`: The FREME api host, e.g. `api-dev.freme-project.eu` or `api.freme-project.eu`
@@ -20,7 +20,7 @@ The FREME api requests in examples, in the interactive swagger api documentation
 
 They should be used in the documentation by prepending `{% raw %}{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}{% endraw %}` to your requests which will be translated by Jekyll to `<apiProtocol>://<apiHost><apiBasePath>`.
 
-Furthermore, all internal links should be prepended with `{% raw %}{{site.basePath | prepend: site.github.url }}{% endraw %}`, so it is possible to generate links when deployed via [GitHub Pages](https://pages.github.com/) or using [Jekyll](https://jekyllrb.com/) manually. In the first case, `site.github.url` will be set by GitHub pages to the correct host (and to `localhost`, if you built it locally for testing), so `basePath` should be empty. In the later case, `basePath` had to be set to the subfolder where your manually deployed docu resides.
+Furthermore, all internal links should be prepended with `{% raw %}{{site.basePath  }}{% endraw %}`, so it is possible to generate links when deployed via [GitHub Pages](https://pages.github.com/) or using [Jekyll](https://jekyllrb.com/) manually. In the first case, `site.github.url` will be set by GitHub pages to the correct host (and to `localhost`, if you built it locally for testing), so `basePath` should be empty. In the later case, `basePath` had to be set to the subfolder where your manually deployed docu resides.
 
 * `basePath`: The documentation base path. Let it empty (or do not define it), if you want to deploy the site via GitHub pages. Set it to the location of the documentation, when you want to deploy it with Jekyll manually, e.g. `/doc`.
 
@@ -81,7 +81,7 @@ You can access the build log via the [Travis dashboard](https://travis-ci.org/) 
 
 ## Editing Swagger UI
 
-If you want to change anything related to the layout of the [interactive api documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html) you might want to rebuild the `swagger-ui.js`. The FREME api documentation is based on [this version](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) of the official [Swagger UI](https://github.com/swagger-api/swagger-ui). If you are interested in the actual changes done for the FREME api documentation, clone [the used base version of swagger-ui](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) and diff it with the `swagger/_swagger-ui` folder of the FREME documentation repository. This folder holds all source code needed to recompile `swagger-ui.js`.
+If you want to change anything related to the layout of the [interactive api documentation]({{site.basePath  }}/api-doc/full.html) you might want to rebuild the `swagger-ui.js`. The FREME api documentation is based on [this version](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) of the official [Swagger UI](https://github.com/swagger-api/swagger-ui). If you are interested in the actual changes done for the FREME api documentation, clone [the used base version of swagger-ui](https://github.com/swagger-api/swagger-ui/tree/adc8920101ac9923bf07d7bd0d7086204d6d5503) and diff it with the `swagger/_swagger-ui` folder of the FREME documentation repository. This folder holds all source code needed to recompile `swagger-ui.js`.
 
 ## Building Swagger UI
 

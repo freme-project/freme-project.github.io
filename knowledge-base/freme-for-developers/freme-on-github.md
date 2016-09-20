@@ -50,7 +50,7 @@ This repository holds runnable packages of FREME, see [FREME packages](../freme-
 
 [freme-project.github.io](https://github.com/freme-project/freme-project.github.io)
 ------------
-This repository holds the code for the [FREME documentation](../..). Have a look at [How to write a tutorial]({{site.basePath | prepend: site.github.url }}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
+This repository holds the code for the [FREME documentation](../..). Have a look at [How to write a tutorial]({{site.basePath  }}/tutorials/how-to-write-tutorials.html) and [Maintaining the Documentation Project](http://api.freme-project.eu/doc/current/knowledge-base/freme-for-developers/maintaining-the-documentation-project.html) if you intend to contribute to the FREME documentation.
 
 [FREME Examples](https://github.com/freme-project/freme-examples)
 ------------
@@ -58,7 +58,7 @@ This repository contains code which explains parts of the [FREME architecture](.
 
  * [diary](https://github.com/freme-project/freme-examples/tree/master/diary) shows the usage of database resources with access restrictions, see the article [Implementing Restricted Access for Database Resources](../freme-for-developers/implementing-restricted-access-to-database-resources.html) and the [authentication article](../freme-for-api-users/authentication.html) for further information.
  * [logging-filter](https://github.com/freme-project/freme-examples/tree/master/logging-filter) explains the creation of a simple [basic-service](../freme-for-sysadmins/basic-services.html), see [Creating a Basic Service](../freme-for-developers/creating-a-basic-service.html).
- * [e-capitalization](https://github.com/freme-project/freme-examples/tree/master/e-capitalization) explains the creation of a simple [e-service](../freme-for-sysadmins/e-services.html), see [How to write an e-Service](../freme-for-developers/how-to-write-an-eservice.html) and [Create a new e-Service]({{site.basePath | prepend: site.github.url }}/tutorials/implement-eservice.html).
+ * [e-capitalization](https://github.com/freme-project/freme-examples/tree/master/e-capitalization) explains the creation of a simple [e-service](../freme-for-sysadmins/e-services.html), see [How to write an e-Service](../freme-for-developers/how-to-write-an-eservice.html) and [Create a new e-Service]({{site.basePath  }}/tutorials/implement-eservice.html).
  * [broker-simple](https://github.com/freme-project/freme-examples/tree/master/broker-simple) gives an example for a simple [FREME package](../freme-for-sysadmins/freme-packages.html), see [Creating and Running a FREME Package](../freme-for-sysadmins/creating-and-running-a-freme-package.html).
 
 Depricated Repositories

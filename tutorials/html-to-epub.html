@@ -20,7 +20,7 @@ title: Creating an EPUB using existing HTML content
     	<li><a href="https://en.wikinews.org/wiki/Magnitude_7.5_earthquake_hits_Afghanistan">Magnitude 7.5 earthquake hits Afghanistan (Article 2)</a></li>
     	<li><a href="https://en.wikinews.org/wiki/NASA_releases_complete_image_of_Pluto's_crescent">NASA releases complete image of Pluto's crescent (Article 3)</a></li>
     	<li>or download the articles in a single zip <a href="https://drive.google.com/open?id=0B-qMtkPK-unYYnkwWkJrNXM3RlU">here</a></li>
-    	<li><a href="{{ "/api-doc/full.html#/e-Publishing" | prepend: site.basePath | prepend: site.github.url }}">e-Publishing Documentation</a></li>
+    	<li><a href="{{ "/api-doc/full.html#/e-Publishing" | prepend: site.basePath  }}">e-Publishing Documentation</a></li>
     </ul>
 </div>
 
@@ -36,7 +36,7 @@ title: Creating an EPUB using existing HTML content
 	<h2>Step 2 - Metadata</h2>
 	<p>
         Before we bundle the articles in a single EPUB file using the e-service 'e-Publishing/html', we need to provide the needed metadata about the e-book.
-        Here, we will only use a number of the metadata parameters. However, a full list of parameters can be found <a href="{{ "/api-doc/full.html#/e-Publishing" | prepend: site.basePath | prepend: site.github.url}}">here</a>.
+        Here, we will only use a number of the metadata parameters. However, a full list of parameters can be found <a href="{{ "/api-doc/full.html#/e-Publishing" | prepend: site.basePath }}">here</a>.
         Additionally, because we do not specify the version (2 or 3) of the EPUB specification to be used, the default version will be used, which is 3.
         The metadata is represented using JSON, as can be seen in the following example.
     </p>
