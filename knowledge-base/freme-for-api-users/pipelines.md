@@ -146,8 +146,8 @@ curl -X POST -H "Content-Type: application/json" -d '[
 
 ### Pipelines and e-Internalization
 
-FREME e-Services, including the pipeline service, enable automatic conversion of content serialized in some formats like XML or HTML to make it processable for the FREME services and its conversion back into the input format. This is called **roundtripping**. Have a look at the [e-Internalization article]({{ site.basePath }}/knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work) to dig deeper into this topic.
-This functionality is enabled, if the first request of your pipeline or the pipeline service itself is called with one of the e-Internalization **output formats** ([roundtripping formats]({{ site.basePath }}/knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation)) as input format and the output format of the last request or the whole pipeline is the same. Furthermore, all pipeline internal input and output formats will be changed to TURTLE. If this behaviour is not intended, especially if you want to use [XSLT converters]({{ site.basePath }}/knowledge-base/freme-for-api-users/xslt-transformation.html) to process any html or xml input, you can suppress the roundtripping functionality of the pipeline endpoint by adding the query parameter `useI18n=false` to the pipeline request.
+FREME e-Services, including the pipeline service, enable automatic conversion of content serialized in some formats like XML or HTML and its conversion back into the input format. This makes content in the mentioned serialization formats processable for the FREME services and is called **roundtripping**. Have a look at the [e-Internalization article]({{ site.basePath }}/knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work) to dig deeper into this topic.
+Roundtripping for pipelines is enabled, if the first request of your pipeline or the pipeline service itself is called with one of the e-Internalization **output formats** ([roundtripping formats]({{ site.basePath }}/knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation)) as input format and the output format of the last request or the whole pipeline is the same. If enabled, all pipeline internal input and output formats will be changed to TURTLE. If the roundtripping behaviour is not intended, especially if you want to use [XSLT converters]({{ site.basePath }}/knowledge-base/freme-for-api-users/xslt-transformation.html) to process any html or xml input, you can suppress the roundtripping functionality of the pipeline endpoint by adding the query parameter `useI18n=false` to the pipeline request.
 
 Try the following cUrl, which would not work without the parameter because the first xslt converter needs xml as input instead of TURTLE:
 
@@ -193,7 +193,7 @@ curl -X POST -d 'Berlin is a nice city.' "{{ site.apiBasePath | prepend: site.ap
 
 ### Parametrized pipelines
 
-Sometimes a stored pipeline needs to be configurable. So you do not want to have different pipelines using a translation service for every language combination. The FREME pipeline service allows you to specify parametrized pipelines. Just set the value of a field in the request object to `$VARIABLE_NAME$`, where `VARIABLE_NAME` is chosen by you. It is possible to parametrize values of the following fields or just its parts:
+Sometimes a stored pipeline needs to be configurable. For instance, you do not want to have different pipelines using a translation service for every language combination. The FREME pipeline service allows you to specify parametrized pipelines. Just set the value of a field in the request object to `$VARIABLE_NAME$`, where `VARIABLE_NAME` is chosen by you. It is possible to parametrize values of the following fields or just its parts:
 
  * `endpoint`
  * values in `parameters`
