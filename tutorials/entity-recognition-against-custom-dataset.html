@@ -49,17 +49,16 @@ pos: 3.1
         updateDatasetName();
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
-	    +"informat="+$("#informat-dataset").val()
 	    +"&name="+datasetName
 	    +"&description="+$("#dataset-description").val()
-	    +"&language=en"
-	    +"&outformat=json",
+	    +"&language=en",
         headers: {
-            "x-auth-token": $("#token").val()
+            "x-auth-token": $("#token").val(),
+            "accept": "application/json"
         },
         type: "POST",
 	    dataType: "text",
-	    contentType: 'text/plain',
+	    contentType: $("#informat-dataset").val(),
         data: $("#input-dataset").val(),
         success : function(result){
             submittedDatasets.push(datasetName);
@@ -179,7 +178,7 @@ pos: 3.1
     <p>
     <strong>Dataset serialization format</strong><br/>
     Specify the RDF serialization format of the dataset.<br/>
-    <input id="informat-dataset" type="text" value="n-triples" /></p>
+    <input id="informat-dataset" type="text" value="application/n-triples" /></p>
     <br/>
     
     <p><strong>Dataset name</strong><br/>
