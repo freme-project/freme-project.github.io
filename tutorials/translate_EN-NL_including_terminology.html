@@ -63,20 +63,16 @@ function sendTranslationRequest(turtleData) {
         type: "POST",
         data: turtleData,
         contentType: false,
-        dataType: 'text',
-        statusCode: {
-            400: function () {
-                $("#response2").text("Bad request");
-            },
-            406: function () {
-                $("#response2").text("Not acceptable");
-            },
-            500: function () {
-                $("#response2").text("Server error");
-            }
-        }
+        dataType: 'text'
     }).done(function (result) {
         $("#response2").text(result);
+    }).fail(function(result) {
+        console.log(result);
+        if(result.responseText){
+            $("#response2").text(result.responseText);
+        }else{
+            $("#response2").text(JSON.stringify(result,null,2));
+        }
     });
 };
 function sendTerminologyRequest() {
@@ -87,22 +83,17 @@ function sendTerminologyRequest() {
         type: "POST",
         contentType: false,
         dataType: 'text',
-        data: $("#input").val(),
-        statusCode: {
-            400: function () {
-                $("#response1").text("Bad request");
-            },
-            406: function () {
-                $("#response1").text("Not acceptable");
-            },
-            500: function () {
-                $("#response1").text("Server error");
-            }
-        }
+        data: $("#input").val()
     }).done(function (result) {
         $("#response1").text(result);
         sendTranslationRequest(result);
+    }).fail(function(result) {
         console.log(result);
+        if(result.responseText){
+            $("#response1").text(result.responseText);
+        }else{
+            $("#response1").text(JSON.stringify(result,null,2));
+        }
     });
 };
 </script>
@@ -111,7 +102,7 @@ function sendTerminologyRequest() {
 <h2 id="demo">Try out API Calls</h2>
 <p>For demonstration purposes, we included an API call to /e-terminology/tilde and  /e-translation/tilde. This tutorial covers only the most important parameters of this API endpoint. You can find an extensive overview on this API call in the <a href="../api-doc/full.html">complete API documentation</a>.</p>
 <h3>Request</h3>
-<form>
+<div>
     <p>
         <strong>Query string parameter input</strong><br />
         Specify the text you want to translate here.<br />
@@ -146,7 +137,7 @@ function sendTerminologyRequest() {
     <br />
 
     <button onclick="sendTerminologyRequest();">Try it out!</button>
-</form>
+</div>
                
 <h3>Response</h3>
 <h4>Response of Step 1: e-Terminology </h4>
