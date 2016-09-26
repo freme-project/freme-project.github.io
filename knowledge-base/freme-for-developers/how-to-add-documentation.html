@@ -21,16 +21,15 @@ pos: 4.8
 <h1 >How to add Documentation</h1>
 	<p>Here you can learn how to add or edit the content of this Documentation website!</p>
 	<p>This page is built using <a target="_blank" href="http://www.jekyllrb.com">Jekyll</a> which makes it very easy to add or edit content.</p>
-	<p>To get started, visit our <a  target="_blank" href="https://github.com/freme-project/Documentation">Documentation's GitHub page</a>.</p>
-	<p>All content of the Documentation is in the <code>_pages</code> folder. It should look something like this:</p>
-	<p class="screenshot"><img alt="screenshot_pages" height="400" width="795" src="../../img/screenshot_pages.png"></p>
-	<p>You can immediately see that the contents of this folder match the elements in the navigation bar<br><br></p>
-	<p>To add a file, click on the "add" button at the top </p>
-	<p class="screenshot"><img alt="screenshot_add" height="50" width= "795" src="../../img/screenshot_add.png"><br></p>
+	<p>To get started, visit our <a  target="_blank" href="https://github.com/freme-project/freme-project.github.io">Documentation's GitHub page</a>.</p>
+	<p>By default, all files in all folders of the <code>freme-project.github.io</code> repository are processed by Jekyll and moved into the destination <code>_site</code> folder, except if it starts with an underscore, like <code>_includes</code> for instance.</p>
+	<p>So you can easily create a new page by adding a file to the repository.</p>
+	<p>To do so, click on the "Create new file" button at the top </p>
+	<p class="screenshot"><img alt="screenshot_add" height="44" width= "795" src="../../img/screenshot_add.png"><br></p>
 	<p><br>To edit a file, click on the file name and then "Edit this file" </p>
-	<p class="screenshot"><img alt="screenshot_click" height="80" width= "795" src="../../img/screenshot_click.png"></p>
-	<p class="screenshot"><img alt="screenshot_edit" height="130" width= "795" src="../../img/screenshot_edit.png"><br></p>
-	<p><br>All pages which are supposed to appear in dropdown boxes (e.g. this page appears in "Knowledge Base") belong in a specified folder.<br><br></p>
+	<p class="screenshot"><img alt="screenshot_click" height="180" width= "795" src="../../img/screenshot_click.png"></p>
+	<p class="screenshot"><img alt="screenshot_edit" height="420" width= "795" src="../../img/screenshot_edit.png"><br></p>
+	<p><br>All pages which are supposed to appear in dropdown boxes (e.g. this page appears in "Knowledge Base") belong in a specified folder.<br></p>
 	<h2>Example Documentation File</h2>
 	<p> This example takes you through the structure of how a Documentation File should look</p>
 	<pre><code>---
@@ -46,7 +45,7 @@ pos: 4.5
 &lt;img width=&quot;400&quot; height=&quot;790&quot; src=&quot;../../img/screenshot_pages.png&quot;&gt;
 &lt;p&gt; You can also use Markdown&lt;/p&gt;
 	</code></pre>
-	<p>Every Documentation file starts with the <i>Front Matter YAML</i>. It is enclosed by two triple-dashed lines.</p>
+	<p>Every Documentation file starts with the <a href="https://jekyllrb.com/docs/frontmatter/">Front Matter YAML</a>. It is enclosed by two triple-dashed lines.</p>
 	<p>The <i>Front Matter YAML</i> contains metadata on how this page is supposed to be rendered. </p>
 	<ul>
 	<li><p> The <code>layout</code> attribute determines the basic layout for rendering the page. For a basic page like this one, use <code>layout: page.</code> Any HTML layout specified in the <code>/_layouts</code> directory is valid. </p></li>

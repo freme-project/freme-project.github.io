@@ -891,7 +891,7 @@ Converted NIF file
 
 Original file
 
-![Image of ODT file]({{site.basePath | prepend: site.github.url }}/img/odtFile.png)
+![Image of ODT file]({{site.basePath  }}/img/odtFile.png)
 
 Converted NIF file
 

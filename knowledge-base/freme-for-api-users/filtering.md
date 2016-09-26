@@ -219,7 +219,7 @@ The two pipeline requests mentioned above are semantically equal and use `e-enti
 
 ## Manage filters
 
-Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information. 
+Filters can be managed via the REST API endpoint `/toolbox/convert/manage/{filterName}`. Filters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information. 
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
@@ -247,7 +247,7 @@ curl -X GET "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prep
 
 ### Get all filters
 
-This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
+This request returns all filters to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 ```
 curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/convert/manage"
@@ -302,7 +302,7 @@ POST {{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: sit
 
 **NOTE:** Please use the correct `Content-Type` and `Accept` header or `informat` and `outformat` parameter values according to your uploaded and desired file format!
 
-**NOTE:** This service **supports all formats** supported by FREME. Have a look into the [General Information of our api documentation]({{ site.basePath | prepend: site.github.url }}/api-doc/full.html#/General_Information) to have an overview about the supported in- and outformats.
+**NOTE:** This service **supports all formats** supported by FREME. Have a look into the [General Information of our api documentation]({{ site.basePath  }}/api-doc/full.html#/General_Information) to have an overview about the supported in- and outformats.
 
 **NOTE:** You can send the input via the post body or as value of the NIF `input` parameter.  
 

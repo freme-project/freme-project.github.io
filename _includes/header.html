@@ -9,7 +9,7 @@
 				<span class = "icon-bar"></span>
 				<span class = "icon-bar"></span>
 			</button>
-			<a href="{{"/index.html" | prepend: site.basePath | prepend: site.github.url}}"><img src={{ "/img/Logo_FREME_icona_vert.png" | prepend: site.basePath | prepend: site.github.url }} alt="FREME Logo" class = "navbar-logo"></a>
+			<a href="{{"/index.html" | prepend: site.basePath }}"><img src={{ "/img/Logo_FREME_icona_vert.png" | prepend: site.basePath  }} alt="FREME Logo" class = "navbar-logo"></a>
 			<!-- <a href = "#" class = "navbar-brand">FREME Documentation</a> -->
 		</div>
 		<div class = "collapse navbar-collapse navHeaderCollapse">
@@ -18,7 +18,7 @@
 		</div>
 		<script javascript>
 			var pages_url = "{{ site.url }}";
-			var pages_baseurl = "{{site.basePath | prepend: site.github.url}}";
+			var pages_baseurl = "{{site.basePath }}";
 			var pages_pageurl="{{page.url}}";
 			var pages = [
 			{% for p in site.pages %}

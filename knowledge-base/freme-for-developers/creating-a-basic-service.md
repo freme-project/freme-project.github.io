@@ -23,7 +23,7 @@ Every basic service consists at least of a pom.xml to provide the maven configur
 
 ## pom.xml explained
 
-[pom.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/pom.xml) is an [Apache Maven](https://maven.apache.org/) configuration file that mainly pulls in the required dependencies. Like every basic service it inherits from the artifact eu.freme.bservices.basic-services-parent. This simplifies the Maven setup of basic services a lot because all common configuration can be done in the parent artifact. Further it defines a dependency on the test-helper artifact because this will be needed later on in this tutorial.
+[pom.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/pom.xml) is an [Apache Maven](https://maven.apache.org/) configuration file that mainly pulls in the required dependencies. Like every FREME module it inherits from the artifact [eu.freme.freme-parent](https://github.com/freme-project/freme-parent/blob/master/pom.xml). This simplifies the Maven setup a lot because all common configuration like version management can be done in the parent artifact. Further it defines a dependency on the test-helper artifact because this will be needed later on in this tutorial.
 
 ## Source code explained
 
@@ -68,7 +68,7 @@ SerializationFormatMapper serializationFormatMapper;
 public void init(){
      // This is the mandatory registration
      serializationFormatMapper.put("multipart/form-data", "multipart/form-data");
-     // optional: mapping of a hand-defined type to the correct MimeType. If it is not an existing mimeType, this works just for the parameter "input"
+     // optional: mapping of a hand-defined type to the correct MimeType. If it is not an existing mimeType, this works just for content sent via the parameter "input", but fails when sending body content.
      serializationFormatMapper.put("zip", "multipart/form-data");
  }
 ```
@@ -113,7 +113,7 @@ The Spring XML configuration is provided by the file [example-logger.xml](https:
 
 # Testing the filter
 
-Now we have an implementation of the filter that is ready for inclusion into any FREME package. This section of the article shows how to write a simple FREME package to start the filter. Please have a look at [Creating and Running a FREME Package]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-sysadmins/creating-and-running-a-freme-package.html) if you want to dig deeper into this. The files described here are not necessarily part of a FREME basic service. They are contained in the example only for demonstration purposes.
+Now we have an implementation of the filter that is ready for inclusion into any FREME package. This section of the article shows how to write a simple FREME package to start the filter. Please have a look at [Creating and Running a FREME Package]({{ site.basePath  }}/knowledge-base/freme-for-sysadmins/creating-and-running-a-freme-package.html) if you want to dig deeper into this. The files described here are not necessarily part of a FREME basic service. They are contained in the example only for demonstration purposes.
 
 [package.xml](https://github.com/freme-project/freme-examples/blob/master/logging-filter/src/main/resources/package.xml) defines a very simple FREME package. First like all FREME packages it loads `freme-common.xml`. Then it loads `test-helper.xml`. Further the package imports `example-logger.xml` to initialize the logging filter created in this guide.
 

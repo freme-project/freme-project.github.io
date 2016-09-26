@@ -56,21 +56,20 @@ button.code-folding-btn:focus {
 <h2>Input Types</h2>
 <table style="width:112%;" align="left">
 <colgroup>
-<col width="38%"></col>
-<col width="26%"></col>
-<col width="36%"></col>
-<col width="11%"></col>
+    <col width="38%"/>
+    <col width="26%"/>
+    <col width="36%"/>
+    <col width="11%"/>
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left">Format</th>
-<th align="left">Content-Type header</th>
-<th align="left">remarks</th>
+    <th align="left"></th>
+    <th align="left">Format</th>
+    <th align="left">Content-Type header</th>
+    <th align="left">remarks</th>
 </tr>
 </thead>
 <tbody>
-</tr>
 <tr class="even">
 <td align="left" rowspan="5"><strong>NIF</strong></td>
 <td align="left">turtle</td>
@@ -82,18 +81,15 @@ button.code-folding-btn:focus {
 <td align="left">text/rdf-xml</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="even">
 <td align="left">json</td>
 <td align="left">application/ld+json</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="odd">
 <td align="left">N-Triples</td>
 <td align="left">application/n-triples</td>
 <td align="left"></td>
-</tr>
 </tr>
 <tr class="even">
 <td align="left">N3</td>
@@ -143,10 +139,10 @@ button.code-folding-btn:focus {
 <h2>Output Types</h2>
 <table style="width:178%;">
 <colgroup>
-<col width="38%"></col>
-<col width="33%"></col>
-<col width="40%"></col>
-<col width="65%"></col>
+<col width="38%"/>
+<col width="33%"/>
+<col width="40%"/>
+<col width="65%"/>
 </colgroup>
 <thead>
 <tr class="header">
@@ -173,12 +169,10 @@ button.code-folding-btn:focus {
 <td align="left">application/ld+json</td>
 <td align="left"></td>
 </tr>
-</tr>
 <tr class="even">
 <td align="left">N-Triples</td>
 <td align="left">application/n-triples</td>
 <td align="left"></td>
-</tr>
 </tr>
 <tr class="odd">
 <td align="left">N3</td>
@@ -255,7 +249,7 @@ $(document).ready(function () {
 
 [Postman](https://www.getpostman.com/) is a handy and free tool to execute and archive your commonly used HTTP requests. We publish a collection of pre-build FREME API calls that can be executed against the FREME Demo APIs or against your own local FREME installations. These collections can also be used to generate API calls in programming languages such as Java, PHP, jQuery and others.
 
-How to use the collection: Import [this Postman collection]({{site.basePath | prepend: site.github.url }}/resources/postman/FREME.postman_collection.json) into your local Postman to have a set of working requests which covers the most of FREME functionality out of the box. To get this collection working just define the [Postman variable](https://www.getpostman.com/docs/environments) `baseUrl` and set it to `api.freme-project.eu/current`, for instance. Furthermore, if you intend to create or modify [restricted resources](../freme-for-api-users/authentication.html#restricted-resources) like [FREME templates]({{site.basePath | prepend: site.github.url }}/api-doc/list-templates.html), [filters](../freme-for-api-users/filtering.html), etc. you have to define and set the variable `token` to the one you get when you have [authenticated](../freme-for-api-users/authentication.html#how-to-authenticate) successfully. 
+How to use the collection: Import [this Postman collection]({{site.basePath  }}/resources/postman/FREME.postman_collection.json) into your local Postman to have a set of working requests which covers the most of FREME functionality out of the box. To get this collection working just define the [Postman variable](https://www.getpostman.com/docs/environments) `baseUrl` and set it to `api.freme-project.eu/current`, for instance. Furthermore, if you intend to create or modify [restricted resources](../freme-for-api-users/authentication.html#restricted-resources) like [FREME templates]({{site.basePath  }}/api-doc/list-templates.html), [filters](../freme-for-api-users/filtering.html), etc. you have to define and set the variable `token` to the one you get when you have [authenticated](../freme-for-api-users/authentication.html#how-to-authenticate) successfully. 
 
 ## Natural Language Interchange Format (NIF)
 

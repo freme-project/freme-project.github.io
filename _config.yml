@@ -1,29 +1,32 @@
-# Site settings
+## Site settings
 title: FREME Documentation
-email: jonathan_paul.sauder@dfki.de
+email: jan.nehring@dfki.de
 description: This site contains the documentation of the FREME project. The API documentation shows how to use FREMEs API. FREME showroom displays FREME in action. It contains demos, videos and other material to show what FREME can do. The tutorials section shows the capabilities of FREME and explains how to do certain things with the API. Knowledge Base contains a series of articles about FREME. Further there is page about License and Contact.
 ## The variable basePath is necessary for dev deployment and set by jenkins deploy script. So do not modify it here!
-## basePath
+## All internal links are prepended with {{site.basePath  }}, so they work at GitHub pages and the manually built dev environment.
+# basePath
 
-# The following parameters are assembled to: <apiProtocol>://<apiHost><apiBasePath>
-# for all FREME api requests mentioned in the documentation including the interactive swagger api-doc.
+## The following parameters are assembled to: <apiProtocol>://<apiHost><apiBasePath>
+## for all FREME api requests mentioned in the documentation including the interactive swagger api-doc.
+## Set the protocol to `http` for the manually built dev version and to `https` for the live version built by GithubPages.
 apiProtocol: https
 apiHost: api.freme-project.eu
 apiBasePath: /current
 
-#url: "http://api-dev.freme-project.eu" # the base hostname & protocol for your site
-#github_username:  josauder
-
-# Build settings
+## Build settings
 markdown: kramdown
 kramdown:
   input: GFM
 
+## These files should not be processed by Jekyll, but just copied to the destination folder.
 keep_files: ['resources']
 
-# exclude travis vendor folder
+## Exclude travis vendor folder
 exclude: [vendor]
 
+## This is needed for local deployment only to simulate the same behavior like on GitHub Pages.
+## Furthermore, this enables the parameter `site.github.url` which points to the correct url when uploaded to GitHub Pages and to `localhost`,
+## when deployed locally with `jekyll build` or `jekyll serve`.
 gems:
   - github-pages
 

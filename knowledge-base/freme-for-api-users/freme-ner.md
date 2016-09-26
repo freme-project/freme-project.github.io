@@ -60,7 +60,7 @@ FREME NER can provide entity recognition in texts written in different languages
 ## Dependencies
 The following figure illustrates the dependencies of FREME-NER.
 
-![Image of dependencies]({{site.basePath | prepend: site.github.url }}/img/freme-ner-dependency-small.png)
+![Image of dependencies]({{site.basePath  }}/img/freme-ner-dependency-small.png)
 
 
 ## How to install
@@ -69,7 +69,7 @@ The following figure illustrates the dependencies of FREME-NER.
 * FREME NER runs as a FREME Package, so it requires [these prerequisites](../freme-for-sysadmins/creating-and-running-a-freme-package.html#prerequisites). 
 * It needs access to a running [Solr Server](http://lucene.apache.org/solr/). To set up a Solr Server at your machine, do the following:
     * [install the Solr Server](http://lucene.apache.org/solr/quickstart.html)
-    * use [this schema]({{site.basePath | prepend: site.github.url }}/resources/freme-ner/solr-schema.xml)
+    * use [this schema]({{site.basePath  }}/resources/freme-ner/solr-schema.xml)
 * Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
     1. `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
     2. `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
@@ -173,7 +173,7 @@ If you want to have a look at the source code of FREME NER, check out its underl
 ## Tips
 
 #### Speed up the processing
-Not always one need to perform entity spotting, linking and classification. In some cases a user might be interested only in spotting the entity mentions, while in some cases, spotting the entity mentions and linking them to a specified dataset. FREME NER provides the ```mode``` parameter which can be used to instruct FREME NER on the level of processing, e.g. by setting ```mode=spot,link```, FREME NER will spot and link entites. If the parameter is set to ```mode=spot,link,classify``` it will perform entity spotting, linking and classification. Following combinations are possible: 1) spot; 2) spot,classify; 3) spot,link; 4) spot,link,classify; 5) link; and 6) link. You can this feature via the client at our [API documentation page]({{site.basePath | prepend: site.github.url}}/api-doc/full.html#!/e-Entity/executeFremeNer).
+Not always one need to perform entity spotting, linking and classification. In some cases a user might be interested only in spotting the entity mentions, while in some cases, spotting the entity mentions and linking them to a specified dataset. FREME NER provides the ```mode``` parameter which can be used to instruct FREME NER on the level of processing, e.g. by setting ```mode=spot,link```, FREME NER will spot and link entites. If the parameter is set to ```mode=spot,link,classify``` it will perform entity spotting, linking and classification. Following combinations are possible: 1) spot; 2) spot,classify; 3) spot,link; 4) spot,link,classify; 5) link; and 6) link. You can this feature via the client at our [API documentation page]({{site.basePath }}/api-doc/full.html#!/e-Entity/executeFremeNer).
 
 #### Linking of single entities
 In some cases, a user might want to disambiguage and retrieve a link for an entity from a specified dataset. Such feature is also possible with FREME NER. In order to perform linking of a single entity, a user should set ```mode=link``` and ```informat=text``` and sent as input the name of the entity. FREME NER will disambiguate and link the entity to the specified dataset.

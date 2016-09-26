@@ -54,11 +54,11 @@ To perform authenticated endpoint calls you have to do the following:
   2. retrieve an access token
   3. attach this token to the endpoint call
   
-If you want to get the full FREME user management functionality have a look at the [FREME api documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/User). 
+If you want to get the full FREME user management functionality have a look at the [FREME api documentation]({{site.basePath  }}/api-doc/full.html#!/User). 
 
 ### How to create a user
 
-If you haven't done before, you have to create an user. This can be established via the [FREME api documentation page]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/User/post_user) or by performing a POST call to `/user`:
+If you haven't done before, you have to create an user. This can be established via the [FREME api documentation page]({{site.basePath  }}/api-doc/full.html#!/User/post_user) or by performing a POST call to `/user`:
   
 ```
 curl -X POST "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/user?username=YOUR_USERNAME&password=YOUR_PASSWORD"
@@ -66,7 +66,7 @@ curl -X POST "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | pre
 
 ### How to create an access token
 
-An access token can be retrieved via the [FREME api documentation page]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/User/post_authenticate) or by calling the `/authenticate` endpoint with your user credentials:
+An access token can be retrieved via the [FREME api documentation page]({{site.basePath  }}/api-doc/full.html#!/User/post_authenticate) or by calling the `/authenticate` endpoint with your user credentials:
 
 ```
 curl -X POST --header "X-Auth-Username: YOUR_USERNAME" --header "X-Auth-Password: YOUR_PASSWORD" "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/authenticate"
@@ -88,12 +88,12 @@ To use FREME e-Services as authenticated user just attach your token as `X-Auth-
 curl -X POST --header "Content-Type: text/plain" --header "Accept: text/n3" --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents?input=Welcome%20to%20Berlin%2C%20the%20capital%20of%20Germany.&language=en&dataset=dbpedia&mode=all"
 ```
 
-To use restricted resources via the [FREME api documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html) just put your token into the input field at the bottom of the page.
+To use restricted resources via the [FREME api documentation]({{site.basePath  }}/api-doc/full.html) just put your token into the input field at the bottom of the page.
 
 ### OPTIONAL: How to change the password of a user
 
 To do so, you have to use an access token of the User you want to update or from the admin.
-You can use the [FREME api documentation page]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/User/put_user_username) or a curl call like the following:
+You can use the [FREME api documentation page]({{site.basePath  }}/api-doc/full.html#!/User/put_user_username) or a curl call like the following:
 
 ```
 curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/user/YOUR_USERNAME?password=NEW_PASSWORD"
@@ -102,7 +102,7 @@ curl -X PUT --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiBasePath | prepend: 
 ### OPTIONAL: How to delete a user
 
 You have to use an access token of the user you want to delete or from the admin.
-You can use the [FREME api documentation page]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/User/delete_user_username) or a curl call like the following:
+You can use the [FREME api documentation page]({{site.basePath  }}/api-doc/full.html#!/User/delete_user_username) or a curl call like the following:
 
 ```
 curl -X DELETE --header "X-Auth-Token: YOUR_TOKEN" "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/user/YOUR_USERNAME"
@@ -111,7 +111,7 @@ It is not yet possible to delete a user who still owns resources such as dataset
 
 ## User roles
 
-In FREME users can have two roles: ROLE_USER and ROLE_ADMIN. All users registered via the API have ROLE_USER. Admin users can promote normal users to be administrators. An admin user can be configured using the admin.create, admin.username, admin.password configuration options (see [FREME configuration options]({{site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-sysadmins/configuration-options.html)).
+In FREME users can have two roles: ROLE_USER and ROLE_ADMIN. All users registered via the API have ROLE_USER. Admin users can promote normal users to be administrators. An admin user can be configured using the admin.create, admin.username, admin.password configuration options (see [FREME configuration options]({{site.basePath  }}/knowledge-base/freme-for-sysadmins/configuration-options.html)).
 
 In general ROLE_USER implies read access to all public resources and to all private resources the user owns. ROLE_USER implies write access to all resources the user owns.
 

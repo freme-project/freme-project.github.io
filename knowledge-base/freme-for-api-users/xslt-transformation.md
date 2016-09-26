@@ -2,7 +2,7 @@
 layout: page
 title: XSLT transformation via FREME
 dropdown: Knowledge Base, FREME for API Users
-pos: 4.7
+pos: 4.6
 ---
 
 <script>
@@ -48,7 +48,7 @@ FREME let you use a wide area of XML and HTML content for its e-Services. This i
 
 ## Using XSLT converter
 
-Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/CONVERTER-NAME`:
+Any available converter can be used by sending XML or HTML content to the endpoint `{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/documents/CONVERTER-NAME`:
 
 ```
 curl -X POST --header 'Content-Type: text/html' -d '<!doctype html>
@@ -87,7 +87,7 @@ The request above simply transforms any valid html document into valid xml. The 
 
 **NOTE:** Using CURL makes it necessary to set the Content-Type header also for `text/xml`.
 
-You can play around with existing converters at the [interactive FREME api documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Toolbox/XSLT-Converter).
+You can play around with existing converters at the [interactive FREME api documentation]({{site.basePath  }}/api-doc/full.html#/Toolbox/XSLT-Converter).
 
 ### Submitting stylesheet parameters
 
@@ -143,7 +143,7 @@ gives this result:
 
 ## XSLT converter in a pipeline
 
-You can save your workflow in a [FREME pipeline]({{ site.basePath | prepend: site.github.url }}/tutorials/pipeline-entity-link.html). The following pipeline converts xliff to html, does named entity recognition with html roundtripping and converts back to xliff: 
+You can save your workflow in a [FREME pipeline]({{ site.basePath  }}/tutorials/pipeline-entity-link.html). The following pipeline converts xliff to html, does named entity recognition with html roundtripping and converts back to xliff: 
 
 ```
 [
@@ -208,7 +208,7 @@ curl -X POST -H "Content-Type: application/json" -d '[
   ]' "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/pipelining/chain?useI18n=false"
 ```
 
-**Note:** The parameter `useI18n=false` is necessary here to suppress [e-Internalization roundtripping]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work) which otherwise would be activated in this case by default. If roundtripping conditions hold, e.g. the input format is the same as the output format and both are accepted [e-Internalization output formats]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation), the input gets converted to NIF (turtle) before it enters the pipeline and the pipeline result gets converted back to the output/input format. Furthermore, all pipeline internal input and output formats are set to NIF (turtle). This would collide with the XSLT converters, which require and produce xml or html input/output.
+**Note:** The parameter `useI18n=false` is necessary here to suppress [e-Internalization roundtripping]({{ site.basePath  }}/knowledge-base/freme-for-api-users/eInternationalisation.html#round-tripping-how-does-it-work) which otherwise would be activated in this case by default. If roundtripping conditions hold, e.g. the input format is the same as the output format and both are accepted [e-Internalization output formats]({{ site.basePath  }}/knowledge-base/freme-for-api-users/gettingStarted_API-users.html#output-types-einternalisation), the input gets converted to NIF (turtle) before it enters the pipeline and the pipeline result gets converted back to the output/input format. Furthermore, all pipeline internal input and output formats are set to NIF (turtle). This would collide with the XSLT converters, which require and produce xml or html input/output.
 
 The request above returns enriched xliff:
 
@@ -232,11 +232,11 @@ The request above returns enriched xliff:
 </xliff>
 ```
 
-You can easily save and reuse your pipeline via the [interactive api documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/Pipelining/post_pipelining_templates).
+You can easily save and reuse your pipeline via the [interactive api documentation]({{site.basePath  }}/api-doc/full.html#!/Pipelining/post_pipelining_templates).
 
 ## Manage XSLT converter
 
-XSLT converters can be managed via the REST API endpoint `/toolbox/xslt-converter/manage/{converterName}`. All XSLT converter management requests can be executed easily via the [interactive API documentation]({{site.basePath | prepend: site.github.url }}/api-doc/full.html#/Toolbox/XSLT-Converter). XSLT converters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/doc/knowledge-base/freme-for-api-users/authentication.html) for further information.
+XSLT converters can be managed via the REST API endpoint `/toolbox/xslt-converter/manage/{converterName}`. All XSLT converter management requests can be executed easily via the [interactive API documentation]({{site.basePath  }}/api-doc/full.html#/Toolbox/XSLT-Converter). XSLT converters are restricted resources, so some requests need authenticated access. See [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 **NOTE:** When using the following examples, don't forget to replace `YOUR_TOKEN` by your authentication token.
 
@@ -267,7 +267,7 @@ curl -X GET "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prep
 
 ### Get all XSLT converters
 
-This request returns all converters to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath | prepend: site.github.url }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
+This request returns all converters to which the currently authenticated user has **read access**, see [authentication]({{ site.basePath  }}/knowledge-base/freme-for-api-users/authentication.html) for further information.
 
 ```
 curl -X GET [--header "X-Auth-Token: YOUR_TOKEN"] "{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/toolbox/xslt-converter/manage"

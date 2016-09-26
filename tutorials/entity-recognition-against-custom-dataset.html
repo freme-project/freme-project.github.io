@@ -49,17 +49,16 @@ pos: 3.1
         updateDatasetName();
 	$.ajax({
 	    url: fremeApiUrl + "/e-entity/freme-ner/datasets?"
-	    +"informat="+$("#informat-dataset").val()
 	    +"&name="+datasetName
 	    +"&description="+$("#dataset-description").val()
-	    +"&language=en"
-	    +"&outformat=json",
+	    +"&language=en",
         headers: {
-            "x-auth-token": $("#token").val()
+            "x-auth-token": $("#token").val(),
+            "accept": "application/json"
         },
         type: "POST",
 	    dataType: "text",
-	    contentType: 'text/plain',
+	    contentType: $("#informat-dataset").val(),
         data: $("#input-dataset").val(),
         success : function(result){
             submittedDatasets.push(datasetName);
@@ -179,7 +178,7 @@ pos: 3.1
     <p>
     <strong>Dataset serialization format</strong><br/>
     Specify the RDF serialization format of the dataset.<br/>
-    <input id="informat-dataset" type="text" value="n-triples" /></p>
+    <input id="informat-dataset" type="text" value="application/n-triples" /></p>
     <br/>
     
     <p><strong>Dataset name</strong><br/>
@@ -311,7 +310,7 @@ pos: 3.1
     <p>In a real world use case very large datasets are necessary. To make the upload of large datasets feasible you should consider the following hints:</p>
     <ul>
         <li>Chunk the dataset in chunks of e.g. 1000 lines each. When the dataset is too large then it does not fit in a single HTTP request.</li>
-        <li>Start with an HTTP POST request to create a new dataset and upload the first chunk. Afterwards add the remaining chunks with HTTP PUT requests. This will add the data to the previously created dataset. See the <a href="{{site.basePath | prepend: site.github.url }}/api-doc/full.html#!/e-Entity/createDataset">interactive api documentation</a> how to perform the two types of request. </li>
+        <li>Start with an HTTP POST request to create a new dataset and upload the first chunk. Afterwards add the remaining chunks with HTTP PUT requests. This will add the data to the previously created dataset. See the <a href="{{site.basePath  }}/api-doc/full.html#!/e-Entity/createDataset">interactive api documentation</a> how to perform the two types of request. </li>
         <li>Use n-triples as serialization format for your dataset, if possible. This makes it easy to chunk the dataset because n-triples hold one triple a line.</li>
         <li>If possible, execute the requests to upload the data from the same server that runs FREME-NER to speed up processing.</li>
     </ul>
