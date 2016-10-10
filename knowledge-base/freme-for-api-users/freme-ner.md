@@ -172,9 +172,8 @@ If you want to have a look at the source code of FREME NER, check out its underl
 [FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic.
 The following figure illustrates how FREME NER implements text enrichment.
 
-<figure>
-  <img src="https://docs.google.com/drawings/d/1q1-5oWIQ11uXZRq0j3Ym6Ahs35X73FKiRTsHXQ8O1PQ/edit?usp=sharing" alt="FREME-NER architecture" />
-</figure>
+![Image of how freme-ner enrichment is implemented]({{site.basePath  }}/img/FremeNerGrafik.png)
+
 
 ## Tips
 
