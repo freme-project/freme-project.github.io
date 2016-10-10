@@ -2484,8 +2484,7 @@ paths:
           required: false
           type: string
         - name: key
-          description: 'A private key to access private and not publicly available terminology systems. Key can be created by contacting <a href="https://term.tilde.com/"> Tilde team</a>. Optional, if omitted then public terminology systems are used.'
-          required: false
+          description: 'A private key to access private and not publicly available terminology systems. Key can be created by contacting <a href="https://term.tilde.com/"> Tilde team</a>. Optional, if omitted then public terminology systems are used.'          required: false
           type: string
           in: query
           
