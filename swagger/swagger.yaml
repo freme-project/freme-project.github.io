@@ -741,7 +741,7 @@ paths:
             - true
             - false
           type: string
-          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any othe value, e-Internalization will be used, if possible.
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any other value, e-Internalization will be used, if possible.
 
       responses:
         '200':
