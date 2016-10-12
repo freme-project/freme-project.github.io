@@ -650,7 +650,7 @@ paths:
                 &quot;method&quot;: &quot;POST&quot;,
                 &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
                 &quot;parameters&quot;: {
-                  &quot;templateid&quot;: &quot;3&quot;
+                  &quot;templateid&quot;: &quot;1&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/turtle&quot;,
