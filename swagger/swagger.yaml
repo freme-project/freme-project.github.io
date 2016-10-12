@@ -597,31 +597,33 @@ paths:
           **e-Entity, e-Link**
 
           <pre lang="json"><code>
-            [
-              {
-                &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
-                &quot;parameters&quot;: {
-                  &quot;language&quot;: &quot;en&quot;
+              [
+                {
+                  &quot;method&quot;: &quot;POST&quot;,
+                  &quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;,
+                  &quot;parameters&quot;: {
+                    &quot;language&quot;: &quot;en&quot;,
+                    &quot;dataset&quot;: &quot;dbpedia&quot;,
+                    &quot;mode&quot;: &quot;all&quot;
+                  },
+                  &quot;headers&quot;: {
+                    &quot;content-type&quot;: &quot;text/plain&quot;,
+                    &quot;accept&quot;: &quot;text/turtle&quot;
+                  },
+                  &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
                 },
-                &quot;headers&quot;: {
-                  &quot;content-type&quot;: &quot;text/plain&quot;,
-                  &quot;accept&quot;: &quot;text/turtle&quot;
-                },
-                &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
-              },
-              {
-                &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
-                &quot;parameters&quot;: {
-                  &quot;templateid&quot;: &quot;3&quot;
-                },
-                &quot;headers&quot;: {
-                  &quot;content-type&quot;: &quot;text/turtle&quot;,
-                  &quot;accept&quot;: &quot;text/turtle&quot;
+                {
+                  &quot;method&quot;: &quot;POST&quot;,
+                  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+                  &quot;parameters&quot;: {
+                    &quot;templateid&quot;: &quot;3&quot;
+                  },
+                  &quot;headers&quot;: {
+                    &quot;content-type&quot;: &quot;text/turtle&quot;,
+                    &quot;accept&quot;: &quot;text/turtle&quot;
+                  }
                 }
-              }
-            ]
+              ]
           </code></pre>
 
 
@@ -632,9 +634,11 @@ paths:
             [
               {
                 &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+                &quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;,
                 &quot;parameters&quot;: {
-                  &quot;language&quot;: &quot;en&quot;
+                     &quot;language&quot;: &quot;en&quot;,
+                     &quot;dataset&quot;: &quot;dbpedia&quot;,
+                     &quot;mode&quot;: &quot;all&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/plain&quot;,
