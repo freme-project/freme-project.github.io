@@ -24,11 +24,11 @@ title: How to write a Tutorial
 	function sendAPIRequest() {
 	
 	$.ajax({
-		url: fremeApiUrl + "/e-translation/tilde",
+		url: fremeApiUrl + "/e-translation/tilde/",
 		type: "POST",
 		dataType: "text",
 		data: {
-		'informat': "text",
+		'informat': "text/plain",
 		'outformat': "json-ld",
 		'source-lang': encodeURIComponent($("#source-lang").val()),
 		'target-lang': encodeURIComponent($("#target-lang").val()),
@@ -37,6 +37,8 @@ title: How to write a Tutorial
 		}).done(function(result){
 		        $("#response").text(result);
 		});
+
+		console.log(result);
 	};
        
        
