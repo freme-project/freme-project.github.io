@@ -24,11 +24,11 @@ title: How to write a Tutorial
 	function sendAPIRequest() {
 	
 	$.ajax({
-		url: fremeApiUrl + "/e-translation/tilde/",
+		url: fremeApiUrl + "/e-translation/tilde",
 		type: "POST",
 		dataType: "text",
 		data: {
-		'informat': "text/plain",
+		'informat': "text",
 		'outformat': "json-ld",
 		'source-lang': encodeURIComponent($("#source-lang").val()),
 		'target-lang': encodeURIComponent($("#target-lang").val()),
