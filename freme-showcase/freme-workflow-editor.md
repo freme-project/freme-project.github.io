@@ -2,7 +2,7 @@
 layout: page
 title: FREME Workflow Editor
 isexternurl: True
-externurl: {{site.basePath  }}/freme-workflow-editor
+externurl: http://api-dev.freme-project.eu/freme-workflow-editor
 dropdown: FREME-Showroom
 pos: 2.1
 ---
