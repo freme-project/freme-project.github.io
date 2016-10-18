@@ -23,7 +23,8 @@ pos: 2.3
 			content = encodeURIComponent($('#content').val());
 			return $.ajax({
 				type: 'POST',
-				url: fremeApiUrl+"/e-entity/dbpedia-spotlight/documents?input=" + content + "&informat=text&language=en&confidence=0.3",
+				//url: fremeApiUrl+"/e-entity/dbpedia-spotlight/documents?input=" + content + "&informat=text&language=en&confidence=0.3",
+				url: fremeApiUrl+"/e-entity/freme-ner/documents?input=" + content + "&informat=text&language=en&dataset=dbpedia",
 				headers: {
 					'Accept': 'application/json+ld'
 				}
@@ -74,7 +75,7 @@ pos: 2.3
 <h2 id="more-infos">More information</h2>
 <p>For more information visit the <a target="_blank" href="{{ site.basePath   }}/api-doc/full.html">FREME API documentation</a>, <a target="_blank" href="https://github.com/freme-project/">FREME on GitHub</a> or the <a target="_blank" href="http://freme-project.eu/">FREME homepage</a>.</p>
 <h2 id="try-it-out">Try it out</h2>
-<p>In the form below enter some English text that contains the name of a location (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity</q>.</p>
+<p>In the form below enter some English text that contains the name of a location (or use this <span onclick="$('#content').empty().val('Welcome to Berlin, the home of Marlene Dietrich and Nastassja Kinski.');" class="example">example</span>) and click on the bottom <q>Call FREME e-Entity and FREME e-Link</q>.</p>
 <form name="input">
     <textarea rows="4" cols="50" name="content"  id="content"></textarea>
 </form>

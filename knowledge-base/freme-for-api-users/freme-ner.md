@@ -19,7 +19,7 @@ FREME NER is a named entity recognition tool. It performs entity spotting - spot
     * [Get the FREME NER package](#get-the-freme-ner-package)
     * [FREME NER configuration options](#freme-ner-configuration-options)
     * [Optional: Configure the package](#optional-configure-the-package)
-* [FREME NER on GitHub](#freme-ner-on-github)
+* [Working with the FREME NER source code](#working-with-the-freme-ner-source-code)
 * [Tips](#tips)
 
 ## Technology Stack
@@ -167,8 +167,13 @@ Of course you can add any FREME service you need, have a look at [the FREME basi
 
 Now you can [create a binary distribution](../freme-for-sysadmins/creating-and-running-a-freme-package.html#create-binary-distribution) and [start FREME NER](../freme-for-sysadmins/start-and-run-freme.html).
 
-## FREME NER on GitHub
-If you want to have a look at the source code of FREME NER, check out its underlying e-service at [GitHub](https://github.com/freme-project/freme-ner). [FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic. 
+## Working with the FREME NER source code
+If you want to have a look at the source code of FREME NER, check out its underlying e-service at [GitHub](https://github.com/freme-project/freme-ner).
+[FREME e-services](../freme-for-developers/overview-of-the-freme-architecture.html#e-services) are not executable by its own, they need to be part of a FREME package like the [freme-ner package](https://github.com/freme-project/freme-packages/tree/master/freme-ner-dev). Consult the [FREME architecture article](../freme-for-developers/overview-of-the-freme-architecture.html) to dive deeper into this topic.
+The following figure illustrates how FREME NER implements text enrichment.
+
+![Image of how freme-ner enrichment is implemented]({{site.basePath  }}/img/FremeNerGrafik.png)
+
 
 ## Tips
 

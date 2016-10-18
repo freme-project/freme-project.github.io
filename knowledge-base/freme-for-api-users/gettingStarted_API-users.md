@@ -244,6 +244,13 @@ $(document).ready(function () {
 });
 </script>
 
+## Retrieve input from an URL
+When you want to process text from an url, you can set the parameter **intype** to *url* and specify the url in the **input** (or its short version **i**) - parameter. If you do not send a Content-Type Header nor specify the informat parameter, the Content-Type is taken from the response of the specified url when it is called to retrieve its content.
+Below you can see an example call to FREME-NER where the text to be processed is retrieved from an URL.
+
+```
+curl -X POST '{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all&intype=url&input=http://beautifulberlin.blogspot.de/2009/07/short-history-of-berlin.html&filter=extract-entities-only&outformat=csv&informat=text/html'
+```
 
 ## FREME Postman collection
 

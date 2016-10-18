@@ -43,8 +43,8 @@ title: Translate from English to Dutch including Terminology
 <p>The input data is the output of Step 1</p>
 <h4>cURL</h4>
 <div>
-    <pre><code>curl -X POST -d "response-of-step1.ttl" "{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl";</code>   </pre>
-<p>Where the file <code>response-of-step1.ttl</code> is the response of e-Terminology.</p>
+    <pre><code>curl -X POST -d @response-of-step1.json --header "Content-Type: applicatio/json+ld" --header "Accept: application/json+ld" "{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-translation/tilde?informat=json-ld&outformat=json-ld&source-lang=en&target-lang=nl"</code>   </pre>
+<p>Where the file <code>response-of-step1.json</code> is the response of e-Terminology.</p>
 </div>
 <a name="step2response"></a>
 <h4>Result</h4>

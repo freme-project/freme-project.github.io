@@ -183,7 +183,7 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset. It will be used as its ID, therefore it must be unique.<br/>
-    <input id="dataset-name" type="text" value="mydataset"></p>
+    <input id="dataset-name" type="text" value="tutorial-test-set"></p>
     <br/>
 
     <p><strong>Authorization token</strong><br/>
@@ -230,7 +230,7 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset" type="text" value="mydataset"></p>
+    <input id="target-dataset" type="text" value="tutorial-test-set"></p>
     <br/>
 
     <button onclick="sendTextProcessingRequest();">Process the text!</button>
@@ -273,7 +273,7 @@ pos: 3.1
     
     <p><strong>Dataset name</strong><br/>
     The name of the dataset used for entity linking. The value should be the same as you specified when you submitted the dataset for creation. You can specify the target dataset using the "dataset" parameter. E.g. "dataset=dbpedia".<br/>
-    <input id="target-dataset-simple" type="text" value="mydataset"></p>
+    <input id="target-dataset-simple" type="text" value="tutorial-test-set"></p>
     <br/>
 
     <button onclick="sendTextProcessingRequestSimple();">Process the text!</button>
@@ -299,7 +299,7 @@ pos: 3.1
     <p>Below you can find some useful cURL command examples.</p>
     
     <h3>Submit dataset</h3>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&amp;token=YOUR_TOKEN_HERE&quot; -H &quot;Content-Type: text/plain&quot;
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d @dataset.nt &quot{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/e-entity/freme-ner/datasets?name=NAME&amp;description=DATASET_DESCRIPTION&amp;informat=n-triples&amp;outformat=json&amp;language=en&amp;token=YOUR_TOKEN_HERE&quot; -H &quot;Content-Type: text/n3&quot;
 </pre></div>
     <h3>Submit text for named entity recognition</h3>
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -v -d &quot;Diego Maradona is from Argentina.&quot; &quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol  }}/e-entity/freme-ner/documents?dataset=dbpedia&amp;informat=text&amp;outformat=turtle&amp;language=en&quot; -H &quot;Content-Type: text/plain&quot;

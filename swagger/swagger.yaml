@@ -55,7 +55,7 @@ tags:
           * determines how the input is accessed or retrieved
           * possible values
             * direct (default): The input is either read from the body of the request or from the input parameter
-            * url: The input is retrieved from the url specified in the 'input' or 'i' parameter
+            * url: The input is retrieved from the url specified in the 'input' or 'i' parameter. For more information see the [Getting started for API users guide](../knowledge-base/freme-for-api-users/gettingStarted_API-users.html).
       * input (short form: i):
           * input of the e-Service in plaintext or nif
           * no default
@@ -597,31 +597,33 @@ paths:
           **e-Entity, e-Link**
 
           <pre lang="json"><code>
-            [
-              {
-                &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
-                &quot;parameters&quot;: {
-                  &quot;language&quot;: &quot;en&quot;
+              [
+                {
+                  &quot;method&quot;: &quot;POST&quot;,
+                  &quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;,
+                  &quot;parameters&quot;: {
+                    &quot;language&quot;: &quot;en&quot;,
+                    &quot;dataset&quot;: &quot;dbpedia&quot;,
+                    &quot;mode&quot;: &quot;all&quot;
+                  },
+                  &quot;headers&quot;: {
+                    &quot;content-type&quot;: &quot;text/plain&quot;,
+                    &quot;accept&quot;: &quot;text/turtle&quot;
+                  },
+                  &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
                 },
-                &quot;headers&quot;: {
-                  &quot;content-type&quot;: &quot;text/plain&quot;,
-                  &quot;accept&quot;: &quot;text/turtle&quot;
-                },
-                &quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;
-              },
-              {
-                &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
-                &quot;parameters&quot;: {
-                  &quot;templateid&quot;: &quot;3&quot;
-                },
-                &quot;headers&quot;: {
-                  &quot;content-type&quot;: &quot;text/turtle&quot;,
-                  &quot;accept&quot;: &quot;text/turtle&quot;
+                {
+                  &quot;method&quot;: &quot;POST&quot;,
+                  &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
+                  &quot;parameters&quot;: {
+                    &quot;templateid&quot;: &quot;3&quot;
+                  },
+                  &quot;headers&quot;: {
+                    &quot;content-type&quot;: &quot;text/turtle&quot;,
+                    &quot;accept&quot;: &quot;text/turtle&quot;
+                  }
                 }
-              }
-            ]
+              ]
           </code></pre>
 
 
@@ -632,9 +634,11 @@ paths:
             [
               {
                 &quot;method&quot;: &quot;POST&quot;,
-                &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-entity/dbpedia-spotlight/documents&quot;,
+                &quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;,
                 &quot;parameters&quot;: {
-                  &quot;language&quot;: &quot;en&quot;
+                     &quot;language&quot;: &quot;en&quot;,
+                     &quot;dataset&quot;: &quot;dbpedia&quot;,
+                     &quot;mode&quot;: &quot;all&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/plain&quot;,
@@ -646,7 +650,7 @@ paths:
                 &quot;method&quot;: &quot;POST&quot;,
                 &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
                 &quot;parameters&quot;: {
-                  &quot;templateid&quot;: &quot;3&quot;
+                  &quot;templateid&quot;: &quot;1&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -658,7 +662,7 @@ paths:
                 &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-translation/tilde&quot;,
                 &quot;parameters&quot;: {
                   &quot;source-lang&quot;: &quot;en&quot;,
-                  &quot;target-lang&quot;: &quot;fr&quot;
+                  &quot;target-lang&quot;: &quot;nl&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -691,7 +695,7 @@ paths:
                 &quot;method&quot;: &quot;POST&quot;,
                 &quot;endpoint&quot;: &quot;http://api.freme-project.eu/current/e-link/documents/&quot;,
                 &quot;parameters&quot;: {
-                  &quot;templateid&quot;: &quot;3&quot;
+                  &quot;templateid&quot;: &quot;1&quot;
                 },
                 &quot;headers&quot;: {
                   &quot;content-type&quot;: &quot;text/turtle&quot;,
@@ -737,7 +741,7 @@ paths:
             - true
             - false
           type: string
-          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any othe value, e-Internalization will be used, if possible.
+          description: If false, enforces to not use [e-Internalization](../knowledge-base/freme-for-api-users/eInternationalisation.html), even if Content-Type header is one of the possible e-Internalization formats. For any other value, e-Internalization will be used, if possible.
 
       responses:
         '200':
@@ -2485,7 +2489,7 @@ paths:
           required: false
           type: string
         - name: key
-          description: 'A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems'
+          description: 'A private key to access private and not publicly available terminology systems. Key can be created by contacting <a href="https://term.tilde.com/"> Tilde team</a>. Optional, if omitted then public terminology systems are used.'
           required: false
           type: string
           in: query

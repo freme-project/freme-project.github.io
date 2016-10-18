@@ -183,7 +183,8 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 <h3>Configuration options</h3>
 
-The Tilde e-Terminology service does not offer any configuration options.
+The Tilde e-Terminology service uses authentication. You can configure your personal authentication code in the application.properties files with the parameter <b>tilde.terminology.authentication</b>.
+In the application.properties files of the packages, <a href="https://github.com/freme-project/freme-packages/blob/master/broker-dev/src/main/resources/application.properties">broker-dev</a>, <a href="https://github.com/freme-project/freme-packages/blob/master/broker-local/src/main/resources/application.properties">broker-local</a> and <a href="https://github.com/freme-project/freme-packages/blob/master/freme-full/src/main/resources/application.properties">freme-full</a> you can see an example. If you do not specify this configuration parameter, the authentication header of the request will be empty.
 
 <h2 id="tilde-e-translation"><strong>Tilde e-Translation</strong></h2>
 
@@ -213,8 +214,8 @@ The Tilde e-Terminology service does not offer any configuration options.
 
 <h3>Configuration options</h3>
 
-The Tilde e-Translation service does not offer any configuration options.
-
+The Tilde e-Translation service uses authentication. You can configure your personal authentication code in the application.properties files with the parameter <b>tilde.translation.authentication</b>.
+In the application.properties files of the packages, <a href="https://github.com/freme-project/freme-packages/blob/master/broker-dev/src/main/resources/application.properties">broker-dev</a>, <a href="https://github.com/freme-project/freme-packages/blob/master/broker-local/src/main/resources/application.properties">broker-local</a> and <a href="https://github.com/freme-project/freme-packages/blob/master/freme-full/src/main/resources/application.properties">freme-full</a> you can see an example. If you do not specify this configuration parameter, the authentication header of the request will be empty.
 <h2 id="e-publishing"><strong>e-Publishing</strong></h2>
 
 <p>The e-Publishing service creates an eBook in the EPUB3 format from a zip file containing HTML Files
