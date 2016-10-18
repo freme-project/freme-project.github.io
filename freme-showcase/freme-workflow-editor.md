@@ -1,8 +1,12 @@
 ---
 layout: page
 title: FREME Workflow Editor
-isexternurl: True
-externurl: http://api.freme-project.eu/freme-workflow-editor/
 dropdown: FREME-Showroom
 pos: 2.1
 ---
+
+You will be redirected in a few seconds to https://api.freme-project.eu/freme-workflow-editor/
+
+<script type="text/javascript">
+document.location.href="https://api.freme-project.eu/freme-workflow-editor/";
+</script>
