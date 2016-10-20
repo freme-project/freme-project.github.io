@@ -17,7 +17,6 @@
 			</ul>
 		</div>
 		<script javascript>
-			var pages_url = "{{ site.url }}";
 			var pages_baseurl = "{{site.basePath }}";
 			var pages_pageurl="{{page.url}}";
 			var pages = [
@@ -51,7 +50,7 @@
 				var dropdown = pages[i].url.split("/").filter(function(x){return x!=""}).slice(0,-1);
 				var link = "<li "+
 						(pages[i].externurl!=undefined ?
-							"><a target=\"_blank\" href=\""+pages_url+pages[i].externurl+"\">"+pages[i].title+"</a></li>" :
+							"><a target=\"_blank\" href=\""+pages[i].externurl+"\">"+pages[i].title+"</a></li>" :
 								(pages[i].active ? "class=\"active\"" : "")+"><a href=\""+pages_baseurl+pages[i].url+"\">"+pages[i].title+"</a></li>");
 				if (dropdown.length==0) {
 					$("#__navbar__").append(link);
