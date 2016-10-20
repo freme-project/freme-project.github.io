@@ -830,14 +830,6 @@ paths:
           required: false
           type: string
           default: '0.3'
-        - name: nif-version
-          in: query
-          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
-          required: false
-          type: string
-          enum:
-            - '2.0'
-            - '2.1'
       
       responses:
         '200':
