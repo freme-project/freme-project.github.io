@@ -1380,7 +1380,7 @@ paths:
         - name: name
           in: path
           required: true
-          description: Name of filter to be updated.
+          description: Name of filter to be deleted.
           type: string
 
       responses:
