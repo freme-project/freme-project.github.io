@@ -830,6 +830,14 @@ paths:
           required: false
           type: string
           default: '0.3'
+        - name: nif-version
+          in: query
+          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
+          required: false
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
       
       responses:
         '200':
@@ -1242,6 +1250,14 @@ paths:
           description: 'Using the numLinks parameter one can specify the maximum number of links to be assigned to an entity. By default only one link is returned. The maximum possible number for this parameter is 5.'
           required: false
           type: integer
+        - name: nif-version
+          in: query
+          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
+          required: false
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
       
       responses:
         '200':
@@ -1895,6 +1911,14 @@ paths:
             type: string
             default: 'Welcome to Berlin, the capital of Germany.'
           description: 'The document you want to convert into NIF.'
+        - name: nif-version
+          in: query
+          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
+          required: false
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
 
       responses:
         '200':
@@ -2492,6 +2516,14 @@ paths:
           required: false
           type: string
           in: query
+        - name: nif-version
+          in: query
+          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
+          required: false
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
           
       responses:
         '200':
@@ -2596,6 +2628,14 @@ paths:
           required: false
           description: 'select translation system by ID [an alternative to source, target language and domain selection]. ID of public translation system can be retrieved at https://services.tilde.com/translationsystems or private system ID can be found at portal http://tilde.com/mt with authentication [optional, if omitted then source and target languages and also domain parameters are used]'
           type: string
+        - name: nif-version
+          in: query
+          description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
+          required: false
+          type: string
+          enum:
+            - '2.0'
+            - '2.1'
       
       responses:
         '200':
