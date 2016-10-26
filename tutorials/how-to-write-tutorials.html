@@ -32,7 +32,7 @@ title: How to write a Tutorial
 		'outformat': "json-ld",
 		'source-lang': encodeURIComponent($("#source-lang").val()),
 		'target-lang': encodeURIComponent($("#target-lang").val()),
-		'input': encodeURIComponent($("#input").val())
+		'input': $("#input").val()
 		}
 		}).done(function(result){
 		        $("#response").text(result);
@@ -40,7 +40,7 @@ title: How to write a Tutorial
 
 		console.log(result);
 	};
-       
+
        
        
        
