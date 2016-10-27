@@ -109,7 +109,11 @@ FREME listens on the host machine on port 4000. You can try an API request:
 curl -X POST "http://localhost:4000/e-translation/tilde?input=hello+world&informat=text&source-lang=en&target-lang=de"
 ```
 
-5. Stop the server
+The installation is finished.
+
+## Useful docker commands
+
+### Stop FREME
 
 Open a shell in the folder that contains the docker-compose.yml file. Then execute
 
@@ -118,16 +122,18 @@ cd /opt/freme
 docker-compose stop
 ```
 
-## Useful docker commands
+This section provides useful commands. It is not necessary to execute these commands during the installation.
 
-Update an image. This is important when the image for e.g. freme-broker has changed and you want to use the latest version of the image.
+### Update an image
+
+This is important when the image for e.g. freme-broker has changed and you want to use the latest version of the image.
 
 ```
 docker-compose stop freme-broker
 docker-compose up -d --no-deps freme-broker
 ```
 
-Restart a specific service
+### Restart a specific service
 
 ```
 docker-compose stop freme-broker
