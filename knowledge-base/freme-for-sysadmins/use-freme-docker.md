@@ -11,7 +11,7 @@ This article describes how to run FREME in docker.
 
 ## Overview
 
-FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the individual docker images that a FREME installation consists of from the user and to make it easier for users to install the multiple images together.
+FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the individual docker images that a FREME installation consists of from the user and to make it easier for users to install the multiple images together. You will install four different virtual machines in this guide. One runs the broker, one runs a Solr server, one runs a Virtuoso server and the forth a MySQL server. But you do not have to care about the individual virtual machines because the single docker-compose file orchestrates all virtual machines together.
 
 FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER models. They differ in the amount of pre-initialized data:
 
