@@ -7,17 +7,17 @@ pos: 4.18
 
 # Run FREME in a docker container
 
-This article describes how to run FREME the FREME docker container.
+This article describes how to run FREME in docker.
 
 ## Overview
 
 FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the individual docker images that a FREME installation consists of from the user and to make it easier for users to install the multiple images together.
 
-FREME comes in three different distributions that differ in the amount of pre-initialized data:
+FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER models. They differ in the amount of pre-initialized data:
 
-* basic: XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. The basic data is part of every FREME installation.
-* standard: There is a set of large datasets which can be used to initialize the SOLR and the Virtuoso server. This data is used for features of FREME NER and e-Link. These datasets are optional and need to be integrated in FREME separately. The standard datasets are the DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is roughly 30 GB.
-* full: The full set of datasets has the same features like the standard version but it adds more datasets. Additional datasets are CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary.
+* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. Requires around 7 GB of disk space.
+* standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space.
+* full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary.
 
 ## Install FREME from docker
 
@@ -90,9 +90,12 @@ tar -xzf freme-standard.tar.gz -C /opt/freme-data
 rm freme-standard.tar.gz
 ```
 
-### 4. Start docker-compose. The first time you run this command it will download several gigabyte
+### 4. Start docker-compose
+
+The first time you run this command it will download several gigabyte of data.
 
 ```
+cd /opt/freme
 docker-compose up -d
 ```
 
@@ -109,12 +112,14 @@ curl -X POST "http://localhost:4000/e-translation/tilde?input=hello+world&inform
 Open a shell in the folder that contains the docker-compose.yml file. Then execute
 
 ```
+cd /opt/freme
 docker-compose stop
 ```
 
 ## Useful docker commands
 
 Update an image. This is important when the image for e.g. freme-broker has changed and you want to use the latest version of the image.
+
 ```
 docker-compose stop freme-broker
 docker-compose up -d --no-deps freme-broker
