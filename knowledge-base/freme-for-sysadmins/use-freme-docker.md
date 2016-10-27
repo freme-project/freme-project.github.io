@@ -99,6 +99,8 @@ cd /opt/freme
 docker-compose up -d
 ```
 
+Logfiles will be written to `/opt/freme-data/logs`.
+
 4. Try if the installation has worked
 
 FREME listens on the host machine on port 4000. You can try an API request:
