@@ -129,6 +129,7 @@ This section provides useful commands. It is not necessary to execute these comm
 This is important when the image for e.g. freme-broker has changed and you want to use the latest version of the image.
 
 ```
+docker pull fremeproject/freme-broker
 docker-compose stop freme-broker
 docker-compose up -d --no-deps freme-broker
 ```
