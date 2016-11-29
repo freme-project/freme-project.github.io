@@ -109,7 +109,7 @@ FREME listens on the host machine on port 4000. You can try an API request:
 curl -X POST "http://localhost:4000/e-translation/tilde?input=hello+world&informat=text&source-lang=en&target-lang=de"
 ```
 
-The installation is finished.
+The installation is finished. Please note that the Solr server needs several minutes for initialisation. API requests to FREME NER that use the Solr server will fail when Solr is initialising.
 
 ## Useful docker commands
 
