@@ -13,11 +13,11 @@ This article describes how to run FREME in docker.
 
 FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the individual docker images that a FREME installation consists of from the user and to make it easier for users to install the multiple images together. You will install four different virtual machines in this guide. One runs the broker, one runs a Solr server, one runs a Virtuoso server and the forth a MySQL server. But you do not have to care about the individual virtual machines because the single docker-compose file orchestrates all virtual machines together.
 
-FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER models. They differ in the amount of pre-initialized data:
+FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER language models. They differ in the amount of pre-initialized data:
 
-* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. Requires around 7 GB of disk space.
-* standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space.
-* full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary.
+* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. Requires around 7 GB of disk space. This installation allows FREME NER in modes spot and classify only because it does not contain any datasets for linking.
+* standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space. It adds the linking functionality to FREME NER for DBPedia in all languages and Europeana dataset.
+* full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary. It adds the linking functionality to FREME NER for all datasets.
 
 ## Install FREME from docker
 
