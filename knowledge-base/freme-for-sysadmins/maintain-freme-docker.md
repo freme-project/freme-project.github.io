@@ -7,6 +7,8 @@ pos: 4.19
 
 # Maintain the FREME docker installation
 
+This guide explains how to maintain the FREME docker images. First it explains the naming of the images. Then it explains how to build images for freme-broker, freme-mysql, freme-solr and freme-virtuoso. In the last chapter the guide explains how to push an image to dockerhub.
+
 ## Naming of the images
 
 The docker images in FREME have the following names
