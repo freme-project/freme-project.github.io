@@ -36,7 +36,7 @@ cd freme-packages/freme-docker
 mvn package
 ```
 
-The package is now located in directory `target/freme-package`.
+The package is now located in directory `target/freme-package`, later in this document referred to as `PATH_TO_PACKAGE`.
 
 
 ### 2. Build the docker image
@@ -50,15 +50,17 @@ cd freme-docker/freme-broker
 
 # download freme-ner models
 mkdir freme-ner-models
+cd freme-ner-models
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-en-ner-model.ser.gz
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-es-ner-model.ser.gz
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-fr-ner-model.ser.gz
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-it-ner-model.ser.gz
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-nl-ner-model.ser.gz
 wget http://api.freme-project.eu/datasets/ner-trained-models/wikiner/wikiner-ru-ner-model.ser.gz
+cd ..
 
 # copy freme package
-cp PATH_TO_FREME_PACKAGE ./
+cp -r PATH_TO_FREME_PACKAGE ./
 
 # executing the ls command should show this files and folders:
 $ ls
