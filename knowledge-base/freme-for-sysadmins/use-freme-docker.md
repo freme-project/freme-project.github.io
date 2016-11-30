@@ -15,7 +15,7 @@ FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the indivi
 
 FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER language models. They differ in the amount of pre-initialized data:
 
-* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. Requires around 7 GB of disk space. This installation allows FREME NER in modes spot and classify only because it does not contain any datasets for linking.
+* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database. The image requires 7 GB of disk space. This installation allows FREME NER in modes spot and classify only because it does not contain any datasets for linking.
 * standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space. It adds the linking functionality to FREME NER for DBPedia in all languages and Europeana dataset.
 * full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary. It adds the linking functionality to FREME NER for all datasets.
 
