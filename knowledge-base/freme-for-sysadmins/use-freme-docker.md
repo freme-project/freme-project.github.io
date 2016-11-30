@@ -76,7 +76,17 @@ FREME_NER_LANGUAGES=en,de,ru
 
 # password for virtuoso root user
 DBA_PASSWORD=dba
+
+# You can define JVM options, like memory settings, for the broker here.
+JAVA_OPTS=-Xmx10g
 ```
+
+About the memory configuration: You can calculate the memory consumption of the FREME broker as follows:
+
+* FREME itself requires 1 GB of FRAM
+* Each FREME NER language model requires 1 GB of RAM, the russian language model requires 1.5 GB of RAM.
+
+So a FREME installation with all 7 languages requires the option `-Xmx8500m`.
 
 In this file you can also set other FREME configuration options. This is not necessary in this guide but it might be necessary for future configuration. See [configuration of FREME]([FREME configuration options](https://freme-project.github.io/knowledge-base/freme-for-sysadmins/configuration-options.html) for a list of options. The FREME configuration options set in this way are environenment variables so the variable names differ from the standard configuration options. See [External configuration, relaxed bindings](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding) for more details.  
 
