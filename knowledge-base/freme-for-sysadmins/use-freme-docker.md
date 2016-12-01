@@ -98,6 +98,7 @@ This is only necessary in the standard or full distribution. This steps download
 wget http://rv1443.1blu.de/docker/freme-standard.tar.gz
 tar -xzf freme-standard.tar.gz -C /opt/freme-data
 rm freme-standard.tar.gz
+sudo chmod -R o+rw /opt/freme-data 
 ```
 
 ### 4. Start docker-compose
