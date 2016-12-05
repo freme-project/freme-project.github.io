@@ -116,3 +116,35 @@ Execute this shell command to push the freme-broker image to dockerhub.
 docker push fremeproject/freme-broker
 ```
 
+## Run the containers without docker compose
+
+To run the docker containers without docker compose use these commands:
+
+### freme-mysql-standard
+
+This works for freme-mysql-basic and freme-mysql-full as well.
+
+```
+docker run -e MYSQL_ROOT_PASSWORD=root -d fremeproject/freme-mysql-standard
+```
+
+### virtuoso
+
+```
+docker run -e DBA_PASSWORD=myDbaPassword -e SPARQL_UPDATE=true -e DEFAULT_GRAPH=http://www.example.com/my-graph -v /my/path/to/the/virtuoso/db:/data -d tenforce/virtuoso
+```
+
+### solr
+
+```
+docker run --name freme-solr -d-p 4002:8983 fremeproject/freme-solr
+```
+
+### freme-broker
+
+You need to setup the network connection from the broker to the other VMs using `--link` option. 
+
+```
+docker run -d --link freme-mysql:mysql --link freme-solr:solr --link freme-virtuoso -p 4000:8080 fremeproject/freme-broker
+```
+
