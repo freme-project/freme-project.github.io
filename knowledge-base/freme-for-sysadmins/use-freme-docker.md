@@ -79,6 +79,10 @@ DBA_PASSWORD=dba
 
 # You can define JVM options, like memory settings, for the broker here.
 JAVA_OPTS=-Xmx10g
+
+# Tilde authentication key. You can also remove these configuration lines to configure anonymous access to tilde services.
+TILDE_TRANSLATION_AUTHENTICATION=Basic ABCDEFG
+TILDE_TERMINOLOGY_AUTHENTICATION=Basic ABCDEFG
 ```
 
 About the memory configuration: You can calculate the memory consumption of the FREME broker as follows:
