@@ -151,3 +151,15 @@ docker-compose up -d --no-deps freme-broker
 docker-compose stop freme-broker
 docker-compose start freme-broker
 ```
+
+### See log files
+
+The FREME logfiles are stored in `/opt/freme-data/logs`. You can see the log files by the Solr, Virtuoso and MySQL container using the [docker logs command](https://docs.docker.com/engine/reference/commandline/logs/), e.g. like this:
+
+```
+# obtain container id
+docker ps
+
+# pass the container id to docker logs
+docker logs 18f2eebda432
+```
