@@ -71,7 +71,7 @@ SPRING_DATASOURCE_PASSWORD=password
 # password for freme root user
 ADMIN_PASSWORD=password
 
-# load these models into freme-ner (csv list). This has significant influence on the RAM consumption, each languages requires between 1 and 2 GB. 
+# load these models into freme-ner (csv list). This has significant influence on the RAM consumption, each languages requires between 1 and 2 GB. For all languages set FREME_NER_LANGUAGES=en,de,nl,fr,it,es,ru
 FREME_NER_LANGUAGES=en,de,ru
 
 # password for virtuoso root user
