@@ -95,7 +95,7 @@ In this file you can also set other FREME configuration options. This is not nec
 This is only necessary in the standard or full distribution. This steps downloads a fle data for standard or full distribution and unpacks it to the data folder. The example shows freme-standard data file because currently the freme-full data file is not available:
 
 ``` 
-wget http://rv1443.1blu.de/docker/freme-standard.tar.gz
+wget http://api.freme-project.eu/docker-data/freme-standard.tar.gz
 tar -xzf freme-standard.tar.gz -C /opt/freme-data
 rm freme-standard.tar.gz
 sudo chmod -R o+rw /opt/freme-data 
