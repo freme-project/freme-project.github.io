@@ -24,18 +24,24 @@ Service customization can be done within underlaying specialized portals.
 
 [Tilde](http://www.tilde.com)  is a leading European SME, operating from its three offices in the Baltic states and providing jobs for its 135 employees in Tallinn, Vilnius and headquarters in Riga. Tilde has a strong research, development and innovation team with 5 staff PhDs in computer science and computational linguistics. Tilde provides multilingual technology products and services, including localisation, machine translation and terminology, language and reference applications, to its 500,000 users from private and public sectors across EU.
 
-#### Tilde provided services
+### Tilde provided services
 Tilde offers a range of language technology services in several areas: **machine translation**, **terminology**, **proofreading tools**, **speech technology**, and **linguistic tools**.
+
 Available in our cloud platform, these services can be used by developers – through our APIs – to build new multilingual solutions, supporting languages in the digital age.
+
 It includes Machine Translation services for 21 languages, but not restricted, can ensure domain support and process various file and document formats.
+
 Tilde’s online terminology services ensure clear, consistent communication with customers across the globe. With the Terminology API, Tilde provides services that keep terminology organized by identifying terms in documents, finding relevant translations, and assembling term glossaries. These services can be used to build comprehensive terminology solutions.
+
 With Tilde’s Linguistic tool API, users can access linguistic processing components of text data. The Linguistic tool API provides functionality for the following tasks: text tokenisation, sentence breaking, morphological analysis, part of speech (and for morphologically rich languages also morpho-syntactic) tagging, and language detection.
 
 
 #### Machine Translation Platform
 
 Tilde Machine Translation (MT, [tilde.com/mt](http://www.tilde.com/mt) ) is a custom machine translation, tailored to users’ specific translation needs in terminology and style and provided securely on a private cloud or on-prem client infrastructure. Tilde MT demonstrates its particular expertise in smaller and grammatically rich languages and delivers the world’s best translation quality for languages of the Baltic states – Estonian, Latvian and Lithuanian – better than Google Translate and Microsoft Bing.
+
 With Tilde’s Translation API, users can access MT systems in multiple language pairs and domains. The MT systems are hosted in the cloud and can be integrated into any platform or application.
+
 Main features of Tilde MT:
  * Terminology integration
  * Data Library
@@ -66,13 +72,17 @@ Tilde terminolgy is powered by TaaS technology. The TaaS technology, lying behin
 
 ## Intergration in FREME server
 Both Tilde provided eservices - e-terminology and e-translation - are integrated as API requests to Tilde hosted endpoints for content enrichment. 
+
 ![Image of dependencies]({{site.basePath  }}/img/Tilde-eservice-integration.png)
+
 Each FREME server installation autheticates in Tilde service endpoint (API) with its authentication token. See FREME configuration article about configuration technical aspects and contact Tilde if you want to set up your custom FREME server.
 
 # e-Terminology customization
 Tilde terminology provides enrichment with public terminolgy in more than 30 languages and with wide domain coverage.
 But it is possible to use also your own private terminology collection.
+
 ![Image of dependencies]({{site.basePath  }}/img/Tilde-terminology-integration.png)
+
 In order to use your private terminology, you have to prepare collection anc create private key at term.tilde.com portal. Follow these steps:
  * register at term.tilde.com portal and create your first project (select project type as 'private' to keep your data private and secure)
  * create or uploud your terminology:
@@ -84,9 +94,11 @@ In order to use your private terminology, you have to prepare collection anc cre
 
 Now your terminology collection is available for reusing it from FREME server to enrich different documents.
 Example of CURL request:
-```
+
+``` curl
 curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Text for enrichment' 'https://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de&collection=111222333&key=AAA-BBB-CCC'
 ```
+
 , where 
  * *source-lang* - language of text for enriching, should be one of your private terminology collection languages.
  * *target-lang* - target-language of your terminology. In case you are not target-language aware, set the same as the 'source-lang'
@@ -121,5 +133,9 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
 # Contact Information
 Contact Tilde for more info or service customization possibilities.
+
 langserv@tilde.com
-@TermServ,  tilde.com/term 
+
+@TermServ,  
+
+tilde.com/term 
