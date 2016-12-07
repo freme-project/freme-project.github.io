@@ -36,7 +36,7 @@ Tilde’s online terminology services ensure clear, consistent communication wit
 With Tilde’s Linguistic tool API, users can access linguistic processing components of text data. The Linguistic tool API provides functionality for the following tasks: text tokenisation, sentence breaking, morphological analysis, part of speech (and for morphologically rich languages also morpho-syntactic) tagging, and language detection.
 
 
-#### Machine Translation Platform
+### Machine Translation Platform
 
 Tilde Machine Translation (MT, [tilde.com/mt](http://www.tilde.com/mt) ) is a custom machine translation, tailored to users’ specific translation needs in terminology and style and provided securely on a private cloud or on-prem client infrastructure. Tilde MT demonstrates its particular expertise in smaller and grammatically rich languages and delivers the world’s best translation quality for languages of the Baltic states – Estonian, Latvian and Lithuanian – better than Google Translate and Microsoft Bing.
 
@@ -56,7 +56,7 @@ Main features of Tilde MT:
  * Automatic conversions
 
 
-#### Terminology Portal
+### Terminology Portal
 
 [Tilde Terminology](https://www.tilde.com/term) embraces the power of the cloud computing and provides next generation terminology services to its users: term candidate identification, extraction and lookup as well as the enrichment of digital content with term translation equivalents.
 Main features of Tilde Terminology are:
@@ -109,6 +109,7 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
 # e-Translation customization
 Tilde MT has been created and made available some demo MT system. See full list of demo system here: https://services.tilde.com/translationSystems
+
 It is also possible to use your private MT system from Tilde MT platform. Follow theese steps:
 * log-in or register at Tilde MT portal https://www.letsmt.eu/
 * create your own MT system
@@ -120,9 +121,11 @@ It is also possible to use your private MT system from Tilde MT platform. Follow
 Now your propriety translation system  is ready for reusing it from FREME server to enrich different documents.
 
 Example of CURL request:
-```
+
+```curl
 curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Text for enrichment' 'https://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de&collection=111222333&key=AAA-BBB-CCC'
 ```
+
 , where 
  * *source-lang* - language of text for enriching, should be one of your private terminology collection languages.
  * *target-lang* - target-language of your terminology. In case you are not target-language aware, set the same as the 'source-lang'
@@ -132,6 +135,7 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
  See full FREME API documentation to use addition service parameters and filters. 
 
 # Contact Information
+
 Contact Tilde for more info or service customization possibilities.
 
 langserv@tilde.com
