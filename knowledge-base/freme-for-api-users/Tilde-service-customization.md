@@ -143,15 +143,14 @@ Now your propriety translation system  is ready for reusing it from FREME server
 Example of CURL request:
 
 ```curl
-curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Text for enrichment' 'https://api.freme-project.eu/current/e-terminology/tilde?source-lang=en&target-lang=de&collection=111222333&key=AAA-BBB-CCC'
+curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' -d 'Text for enrichment' 'https://api.freme-project.eu/current/e-translation/tilde?source-lang=en&target-lang=de&key=AAA-BBB-CCC'
 ```
 
 , where 
 
- * *source-lang* - language of text for enriching, should be one of your private terminology collection languages.
- * *target-lang* - target-language of your terminology. In case you are not target-language aware, set the same as the 'source-lang'
- * *collection* - Collection ID of your private terminology at term.tilde.com project
- * *key* - your private key for accessing your private collection (in case of wrong private key you will get 'Unauthorized exception')
+ * *source-lang* - language of text for enriching, should be source language of trained translation system.
+ * *target-lang* - target-language of your translation system
+ * *key* - your private key for accessing your private translation system (in case of wrong private key you will get 'Unauthorized exception')
 
 See full FREME API documentation to use addition service parameters and filters. 
 
