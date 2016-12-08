@@ -159,12 +159,12 @@ See full FREME API documentation to use addition service parameters and filters.
 
 Contact Tilde for more info or service customization possibilities.
 
-[langserv@tilde.com](mailto:langserv@tilde.com)
+[langserv@tilde.com](mailto:langserv@tilde.com)  
 [@TermServ](https://twitter.com/TermServ)  
-[@tilde.com](https://twitter.com/TildeCom)
-[www.tilde.com](www.tilde.com)
-[tilde.com/term](tilde.com/term) 
-[tilde.com/mt](tilde.com/mt)
+[@tilde.com](https://twitter.com/TildeCom)  
+[www.tilde.com](www.tilde.com)  
+[tilde.com/term](tilde.com/term)   
+[tilde.com/mt](tilde.com/mt)  
 
 ### HEAD OFFICE:
 Tilde  
