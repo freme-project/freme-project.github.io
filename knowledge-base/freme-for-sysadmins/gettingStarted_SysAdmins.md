@@ -42,8 +42,7 @@ requests will be matched against a set of rules.
 
 To execute the test suite
 
-* Download the [collection](https://github.com/freme-project/freme-project.github.io/blob/dev/resources/postman/FREME-TEST.postman_collection), 
-remove the ".txt" in the end so the file type is ".json"
+* Download the [collection](https://raw.githubusercontent.com/freme-project/freme-project.github.io/dev/resources/postman/FREME-TEST.postman_collection.json)
 * Import it into Postman and create an environment with a variable "baseUrl" that points to the API you want to test 
 (more information on this can be found [here](../freme-for-api-users/gettingStarted_API-users.html)).
 * Press "Runner" (upper left corner of the screen)
