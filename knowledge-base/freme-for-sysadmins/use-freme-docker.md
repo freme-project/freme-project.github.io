@@ -127,6 +127,8 @@ curl -X POST "http://localhost:4000/e-translation/tilde?input=hello+world&inform
 ```
 
 The installation is finished. Please note that the Solr server needs several minutes for initialisation. API requests to FREME NER that use the Solr server will fail when Solr is initialising.
+You can test if the installation was succesful by using the Test Suite which is described in the [Getting started article](gettingStarted_SysAdmins.html).
+
 
 ## Useful docker commands
 
