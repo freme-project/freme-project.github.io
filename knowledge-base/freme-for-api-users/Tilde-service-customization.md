@@ -18,13 +18,13 @@ Service customization can be done within underlaying specialized portals.
 ## Table of Contents
 
 * [About Tilde](#about-tilde)
- * [Tilde provided services](#Tilde-provided-services)
- * [Machine Translation Platform](#Machine-Translation-Platform)
- * [Terminology Portal](#Terminology-Portal)
-* [Intergration within FREME server](#Intergration-within-FREME-server)
-* [e-Terminology customization](#e-Terminology-customization)
-* [e-Translation customization](#e-Translation-customization)
-* [Contact Information](#Contact-Information)
+ * [Tilde provided services](#tilde-provided-services)
+ * [Machine Translation Platform](#machine-translation-platform)
+ * [Terminology Portal](#terminology-portal)
+* [Intergration within FREME server](#intergration-within-freme-server)
+* [e-Terminology customization](#e-terminology-customization)
+* [e-Translation customization](#e-translation-customization)
+* [Contact Information](#contact-information)
 
 
 ## About Tilde
