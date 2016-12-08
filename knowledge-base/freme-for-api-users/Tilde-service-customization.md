@@ -88,7 +88,7 @@ Both Tilde provided e-Services - e-Terminology and e-Translation - are integrate
 
 Each FREME server installation autheticates in Tilde service endpoint (API) with its authentication token. See FREME configuration article about configuration technical aspects and contact Tilde if you want to set up your custom FREME server and use Tilde provided services.
 
-# e-Terminology customization
+## e-Terminology customization
 Tilde terminology provides enrichment with public terminolgy in more than 30 languages and with wide domain coverage.
 But it is possible to use also your own private terminology collections.
 
@@ -122,7 +122,7 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
  See full FREME API documentation to use addition service parameters and filters.
 
-# e-Translation customization
+## e-Translation customization
 
 Tilde MT has been created and made available some demo MT system. 
 
@@ -155,7 +155,7 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
 See full FREME API documentation to use addition service parameters and filters. 
 
-# Contact Information
+## Contact Information
 
 Contact Tilde for more info or service customization possibilities.
 
