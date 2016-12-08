@@ -162,9 +162,9 @@ Contact Tilde for more info or service customization possibilities.
 [langserv@tilde.com](mailto:langserv@tilde.com)  
 [@TermServ](https://twitter.com/TermServ)  
 [@tilde.com](https://twitter.com/TildeCom)  
-[www.tilde.com](www.tilde.com)  
-[tilde.com/term](tilde.com/term)   
-[tilde.com/mt](tilde.com/mt)  
+[www.tilde.com](http://www.tilde.com)  
+[tilde.com/term](http://tilde.com/term)   
+[tilde.com/mt](http://tilde.com/mt)  
 
 ### HEAD OFFICE:
 Tilde  
