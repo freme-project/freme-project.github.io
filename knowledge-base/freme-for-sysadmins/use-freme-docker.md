@@ -99,13 +99,13 @@ In this file you can also set other FREME configuration options. This is not nec
 This is only necessary in the standard or full distribution. This steps downloads a fle data for standard or full distribution and unpacks it to the data folder. The example shows how to install freme-standard:
 
 ``` 
-wget http://api.freme-project.eu/docker-data/freme-standard.tar.gz
+wget http://api.freme-project.eu/data/dumps/freme-standard.tar.gz
 tar -xzf freme-standard.tar.gz -C /opt/freme-data
 rm freme-standard.tar.gz
 sudo chmod -R o+rw /opt/freme-data 
 ```
 
-To install freme-full download this file: http://api.freme-project.eu/docker-data/freme-full.tar.gz
+To install freme-full download this file: http://api.freme-project.eu/data/dumps/freme-full.tar.gz
 
 ### 4. Start docker-compose
 
