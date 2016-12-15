@@ -18,9 +18,9 @@ Service customization can be done within underlaying specialized portals.
 ## Table of Contents
 
 * [About Tilde](#about-tilde)
- * [Tilde provided services](#tilde-provided-services)
- * [Machine Translation Platform](#machine-translation-platform)
- * [Terminology Portal](#terminology-portal)
+  * [Tilde provided services](#tilde-provided-services)
+  * [Machine Translation Platform](#machine-translation-platform)
+  * [Terminology Portal](#terminology-portal)
 * [Integration within FREME server](#integration-within-freme-server)
 * [e-Terminology customization](#e-terminology-customization)
 * [e-Translation customization](#e-translation-customization)
