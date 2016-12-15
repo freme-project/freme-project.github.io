@@ -13,11 +13,11 @@ This article describes how to run FREME in docker.
 
 FREME uses [Docker Compose](https://docs.docker.com/compose/) to hide the individual docker images that a FREME installation consists of from the user and to make it easier for users to install the multiple images together. You will install four different virtual machines in this guide. One runs the broker, one runs a Solr server, one runs a Virtuoso server and the forth a MySQL server. But you do not have to care about the individual virtual machines because the single docker-compose file orchestrates all virtual machines together.
 
-FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER models. They differ in the amount of pre-initialized data:
+FREME comes in three different distributions. All FREME distributions contain all e-Services, all basic services and all FREME NER language models. They differ in the amount of pre-initialized data:
 
-* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database, and the size of all together is less then 1 MB. Requires around 7 GB of disk space.
-* standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space.
-* full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary.
+* basic: Initializes XSLT processors, pipelines, SPARQL converters, e-Link templates. These are all stored in a MySQL database. The image requires 7 GB of disk space. This installation allows FREME NER in modes spot and classify only because it does not contain any datasets for linking.
+* standard: Contains all data of the basic installation. Further it contians DBPedia datasets in 7 languages (English, German, Dutch, French, Italian, Spanish, Russian) and the Europeana datasets. The size of this is about 22 GB of disk space. It adds the linking functionality to FREME NER for DBPedia in all languages and Europeana dataset.
+* full: It contains all data of the standard installation. Further it contains CORDIS, Geopolitical ontology, Global airports, ONLD, ORCID, VIAF, Grid, GWPP glossary. It adds the linking functionality to FREME NER for all datasets.
 
 ## Install FREME from docker
 
@@ -71,24 +71,41 @@ SPRING_DATASOURCE_PASSWORD=password
 # password for freme root user
 ADMIN_PASSWORD=password
 
-# load these models into freme-ner (csv list). This has significant influence on the RAM consumption, each languages requires between 1 and 2 GB. 
+# load these models into freme-ner (csv list). This has significant influence on the RAM consumption, each languages requires between 1 and 2 GB. For all languages set FREME_NER_LANGUAGES=en,de,nl,fr,it,es,ru
 FREME_NER_LANGUAGES=en,de,ru
 
 # password for virtuoso root user
 DBA_PASSWORD=dba
+
+# You can define JVM options, like memory settings, for the broker here.
+JAVA_OPTS=-Xmx10g
+
+# Tilde authentication key. You can also remove these configuration lines to configure anonymous access to tilde services.
+TILDE_TRANSLATION_AUTHENTICATION=Basic ABCDEFG
+TILDE_TERMINOLOGY_AUTHENTICATION=Basic ABCDEFG
 ```
+
+About the memory configuration: You can calculate the memory consumption of the FREME broker as follows:
+
+* FREME itself requires 2 GB of FRAM
+* Each FREME NER language model requires 1 GB of RAM, the russian language model requires 1.5 GB of RAM.
+
+So a FREME installation with all 7 languages requires the option `-Xmx9500m`.
 
 In this file you can also set other FREME configuration options. This is not necessary in this guide but it might be necessary for future configuration. See [configuration of FREME]([FREME configuration options](https://freme-project.github.io/knowledge-base/freme-for-sysadmins/configuration-options.html) for a list of options. The FREME configuration options set in this way are environenment variables so the variable names differ from the standard configuration options. See [External configuration, relaxed bindings](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding) for more details.  
 
 ### 3. Add data for standard / full distribution
 
-This is only necessary in the standard or full distribution. This steps downloads a fle data for standard or full distribution and unpacks it to the data folder. The example shows freme-standard data file because currently the freme-full data file is not available:
+This is only necessary in the standard or full distribution. This steps downloads a fle data for standard or full distribution and unpacks it to the data folder. The example shows how to install freme-standard:
 
 ``` 
-wget http://rv1443.1blu.de/docker/freme-standard.tar.gz
+wget http://api.freme-project.eu/data/dumps/freme-standard.tar.gz
 tar -xzf freme-standard.tar.gz -C /opt/freme-data
 rm freme-standard.tar.gz
+sudo chmod -R o+rw /opt/freme-data 
 ```
+
+To install freme-full download this file: http://api.freme-project.eu/data/dumps/freme-full.tar.gz
 
 ### 4. Start docker-compose
 
@@ -109,7 +126,9 @@ FREME listens on the host machine on port 4000. You can try an API request:
 curl -X POST "http://localhost:4000/e-translation/tilde?input=hello+world&informat=text&source-lang=en&target-lang=de"
 ```
 
-The installation is finished.
+The installation is finished. Please note that the Solr server needs several minutes for initialisation. API requests to FREME NER that use the Solr server will fail when Solr is initialising.
+You can test if the installation was succesful by using the Test Suite which is described in the [Getting started article](gettingStarted_SysAdmins.html).
+
 
 ## Useful docker commands
 
@@ -129,6 +148,7 @@ This section provides useful commands. It is not necessary to execute these comm
 This is important when the image for e.g. freme-broker has changed and you want to use the latest version of the image.
 
 ```
+docker pull fremeproject/freme-broker
 docker-compose stop freme-broker
 docker-compose up -d --no-deps freme-broker
 ```
@@ -138,4 +158,16 @@ docker-compose up -d --no-deps freme-broker
 ```
 docker-compose stop freme-broker
 docker-compose start freme-broker
+```
+
+### See log files
+
+The FREME logfiles are stored in `/opt/freme-data/logs`. You can see the log files by the Solr, Virtuoso and MySQL container using the [docker logs command](https://docs.docker.com/engine/reference/commandline/logs/), e.g. like this:
+
+```
+# obtain container id
+docker ps
+
+# pass the container id to docker logs
+docker logs 18f2eebda432
 ```

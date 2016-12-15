@@ -31,3 +31,38 @@ FREME can be started in different ways:
 ## Optional Installation of FREME-NER
 
 FREME-NER provides additional functionality. To get it to run, a few more prerequisites are necessary. You can read more about FREME-NER and its installation in [this article](../freme-for-sysadmins/freme-ner-dummy.html). 
+
+
+## Verifying if installation was succesful
+
+To verify that FREME works after an installation you can run the tests in a test suite created with the automated test 
+feature of postman. When you run the test suite a series of postman requests is executed. The HTTP response of the 
+requests will be matched against a set of rules.
+
+
+To execute the test suite
+
+* Download the [collection](https://raw.githubusercontent.com/freme-project/freme-project.github.io/dev/resources/postman/FREME-TEST.postman_collection.json)
+* Import it into Postman and create an environment with a variable "baseUrl" that points to the API you want to test 
+(more information on this can be found [here](../freme-for-api-users/gettingStarted_API-users.html)).
+* Press "Runner" (upper left corner of the screen)
+* Select collection "FREME TEST" and your newly created environment
+* Run the tests by pressing "Start Test"
+
+Currently it does not write any data. It performs API calls from the Postman collection and checks if the response code is 200.
+It runs these tests for
+
+- e-Translation
+- freme-ner 
+- freme-ner using e-internationalization (html roundtripping and html to nif)
+- e-Terminology
+- e-link
+- get all datasets
+- get all templates
+- filter - knowledgebase example
+- get all filter
+- get all pipelines
+- nif-converter xml
+- get all users
+- tei2temp-html
+- get all xslt-converters

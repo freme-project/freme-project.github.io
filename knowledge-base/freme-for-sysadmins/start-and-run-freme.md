@@ -28,6 +28,7 @@ This guide explains how to install and run FREME.
   This is useful for local development since the logging output is printed to 
   the console. When you close the shell, the process stops. 
 *  Stop FREME with this file: ```/opt/freme/bin/stop_server.sh```
+* When the installation is finished you can test it using the Test Suite which is described in the [Getting started article](gettingStarted_SysAdmins.html).
 
 
 ### Creating a start / stop script
