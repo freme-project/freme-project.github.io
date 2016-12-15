@@ -99,9 +99,9 @@ Follow these steps:
 
 * register at term.tilde.com portal and create your first project (select project type as *private* to keep your data private and secure)
 * create or uploud your terminology: 
- * create terminology from your existing various full-text data, using cutting-edge automatic extraction methods provided by portal
- * create terminology collection from scratch
- * uploud your existing terminology from TBX, Excel, CSV, TSV files
+  * create terminology from your existing various full-text data, using cutting-edge automatic extraction methods provided by portal
+  * create terminology collection from scratch
+  * uploud your existing terminology from TBX, Excel, CSV, TSV files
 * find your collection id (below the term list)    
 * create your private security key, that will allow to use your private collection via FREME server, here: https://term.tilde.com/account/keys/create?system=Freme. Later you can manage issued key in youer account setting within term.tilde.com portal.
 
