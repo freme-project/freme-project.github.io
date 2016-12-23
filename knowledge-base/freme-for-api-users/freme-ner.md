@@ -77,6 +77,7 @@ The following figure illustrates the dependencies of FREME-NER.
     4. `apt-get install -y virtuoso-opensource=7.2`
     
     After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
+    The [initialising FREME](../freme-for-sysadmins/initialising-freme.html)-article explains how you can load FREME data into the Virtuoso Triple Store and the Solr Server.
     
 * A domain entity mapping file as CSV: [Here](https://github.com/freme-project/freme-ner/blob/master/src/main/resources/domains.csv) you can get the one currently used by FREME. This file contains several domains, e.g. Sports or Tourism, which can be used to narrow the output from e-entity down to entities from the specified domain only.
 * [Trained NER model files](http://api.freme-project.eu/datasets/ner-trained-models/wikiner/) for the languages you want to support. The models are licensed under the [Creative Commons Attribution-ShareAlike 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/). They were created using the [dbpedia abstracts corpus](http://wiki-link.nlp2rdf.org/abstracts/).
