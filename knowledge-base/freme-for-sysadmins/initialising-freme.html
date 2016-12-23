@@ -9,7 +9,7 @@ pos: 4.15
 
 <p>This article explains how to initialise the FREME database.</p>
 
-<h2>Prepare the basic database</h2>
+<h2>Prepare the database</h2>
 
 <p>The database connection is defined in the `application.properties` file, see <a href="configuration-options.html">FREME configuration options</a>.</p>
 
@@ -48,7 +48,7 @@ spring.jpa.hibernate.ddl-auto=create
 
 
 
-<h2>Prepare the database for FREME-NER linking</h2>
+<h2>Prepare the data needed for FREME-NER linking</h2>
 <p>If you want to use the linking method of FREME-NER in your local FREME installation, you have to provide the datasets for linking. They are stored in the <a href="http://lucene.apache.org/solr/">Solr Server</a> and the <a href="https://github.com/openlink/virtuoso-opensource">Virtuoso Triple Store</a>. Further, we need to provide the metadata of the datasets in the MySql Database. </p>
 <p>This paragraph explains how to upload the data when you have already installed Virtuoso and Solr. If you haven't done this, you can find some
   instructions in the <a href="../freme-for-api-users/freme-ner.html#prerequisites">FREME-NER article.</a> </p>
