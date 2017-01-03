@@ -147,6 +147,12 @@ bin/start_local.sh
 
 The server is ready when you see the message "FREMEStarter: Started FREMEStarter in ... seconds"
 
+The script does not work for mac users. Mac users should cd to the location of the FREME package and execute this shell command:
+
+```
+java -cp "./*:config" org.springframework.boot.loader.JarLauncher
+```
+
 ### Doing the first API call
 
 From another terminal, use cURL to perform your first API call:
