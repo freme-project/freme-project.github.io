@@ -31,6 +31,42 @@ cd freme-packages/broker-local
 mvn install 
 ```
 
+## Configure .settings.xml file in Maven local repository
+
+FREME snapshot artifacts are published in the [ossrh staging repository](https://oss.sonatype.org/content/repositories/snapshots/), 
+release artifacts are published in the [Central Repository](https://search.maven.org/).
+You can deploy to these repositories as 'freme-developer' user. This can be configured in the .settings.xml file in the local 
+repository: 
+
+```xml
+<settings>
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>freme-developer</username>
+      <password>put-freme-developer-password-here</password>
+    </server>
+  </servers>
+</settings>
+```
+
+If you only want to access a SNAPSHOT-version, you can do this without any configuration, just make sure that the pom 
+file of your project contains the snapshot repository:
+
+```xml
+<repositories>
+    <repository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+```
+
+
+
 ## Start FREME from the command line
 
 You can use Maven to create a runnable distribution out of FREME. The distribution consists of a Jar file, start scripts and configuration files. To create the distribution and start FREME execute these shell commands:
