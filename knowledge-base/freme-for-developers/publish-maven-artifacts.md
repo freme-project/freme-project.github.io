@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Upload artifacts to the Central Repository
+title: Publish Maven artifacts
 dropdown: Knowledge Base, FREME for Developers
 pos: 4.13
 ---
 
-## Upload artifacts to the Central Repository
+# Publish Maven artifacts in Central Repository
 All FREME artifcats can be found in the 
 [Central Repository](http://central.sonatype.org/?__hstc=239247836.b459aee40da923fa4a45645a31cddadf.1477582531140.1477582531140.1477605428269.2&__hssc=239247836.1.1477605428269&__hsfp=190473045&__utma=246996102.1998389910.1476968965.1477571303.1477605428.9&__utmb=246996102.2.10.1477605428&__utmc=246996102&__utmx=-&__utmz=246996102.1477468869.3.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)&__utmv=-&__utmk=44786983) 
 so everyone can access them easily.
