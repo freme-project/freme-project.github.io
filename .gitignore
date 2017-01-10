@@ -11,3 +11,5 @@ simple.yaml
 *~
 /target
 Gemfile.lock
+
+.*
