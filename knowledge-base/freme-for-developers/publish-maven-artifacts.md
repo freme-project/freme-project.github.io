@@ -29,6 +29,9 @@ that your configuration has been prepared.
 
 There are a few requirements that need to be fullfilled by your projects in order to successfully upload your artifacts.
 A detailed description for the requirements can be found on the [Sonatype documentation](http://central.sonatype.org/pages/requirements.html).
+Most of the information that is described in this paragraph is already included in freme-parent. So if you build a FREME-project
+that inherits from freme-parent it will not be necessary to specify that information again.
+
 
 * Provide Javadoc and Source archives. You can use the [Maven javadoc-plugin](http://maven.apache.org/plugins/maven-javadoc-plugin/) and the [Maven source-plugin](https://maven.apache.org/plugins/maven-source-plugin/usage.html). 
 Whenever Java 8 detects malformed Javadoc it will throw an Error, and not only Warnings as it used to be in earlier versions, 
@@ -134,13 +137,13 @@ When your maven build was successfull, you will find your project in the [Nexus 
 under **Staging Repositories**. Now you have to close the Repository with the close icon on top which will trigger 
 automatic checks that verify if your project fulfills all requirements. If it does, you can release it by clicking on 
 the release icon on top. Otherwise you will have to drop the project, fix the problems and do it again. When you 
-finished this, you have to comment again on the JIRA Ticket created in the beginning that you promoted your first 
+finished this for the first time, you have to comment again on the JIRA Ticket created in the beginning that you promoted your first 
 release. 
 In order to see if your project is available now in the Central Repository, browse its contents on the
 [Central Repository Website](https://search.maven.org/). It can take up to 2 hous until it will be available there.
 
 
-## Automatically Deploying to Maven Central
+## Configuration to deploy Automatically to Maven Central when doing a Release 
 This can be configured with the maven-release or the nexus-staging plugin since you always only deploy release versions
 to Maven Central.
 TODO
