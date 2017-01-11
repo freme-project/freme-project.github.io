@@ -29,8 +29,8 @@ that your configuration has been prepared.
 
 There are a few requirements that need to be fullfilled by your projects in order to successfully upload your artifacts.
 A detailed description for the requirements can be found on the [Sonatype documentation](http://central.sonatype.org/pages/requirements.html).
-Most of the information that is described in this paragraph is already included in freme-parent. So if you build a FREME-project
-that inherits from freme-parent it will not be necessary to specify that information again.
+Most of the information, *javadoc* and *source attachment*, the *gpg-plugin*, and  *distributionManagement* , which is described in this article is already included in freme-parent. 
+So if you build a FREME-project that inherits from freme-parent it will not be necessary to specify that information again.
 
 
 * Provide Javadoc and Source archives. You can use the [Maven javadoc-plugin](http://maven.apache.org/plugins/maven-javadoc-plugin/) and the [Maven source-plugin](https://maven.apache.org/plugins/maven-source-plugin/usage.html). 
