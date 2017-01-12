@@ -68,8 +68,9 @@ The following figure illustrates the dependencies of FREME-NER.
 ### Prerequisites
 * FREME NER runs as a FREME Package, so it requires [these prerequisites](../freme-for-sysadmins/creating-and-running-a-freme-package.html#prerequisites). 
 * It needs access to a running [Solr Server](http://lucene.apache.org/solr/). To set up a Solr Server at your machine, do the following:
-    * [install the Solr Server](http://lucene.apache.org/solr/quickstart.html)
-    * use [this schema]({{site.basePath  }}/resources/freme-ner/solr-schema.xml)
+    * [Here](http://api.freme-project.eu/solr.tar.gz) you can download the Solr Server (Version 5.2.1 ) distribution archive
+    * Extract this file to your preferred directory
+
 * Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
     1. `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
     2. `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
