@@ -142,10 +142,9 @@ release.
 In order to see if your project is available now in the Central Repository, browse its contents on the
 [Central Repository Website](https://search.maven.org/). It can take up to 2 hous until it will be available there.
 
+## Release
+This paragraph explains how to configure a project for automatic deployment to Maven Central when performing a Release. 
 
-## Configuration to deploy Automatically to Maven Central when doing a Release 
-This can be configured with the maven-release or the nexus-staging plugin since you always only deploy release versions
-to Maven Central.
 TODO
 To be added when all Freme artifacts are successfully uploaded to Maven Central.
 describe profile here (link to this part from preparing the data)
