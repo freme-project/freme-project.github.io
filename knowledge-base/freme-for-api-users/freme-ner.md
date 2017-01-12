@@ -68,14 +68,23 @@ The following figure illustrates the dependencies of FREME-NER.
 ### Prerequisites
 * FREME NER runs as a FREME Package, so it requires [these prerequisites](../freme-for-sysadmins/creating-and-running-a-freme-package.html#prerequisites). 
 * It needs access to a running [Solr Server](http://lucene.apache.org/solr/). To set up a Solr Server at your machine, do the following:
-    * [Here](http://api.freme-project.eu/solr.tar.gz) you can download the Solr Server (Version 5.2.1 ) distribution archive
+    * [Here](http://api.freme-project.eu/solr.tar.gz) you can download the Solr Server distribution archive. This will install Solr
+    Version 5.2.1.
     * Extract this file to your preferred directory
 
-* Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource) by executing (see [this guide](http://serverfault.com/questions/631673/virtuoso-opensource-7-1-how-do-i-build-an-ubuntu-deb-package-from-github-sourc)): 
-    1. `echo "deb http://packages.comsode.eu/debian wheezy main" > /etc/apt/sources.list.d/odn.list`
-    2. `wget -O - http://packages.comsode.eu/key/odn.gpg.key | apt-key add -`
-    3. `apt-get update`
-    4. `apt-get install -y virtuoso-opensource=7.2`
+* Furthermore, install the [Virtuoso triple store](https://github.com/openlink/virtuoso-opensource)
+    * Download the [distribution archive](https://github.com/openlink/virtuoso-opensource/releases/download/v7.2.4.2/virtuoso-opensource-7.2.4.2.tar.gzopt/)
+    This will install Virtuoso 7. You need at least this version of Virtuoso. 
+    * ```` mv virtuoso-opensource-7.2.4.2.tar.gz /opt/  ````
+    * ```   cd /opt```
+    * ```   sudo tar -xvf virtuoso-opensource-7.2.4.2.tar.gz ```
+    * ```  cd /opt/virtuoso-opensource-7.2.4.2/ ```
+    * ```   ./configure ```
+    * ```   make ```
+    * ```   make install ```
+    * When you specify prefix='some_directory' in the next command, Virtuoso will be installed to that
+    directory otherwise it will be installed in the default directory which is: /usr/local/virtuoso-opensource/
+    * ```` make install prefix=/opt/virtuoso ```
     
     After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
     The [initialising FREME](../freme-for-sysadmins/initialising-freme.html)-article explains how you can load FREME data into the Virtuoso Triple Store and the Solr Server.
