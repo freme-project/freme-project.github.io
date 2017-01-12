@@ -84,7 +84,7 @@ The following figure illustrates the dependencies of FREME-NER.
     * ```   make install ```
     * When you specify prefix='some_directory' in the next command, Virtuoso will be installed to that
     directory otherwise it will be installed in the default directory which is: /usr/local/virtuoso-opensource/
-    * ```` make install prefix=/opt/virtuoso ```
+    * ``` make install prefix=/opt/virtuoso ```
     
     After installation the web admin interface is at http://localhost:8890/conductor and the SPARQL endpoint at http://localhost:8890/sparql.
     The [initialising FREME](../freme-for-sysadmins/initialising-freme.html)-article explains how you can load FREME data into the Virtuoso Triple Store and the Solr Server.
