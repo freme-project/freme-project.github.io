@@ -818,18 +818,11 @@ paths:
           default: '1'
         - name: language
           in: query
-          description: 'Source language. Can be en, de, nl, fr, it, es, pt
+          description: 'Source language. Can be en, de, nl, fr, it, es (according to supported NER engine).'
           required: false
           type: string
           enum:
             - en
-            - de
-            - nl
-            - fr
-            - it
-            - es
-            - ru
-            - pt
           default: en
         - name: confidence
           in: query
