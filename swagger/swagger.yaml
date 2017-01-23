@@ -822,7 +822,14 @@ paths:
           required: false
           type: string
           enum:
-            - en
+             - en
+             - de
+             - nl
+             - fr
+             - it
+             - es
+             - ru
+             - pt
           default: en
         - name: confidence
           in: query
