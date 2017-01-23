@@ -4,7 +4,7 @@
 
 	<groupId>eu.freme</groupId>
 	<artifactId>documentation</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 
 	<scm>
 		<connection>scm:git:git@github.com:freme-project/Documentation.git</connection>
