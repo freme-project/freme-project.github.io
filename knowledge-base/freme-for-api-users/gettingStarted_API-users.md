@@ -252,6 +252,15 @@ Below you can see an example call to FREME-NER where the text to be processed is
 curl -X POST '{{ site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents?language=en&dataset=dbpedia&mode=all&intype=url&input=http://beautifulberlin.blogspot.de/2009/07/short-history-of-berlin.html&filter=extract-entities-only&outformat=csv&informat=text/html'
 ```
 
+## Use Apache Tika to process content from files
+You can also process text from a file of a [format](https://tika.apache.org/1.4/formats.html) that is supported by Tika.
+In this case, you have to specify the following two additional parameters in your request:
+
+* filename=THE_NAME_OF_YOUR_FILE
+* informat=TIKAFile
+
+
+
 ## FREME Postman collection
 
 [Postman](https://www.getpostman.com/) is a handy and free tool to execute and archive your commonly used HTTP requests. We publish a collection of pre-build FREME API calls that can be executed against the FREME Demo APIs or against your own local FREME installations. These collections can also be used to generate API calls in programming languages such as Java, PHP, jQuery and others.

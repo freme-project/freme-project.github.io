@@ -48,5 +48,103 @@ spring.jpa.hibernate.ddl-auto=create
 
 
 
+<h2>Prepare the data needed for FREME-NER linking</h2>
+<p>If you want to use the linking method of FREME-NER in your local FREME installation, you have to provide the datasets for linking. They are stored in the <a href="http://lucene.apache.org/solr/">Solr Server</a> and the <a href="https://github.com/openlink/virtuoso-opensource">Virtuoso Triple Store</a>. Further, we need to provide the metadata of the datasets in the MySql Database. </p>
+<p>This paragraph explains how to upload the data when you have already installed Virtuoso and Solr. If you haven't done this, you can find some
+  instructions in the <a href="../freme-for-api-users/freme-ner.html#prerequisites">FREME-NER article.</a> </p>
+
+<ol>
+  <li> Load Metadata into the MySql Database</li>
+  <ul><li>FREME standard distribution
+  <pre>
+    INSERT INTO `dataset_metadata` (`visibility`, `owner_name`, `creation_time`, `description`, `name`, `total_entities`) VALUES
+(1,'admin',1435966058019,'DBpedia datasets for all languages','dbpedia',12382158),
+(1,'admin',1471102054379,'Europeana.eu is an internet portal that acts as an interface to millions of books, paintings, films, museum objects and archival records that have been digitised throughout Europe.','europeana',1431968);
+  </pre></li>
+
+    <li>FREME full distribution
+      <pre>
+        INSERT INTO `dataset_metadata` (`visibility`, `owner_name`, `creation_time`, `description`, `name`, `total_entities`) VALUES
+(1,'admin',1447055977285,'CORIS FP7 dataset that can be used for entity linking of entities representing projects. The dataset also can be used to link to people involved in those projects or organizations.','cordis-fp7',336762),
+(1,'admin',1435966058019,'DBpedia datasets for all languages','dbpedia',12382158),
+(1,'admin',1442404750691,'Organization Name Linked Data (http://www.lib.ncsu.edu/ld/onld/)','onld',5132),
+(1,'admin',1442405451333,'Geopolitical ontology (http://www.fao.org/countryprofiles/geoinfo/en/)','geopolitical',4328),
+(1,'admin',1442580539219,'A dataset of global airports featuring their names and unique IATA/ICAO identifiers.','global_airports',18578),
+(1,'admin',1444922284386,'The VIAF® (Virtual International Authority File) dataset is a collection of multiple name authority files. (http://viaf.org/)','viaf',7260000),
+(1,'admin',1444922402140,'The ORCID dataset provides persistent digital identifier for researchers (http://orcid.org/)','orcid',1320778);
+      </pre>
+    </li>
+  </ul>
+
+  <li> Load data into the Virtuoso Triple Store </li>
+
+    <ul>
+      <li>Stop virtuoso:
+        <pre>
+          /usr/local/virtuoso-opensource/bin/isql 1111 dba
+          in mysql shell: shutdown();
+        </pre>
+      </li>
+      <li>Move the content of the virtuoso folder inside the standard (or full) unpacked Freme distribution folder to
+        the database folder inside the virtuoso installation folder, e.g.:
+        <pre>mv ~/freme-install/downloads/virtuoso/* /usr/local/virtuoso-opensource/var/lib/virtuoso/db/</pre>
+      <li>Start virtuoso from inside the db folder:
+        <pre>
+          cd /usr/local/virtuoso-opensource/var/lib/virtuoso/db/
+          sudo nohup /usr/local/virtuoso-opensource/bin/virtuoso-t &
+        </pre>
+      </li>
+      <li>Now you should see data from dbpedia for instance when you run the default query in the <a href="http://localhost:8890/sparql"> web interface </a>.</li>
+    </ul>
 
 
+  <li> Load data into the Solr Server</li>
+    <ul>
+      <li>Download one of the two FREME-distribtuions: FREME standard or FREME full (contains more preinitialized data):
+      <pre> wget <a href="http://api.freme-project.eu/data/dumps/freme-standard.tar.gz">http://api.freme-project.eu/data/dumps/freme-standard.tar.gz</a></pre>
+        <pre> wget <a href="http://api.freme-project.eu/data/dumps/freme-full.tar.gz">http://api.freme-project.eu/data/dumps/freme-full.tar.gz</a></pre>
+      </li>
+
+      <li> Create e-linker core:</li>
+      <li> unpack the data and go to the solr installation folder from where you can start the solr server, e.g.:
+        <pre>
+        tar xvf freme-standard.tar.gz
+        cd ~/freme-install/solr-5.5.2
+          /bin/solr start
+          </pre>
+      </li>
+      <li>create core, stop solr, move the elinker data inside the unpacked FREME distribution folder to the new core and restart the solr server:
+        <pre>
+          /bin/solr create_core -c elinker
+          /bin/solr stop -all
+          rm -rf server/solr/elinker/
+          mv ~/freme-install/downloads/solr/elinker/ server/solr/elinker
+          bin/solr start
+        </pre>
+      </li>
+      <li> It might take a few minutes until you can use the new core.</li>
+
+      <li>Add Tilde token to FREME config:</li>
+      <li> go to cloned freme-package folder and edit the application.properties file, e.g.:
+      <pre>
+        cd ~/freme-install/freme-package
+        vim config/application.properties
+        </pre>
+        </li>
+      <li>for now you can use the default token, in the future you might need to use your own Tilde Token.
+        <pre>
+        tilde.translation.authentication=Basic RlJFTUU6dXxGcjNtM19zJGN1ciQ=
+        tilde.terminology.authentication=Basic RlJFTUU6dXxGcjNtM19zJGN1ciQ=
+        </pre>
+      </li>
+      <li> Restart Freme.
+      <pre>
+        cd ~/freme-install/freme-package
+        bin/stop_server.sh
+      </pre>
+      </li>
+    </ul>
+
+
+
+</ol>

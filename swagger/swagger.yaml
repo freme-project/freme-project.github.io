@@ -818,11 +818,18 @@ paths:
           default: '1'
         - name: language
           in: query
-          description: 'Source language. Can be en, de, nl, fr, it, es (according to supported NER engine).'
+          description: 'Source language. Can be en, de, nl, fr, it, es, pt
           required: false
           type: string
           enum:
             - en
+            - de
+            - nl
+            - fr
+            - it
+            - es
+            - ru
+            - pt
           default: en
         - name: confidence
           in: query
@@ -1825,6 +1832,9 @@ paths:
         in the document body. To use Apache Tika, you specify a multipart request and send the file in the document
         body. The format of the input file will be determined by the filename. Further you need to set query string
         parameter informat=TIKAFile. The output format is specified by the `Accept` header.
+        Now there is also the possibility to process files of a Tika supported format for any requests without using the nif-converter in a first step.
+        For this, you have to load the file into the document body, set the parameter 'informat' to 'TIKAFile' and set
+        the parameter 'filename' to the name of the file you want to process.
 
 
 

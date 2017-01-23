@@ -18,10 +18,10 @@ Service customization can be done within underlaying specialized portals.
 ## Table of Contents
 
 * [About Tilde](#about-tilde)
- * [Tilde provided services](#tilde-provided-services)
- * [Machine Translation Platform](#machine-translation-platform)
- * [Terminology Portal](#terminology-portal)
-* [Intergration within FREME server](#intergration-within-freme-server)
+  * [Tilde provided services](#tilde-provided-services)
+  * [Machine Translation Platform](#machine-translation-platform)
+  * [Terminology Portal](#terminology-portal)
+* [Integration within FREME server](#integration-within-freme-server)
 * [e-Terminology customization](#e-terminology-customization)
 * [e-Translation customization](#e-translation-customization)
 * [Contact Information](#contact-information)
@@ -81,7 +81,7 @@ Main features of Tilde Terminology are:
 
 Tilde terminolgy is powered by TaaS technology. The TaaS technology, lying behind Tilde Terminology, was developed within the project (7th Framework Programme, ICT), coordinated by Tilde and evaluated by peer reviewers and the European Commission as an excellent project twice in 2013 and 2014.
 
-## Intergration within FREME server
+## Integration within FREME server
 Both Tilde provided e-Services - e-Terminology and e-Translation - are integrated as API requests to Tilde hosted endpoints for content enrichments. 
 
 ![Image of dependencies]({{site.basePath  }}/img/Tilde-eservice-integration.png)
@@ -97,13 +97,13 @@ But it is possible to use also your own private terminology collections.
 In order to use your private terminology, you have to prepare collection and create a private key at term.tilde.com portal. 
 Follow these steps:
 
- * register at term.tilde.com portal and create your first project (select project type as *private* to keep your data private and secure)
- * create or uploud your terminology: 
+* register at term.tilde.com portal and create your first project (select project type as *private* to keep your data private and secure)
+* create or uploud your terminology: 
   * create terminology from your existing various full-text data, using cutting-edge automatic extraction methods provided by portal
   * create terminology collection from scratch
   * uploud your existing terminology from TBX, Excel, CSV, TSV files
- * find your collection id (below the term list)    
- * create your private security key, that will allow to use your private collection via FREME server, here: https://term.tilde.com/account/keys/create?system=Freme. Later you can manage issued key in youer account setting within term.tilde.com portal.
+* find your collection id (below the term list)    
+* create your private security key, that will allow to use your private collection via FREME server, here: https://term.tilde.com/account/keys/create?system=Freme. Later you can manage issued key in youer account setting within term.tilde.com portal.
 
 Now your terminology collection is available for reusing it from FREME server for enrichment of different documents.
 
@@ -115,10 +115,10 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
 , where 
 
- * *source-lang* - language of text for enriching, should be one of your private terminology collection languages.
- * *target-lang* - target-language of your terminology. In case you are not target-language aware, set the same as the 'source-lang'
- * *collection* - Collection ID of your private terminology at term.tilde.com project
- * *key* - your private key for accessing your private collection (in case of wrong private key you will get 'Unauthorized exception')
+* *source-lang* - language of text for enriching, should be one of your private terminology collection languages.
+* *target-lang* - target-language of your terminology. In case you are not target-language aware, set the same as the 'source-lang'
+* *collection* - Collection ID of your private terminology at term.tilde.com project
+* *key* - your private key for accessing your private collection (in case of wrong private key you will get 'Unauthorized exception')
 
  See full FREME API documentation to use addition service parameters and filters.
 
@@ -133,9 +133,9 @@ Follow these steps:
 
 * log-in or register at Tilde MT portal https://www.letsmt.eu/
 * create your own MT system
- * uploud your propriety data
- * you can use also public available text corpora 
- * in case you need an assistance, please contact Tilde Mt team or Tilde global contact
+  * uploud your propriety data
+  * you can use also public available text corpora 
+  * in case you need an assistance, please contact Tilde Mt team or Tilde global contact
 * create your private security key, that will allow to use your private translation system via FREME server
 
 Now your propriety translation system  is ready for reusing it from FREME server for enrichment of different documents.
@@ -148,9 +148,9 @@ curl -X POST --header 'Content-Type: text/plain' --header 'Accept: text/turtle' 
 
 , where 
 
- * *source-lang* - language of text for enriching, should be source language of trained translation system.
- * *target-lang* - target-language of your translation system
- * *key* - your private key for accessing your private translation system (in case of wrong private key you will get 'Unauthorized exception')
+* *source-lang* - language of text for enriching, should be source language of trained translation system.
+* *target-lang* - target-language of your translation system
+* *key* - your private key for accessing your private translation system (in case of wrong private key you will get 'Unauthorized exception')
 
 See full FREME API documentation to use addition service parameters and filters. 
 

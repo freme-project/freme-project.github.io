@@ -49,25 +49,6 @@ FREME uses Maven as build system. The pom.xml file of a FREME package specifies 
     <artifactId>broker-simple</artifactId>
     <version>0.1-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>freme-release</id>
-            <name>freme-nexus</name>
-            <url>http://rv1443.1blu.de/nexus/content/repositories/releases/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>freme-nexus</id>
-            <name>freme-nexus</name>
-            <url>http://rv1443.1blu.de/nexus/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>eu.freme.bservices.controllers</groupId>
@@ -146,6 +127,12 @@ bin/start_local.sh
 ```
 
 The server is ready when you see the message "FREMEStarter: Started FREMEStarter in ... seconds"
+
+The script does not work for mac users. Mac users should cd to the location of the FREME package and execute this shell command:
+
+```
+java -cp "./*:config" org.springframework.boot.loader.JarLauncher
+```
 
 ### Doing the first API call
 
