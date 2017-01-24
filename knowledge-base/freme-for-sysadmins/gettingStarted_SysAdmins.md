@@ -7,7 +7,7 @@ pos: 4.19
 
 # Getting started for System Administrators
 
-To get an overview of the architecture of FREME, have a look at [the freme architecture article](../freme-for-developers/overview-of-the-freme-architecture.html). A short description how FREME is set up and started can be found [here](../freme-for-sysadmins/start-and-run-freme.html).
+To get an overview of the architecture of FREME, have a look at [the freme architecture article](../freme-for-developers/overview-of-the-freme-architecture.html). A short description how FREME is set up and started can be found [here](../freme-for-sysadmins/start-and-run-freme.html). There is a also a [video tutorial how to install FREME from scratch](../../tutorials/installation-tutorial).
 
 ## Create and run the FREME package
 
