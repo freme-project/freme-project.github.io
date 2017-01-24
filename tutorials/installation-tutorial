@@ -1,0 +1,12 @@
+---
+dropdown: Tutorials
+pos: 3.2
+layout: default
+title: Installation video tutorial
+---
+
+<h1>Installation video tutorial</h1>
+
+<p>This tutorial will help you while installing the FREME framework on your personal computer.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kuYOd1LUxq4" frameborder="0" allowfullscreen></iframe>
