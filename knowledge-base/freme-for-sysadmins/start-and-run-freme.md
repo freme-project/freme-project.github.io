@@ -18,6 +18,7 @@ This guide explains how to install and run FREME.
 ## Installation procedure
 
 * Copy the freme package to the installation folder, e.g. to /opt/freme
+* FREME configuration options are explained in more detail in [this article](creating-and-running-a-freme-package.html) and [FREME configuration options](configuration-options.html).
 * Make scripts executable: chmod +x /opt/freme/bin/*
 * Start FREME by running one of the following scripts:
   * ```/opt/freme/bin/start_server.sh```
