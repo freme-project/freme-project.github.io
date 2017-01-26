@@ -95,6 +95,13 @@ Typically a FREME package has more configuration files.
 
 * log4j.properties is used to configure the logging behaviour.
 * application.properties is a standard Java properties file for configuration settings.
+* start-properties contains command line arguments that will be added to the JVM when the program is started. Here you can e.g. configure additional memory to the program:
+
+```
+START_ARGS="-Xmx16G -Djava.security.egd=file:/dev/./urandom"
+```
+
+This configures 16GB of RAM for the program. The second option configures a specific random number generator. This significantly speeds up FREMEs startup time and we advice to always use this option.
 
 ## Running the package
 
