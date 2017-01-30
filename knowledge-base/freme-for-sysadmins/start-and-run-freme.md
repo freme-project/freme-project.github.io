@@ -42,6 +42,10 @@ service freme restart
 service freme stop
 ```
 
+### Too many open files bug
+
+An open bug in FREME leads to streams that are opened but not closed. When there are too many open streams then FREME cannot open more streams. This happens only under special circumstances and when FREME is used heavily, e.g. after 10.000 API calls. It results in errors during API calls with error messages like "Internal server error". The log files show the message "Too many open files". The easiest workaround is to restart FREME regularly, e.g. by a cronjob every midnight.  
+
 ## Tips
 
 ### Prevent loosing connection to MySQL database
