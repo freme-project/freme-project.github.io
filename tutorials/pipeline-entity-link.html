@@ -20,10 +20,11 @@ title: Using the e-Entity & e-Link Pipeline
 	</p>
 
   <!-- HTML generated using hilite.me -->
-  <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-    <pre style="margin: 0; line-height: 125%">This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.
-    </pre>
+  <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+	<pre style="margin: 0; line-height: 125%">This summer there is the Zomerbar in Antwerp<span style="color: #666666">,</span> one of the most beautiful cities in Belgium<span style="color: #666666">.</span>
+	</pre>
   </div>
+
 </div>
 
 <div>
@@ -35,7 +36,7 @@ title: Using the e-Entity & e-Link Pipeline
     A request to the pipelining service consists of an array where each service is an element of that array. In our case the first service is the e-Entity. The code looks like this:
   </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -46,27 +47,30 @@ title: Using the e-Entity & e-Link Pipeline
  9
 10
 11
-12</pre></td><td><pre style="margin: 0; line-height: 125%">{
-  <span style="color: #000080; font-weight: bold">&quot;method&quot;</span>: <span style="color: #0000FF">&quot;POST&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents/&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;parameters&quot;</span>: {
-   <span style="color: #000080; font-weight: bold">&quot;language&quot;</span>: <span style="color: #0000FF">&quot;en&quot;</span>
-   <span style="color: #000080; font-weight: bold">&quot;dataset&quot;</span>: <span style="color: #0000FF">&quot;dbpedia&quot;</span>
-   <span style="color: #000080; font-weight: bold">&quot;mode&quot;</span>: <span style="color: #0000FF">&quot;all&quot;</span>
+12
+13
+14</pre></td><td><pre style="margin: 0; line-height: 125%">{
+  <span style="color: #008000; font-weight: bold">&quot;method&quot;</span>: <span style="color: #BA2121">&quot;POST&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #BA2121">&quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;parameters&quot;</span>: {
+   <span style="color: #008000; font-weight: bold">&quot;language&quot;</span>: <span style="color: #BA2121">&quot;en&quot;</span>,
+   <span style="color: #008000; font-weight: bold">&quot;dataset&quot;</span>: <span style="color: #BA2121">&quot;dbpedia&quot;</span>,
+   <span style="color: #008000; font-weight: bold">&quot;mode&quot;</span>: <span style="color: #BA2121">&quot;all&quot;</span>
   },
-  <span style="color: #000080; font-weight: bold">&quot;headers&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #0000FF">&quot;text/plain&quot;</span>,
-    <span style="color: #000080; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;headers&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #BA2121">&quot;text/plain&quot;</span>,
+    <span style="color: #008000; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>
   },
-    <span style="color: #000080; font-weight: bold">&quot;body&quot;</span>: <span style="color: #0000FF">&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;</span>
+    <span style="color: #008000; font-weight: bold">&quot;body&quot;</span>: <span style="color: #BA2121">&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;</span>
 }
 </pre></td></tr></table></div>
+
 
   <p>
     The 'body' contains the aforementioned sentence, and 'endpoint' states that we want to use the e-Entity service. For a complete explanation of the code we refer to the <a href="{{/api-doc/full.html| prepend: site.basePath }}">e-Entity documentation</a>. Next, we will define what we happens with the result of the e-Entity service. This results in the following code for the e-Link service.
   </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ <!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -77,24 +81,25 @@ title: Using the e-Entity & e-Link Pipeline
  9
 10
 11</pre></td><td><pre style="margin: 0; line-height: 125%">{
-  <span style="color: #000080; font-weight: bold">&quot;method&quot;</span>: <span style="color: #0000FF">&quot;POST&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-link/documents/&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;parameters&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;templateid&quot;</span>: <span style="color: #0000FF">&quot;3&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;method&quot;</span>: <span style="color: #BA2121">&quot;POST&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #BA2121">&quot;https://api.freme-project.eu/current/e-link/documents/&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;parameters&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;templateid&quot;</span>: <span style="color: #BA2121">&quot;1&quot;</span>
   },
-  <span style="color: #000080; font-weight: bold">&quot;headers&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>,
-    <span style="color: #000080; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;headers&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>,
+    <span style="color: #008000; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>
   }
 }
 </pre></td></tr></table></div>
 
 
+
   <p>
-    We are using the third template via 'parameters.templateid'. Again, for more detailed information about the service we refer to the <a href="{{site.basePath }}/api-doc/full.html">e-Link documentation</a>. Now, we add the two pieces of code in an array, which results in:
+    We are using the first template via 'parameters.templateid'. Again, for more detailed information about the service we refer to the <a href="{{site.basePath }}/api-doc/full.html">e-Link documentation</a>. Now, we add the two pieces of code in an array, which results in:
   </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -118,34 +123,37 @@ title: Using the e-Entity & e-Link Pipeline
 22
 23
 24
-25</pre></td><td><pre style="margin: 0; line-height: 125%">[
+25
+26
+27</pre></td><td><pre style="margin: 0; line-height: 125%">[
 {
-  <span style="color: #000080; font-weight: bold">&quot;method&quot;</span>: <span style="color: #0000FF">&quot;POST&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents/&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;parameters&quot;</span>: {
-   <span style="color: #000080; font-weight: bold">&quot;language&quot;</span>: <span style="color: #0000FF">&quot;en&quot;</span>
-   <span style="color: #000080; font-weight: bold">&quot;dataset&quot;</span>: <span style="color: #0000FF">&quot;dbpedia&quot;</span>
-   <span style="color: #000080; font-weight: bold">&quot;mode&quot;</span>: <span style="color: #0000FF">&quot;all&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;method&quot;</span>: <span style="color: #BA2121">&quot;POST&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #BA2121">&quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents/&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;parameters&quot;</span>: {
+   <span style="color: #008000; font-weight: bold">&quot;language&quot;</span>: <span style="color: #BA2121">&quot;en&quot;</span>,
+   <span style="color: #008000; font-weight: bold">&quot;dataset&quot;</span>: <span style="color: #BA2121">&quot;dbpedia&quot;</span>,
+   <span style="color: #008000; font-weight: bold">&quot;mode&quot;</span>: <span style="color: #BA2121">&quot;all&quot;</span>
   },
-  <span style="color: #000080; font-weight: bold">&quot;headers&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #0000FF">&quot;text/plain&quot;</span>,
-    <span style="color: #000080; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;headers&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #BA2121">&quot;text/plain&quot;</span>,
+    <span style="color: #008000; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>
   },
-  <span style="color: #000080; font-weight: bold">&quot;body&quot;</span>: <span style="color: #0000FF">&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;body&quot;</span>: <span style="color: #BA2121">&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;</span>
 },
 {
-  <span style="color: #000080; font-weight: bold">&quot;method&quot;</span>: <span style="color: #0000FF">&quot;POST&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-link/documents/&quot;</span>,
-  <span style="color: #000080; font-weight: bold">&quot;parameters&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;templateid&quot;</span>: <span style="color: #0000FF">&quot;3&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;method&quot;</span>: <span style="color: #BA2121">&quot;POST&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;endpoint&quot;</span>: <span style="color: #BA2121">&quot;https://api.freme-project.eu/current/e-link/documents/&quot;</span>,
+  <span style="color: #008000; font-weight: bold">&quot;parameters&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;templateid&quot;</span>: <span style="color: #BA2121">&quot;1&quot;</span>
   },
-  <span style="color: #000080; font-weight: bold">&quot;headers&quot;</span>: {
-    <span style="color: #000080; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>,
-    <span style="color: #000080; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #0000FF">&quot;text/turtle&quot;</span>
+  <span style="color: #008000; font-weight: bold">&quot;headers&quot;</span>: {
+    <span style="color: #008000; font-weight: bold">&quot;content-type&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>,
+    <span style="color: #008000; font-weight: bold">&quot;accept&quot;</span>: <span style="color: #BA2121">&quot;text/turtle&quot;</span>
   }
 }
 ]
 </pre></td></tr></table></div>
+
 
 </div>
 
@@ -155,50 +163,52 @@ title: Using the e-Entity & e-Link Pipeline
     To call the pipelining service with the request we created above, we execute the following Terminal command:
   </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -X POST --header <span style="color: #0000FF">&quot;Content-Type: application/json&quot;</span> --header <span style="color: #0000FF">&quot;Accept: application/json&quot;</span> -d <span style="color: #0000FF">&quot;[{\&quot;method\&quot;: \&quot;POST\&quot;,\&quot;endpoint\&quot;: \&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-entity/freme-ner/documents\&quot;,\&quot;parameters\&quot;: {\&quot;language\&quot;: \&quot;en\&quot;,\&quot;dataset\&quot;: \&quot;dbpedia\&quot;,\&quot;mode\&quot;: \&quot;all\&quot;},\&quot;headers\&quot;: {\&quot;content-type\&quot;: \&quot;text/plain\&quot;,\&quot;accept\&quot;: \&quot;text/turtle\&quot;},\&quot;body\&quot;: \&quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.\&quot;},{\&quot;method\&quot;: \&quot;POST\&quot;,\&quot;endpoint\&quot;: \&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/e-link/documents/\&quot;,\&quot;parameters\&quot;: {\&quot;templateid\&quot;: \&quot;3\&quot;},\&quot;headers\&quot;: {\&quot;content-type\&quot;: \&quot;text/turtle\&quot;,\&quot;accept\&quot;: \&quot;text/turtle\&quot;}}]&quot;</span> <span style="color: #0000FF">&quot;{{site.apiBasePath | prepend: site.apiHost | prepend: "://" | prepend: site.apiProtocol }}/pipelining/chain&quot;</span>
+ <!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl -X POST --header <span style="color: #BA2121">&#39;Content-Type: application/json&#39;</span> --header <span style="color: #BA2121">&#39;Accept: application/json&#39;</span> -d <span style="color: #BA2121">&#39;[{&quot;method&quot;: &quot;POST&quot;,&quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-entity/freme-ner/documents&quot;,&quot;parameters&quot;: {&quot;language&quot;: &quot;en&quot;,&quot;dataset&quot;: &quot;dbpedia&quot;,&quot;mode&quot;: &quot;all&quot;},&quot;headers&quot;: {&quot;content-type&quot;: &quot;text/plain&quot;,&quot;accept&quot;: &quot;text/turtle&quot;},&quot;body&quot;: &quot;This summer there is the Zomerbar in Antwerp, one of the most beautiful cities in Belgium.&quot;},{&quot;method&quot;: &quot;POST&quot;,&quot;endpoint&quot;: &quot;https://api.freme-project.eu/current/e-link/documents/&quot;,&quot;parameters&quot;: {&quot;templateid&quot;: &quot;1&quot;},&quot;headers&quot;: {&quot;content-type&quot;: &quot;text/turtle&quot;,&quot;accept&quot;: &quot;text/turtle&quot;}}]&#39;</span> <span style="color: #BA2121">&#39;https://api.freme-project.eu/current/pipelining/chain&#39;</span>
 </pre></div>
+
 </div>
 
 <div>
   <h2>Step 4 - Result</h2>
   <p>
-    As you can see in the result, e.g., the country 'Belgium' was recognized:
+    As you can see in the result, e.g., the city of 'Antwerp' was recognized:
   </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></td><td><pre style="margin: 0; line-height: 125%">&lt;http://freme-project.eu/#char=82,89&gt;
-        a                     nif:RFC5147String , nif:Word ;
-        nif:anchorOf          &quot;Belgium&quot; ;
-        nif:beginIndex        &quot;82&quot; ;
-        nif:endIndex          &quot;89&quot; ;
-        nif:nextWord          &lt;http://freme-project.eu/#char=89,90&gt; ;
-        nif:previousWord      &lt;http://freme-project.eu/#char=79,81&gt; ;
-        nif:referenceContext  &lt;http://freme-project.eu/#char=0,90&gt; ;
-        nif:sentence          &lt;http://freme-project.eu/#char=0,90&gt; ;
-        itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Belgium&gt; .
-</pre></td></tr></table></div>
-
-  <p>
-    Also the use of the e-Link service (and the use of template 3) provided us with the longitude and latitude of Belgium:
-  </p>
-
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
 2
 3
 4
-5</pre></td><td><pre style="margin: 0; line-height: 125%">&lt;http://dbpedia.org/resource/Belgium&gt;
-        &lt;http://www.w3.org/2003/01/geo/wgs84_pos#lat&gt;
-                &quot;50.85&quot;^^xsd:float , &quot;50.83333&quot; , &quot;50.8333333&quot; , &quot;50.8333333&quot;^^xsd:double ;
-        &lt;http://www.w3.org/2003/01/geo/wgs84_pos#long&gt;
-                &quot;4.35&quot;^^xsd:float , &quot;4.0&quot;^^xsd:double , &quot;4.0&quot; , &quot;4&quot; .
+5
+6
+7
+8
+9</pre></td><td><pre style="margin: 0; line-height: 125%">&lt;http://freme-project.eu/#char=37,44&gt;
+        a                     nif:Word , nif:Phrase , nif:String , nif:RFC5147String ;
+        nif:anchorOf          &quot;Antwerp&quot;^^xsd:string ;
+        nif:beginIndex        &quot;37&quot;^^xsd:nonNegativeInteger ;
+        nif:endIndex          &quot;44&quot;^^xsd:nonNegativeInteger ;
+        nif:referenceContext  &lt;http://freme-project.eu/#char=0,90&gt; ;
+        itsrdf:taClassRef     &lt;http://dbpedia.org/ontology/PopulatedPlace&gt; , &lt;http://dbpedia.org/ontology/Settlement&gt; , &lt;http://dbpedia.org/ontology/Location&gt; , &lt;http://dbpedia.org/ontology/Place&gt; , &lt;http://nerd.eurecom.fr/ontology#Location&gt; ;
+        itsrdf:taConfidence   &quot;0.9942746344558188&quot;^^xsd:double ;
+        itsrdf:taIdentRef     &lt;http://dbpedia.org/resource/Antwerp&gt; .
 </pre></td></tr></table></div>
+
+
+
+  <p>
+    Also the use of the e-Link service (and the use of template 1) provided us with the musea in or close to Antwerp. For instance:
+  </p>
+
+ <!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5</pre></td><td><pre style="margin: 0; line-height: 125%">&lt;http://dbpedia.org/resource/Museum_aan_de_Stroom&gt;
+        foaf:based_near  &lt;http://dbpedia.org/resource/Antwerp&gt; .
+
+&lt;http://dbpedia.org/resource/Museums_of_the_Far_East&gt;
+        foaf:based_near  &lt;http://dbpedia.org/resource/Antwerp&gt; .
+</pre></td></tr></table></div>
+
 
 </div>
