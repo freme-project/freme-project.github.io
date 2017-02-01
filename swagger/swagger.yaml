@@ -2544,23 +2544,27 @@ paths:
       description: >
         Tilde e-Translation translates text from and to various languages using the Tilde Terminology service.
 
+
         Parameters can be submitted via URL or via form-data post body. A list of
         available language pairs is [here](https://services.tilde.com/translationsystems).
         
+        
         Note that some machine translation systems are only available in sleep mode. Further information is available via the related website from Tilde: https://services.tilde.com/translationsystems
 
+
         This is a NIF example that can be consumed by e-Translation:
+
 
         <pre lang="turtle"><code>
           @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
           @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-
-          &lt;http://freme-project.eu/#char=0,18&gt;
+          &lt;http://freme-project.eu/#char=0,12&gt;
                   a               nif:RFC5147String , nif:Context , nif:String ;
                   nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
-                  nif:endIndex    "18"^^xsd:nonNegativeInteger ;
-                  nif:isString    "Welcome to Europe." .
+                  nif:endIndex    "12"^^xsd:nonNegativeInteger ;
+                  nif:isString    "Translate me" .
         </code></pre>
+
 
       operationId: e-translation
       parameters:
