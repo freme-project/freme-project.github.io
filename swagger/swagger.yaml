@@ -2620,7 +2620,7 @@ paths:
           description: 'Target language, e.g. "de", "en". Language for targeted terms. A list of supported language codes is [here](https://term.tilde.com/resources).'
           required: true
           type: string
-          default: 'es'
+          default: 'de'
         - name: collection
           in: query
           required: false
