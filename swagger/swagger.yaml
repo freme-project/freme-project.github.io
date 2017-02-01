@@ -2539,14 +2539,19 @@ paths:
     post:
       tags:
         - e-Translation
-      summary: "Perform machine translation using Tilde's API"
+
+      summary: Annotate text with terminology information using Tilde Terminology service.
       description: >
         Annotate text with terminology information using Tilde Terminology
         service.
+
+
         This example shows NIF that can be consumed by the service:
+
         <pre lang="turtle"><code>
           @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
           @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
+
           &lt;http://freme-project.eu/#char=0,18&gt;
                   a               nif:RFC5147String , nif:Context , nif:String ;
                   nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
@@ -2554,20 +2559,21 @@ paths:
                   nif:isString    "Welcome to Europe." .
         </code></pre>
 
-      operationId: tildeTranslate
+      operationId: e-translation
       parameters:
         - name: Content-Type
           in: header
           default: text/turtle
-          type: string
           required: true
+          type: string
           enum:
-            - text/plain
             - text/n3
             - text/turtle
-            - application/x-xliff+xml
             - application/ld+json
             - application/n-triples
+            - text/plain
+            - application/rdf+xml
+            - application/x-xliff+xml
             - text/html
             - text/xml
             - application/x-openoffice
@@ -2592,37 +2598,46 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'The string to be translated. Can be either plaintext or NIF. Will be overwritten by parameter input, if set. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/turtle". The parameter *informat* overrides the Content-Type.'
+          description: 'The text to annotate. Will be overwritten by parameter input, if set. The format of the body can be text/turtle, application/ld+json, application/n-triples, application/rdf+xml, text/n3. Defaults to "text/plain". The parameter *informat* overrides the Content-Type.'
           required: false
           schema:
             type: string
         - name: source-lang
           in: query
-          description: 'Source language, e.g. "en". A list of available language pairs is [here](https://services.tilde.com/translationsystems).'
+          description: 'Source language, e.g. "de","en". Language of submitted text. A list of supported language codes is [here](https://term.tilde.com/resources).'
           required: true
           type: string
           default: 'en'
         - name: target-lang
           in: query
-          description: 'Target language, e.g. "de". A list of available language pairs is [here](https://services.tilde.com/translationsystems).'
+          description: 'Target language, e.g. "de", "en". Language for targeted terms. A list of supported language codes is [here](https://term.tilde.com/resources).'
           required: true
           type: string
-          default: 'de'
-        - name: key
-          description: 'A private key to access private and not publicly available translation systems. Key can be created by contacting <a href="http://www.tilde.com/mt/contacts"> Tilde team</a>. Optional, if omitted then translates with public systems'
+          default: 'es'
+        - name: collection
+          in: query
           required: false
           type: string
+          description: 'collection id from https://term.tilde.com portal. If filled then annotates only with terms from that collection'
+        - name: mode
+          required: false
+          type: string
+          description: Whether the result must contain full terminology information or only term annotations with references to the full information
           in: query
+          enum:
+            - full
+            - annotation
+          default: full
         - name: domain
           in: query
-          description: 'specify domain of translation system. List of supported domains and language pairs can be found [here](https://services.tilde.com/translationsystems).'
+          description: 'If given - it filters out by domain proposed terms. Available domains here: https://term.tilde.com/domains (should pass just ID, eg, TaaS-1001, that means Agriculture)'
           required: false
           type: string
-        - name: system
+        - name: key
+          description: 'A private key to access private and not publicly available terminology systems. Key can be created by contacting <a href="https://term.tilde.com/"> Tilde team</a>. Optional, if omitted then public terminology systems are used.'
+          required: false
+          type: string
           in: query
-          required: false
-          description: 'select translation system by ID [an alternative to source, target language and domain selection]. ID of public translation system can be retrieved at https://services.tilde.com/translationsystems or private system ID can be found at portal http://tilde.com/mt with authentication [optional, if omitted then source and target languages and also domain parameters are used]'
-          type: string
         - name: nif-version
           in: query
           description: 'Specify the nif version that the endpoint should produce. Can be "2.0" or "2.1". Leave blank for the default value "2.0".'
@@ -2631,7 +2646,7 @@ paths:
           enum:
             - '2.0'
             - '2.1'
-      
+          
       responses:
         '200':
           description: Successful response
