@@ -2542,11 +2542,14 @@ paths:
 
       summary: Annotate text with terminology information using Tilde Terminology service.
       description: >
-        Annotate text with terminology information using Tilde Terminology
-        service.
+        Tilde e-Translation translates text from and to various languages using the Tilde Terminology service.
 
+        Parameters can be submitted via URL or via form-data post body. A list of
+        available language pairs is [here](https://services.tilde.com/translationsystems).
+        
+        Note that some machine translation systems are only available in sleep mode. Further information is available via the related website from Tilde: https://services.tilde.com/translationsystems
 
-        This example shows NIF that can be consumed by the service:
+        This is a NIF example that can be consumed by e-Translation:
 
         <pre lang="turtle"><code>
           @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
