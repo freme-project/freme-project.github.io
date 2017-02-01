@@ -2555,7 +2555,6 @@ paths:
         <pre lang="turtle"><code>
           @prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
           @prefix nif:   &lt;http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#&gt; .
-
           &lt;http://freme-project.eu/#char=0,12&gt;
                   a               nif:RFC5147String , nif:Context , nif:String ;
                   nif:beginIndex  "0"^^xsd:nonNegativeInteger ;
