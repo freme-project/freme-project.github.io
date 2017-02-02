@@ -70,3 +70,15 @@ E.g. through creating a configuration file "start-properties" with this content:
 ```
 START_ARGS="-Djava.security.egd=file:/dev/./urandom"
 ```
+
+
+### Update an existing FREME installation
+
+To update an existing FREME installation follow these steps:
+
+1. Backup the existing FREME package
+2. Download the latest FREME package. Usually you can checkout the latest release tag from the [git repository](github.com/freme-project/freme-packages/) and run mvn package (see [Create and run a FREME package](creating-and-running-a-freme-package.html).
+3. Stop the old FREME package
+4. Replace the existing FREME package with the new package (but you still have a backup of the old package).
+5. Delete the config folder of the new FREME package and replace it with the config folder of the old package.
+6. Start the new FREME package
