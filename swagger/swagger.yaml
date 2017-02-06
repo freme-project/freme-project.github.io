@@ -464,7 +464,7 @@ paths:
           in: path
           required: true
           description: ID of template to return
-          default: '42'
+          default: '1'
           type: string
           
       responses:
