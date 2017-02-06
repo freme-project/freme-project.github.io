@@ -531,7 +531,7 @@ paths:
           description: Id of the pipeline-template to be used
           required: true
           type: integer
-          default: 42
+          default: 1
         - name: body
           in: body
           description: 'Input for pipeline chain, the format depends on the first request of the pipeline.'
