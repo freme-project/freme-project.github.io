@@ -31,11 +31,11 @@ cd freme-packages/broker-local
 mvn install 
 ```
 
-## Configure .settings.xml file in Maven local repository
+## Configure settings.xml file in Maven local repository
 
 FREME snapshot artifacts are published in the [ossrh staging repository](https://oss.sonatype.org/content/repositories/snapshots/), 
 release artifacts are published in the [Central Repository](https://search.maven.org/).
-You can deploy to these repositories as 'freme-developer' user. This can be configured in the .settings.xml file in the local 
+You can deploy to these repositories as 'freme-developer' user. This can be configured in the settings.xml file in the local 
 repository: 
 
 ```xml
